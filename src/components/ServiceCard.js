@@ -25,9 +25,9 @@ const ServiceCard = ({icon, name, inactive, disp, screenname, bgColor, elipseCol
         //     disable={true}
         //     onPress={onpress}
         // >
-        //     <MaterialCommunityIcons style={{display:disp}} name="lock-outline" size={16} color="black" />           
+        //     <Icon style={{display:disp}} name="lock-outline" size={16} color="black" />           
         //     <View className="w-20 h-20 flex items-center justify-center"> 
-        //         <MaterialCommunityIcons name={icon} size={24} color="black"/>
+        //         <Icon name={icon} size={24} color="black"/>
         //         <Text className="text-xs text-center pb-2">{name}</Text>
         //     </View>
         // </TouchableOpacity>

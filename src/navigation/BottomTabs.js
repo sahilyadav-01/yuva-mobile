@@ -5,7 +5,7 @@ import Settings from '../screens/Settings';
 
 import {HomeIcon, CogIcon, ChatIcon} from 'react-native-heroicons/outline';
 import ServicesNav from './ServicesNav';
-import {MaterialCommunityIcons} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ const BottomTabs = () => {
           tabBarIcon: ({focused}) => {
             // return <HomeIcon className="h-5 w-5 text-blue-500"/>
             return (
-              <MaterialCommunityIcons
+              <Icon
                 name="home-outline"
                 size={35}
                 color="black"
@@ -40,7 +40,7 @@ const BottomTabs = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <MaterialCommunityIcons
+              <Icon
                 name="chat-outline"
                 size={35}
                 color="black"
@@ -55,7 +55,7 @@ const BottomTabs = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <MaterialCommunityIcons
+              <Icon
                 name="cog-outline"
                 size={35}
                 color="black"

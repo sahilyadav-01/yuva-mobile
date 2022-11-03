@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {MaterialCommunityIcons} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import CardButton from './CardButton';
 
 const CarouselItem = ({item, index}) => {
@@ -20,7 +20,7 @@ const CarouselItem = ({item, index}) => {
             <Text className="mr-2 text-[#1D2334] text-base  font-bold">
               Clinic Apex
             </Text>
-            <MaterialCommunityIcons
+            <Icon
               name="google-maps"
               size={14}
               color="black"

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {MaterialCommunityIcons} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import speedmeter from '../../../../assets/speedmeter.png';
 import brain from '../../../../assets/brain.png';
@@ -47,9 +47,9 @@ const HRASectionCard = ({
     //     disable={true}
     //     onPress={onpress}
     // >
-    //     {/* <MaterialCommunityIcons style={{display:disp}} name="lock-outline" size={16} color="black" />            */}
+    //     {/* <Icon style={{display:disp}} name="lock-outline" size={16} color="black" />            */}
     //     <View className="w-20 h-20 flex items-center justify-center">
-    //         <MaterialCommunityIcons name={icon} size={26} color="black"/>
+    //         <Icon name={icon} size={26} color="black"/>
     //         <Text className="text-xs text-center pb-2 mt-1">{name}</Text>
     //     </View>
     // </TouchableOpacity>

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, ScrollView} from 'react-native';
 import AppointmentCard from './AppointmentCard';
 import {PlusCircleIcon, LocationMarkerIcon} from 'react-native-heroicons/solid';
-import {MaterialCommunityIcons} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Svg, {Line} from 'react-native-svg';
 import {useNavigation} from '@react-navigation/native';
 import Backbutton from '../../../../components/Backbutton';
@@ -84,7 +84,7 @@ const AppointmentHome = ({navigation}) => {
       <View className="flex-row items-center justify-between ml-2 mr-2 mt-[10px]">
         <Text className="text-bold  text-xl">Appointments</Text>
         <TouchableOpacity onPress={newAppointment}>
-          <MaterialCommunityIcons
+          <Icon
             name="plus-circle-outline"
             size={50}
             color="black"

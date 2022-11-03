@@ -5,7 +5,7 @@ import {LocationMarkerIcon} from 'react-native-heroicons/solid';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {MaterialCommunityIcons} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import CardButton from '../../../../components/CardButton';
 import {currentAppointment} from '../../../../store/reducers/AppointmentSlice';
 import {appointmentStatus} from '../../../../utils/utils';
@@ -106,7 +106,7 @@ const AppointmentCard = ({
               <Text className="mr-2 text-[#1D2334] text-base  font-bold">
                 {hospitalName}
               </Text>
-              <MaterialCommunityIcons
+              <Icon
                 name="google-maps"
                 size={14}
                 color="black"
@@ -118,7 +118,7 @@ const AppointmentCard = ({
           </View>
 
           <View className="flex-row items-center">
-            <MaterialCommunityIcons name="calendar" size={24} color="black" />
+            <Icon name="calendar" size={24} color="black" />
             <View className="ml-[2px]">
               <Text style={{fontSize: 12}} className="">
                 {getDate(slot)}
