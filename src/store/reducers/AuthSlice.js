@@ -24,7 +24,7 @@ export const loginThunk = createAsyncThunk(
     'auth/loginThunk',
     async ({email, password}, {fulfillWithValue, rejectWithValue}) => {
         try {
-            const uri='http://'+SERVER+':8080/api/v1/yuva/login?email='+email+'&password='+password
+            const uri='http://'+SERVER+':8080/api/v1/yuva/login?emailOrNumber='+email+'&password='+password
              return await axios.post(uri, {}).then(resp => resp.data)
         }catch(error){
             //const errorOject =  JSON.stringify(error.response.data)
