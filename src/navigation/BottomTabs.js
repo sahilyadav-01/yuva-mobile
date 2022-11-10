@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from '../screens/Settings';
 
-import {HomeIcon, CogIcon, ChatIcon} from 'react-native-heroicons/outline';
+// import {HomeIcon, CogIcon, ChatIcon} from 'react-native-heroicons/outline';
 import ServicesNav from './ServicesNav';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +15,10 @@ const BottomTabs = () => {
       screenOptions={{
         headerShown: false,
         showLabel: false,
-        tabBarShowLabel: false,
+        tabBarShowLabel: true,
+        tabBarActiveBackgroundColor: '#ffffff',
+        tabBarInactiveBackgroundColor: '#2D354E',
+        tabBarActiveTintColor: '#2D354E',
       }}
       initialRouteName="Home">
       <Tab.Screen
@@ -23,12 +26,11 @@ const BottomTabs = () => {
         component={ServicesNav}
         options={{
           tabBarIcon: ({focused}) => {
-            // return <HomeIcon className="h-5 w-5 text-blue-500"/>
             return (
               <Icon
                 name="home-outline"
                 size={35}
-                color="black"
+                color={focused ? '#2D354E' : '#ffffff'}
               />
             );
           },
@@ -41,24 +43,24 @@ const BottomTabs = () => {
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="chat-outline"
+                name="message-outline"
                 size={35}
-                color="black"
+                color={focused ? '#2D354E' : '#ffffff'}
               />
             );
           },
         }}
       />
       <Tab.Screen
-        name="setting"
+        name="Setting"
         component={Settings}
         options={{
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="cog-outline"
+                name="cog"
                 size={35}
-                color="black"
+                color={focused ? '#2D354E' : '#ffffff'}
               />
             );
           },

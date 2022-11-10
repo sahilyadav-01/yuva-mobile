@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
 import {useSelector} from 'react-redux';
 import {appointmentStatus} from '../../../../utils/utils';
@@ -88,15 +88,11 @@ const ViewAppointment = () => {
             <Text className="text-lg text-bold text-[#1D2334] mr-[2px]">
               {hospitalName}
             </Text>
-            <Icon
-              name="google-maps"
-              size={18}
-              color="black"
-            />
+            <Icon name="google-maps" size={18} color="black" />
           </View>
 
           <View className="flex-row items-center">
-            <Icon name="calendar" size={24} color="black" />
+            <Icon name="calendar-blank-outline" size={24} color="black" />
             <View className="ml-[2px]">
               <Text style={{fontSize: 12}} className="">
                 {getDate(slot)}

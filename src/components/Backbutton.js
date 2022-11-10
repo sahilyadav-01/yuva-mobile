@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Backbutton = ({onPress, color, size}) => {
   return (
