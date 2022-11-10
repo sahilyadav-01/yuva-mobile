@@ -20,7 +20,7 @@ export default function App() {
     <Provider store={store}>
       <PaperProvider>
         <NavigationContainer>
-          <TailwindProvider>
+          {/* <TailwindProvider> */}
             {/* <BottomTabs/> */}
             <IntroStackNav />
             {/* <OPDNavigation/> */}
@@ -28,7 +28,7 @@ export default function App() {
             {/* <HRANavigation/> */}
             {/* <Section2/> */}
             {/* <HRAHome/> */}
-          </TailwindProvider>
+          {/* </TailwindProvider> */}
         </NavigationContainer>
       </PaperProvider>
     </Provider>
