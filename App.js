@@ -21,13 +21,13 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           {/* <TailwindProvider> */}
-            {/* <BottomTabs/> */}
-            <IntroStackNav />
-            {/* <OPDNavigation/> */}
-            {/* <NewAppointment/> */}
-            {/* <HRANavigation/> */}
-            {/* <Section2/> */}
-            {/* <HRAHome/> */}
+          {/* <BottomTabs/> */}
+          <IntroStackNav />
+          {/* <OPDNavigation/> */}
+          {/* <NewAppointment/> */}
+          {/* <HRANavigation/> */}
+          {/* <Section2/> */}
+          {/* <HRAHome/> */}
           {/* </TailwindProvider> */}
         </NavigationContainer>
       </PaperProvider>

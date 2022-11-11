@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
 
 const CarouselItem = ({item, index}) => {
@@ -20,11 +20,7 @@ const CarouselItem = ({item, index}) => {
             <Text className="mr-2 text-[#1D2334] text-base  font-bold">
               Clinic Apex
             </Text>
-            <Icon
-              name="google-maps"
-              size={14}
-              color="black"
-            />
+            <Icon name="map-marker-outline" size={14} color="black" />
           </View>
           <Text className="mt-[10px] font-medium text-xs">
             Appointment for HeadAche
