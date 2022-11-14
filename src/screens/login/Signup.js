@@ -135,11 +135,16 @@ const Signup = () => {
         </View>
       </View>
       {/* SignUP Screen */}
-      <View className="flex h-full mt-[60px]">
+      <View className="flex h-full mt-[30px]">
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2"
-          placeholder="Number"
+          className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
+          placeholder="Name"
+        />
+        <TextInput
+          style={{backgroundColor: '#F5F9FA'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2 mb-[60px]"
+          placeholder="Contact Number"
           onChangeText={onChangeName}
           onBlur={checkNumberText}
         />
@@ -150,20 +155,32 @@ const Signup = () => {
         )}
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2"
+          className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
           onBlur={checkEmailText}
         />
         {checkEmail === true && (
+          <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
+        )}
+        <TextInput
+          style={{backgroundColor: '#F5F9FA'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 mt-[60px]"
+          placeholder="Password"
+          type="password"
+          onChangeText={onChangePassword}
+          onBlur={checkPasswordText}
+          secureTextEntry={true}
+        />
+        {checkPassword === true && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
-            Email is not Valid
+            Password must be atleast 6 characters
           </Text>
         )}
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2"
-          placeholder="Password"
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
+          placeholder="Re-Type Password"
           type="password"
           onChangeText={onChangePassword}
           onBlur={checkPasswordText}
@@ -176,14 +193,15 @@ const Signup = () => {
         )}
         <TouchableOpacity
           onPress={signup}
-          style={{backgroundColor: '#52608E'}}
+          style={{backgroundColor: '#E68D36'}}
           className="mt-[45px] mr-[30px] ml-[30px] rounded">
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
           <Text className="text-center pt-[15px] pb-[15px] text-white">
-            Sign up
+            Register
           </Text>
           {/* </View> */}
         </TouchableOpacity>
+
         {/* Loading indicator */}
         {/* <ActivityIndicator animating={loading}/> */}
         {/* Handle input  errors */}
