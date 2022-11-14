@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,19 +7,19 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-} from "react-native";
-import Backbutton from "../../../components/Backbutton";
-import { useNavigation } from "@react-navigation/core";
-import * as Progress from "react-native-progress";
-import { Dimensions } from "react-native";
-import SectionInput from "../../../components/SectionInput";
-import SectionPicker from "../../../components/SectionPicker";
-import { useSelector, useDispatch } from "react-redux";
-import { section5QThunk } from "../../../store/reducers/Section5Slice";
-import PickerData from "../../../utils/PickerData";
-import ForwardButton from "../../../components/ForwardButton";
-import SelectList from "react-native-dropdown-select-list";
-import { dispatch_option } from "../../../store/reducers/Section5Slice";
+} from 'react-native';
+import Backbutton from '../../../components/Backbutton';
+import {useNavigation} from '@react-navigation/core';
+import * as Progress from 'react-native-progress';
+import {Dimensions} from 'react-native';
+import SectionInput from '../../../components/SectionInput';
+import SectionPicker from '../../../components/SectionPicker';
+import {useSelector, useDispatch} from 'react-redux';
+import {section5QThunk} from '../../../store/reducers/Section5Slice';
+import PickerData from '../../../utils/PickerData';
+import ForwardButton from '../../../components/ForwardButton';
+import SelectList from 'react-native-dropdown-select-list';
+import {dispatch_option} from '../../../store/reducers/Section5Slice';
 
 const Section5 = () => {
   /**
@@ -32,46 +32,36 @@ const Section5 = () => {
   /**
    * State
    */
-  const answers = useSelector((state) => state.section5.answers);
+  const answers = useSelector(state => state.section5.answers);
 
-  const questionData = useSelector((state) => state.section5.rawQuestions);
+  const questionData = useSelector(state => state.section5.rawQuestions);
 
-  console.log(questionData[0], "malli");
+  const {jwt} = useSelector(state => state.auth.user);
 
-  const { jwt } = useSelector((state) => state.auth.user);
-
-  const setQuestion1 = (value) => {
+  const setQuestion1 = value => {
     {
       value == 1 ? setSmoke(true) : setSmoke(false);
     }
-    dispatch(
-      dispatch_option({ key: questionData[0].questionId, value: value })
-    );
+    dispatch(dispatch_option({key: questionData[0].questionId, value: value}));
   };
-  const setQuestion2 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[1].questionId, value: value })
-    );
+  const setQuestion2 = value => {
+    dispatch(dispatch_option({key: questionData[1].questionId, value: value}));
   };
 
-  const setQuestion3 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[2].questionId, value: value })
-    );
+  const setQuestion3 = value => {
+    dispatch(dispatch_option({key: questionData[2].questionId, value: value}));
   };
 
-  const setQuestion4 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[3].questionId, value: value })
-    );
+  const setQuestion4 = value => {
+    dispatch(dispatch_option({key: questionData[3].questionId, value: value}));
   };
 
   //Metadata
-  const windowWidth = Dimensions.get("window").width;
+  const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
   const selectionData = [
-    { key: "0", value: "Yes" },
-    { key: "1", value: "No" },
+    {key: '0', value: 'Yes'},
+    {key: '1', value: 'No'},
   ];
 
   /**
@@ -80,17 +70,17 @@ const Section5 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section5QThunk({ jwt }));
+    dispatch(section5QThunk({jwt}));
   }, []);
 
   /**
    * Navigation
    */
   const previous = () => {
-    navigation.navigate("section4");
+    navigation.navigate('section4');
   };
   const next = () => {
-    navigation.navigate("section6");
+    navigation.navigate('section6');
   };
 
   return (
@@ -119,8 +109,7 @@ const Section5 = () => {
               flexGrow: 1,
               paddingBottom: 60,
             }}
-            showsVerticalScrollIndicator={false}
-          >
+            showsVerticalScrollIndicator={false}>
             {/* {questionData.map((item)=>{
                                     if(item.questionType.includes("picker")){
                                         const data  = PickerData[item.questionType];
@@ -156,16 +145,16 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[0]?.questionId] === undefined
-                    ? answers[questionData[0]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[0]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
@@ -177,10 +166,10 @@ const Section5 = () => {
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[1]?.question}</Text>
                   <TextInput
-                    style={{ backgroundColor: "#ffffff", borderWidth: 1 }}
+                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
-                    placeholderTextColor={"black"}
+                    placeholderTextColor={'black'}
                     placeholder=""
                     onChangeText={setQuestion2}
                   />
@@ -189,10 +178,10 @@ const Section5 = () => {
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[2]?.question}</Text>
                   <TextInput
-                    style={{ backgroundColor: "#ffffff", borderWidth: 1 }}
+                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
-                    placeholderTextColor={"black"}
+                    placeholderTextColor={'black'}
                     placeholder=""
                     onChangeText={setQuestion3}
                   />
@@ -208,16 +197,16 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[3]?.questionId] === undefined
-                    ? answers[questionData[3]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[3]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion4}
                 data={PickerData[questionData[3]?.questionType]}
@@ -227,10 +216,9 @@ const Section5 = () => {
 
             <View className="flex-row justify-between mt-[30px]">
               <TouchableOpacity
-                style={{ backgroundColor: "#52608E" }}
+                style={{backgroundColor: '#52608E'}}
                 className="w-[100px] rounded"
-                onPress={previous}
-              >
+                onPress={previous}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                 <Text className="text-center pt-[15px] pb-[15px] text-white">
                   Previous
@@ -238,10 +226,9 @@ const Section5 = () => {
                 {/* </View> */}
               </TouchableOpacity>
               <TouchableOpacity
-                style={{ backgroundColor: "#52608E" }}
+                style={{backgroundColor: '#52608E'}}
                 className="w-[100px] rounded"
-                onPress={next}
-              >
+                onPress={next}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                 <Text className="text-center pt-[15px] pb-[15px] text-white">
                   Next

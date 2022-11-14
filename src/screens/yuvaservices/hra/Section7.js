@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,19 +7,19 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-} from "react-native";
-import Backbutton from "../../../components/Backbutton";
-import { useNavigation } from "@react-navigation/core";
-import * as Progress from "react-native-progress";
-import { Dimensions } from "react-native";
-import SectionInput from "../../../components/SectionInput";
-import SectionPicker from "../../../components/SectionPicker";
-import { useSelector, useDispatch } from "react-redux";
-import { section7QThunk } from "../../../store/reducers/Section7Slice";
-import PickerData from "../../../utils/PickerData";
-import ForwardButton from "../../../components/ForwardButton";
-import { dispatch_option } from "../../../store/reducers/Section7Slice";
-import SelectList from "react-native-dropdown-select-list";
+} from 'react-native';
+import Backbutton from '../../../components/Backbutton';
+import {useNavigation} from '@react-navigation/core';
+import * as Progress from 'react-native-progress';
+import {Dimensions} from 'react-native';
+import SectionInput from '../../../components/SectionInput';
+import SectionPicker from '../../../components/SectionPicker';
+import {useSelector, useDispatch} from 'react-redux';
+import {section7QThunk} from '../../../store/reducers/Section7Slice';
+import PickerData from '../../../utils/PickerData';
+import ForwardButton from '../../../components/ForwardButton';
+import {dispatch_option} from '../../../store/reducers/Section7Slice';
+import SelectList from 'react-native-dropdown-select-list';
 
 const Section7 = () => {
   /**
@@ -33,77 +33,57 @@ const Section7 = () => {
   /**
    * State
    */
-  const answers = useSelector((state) => state.section7.answers);
+  const answers = useSelector(state => state.section7.answers);
 
-  const questionData = useSelector((state) => state.section7.rawQuestions);
+  const questionData = useSelector(state => state.section7.rawQuestions);
 
-  const { jwt } = useSelector((state) => state.auth.user);
+  const {jwt} = useSelector(state => state.auth.user);
 
-  const setQuestion1 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[0].questionId, value: value })
-    );
+  const setQuestion1 = value => {
+    dispatch(dispatch_option({key: questionData[0].questionId, value: value}));
   };
-  const setQuestion2 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[1].questionId, value: value })
-    );
+  const setQuestion2 = value => {
+    dispatch(dispatch_option({key: questionData[1].questionId, value: value}));
   };
 
-  const setQuestion3 = (value) => {
+  const setQuestion3 = value => {
     {
       value == 1 ? setMedicalCondition(true) : setMedicalCondition(false);
     }
-    dispatch(
-      dispatch_option({ key: questionData[2].questionId, value: value })
-    );
+    dispatch(dispatch_option({key: questionData[2].questionId, value: value}));
   };
 
-  const setQuestion4 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[3].questionId, value: value })
-    );
+  const setQuestion4 = value => {
+    dispatch(dispatch_option({key: questionData[3].questionId, value: value}));
   };
 
-  const setQuestion5 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[4].questionId, value: value })
-    );
+  const setQuestion5 = value => {
+    dispatch(dispatch_option({key: questionData[4].questionId, value: value}));
   };
-  const setQuestion6 = (value) => {
+  const setQuestion6 = value => {
     {
       value == 1 ? setMedicalCondition1(true) : setMedicalCondition1(false);
     }
-    dispatch(
-      dispatch_option({ key: questionData[5].questionId, value: value })
-    );
+    dispatch(dispatch_option({key: questionData[5].questionId, value: value}));
   };
-  const setQuestion7 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[6].questionId, value: value })
-    );
+  const setQuestion7 = value => {
+    dispatch(dispatch_option({key: questionData[6].questionId, value: value}));
   };
-  const setQuestion8 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[7].questionId, value: value })
-    );
+  const setQuestion8 = value => {
+    dispatch(dispatch_option({key: questionData[7].questionId, value: value}));
   };
-  const setQuestion9 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[8].questionId, value: value })
-    );
+  const setQuestion9 = value => {
+    dispatch(dispatch_option({key: questionData[8].questionId, value: value}));
   };
-  const setQuestion10 = (value) => {
-    dispatch(
-      dispatch_option({ key: questionData[9].questionId, value: value })
-    );
+  const setQuestion10 = value => {
+    dispatch(dispatch_option({key: questionData[9].questionId, value: value}));
   };
   //Metadata
-  const windowWidth = Dimensions.get("window").width;
+  const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
   const selectionData = [
-    { key: "0", value: "No" },
-    { key: "1", value: "Yes" },
+    {key: '0', value: 'No'},
+    {key: '1', value: 'Yes'},
   ];
 
   /**
@@ -112,17 +92,17 @@ const Section7 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section7QThunk({ jwt }));
+    dispatch(section7QThunk({jwt}));
   }, []);
 
   /**
    * Navigation
    */
   const previous = () => {
-    navigation.navigate("section6");
+    navigation.navigate('section6');
   };
   const next = () => {
-    navigation.navigate("section8");
+    navigation.navigate('section8');
   };
 
   return (
@@ -151,8 +131,7 @@ const Section7 = () => {
               flexGrow: 1,
               paddingBottom: 60,
             }}
-            showsVerticalScrollIndicator={false}
-          >
+            showsVerticalScrollIndicator={false}>
             {/* {questionData.map((item)=>{
                                     if(item.questionType.includes("picker")){
                                         const data  = PickerData[item.questionType];
@@ -179,16 +158,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[0]?.questionId] === undefined
-                    ? answers[questionData[0]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[0]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
@@ -201,16 +180,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[1]?.questionId] === undefined
-                    ? answers[questionData[1]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[1]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion2}
                 data={PickerData[questionData[1]?.questionType]}
@@ -223,16 +202,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[2]?.questionId] === undefined
-                    ? answers[questionData[2]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[2]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion3}
                 data={PickerData[questionData[2]?.questionType]}
@@ -243,10 +222,10 @@ const Section7 = () => {
               <View className="mt-[20px]">
                 <Text className="text-base">{questionData[3]?.question}</Text>
                 <TextInput
-                  style={{ backgroundColor: "#ffffff", borderWidth: 1 }}
+                  style={{backgroundColor: '#ffffff', borderWidth: 1}}
                   className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                   keyboardType="numeric"
-                  placeholderTextColor={"black"}
+                  placeholderTextColor={'black'}
                   placeholder=""
                   onChangeText={setQuestion4}
                 />
@@ -260,16 +239,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[4]?.questionId] === undefined
-                    ? answers[questionData[4]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[4]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion5}
                 data={PickerData[questionData[4]?.questionType]}
@@ -282,16 +261,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[5]?.questionId] === undefined
-                    ? answers[questionData[5]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[5]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion6}
                 data={PickerData[questionData[5]?.questionType]}
@@ -303,10 +282,10 @@ const Section7 = () => {
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[6]?.question}</Text>
                   <TextInput
-                    style={{ backgroundColor: "#ffffff", borderWidth: 1 }}
+                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
-                    placeholderTextColor={"black"}
+                    placeholderTextColor={'black'}
                     placeholder=""
                     onChangeText={setQuestion7}
                   />
@@ -314,10 +293,10 @@ const Section7 = () => {
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[7]?.question}</Text>
                   <TextInput
-                    style={{ backgroundColor: "#ffffff", borderWidth: 1 }}
+                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
-                    placeholderTextColor={"black"}
+                    placeholderTextColor={'black'}
                     placeholder=""
                     onChangeText={setQuestion8}
                   />
@@ -333,16 +312,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[8]?.questionId] === undefined
-                    ? answers[questionData[8]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[8]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion9}
                 data={PickerData[questionData[8]?.questionType]}
@@ -356,16 +335,16 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   borderRadius: 8,
                   height: 50,
                   borderWidth: 1,
-                  borderColor: "#1D2334",
+                  borderColor: '#1D2334',
                 }}
                 placeholder={
                   answers[questionData[9]?.questionId] === undefined
-                    ? answers[questionData[9]?.questionId] === ""
-                    : ""
+                    ? answers[questionData[9]?.questionId] === ''
+                    : ''
                 }
                 setSelected={setQuestion10}
                 data={PickerData[questionData[9]?.questionType]}
@@ -375,10 +354,9 @@ const Section7 = () => {
 
             <View className="flex-row justify-between mt-[30px]">
               <TouchableOpacity
-                style={{ backgroundColor: "#52608E", marginBottom: "10%" }}
+                style={{backgroundColor: '#52608E', marginBottom: '10%'}}
                 className="w-[100px] rounded"
-                onPress={previous}
-              >
+                onPress={previous}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                 <Text className="text-center pt-[15px] pb-[15px] text-white">
                   Previous
@@ -386,10 +364,9 @@ const Section7 = () => {
                 {/* </View> */}
               </TouchableOpacity>
               <TouchableOpacity
-                style={{ backgroundColor: "#52608E", marginBottom: "10%" }}
+                style={{backgroundColor: '#52608E', marginBottom: '10%'}}
                 className="w-[100px] rounded"
-                onPress={next}
-              >
+                onPress={next}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                 <Text className="text-center pt-[15px] pb-[15px] text-white">
                   Next
