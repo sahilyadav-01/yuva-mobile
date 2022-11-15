@@ -47,9 +47,9 @@ const HRASectionCard = ({
     //     disable={true}
     //     onPress={onpress}
     // >
-    //     {/* <Icon style={{display:disp}} name="lock-outline" size={16} color="black" />            */}
+    //     {/* <MaterialCommunityIcons style={{display:disp}} name="lock-outline" size={16} color="black" />            */}
     //     <View className="w-20 h-20 flex items-center justify-center">
-    //         <Icon name={icon} size={26} color="black"/>
+    //         <MaterialCommunityIcons name={icon} size={26} color="black"/>
     //         <Text className="text-xs text-center pb-2 mt-1">{name}</Text>
     //     </View>
     // </TouchableOpacity>
