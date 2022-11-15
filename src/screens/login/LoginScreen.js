@@ -12,7 +12,7 @@ import {Divider} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AlertBox from '../../components/AlertBox';
 import {ActivityIndicator} from 'react-native-paper';
-
+import Header from '../../components/Header';
 import {
   isEmail,
   EMAIL_VALIDATION,
@@ -99,38 +99,7 @@ const LoginScreen = () => {
     <SafeAreaView className="flex h-full">
       <StatusBar backgroundColor="#1D2334" style="light" />
       {/* Top Section */}
-      <View className="h-[75px] mt-[40px] mr-[20px] ml-[20px]">
-        <View className="flex-row justify-between">
-          <View className="flex-row">
-            <Image
-              source={require('../../../assets/yuva_logo-2.png')}
-              className="h-[60px] w-[50px]"
-            />
-            <View className="flex ml-2 items-end">
-              {/* <View className="h-[40px] w-[120px] bg-gray-500"></View> */}
-              <Image
-                source={require('../../../assets/yuva_text.png')}
-                className="h-[40px] w-[120px]"
-                resizeMode="contain"
-              />
-              <View className=""></View>
-              <Image
-                source={require('../../../assets/HEALTH.png')}
-                className="h-[15px] w-[70px] mt-2"
-                resizeMode="contain"
-              />
-            </View>
-          </View>
-
-          <View className="flex items-end justify-end">
-            <Text className="text-bold text-lg">USER LOGIN</Text>
-            <Divider
-              style={{backgroundColor: '#52608E'}}
-              className="h-1 w-14 rounded mt-0.5"
-            />
-          </View>
-        </View>
-      </View>
+      <Header name="LOGIN" />
 
       {/* Login Screen */}
       <View className="flex mt-[60px]">
