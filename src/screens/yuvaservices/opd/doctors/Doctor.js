@@ -28,7 +28,7 @@ const Doctor = () => {
      * React Hooks
      */
     useEffect(()=>{
-        dispatch(searchDoctorThunk({search:"all", jwt}))
+        dispatch(searchDoctorThunk({search:"", jwt}))
     },[])
 
     /**

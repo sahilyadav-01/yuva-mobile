@@ -73,7 +73,11 @@ const AppointmentHome = ({navigation}) => {
    * React Hooks
    */
   useEffect(() => {
-    dispatch(allAppointmentThunk({jwt}));
+    dispatch(allAppointmentThunk({jwt})).then(
+
+    ).catch(
+      console.log("failed")
+    );
   }, [homeRefresh]);
 
   useEffect(() => {});
