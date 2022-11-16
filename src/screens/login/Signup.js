@@ -36,6 +36,10 @@ const Signup = () => {
   /**
    * call back functions
    */
+  const onVerify = () => {
+    navigation.navigate('EnterOTP');
+  };
+
   const goBack = () => {
     navigation.navigate('Login');
   };
@@ -115,7 +119,7 @@ const Signup = () => {
         />
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2 mb-[60px]"
+          className="h-[50px] mr-[30px] ml-[30px] mb-[60px] rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeName}
           onBlur={checkNumberText}
@@ -125,9 +129,15 @@ const Signup = () => {
             Number is not Valid
           </Text>
         )}
+
+        <TouchableOpacity onPress={onVerify}>
+          <Text style={{position: 'absolute'}} className="right-0 ">
+            Verify
+          </Text>
+        </TouchableOpacity>
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2 "
+          className="h-[50px] mr-[30px] ml-[30px] mt-{40px}  rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
           onBlur={checkEmailText}
@@ -135,6 +145,11 @@ const Signup = () => {
         {checkEmail === true && (
           <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
         )}
+        <TouchableOpacity onPress={onVerify}>
+          <Text style={{position: 'absolute'}} className="right-0">
+            Verify
+          </Text>
+        </TouchableOpacity>
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 mt-[60px]"
