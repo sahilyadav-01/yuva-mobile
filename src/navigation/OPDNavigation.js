@@ -16,17 +16,17 @@ const OPDNavigation = () => {
   const [isFocus, setIsFocus] = useState(false);
   const goBack = () => navigation.goBack();
   return (
-      <Tab.Navigator
-        className="flex mt-[15px]"
-        screenOptions={{
-          tabBarLabelStyle: {fontSize: 16, marginTop: 15},
-          tabBarStyle:  {color: '#1D2334', height: 70},
-          swipeEnabled: true, // fixes a bug in react navigation
-          lazy: false, // fixes a bug in react navigation
-        }}>
-        <Tab.Screen name="Doctor" component={Doctor} />
-        <Tab.Screen name="Appointments" component={AppointmentNav} />
-      </Tab.Navigator>
+    <Tab.Navigator
+      className="flex mt-[15px]"
+      screenOptions={{
+        tabBarLabelStyle: {fontSize: 16, marginTop: 15},
+        tabBarStyle: {color: '#1D2334', height: 70},
+        swipeEnabled: true, // fixes a bug in react navigation
+        lazy: false, // fixes a bug in react navigation
+      }}>
+      <Tab.Screen name="Doctor" component={Doctor} />
+      <Tab.Screen name="Appointments" component={AppointmentNav} />
+    </Tab.Navigator>
   );
 };
 

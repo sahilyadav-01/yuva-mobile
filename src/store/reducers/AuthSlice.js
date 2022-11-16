@@ -9,9 +9,39 @@ import {SERVER} from '../../utils/utils';
 // const ANDRIOD_SERVER = "10.0.2.2"
 // const LOCAL_SERVER  = "localhost:8080"
 const SINGUP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/signup';
+const GETSMS_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateSmsOtp';
+const EMAILOTP_URI =
+  'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
 /**
  * Thunks
  */
+export const verifyEmailOtpThunk = createAsyncThunk(
+  'auth/verifyEmailOtpThunk',
+  async ({email}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const uri = EMAILOTP_URI + '?email=' + email;
+      console.log(uri, 'email to arjun');
+      return await axios.get(uri, {}).then(resp => resp.data);
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+export const verifySmsThunk = createAsyncThunk(
+  'auth/verifySmsThunk',
+  async ({number}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const uri = GETSMS_URI + '?number=' + number;
+      console.log(uri, 'sjdasjh');
+      return await axios.get(uri, {}).then(resp => resp.data);
+      console.log(resp.data, 'malli');
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
   async ({email, password}, {fulfillWithValue, rejectWithValue}) => {
@@ -160,6 +190,33 @@ const authSlice = createSlice({
       console.log('completed');
     },
     [signupThunk.rejected]: (state, {payload}) => {
+      state.loading = false;
+      console.log('rejected');
+    },
+    //verifyEmailOtp thunk handler
+    [verifyEmailOtpThunk.pending]: (state, {payload}) => {
+      console.log('pending');
+      state.loading = true;
+    },
+    [verifyEmailOtpThunk.fulfilled]: (state, {payload}) => {
+      state.loading = false;
+      console.log('completed');
+    },
+    [verifyEmailOtpThunk.rejected]: (state, {payload}) => {
+      state.loading = false;
+      console.log('rejected');
+    },
+
+    //verifySms  thunk handler
+    [verifySmsThunk.pending]: (state, {payload}) => {
+      console.log('pending');
+      state.loading = true;
+    },
+    [verifySmsThunk.fulfilled]: (state, {payload}) => {
+      state.loading = false;
+      console.log('completed');
+    },
+    [verifySmsThunk.rejected]: (state, {payload}) => {
       state.loading = false;
       console.log('rejected');
     },
