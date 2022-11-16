@@ -1,11 +1,78 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, SafeAreaView, StatusBar, Text, TouchableOpacity} from 'react-native'
+import {ActivityIndicator} from 'react-native-paper';
+import Header from '../../components/Header';
+import OtpInputs from 'react-native-otp-inputs';
 
-const EnterOTP = () => {
+const EnterOTP = (props) => {
+    // const {attributeName} = props;
+    const attributeName = props?.attributeName?? 'Phone Number';
+    const onVerify = () => {
+        //apply to verify function
+    };
+    const onResend = () => {
+        //apply to resend function
+    };
     return (
+        <SafeAreaView className="flex h-full">
+        <StatusBar backgroundColor="#1D2334" style="light" />
+        {/* Top Section */}
+        <Header name="VERIFY" />
+  
         <View>
-            <Text>Enter OTP</Text>
+            <View style={{marginTop: '25%', marginHorizontal:'10%'}}>
+            <Text style={{fontFamily:'Nunito', fontWeight:'600', fontSize: 14, lineHeight: 21}}>Verify {attributeName}</Text>
+            <OtpInputs
+                autofillFromClipboard={false}
+                inputContainerStyles={{
+                    backgroundColor: '#E7E5E5', 
+                    borderColor: '#E7E5E5', 
+                    marginHorizontal: 10, 
+                    width: '20%', 
+                    borderRadius: 10, 
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+
+                handleChange={(code) => console.log(code)}
+                numberOfInputs={4}
+                style={{
+                    width: '100%',
+                    marginTop: '5%', 
+                    flexDirection: 'row', 
+                    justifyContent: 'center',
+                }}
+            />
         </View>
+        <TouchableOpacity
+            onPress={onVerify}
+            style={{backgroundColor: '#E68D36', borderRadius: 10}}
+            className="mt-[40px] mr-[30px] ml-[30px]"
+        >
+            <Text className="text-center pt-[15px] pb-[15px] font-bold text-white">
+                Verify
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onResend}>
+            <Text style={{color: '#52608E'}} className="text-center mt-[20px] pt-[16px] font-semibold	">
+                Resend OTP
+            </Text>
+        </TouchableOpacity>
+
+          {/* <ActivityIndicator animating={false} /> */}
+          {/* <AlertBox
+            showDialog={error}
+            hideDialog={disbaleAlert}
+            message={errorMessage}
+          /> */}
+          {/* <AlertBox
+            showDialog={apiError}
+            hideDialog={closeErrorBox}
+            message={apiErrorMessage}
+          /> */}
+            </View>
+
+      </SafeAreaView>
     )
 }
 
