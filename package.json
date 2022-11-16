@@ -9,13 +9,14 @@
     "start": "react-native start --reset-cache",
     "pod:install": "cd ios && pod install",
     "test": "jest",
-    "build-android":"react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "build-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "lint": "eslint ."
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@mui/icons-material": "^5.8.4",
     "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-clipboard/clipboard": "^1.11.1",
     "@react-native-community/datetimepicker": "^6.1.2",
     "@react-native-picker/picker": "2.4.0",
     "@react-navigation/bottom-tabs": "^6.3.2",
@@ -43,6 +44,7 @@
     "react-native-linear-gradient": "^2.6.2",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-modal-datetime-picker": "^13.1.2",
+    "react-native-otp-inputs": "^7.4.0",
     "react-native-pager-view": "^5.4.15",
     "react-native-paper": "^4.12.3",
     "react-native-progress": "^5.0.0",
