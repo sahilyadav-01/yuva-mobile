@@ -15,9 +15,11 @@ const SectionInput = ({text, defValue,  questionId, dispatcher}) => {
                 defaultValue={defValue}
                 style={{backgroundColor:"#ffffff", borderWidth:1}} 
                 className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
+                keyboardType='numeric'
                 placeholderTextColor={'black'} 
                 placeholder=''
                 onChangeText={setSelected}
+                maxLength={3}
             />
         </View>
     )

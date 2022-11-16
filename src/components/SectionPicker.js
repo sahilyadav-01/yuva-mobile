@@ -21,7 +21,8 @@ const SectionPicker = ({dispatcher, onSelect, data, text, defaultAnswer, questio
             <SelectList 
                 boxStyles={{backgroundColor:'white', borderRadius:8, height:50, 
                     borderWidth:1,  borderColor:'#1D2334'}}
-                placeholder={(defaultAnswer === undefined ||  defaultAnswer === '') ? '' : data[defaultAnswer].value}
+                //placeholder={(defaultAnswer === undefined ||  defaultAnswer === '') ? '' : data[defaultAnswer].value}
+                placeholder={defaultAnswer === undefined ? defaultAnswer === '' : ''}
                 setSelected={setSelected} 
                 data={data} 
                 search={false}

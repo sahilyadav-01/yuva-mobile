@@ -80,14 +80,14 @@ const Signup = () => {
   const checkEmailText = e => {
     let reg =
       /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
-    if (reg.test(e.target.value) === false) {
+    if (!reg.test(e.target.value) === false) {
       setCheckEmail(true);
     } else {
       setCheckEmail(false);
     }
   };
-  const checkPasswordText = e => {
-    if (e.target.value.length < 6) {
+  const checkPasswordText = text => {
+    if (text < 6) {
       setCheckPassword(true);
     } else {
       setCheckPassword(false);
