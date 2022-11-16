@@ -13,7 +13,11 @@ import {Divider, ActivityIndicator} from 'react-native-paper';
 import Backbutton from '../../components/Backbutton';
 import {useDispatch, useSelector} from 'react-redux';
 import AlertBox from '../../components/AlertBox';
-import {signupThunk} from './../../store/reducers/AuthSlice';
+import {
+  signupThunk,
+  verifySmsThunk,
+  verifyEmailOtpThunk,
+} from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 const Signup = () => {
   /**
@@ -36,7 +40,15 @@ const Signup = () => {
   /**
    * call back functions
    */
-  const onVerify = () => {
+  const Verify = () => {
+    //for number verifycation
+    console.log(number, 'kllhdhwda');
+    dispatch(verifySmsThunk({number}));
+
+    // for email verification
+    console.log(email, 'arjun');
+    dispatch(verifyEmailOtpThunk({email}));
+
     navigation.navigate('EnterOTP');
   };
 
@@ -46,12 +58,12 @@ const Signup = () => {
   const signup = () => {
     //dispatch  thunk
     if (
-      checkEmail == false &&
-      checkNumber == false &&
-      checkPassword == false &&
-      number != undefined &&
-      email != undefined &&
-      password != undefined
+      checkEmail === false &&
+      checkNumber === false &&
+      checkPassword === false &&
+      number !== undefined &&
+      email !== undefined &&
+      password !== undefined
     ) {
       dispatch(signupThunk({email, number, password}))
         .then(() => {
@@ -130,8 +142,10 @@ const Signup = () => {
           </Text>
         )}
 
-        <TouchableOpacity onPress={onVerify}>
-          <Text style={{position: 'absolute'}} className="right-0 ">
+        <TouchableOpacity onPress={Verify}>
+          <Text
+            style={{position: 'absolute'}}
+            className="right-8 bottom-8 font-bold">
             Verify
           </Text>
         </TouchableOpacity>
@@ -145,8 +159,10 @@ const Signup = () => {
         {checkEmail === true && (
           <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
         )}
-        <TouchableOpacity onPress={onVerify}>
-          <Text style={{position: 'absolute'}} className="right-0">
+        <TouchableOpacity onPress={Verify}>
+          <Text
+            style={{position: 'absolute'}}
+            className="right-8 top-2 font-bold">
             Verify
           </Text>
         </TouchableOpacity>

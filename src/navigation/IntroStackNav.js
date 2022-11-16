@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {View, Text} from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
 import LoginScreen from '../screens/login/LoginScreen';
 import Intro from '../screens/login/Intro';
@@ -11,21 +11,48 @@ import EnterOTP from '../screens/login/EnterOTP';
 import ResetPassword from '../screens/login/ResetPassword';
 import Signup from '../screens/login/Signup';
 
-
 const Stack = createStackNavigator();
 
 const IntroStackNav = () => {
-    return (
+  return (
     <Stack.Navigator>
-        <Stack.Screen name="Intro" component={Intro} options={{ headerShown: false }}/>
-        <Stack.Screen name="Login" component={LoginScreen}  options={{ headerShown: false }}/>
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }}/>
-        <Stack.Screen name="EnterOTP" component={EnterOTP} options={{ headerShown: false }}/>
-        <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerShown: false }} />
-        <Stack.Screen name="SignUp" component={Signup} options={{ headerShown: false }} />
-        <Stack.Screen name="HomeScreen" component={BottomTabs} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Intro"
+        component={Intro}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EnterOTP"
+        component={EnterOTP}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={Signup}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="HomeScreen"
+        component={BottomTabs}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
-    )
-}
+  );
+};
 
-export default IntroStackNav
+export default IntroStackNav;
