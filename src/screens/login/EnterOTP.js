@@ -12,7 +12,10 @@ import OtpInputs from 'react-native-otp-inputs';
 import {useNavigation} from '@react-navigation/core';
 import { useDispatch } from 'react-redux';
 import { verifyThunk } from '../../store/reducers/AuthSlice';
-
+import Timer from '../../components/Timer';
+import {useNavigation} from '@react-navigation/core';
+import { useDispatch } from 'react-redux';
+import { verifyThunk } from '../../store/reducers/AuthSlice';
 
 const EnterOTP = ({ props, route }) => {
    
@@ -77,6 +80,9 @@ const EnterOTP = ({ props, route }) => {
             Verify
           </Text>
         </TouchableOpacity>
+        <View>
+            <Timer interval={30} />
+        </View>
         <TouchableOpacity onPress={onResend}>
           <Text
             style={{color: '#52608E'}}
