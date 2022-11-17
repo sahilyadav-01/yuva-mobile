@@ -29,7 +29,7 @@ export const searchDoctorThunk = createAsyncThunk(
         .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
-      console.log(error);
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -54,13 +54,10 @@ const doctorSlice = createSlice({
   extraReducers: {
     [searchDoctorThunk.pending]: (state, {payload}) => {},
     [searchDoctorThunk.fulfilled]: (state, {payload}) => {
-      console.log(payload.data);
       let data = payload.data;
       state.data = [...data];
     },
-    [searchDoctorThunk.rejected]: (state, {payload}) => {
-      console.log('rejected');
-    },
+    [searchDoctorThunk.rejected]: (state, {payload}) => {},
   },
 });
 

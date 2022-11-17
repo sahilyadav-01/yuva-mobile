@@ -86,7 +86,6 @@ const EditAppointment = () => {
 
   const handleTime = time => {
     setTime(time);
-    console.log(getEpoch(date, time));
   };
 
   return (

@@ -24,7 +24,7 @@ export const section9QThunk = createAsyncThunk(
   async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const authToken = 'Bearer ' + jwt;
-      console.log(authToken);
+
       return await axios
         .get(SECTION_QUESTION, {
           headers: {
@@ -35,7 +35,7 @@ export const section9QThunk = createAsyncThunk(
         .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
-      console.log(error);
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -49,7 +49,7 @@ export const reportStatusThunk = createAsyncThunk(
   async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const authToken = 'Bearer ' + jwt;
-      console.log(authToken);
+
       return await axios
         .get(CHECK_REPORT, {
           headers: {
@@ -58,8 +58,6 @@ export const reportStatusThunk = createAsyncThunk(
           },
         })
         .then(async resp => {
-          console.log(resp);
-
           return resp.data;
           //  //Check condition
           //  const response = await axios.get(DOWNLOAD_REPORT,{
@@ -79,7 +77,7 @@ export const reportStatusThunk = createAsyncThunk(
         });
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
-      console.log(error);
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -112,7 +110,7 @@ export const reportDownloadThunk = createAsyncThunk(
         .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
-      console.log(error);
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -123,7 +121,7 @@ export const finalSubmission = createAsyncThunk(
   async ({jwt, data}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const authToken = 'Bearer ' + jwt;
-      console.log(data);
+
       return await axios
         .post(SUBMISSION_QUESTION, data, {
           headers: {
@@ -134,7 +132,7 @@ export const finalSubmission = createAsyncThunk(
         .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
-      console.log(error);
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -191,17 +189,13 @@ const section9Slice = createSlice({
     // questions thunk
     [section9QThunk.pending]: (state, {payload}) => {
       state.loading = true;
-      console.log('pending');
     },
     [section9QThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.rawQuestions = payload.data;
-      console.log('completed');
     },
     [section9QThunk.rejected]: (state, {payload}) => {
       state.loading = false;
-      console.log(payload);
-      console.log('rejected');
     },
 
     /**
@@ -209,41 +203,29 @@ const section9Slice = createSlice({
      */
     [reportStatusThunk.pending]: (state, {payload}) => {
       state.loading = true;
-      console.log('pending');
     },
     [reportStatusThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      console.log('*****');
-      console.log(state.reportStatus);
-      console.log('*****');
-      console.log(payload);
-      console.log('*****');
+
       state.reportStatus = payload.status;
-      console.log('*****');
-      console.log(state.reportStatus);
-      console.log('*****');
+
       //state.reportStatus=false
-      console.log('completed');
     },
     [reportStatusThunk.rejected]: (state, {payload}) => {
       state.loading = false;
-      console.log(payload);
-      console.log('rejected');
     },
 
     // Final Submissionn
     [finalSubmission.pending]: (state, {payload}) => {
       state.loading = true;
       state.reportStatus = false;
-      console.log('pending');
     },
     [finalSubmission.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      console.log('completed');
-      console.log(payload);
+
       let score = 0;
       state.chart[0].data = [];
-      console.log(payload.data);
+
       if (payload.data != null) {
         // Object.values(payload.data).flat().map(item => {
         //   if(item.attribute == "DIETARY"){
@@ -263,7 +245,6 @@ const section9Slice = createSlice({
     },
     [finalSubmission.rejected]: (state, {payload}) => {
       state.loading = false;
-      console.log('rejected');
     },
   },
 });
