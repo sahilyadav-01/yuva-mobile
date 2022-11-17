@@ -24,6 +24,8 @@ const EnterOTP = ({props, route}) => {
   const navigation = useNavigation();
   const [number] = useState();
   const [email] = useState();
+  const [key, setKey] = useState(0);
+  const [isResend, setIsResend] = useState(false);
   const attributeName = route?.params?.attributeName;
   const emailOrNumber = route?.params?.emailOrNumber;
   const resendVar = route?.params?.var;
@@ -36,12 +38,17 @@ const EnterOTP = ({props, route}) => {
   };
 
   const onResend = () => {
+    setKey(key+1);
     if (resendVar === 'email') {
       dispatch(verifyEmailOtpThunk({email: emailOrNumber}));
     } else {
       dispatch(verifySmsThunk({number: emailOrNumber}));
     }
   };
+
+  const onResetEnable = (isReset) => {
+    setIsResend(isReset);
+  }
 
   return (
     <SafeAreaView className="flex h-full">
@@ -89,13 +96,13 @@ const EnterOTP = ({props, route}) => {
             Verify
           </Text>
         </TouchableOpacity>
-        <View>
-          <Timer interval={30} />
+        <View style={{marginHorizontal: '10%', marginTop: 10}}>
+          <Timer interval={30} key={key} resetEnable={onResetEnable}/>
         </View>
-        <TouchableOpacity onPress={onResend}>
+        <TouchableOpacity disabled={!isResend} onPress={onResend}>
           <Text
             style={{color: '#52608E'}}
-            className="text-center mt-[20px] pt-[16px] font-semibold	">
+            className="text-center mt-[5px] pt-[5px] font-semibold	">
             Resend OTP
           </Text>
         </TouchableOpacity>
