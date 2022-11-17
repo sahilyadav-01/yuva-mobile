@@ -13,9 +13,6 @@ import {useNavigation} from '@react-navigation/core';
 import { useDispatch } from 'react-redux';
 import { verifyThunk } from '../../store/reducers/AuthSlice';
 import Timer from '../../components/Timer';
-import {useNavigation} from '@react-navigation/core';
-import { useDispatch } from 'react-redux';
-import { verifyThunk } from '../../store/reducers/AuthSlice';
 
 const EnterOTP = ({ props, route }) => {
    
