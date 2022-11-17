@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -10,26 +10,34 @@ import {ActivityIndicator} from 'react-native-paper';
 import Header from '../../components/Header';
 import OtpInputs from 'react-native-otp-inputs';
 import {useNavigation} from '@react-navigation/core';
-import { useDispatch } from 'react-redux';
-import { verifyThunk } from '../../store/reducers/AuthSlice';
+import {useDispatch} from 'react-redux';
+import {
+  verifyThunk,
+  verifyEmailOtpThunk,
+  verifySmsThunk,
+} from '../../store/reducers/AuthSlice';
 import Timer from '../../components/Timer';
 
-const EnterOTP = ({ props, route }) => {
-   
-    const [otp, setOtp] = useState('')
-    const dispatch = useDispatch();
+const EnterOTP = ({props, route}) => {
+  const [otp, setOtp] = useState('');
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const [number] = useState();
+  const [email] = useState();
   const attributeName = props?.attributeName ?? 'Phone Number';
-  const emailOrNumber=route?.params?.number;
+  const emailOrNumber = route?.params?.number;
   const onVerify = () => {
     //apply to verify function
-  
-    otp?.length === 4 && dispatch(verifyThunk({ emailOrNumber, otp }));
+
+    otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp}));
     navigation.navigate('SignUp');
-};
- 
+  };
+  const numbers = route?.params?.number;
   const onResend = () => {
-    //apply to resend function
+    //resend of otp for number verificatio
+    dispatch(verifySmsThunk({numbers}));
+    // resend of otp for email verification
+    dispatch(verifyEmailOtpThunk({email}));
   };
   return (
     <SafeAreaView className="flex h-full">
@@ -78,7 +86,7 @@ const EnterOTP = ({ props, route }) => {
           </Text>
         </TouchableOpacity>
         <View>
-            <Timer interval={30} />
+          <Timer interval={30} />
         </View>
         <TouchableOpacity onPress={onResend}>
           <Text
