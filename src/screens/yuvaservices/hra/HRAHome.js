@@ -70,7 +70,6 @@ const downloadFile = async (fileUrl, downloadPath, jwt) => {
 
   try {
     const {uri} = await downloadResumable.downloadAsync();
-    console.log(uri);
     if (Platform.OS == 'android')
       //saveAndroidFile(uri, fileName)
       save2(uri);
@@ -94,7 +93,6 @@ const save2 = async fileUri => {
   //           type: 'application/pdf',
   //         });
   //   } catch (e) {
-  //     console.log(e.message);
   //   }
 };
 const saveAndroidFile = async (fileUri, fileName = 'File') => {
@@ -165,7 +163,6 @@ const HRAHome = () => {
   useEffect(() => {
     if (Object.keys(metrics).length != 0) {
     }
-    console.log(metrics['BMI']);
   });
 
   /**

@@ -37,7 +37,6 @@ const Signup = () => {
   const [verifyOtp, setVerifyOtp] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  console.log(verifySms, verifyEmail, 'qwert');
   /*
    * Hooks
    */
@@ -47,7 +46,6 @@ const Signup = () => {
    */
 
   const onVerify = phoneOrEmail => {
-    console.log(phoneOrEmail, 'jdhjsdha');
     setVerifyOtp(phoneOrEmail);
     if (phoneOrEmail === 'phoneNumber') {
       dispatch(verifySmsThunk({number}));
@@ -84,9 +82,7 @@ const Signup = () => {
           setSignupMessage('Succesfully Signed up!');
           setSignupFlag(true);
         })
-        .catch(e => {
-          console.log('error');
-        });
+        .catch(e => {});
     } else {
       setSignupMessage('Some value is wrong!');
       setSignupFlag(true);

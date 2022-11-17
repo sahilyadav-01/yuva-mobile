@@ -19,7 +19,6 @@ import {
 import Timer from '../../components/Timer';
 
 const EnterOTP = ({props, route}) => {
-  console.log(route, 'mnbvcx');
   const [otp, setOtp] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -29,8 +28,6 @@ const EnterOTP = ({props, route}) => {
   const emailOrNumber = route?.params?.emailOrNumber;
   const resendVar = route?.params?.var;
 
-  console.log(emailOrNumber, 'malliiiiii');
-
   const onVerify = () => {
     //apply to verify function
 
@@ -39,12 +36,9 @@ const EnterOTP = ({props, route}) => {
   };
 
   const onResend = () => {
-    console.log(resendVar, 'mnbvc');
-    console.log(emailOrNumber, 'asdf');
     if (resendVar === 'email') {
       dispatch(verifyEmailOtpThunk({email: emailOrNumber}));
     } else {
-      console.log(emailOrNumber, 'lkjh');
       dispatch(verifySmsThunk({number: emailOrNumber}));
     }
   };
