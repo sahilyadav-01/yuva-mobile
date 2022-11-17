@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'
 import {
   View,
   SafeAreaView,
@@ -10,15 +10,24 @@ import {ActivityIndicator} from 'react-native-paper';
 import Header from '../../components/Header';
 import OtpInputs from 'react-native-otp-inputs';
 import {useNavigation} from '@react-navigation/core';
+import { useDispatch } from 'react-redux';
+import { verifyThunk } from '../../store/reducers/AuthSlice';
 
-const EnterOTP = props => {
+
+const EnterOTP = ({ props, route }) => {
+   
+    const [otp, setOtp] = useState('')
+    const dispatch = useDispatch();
   const navigation = useNavigation();
-  // const {attributeName} = props;
   const attributeName = props?.attributeName ?? 'Phone Number';
+  const emailOrNumber=route?.params?.number;
   const onVerify = () => {
     //apply to verify function
+  
+    otp?.length === 4 && dispatch(verifyThunk({ emailOrNumber, otp }));
     navigation.navigate('SignUp');
-  };
+};
+ 
   const onResend = () => {
     //apply to resend function
   };
@@ -50,7 +59,7 @@ const EnterOTP = props => {
               justifyContent: 'center',
               alignItems: 'center',
             }}
-            handleChange={code => console.log(code)}
+            handleChange={code => setOtp(code)}
             numberOfInputs={4}
             style={{
               width: '100%',
@@ -82,14 +91,8 @@ const EnterOTP = props => {
             hideDialog={disbaleAlert}
             message={errorMessage}
           /> */}
-        {/* <AlertBox
-            showDialog={apiError}
-            hideDialog={closeErrorBox}
-            message={apiErrorMessage}
-          /> */}
       </View>
     </SafeAreaView>
   );
 };
-
 export default EnterOTP;

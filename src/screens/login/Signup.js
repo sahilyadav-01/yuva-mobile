@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,11 +8,12 @@ import {
   Image,
 } from 'react-native';
 import Header from '../../components/Header';
-import {useNavigation} from '@react-navigation/core';
-import {Divider, ActivityIndicator} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/core';
+import { Divider, ActivityIndicator } from 'react-native-paper';
 import Backbutton from '../../components/Backbutton';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AlertBox from '../../components/AlertBox';
+
 import {
   signupThunk,
   verifySmsThunk,
@@ -31,7 +32,7 @@ const Signup = () => {
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
-  const {loading} = useSelector(state => state.auth.loading);
+  const { loading } = useSelector(state => state.auth.loading);
   /*
    * Hooks
    */
@@ -40,16 +41,19 @@ const Signup = () => {
   /**
    * call back functions
    */
-  const Verify = () => {
+
+  const onVerify = () => {
     //for number verifycation
-    console.log(number, 'kllhdhwda');
-    dispatch(verifySmsThunk({number}));
 
+    dispatch(verifySmsThunk({ number }));
+    navigation.navigate('EnterOTP', {
+      number: number
+
+    })
     // for email verification
-    console.log(email, 'arjun');
-    dispatch(verifyEmailOtpThunk({email}));
-
-    navigation.navigate('EnterOTP');
+   
+    dispatch(verifyEmailOtpThunk({ email }));
+    
   };
 
   const goBack = () => {
@@ -65,7 +69,7 @@ const Signup = () => {
       email !== undefined &&
       password !== undefined
     ) {
-      dispatch(signupThunk({email, number, password}))
+      dispatch(signupThunk({ email, number, password }))
         .then(() => {
           setSignupMessage('Succesfully Signed up!');
           setSignupFlag(true);
@@ -125,12 +129,12 @@ const Signup = () => {
       {/* SignUP Screen */}
       <View className="flex h-full mt-[30px]">
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
+          style={{ backgroundColor: '#F5F9FA' }}
           className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Name"
         />
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
+          style={{ backgroundColor: '#F5F9FA' }}
           className="h-[50px] mr-[30px] ml-[30px] mb-[60px] rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeName}
@@ -142,15 +146,16 @@ const Signup = () => {
           </Text>
         )}
 
-        <TouchableOpacity onPress={Verify}>
+        <TouchableOpacity onPress={onVerify}>
           <Text
-            style={{position: 'absolute'}}
+            style={{ position: 'absolute' }}
             className="right-8 bottom-8 font-bold">
+
             Verify
           </Text>
         </TouchableOpacity>
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
+          style={{ backgroundColor: '#F5F9FA' }}
           className="h-[50px] mr-[30px] ml-[30px] mt-{40px}  rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
@@ -159,29 +164,18 @@ const Signup = () => {
         {checkEmail === true && (
           <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
         )}
-        <TouchableOpacity onPress={Verify}>
+        
+        <TouchableOpacity onPress={onVerify}>
           <Text
-            style={{position: 'absolute'}}
+            style={{ position: 'absolute' }}
             className="right-8 top-2 font-bold">
+
             Verify
           </Text>
         </TouchableOpacity>
+
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 mt-[60px]"
-          placeholder="Password"
-          type="password"
-          onChangeText={onChangePassword}
-          onBlur={checkPasswordText}
-          secureTextEntry={true}
-        />
-        {checkPassword === true && (
-          <Text className="mt-[10px] ml-[30px] text-red-500">
-            Password must be atleast 6 characters
-          </Text>
-        )}
-        <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
+          style={{ backgroundColor: '#F5F9FA' }}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
@@ -196,7 +190,7 @@ const Signup = () => {
         )}
         <TouchableOpacity
           onPress={signup}
-          style={{backgroundColor: '#E68D36'}}
+          style={{ backgroundColor: '#E68D36' }}
           className="mt-[45px] mr-[30px] ml-[30px] rounded">
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
           <Text className="text-center pt-[15px] pb-[15px] text-white">
@@ -217,6 +211,7 @@ const Signup = () => {
         />
       </View>
     </SafeAreaView>
+
   );
 };
 export default Signup;
