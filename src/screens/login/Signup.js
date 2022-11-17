@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,7 @@ import {
   signupThunk,
   verifySmsThunk,
   verifyEmailOtpThunk,
+  resetSignUp,
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 const Signup = () => {
@@ -32,26 +33,37 @@ const Signup = () => {
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
-  const {loading} = useSelector(state => state.auth.loading);
+  const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
+  const [verifyOtp, setVerifyOtp] = useState('');
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  console.log(verifySms, verifyEmail, 'qwert');
   /*
    * Hooks
    */
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+
   /**
    * call back functions
    */
 
-  const onVerify = () => {
-    //for number verifycation
-
-    dispatch(verifySmsThunk({number}));
-    navigation.navigate('EnterOTP', {
-      number: number,
-    });
-    // for email verification
-
-    dispatch(verifyEmailOtpThunk({email}));
+  const onVerify = phoneOrEmail => {
+    console.log(phoneOrEmail, 'jdhjsdha');
+    setVerifyOtp(phoneOrEmail);
+    if (phoneOrEmail === 'phoneNumber') {
+      dispatch(verifySmsThunk({number}));
+      navigation.navigate('EnterOTP', {
+        emailOrNumber: number,
+        attributeName: 'Phone Number',
+        var: 'phone',
+      });
+    } else {
+      dispatch(verifyEmailOtpThunk({email}));
+      navigation.navigate('EnterOTP', {
+        emailOrNumber: email,
+        attributeName: 'Email',
+        var: 'email',
+      });
+    }
   };
 
   const goBack = () => {
@@ -144,7 +156,7 @@ const Signup = () => {
           </Text>
         )}
 
-        <TouchableOpacity onPress={onVerify}>
+        <TouchableOpacity onPress={() => onVerify('phoneNumber')}>
           <Text
             style={{position: 'absolute'}}
             className="right-8 bottom-8 font-bold">
@@ -162,7 +174,7 @@ const Signup = () => {
           <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
         )}
 
-        <TouchableOpacity onPress={onVerify}>
+        <TouchableOpacity onPress={() => onVerify('email')}>
           <Text
             style={{position: 'absolute'}}
             className="right-8 top-2 font-bold">

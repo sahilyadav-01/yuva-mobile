@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setObject, getObject, removeObject } from '../LocalStore';
+import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {setObject, getObject, removeObject} from '../LocalStore';
 import axios from 'axios';
-import { SERVER } from '../../utils/utils';
+import {SERVER} from '../../utils/utils';
 /**
  * Contants
  */
@@ -10,14 +10,15 @@ import { SERVER } from '../../utils/utils';
 // const LOCAL_SERVER  = "localhost:8080"
 const SINGUP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/signup';
 const GETSMS_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateSmsOtp';
-const EMAILOTP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
-  const VERIFY_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/validate';
+const EMAILOTP_URI =
+  'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
+const VERIFY_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/validate';
 /**
  * Thunks
  */
 export const verifyEmailOtpThunk = createAsyncThunk(
   'auth/verifyEmailOtpThunk',
-  async ({ email }, { fulfillWithValue, rejectWithValue }) => {
+  async ({email}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const uri = EMAILOTP_URI + '?email=' + email;
       return await axios.get(uri, {}).then(resp => resp.data);
@@ -25,19 +26,19 @@ export const verifyEmailOtpThunk = createAsyncThunk(
       console.log(error);
       return rejectWithValue(error.response.data);
     }
-  })
-
-
+  },
+);
 
 export const verifyThunk = createAsyncThunk(
   'auth/verifyThunk',
-  async ({ emailOrNumber, otp }, { fulfillWithValue, rejectWithValue }) => {
-
+  async ({emailOrNumber, otp}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      return await axios.post(VERIFY_URI, {
-        emailOrNumber, otp
-      }).then(resp => resp.data);
-
+      return await axios
+        .post(VERIFY_URI, {
+          emailOrNumber,
+          otp,
+        })
+        .then(resp => resp.data);
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.response.data);
@@ -46,7 +47,7 @@ export const verifyThunk = createAsyncThunk(
 );
 export const verifySmsThunk = createAsyncThunk(
   'auth/verifySmsThunk',
-  async ({ number }, { fulfillWithValue, rejectWithValue }) => {
+  async ({number}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const uri = GETSMS_URI + '?number=' + number;
       console.log(uri, 'sjdasjh');
@@ -60,7 +61,7 @@ export const verifySmsThunk = createAsyncThunk(
 );
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
-  async ({ email, password }, { fulfillWithValue, rejectWithValue }) => {
+  async ({email, password}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const uri =
         'http://' +
@@ -79,7 +80,7 @@ export const loginThunk = createAsyncThunk(
 );
 export const initialLoad = createAsyncThunk(
   'auth/initialLoad',
-  async (_, { fulfillWithValue, rejectWithValue }) => {
+  async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await getObject('user');
       //return fulfillWithValue(data)
@@ -96,7 +97,7 @@ export const initialLoad = createAsyncThunk(
  */
 export const logoutThunk = createAsyncThunk(
   'auth/logoutThunk',
-  async (_, { fulfillWithValue, rejectWithValue }) => {
+  async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await removeObject('user');
       //return fulfillWithValue(data)
@@ -113,9 +114,9 @@ export const logoutThunk = createAsyncThunk(
  */
 export const signupThunk = createAsyncThunk(
   'auth/signupThunk',
-  async ({ email, number, password }, { fulfillWithValue, rejectWithValue }) => {
+  async ({email, number, password}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      axios.post(SINGUP_URI, { email, number, password }).then(res => res.data);
+      axios.post(SINGUP_URI, {email, number, password}).then(res => res.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error);
@@ -137,24 +138,32 @@ const authSlice = createSlice({
     loading: false,
     apiError: false,
     apiErrorMessage: '',
+    signUp: {
+      verifyEmail: false,
+      verifySms: false,
+    },
   },
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;
       state.apiErrorMessage = '';
     },
+    resetSignUp(state) {
+      state.signUp.verifyEmail = false;
+      state.signUp.verifySms = false;
+    },
   },
   extraReducers: {
     /**
      * Login thunk handler
      */
-    [loginThunk.pending]: (state, { payload }) => {
+    [loginThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [loginThunk.fulfilled]: (state, action) => {
       state.loading = false;
       // console.log(action.payload)
-      const userData = { name: action.payload.name, jwt: action.payload.jwt };
+      const userData = {name: action.payload.name, jwt: action.payload.jwt};
       setObject('user', userData);
       state.user.name = action.payload.name;
       state.user.jwt = action.payload.jwt;
@@ -169,8 +178,8 @@ const authSlice = createSlice({
     /**
      * Initial loading thunk handler
      */
-    [initialLoad.pending]: (state, { payload }) => { },
-    [initialLoad.fulfilled]: (state, { payload }) => {
+    [initialLoad.pending]: (state, {payload}) => {},
+    [initialLoad.fulfilled]: (state, {payload}) => {
       if (payload == null) {
         state.loggedIn = 'notLoggedIn';
       } else {
@@ -179,66 +188,72 @@ const authSlice = createSlice({
         state.user.jwt = payload.jwt;
       }
     },
-    [initialLoad.rejected]: (state, { payload }) => {
+    [initialLoad.rejected]: (state, {payload}) => {
       console.log('rejected');
     },
     /**
      * Logout thunk handler
      */
-    [logoutThunk.pending]: (state, { payload }) => { },
-    [logoutThunk.fulfilled]: (state, { payload }) => {
+    [logoutThunk.pending]: (state, {payload}) => {},
+    [logoutThunk.fulfilled]: (state, {payload}) => {
       state.loggedIn = 'init';
       state.user.name = '';
       state.user.jwt = '';
     },
-    [logoutThunk.rejected]: (state, { payload }) => {
+    [logoutThunk.rejected]: (state, {payload}) => {
       console.log('rejected');
     },
     /**
      * signup thunk handler
      */
-    [signupThunk.pending]: (state, { payload }) => {
+    [signupThunk.pending]: (state, {payload}) => {
       console.log('pending');
       state.loading = true;
     },
-    [signupThunk.fulfilled]: (state, { payload }) => {
+    [signupThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       console.log('completed');
     },
-    [signupThunk.rejected]: (state, { payload }) => {
+    [signupThunk.rejected]: (state, {payload}) => {
       state.loading = false;
       console.log('rejected');
     },
     //verifyEmailOtp thunk handler
-    [verifyEmailOtpThunk.pending]: (state, { payload }) => {
+    [verifyEmailOtpThunk.pending]: (state, {payload}) => {
       console.log('pending');
       state.loading = true;
+      state.signUp.verifyEmail = false;
     },
-    [verifyEmailOtpThunk.fulfilled]: (state, { payload }) => {
+    [verifyEmailOtpThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
+      state.signUp.verifyEmail = true;
       console.log('completed');
     },
-    [verifyEmailOtpThunk.rejected]: (state, { payload }) => {
+    [verifyEmailOtpThunk.rejected]: (state, {payload}) => {
       state.loading = false;
+      state.signUp.verifyEmail = false;
       console.log('rejected');
     },
-    
+
     //verifySms  thunk handler
-    [verifySmsThunk.pending]: (state, { payload }) => {
+    [verifySmsThunk.pending]: (state, {payload}) => {
       console.log('pending');
       state.loading = true;
+      state.signUp.verifySms = false;
     },
-    [verifySmsThunk.fulfilled]: (state, { payload }) => {
+    [verifySmsThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
+      state.signUp.verifySms = true;
       console.log('completed');
     },
-    [verifySmsThunk.rejected]: (state, { payload }) => {
+    [verifySmsThunk.rejected]: (state, {payload}) => {
       state.loading = false;
+      state.signUp.verifySms = false;
       console.log('rejected');
     },
 
     //verifyOTP thunk handler
-    [verifyThunk.pending]: (state, { payload }) => {
+    [verifyThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [verifyThunk.fulfilled]: (state, action) => {
@@ -249,10 +264,10 @@ const authSlice = createSlice({
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-      console.log(action.payload, "action");
+      console.log(action.payload, 'action');
       state.apiErrorMessage = action.payload.response;
     },
   },
 });
-export const { hideErrorBox } = authSlice.actions;
+export const {hideErrorBox, resetSignUp} = authSlice.actions;
 export default authSlice.reducer;

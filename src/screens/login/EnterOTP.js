@@ -19,26 +19,36 @@ import {
 import Timer from '../../components/Timer';
 
 const EnterOTP = ({props, route}) => {
+  console.log(route, 'mnbvcx');
   const [otp, setOtp] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [number] = useState();
   const [email] = useState();
-  const attributeName = props?.attributeName ?? 'Phone Number';
-  const emailOrNumber = route?.params?.number;
+  const attributeName = route?.params?.attributeName;
+  const emailOrNumber = route?.params?.emailOrNumber;
+  const resendVar = route?.params?.var;
+
+  console.log(emailOrNumber, 'malliiiiii');
+
   const onVerify = () => {
     //apply to verify function
 
     otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp}));
     navigation.navigate('SignUp');
   };
-  const numbers = route?.params?.number;
+
   const onResend = () => {
-    //resend of otp for number verificatio
-    dispatch(verifySmsThunk({numbers}));
-    // resend of otp for email verification
-    dispatch(verifyEmailOtpThunk({email}));
+    console.log(resendVar, 'mnbvc');
+    console.log(emailOrNumber, 'asdf');
+    if (resendVar === 'email') {
+      dispatch(verifyEmailOtpThunk({email: emailOrNumber}));
+    } else {
+      console.log(emailOrNumber, 'lkjh');
+      dispatch(verifySmsThunk({number: emailOrNumber}));
+    }
   };
+
   return (
     <SafeAreaView className="flex h-full">
       <StatusBar backgroundColor="#1D2334" style="light" />
