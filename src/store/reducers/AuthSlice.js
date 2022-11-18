@@ -168,7 +168,6 @@ const authSlice = createSlice({
     [loginThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-
       state.apiErrorMessage = action.payload.response;
     },
     /**
@@ -204,8 +203,10 @@ const authSlice = createSlice({
     [signupThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
     },
-    [signupThunk.rejected]: (state, {payload}) => {
+    [signupThunk.rejected]: (state, action) => {
       state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.payload.response;
     },
     //verifyEmailOtp thunk handler
     [verifyEmailOtpThunk.pending]: (state, {payload}) => {
@@ -216,9 +217,11 @@ const authSlice = createSlice({
       state.loading = false;
       state.signUp.verifyEmail = true;
     },
-    [verifyEmailOtpThunk.rejected]: (state, {payload}) => {
+    [verifyEmailOtpThunk.rejected]: (state, action) => {
       state.loading = false;
       state.signUp.verifyEmail = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.payload.response;
     },
 
     //verifySms  thunk handler
@@ -230,9 +233,11 @@ const authSlice = createSlice({
       state.loading = false;
       state.signUp.verifySms = true;
     },
-    [verifySmsThunk.rejected]: (state, {payload}) => {
+    [verifySmsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.signUp.verifySms = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.payload.response;
     },
 
     //verifyOTP thunk handler
@@ -247,7 +252,6 @@ const authSlice = createSlice({
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-
       state.apiErrorMessage = action.payload.response;
     },
   },
