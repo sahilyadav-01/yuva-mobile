@@ -20,7 +20,7 @@ import {
   resetSignUp,
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
-import { configureStore } from '@reduxjs/toolkit';
+
 const Signup = () => {
   /**
    * state
@@ -31,13 +31,13 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [confirmPassword,setConfirmPassword]=useState(false);
   const [signupFlag, setSignupFlag] = useState(false);
+  const [errorFlag, setErrorFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkConfirmPassowrd,setCheckConfirmPassword]= useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
-  const [verifyOtp, setVerifyOtp] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
   /*
@@ -49,15 +49,14 @@ const Signup = () => {
    */
 
   const onVerify = phoneOrEmail => {
-    setVerifyOtp(phoneOrEmail);
-    if (phoneOrEmail === 'phoneNumber') {
+    if (phoneOrEmail === 'phoneNumber' && number && !checkNumber) {
       dispatch(verifySmsThunk({number}));
       navigation.navigate('EnterOTP', {
         emailOrNumber: number,
         attributeName: 'Phone Number',
         var: 'phone',
       });
-    } else if(phoneOrEmail === 'email' && !checkEmail) {
+    } else if(phoneOrEmail === 'email' && email && !checkEmail) {
       dispatch(verifyEmailOtpThunk({email}));
       navigation.navigate('EnterOTP', {
         emailOrNumber: email,
@@ -86,13 +85,39 @@ const Signup = () => {
         .then(() => {
           setSignupMessage('Succesfully Signed up!');
           setSignupFlag(true);
+          setErrorFlag(true);
         })
-        .catch(e => {});
+        .catch(e => {
+          setSignupMessage('Registration Failed!');
+          setSignupFlag(false);
+          setErrorFlag(true);
+        });
     } else {
-      setSignupMessage('Some value is wrong!');
-      setSignupFlag(true);
+      onSetErrorMsg();
+      setSignupFlag(false);
+      setErrorFlag(true);
     }
   };
+
+  const onSetErrorMsg = () => {
+    if(!name) {
+      setSignupMessage('Enter Name!');
+    } else if(!number || checkNumber) {
+      setSignupMessage('Enter Valid Number!');
+    } else if(!verifySms) {
+      setSignupMessage('Please Verify Number!');
+    } else if(!email || checkEmail) {
+      setSignupMessage('Enter Valid Email!');
+    } else if(!verifyEmail) {
+      setSignupMessage('Please Verify Email!');
+    } else if(!password || checkPassword) {
+      setSignupMessage('Enter Valid Password!');
+    } else if(!confirmPassword || checkConfirmPassowrd) {
+      setSignupMessage('Enter Valid Re-Password!');
+    } else {
+      setSignupMessage('Something Went wrong!');
+    }
+  }
 
   const onChangeName = e => {
     setName(e)
@@ -112,10 +137,10 @@ const Signup = () => {
    
   }
   const closeMessageBox = () => {
-    setSignupFlag(false);
-    // if (number != undefined && email != undefined && password != undefined) {
-    //   navigation.navigate('Login');
-    // }
+    setErrorFlag(false);
+    if (signupFlag) {
+      navigation.navigate('Login');
+    }
   };
   const checkEmailText = () => {
     let reg =
@@ -142,16 +167,7 @@ const Signup = () => {
       setCheckNumber(false);
     }
   };
-  // console.log(checkNumber,"check")
-  // console.log(number,"check123")
-  //  const checkConfirmPassowrdText=(text)=>{
 
-  //   if ((text) < 6) {
-  //     setCheckConfirmPassword(true);
-  //   } else {
-  //     setCheckConfirmPassword(false);
-  //   }
-  //  }
   return (
     <SafeAreaView className="flex h-full">
       {/* <Backbutton onPress={goBack} /> */}
@@ -258,7 +274,7 @@ const Signup = () => {
         {/* <AlertBox showDialog={error} hideDialog={disbaleAlert} message={errorMessage}/> */}
         <MessageBox
           head="Message"
-          showDialog={signupFlag}
+          showDialog={errorFlag}
           hideDialog={closeMessageBox}
           message={signupMessage}
         />
