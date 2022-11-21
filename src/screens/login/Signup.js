@@ -213,9 +213,8 @@ const Signup = () => {
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
-          //onChangeText={onChangeConfirmPassword}
+          onChangeText={onChangeConfirmPassword}
           //onBlur={checkConfirmPassowrdText}
-          onBlur={onChangeConfirmPassword}
           secureTextEntry={true}
         />
          {/* {confirmPassword === password &&  (
