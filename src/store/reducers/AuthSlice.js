@@ -3,7 +3,6 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {setObject, getObject, removeObject} from '../LocalStore';
 import axios from 'axios';
 import {SERVER} from '../../utils/utils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 /**
  * Contants
  */

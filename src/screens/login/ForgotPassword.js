@@ -22,7 +22,7 @@ const ForgotPassword = () => {
 
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
-console.log(forgotStatus,"apieror")
+
 
 useEffect(()=> {
 if (forgotStatus ){
