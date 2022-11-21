@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   SafeAreaView,
   TextInput,
   TouchableOpacity,
-  Image,
+  ScrollView,
 } from 'react-native';
 import Header from '../../components/Header';
 import {useNavigation} from '@react-navigation/core';
-import {Divider, ActivityIndicator} from 'react-native-paper';
 import Backbutton from '../../components/Backbutton';
 import {useDispatch, useSelector} from 'react-redux';
 import AlertBox from '../../components/AlertBox';
@@ -26,6 +25,7 @@ const Signup = () => {
   /**
    * state
    */
+  const [name, setName] = useState('');
   const [number, setNumber] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -57,7 +57,7 @@ const Signup = () => {
         attributeName: 'Phone Number',
         var: 'phone',
       });
-    } else {
+    } else if(phoneOrEmail === 'email' && !checkEmail) {
       dispatch(verifyEmailOtpThunk({email}));
       navigation.navigate('EnterOTP', {
         emailOrNumber: email,
@@ -78,9 +78,11 @@ const Signup = () => {
       checkPassword === false &&
       number !== undefined &&
       email !== undefined &&
-      password !== undefined
+      password !== undefined &&
+      verifyEmail &&
+      verifySms
     ) {
-      dispatch(signupThunk({email, number, password}))
+      dispatch(signupThunk({name, email, number, password}))
         .then(() => {
           setSignupMessage('Succesfully Signed up!');
           setSignupFlag(true);
@@ -91,6 +93,10 @@ const Signup = () => {
       setSignupFlag(true);
     }
   };
+
+  const onChangeName = e => {
+    setName(e)
+  }
   const onChangeNumber = e => {
     setNumber(e);
   };
@@ -107,9 +113,9 @@ const Signup = () => {
   }
   const closeMessageBox = () => {
     setSignupFlag(false);
-    if (number != undefined && email != undefined && password != undefined) {
-      navigation.navigate('Login');
-    }
+    // if (number != undefined && email != undefined && password != undefined) {
+    //   navigation.navigate('Login');
+    // }
   };
   const checkEmailText = () => {
     let reg =
@@ -128,15 +134,14 @@ const Signup = () => {
       setCheckPassword(false);
     }
   };
-  // const checkNumberText = ()=> {
-  //   const reg = /^[0]?[789]\d{9}$/;
-  //   if (reg.test(number) ===false) {
-  //     setCheckNumber(true);
-   
-  //   } else {
-  //     setCheckNumber(false);
-  //   }
-  // };
+  const checkNumberText = ()=> {
+    const reg = /^[0]?[789]\d{9}$/;
+    if (reg.test(number) === false) {
+      setCheckNumber(true);
+    } else {
+      setCheckNumber(false);
+    }
+  };
   // console.log(checkNumber,"check")
   // console.log(number,"check123")
   //  const checkConfirmPassowrdText=(text)=>{
@@ -149,65 +154,72 @@ const Signup = () => {
   //  }
   return (
     <SafeAreaView className="flex h-full">
-      <Backbutton onPress={goBack} />
+      {/* <Backbutton onPress={goBack} /> */}
       {/* Top Section */}
       <Header name="SIGNUP" />
 
       {/* SignUP Screen */}
-      <View className="flex h-full mt-[30px]">
+      <ScrollView className="flex h-full mt-[30px] my-8">
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mt-{40px} rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Name"
+          onChangeText={onChangeName}
+          value={name}
         />
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mb-[60px] rounded shadow-2xl border-b-2 pl-2 "
+          className="h-[50px] mr-[30px] ml-[30px] mb-[10px] rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeNumber}
-          //onBlur={checkNumberText}
+          onBlur={checkNumberText}
           keyboardType='phone-pad'
+          value={number}
         />
-        {checkNumber!=0 &&checkNumber === true && (
-          <Text className="mt-[10px] ml-[30px] text-red-500">
-            Number is not Valid
+        <View className="ml-[30px] mb-[20px]">
+          <Text className="text-red-500">
+            {checkNumber? 'Number is not Valid': ''}
           </Text>
-        )}
-
         <TouchableOpacity onPress={() => onVerify('phoneNumber')}>
           <Text
-            style={{position: 'absolute'}}
-            className="right-8 bottom-8 font-bold">
+            style={{position: 'absolute', color: verifySms? 'green': 'black'}}
+            className="right-8 bottom-0 font-bold">
             Verify
           </Text>
         </TouchableOpacity>
+        </View>
+
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mt-{40px}  rounded shadow-2xl border-b-2 pl-2 "
+          className="h-[50px] mr-[30px] ml-[30px] mb-[10px]  rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
           onBlur={checkEmailText}
+          value={email}
         />
-        {checkEmail === true && (
-          <Text className=" ml-[30px] text-red-500">Email is not Valid</Text>
-        )}
-
-        <TouchableOpacity onPress={() => onVerify('email')}>
-          <Text
-            style={{position: 'absolute'}}
-            className="right-8 top-2 font-bold">
-            Verify
+        <View className="ml-[30px] mb-[20px]">
+          <Text className="text-red-500">
+            {checkEmail? 'Email is not Valid': ''}
           </Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => onVerify('email')}>
+            <Text
+              style={{position: 'absolute', color: verifyEmail? 'green': 'black'}}
+              className="right-8 bottom-0 font-bold">
+              Verify
+            </Text>
+          </TouchableOpacity>
+        </View>
+
 
         <TextInput
           style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Type Password"
           type="password"
           onChangeText={onChangePassword}
           onBlur={checkPasswordText}
           secureTextEntry={true}
+          value={password}
         />
         {checkPassword === true && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
@@ -222,15 +234,11 @@ const Signup = () => {
           onChangeText={onChangeConfirmPassword}
           //onBlur={checkConfirmPassowrdText}
           secureTextEntry={true}
+          value={confirmPassword}
         />
-         {/* {confirmPassword === password &&  (
+        {confirmPassword !=0 && confirmPassword !== password &&  (
           <Text className="mt-[10px] ml-[30px] text-red-500">
-           password is same
-          </Text>
-        ) } */}
-        {confirmPassword!=0 && confirmPassword !== password &&  (
-          <Text className="mt-[10px] ml-[30px] text-red-500">
-           password is not same
+           Password is not same
           </Text>
         ) }
         <TouchableOpacity
@@ -254,7 +262,7 @@ const Signup = () => {
           hideDialog={closeMessageBox}
           message={signupMessage}
         />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
