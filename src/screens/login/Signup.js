@@ -120,8 +120,8 @@ const Signup = () => {
       setCheckEmail(false);
     }
   };
-  const checkPasswordText = text => {
-    if (text < 6) {
+  const checkPasswordText =()  => {
+    if (password.length < 6) {
       setCheckPassword(true);
     } else {
       setCheckPassword(false);
