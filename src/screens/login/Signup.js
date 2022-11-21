@@ -91,7 +91,7 @@ const Signup = () => {
       setSignupFlag(true);
     }
   };
-  const onChangeName = e => {
+  const onChangeNumber = e => {
     setNumber(e);
   };
   const onChangeEmail = e => {
@@ -111,29 +111,34 @@ const Signup = () => {
       navigation.navigate('Login');
     }
   };
-  const checkEmailText = e => {
+  const checkEmailText = () => {
     let reg =
       /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
-    if (!reg.test(e.target.value) === false) {
+    if (reg.test(email) !== true) {
       setCheckEmail(true);
     } else {
       setCheckEmail(false);
     }
   };
+  
   const checkPasswordText =()  => {
-    if (password.length < 6) {
+    if (password?.length < 6) {
       setCheckPassword(true);
     } else {
       setCheckPassword(false);
     }
   };
-  const checkNumberText = e => {
-    if (/1-9/g.test(e?.target?.value)) {
-      setCheckNumber(true);
-    } else {
-      setCheckNumber(false);
-    }
-  };
+  // const checkNumberText = ()=> {
+  //   const reg = /^[0]?[789]\d{9}$/;
+  //   if (reg.test(number) ===false) {
+  //     setCheckNumber(true);
+   
+  //   } else {
+  //     setCheckNumber(false);
+  //   }
+  // };
+  // console.log(checkNumber,"check")
+  // console.log(number,"check123")
   //  const checkConfirmPassowrdText=(text)=>{
 
   //   if ((text) < 6) {
@@ -159,10 +164,11 @@ const Signup = () => {
           style={{backgroundColor: '#F5F9FA'}}
           className="h-[50px] mr-[30px] ml-[30px] mb-[60px] rounded shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
-          onChangeText={onChangeName}
-          onBlur={checkNumberText}
+          onChangeText={onChangeNumber}
+          //onBlur={checkNumberText}
+          keyboardType='phone-pad'
         />
-        {checkNumber === true && (
+        {checkNumber!=0 &&checkNumber === true && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
             Number is not Valid
           </Text>
