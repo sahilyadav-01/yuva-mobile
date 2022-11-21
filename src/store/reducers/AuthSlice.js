@@ -130,9 +130,9 @@ export const logoutThunk = createAsyncThunk(
  */
 export const signupThunk = createAsyncThunk(
   'auth/signupThunk',
-  async ({email, number, password}, {fulfillWithValue, rejectWithValue}) => {
+  async ({name, email, number, password}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      axios.post(SINGUP_URI, {email, number, password}).then(res => res.data);
+      axios.post(SINGUP_URI, {name, email, number, password}).then(res => res.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error);

@@ -6,11 +6,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {ActivityIndicator} from 'react-native-paper';
 import Header from '../../components/Header';
 import OtpInputs from 'react-native-otp-inputs';
 import {useNavigation} from '@react-navigation/core';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   verifyThunk,
   verifyEmailOtpThunk,
@@ -22,19 +21,20 @@ const EnterOTP = ({props, route}) => {
   const [otp, setOtp] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [number] = useState();
-  const [email] = useState();
   const [key, setKey] = useState(0);
   const [isResend, setIsResend] = useState(false);
   const attributeName = route?.params?.attributeName;
   const emailOrNumber = route?.params?.emailOrNumber;
   const resendVar = route?.params?.var;
+  const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
 
   const onVerify = () => {
     //apply to verify function
 
     otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp}));
-    navigation.navigate('SignUp');
+    if(resendVar === 'email' && verifyEmail|| resendVar ==='phone' && verifySms) {
+      navigation.navigate('SignUp');
+    }
   };
 
   const onResend = () => {
