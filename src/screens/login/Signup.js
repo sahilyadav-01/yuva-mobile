@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -17,7 +17,8 @@ import {
   signupThunk,
   verifySmsThunk,
   verifyEmailOtpThunk,
-  resetSignUp,
+  resetVerifyEmail,
+  resetVerifySms,
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 
@@ -29,13 +30,13 @@ const Signup = () => {
   const [number, setNumber] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [confirmPassword,setConfirmPassword]=useState(false);
+  const [confirmPassword, setConfirmPassword] = useState(false);
   const [signupFlag, setSignupFlag] = useState(false);
   const [errorFlag, setErrorFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkPassword, setCheckPassword] = useState(false);
-  const [checkConfirmPassowrd,setCheckConfirmPassword]= useState(false);
+  const [checkConfirmPassowrd, setCheckConfirmPassword] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
   const navigation = useNavigation();
@@ -47,6 +48,12 @@ const Signup = () => {
   /**
    * call back functions
    */
+  const {apiError, apiErrorMessage} = useSelector(state => state.auth);
+  console.log(email, number);
+
+  // useEffect(() => {
+  //   signup();
+  // }, [email, number]);
 
   const onVerify = phoneOrEmail => {
     if (phoneOrEmail === 'phoneNumber' && number && !checkNumber) {
@@ -56,13 +63,16 @@ const Signup = () => {
         attributeName: 'Phone Number',
         var: 'phone',
       });
-    } else if(phoneOrEmail === 'email' && email && !checkEmail) {
+    } else if (phoneOrEmail === 'email' && email && !checkEmail) {
       dispatch(verifyEmailOtpThunk({email}));
-      navigation.navigate('EnterOTP', {
-        emailOrNumber: email,
-        attributeName: 'Email',
-        var: 'email',
-      });
+      console.log('new mail', verifyEmail);
+      if (verifyEmail) {
+        navigation.navigate('EnterOTP', {
+          emailOrNumber: email,
+          attributeName: 'Email',
+          var: 'email',
+        });
+      }
     }
   };
 
@@ -100,42 +110,46 @@ const Signup = () => {
   };
 
   const onSetErrorMsg = () => {
-    if(!name) {
+    if (!name) {
       setSignupMessage('Enter Name!');
-    } else if(!number || checkNumber) {
+    } else if (!number || checkNumber) {
       setSignupMessage('Enter Valid Number!');
-    } else if(!verifySms) {
+    } else if (!verifySms) {
       setSignupMessage('Please Verify Number!');
-    } else if(!email || checkEmail) {
+    } else if (!email || checkEmail) {
       setSignupMessage('Enter Valid Email!');
-    } else if(!verifyEmail) {
+    } else if (!verifyEmail) {
       setSignupMessage('Please Verify Email!');
-    } else if(!password || checkPassword) {
+    } else if (!password || checkPassword) {
       setSignupMessage('Enter Valid Password!');
-    } else if(!confirmPassword || checkConfirmPassowrd) {
+    } else if (!confirmPassword || checkConfirmPassowrd) {
       setSignupMessage('Enter Valid Re-Password!');
     } else {
       setSignupMessage('Something Went wrong!');
     }
-  }
+  };
 
   const onChangeName = e => {
-    setName(e)
-  }
+    setName(e);
+  };
   const onChangeNumber = e => {
+    if (verifySms) {
+      resetVerifySms();
+    }
     setNumber(e);
   };
   const onChangeEmail = e => {
+    if (verifyEmail) {
+      resetVerifyEmail();
+    }
     setEmail(e);
   };
   const onChangePassword = e => {
     setPassword(e);
-    
   };
-  const onChangeConfirmPassword=e=>{
+  const onChangeConfirmPassword = e => {
     setConfirmPassword(e);
-   
-  }
+  };
   const closeMessageBox = () => {
     setErrorFlag(false);
     if (signupFlag) {
@@ -151,15 +165,15 @@ const Signup = () => {
       setCheckEmail(false);
     }
   };
-  
-  const checkPasswordText =()  => {
+
+  const checkPasswordText = () => {
     if (password?.length < 6) {
       setCheckPassword(true);
     } else {
       setCheckPassword(false);
     }
   };
-  const checkNumberText = ()=> {
+  const checkNumberText = () => {
     const reg = /^[0]?[789]\d{9}$/;
     if (reg.test(number) === false) {
       setCheckNumber(true);
@@ -189,20 +203,23 @@ const Signup = () => {
           placeholder="Contact Number"
           onChangeText={onChangeNumber}
           onBlur={checkNumberText}
-          keyboardType='phone-pad'
+          keyboardType="phone-pad"
           value={number}
         />
         <View className="ml-[30px] mb-[20px]">
           <Text className="text-red-500">
-            {checkNumber? 'Number is not Valid': ''}
+            {checkNumber ? 'Number is not Valid' : ''}
           </Text>
-        <TouchableOpacity onPress={() => onVerify('phoneNumber')}>
-          <Text
-            style={{position: 'absolute', color: verifySms? 'green': 'black'}}
-            className="right-8 bottom-0 font-bold">
-            Verify
-          </Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => onVerify('phoneNumber')}>
+            <Text
+              style={{
+                position: 'absolute',
+                color: verifySms ? 'green' : 'black',
+              }}
+              className="right-8 bottom-0 font-bold">
+              Verify
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <TextInput
@@ -215,17 +232,19 @@ const Signup = () => {
         />
         <View className="ml-[30px] mb-[20px]">
           <Text className="text-red-500">
-            {checkEmail? 'Email is not Valid': ''}
+            {checkEmail ? 'Email is not Valid' : ''}
           </Text>
           <TouchableOpacity onPress={() => onVerify('email')}>
             <Text
-              style={{position: 'absolute', color: verifyEmail? 'green': 'black'}}
+              style={{
+                position: 'absolute',
+                color: verifyEmail ? 'green' : 'black',
+              }}
               className="right-8 bottom-0 font-bold">
               Verify
             </Text>
           </TouchableOpacity>
         </View>
-
 
         <TextInput
           style={{backgroundColor: '#FFFFFF'}}
@@ -242,9 +261,9 @@ const Signup = () => {
             Password must be atleast 6 characters
           </Text>
         )}
-         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
+        <TextInput
+          style={{backgroundColor: '#F5F9FA'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
           onChangeText={onChangeConfirmPassword}
@@ -252,11 +271,11 @@ const Signup = () => {
           secureTextEntry={true}
           value={confirmPassword}
         />
-        {confirmPassword !=0 && confirmPassword !== password &&  (
+        {confirmPassword != 0 && confirmPassword !== password && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
-           Password is not same
+            Password is not same
           </Text>
-        ) }
+        )}
         <TouchableOpacity
           onPress={signup}
           style={{backgroundColor: '#E68D36'}}

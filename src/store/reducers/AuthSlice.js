@@ -10,31 +10,31 @@ import {SERVER} from '../../utils/utils';
 // const LOCAL_SERVER  = "localhost:8080"
 const SINGUP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/signup';
 const GETSMS_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateSmsOtp';
-const EMAILOTP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
+const EMAILOTP_URI =
+  'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
 const VERIFY_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/validate';
-const FORGOT_PASSWORD='http://'+ SERVER+':8080/api/v1/yuva/password/forgot'
+const FORGOT_PASSWORD =
+  'http://' + SERVER + ':8080/api/v1/yuva/password/forgot';
 /**
  * Thunks
  */
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
-  async({email},{fulfillWithValue,rejectWithValue})=>{
-    try{
-      const uri=FORGOT_PASSWORD+'?emailOrNumber='+email;
-      return await axios.post(uri,{}).then(resp=>{
-        if(resp.data.status){
+  async ({email}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const uri = FORGOT_PASSWORD + '?emailOrNumber=' + email;
+      return await axios.post(uri, {}).then(resp => {
+        if (resp.data.status) {
           return resp.data;
-        
-    }else{
-      return rejectWithValue(resp.data)
-    }
-  })
-    }catch (error){
- 
-      return rejectWithValue(error.response.data)
+        } else {
+          return rejectWithValue(resp.data);
+        }
+      });
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   },
-)
+);
 
 export const verifyEmailOtpThunk = createAsyncThunk(
   'auth/verifyEmailOtpThunk',
@@ -130,9 +130,14 @@ export const logoutThunk = createAsyncThunk(
  */
 export const signupThunk = createAsyncThunk(
   'auth/signupThunk',
-  async ({name, email, number, password}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {name, email, number, password},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
-      axios.post(SINGUP_URI, {name, email, number, password}).then(res => res.data);
+      axios
+        .post(SINGUP_URI, {name, email, number, password})
+        .then(res => res.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error);
@@ -158,19 +163,23 @@ const authSlice = createSlice({
       verifyEmail: false,
       verifySms: false,
     },
-    forgotStatus:false,
+    forgotStatus: false,
   },
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;
       state.apiErrorMessage = '';
     },
-    resetSignUp(state) {
+
+    resetVerifyEmail(state) {
       state.signUp.verifyEmail = false;
+    },
+    resetVerifySms(state) {
       state.signUp.verifySms = false;
     },
-    resetForgotPassword(state){
-      state.forgotStatus=false;
+
+    resetForgotPassword(state) {
+      state.forgotStatus = false;
     },
   },
   extraReducers: {
@@ -245,7 +254,8 @@ const authSlice = createSlice({
       state.loading = false;
       state.signUp.verifyEmail = false;
       state.apiError = true;
-      state.apiErrorMessage = action.payload.response;
+      state.apiErrorMessage = action.payload.errorMessage;
+      console.log(action.payload, 'lkjhg');
     },
 
     //verifySms  thunk handler
@@ -278,27 +288,28 @@ const authSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = action.payload.response;
     },
- 
+
     //forgot password thunk handler
-    [forgotPassword.pending]:(state,{payload})=>{
-      state.loading=true;
-  },
-  [forgotPassword.fulfilled]:(state,action)=>{
-    state.loading=false;
-    state.forgotStatus=true;
-   
-  },
-  [forgotPassword.rejected]:(state,action)=>{
-    state.forgotStatus=false;
-    state.loading=false;
-    state.apiError = true;
-    state.apiErrorMessage = action.payload.message;
-  }
- 
-
-
-
+    [forgotPassword.pending]: (state, {payload}) => {
+      state.loading = true;
+    },
+    [forgotPassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.forgotStatus = true;
+    },
+    [forgotPassword.rejected]: (state, action) => {
+      state.forgotStatus = false;
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.payload.message;
+    },
   },
 });
-export const {hideErrorBox, resetSignUp,resetForgotPassword} = authSlice.actions;
+export const {
+  hideErrorBox,
+  resetSignUp,
+  resetForgotPassword,
+  resetVerifyEmail,
+  resetVerifySms,
+} = authSlice.actions;
 export default authSlice.reducer;
