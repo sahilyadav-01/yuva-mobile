@@ -27,7 +27,7 @@ const Header = ({name}) => {
         </View>
 
         <View className="flex items-end justify-end">
-          <Text className="text-bold text-lg">USER {name}</Text>
+          <Text className="text-bold  text-black-700 text-lg ">USER {name}</Text>
           <Divider
             style={{backgroundColor: '#52608E'}}
             className="h-1 w-14 rounded mt-0.5"

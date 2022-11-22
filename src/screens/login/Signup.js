@@ -177,15 +177,15 @@ const Signup = () => {
       {/* SignUP Screen */}
       <ScrollView className="flex h-full mt-[30px] my-8">
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Name"
           onChangeText={onChangeName}
           value={name}
         />
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mb-[10px] rounded shadow-2xl border-b-2 pl-2 "
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] mb-[10px] rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeNumber}
           onBlur={checkNumberText}
@@ -206,8 +206,8 @@ const Signup = () => {
         </View>
 
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] mb-[10px]  rounded shadow-2xl border-b-2 pl-2 "
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] mb-[10px]  rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
           onBlur={checkEmailText}
@@ -228,8 +228,8 @@ const Signup = () => {
 
 
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 "
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Type Password"
           type="password"
           onChangeText={onChangePassword}
@@ -243,8 +243,8 @@ const Signup = () => {
           </Text>
         )}
          <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
           onChangeText={onChangeConfirmPassword}
