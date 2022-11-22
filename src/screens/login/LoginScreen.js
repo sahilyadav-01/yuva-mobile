@@ -104,15 +104,15 @@ const LoginScreen = () => {
       {/* Login Screen */}
       <View className="flex mt-[60px]">
         <TextInput
-          style={{backgroundColor: '#f5f9fa'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2 mb-[40px]"
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Email / Phone Number"
           onChangeText={onChangeEmail}
           value={email}
         />
         <TextInput
-          style={{backgroundColor: '#f5f9fa'}}
-          className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2 "
+          style={{backgroundColor: '#FFFFFF'}}
+          className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Password"
           type="password"
           onChangeText={onChangePassword}
