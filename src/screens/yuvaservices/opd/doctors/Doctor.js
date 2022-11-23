@@ -38,9 +38,9 @@ const Doctor = () => {
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         if(query.length >  2){
-            dispatch(searchDoctorThunk({search:query, jwt}))
+            dispatch(searchDoctorThunk({search:'&search='+query, jwt}))
         } else if(query == ""){
-            dispatch(searchDoctorThunk({search:"all", jwt}))
+            dispatch(searchDoctorThunk({search:"", jwt}))
         }
     }
 
