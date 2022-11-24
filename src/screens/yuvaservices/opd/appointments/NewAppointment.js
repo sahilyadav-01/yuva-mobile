@@ -3,7 +3,7 @@ import {View, Text, TextInput} from 'react-native';
 import Backbutton from '../../../../components/Backbutton';
 import {useNavigation} from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
-// import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
+import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -113,26 +113,26 @@ const NewAppointment = () => {
       {/* Date */}
       <View className="mt-[10px] ml-[30px] mr-[30px]">
         <Text>Date</Text>
-        {/* <DateTimePicker
-                    type="date"
-                    value={date}
-                    onChangeDate={handleDate}
-                    style={{backgroundColor:"#FFFFFF", borderWidth:1, borderRadius:8}} 
-                    selectionColor="#1D2334"
-                    theme={{ colors: { text: "black" } }}
-                /> */}
+        <DateTimePicker
+          type="date"
+          value={date}
+          onChangeDate={handleDate}
+          style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+          selectionColor="#1D2334"
+          theme={{colors: {text: 'black'}}}
+        />
       </View>
 
       <View className="mt-[10px] ml-[30px] mr-[30px]">
         <Text>Time</Text>
-        {/* <DateTimePicker
-                    type="time"
-                    value={time}
-                    onChangeDate={handleTime}
-                    style={{backgroundColor:"#FFFFFF", borderWidth:1, borderRadius:8}} 
-                    selectionColor="#1D2334"
-                    theme={{ colors: { text: "black" } }}
-                /> */}
+        <DateTimePicker
+          type="time"
+          value={time}
+          onChangeDate={handleTime}
+          style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+          selectionColor="#1D2334"
+          theme={{colors: {text: 'black'}}}
+        />
       </View>
 
       <ActionButton onPress={newAppointment} name="Book Appointment" />
