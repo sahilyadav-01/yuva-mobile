@@ -88,8 +88,8 @@ const Signup = () => {
       number !== undefined &&
       email !== undefined &&
       password !== undefined &&
-      verifyEmail &&
-      verifySms
+      smsVerified &&
+      emailVerified
     ) {
       dispatch(signupThunk({name, email, number, password}))
         .then(() => {
