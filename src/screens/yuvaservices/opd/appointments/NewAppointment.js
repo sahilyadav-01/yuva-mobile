@@ -49,10 +49,21 @@ const NewAppointment = () => {
         doctorId,
         jwt,
       }),
-    ).then(() => {
+    ).then((resp) =>{if(resp?.payload?.message==="Appointment added successfully"){
       setSignupFlag(true);
-      setSignupMessage('Successfully Booked!');
-    });
+       setSignupMessage('Successfully Booked!');
+    }
+    else if(resp?.payload?.description==="Description cannot be null/empty"){
+      setSignupFlag(true);
+      setSignupMessage("Description cannot be null/empty");
+    }
+    else{
+      setSignupFlag(true);
+      setSignupMessage("Booking Failed")
+    }
+  }
+
+    );
   };
 
   const onChangeDescription = txt => {
