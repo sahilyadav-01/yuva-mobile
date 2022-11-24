@@ -2,7 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { View, Text } from 'react-native';
 
 const Timer = (props) => {
-  const interval = props?.interval || 30;
+  const interval = props?.interval || 60;
   const resetEnable = (isReset) => props?.resetEnable(isReset);
   const [duration, setDuration] = useState(interval);
   const durationCallback = useCallback(() => setDuration(duration => duration -1), []);

@@ -97,7 +97,7 @@ const EnterOTP = ({props, route}) => {
           </Text>
         </TouchableOpacity>
         <View style={{marginHorizontal: '10%', marginTop: 10}}>
-          <Timer interval={30} key={key} resetEnable={onResetEnable}/>
+          <Timer interval={60} key={key} resetEnable={onResetEnable}/>
         </View>
         <TouchableOpacity disabled={!isResend} onPress={onResend}>
           <Text
