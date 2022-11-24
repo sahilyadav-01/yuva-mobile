@@ -26,13 +26,13 @@ const EnterOTP = ({props, route}) => {
   const attributeName = route?.params?.attributeName;
   const emailOrNumber = route?.params?.emailOrNumber;
   const resendVar = route?.params?.var;
-  const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
+  const {smsVerified, emailVerified} = useSelector(state => state.auth.verified);
 
   const onVerify = () => {
     //apply to verify function
 
-    otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp}));
-    if(resendVar === 'email' && verifyEmail|| resendVar ==='phone' && verifySms) {
+    otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp, resendVar}));
+    if(resendVar === 'email' && emailVerified|| resendVar ==='phone' && smsVerified) {
       navigation.navigate('SignUp');
     }
   };
