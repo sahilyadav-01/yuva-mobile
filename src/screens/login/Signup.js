@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator
 } from 'react-native';
 import Header from '../../components/Header';
 import {useNavigation} from '@react-navigation/core';
@@ -39,6 +40,8 @@ const Signup = () => {
   const [checkConfirmPassowrd, setCheckConfirmPassword] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
   const {verifySms, verifyEmail} = useSelector(state => state.auth.signUp);
+  const {smsVerified, emailVerified} = useSelector(state => state.auth.verified);
+  const {loading} = useSelector(state => state.auth);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   /*
@@ -49,30 +52,27 @@ const Signup = () => {
    * call back functions
    */
   const {apiError, apiErrorMessage} = useSelector(state => state.auth);
-  console.log(email, number);
+  useEffect(() => {
+    verifySms && navigation.navigate('EnterOTP', {
+      emailOrNumber: number,
+      attributeName: 'Phone Number',
+      var: 'phone',
+    });
+  }, [verifySms]);
 
-  // useEffect(() => {
-  //   signup();
-  // }, [email, number]);
+  useEffect(() => {
+    verifyEmail && navigation.navigate('EnterOTP', {
+      emailOrNumber: email,
+      attributeName: 'Email',
+      var: 'email',
+  });
+  }, [verifyEmail]);
 
   const onVerify = phoneOrEmail => {
     if (phoneOrEmail === 'phoneNumber' && number && !checkNumber) {
       dispatch(verifySmsThunk({number}));
-      navigation.navigate('EnterOTP', {
-        emailOrNumber: number,
-        attributeName: 'Phone Number',
-        var: 'phone',
-      });
     } else if (phoneOrEmail === 'email' && email && !checkEmail) {
       dispatch(verifyEmailOtpThunk({email}));
-      console.log('new mail', verifyEmail);
-      if (verifyEmail) {
-        navigation.navigate('EnterOTP', {
-          emailOrNumber: email,
-          attributeName: 'Email',
-          var: 'email',
-        });
-      }
     }
   };
 
@@ -214,7 +214,7 @@ const Signup = () => {
             <Text
               style={{
                 position: 'absolute',
-                color: verifySms ? 'green' : 'black',
+                color: smsVerified ? 'green' : 'black',
               }}
               className="right-8 bottom-0 font-bold">
               Verify
@@ -238,7 +238,7 @@ const Signup = () => {
             <Text
               style={{
                 position: 'absolute',
-                color: verifyEmail ? 'green' : 'black',
+                color: emailVerified ? 'green' : 'black',
               }}
               className="right-8 bottom-0 font-bold">
               Verify
@@ -288,7 +288,7 @@ const Signup = () => {
         </TouchableOpacity>
 
         {/* Loading indicator */}
-        {/* <ActivityIndicator animating={loading}/> */}
+        
         {/* Handle input  errors */}
         {/* <AlertBox showDialog={error} hideDialog={disbaleAlert} message={errorMessage}/> */}
         <MessageBox
@@ -298,6 +298,13 @@ const Signup = () => {
           message={signupMessage}
         />
       </ScrollView>
+      {loading? <View
+        style={{position: 'absolute', width:'100%', height: '100%', justifyContent: 'center', alignSelf: 'center', backgroundColor: 'rgba(255,255,255,0.6)'}}
+      >
+          <ActivityIndicator 
+          animating={true} 
+          size={'large'} />
+      </View>: null}
     </SafeAreaView>
   );
 };

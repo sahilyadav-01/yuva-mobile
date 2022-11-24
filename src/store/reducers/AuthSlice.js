@@ -50,14 +50,14 @@ export const verifyEmailOtpThunk = createAsyncThunk(
 
 export const verifyThunk = createAsyncThunk(
   'auth/verifyThunk',
-  async ({emailOrNumber, otp}, {fulfillWithValue, rejectWithValue}) => {
+  async ({emailOrNumber, otp, resendVar}, {fulfillWithValue, rejectWithValue}) => {
     try {
       return await axios
         .post(VERIFY_URI, {
           emailOrNumber,
           otp,
         })
-        .then(resp => resp.data);
+        .then(resp => { return {...resp.data, resendVar}});
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -163,6 +163,7 @@ const authSlice = createSlice({
       verifyEmail: false,
       verifySms: false,
     },
+    verified: {smsVerified: false, emailVerified: false},
     forgotStatus: false,
   },
   reducers: {
@@ -172,10 +173,10 @@ const authSlice = createSlice({
     },
 
     resetVerifyEmail(state) {
-      state.signUp.verifyEmail = false;
+      state.verified.emailVerified = false;
     },
     resetVerifySms(state) {
-      state.signUp.verifySms = false;
+      state.verified.smsVerified = false;
     },
 
     resetForgotPassword(state) {
@@ -242,20 +243,19 @@ const authSlice = createSlice({
       state.apiErrorMessage = action.payload.response;
     },
     //verifyEmailOtp thunk handler
-    [verifyEmailOtpThunk.pending]: (state, {payload}) => {
+    [verifyEmailOtpThunk.pending]: (state, action) => {
       state.loading = true;
       state.signUp.verifyEmail = false;
     },
-    [verifyEmailOtpThunk.fulfilled]: (state, {payload}) => {
+    [verifyEmailOtpThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.signUp.verifyEmail = true;
+      state.signUp.verifyEmail = action?.payload?.message === "OTP_SENT_SUCCESSFULLY";
     },
     [verifyEmailOtpThunk.rejected]: (state, action) => {
       state.loading = false;
       state.signUp.verifyEmail = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
-      console.log(action.payload, 'lkjhg');
     },
 
     //verifySms  thunk handler
@@ -263,30 +263,36 @@ const authSlice = createSlice({
       state.loading = true;
       state.signUp.verifySms = false;
     },
-    [verifySmsThunk.fulfilled]: (state, {payload}) => {
+    [verifySmsThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.signUp.verifySms = true;
+      state.signUp.verifySms = action?.payload?.message === "OTP_SENT_SUCCESSFULLY";
     },
     [verifySmsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.signUp.verifySms = false;
       state.apiError = true;
-      state.apiErrorMessage = action.payload.response;
+      state.apiErrorMessage = action.payload;
     },
 
     //verifyOTP thunk handler
-    [verifyThunk.pending]: (state, {payload}) => {
+    [verifyThunk.pending]: (state, action) => {
       state.loading = true;
+      state.verified.smsVerified = action.payload?.resendVar === 'phone' ? false: state.verified.smsVerified;
+      state.verified.emailVerified = action.payload?.resendVar === 'email' ? false: state.verified.emailVerified;
     },
     [verifyThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.user.emailOrNumber = action.payload?.emailOrNumber;
       state.user.otp = action.payload?.otp;
+      state.verified.smsVerified = action.payload?.resendVar === 'phone' ? action.payload?.data : false;
+      state.verified.emailVerified = action.payload?.resendVar === 'email' ? action.payload?.data : false;
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.response;
+      state.verified.smsVerified = action.payload?.resendVar === 'phone' ? false: state.verified.smsVerified;
+      state.verified.emailVerified = action.payload?.resendVar === 'email' ? false: state.verified.emailVerified;
     },
 
     //forgot password thunk handler
