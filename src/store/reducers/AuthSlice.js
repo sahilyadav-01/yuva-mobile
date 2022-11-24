@@ -278,7 +278,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.signUp.verifySms = false;
       state.apiError = true;
-      state.apiErrorMessage = action.payload;
+      state.apiErrorMessage = action.payload.errorMessage;
     },
 
     //verifyOTP thunk handler
