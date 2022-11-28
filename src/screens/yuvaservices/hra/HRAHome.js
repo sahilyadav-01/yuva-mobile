@@ -193,10 +193,16 @@ const HRAHome = () => {
     dispatch(reportStatusThunk({jwt})).then(() => {});
   };
 useEffect(()=>{
-  fetchReport()
-},[reportStatus?.ready])
+ const timer= setInterval(() => {
  
- 
+    fetchReport()
+
+  },2000)
+
+return () => clearTimeout(timer);
+},[])
+
+
 
   const disbaleAlert = () => {
     setReport(false);
