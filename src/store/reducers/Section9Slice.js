@@ -170,6 +170,7 @@ const initialState = {
   metrics: {},
   result: false,
   reportStatus: false,
+ 
 };
 
 const section9Slice = createSlice({
@@ -206,19 +207,23 @@ const section9Slice = createSlice({
     },
     [reportStatusThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
-
-      state.reportStatus = payload.status;
+      state.reportStatus = payload.data;
 
       //state.reportStatus=false
     },
     [reportStatusThunk.rejected]: (state, {payload}) => {
       state.loading = false;
+      state.apiError=true;
+      state.apiErrorMessage = payload.error;
+      // console.log(apiErrorMessage,"messsssssssss")
+      // console.log(apiError,"erorororororor")
     },
 
     // Final Submissionn
     [finalSubmission.pending]: (state, {payload}) => {
       state.loading = true;
       state.reportStatus = false;
+  
     },
     [finalSubmission.fulfilled]: (state, {payload}) => {
       state.loading = false;

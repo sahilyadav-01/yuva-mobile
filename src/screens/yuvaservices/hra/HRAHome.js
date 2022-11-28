@@ -141,7 +141,7 @@ const HRAHome = () => {
   const downloadPath =
     FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
 
-  let {chart, metrics, result, reportStatus} = useSelector(
+  let {chart, metrics, result, reportStatus,apiErrorMessage} = useSelector(
     state => state.section9,
   );
   /**
@@ -156,6 +156,7 @@ const HRAHome = () => {
   const [report, setReport] = useState(false);
   const {jwt} = useSelector(state => state.auth.user);
   const [qReport, setQReport] = useState(true);
+  const [message,setMessage]=useState('')
 
   /**
    * React Hooks
@@ -169,23 +170,33 @@ const HRAHome = () => {
    * callbacks
    */
   const display = () => {
-    if (!reportStatus) {
+    if (reportStatus === null  ) {  
+      setMessage("Fill the details first")
       fetchReport();
     }
-    if (reportStatus) {
+    if(reportStatus?.ready !=null && !reportStatus.ready){
+      setMessage("Your Report is being generated, Please wait ..")
+      fetchReport()
+    }
+    if (reportStatus?.ready !=null && reportStatus.ready) {
       downloadFile(DOWNLOAD_REPORT, downloadPath, jwt);
-    } else {
+    } 
+    else{
+     // setMessage(apiErrorMessage)
       setReport(true);
+      
     }
   };
 
   const fetchReport = () => {
+
     dispatch(reportStatusThunk({jwt})).then(() => {});
   };
-
-  useEffect(() => {
-    //fetchReport()
-  }, [reportStatus]);
+useEffect(()=>{
+  fetchReport()
+},[reportStatus?.ready])
+ 
+ 
 
   const disbaleAlert = () => {
     setReport(false);
@@ -259,7 +270,8 @@ const HRAHome = () => {
       <MessageBox
         showDialog={report}
         hideDialog={disbaleAlert}
-        message="Your Report is being generated, Please wait .."
+       //message="Your Report is being generated, Please wait .."
+       message={message}
       />
     </SafeAreaView>
   );
