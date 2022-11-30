@@ -10,30 +10,6 @@ import {allAppointmentThunk} from '../../../../store/reducers/AppointmentSlice';
 import {useDispatch, useSelector} from 'react-redux';
 
 const AppointmentHome = ({navigation}) => {
-  const DATA = [
-    {
-      id: 1,
-      status: 'Confirmed',
-      consult: 'Orthopedic',
-      doctor: 'Bharath',
-      qual: 'MBBS',
-      specialization: 'Orthopedic',
-      address: 'Koramangala',
-      date: '26 March',
-      desc: 'Tooth ache',
-    },
-    {
-      id: 2,
-      status: 'Confirmed',
-      consult: 'Orthopedic',
-      doctor: 'Bharath',
-      qual: 'MBBS',
-      specialization: 'Orthopedic',
-      address: 'Koramangala',
-      date: '26 March',
-      desc: 'Tooth ache',
-    },
-  ];
 
   const renderItem = ({item}) => (
     <AppointmentCard
@@ -46,7 +22,6 @@ const AppointmentHome = ({navigation}) => {
       slot={item.slot}
     />
   );
-
   //const navigation = useNavigation()
 
   const newAppointment = () => {
@@ -63,10 +38,10 @@ const AppointmentHome = ({navigation}) => {
   const {jwt} = useSelector(state => state.auth.user);
   const appointments = useSelector(state => state.appointment.userAppointments);
   const homeRefresh = useSelector(state => state.appointment.homeRefresh);
-
   /**
    * Hooks
    */
+  console.log(appointments)
   const dispatch = useDispatch();
 
   /**
