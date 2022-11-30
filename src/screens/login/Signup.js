@@ -174,7 +174,7 @@ const Signup = () => {
     }
   };
   const checkNumberText = () => {
-    const reg = /^[0]?[789]\d{9}$/;
+    const reg = /^[0]?[6789]\d{9}$/;
     if (reg.test(number) === false) {
       setCheckNumber(true);
     } else {
