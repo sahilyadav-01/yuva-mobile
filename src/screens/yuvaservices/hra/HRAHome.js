@@ -17,14 +17,14 @@ import HealthMetricCard from './HealthMetricCard';
 import PureChart from 'react-native-pure-chart';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
-import {reportStatusThunk} from '../../../store/reducers/Section9Slice';
+import {reportStatusThunk,reportDownloadThunk} from '../../../store/reducers/Section9Slice';
 import DownloadButton from '../../../components/DownloadButton';
 import AlertBox from '../../../components/AlertBox';
 import MessageBox from '../../../components/MessageBox';
 import HealthReportSVG from '../../../components/svg/HealthReportSVG';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Backbutton from '../../../components/Backbutton';
-
+import RNFetchBlob from 'rn-fetch-blob';
 import * as FileSystem from 'react-native-fs';
 const {StorageAccessFramework} = FileSystem;
 // import * as Sharing from 'expo-sharing';
@@ -32,6 +32,7 @@ import {SERVER} from '../../../utils/utils';
 const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
 // import * as IntentLauncher from 'expo-intent-launcher';
 import hraImg from '../../../../assets/hra_img.png';
+import { date } from 'is_js';
 
 LogBox.ignoreAllLogs();
 
@@ -42,104 +43,104 @@ LogBox.ignoreAllLogs();
 const downloadCallback = () => {
   //alert("download  finished")
 };
-const ensureDirAsync = async (dir, intermediates = true) => {
-  const props = await FileSystem.getInfoAsync(dir);
-  if (props.exist && props.isDirectory) {
-    return props;
-  }
-  let _ = await FileSystem.makeDirectoryAsync(dir, {intermediates});
-  return await ensureDirAsync(dir, intermediates);
-};
+// const ensureDirAsync = async (dir, intermediates = true) => {
+//   const props = await FileSystem.getInfoAsync(dir);
+//   if (props.exist && props.isDirectory) {
+//     return props;
+//   }
+//   let _ = await FileSystem.makeDirectoryAsync(dir, {intermediates});
+//   return await ensureDirAsync(dir, intermediates);
+// };
 
-const downloadFile = async (fileUrl, downloadPath, jwt) => {
-  if (Platform.OS == 'android') {
-    const dir = ensureDirAsync(downloadPath);
-  }
+// const downloadFile = async (fileUrl, downloadPath, jwt) => {
+//   if (Platform.OS == 'android') {
+//     const dir = ensureDirAsync(downloadPath);
+//   }
 
-  //let fileName = fileUrl.split('Reports/')[1];
-  let fileName = 'report2.pdf';
-  //alert(fileName)
-  const downloadResumable = FileSystem.createDownloadResumable(
-    fileUrl,
-    downloadPath + fileName,
-    {
-      headers: {Authorization: 'Bearer ' + jwt},
-    },
-    downloadCallback,
-  );
+//   //let fileName = fileUrl.split('Reports/')[1];
+//   let fileName = 'report2.pdf';
+//   //alert(fileName)
+//   const downloadResumable = FileSystem.createDownloadResumable(
+//     fileUrl,
+//     downloadPath + fileName,
+//     {
+//       headers: {Authorization: 'Bearer ' + jwt},
+//     },
+//     downloadCallback,
+//   );
 
-  try {
-    const {uri} = await downloadResumable.downloadAsync();
-    if (Platform.OS == 'android')
-      //saveAndroidFile(uri, fileName)
-      save2(uri);
-    else saveIosFile(uri);
-  } catch (e) {
-    console.error('download error:', e);
-  }
-};
+//   try {
+//     const {uri} = await downloadResumable.downloadAsync();
+//     if (Platform.OS == 'android')
+//       //saveAndroidFile(uri, fileName)
+//       save2(uri);
+//     else saveIosFile(uri);
+//   } catch (e) {
+//     console.error('download error:', e);
+//   }
+// };
 
-const save2 = async fileUri => {
-  // const shareResult = await Sharing.shareAsync(fileUri, {
-  //     mimeType: 'application/pdf',
-  //     dialogTitle: 'Open file',
-  //     UTI: 'com.adobe.pdf',
-  //  });
-  //   try {
-  //     const cUri = await FileSystem.getContentUriAsync(fileUri);
-  //         await IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
-  //           data: cUri,
-  //           flags: 1,
-  //           type: 'application/pdf',
-  //         });
-  //   } catch (e) {
-  //   }
-};
-const saveAndroidFile = async (fileUri, fileName = 'File') => {
-  try {
-    const fileString = await FileSystem.readAsStringAsync(fileUri, {
-      encoding: FileSystem.EncodingType.Base64,
-    });
+// const save2 = async fileUri => {
+//   // const shareResult = await Sharing.shareAsync(fileUri, {
+//   //     mimeType: 'application/pdf',
+//   //     dialogTitle: 'Open file',
+//   //     UTI: 'com.adobe.pdf',
+//   //  });
+//   //   try {
+//   //     const cUri = await FileSystem.getContentUriAsync(fileUri);
+//   //         await IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
+//   //           data: cUri,
+//   //           flags: 1,
+//   //           type: 'application/pdf',
+//   //         });
+//   //   } catch (e) {
+//   //   }
+// };
+// const saveAndroidFile = async (fileUri, fileName = 'File') => {
+//   try {
+//     const fileString = await FileSystem.readAsStringAsync(fileUri, {
+//       encoding: FileSystem.EncodingType.Base64,
+//     });
 
-    const permissions =
-      await StorageAccessFramework.requestDirectoryPermissionsAsync();
-    if (!permissions.granted) {
-      return;
-    }
+//     const permissions =
+//       await StorageAccessFramework.requestDirectoryPermissionsAsync();
+//     if (!permissions.granted) {
+//       return;
+//     }
 
-    try {
-      await StorageAccessFramework.createFileAsync(
-        permissions.directoryUri,
-        fileName,
-        'application/pdf',
-      )
-        .then(async uri => {
-          await FileSystem.writeAsStringAsync(uri, fileString, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
-          //   alert('Report Downloaded Successfully');
-        })
-        .catch(e => {});
-    } catch (e) {
-      throw new Error(e);
-    }
-  } catch (err) {}
-};
+//     try {
+//       await StorageAccessFramework.createFileAsync(
+//         permissions.directoryUri,
+//         fileName,
+//         'application/pdf',
+//       )
+//         .then(async uri => {
+//           await FileSystem.writeAsStringAsync(uri, fileString, {
+//             encoding: FileSystem.EncodingType.Base64,
+//           });
+//           //   alert('Report Downloaded Successfully');
+//         })
+//         .catch(e => {});
+//     } catch (e) {
+//       throw new Error(e);
+//     }
+//   } catch (err) {}
+// };
 
-const saveIosFile = async fileUri => {
-  // your ios code
-  // i use expo share module to save ios file
-  const UTI = 'public.item';
-  //   const shareResult = await Sharing.shareAsync(fileUri, {UTI});
-};
+// const saveIosFile = async fileUri => {
+//   // your ios code
+//   // i use expo share module to save ios file
+//   const UTI = 'public.item';
+//   //   const shareResult = await Sharing.shareAsync(fileUri, {UTI});
+// };
 
 const HRAHome = () => {
   /**
    * Download meta data
    */
   const [downloadProgress, setDownloadProgress] = useState();
-  const downloadPath =
-    FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
+  // const downloadPath =
+  //   FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
 
   let {chart, metrics, result, reportStatus,apiErrorMessage} = useSelector(
     state => state.section9,
@@ -169,6 +170,56 @@ const HRAHome = () => {
   /**
    * callbacks
    */
+  const checkpermission =async()=>{
+    if(Platform.OS=== 'android'){
+      downloadFile()
+    }else{
+      try{
+const granted =await PermissionsAndroid.request(
+  PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
+    title:'storage permsioon reuqired',
+    message:'app need to acess ypu sotrage'
+  }
+)
+if(granted===PermissionsAndroid.RESULTS.GRANTED){
+  console.log("sotrage granted")
+  downloadFile();
+}else{
+  console.log("not granteded");
+}
+      }catch(error){
+console.log("error",error)
+    }
+  }
+  }
+  const downloadFile=()=>{
+let date =new Date()
+let file_Url= DOWNLOAD_REPORT;
+let ext = getExtention(file_Url)
+ext = '.'+ext[0]
+const {config, fs}=RNFetchBlob
+let FileDir =fs.dirs.FileDir
+let options={
+  fileCache:true,
+  addAndroidDownloads:{
+    useDownloadManager:true,
+    notification :true,
+    path :FileDir+ 'reportPdf2'+Math.floor(date.getTime()+ date.getSeconds()/2)+ext,
+    description :'File'
+  }
+}
+config(options)
+//.fetch('GET',DOWNLOAD_REPORT)
+dispatch(reportDownloadThunk({jwt}))
+.then(res=>{
+  console.log(JSON.stringify(res),"ffffffddd")
+})
+  }
+
+const getExtention=filename=>{
+  return /[.]/.exec(filename)?/[^.]+$/.exec(filename):undefined
+}
+
   const display = () => {
     if (reportStatus === null  ) {  
       setMessage("Fill the details first")
@@ -179,7 +230,9 @@ const HRAHome = () => {
       fetchReport()
     }
     if (reportStatus?.ready !=null && reportStatus.ready) {
-      downloadFile(DOWNLOAD_REPORT, downloadPath, jwt);
+      //downloadFile(DOWNLOAD_REPORT, downloadPath, jwt);
+      checkpermission();
+      
     } 
     else{
      // setMessage(apiErrorMessage)
@@ -193,13 +246,21 @@ const HRAHome = () => {
     dispatch(reportStatusThunk({jwt})).then(() => {});
   };
 useEffect(()=>{
- const timer= setInterval(() => {
- 
-    fetchReport()
 
-  },2000)
-
-return () => clearTimeout(timer);
+  //  const timer= setInterval(() => {
+    
+  //   do{console.log(reportStatus?.ready !=null && !reportStatus.ready,"statureporttts")
+  //         fetchReport();
+  //         console.log(reportStatus,"reporttttttt");
+  //         console.log(reportStatus?.ready !=null && !reportStatus.ready,"status")
+  //       }
+  //       while(reportStatus.ready ===null && reportStatus.ready)
+  //       },2000)
+      
+  //      return () => clearTimeout(timer);
+  const timer= setInterval(() => {
+    fetchReport();
+  }, 2000);
 },[])
 
 

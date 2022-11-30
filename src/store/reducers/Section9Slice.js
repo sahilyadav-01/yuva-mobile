@@ -97,9 +97,8 @@ export const reportDownloadThunk = createAsyncThunk(
     try {
       const authToken = 'Bearer ' + jwt;
       return await axios
-        .post(
+        .get(
           DOWNLOAD_REPORT,
-          {},
           {
             headers: {
               'Content-Type': 'application/json',
@@ -247,6 +246,7 @@ const section9Slice = createSlice({
       }
       state.metrics['Score'] = {label: 'Score', value: score};
       state.result = true;
+
     },
     [finalSubmission.rejected]: (state, {payload}) => {
       state.loading = false;

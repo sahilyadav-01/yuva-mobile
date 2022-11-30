@@ -51,7 +51,7 @@ const initialState = {
     Q14: '',
   },
   answers: {
-    Q6: '2',
+    Q6: '',
     Q7: '',
     Q8: '',
     Q9: '',
