@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -30,12 +30,14 @@ const EnterOTP = ({props, route}) => {
 
   const onVerify = () => {
     //apply to verify function
-
     otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp, resendVar}));
-    if(resendVar === 'email' && emailVerified|| resendVar ==='phone' && smsVerified) {
+  };
+
+  useEffect(() => {
+    if(resendVar === 'email' && emailVerified || resendVar ==='phone' && smsVerified) {
       navigation.navigate('SignUp');
     }
-  };
+  }, [emailVerified, smsVerified])
 
   const onResend = () => {
     setKey(key+1);
