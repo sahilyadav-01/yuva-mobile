@@ -109,12 +109,12 @@ export const appointmentStatus = (status) => {
 }
 
 export const getDate = (timestamp) => {
-    let date = Date.parse(timestamp.split(".")[0])
+    let date = Date.parse(timestamp?.split(".")[0])
     return new Date(date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })
 }
 
 export const getTime = (timestamp) => {
-    let time = Date.parse(timestamp.split(".")[0])
+    let time = Date.parse(timestamp?.split(".")[0])
     return new Date(time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
 }
 
