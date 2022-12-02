@@ -18,7 +18,8 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {jwt} = useSelector(state => state.auth.user);
   useEffect(() => {
-    dispatch(allAppointmentThunk({jwt})).then().catch();
+    const isActive = 'true';
+    dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
   }, []);
   return (
     <SafeAreaView>

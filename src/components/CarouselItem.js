@@ -1,11 +1,23 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, { useEffect } from 'react';
+import {View, Text, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
 
-const CarouselItem = ({item, index}) => {
+const CarouselItem = (props) => {
+  const {item, index, totalItem} = props;
+  const wp = Dimensions.get('screen').width;
+  const onReschedule = () => {
+
+  };
+
+  const onCancelAppointment = () => {
+
+  };
+
   return (
-    <View className="w-full h-[170px] mt-[40px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
+    <View 
+      style={{minHeight: 170 ,width: (wp-30), marginLeft: index === 0 ? 0:10, marginRight: index === (totalItem-1) ? 0: 10}} 
+      className="mt-[40px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
       {/* wrapper */}
       <View className="flex my-[10px] mx-[10px]">
         {/* Doctor */}
@@ -33,11 +45,13 @@ const CarouselItem = ({item, index}) => {
             text="Reschedule"
             iconName="clock-outline"
             iconColor="#319B4B"
+            onPress={onReschedule}
           />
           <CardButton
             text="Cancel Appointment"
             iconName="close"
             iconColor="#A53F2B"
+            onPress={onCancelAppointment}
           />
         </View>
       </View>
