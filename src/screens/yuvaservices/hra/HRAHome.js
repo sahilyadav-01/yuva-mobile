@@ -145,6 +145,7 @@ const HRAHome = () => {
   let {chart, metrics, result, reportStatus,apiErrorMessage} = useSelector(
     state => state.section9,
   );
+
   /**
    *  Hooks
    */
@@ -240,27 +241,21 @@ const getExtention=filename=>{
       
     }
   };
-
   const fetchReport = () => {
 
-    dispatch(reportStatusThunk({jwt})).then(() => {});
+    dispatch(reportStatusThunk({jwt})).then(()=>{});
   };
-useEffect(()=>{
 
-  //  const timer= setInterval(() => {
-    
-  //   do{console.log(reportStatus?.ready !=null && !reportStatus.ready,"statureporttts")
-  //         fetchReport();
-  //         console.log(reportStatus,"reporttttttt");
-  //         console.log(reportStatus?.ready !=null && !reportStatus.ready,"status")
-  //       }
-  //       while(reportStatus.ready ===null && reportStatus.ready)
-  //       },2000)
-      
-  //      return () => clearTimeout(timer);
+useEffect(()=>{
+//fetchReport();
   const timer= setInterval(() => {
+   
+    // if(reportStatus !=null && !reportStatus?.ready)
+    // {
     fetchReport();
-  }, 2000);
+    //}
+   }, 2000);
+ return () => clearTimeout(timer);
 },[])
 
 
