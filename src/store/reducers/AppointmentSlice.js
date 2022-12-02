@@ -10,7 +10,7 @@ import {SERVER} from '../../utils/utils';
 const NEW_APPOINTMENT =
   'http://' + SERVER + ':8080/api/v1/yuva/appointment?fromWeb=false';
 const USER_APPOINTMENTS =
-  'http://' + SERVER + ':8080/api/v1/yuva/appointment/user';
+  'http://' + SERVER + ':8080/api/v1/yuva/appointment/user/false';
 const CANCEL_APPOINTMENT =
   'http://' + SERVER + ':8080/api/v1/yuva/appointment/';
 
