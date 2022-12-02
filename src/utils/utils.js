@@ -7,7 +7,7 @@ export const isEmpty =
     (password) => validator.empty(password) ? true : false;
 
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
-export const SERVER ="ec2-65-0-203-74.ap-south-1.compute.amazonaws.com"
+export const SERVER ="ec2-13-126-216-137.ap-south-1.compute.amazonaws.com"
 //export const SERVER ="localhost"
 
 export const EMAIL_VALIDATION = "Please enter a valid Email !"
