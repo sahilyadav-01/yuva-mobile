@@ -40,108 +40,12 @@ LogBox.ignoreAllLogs();
  * Download dir
  */
 
-const downloadCallback = () => {
-  //alert("download  finished")
-};
-// const ensureDirAsync = async (dir, intermediates = true) => {
-//   const props = await FileSystem.getInfoAsync(dir);
-//   if (props.exist && props.isDirectory) {
-//     return props;
-//   }
-//   let _ = await FileSystem.makeDirectoryAsync(dir, {intermediates});
-//   return await ensureDirAsync(dir, intermediates);
-// };
-
-// const downloadFile = async (fileUrl, downloadPath, jwt) => {
-//   if (Platform.OS == 'android') {
-//     const dir = ensureDirAsync(downloadPath);
-//   }
-
-//   //let fileName = fileUrl.split('Reports/')[1];
-//   let fileName = 'report2.pdf';
-//   //alert(fileName)
-//   const downloadResumable = FileSystem.createDownloadResumable(
-//     fileUrl,
-//     downloadPath + fileName,
-//     {
-//       headers: {Authorization: 'Bearer ' + jwt},
-//     },
-//     downloadCallback,
-//   );
-
-//   try {
-//     const {uri} = await downloadResumable.downloadAsync();
-//     if (Platform.OS == 'android')
-//       //saveAndroidFile(uri, fileName)
-//       save2(uri);
-//     else saveIosFile(uri);
-//   } catch (e) {
-//     console.error('download error:', e);
-//   }
-// };
-
-// const save2 = async fileUri => {
-//   // const shareResult = await Sharing.shareAsync(fileUri, {
-//   //     mimeType: 'application/pdf',
-//   //     dialogTitle: 'Open file',
-//   //     UTI: 'com.adobe.pdf',
-//   //  });
-//   //   try {
-//   //     const cUri = await FileSystem.getContentUriAsync(fileUri);
-//   //         await IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
-//   //           data: cUri,
-//   //           flags: 1,
-//   //           type: 'application/pdf',
-//   //         });
-//   //   } catch (e) {
-//   //   }
-// };
-// const saveAndroidFile = async (fileUri, fileName = 'File') => {
-//   try {
-//     const fileString = await FileSystem.readAsStringAsync(fileUri, {
-//       encoding: FileSystem.EncodingType.Base64,
-//     });
-
-//     const permissions =
-//       await StorageAccessFramework.requestDirectoryPermissionsAsync();
-//     if (!permissions.granted) {
-//       return;
-//     }
-
-//     try {
-//       await StorageAccessFramework.createFileAsync(
-//         permissions.directoryUri,
-//         fileName,
-//         'application/pdf',
-//       )
-//         .then(async uri => {
-//           await FileSystem.writeAsStringAsync(uri, fileString, {
-//             encoding: FileSystem.EncodingType.Base64,
-//           });
-//           //   alert('Report Downloaded Successfully');
-//         })
-//         .catch(e => {});
-//     } catch (e) {
-//       throw new Error(e);
-//     }
-//   } catch (err) {}
-// };
-
-// const saveIosFile = async fileUri => {
-//   // your ios code
-//   // i use expo share module to save ios file
-//   const UTI = 'public.item';
-//   //   const shareResult = await Sharing.shareAsync(fileUri, {UTI});
-// };
 
 const HRAHome = () => {
   /**
    * Download meta data
    */
-  const [downloadProgress, setDownloadProgress] = useState();
-  // const downloadPath =
-  //   FileSystem.documentDirectory + (Platform.OS == 'android' ? '' : '');
-
+ 
   let {chart, metrics, result, reportStatus,apiErrorMessage} = useSelector(
     state => state.section9,
   );
@@ -183,13 +87,9 @@ const granted =await PermissionsAndroid.request(
   }
 )
 if(granted===PermissionsAndroid.RESULTS.GRANTED){
-  console.log("sotrage granted")
   downloadFile();
-}else{
-  console.log("not granteded");
 }
       }catch(error){
-console.log("error",error)
     }
   }
   }
@@ -210,10 +110,8 @@ let options={
   }
 }
 config(options)
-//.fetch('GET',DOWNLOAD_REPORT)
 dispatch(reportDownloadThunk({jwt}))
 .then(res=>{
-  console.log(JSON.stringify(res),"ffffffddd")
 })
   }
 
@@ -231,12 +129,12 @@ const getExtention=filename=>{
       fetchReport()
     }
     if (reportStatus?.ready !=null && reportStatus.ready) {
-      //downloadFile(DOWNLOAD_REPORT, downloadPath, jwt);
+      
       checkpermission();
       
     } 
     else{
-     // setMessage(apiErrorMessage)
+    
       setReport(true);
       
     }
@@ -314,16 +212,6 @@ useEffect(()=>{
           {/* <PureChart data={chart} type='bar' defaultColumnWidth={20}/> */}
         </View>
 
-        {/* Risk indicators
-                <View style={{backgroundColor:"#f5f9fa"}} className="px-2 py-3 shadow-2xl mx-[30px] mt-[20px] rounded border-b-2">
-                    <View className="flex-row h-[80px] justify-between">
-
-                        <HealthMetricCard key = "SCORE" metric={metrics} label="Health Score" color="bg-green-200" borderColor="border-green-500" metricColor="text-green-700"/>
-                        <HealthMetricCard key = "BMI" metric={metrics} label="BMI" color="bg-red-200" borderColor="border-red-500" metricColor="text-red-700"/>
-                        <HealthMetricCard key = "CANCER" metric={metrics} label="Diabetes Risk" color="bg-red-200" borderColor="border-red-500" metricColor="text-red-700"/>
-                        <HealthMetricCard key = "DIABETES" metric={metrics} label="Cancer Risk" color="bg-red-200" borderColor="border-red-500" metricColor="text-red-700"/>
-                    </View>
-                </View> */}
         <View>
           <DownloadButton onPress={display} />
         </View>
@@ -332,7 +220,6 @@ useEffect(()=>{
       <MessageBox
         showDialog={report}
         hideDialog={disbaleAlert}
-       //message="Your Report is being generated, Please wait .."
        message={message}
       />
     </SafeAreaView>

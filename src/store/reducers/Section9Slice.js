@@ -214,8 +214,7 @@ const section9Slice = createSlice({
       state.loading = false;
       state.apiError=true;
       state.apiErrorMessage = payload.error;
-      // console.log(apiErrorMessage,"messsssssssss")
-      // console.log(apiError,"erorororororor")
+
     },
 
     // Final Submissionn

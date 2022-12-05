@@ -41,7 +41,6 @@ const AppointmentHome = ({navigation}) => {
   /**
    * Hooks
    */
-  console.log(appointments)
   const dispatch = useDispatch();
 
   /**
