@@ -22,7 +22,6 @@ const AppointmentHome = ({navigation}) => {
       slot={item.slot}
     />
   );
-
   //const navigation = useNavigation()
 
   const newAppointment = () => {
@@ -39,7 +38,6 @@ const AppointmentHome = ({navigation}) => {
   const {jwt} = useSelector(state => state.auth.user);
   const appointments = useSelector(state => state.appointment.userAppointments);
   const homeRefresh = useSelector(state => state.appointment.homeRefresh);
-
   /**
    * Hooks
    */

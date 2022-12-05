@@ -1,3 +1,4 @@
+
 import React, {useRef, useState} from 'react';
 import {View, Text, FlatList, Dimensions} from 'react-native';
 import CarouselItem from './CarouselItem';
@@ -8,6 +9,7 @@ const CarouselContainer = () => {
     {id: 1, text: 'text1'},
     {id: 1, text: 'text2'},
   ];
+
   const [activeIndex, setActiveIndex] = useState(0);
   const {userAppointments} = useSelector(state => state?.appointment);
   

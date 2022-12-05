@@ -8,7 +8,6 @@ import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../store/reducers/AppointmentSlice';
 
-
 import YuvaStatusBar from '../components/YuvaStatusBar';
 
 //const Stack = createStackNavigator();
@@ -18,6 +17,7 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {jwt} = useSelector(state => state.auth.user);
   useEffect(() => {
+
     const isActive = 'true';
     dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
   }, []);
