@@ -17,7 +17,7 @@ import HealthMetricCard from './HealthMetricCard';
 import PureChart from 'react-native-pure-chart';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
-import {reportStatusThunk,reportDownloadThunk} from '../../../store/reducers/Section9Slice';
+import {reportStatusThunk} from '../../../store/reducers/Section9Slice';
 import DownloadButton from '../../../components/DownloadButton';
 import AlertBox from '../../../components/AlertBox';
 import MessageBox from '../../../components/MessageBox';
@@ -28,8 +28,8 @@ import RNFetchBlob from 'rn-fetch-blob';
 import * as FileSystem from 'react-native-fs';
 const {StorageAccessFramework} = FileSystem;
 // import * as Sharing from 'expo-sharing';
-import {SERVER} from '../../../utils/utils';
-const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
+import { granted} from '../../../utils/utils';
+//const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
 // import * as IntentLauncher from 'expo-intent-launcher';
 import hraImg from '../../../../assets/hra_img.png';
 import { date } from 'is_js';
@@ -46,7 +46,7 @@ const HRAHome = () => {
    * Download meta data
    */
  
-  let {chart, metrics, result, reportStatus,apiErrorMessage} = useSelector(
+  let {chart, metrics, result, reportStatus,apiErrorMessage,reportDownload} = useSelector(
     state => state.section9,
   );
 
@@ -80,12 +80,13 @@ const HRAHome = () => {
       downloadFile()
     }else{
       try{
-const granted =await PermissionsAndroid.request(
-  PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
-    title:'storage permsioon reuqired',
-    message:'app need to acess ypu sotrage'
-  }
-)
+// const granted =await PermissionsAndroid.request(
+//   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
+//     title:'storage permsioon reuqired',
+//     message:'app need to acess ypu sotrage'
+//   }
+// )
+granted();
 if(granted===PermissionsAndroid.RESULTS.GRANTED){
   downloadFile();
 }
@@ -93,9 +94,11 @@ if(granted===PermissionsAndroid.RESULTS.GRANTED){
     }
   }
   }
+
+
   const downloadFile=()=>{
 let date =new Date()
-let file_Url= DOWNLOAD_REPORT;
+let file_Url= reportDownload;
 let ext = getExtention(file_Url)
 ext = '.'+ext[0]
 const {config, fs}=RNFetchBlob
@@ -110,9 +113,10 @@ let options={
   }
 }
 config(options)
-dispatch(reportDownloadThunk({jwt}))
+dispatch(reportStatusThunk({jwt}))
 .then(res=>{
 })
+
   }
 
 const getExtention=filename=>{

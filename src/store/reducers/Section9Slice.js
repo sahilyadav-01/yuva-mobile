@@ -14,7 +14,7 @@ const SECTION_QUESTION =
   'http://' + SERVER + ':8080/api/v1/yuva/hra/questions/9';
 const SUBMISSION_QUESTION =
   'http://' + SERVER + ':8080/api/v1/yuva/hra/answers2';
-const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
+//const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
 const CHECK_REPORT =
   'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport/status';
 
@@ -91,29 +91,29 @@ export const reportStatusThunk = createAsyncThunk(
  * Download Report
  */
 
-export const reportDownloadThunk = createAsyncThunk(
-  'section9/download',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
-    try {
-      const authToken = 'Bearer ' + jwt;
-      return await axios
-        .get(
-          DOWNLOAD_REPORT,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: authToken,
-            },
-          },
-        )
-        .then(resp => resp.data);
-    } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
+// export const reportDownloadThunk = createAsyncThunk(
+//   'section9/download',
+//   async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+//     try {
+//       const authToken = 'Bearer ' + jwt;
+//       return await axios
+//         .get(
+//           DOWNLOAD_REPORT,
+//           {
+//             headers: {
+//               'Content-Type': 'application/json',
+//               Authorization: authToken,
+//             },
+//           },
+//         )
+//         .then(resp => resp.data);
+//     } catch (error) {
+//       //const errorOject =  JSON.stringify(error.response.data)
 
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
+//       return rejectWithValue(error.response.data);
+//     }
+//   },
+// );
 
 export const finalSubmission = createAsyncThunk(
   'section9/finalSubmission',
@@ -169,6 +169,7 @@ const initialState = {
   metrics: {},
   result: false,
   reportStatus: false,
+  reportDownload:false,
  
 };
 
@@ -207,6 +208,8 @@ const section9Slice = createSlice({
     [reportStatusThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.reportStatus = payload.data;
+      state.reportDownload=payload.data.filePath;
+     
 
       //state.reportStatus=false
     },
@@ -225,6 +228,7 @@ const section9Slice = createSlice({
     },
     [finalSubmission.fulfilled]: (state, {payload}) => {
       state.loading = false;
+
 
       let score = 0;
       state.chart[0].data = [];

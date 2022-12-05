@@ -140,4 +140,9 @@ export const getDateObject = (slot) => {
     return new Date(tstring)
 }
 
-
+ export const granted =()=>{ PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
+        title:'storage permsioon reuqired',
+        message:'app need to acess ypu sotrage'
+      }
+    )}
