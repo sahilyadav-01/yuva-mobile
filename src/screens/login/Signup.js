@@ -88,8 +88,8 @@ const Signup = () => {
       number !== undefined &&
       email !== undefined &&
       password !== undefined &&
-      verifyEmail &&
-      verifySms
+      smsVerified &&
+      emailVerified
     ) {
       dispatch(signupThunk({name, email, number, password}))
         .then(() => {
@@ -174,7 +174,7 @@ const Signup = () => {
     }
   };
   const checkNumberText = () => {
-    const reg = /^[0]?[789]\d{9}$/;
+    const reg = /^[0]?[6789]\d{9}$/;
     if (reg.test(number) === false) {
       setCheckNumber(true);
     } else {

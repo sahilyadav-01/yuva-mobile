@@ -61,6 +61,11 @@ export const verifyThunk = createAsyncThunk(
           otp,
         })
         .then(resp => {
+          console.log('resp', resp);
+          if(resp?.data?.message === 'OTP_INVALID') {
+            const errorMsg = {response: 'Invalid OTP'}
+            return rejectWithValue(errorMsg);
+          }
           return {...resp.data, resendVar};
         });
     } catch (error) {
@@ -298,9 +303,9 @@ const authSlice = createSlice({
       state.user.emailOrNumber = action.payload?.emailOrNumber;
       state.user.otp = action.payload?.otp;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone' ? action.payload?.data : false;
+        action.payload?.resendVar === 'phone' ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email' ? action.payload?.data : false;
+        action.payload?.resendVar === 'email' ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;

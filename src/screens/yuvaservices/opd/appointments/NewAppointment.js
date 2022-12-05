@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, ScrollView} from 'react-native';
 import Backbutton from '../../../../components/Backbutton';
 import {useNavigation} from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
@@ -87,7 +87,7 @@ const NewAppointment = () => {
   };
 
   return (
-    <View className="flex mr-2 ml-2 h-[800px]">
+    <ScrollView className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />
       <Text className="text-bold text-lg ml-4">New Appointment</Text>
 
@@ -153,7 +153,7 @@ const NewAppointment = () => {
         hideDialog={closeMessageBox}
         message={signupMessage}
       />
-    </View>
+    </ScrollView>
   );
 };
 

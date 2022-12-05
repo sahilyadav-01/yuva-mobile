@@ -47,7 +47,8 @@ const AppointmentHome = ({navigation}) => {
    * React Hooks
    */
   useEffect(() => {
-    dispatch(allAppointmentThunk({jwt})).then().catch();
+    const isActive = 'false';
+    dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
   }, [homeRefresh]);
 
   useEffect(() => {});

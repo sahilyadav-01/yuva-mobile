@@ -98,11 +98,12 @@ export const rescheduleAppointmentThunk = createAsyncThunk(
 
 export const allAppointmentThunk = createAsyncThunk(
   'appointment/allAppointment',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async ({jwt, isActive}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const authToken = 'Bearer ' + jwt;
+      const url = `${USER_APPOINTMENTS}/${isActive}`;
       return await axios
-        .get(USER_APPOINTMENTS, {
+        .get(url, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: authToken,
