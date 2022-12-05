@@ -70,9 +70,6 @@ export const cancelAppointmentThunk = createAsyncThunk(
   },
 );
 
-/**
- * Reschedule time slot
- */
 
 export const rescheduleAppointmentThunk = createAsyncThunk(
   'appointment/rescheduleAppointment',
