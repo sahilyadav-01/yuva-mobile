@@ -43,7 +43,7 @@ const CarouselItem = (props) => {
             {item.description}
           </Text>
         </View>
-        <View className="flex-row items-center">
+        {/* <View className="flex-row items-center">
             <Icon name="calendar-blank-outline" size={24} color="black" />
             <View className="ml-[2px]">
               <Text style={{fontSize: 12}} className="">
@@ -51,8 +51,8 @@ const CarouselItem = (props) => {
               </Text>
               <Text style={{fontSize: 10}}>{getTime(item?.slot)}</Text>
             </View>
-          </View>
-        </View>
+        </View> */}
+      </View>
         {/* actions */}
         <View className="flex-row justify-between mt-[30px]">
           <CardButton
