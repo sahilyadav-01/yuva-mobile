@@ -11,6 +11,7 @@ import section8 from './reducers/Section8Slice';
 import section9 from './reducers/Section9Slice';
 import doctor from './reducers/DoctorSlice';
 import appointment from './reducers/AppointmentSlice';
+import diagnostic from './reducers/DiagnosticsSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     section9: section9,
     doctor: doctor,
     appointment: appointment,
+    diagnostic:diagnostic,
   },
 });
 
