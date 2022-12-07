@@ -29,6 +29,13 @@ const Section7 = () => {
   const dispatch = useDispatch();
   const [medicalCondition, setMedicalCondition] = useState(false);
   const [medicalCondition1, setMedicalCondition1] = useState(false);
+  const [medicalConditionDiabetes, setMedicalConditionDiabetes] = useState(false);
+  const [medicalConditionHypertension, setMedicalConditionHypertension] = useState(false);
+  const [medicalConditionDoYouSufferFromAnyIllness, setMedicalConditionDoYouSufferFromAnyIllness] = useState(false);
+  
+   
+   
+   
 
   /**
    * State
@@ -40,9 +47,15 @@ const Section7 = () => {
   const {jwt} = useSelector(state => state.auth.user);
 
   const setQuestion1 = value => {
+    {
+      value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
+    }
     dispatch(dispatch_option({key: questionData[0].questionId, value: value}));
   };
   const setQuestion2 = value => {
+    {
+      value == 1 ? setMedicalConditionDiabetes(true) : setMedicalConditionDiabetes(false);
+    }
     dispatch(dispatch_option({key: questionData[1].questionId, value: value}));
   };
 
@@ -58,6 +71,9 @@ const Section7 = () => {
   };
 
   const setQuestion5 = value => {
+    {
+      value == 1 ? setMedicalConditionHypertension(true) : setMedicalConditionHypertension(false);
+    }
     dispatch(dispatch_option({key: questionData[4].questionId, value: value}));
   };
   const setQuestion6 = value => {
@@ -174,6 +190,7 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+            {medicalConditionDoYouSufferFromAnyIllness ? (
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[1]?.question}
@@ -196,6 +213,10 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+             ) : (
+              <></>
+            )}
+            {medicalConditionDiabetes ? (
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[2]?.question}
@@ -218,6 +239,9 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+             ) : (
+              <></>
+            )}
             {medicalCondition ? (
               <View className="mt-[20px]">
                 <Text className="text-base">{questionData[3]?.question}</Text>
@@ -233,6 +257,7 @@ const Section7 = () => {
             ) : (
               <></>
             )}
+            {medicalConditionDoYouSufferFromAnyIllness ? (
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[4]?.question}
@@ -255,6 +280,10 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+              ) : (
+                <></>
+              )}
+            {medicalConditionHypertension ? (
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[5]?.question}
@@ -277,6 +306,9 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+              ) : (
+                <></>
+              )}
             {medicalCondition1 ? (
               <View>
                 <View className="mt-[20px]">
@@ -305,6 +337,7 @@ const Section7 = () => {
             ) : (
               <></>
             )}
+            {medicalConditionDoYouSufferFromAnyIllness ? (
 
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
@@ -328,7 +361,9 @@ const Section7 = () => {
                 search={false}
               />
             </View>
-
+) : (
+  <></>
+)}
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[9]?.question}
