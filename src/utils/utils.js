@@ -9,7 +9,10 @@ export const isEmpty =
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 export const SERVER ="ec2-3-111-222-20.ap-south-1.compute.amazonaws.com"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47cfbfe997f10914f6344073779b9f167415687d
 //export const SERVER ="localhost"
 
 export const EMAIL_VALIDATION = "Please enter a valid Email !"

@@ -100,25 +100,26 @@ if(granted===PermissionsAndroid.RESULTS.GRANTED){
 let date =new Date()
 let file_Url= reportDownload;
 let ext = getExtention(file_Url)
-ext = '.'+ext[0]
+ext = 'reportpdf.'+ext[0]
 const {config, fs}=RNFetchBlob
-let FileDir =fs.dirs.FileDir
+let DownloadDir =fs.dirs.DownloadDir;
 let options={
   fileCache:true,
   addAndroidDownloads:{
     useDownloadManager:true,
-    notification :true,
-    path :FileDir+ 'reportPdf2'+Math.floor(date.getTime()+ date.getSeconds()/2)+ext,
+    notification :true,  
+    path:DownloadDir+'/foldername/'+ext,
     description :'File'
   }
 }
 config(options)
-dispatch(reportStatusThunk({jwt}))
-.then(res=>{
+.fetch('GET', file_Url)
+.then(res => {
+  // Alert after successful downloading;
+  alert('File Downloaded Successfully.');
 })
 
   }
-
 const getExtention=filename=>{
   return /[.]/.exec(filename)?/[^.]+$/.exec(filename):undefined
 }
@@ -156,7 +157,7 @@ useEffect(()=>{
     // {
     fetchReport();
     //}
-   }, 2000);
+   }, 2500);
  return () => clearTimeout(timer);
 },[])
 
