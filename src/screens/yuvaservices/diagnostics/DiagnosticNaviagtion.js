@@ -4,9 +4,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import { useNavigation} from '@react-navigation/native';
-import AvailableBookingCard from './AvailableBookingCard';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import BookingCard from './BookingCard';
+import Booking from './Booking';
+
+import AvailableBooking from './AvailableBooking';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,8 +23,8 @@ const DiagnosticsNavigation = () => {
         swipeEnabled: true,
         lazy: false, 
       }}>
-      <Tab.Screen name="Available" component={AvailableBookingCard} />
-        <Tab.Screen name="Booking" component={BookingCard} /> 
+       <Tab.Screen name="Available" component={AvailableBooking} /> 
+        <Tab.Screen name="Booking" component={Booking} /> 
     </Tab.Navigator>
   );
 };
