@@ -68,9 +68,9 @@ const Section3 = () => {
                 <Progress.Bar progress={0.3} width={progressWidth} />
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
-                <Text className="text-xl">Section Three - Mental Risk</Text>
+                <Text className="text-xl">Section Three - Mental Health Risk</Text>
 
-                {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
+                <Text className="text-base mt-2">In the last 2 weeks, how often have you been bothered by any of the following problems?</Text>
                 {/* Questionaire */}
                 <View className="h-[650px]">
                     <ScrollView
