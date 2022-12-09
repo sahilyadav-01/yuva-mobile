@@ -79,7 +79,7 @@ const Section2 = () => {
             <View className="h-full mx-[30px] my-[20px] ">
                 <Text className="text-xl">Section Two - Dietary</Text>
 
-                {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
+                <Text className="text-base mt-2">How often do you consume the following?</Text>
                 {/* Questionaire */}
             <View  className="h-[60%]">
                 <ScrollView

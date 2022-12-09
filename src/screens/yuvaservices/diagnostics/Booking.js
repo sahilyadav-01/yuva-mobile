@@ -3,6 +3,7 @@ import React, { useEffect, useCallback } from 'react'
 import { View, Text, TextInput, FlatList, ScrollView } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux';
+
 import AvailableBookingCard from './AvailableBookingCard';
 
 
@@ -10,6 +11,7 @@ const Booking = ({ name }) => {
 
     const { bookedData } = useSelector(state => state.diagnostic)
   
+
 
     return (
         <View className="m-2">

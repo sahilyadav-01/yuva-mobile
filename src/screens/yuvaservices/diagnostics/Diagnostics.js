@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import DiagnosticsNavigation from './DiagnosticNaviagtion';
+
 import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createStackNavigator } from '@react-navigation/stack';
 import CarouselContainerDiagnosis from '../../../components/CarousalContainerDiagnosis';
@@ -22,13 +23,16 @@ const Diagnostics = () => {
     }, []);
  
         const Stack = createStackNavigator();
+
     return (
         <View>
             <YuvaStatusBar />
             <View>
                 <MainHeader />
+
                 <LabSearch />    
                 <CarouselContainerDiagnosis />  
+
                 <View className="h-[500px] mt-[-10px]">    
                 <Stack.Navigator>
                     <Stack.Screen

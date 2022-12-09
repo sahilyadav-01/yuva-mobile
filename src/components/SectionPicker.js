@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const SectionPicker = ({
   dispatcher,
@@ -13,12 +13,11 @@ const SectionPicker = ({
 }) => {
   const dispatch = useDispatch();
   const setSelected = value => {
-    dispatch(dispatcher({key: questionId, value: value}));
+    dispatch(dispatcher({ key: questionId, value: value }));
   };
-
   return (
     <View className="mt-[20px]">
-      <Text className="text-base mb-[8px]">{text}</Text>
+      <Text style={{ textAlign: 'justify' }} className="text-base mb-[8px]" >{text}</Text>
       <SelectList
         boxStyles={{
           backgroundColor: 'white',

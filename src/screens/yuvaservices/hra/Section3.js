@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput,  FlatList } from 'react-native'
+import React, { useState, useRef, useEffect } from 'react'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import Backbutton from '../../../components/Backbutton'
 import { useNavigation } from '@react-navigation/core'
 import * as Progress from 'react-native-progress';
@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { section3QThunk } from '../../../store/reducers/Section3Slice';
 import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton'
-import {dispatch_option} from '../../../store/reducers/Section3Slice';
+import { dispatch_option } from '../../../store/reducers/Section3Slice';
 
 const Section3 = () => {
 
@@ -28,30 +28,30 @@ const Section3 = () => {
 
 
     const questionData = useSelector(state => state.section3.rawQuestions)
- 
-    const {jwt}  = useSelector(state => state.auth.user)
+
+    const { jwt } = useSelector(state => state.auth.user)
 
     //Metadata
     const windowWidth = Dimensions.get('window').width;
     const progressWidth = windowWidth
-    const selectionData  = [{key:'0',value:'Yes'}, {key:'1',value:'No'}];
-    		
-   /**
-     * React Hooks
-     */
+    const selectionData = [{ key: '0', value: 'Yes' }, { key: '1', value: 'No' }];
+
+    /**
+      * React Hooks
+      */
 
     // Load Question Data
-    useEffect(()=>{
-        dispatch(section3QThunk({jwt}))
+    useEffect(() => {
+        dispatch(section3QThunk({ jwt }))
     }, [])
 
-  /**
-     * Navigation
-     */
-    const previous = () =>{
+    /**
+       * Navigation
+       */
+    const previous = () => {
         navigation.navigate("section2")
     }
-    const next = () =>{
+    const next = () => {
         navigation.navigate("section4")
     }
 
@@ -59,69 +59,70 @@ const Section3 = () => {
         <SafeAreaView>
             <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[20px]">
                 <View className="flex flex-row h-full items-center">
-                <Backbutton color="white" size={24} onPress={previous}/>
-                <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
+                    <Backbutton color="white" size={24} onPress={previous} />
+                    <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
                 </View>
-                <ForwardButton color="white" size={24} onPress={next}/>
+                <ForwardButton color="white" size={24} onPress={next} />
             </View>
             <View className="w-full">
-                    <Progress.Bar progress={0.3} width={progressWidth} />
+                <Progress.Bar progress={0.3} width={progressWidth} />
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
-                <Text className="text-xl">Section Three - Metal Risk</Text>
+                <Text className="text-xl">Section Three - Mental Health Risk</Text>
 
-                {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
+                <Text className="text-base mt-2">In the last 2 weeks, how often have you been bothered by any of the following problems?</Text>
                 {/* Questionaire */}
-            <View className="h-[650px]">
-                <ScrollView
-                    bounces={false}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                        paddingBottom:60
-                    }}
-                    showsVerticalScrollIndicator={false}>
-                                 {questionData.map((item)=>{
-                                    if(item.questionType.includes("picker")){
-                                        const data  = PickerData[item.questionType];
-                                        return  <SectionPicker key={item.questionId} 
-                                                        text={item.question} 
-                                                        data={PickerData[item.questionType]}
-                                                        defaultAnswer={answers[item.questionId]}
-                                                        dispatcher={dispatch_option}
-                                                        questionId={item.questionId}
-                                                />
-                                    }else if(item.questionType=="input"){
-                                        return <SectionInput  
-                                            key={item.questionId} 
-                                            text={item.question}
-                                            dispatcher={dispatch_option}
-                                            questionId={item.questionId}
-                                            />
+                <View className="h-[650px]">
+                    <ScrollView
+                        bounces={false}
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                            paddingBottom: 60
+                        }}
+                        showsVerticalScrollIndicator={false}>
+                        {questionData.map((item) => {
+                            if (item.questionType.includes("picker")) {
+                                const data = PickerData[item.questionType];
+                                return <SectionPicker key={item.questionId}
 
-                                    }
-                                })}
+                                    text={item.question}
+                                    data={PickerData[item.questionType]}
+                                    defaultAnswer={answers[item.questionId]}
+                                    dispatcher={dispatch_option}
+                                    questionId={item.questionId}
+                                />
+                            } else if (item.questionType == "input") {
+                                return <SectionInput
+                                    key={item.questionId}
+                                    text={item.question}
+                                    dispatcher={dispatch_option}
+                                    questionId={item.questionId}
+                                />
 
-                    <View className="flex-row justify-between mt-[30px]">
-                        <TouchableOpacity 
-                            style={{backgroundColor:"#52608E"}} 
-                            className="w-[100px] rounded"
-                            onPress={previous}
+                            }
+                        })}
+
+                        <View className="flex-row justify-between mt-[30px]">
+                            <TouchableOpacity
+                                style={{ backgroundColor: "#52608E" }}
+                                className="w-[100px] rounded"
+                                onPress={previous}
                             >
-                            {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
+                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center pt-[15px] pb-[15px] text-white">Previous</Text>
-                            {/* </View> */}
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style={{backgroundColor:"#52608E"}} 
-                            className="w-[100px] rounded"
-                            onPress={next}
+                                {/* </View> */}
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ backgroundColor: "#52608E" }}
+                                className="w-[100px] rounded"
+                                onPress={next}
                             >
-                            {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
+                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
-                            {/* </View> */}
-                        </TouchableOpacity>
-                    </View>
-                </ScrollView>
+                                {/* </View> */}
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
                 </View>
             </View>
         </SafeAreaView>

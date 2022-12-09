@@ -10,17 +10,17 @@ PickerData["pickerdiet"]=[
     {key:'0',value:'Never'}, 
     {key:'1',value:'1x/Week'},
     {key:'2',value:'2/3 times a week'}, 
-    {key:'3',value:'Daliy'}
+    {key:'3',value:'Daily'}
 ];
 
 PickerData["pickeralcohol2"]=[
     {key:'0',value:'0-1'}, 
     {key:'1',value:'2-3'},
-    {key:'2',value:'>4k'}, 
+    {key:'2',value:'>4'}, 
 ]
 PickerData["pickeralcohol3"]=[
     {key:'0',value:'More than 4 days'}, 
-    {key:'1',value:'2-3days'},
+    {key:'1',value:'2-3 days'},
     {key:'2',value:'<2 days'}, 
     {key:'3',value:'occasionally'},
 ]
@@ -31,7 +31,7 @@ PickerData["pickeralcohol4"]=[
     {key:'3',value:'occasionally'}, 
 ]
 PickerData["pickeryesnomedication"] = [
-    {key:'0',value:'Yes'}, 
+    {key:'1',value:'Yes'}, 
     {key:'1',value:'Yes on Medication'},
     {key:'0',value:'No'}, 
 ]
@@ -43,7 +43,7 @@ PickerData["pickeryesno"] = [
 PickerData["pickersleep"] = [
     {key:'0',value:'<7 hr'}, 
     {key:'1',value:'7-9'},
-    {key:'2',value:'>9hr'}, 
+    {key:'2',value:'>9 hr'}, 
 ]
 
 export default PickerData;
