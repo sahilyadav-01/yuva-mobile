@@ -7,7 +7,7 @@ const CarouselContainerDiagnosis = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
   
-    const { bookedData ,caraouselData } = useSelector(state => state.diagnostic)
+    const {caraouselData } = useSelector(state => state.diagnostic)
     const wp = Dimensions.get('screen').width;
 
     const onViewableItemsChanged = ({ viewableItems }) => {
