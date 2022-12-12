@@ -18,7 +18,7 @@ const CarouselItem = (props) => {
   return (
 
     <View
-      style={{ minHeight: 170, width: (wp - 30), marginLeft: index === 0 ? 0 : 10, marginRight: index === (totalItem - 1) ? 0 : 10 }}
+      style={{ minHeight: 170, width: (wp - 30), marginLeft:index === 0 ? 0 : 10, marginRight: index === (totalItem - 1) ? 0 : 10 }}
       className="mt-[40px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
       {/* wrapper */}
       <View className="flex my-[10px] mx-[10px]">
