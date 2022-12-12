@@ -1,7 +1,32 @@
 import validator from "is_js"
 
-export const isEmail =
-    (email) => (validator.empty(email) || !validator.email(email)) ? false : true
+export const isEmail = (email) => {
+
+    let regEmail =
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    let regMobile = /^[0-9]{10}$/;
+
+    if (validator.empty(email)) {
+        return false
+    }
+    if (isNaN(email)) {
+        if (regEmail.test(email) == false) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    } else {
+        if (regMobile.test(email) == false) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    // (email) => (validator.empty(email) || !validator.email(email)) ? false : true
+}
 
 export const isEmpty =
     (password) => validator.empty(password) ? true : false;
@@ -11,7 +36,7 @@ export const isEmpty =
 export const SERVER ="ec2-3-111-222-20.ap-south-1.compute.amazonaws.com"
 //export const SERVER ="localhost"
 
-export const EMAIL_VALIDATION = "Please enter a valid Email !"
+export const EMAIL_VALIDATION = "Please enter a valid Email/Phone Number!"
 export const PASSWORD_VALIDATION = "Please enter a valid password !"
 
 export const transforSubData = (s1, s2, s3, s4, s5, s6, s7, s8, s9, version) => {
@@ -139,9 +164,11 @@ export const getDateObject = (slot) => {
     return new Date(tstring)
 }
 
- export const granted =()=>{ PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
-        title:'storage permsioon reuqired',
-        message:'app need to acess ypu sotrage'
-      }
-    )}
+export const granted = () => {
+    PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
+        title: 'storage permsioon reuqired',
+        message: 'app need to acess ypu sotrage'
+    }
+    )
+}
