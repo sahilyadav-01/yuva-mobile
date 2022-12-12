@@ -20,16 +20,17 @@ const Booking = ({ name }) => {
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
+                        paddingBottom:300
                     }}
                     showsVerticalScrollIndicator={false}>
                     {bookedData && bookedData.map((item) => {
                         if (item.packageName !== null) {
                             return <AvailableBookingCard
-                                name={item.packageName}
+                                name={item?.packageName}
                             />
                         } else {
 
-                            return <AvailableBookingCard name={item.testName} />
+                            return <AvailableBookingCard name={item?.testName} />
 
                         }
                     })

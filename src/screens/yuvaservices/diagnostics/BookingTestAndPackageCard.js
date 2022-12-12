@@ -1,19 +1,30 @@
+// import React, { useEffect }  from 'react';
+// import {View, Text, Image,ScrollView} from 'react-native';
+// const BookingCard = () => {
+ 
+//   return (
+  
+//     <View  className="h-[500px] mt-[4px]">
+//      <Text>hellloyyyy</Text>
+//     </View>
+//   );
+// };
+
+// export default BookingCard;
+
+
 
 import React, { useEffect } from 'react'
 import { View, Text, Image } from 'react-native'
-import {TouchableOpacity} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-const AvailableBookingCard = ({
-  name,test
+const BookingCard = ({
+  name
 }) => {
 
   const navigation = useNavigation();
-  const clicked=()=>{
-    navigation.navigate('BookingTestAndPackage');
-  }
   return (
-    <TouchableOpacity onPress={clicked}>
+   
        
       <View style={{ backgroundColor: "#FFFFFF" }} className='h-[130px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
         {/* Top */}
@@ -29,11 +40,11 @@ const AvailableBookingCard = ({
         </View>
 
       </View>
-    </TouchableOpacity>
   )
 }
 
-export default AvailableBookingCard;
+export default BookingCard;
+
 
 
 

@@ -4,6 +4,7 @@ import { View, Text, TextInput, FlatList, ScrollView } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -27,44 +28,55 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
-        <View className="m-2">
-            <View className="h-[500px] mt-[20px]">
-            <Text className="font-bold ml-3">Available lab test</Text>
-                <ScrollView
+        <ScrollView
+            contentContainerStyle={{
+                flexGrow: 1,
+                paddingBottom: 300
+            }}>
+            <View className="m-2">
+
+                <View className="h-[500px] mt-[20px]">
+                    <Text className="font-bold ml-3">Available lab test</Text>
+                    <View>
+                  {/* <ScrollView
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingBottom: 60
+                        paddingBottom: 150
                     }}
-                    showsVerticalScrollIndicator={false}>
-                        
-                    {testData && testData.myTestResponseDtoList && testData.myTestResponseDtoList.map((item) => {
-                        return <AvailableBookingCard
-                            key={item.id}
-                            name={item.name}
-                        />
-                    })
-                    }
-                </ScrollView>
-                <Text className="font-bold ml-3">Available Package test</Text>
-                <ScrollView
+                    showsVerticalScrollIndicator={false}> */}
+
+                        {testData && testData?.myTestResponseDtoList && testData?.myTestResponseDtoList.map((item) => {
+                            return <AvailableBookingCard
+                                key={item?.id}
+                                name={item?.name}
+                               test="testName"
+                            />
+                        })
+                        }
+                        {/* </ScrollView> */}
+              
+                    </View>
+                    <Text className="font-bold ml-3 mt-10">Available Package test</Text>
+                    {/* <ScrollView
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingBottom: 60
+                        paddingBottom: 30
                     }}
-                    showsVerticalScrollIndicator={false}>
-                    {testData && testData.myPackageResponseDtoList && testData.myPackageResponseDtoList.map((item) => {
+                    showsVerticalScrollIndicator={false}> */}
+                    {testData && testData?.myPackageResponseDtoList && testData?.myPackageResponseDtoList.map((item) => {
                         return <AvailableBookingCard
-                            key={item.id}
-                            name={item.name}
+                            key={item?.id}
+                            name={item?.name}
+                            test="package"
                         />
                     })
                     }
-                </ScrollView>
+                    {/* </ScrollView> */}
+                </View>
             </View>
-            <Text>gggg</Text>
-        </View>
+        </ScrollView>
     )
 }
 

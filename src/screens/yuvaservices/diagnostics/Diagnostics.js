@@ -30,17 +30,18 @@ const Diagnostics = () => {
             <View>
                 <MainHeader />
 
-                <LabSearch />    
+                <LabSearch /> 
+                <View className="h-[500px] mt-[-40px]">  
                 <CarouselContainerDiagnosis />  
-
-                <View className="h-[500px] mt-[-10px]">    
+                </View> 
+                <View className="h-[500px] mt-[-185px]">  
                 <Stack.Navigator>
-                    <Stack.Screen
-                        name="DiagnosticsNavigation"
-                        component={DiagnosticsNavigation}
-                        options={{ headerShown: false }}
-                    />
-                </Stack.Navigator>
+                      <Stack.Screen
+                name="DiagnosticsNavigation"
+                component={DiagnosticsNavigation}
+                options={{ headerShown: false }}
+            /> 
+               </Stack.Navigator>
                 </View> 
          </View>
         </View>
