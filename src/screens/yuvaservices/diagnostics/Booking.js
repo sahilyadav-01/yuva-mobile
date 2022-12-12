@@ -3,22 +3,15 @@ import React, { useEffect, useCallback } from 'react'
 import { View, Text, TextInput, FlatList, ScrollView } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
+
 import AvailableBookingCard from './AvailableBookingCard';
 
 
 const Booking = ({ name }) => {
 
-
-
-    const { jwt } = useSelector(state => state.auth.user)
-
-    let isActive = "false";
-    const dispatch = useDispatch()
     const { bookedData } = useSelector(state => state.diagnostic)
-    useEffect(() => {
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive }))
-    }, [])
+  
+
 
     return (
         <View className="m-2">

@@ -7,17 +7,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import DiagnosticsNavigation from './DiagnosticNaviagtion';
+
+import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createStackNavigator } from '@react-navigation/stack';
-const Diagnostics = () => {
+import CarouselContainerDiagnosis from '../../../components/CarousalContainerDiagnosis';
 
+const Diagnostics = () => { 
+    const { jwt } = useSelector(state => state.auth.user)
+   const dispatch=useDispatch();
+    useEffect(() => {
+         let isActive = "true";
+         dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
+         isActive="false";
+        dispatch(bookingTestAndPackageThunk({ jwt, isActive}));
+    }, []);
+ 
+        const Stack = createStackNavigator();
 
-    const Stack = createStackNavigator();
     return (
         <View>
             <YuvaStatusBar />
             <View>
                 <MainHeader />
-                <LabSearch />      
+
+                <LabSearch />    
+                <CarouselContainerDiagnosis />  
+
                 <View className="h-[500px] mt-[-10px]">    
                 <Stack.Navigator>
                     <Stack.Screen
