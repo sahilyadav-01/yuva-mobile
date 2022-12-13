@@ -135,13 +135,13 @@ export const appointmentStatus = (status) => {
 }
 
 export const getDate = (timestamp) => {
-    let date = Date.parse(timestamp?.split(".")[0])
-    return new Date(date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })
+    //  let date = Date.parse(timestamp?.split(".")[0])
+    return new Date(timestamp).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })
 }
 
 export const getTime = (timestamp) => {
-    let time = Date.parse(timestamp?.split(".")[0])
-    return new Date(time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    // let time = Date.parse(timestamp?.split(".")[0])
+    return new Date(timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
 }
 
 export const getEpoch = (date, time) => {
