@@ -135,7 +135,6 @@ export const appointmentStatus = (status) => {
 }
 
 export const getDate = (timestamp) => {
-    console.log(timestamp,new Date(timestamp).toLocaleDateString('en-US', { day: '2-digit', month: 'short' }))
     //  let date = Date.parse(timestamp?.split(".")[0])
     return new Date(timestamp).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })
 }
