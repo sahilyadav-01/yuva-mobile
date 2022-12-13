@@ -145,9 +145,11 @@ export const signupThunk = createAsyncThunk(
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      axios
-        .post(SINGUP_URI, {name, email, number, password})
-        .then(res => res.data);
+      return await axios
+        .post(SINGUP_URI, {email,name, number, password})
+        .then(res => {
+          return res.data
+        });
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error);
