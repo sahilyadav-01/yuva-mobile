@@ -15,7 +15,16 @@ import {Provider} from 'react-redux';
 import store from './src/store/Store';
 import HRAHome from './src/screens/yuvaservices/hra/HRAHome';
 // import Header from './src/components/Header';
+import { Freshchat, FreshchatConfig } from 'react-native-freshchat-sdk';
+import { APP_ID, APP_KEY, DOMAIN } from './src/utils/freshChatConfig';
+
 export default function App() {
+  try {
+    const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
+    freshchatConfig.domain = DOMAIN;
+    Freshchat.init(freshchatConfig);
+  } catch(e) {};
+  
   return (
     <Provider store={store}>
       <PaperProvider>
