@@ -3,7 +3,6 @@ import {StyleSheet, View, Text} from 'react-native';
 import Backbutton from '../components/Backbutton';
 import {CurrentRenderContext, useNavigation} from '@react-navigation/native';
 import Doctor from '../screens/yuvaservices/opd/doctors/Doctor';
-import {Dropdown} from 'react-native-element-dropdown';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import AppointmentNav from './AppointmentNav';
 // import Entypo from 'react-native-vector-icons/Entypo';

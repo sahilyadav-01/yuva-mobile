@@ -5,7 +5,6 @@ import {Divider} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Backbutton from '../../components/Backbutton';
 import Header from '../../components/Header';
-import {Login} from '@mui/icons-material';
 import {
   forgotPassword,
   resetForgotPassword,

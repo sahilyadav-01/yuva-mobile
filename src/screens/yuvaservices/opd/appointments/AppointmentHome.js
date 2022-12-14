@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, ScrollView} from 'react-native';
 import AppointmentCard from './AppointmentCard';
-import {PlusCircleIcon, LocationMarkerIcon} from 'react-native-heroicons/solid';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Svg, {Line} from 'react-native-svg';
 import {useNavigation} from '@react-navigation/native';
