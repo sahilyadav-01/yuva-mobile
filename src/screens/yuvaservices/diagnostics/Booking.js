@@ -23,14 +23,17 @@ const Booking = ({ name }) => {
                         paddingBottom:300
                     }}
                     showsVerticalScrollIndicator={false}>
-                    {bookedData && bookedData.map((item) => {
+                    {bookedData && bookedData.map((item,index) => {
                         if (item.packageName !== null) {
                             return <AvailableBookingCard
+                            key={index}
                                 name={item?.packageName}
                             />
                         } else {
 
-                            return <AvailableBookingCard name={item?.testName} />
+                            return <AvailableBookingCard 
+                            key={index}
+                            name={item?.testName} />
 
                         }
                     })

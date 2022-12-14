@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import image1 from '../../../../assets/Diagnostic_Test.png';
+ import image from '../../../../assets/Diagnostic_Package.png';
 
 
 
@@ -15,7 +17,7 @@ const AvailableBooking = ({ name }) => {
     /**
      *  Doctors state
      * */
-    const data = useSelector(state => state.doctor.data)
+    // const data = useSelector(state => state.doctor.data)
     const { jwt } = useSelector(state => state.auth.user)
 
     /**
@@ -50,7 +52,9 @@ const AvailableBooking = ({ name }) => {
                             return <AvailableBookingCard
                                 key={item?.id}
                                 name={item?.name}
-                               test="testName"
+                                test="testName"
+                                id={item.id}
+                                imageUrl={image1}
                             />
                         })
                         }
@@ -69,7 +73,9 @@ const AvailableBooking = ({ name }) => {
                         return <AvailableBookingCard
                             key={item?.id}
                             name={item?.name}
-                            test="package"
+                            packageName={item?.name}
+                            packageUuid={item.id}
+                            imageUrl={image}
                         />
                     })
                     }
