@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-// import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 const DateTimePick = ({dateLabel, onChange}) => {
   const finDate = dateLabel.toLowerCase();

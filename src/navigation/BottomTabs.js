@@ -3,7 +3,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from '../screens/Settings';
 
-// import {HomeIcon, CogIcon, ChatIcon} from 'react-native-heroicons/outline';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 

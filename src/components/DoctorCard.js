@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text ,Image} from 'react-native'
 import { TouchableOpacity } from 'react-native'
-import { LocationMarkerIcon } from 'react-native-heroicons/solid'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
@@ -58,7 +57,6 @@ const DoctorCard = ({
                             style={{fontSize:12}}
                             >{address == undefined ? "":address.slice(0,20)}</Text>
                         <TouchableOpacity className="h-[14px] w-[14px]">
-                            <LocationMarkerIcon/>
                         </TouchableOpacity>
                     </View>
                 </View>
