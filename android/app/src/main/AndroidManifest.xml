@@ -6,8 +6,8 @@
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
-      android:icon="@drawable/assets_yuva_logo2"
-      android:roundIcon="@drawable/assets_yuva_logo2"
+      android:icon="@mipmap/assets_yuva_logo"
+      android:roundIcon="@mipmap/assets_yuva_logo2"
       android:allowBackup="false"
       android:usesCleartextTraffic="true"
       android:theme="@style/AppTheme">
