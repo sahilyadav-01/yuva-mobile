@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import ServiceContainer from '../components/ServiceContainer';
-import Diagnostics from '../screens/yuvaservices/diagnostics/Diagnostics';
+import DiagnosticNav from './Diagnosticnavigation';
 import HRA from '../screens/yuvaservices/hra/HRA';
 
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
@@ -32,7 +32,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="Diagnostics"
-        component={Diagnostics}
+        component={DiagnosticNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -40,7 +40,9 @@ const ServicesNav = () => {
         component={ProfessionalServices}
         options={{headerShown: false}}
       />
+         
     </Stack.Navigator>
+
   );
 };
 

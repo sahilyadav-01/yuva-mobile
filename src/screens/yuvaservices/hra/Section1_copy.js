@@ -2,7 +2,6 @@ import React, {useState, useRef, useEffect} from 'react'
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native'
 import Backbutton from '../../../components/Backbutton'
 import { useNavigation } from '@react-navigation/core'
-import {Picker} from '@react-native-picker/picker';
 import * as Progress from 'react-native-progress';
 import { Dimensions } from 'react-native';
 import SectionInput from '../../../components/SectionInput'

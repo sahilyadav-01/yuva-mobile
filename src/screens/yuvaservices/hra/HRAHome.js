@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
 import HealthMetricCard from './HealthMetricCard';
-import PureChart from 'react-native-pure-chart';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
 import {reportStatusThunk} from '../../../store/reducers/Section9Slice';

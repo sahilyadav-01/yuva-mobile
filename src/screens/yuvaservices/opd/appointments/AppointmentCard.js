@@ -1,8 +1,6 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native';
-import {LocationMarkerIcon} from 'react-native-heroicons/solid';
-import {Rating, AirbnbRating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
