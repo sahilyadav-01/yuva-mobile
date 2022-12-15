@@ -33,7 +33,7 @@ const AvailableBooking = ({ name }) => {
         <ScrollView
             contentContainerStyle={{
                 flexGrow: 1,
-                paddingBottom: 300
+                paddingBottom: 450
             }}>
             <View className="m-2">
 

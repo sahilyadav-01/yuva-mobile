@@ -32,7 +32,7 @@ const Diagnostics = () => {
                 <MainHeader />
                 <DiagnosticHeader />
                 <LabSearch />
-                <View className="h-[500px] mt-[-40px]">
+                <View className="h-[450px] mt-[-40px]">
                     <CarouselContainerDiagnosis />
                 </View>
                 <View className="h-[500px] mt-[-185px]">

@@ -24,7 +24,7 @@ const CarouselContainerDiagnosis = () => {
         itemVisiblePercentThreshold: 100
     }
     const renderItem = ({ item, index }) => {
-        return <CarouselItem item={item} index={index} totalItem={caraouselData?.length} />
+        return <CarouselItem diagnosticItem={item} index={index} totalItem={caraouselData?.length} />
     }
     return (
         <View className="flex items-center justify-center mt-2 mx-4 my-4">
@@ -46,7 +46,7 @@ const CarouselContainerDiagnosis = () => {
                 className="flex-row mt-[20px]"
                 horizontal={true}
                 data={new Array(caraouselData?.length)}
-                renderItem={({ item, index }) => {
+                renderItem={({ diagnosticItem, index }) => {
                     return <View className="h-2 w-2 rounded-full ml-2" style={{ backgroundColor: index === activeIndex ? 'white' : 'grey', borderColor: 'grey', borderWidth: 2 }}></View>
                 }}
             />

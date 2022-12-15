@@ -9,9 +9,12 @@ import { SERVER } from '../../utils/utils';
 
 const VIEW_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/employee/viewMyTestAndPackage';
 const BOOKED_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking/user';
-const TEST_DETAILS = 'http://' + SERVER +':8080/api/v1/yuva/services/attribute/test';
+const TEST_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/services/attribute/test';
 const ADD_BOOKING_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
-const PACKAGE_DETAILS='http://' + SERVER +':8080/api/v1/yuva/package';
+const PACKAGE_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/package';
+const BOOKED_DETAILS_BY_ID = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
+const RESCHULDE_CANCEL_BOOKING = 'http://' + SERVER + ':8080/api/v1/yuva/booking/';
+
 
 export const viewMyTestAndPackageThunk = createAsyncThunk(
   'employee/viewMyTestAndPackage',
@@ -46,9 +49,9 @@ export const bookingTestAndPackageThunk = createAsyncThunk(
             Authorization: authToken,
           },
         })
-        .then(resp =>{
-          return {...resp.data, isActive};
-         
+        .then(resp => {
+          return { ...resp.data, isActive };
+
         });
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
@@ -69,7 +72,7 @@ export const diagnosisTestDetailsThunk = createAsyncThunk(
             Authorization: authToken,
           },
         })
-          .then(resp => resp.data);
+        .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
@@ -89,7 +92,7 @@ export const diagnosisPackageDetailsThunk = createAsyncThunk(
             Authorization: authToken,
           },
         })
-          .then(resp => resp.data);
+        .then(resp => resp.data);
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
@@ -98,7 +101,7 @@ export const diagnosisPackageDetailsThunk = createAsyncThunk(
 );
 export const bookTestThunk = createAsyncThunk(
   'booking',
-  async ({jwt, data}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ jwt, data }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const authToken = 'Bearer ' + jwt;
       const url = `${ADD_BOOKING_TEST}`;
@@ -117,6 +120,52 @@ export const bookTestThunk = createAsyncThunk(
   },
 );
 
+export const bookedDetailsByIdThunk = createAsyncThunk(
+  'booking',
+  async ({ jwt, id }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const authToken = 'Bearer ' + jwt;
+      const url = `${BOOKED_DETAILS_BY_ID}/${id}`;;
+      return await axios
+        .get(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authToken,
+          },
+        })
+        .then(resp => resp.data);
+    } catch (error) {
+      //const errorOject =  JSON.stringify(error.response.data)
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+
+
+export const rescheduleCancelBookingThunk = createAsyncThunk(
+  'booking/',
+  async ({ id, jwt, isCancelled, timeSlot }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const authToken = 'Bearer ' + jwt;
+      const url = `${RESCHULDE_CANCEL_BOOKING}${id}` + '?cancelled=' + isCancelled + '&timeSlot=' + timeSlot
+      const data = {};
+      return await axios
+        .put(url, data, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authToken,
+          },
+        })
+        .then(resp => resp.data);
+    } catch (error) {
+      //const errorOject =  JSON.stringify(error.response.data)
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+
 
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
@@ -129,13 +178,13 @@ const diagnosticSlice = createSlice({
     loading: false,
     apiError: false,
     apiErrorMessage: '',
+    testData: '',
     caraouselData: '',
     bookedData: '',
-    testDetails:'',
-    packageDetails:'',
-    testBooked:'',
-    attributePackage:'',
-    attributeTest:''
+    testDetails: '',
+    packageDetails: '',
+    testBooked: '',
+    bookedDetailsById: ''
 
   },
   reducers: {
@@ -164,8 +213,8 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData =action.payload.isActive ==="false"? action.payload.data: state.bookedData;
-      state.caraouselData =action.payload.isActive ==="true" ?action.payload.data:  state.caraouselData;
+      state.bookedData = action.payload.isActive === "false" ? action.payload.data : state.bookedData;
+      state.caraouselData = action.payload.isActive === "true" ? action.payload.data : state.caraouselData;
 
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
@@ -178,10 +227,9 @@ const diagnosticSlice = createSlice({
     },
     [diagnosisTestDetailsThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.packageDetails=''
+      state.packageDetails = ''
       state.testDetails = action.payload.data;
-      state.attributeTest = action.payload.data.id;
-      state.attributePackage=''
+
     },
     [diagnosisTestDetailsThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -193,17 +241,16 @@ const diagnosticSlice = createSlice({
     },
     [diagnosisPackageDetailsThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.testDetails=''
+      state.testDetails = ''
       state.packageDetails = action.payload.data;
-       state.attributePackage=action.payload.data.packageUuid;
-       state.attributeTest =''
+
     },
     [diagnosisPackageDetailsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [bookTestThunk.pending]: (state, {payload}) => {
+    [bookTestThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
     [bookTestThunk.fulfilled]: (state, action) => {
@@ -211,6 +258,32 @@ const diagnosticSlice = createSlice({
       state.testBooked = action.payload.data;
     },
     [bookTestThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.apiError = true;
+      //state.apiErrorMessage = action.payload.errorMessage;
+    },
+    [bookedDetailsByIdThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [bookedDetailsByIdThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.bookedDetailsById = action.payload.data;
+    },
+    [bookedDetailsByIdThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.apiError = true;
+      //state.apiErrorMessage = action.payload.errorMessage;
+    },
+
+
+    [rescheduleCancelBookingThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [rescheduleCancelBookingThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.reschedule = action.payload.data;
+    },
+    [rescheduleCancelBookingThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
