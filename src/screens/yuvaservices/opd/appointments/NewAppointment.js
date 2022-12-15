@@ -57,9 +57,14 @@ const NewAppointment = () => {
       setSignupFlag(true);
       setSignupMessage("Description cannot be null/empty");
     }
+    else if(resp?.error?.message==="Rejected"){
+      setSignupFlag(true);
+      setSignupMessage(resp?.payload?.errorMessage);
+    }
     else{
       setSignupFlag(true);
       setSignupMessage("Booking Failed")
+      console.log("response",resp);
     }
   }
 

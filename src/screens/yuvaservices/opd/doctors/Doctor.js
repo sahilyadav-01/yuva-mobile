@@ -47,7 +47,7 @@ const Doctor = () => {
 
  
     return (
-        <View className="m-2">
+        <View className="m-0">
             {/* <TextInput  className="mt-4 border-box shadow-md h-12" placeholder="Search for Doctors"/> */}
             <Searchbar
                 style={{
