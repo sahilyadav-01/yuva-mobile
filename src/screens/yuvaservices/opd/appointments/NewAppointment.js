@@ -64,7 +64,6 @@ const NewAppointment = () => {
     else{
       setSignupFlag(true);
       setSignupMessage("Booking Failed")
-      console.log("response",resp);
     }
   }
 
