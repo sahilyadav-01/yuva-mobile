@@ -28,14 +28,14 @@ const Diagnostics = () => {
     return (
         <View>
             <YuvaStatusBar />
-            <View>
+           
                 <MainHeader />
                 <DiagnosticHeader />
                 <LabSearch />
-                <View className="h-[450px] mt-[-40px]">
+              
                     <CarouselContainerDiagnosis />
-                </View>
-                <View className="h-[500px] mt-[-185px]">
+               
+                <View className="h-[500]">
                     <Stack.Navigator>
                         <Stack.Screen
                             name="DiagnosticsNavigation"
@@ -44,7 +44,7 @@ const Diagnostics = () => {
                         />
                     </Stack.Navigator>
                 </View>
-            </View>
+          
         </View>
     )
 }
