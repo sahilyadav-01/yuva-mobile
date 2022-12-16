@@ -19,7 +19,8 @@ const onChangeSearch=()=>{
                 style={{
                     backgroundColor:"#FAEADB",
                     color:"#52608E",
-                    marginTop:10,
+                    marginTop:1,
+                    marginBottom:-55,
                     fontSize:5,
                 }}
                 placeholder="Search for Lab Services & Health Checkups "
