@@ -61,7 +61,6 @@ export const verifyThunk = createAsyncThunk(
           otp,
         })
         .then(resp => {
-          console.log('resp', resp);
           if(resp?.data?.message === 'OTP_INVALID') {
             const errorMsg = {response: 'Invalid OTP'}
             return rejectWithValue(errorMsg);
@@ -78,7 +77,7 @@ export const verifySmsThunk = createAsyncThunk(
   async ({number}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const uri = GETSMS_URI + '?number=' + number;
-
+      
       return await axios.get(uri, {}).then(resp => resp.data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -141,12 +140,12 @@ export const logoutThunk = createAsyncThunk(
 export const signupThunk = createAsyncThunk(
   'auth/signupThunk',
   async (
-    {name, email, number, password},
+    {email,emailOtp,name,number,numberOtp,password}, 
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
       return await axios
-        .post(SINGUP_URI, {email,name, number, password})
+        .post(SINGUP_URI, {email,emailOtp,name,number,numberOtp,password})
         .then(res => {
           return res.data
         });

@@ -23,8 +23,8 @@ import {
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 
-const Signup = () => {
-  /**
+const Signup = ({route}) => {
+   /**
    * state
    */
   const [name, setName] = useState('');
@@ -43,6 +43,8 @@ const Signup = () => {
   const {smsVerified, emailVerified} = useSelector(state => state.auth.verified);
   const {loading} = useSelector(state => state.auth);
   const navigation = useNavigation();
+  const [numberOtp, setNumberOtp] = useState();
+  const [emailOtp, setEmailOtp] = useState();
   const dispatch = useDispatch();
   /*
    * Hooks
@@ -52,6 +54,19 @@ const Signup = () => {
    * call back functions
    */
   const {apiError, apiErrorMessage} = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if(route?.params?.RoleCheck=="email"){
+      const OtpEmail=route?.params?.Otp;
+      setEmailOtp(OtpEmail);
+    }
+    else if(route?.params?.RoleCheck=="phone"){
+      const OtpMobile=route?.params?.Otp;
+      setNumberOtp(OtpMobile);
+    }
+
+  }, [route?.params?.RoleCheck]);
+
   useEffect(() => {
     verifySms && navigation.navigate('EnterOTP', {
       emailOrNumber: number,
@@ -89,9 +104,11 @@ const Signup = () => {
       email !== undefined &&
       password !== undefined &&
       smsVerified &&
-      emailVerified
+      emailVerified && 
+      numberOtp !== undefined &&
+      emailOtp !== undefined 
     ) {
-      dispatch(signupThunk({name, email, number, password}))
+      dispatch(signupThunk({email,emailOtp,name,number,numberOtp,password}))
         .then(() => {
           setSignupMessage('Succesfully Signed up!');
           setSignupFlag(true);
@@ -217,7 +234,7 @@ const Signup = () => {
                 color: smsVerified ? 'green' : 'black',
               }}
               className="right-8 bottom-0 font-bold">
-              Verify
+              {smsVerified? "Verified": "Verify"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -241,7 +258,7 @@ const Signup = () => {
                 color: emailVerified ? 'green' : 'black',
               }}
               className="right-8 bottom-0 font-bold">
-              Verify
+              {emailVerified? "Verified": "Verify"}
             </Text>
           </TouchableOpacity>
         </View>

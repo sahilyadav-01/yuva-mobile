@@ -30,7 +30,16 @@ const EnterOTP = ({props, route}) => {
 
   const onVerify = () => {
     //apply to verify function
-    otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp, resendVar}));
+    otp?.length === 4 && dispatch(verifyThunk({emailOrNumber, otp, resendVar})).then(resp => {
+
+      if((otp?.length === 4 ) && (resp?.payload?.message=="OTP_VALID"))
+      {
+        navigation.navigate('SignUp',{
+          Otp:otp,
+          RoleCheck:resp?.payload?.resendVar
+        });
+      }
+      return resp.data});
   };
 
   useEffect(() => {
