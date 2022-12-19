@@ -56,16 +56,16 @@ const Signup = ({route}) => {
   const {apiError, apiErrorMessage} = useSelector(state => state.auth);
 
   useEffect(() => {
-    if(route?.params?.RoleCheck=="email"){
+    if(route?.params?.resendVar=="email"){
       const OtpEmail=route?.params?.Otp;
       setEmailOtp(OtpEmail);
     }
-    else if(route?.params?.RoleCheck=="phone"){
+    else if(route?.params?.resendVar=="phone"){
       const OtpMobile=route?.params?.Otp;
       setNumberOtp(OtpMobile);
     }
 
-  }, [route?.params?.RoleCheck]);
+  }, [route?.params?.resendVar]);
 
   useEffect(() => {
     verifySms && navigation.navigate('EnterOTP', {
