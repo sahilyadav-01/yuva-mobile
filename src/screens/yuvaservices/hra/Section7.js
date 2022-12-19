@@ -165,7 +165,6 @@ const Section7 = () => {
                                             dispatcher={dispatch_option}
                                             questionId={item.questionId}
                                             />
-
                                     }
                                 })} */}
             <View className="mt-[20px]">
