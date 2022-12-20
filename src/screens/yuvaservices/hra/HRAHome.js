@@ -177,7 +177,7 @@ useEffect(()=>{
   return (
     <SafeAreaView>
       <View className="flex">
-        <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[10px] mt-[20px]">
+        <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[0px] mt-[42px]">
           <Backbutton color="white" onPress={goBack} size={22} />
           <Text className="text-center text-white text-xl ml-[20px]">
             Health Risk Assesment
