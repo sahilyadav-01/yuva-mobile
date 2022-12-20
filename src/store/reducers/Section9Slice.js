@@ -208,7 +208,7 @@ const section9Slice = createSlice({
     [reportStatusThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.reportStatus = payload.data;
-      state.reportDownload=payload.data.filePath;
+      state.reportDownload=payload.data?.filePath;
      
 
       //state.reportStatus=false

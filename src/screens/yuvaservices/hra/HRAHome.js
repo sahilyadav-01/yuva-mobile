@@ -11,6 +11,7 @@ import {
   Image,
   Linking,
   Platform,
+  Alert
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
 import HealthMetricCard from './HealthMetricCard';
@@ -125,11 +126,19 @@ const getExtention=filename=>{
 
   const display = () => {
     if (reportStatus === null  ) {  
-      setMessage("Fill the details first")
+      // setMessage("Fill the details first")
+      Alert.alert("Alert","Fill the details first",[{
+        text: "Ok",
+
+      }])
       fetchReport();
     }
     if(reportStatus?.ready !=null && !reportStatus.ready){
       setMessage("Your Report is being generated, Please wait ..")
+      Alert.alert("Alert","Your Report is being generated, Please wait ..",[{
+        text: "Ok",
+
+      }])
       fetchReport()
     }
     if (reportStatus?.ready !=null && reportStatus.ready) {
@@ -221,11 +230,12 @@ useEffect(()=>{
         </View>
         <HRASectionContainer />
       </View>
-      <MessageBox
+      {/* <MessageBox
+       head="Message"
         showDialog={report}
+        message={message}
         hideDialog={disbaleAlert}
-       message={message}
-      />
+      /> */}
     </SafeAreaView>
   );
 };
