@@ -11,6 +11,7 @@ import {
   Image,
   Linking,
   Platform,
+  Alert
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
 import HealthMetricCard from './HealthMetricCard';
@@ -125,11 +126,19 @@ const getExtention=filename=>{
 
   const display = () => {
     if (reportStatus === null  ) {  
-      setMessage("Fill the details first")
+      // setMessage("Fill the details first")
+      Alert.alert("Alert","Fill the details first",[{
+        text: "Ok",
+
+      }])
       fetchReport();
     }
     if(reportStatus?.ready !=null && !reportStatus.ready){
       setMessage("Your Report is being generated, Please wait ..")
+      Alert.alert("Alert","Your Report is being generated, Please wait ..",[{
+        text: "Ok",
+
+      }])
       fetchReport()
     }
     if (reportStatus?.ready !=null && reportStatus.ready) {
@@ -177,7 +186,7 @@ useEffect(()=>{
   return (
     <SafeAreaView>
       <View className="flex">
-        <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[10px] mt-[20px]">
+        <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[0px] mt-[42px]">
           <Backbutton color="white" onPress={goBack} size={22} />
           <Text className="text-center text-white text-xl ml-[20px]">
             Health Risk Assesment
@@ -221,11 +230,12 @@ useEffect(()=>{
         </View>
         <HRASectionContainer />
       </View>
-      <MessageBox
+      {/* <MessageBox
+       head="Message"
         showDialog={report}
+        message={message}
         hideDialog={disbaleAlert}
-       message={message}
-      />
+      /> */}
     </SafeAreaView>
   );
 };

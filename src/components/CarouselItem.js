@@ -18,8 +18,9 @@ const CarouselItem = (props) => {
 
   };
   const rescheuleBookingAndCancel = () => {
-
-    navigation.navigate('RescheduleTestAndPackage', { id: diagnosticItem.id })
+    if (diagnosticItem) {
+      navigation.navigate('RescheduleTestAndPackage', { id: diagnosticItem.id })
+    }
   }
   return (
     <TouchableOpacity onPress={rescheuleBookingAndCancel}>
