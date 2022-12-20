@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, ScrollView, TextInput } from 'react-native';
+import { View, Text, Image, ScrollView, TextInput, Alert } from 'react-native';
 import MainHeader from '../../../components/MainHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -76,15 +76,33 @@ const BookingTestAndPackage = ({ route }) => {
             };
             dispatch(bookTestThunk({ jwt, data })).then((resp) => {
                 if (resp) {
-                    setSaveFalg(true);
-                    setSaveMessage(resp.payload.message);
+                    if (resp.payload.message) {
+                        Alert.alert("Alert", resp.payload.message, [{
+                            text: "Ok",
+                            onPress: () => { navigation.navigate("Diagnostic") }
+                        }])
+                    } else if (resp.payload.address) {
 
+                        Alert.alert("Alert", resp.payload.address, [{
+                            text: "Ok",
+                        }])
+                    } else if (resp.payload.pinCode) {
 
+                        Alert.alert("Alert", resp.payload.pinCode, [{
+                            text: "Ok",
+                        }])
+                    } else if (resp.payload.errorMessage) {
+
+                        Alert.alert("Alert", resp.payload.errorMessage, [{
+                            text: "Ok",
+                        }])
+                    }
                 }
-
                 else {
-                    setSaveFalg(true);
-                    setSaveMessage("Something went wrong");
+                    //setSaveFalg(true);
+                    Alert.alert("Alert", "Something went wrong", [{
+                        text: "Ok",
+                    }])
                 }
             }
 
@@ -97,12 +115,34 @@ const BookingTestAndPackage = ({ route }) => {
             };
             dispatch(bookTestThunk({ jwt, data })).then((resp) => {
                 if (resp) {
-                    setSaveFalg(true);
-                    setSaveMessage(resp.payload.message);
+                    // setSaveFalg(true);
+                    if (resp.payload.message) {
+                        Alert.alert("Alert", resp.payload.message, [{
+                            text: "Ok",
+                            onPress: () => { navigation.navigate("Diagnostic") }
+                        }])
+                    } else if (resp.payload.address) {
+
+                        Alert.alert("Alert", resp.payload.address, [{
+                            text: "Ok",
+                        }])
+                    } else if (resp.payload.pinCode) {
+
+                        Alert.alert("Alert", resp.payload.pinCode, [{
+                            text: "Ok",
+                        }])
+                    } else if (resp.payload.errorMessage) {
+
+                        Alert.alert("Alert", resp.payload.errorMessage, [{
+                            text: "Ok",
+                        }])
+                    }
                 }
                 else {
-                    setSaveFalg(true);
-                    setSaveMessage("Something went wrong");
+                    //setSaveFalg(true);
+                    Alert.alert("Alert", "Something went wrong", [{
+                        text: "Ok",
+                    }])
                 }
             }
 
@@ -110,22 +150,36 @@ const BookingTestAndPackage = ({ route }) => {
         }
     };
 
-    const closeSaveMessageBox = () => {
-        setSaveFalg(false);
-        navigation.navigate("Diagnostic");
 
-    };
+    // const closeSaveMessageBox = () => {
+    //     setSaveFalg(false);
+    //     navigation.navigate("Diagnostic");
+
+    // };
 
     const rescheduleBooking = () => {
         dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled: "false", timeSlot: getEpoch(date, time) })).then((resp) => {
             if (resp) {
-                setSaveFalg(true);
-                setSaveMessage(resp.payload.message);
 
+                if (resp.payload.message) {
+                    Alert.alert("Alert", resp.payload.message, [{
+                        text: "Ok",
+                        onPress: () => { navigation.navigate("Diagnostic") }
+                    }])
+                } else if (resp.payload.errorMessage) {
+
+                    Alert.alert("Alert", resp.payload.errorMessage, [{
+                        text: "Ok",
+                    }])
+                }
             }
             else {
-                setSaveFalg(true);
-                setSaveMessage("Something went wrong");
+            
+                Alert.alert("Alert", "Something went wrong", [{
+                    text: "Ok",
+                }])
+
+
             }
         })
     }
@@ -380,13 +434,13 @@ const BookingTestAndPackage = ({ route }) => {
 
                 </View>
             </ScrollView>
-            <MessageBox
+            {/* <MessageBox
                 head="Message"
                 showDialog={saveFlag}
                 hideDialog={closeSaveMessageBox}
                 message={saveMessage}
 
-            />
+            /> */}
         </View>
     );
 };
