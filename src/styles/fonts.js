@@ -1,0 +1,16 @@
+export const fonts = {
+  size: {
+    fontSize16: 16,
+    fontSize14: 14,
+    fontSize12: 12,
+  },
+  weight: {
+    fontWeight700: '700',
+    fontWeight600: '600',
+    fontWeight500: '500',
+    fontWeight400: '400',
+  },
+  family: {
+    fontFamilyRubix: 'Rubix',
+  },
+};
