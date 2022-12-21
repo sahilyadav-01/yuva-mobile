@@ -75,7 +75,7 @@ const Section9 = () => {
 
     return (
         <SafeAreaView>
-            <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[20px]">
+            <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
                 <View className="flex flex-row h-full items-center">
                 <Backbutton color="white" size={24} onPress={previous}/>
                 <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
@@ -95,7 +95,7 @@ const Section9 = () => {
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingBottom:60
+                        paddingBottom:300
                     }}
                     showsVerticalScrollIndicator={false}>
                                  {questionData.map((item)=>{

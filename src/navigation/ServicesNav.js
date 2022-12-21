@@ -9,6 +9,7 @@ import ProfessionalServices from '../screens/yuvaservices/professionalservices/P
 import HomeScreen from '../screens/HomeScreen';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
+import TalkToDoctorNavigation from './TalkToDoctorNavigation';
 
 const Stack = createStackNavigator();
 const ServicesNav = () => {
@@ -33,6 +34,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="Diagnostics"
         component={DiagnosticNav}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="TalkToDoctor"
+        component={TalkToDoctorNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen

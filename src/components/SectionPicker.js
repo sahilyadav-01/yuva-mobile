@@ -10,14 +10,17 @@ const SectionPicker = ({
   text,
   defaultAnswer,
   questionId,
+  callBack,
+  headerStyle,
 }) => {
   const dispatch = useDispatch();
   const setSelected = value => {
-    dispatch(dispatcher({ key: questionId, value: value }));
+  dispatcher && dispatch(dispatcher({ key: questionId, value: value }));
+  callBack && callBack(value);
   };
   return (
     <View className="mt-[20px]">
-      <Text style={{ textAlign: 'justify' }} className="text-base mb-[8px]" >{text}</Text>
+      <Text style={headerStyle} className="text-base mb-[8px]" >{text}</Text>
       <SelectList
         boxStyles={{
           backgroundColor: 'white',
