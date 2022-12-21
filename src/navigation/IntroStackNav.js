@@ -1,7 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-
-import HomeScreen from '../screens/HomeScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
 import LoginScreen from '../screens/login/LoginScreen';

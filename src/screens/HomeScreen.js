@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, SafeAreaView, StatusBar} from 'react-native';
+import {View, SafeAreaView, ScrollView} from 'react-native';
 import MainHeader from '../components/MainHeader';
 import CarouselContainer from '../components/CarouselContainer';
-import ServiceCard from '../components/ServiceCard';
 import ServiceContainer from '../components/ServiceContainer';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -22,15 +21,15 @@ const HomeScreen = ({navigation}) => {
     dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
   }, []);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <YuvaStatusBar />
-      <View>
         <MainHeader />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <CarouselContainer />
         <View className="flex-row justify-center">
           <ServiceContainer />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

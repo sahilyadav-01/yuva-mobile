@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image} from 'react-native';
 import { TALK_TO_DOCTOR, WITHIN_FEW_MINS } from '../../constant';
 import { styles } from './styles';
-import {AMICO} from '../../../../../assets';
+import {PNG} from '../../../../../assets';
 
 const TalkToDoctorCard = () => {
   return (
@@ -21,7 +21,7 @@ const TalkToDoctorCard = () => {
           </View>
         </View>
         <View style={styles.imageView}>
-          <Image source={AMICO}/>
+          <Image source={PNG.AMICO}/>
         </View>
       </View>
     </View>

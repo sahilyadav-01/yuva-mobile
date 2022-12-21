@@ -1,3 +1,11 @@
 import AMICO from './amico.png';
 
-export {AMICO};
+const PNG = {
+  AMICO,
+};
+
+const SVG = {
+
+}
+
+export {PNG, SVG};
