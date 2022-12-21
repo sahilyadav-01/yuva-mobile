@@ -15,7 +15,6 @@ import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { getEpoch, getTime } from '../../../utils/utils';
 import MessageBox from '../../../components/MessageBox';
-import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 const BookingTestAndPackage = ({ route }) => {
     const { id, packageData, bookedDetailsById } = route.params;

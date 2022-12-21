@@ -1,10 +1,12 @@
 import React from 'react';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from '../screens/Settings';
-
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BLACK, CYAN_BLUE, ORANGE } from '../styles/colors';
+import { HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE } from './constants';
+import { CENTER } from '../styles/constants';
+import { fonts } from '../styles/fonts';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,16 +14,40 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        unmountOnBlur: true,
         headerShown: false,
         showLabel: false,
         tabBarShowLabel: true,
-        tabBarActiveBackgroundColor: '#ffffff',
-        tabBarInactiveBackgroundColor: '#2D354E',
-        tabBarActiveTintColor: '#2D354E',
+        tabBarActiveTintColor: ORANGE,
+        tabBarStyle:{ 
+          height: 72, 
+          shadowOffset: {
+            width: 0,
+            height: 2
+          },
+          shadowOpacity: 0.1,
+          shadowColor: BLACK,
+          elevation: 10,
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12,
+          shadowRadius: 12,
+        },
+        tabBarLabelStyle: {
+          marginVertical: 4,
+          fontFamily: fonts.family.fontFamilyRubix,
+          fontSize: fonts.size.fontSize12,
+          fontWeight: fonts.weight.fontWeight500,
+        },
+        tabBarItemStyle: {
+          marginHorizontal: 4,
+          paddingVertical: 4,
+          justifyContent: CENTER,
+          alignItems: CENTER,
+        }
       }}
-      initialRouteName="Home">
+      initialRouteName={HOME}>
       <Tab.Screen
-        name="Home"
+        name={HOME}
         component={ServicesNav}
         options={{
           tabBarIcon: ({focused}) => {
@@ -29,37 +55,52 @@ const BottomTabs = () => {
               <Icon
                 name="home-outline"
                 size={35}
-                color={focused ? '#2D354E' : '#ffffff'}
+                color={focused ? ORANGE : CYAN_BLUE}
               />
             );
           },
         }}
       />
       <Tab.Screen
-        name="Chat"
+        name={HEALTH_PLANS}
         component={Settings}
         options={{
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="message-outline"
+                name="plus-box-outline"
                 size={35}
-                color={focused ? '#2D354E' : '#ffffff'}
+                color={focused ? ORANGE : CYAN_BLUE}
               />
             );
           },
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name={OUR_OFFERS}
         component={Settings}
         options={{
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="cog"
+                name="tag-outline"
                 size={35}
-                color={focused ? '#2D354E' : '#ffffff'}
+                color={focused ? ORANGE : CYAN_BLUE}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name={PROFILE}
+        component={Settings}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icon
+                name="account-outline"
+                size={35}
+                color={focused ? ORANGE : CYAN_BLUE}
               />
             );
           },
