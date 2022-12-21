@@ -50,8 +50,9 @@ const NewAppointment = () => {
         jwt,
       }),
     ).then((resp) =>{if(resp?.payload?.message==="Appointment added successfully"){
-      setSignupFlag(true);
-       setSignupMessage('Successfully Booked!');
+      // setSignupFlag(true);
+      //  setSignupMessage('Successfully Booked!');
+      return Alert.alert("Alert",resp?.payload?.message)
     }
     else if(resp?.payload?.description==="Description cannot be null/empty"){
       setSignupFlag(true);
