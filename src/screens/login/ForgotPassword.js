@@ -40,6 +40,8 @@ if(isNaN(email)){
   if(regEmail.test(email)){
 
     dispatch(forgotPassword({email}));
+    
+    return Alert.alert("Alert","A reset password link has been sent to your registered email account.");
 
   }
   else{
