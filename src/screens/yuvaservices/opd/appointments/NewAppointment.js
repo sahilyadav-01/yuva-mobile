@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import {View, Text, TextInput, ScrollView,Alert} from 'react-native';
 import Backbutton from '../../../../components/Backbutton';
 import {useNavigation} from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
@@ -58,8 +58,8 @@ const NewAppointment = () => {
       setSignupMessage("Description cannot be null/empty");
     }
     else if(resp?.error?.message==="Rejected"){
-      setSignupFlag(true);
-      setSignupMessage(resp?.payload?.errorMessage);
+
+      return Alert.alert("Alert",resp?.payload?.errorMessage)
     }
     else{
       setSignupFlag(true);
