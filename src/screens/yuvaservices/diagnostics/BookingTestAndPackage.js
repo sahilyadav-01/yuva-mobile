@@ -97,6 +97,11 @@ const BookingTestAndPackage = ({ route }) => {
                             text: "Ok",
                         }])
                     }
+                    else {
+                        Alert.alert("Alert", "Something went wrong", [{
+                            text: "Ok",
+                        }])
+                    }
                 }
                 else {
                     //setSaveFalg(true);
