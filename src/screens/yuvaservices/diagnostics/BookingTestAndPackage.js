@@ -76,24 +76,29 @@ const BookingTestAndPackage = ({ route }) => {
             };
             dispatch(bookTestThunk({ jwt, data })).then((resp) => {
                 if (resp) {
-                    if (resp.payload.message) {
-                        Alert.alert("Alert", resp.payload.message, [{
+                    if (resp?.payload?.message) {
+                        Alert.alert("Alert", resp?.payload?.message, [{
                             text: "Ok",
                             onPress: () => { navigation.navigate("Diagnostic") }
                         }])
-                    } else if (resp.payload.address) {
+                    } else if (resp?.payload?.address) {
 
-                        Alert.alert("Alert", resp.payload.address, [{
+                        Alert.alert("Alert", resp?.payload?.address, [{
                             text: "Ok",
                         }])
-                    } else if (resp.payload.pinCode) {
+                    } else if (resp?.payload?.pinCode) {
 
-                        Alert.alert("Alert", resp.payload.pinCode, [{
+                        Alert.alert("Alert", resp?.payload?.pinCode, [{
                             text: "Ok",
                         }])
-                    } else if (resp.payload.errorMessage) {
+                    } else if (resp?.payload?.errorMessage) {
 
-                        Alert.alert("Alert", resp.payload.errorMessage, [{
+                        Alert.alert("Alert", resp?.payload?.errorMessage, [{
+                            text: "Ok",
+                        }])
+                    }
+                    else {
+                        Alert.alert("Alert", "Something went wrong", [{
                             text: "Ok",
                         }])
                     }
