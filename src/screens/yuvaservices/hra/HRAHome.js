@@ -11,7 +11,8 @@ import {
   Image,
   Linking,
   Platform,
-  Alert
+  Alert,
+  ScrollView
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
 import HealthMetricCard from './HealthMetricCard';
@@ -22,7 +23,7 @@ import DownloadButton from '../../../components/DownloadButton';
 import AlertBox from '../../../components/AlertBox';
 import MessageBox from '../../../components/MessageBox';
 import HealthReportSVG from '../../../components/svg/HealthReportSVG';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import {  TouchableOpacity } from 'react-native-gesture-handler';
 import Backbutton from '../../../components/Backbutton';
 import RNFetchBlob from 'rn-fetch-blob';
 import * as FileSystem from 'react-native-fs';
