@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {SafeAreaView} from 'react-native';
 import {Divider} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
@@ -32,7 +32,29 @@ const ForgotPassword = () => {
   }, [forgotStatus]);
 
   const onForgotPassword = () => {
+
+if(isNaN(email)){
+  let regEmail =
+  /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+  
+  if(regEmail.test(email)){
+
     dispatch(forgotPassword({email}));
+
+  }
+  else{
+
+   return Alert.alert("Alert","You have enterd a worng email please re-enter");
+
+  }
+}
+else{
+
+  return Alert.alert("Alert","You have enterd a worng email please re-enter");
+
+ }
+
+
 
     // if (!apiError) {
     //   navigation.navigate('Login');
