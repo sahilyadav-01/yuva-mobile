@@ -95,7 +95,7 @@ const Section9 = () => {
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingBottom:60
+                        paddingBottom:300
                     }}
                     showsVerticalScrollIndicator={false}>
                                  {questionData.map((item)=>{

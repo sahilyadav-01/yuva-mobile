@@ -22,7 +22,7 @@ import DownloadButton from '../../../components/DownloadButton';
 import AlertBox from '../../../components/AlertBox';
 import MessageBox from '../../../components/MessageBox';
 import HealthReportSVG from '../../../components/svg/HealthReportSVG';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import Backbutton from '../../../components/Backbutton';
 import RNFetchBlob from 'rn-fetch-blob';
 import * as FileSystem from 'react-native-fs';
@@ -228,7 +228,11 @@ useEffect(()=>{
         <View>
           <DownloadButton onPress={display} />
         </View>
+        <ScrollView   contentContainerStyle={{
+                            paddingBottom: 100
+                        }}>
         <HRASectionContainer />
+        </ScrollView>
       </View>
       {/* <MessageBox
        head="Message"
@@ -236,6 +240,7 @@ useEffect(()=>{
         message={message}
         hideDialog={disbaleAlert}
       /> */}
+    
     </SafeAreaView>
   );
 };
