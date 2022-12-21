@@ -25,30 +25,12 @@ export const forgotPassword = createAsyncThunk(
     try {
       const uri = FORGOT_PASSWORD + '?emailOrNumber=' + email;
       return await axios.post(uri, {}).then(resp => {
-
-          if (isNaN(email)) {
-
-            if (resp?.data?.data === "EMAIL") {
-    
-                return Alert.alert("A reset password link has been sent to your registered email.")
-            }
-            else {
-              return rejectWithValue(error?.response?.data);
-            }
+        if (resp.data.status) {
+          return resp.data;
         } else {
-
-          if (resp?.data?.data === "OTP") {
-    
-            return Alert.alert("A reset OTP has been sent to your registered mobile number")
-
-        }
-            else {
-              return rejectWithValue(error?.response?.data);
-            }
+          return rejectWithValue(resp.data);
         }
       });
-      
-      
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
