@@ -3,6 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {setObject, getObject, removeObject} from '../LocalStore';
 import axios from 'axios';
 import {SERVER} from '../../utils/utils';
+import {Alert} from 'react-native';
 /**
  * Contants
  */
@@ -24,12 +25,30 @@ export const forgotPassword = createAsyncThunk(
     try {
       const uri = FORGOT_PASSWORD + '?emailOrNumber=' + email;
       return await axios.post(uri, {}).then(resp => {
-        if (resp.data.status) {
-          return resp.data;
+
+          if (isNaN(email)) {
+
+            if (resp?.data?.data === "EMAIL") {
+    
+                return Alert.alert("A reset password link has been sent to your registered email.")
+            }
+            else {
+              return rejectWithValue(error?.response?.data);
+            }
         } else {
-          return rejectWithValue(resp.data);
+
+          if (resp?.data?.data === "OTP") {
+    
+            return Alert.alert("A reset OTP has been sent to your registered mobile number")
+
+        }
+            else {
+              return rejectWithValue(error?.response?.data);
+            }
         }
       });
+      
+      
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

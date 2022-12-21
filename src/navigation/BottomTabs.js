@@ -51,7 +51,7 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Setting"
+        name="Settings"
         component={Settings}
         options={{
           tabBarIcon: ({focused}) => {

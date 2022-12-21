@@ -57,9 +57,9 @@ const AppointmentHome = ({navigation}) => {
       {/* Appointment */}
       <View className="flex-row items-center justify-between ml-2 mr-2 mt-[10px]">
         <Text className="text-bold  text-xl">Appointments</Text>
-        <TouchableOpacity onPress={newAppointment}>
+        {/* <TouchableOpacity onPress={newAppointment}>
           <Icon name="plus-circle-outline" size={50} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View className="h-[500px] mt-[10px]">
