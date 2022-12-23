@@ -326,6 +326,7 @@ const BookingTestAndPackage = ({ route }) => {
                                     }}
                                     selectionColor="#1D2334"
                                     theme={{ colors: { text: 'black' } }}
+                                    minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
@@ -388,6 +389,7 @@ const BookingTestAndPackage = ({ route }) => {
                                     }}
                                     selectionColor="#1D2334"
                                     theme={{ colors: { text: 'black' } }}
+                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
