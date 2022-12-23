@@ -148,9 +148,10 @@ export const getTime = (timestamp) => {
 }
 
 export const getEpoch = (date, time) => {
-    const dtString = date.toISOString().slice(0, 10)
-    const timeString = processTime(time)
-    return Date.parse(dtString + " " + timeString)
+    // const dtString = date.toISOString().slice(0, 10)
+    // const timeString = processTime(time)
+    // return Date.parse(dtString + " " + timeString)
+    return Date.parse(date)
 }
 
 const getOffsetTime = (time) => {
