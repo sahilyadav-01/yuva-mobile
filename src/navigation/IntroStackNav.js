@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
 import LoginScreen from '../screens/login/LoginScreen';
-import Intro from '../screens/login/Intro';
 import ForgotPassword from '../screens/login/ForgotPassword';
 import EnterOTP from '../screens/login/EnterOTP';
 import ResetPassword from '../screens/login/ResetPassword';
@@ -13,11 +12,6 @@ const Stack = createStackNavigator();
 const IntroStackNav = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Intro"
-        component={Intro}
-        options={{headerShown: false}}
-      />
       <Stack.Screen
         name="Login"
         component={LoginScreen}
