@@ -6,15 +6,11 @@ import {
   Provider as PaperProvider,
 } from 'react-native-paper';
 import store from './src/store/Store';
-import { Freshchat, FreshchatConfig } from 'react-native-freshchat-sdk';
-import { APP_ID, APP_KEY, DOMAIN } from './src/utils/freshChatConfig';
+import { useApp } from './useApp';
 
 export default function App() {
-  try {
-    const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
-    freshchatConfig.domain = DOMAIN;
-    Freshchat.init(freshchatConfig);
-  } catch (e) { };
+  
+  useApp();
 
   return (
     <Provider store={store}>

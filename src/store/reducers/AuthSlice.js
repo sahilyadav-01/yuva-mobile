@@ -104,20 +104,6 @@ export const loginThunk = createAsyncThunk(
     }
   },
 );
-export const initialLoad = createAsyncThunk(
-  'auth/initialLoad',
-  async (_, {fulfillWithValue, rejectWithValue}) => {
-    try {
-      const value = await getObject('user');
-      //return fulfillWithValue(data)
-
-      return value;
-    } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-      return rejectWithValue(error);
-    }
-  },
-);
 /**
  * Logout thunk
  */
@@ -216,20 +202,6 @@ const authSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
     },
-    /**
-     * Initial loading thunk handler
-     */
-    [initialLoad.pending]: (state, {payload}) => {},
-    [initialLoad.fulfilled]: (state, {payload}) => {
-      if (payload == null) {
-        state.loggedIn = 'notLoggedIn';
-      } else {
-        state.loggedIn = 'loggedIn';
-        state.user.name = payload.name;
-        state.user.jwt = payload.jwt;
-      }
-    },
-    [initialLoad.rejected]: (state, {payload}) => {},
     /**
      * Logout thunk handler
      */
