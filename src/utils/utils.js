@@ -33,7 +33,7 @@ export const isEmpty =
 
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
-export const SERVER ="ec2-3-111-222-20.ap-south-1.compute.amazonaws.com"
+export const SERVER = "ec2-3-111-222-20.ap-south-1.compute.amazonaws.com"
 //export const SERVER ="localhost"
 
 export const EMAIL_VALIDATION = "Please enter a valid Email/Phone Number!"
@@ -130,6 +130,9 @@ export const appointmentStatus = (status) => {
         case "COMPLETED":
             retStatus = "Completed"
             break;
+        case "FINISHED":
+            retStatus = "Finished"
+            break;
     }
     return retStatus;
 }
@@ -145,9 +148,10 @@ export const getTime = (timestamp) => {
 }
 
 export const getEpoch = (date, time) => {
-    const dtString = date.toISOString().slice(0, 10)
-    const timeString = processTime(time)
-    return Date.parse(dtString + " " + timeString)
+    // const dtString = date.toISOString().slice(0, 10)
+    // const timeString = processTime(time)
+    // return Date.parse(dtString + " " + timeString)
+    return Date.parse(date)
 }
 
 const getOffsetTime = (time) => {
