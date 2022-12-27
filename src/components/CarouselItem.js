@@ -72,8 +72,8 @@ const CarouselItem = (props) => {
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />
               </View>
-              <Text className="mt-[10px] font-medium text-xs">
-                {diagnosticItem.testOrPackageDescription}
+              <Text className="mt-[10px] font-medium text-xs" numberOfLines={2} ellipsizeMode="tail">
+                 {diagnosticItem.testOrPackageDescription} 
               </Text>
             </View>
           </View>
