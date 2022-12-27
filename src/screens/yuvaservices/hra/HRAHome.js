@@ -109,7 +109,10 @@ const HRAHome = () => {
         useDownloadManager: true,
         notification: true,
         path: DownloadDir + '/foldername/' + ext,
-        description: 'File'
+        description: 'File',
+        mime: 'application/pdf',
+        showNotification: true,
+       
       }
     }
     config(options)
