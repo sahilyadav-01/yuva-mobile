@@ -10,6 +10,7 @@ import image from '../../../../assets/Diagnostic_Package.png';
 
 
 
+
 const AvailableBooking = ({ name }) => {
 
 
@@ -32,12 +33,13 @@ const AvailableBooking = ({ name }) => {
     return (
         <ScrollView
             contentContainerStyle={{
-                flexGrow: 1,
-                paddingBottom: 450
-            }}>
-            <View className="m-2">
+                 flexGrow: 1,
+                paddingBottom: 300
+            }}
+            >
+             <View className="m-2"> 
                 {testData ? (
-                    <View className="h-[500px] mt-[20px]">
+                    <View className="h-300 mt-[40px]">
                         {testData.myTestResponseDtoList ? (
                             <Text className="font-bold ml-3">Available lab test</Text>) : <Text className="font-bold ml-3">No test available</Text>}
                         <View>
@@ -83,7 +85,7 @@ const AvailableBooking = ({ name }) => {
                         }
                         {/* </ScrollView> */}
                     </View>) : <Text className="font-bold ml-3 mt-10">No test or Package Available</Text>}
-            </View>
+             </View> 
         </ScrollView>
     )
 }
