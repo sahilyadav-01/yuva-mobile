@@ -28,7 +28,10 @@ const RescheduleTestAndPackage = ({ route }) => {
         <View >
             <MainHeader />
             <DiagnosticHeader />
-            <View className="pl-[15px] pr-[15px]">
+            <ScrollView className="pl-[15px] pr-[15px]" contentContainerStyle={{
+                            flexGrow: 1,
+                            paddingBottom: 300
+                        }}>
                 <View>
                     <View>
                         <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
@@ -82,7 +85,7 @@ const RescheduleTestAndPackage = ({ route }) => {
                         action={cancelBooking}
                     />
                 </View>
-            </View>
+            </ScrollView>
         </View>
     );
 };
