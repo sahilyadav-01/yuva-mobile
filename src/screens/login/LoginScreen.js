@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView,Alert} from 'react-native';
 import {Divider} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AlertBox from '../../components/AlertBox';
@@ -54,7 +54,36 @@ const LoginScreen = () => {
       setError(true);
       setErrorMessage(PASSWORD_VALIDATION);
     } else {
-      dispatch(loginThunk({email, password}));
+      dispatch(loginThunk({email, password})).then(resp =>{
+        
+        if(resp?.payload?.jwt=== null){
+        
+              if(isNaN(email)){
+                Alert.alert("Alert","An OTP has been sent to your registered email account");
+
+                  navigation.navigate('EnterOTP', {
+                    emailOrNumber: email,
+                    password:password,
+                    attributeName: 'Email',
+                    var: 'emailCorporate',
+
+                })
+              }
+              else{
+                Alert.alert("Alert","An OTP has been sent to your registered mobile number");
+
+                  navigation.navigate('EnterOTP', {
+                    emailOrNumber: email,
+                    password:password,
+                    attributeName: 'Phone Number',
+                    var: 'phoneCorporate',
+                  })
+              }
+            }
+        else{
+           navigation.navigate('HomeScreen');
+        }
+        return resp.data});
     }
   };
 
@@ -89,11 +118,11 @@ const LoginScreen = () => {
   /**
    * React hooks
    */
-  useEffect(() => {
-    if (loggedIn == 'loggedIn') {
-      navigation.navigate('HomeScreen');
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (loggedIn == 'loggedIn') {
+  //     navigation.navigate('HomeScreen');
+  //   }
+  // }, [loggedIn]);
 
   return (
     <SafeAreaView className="flex h-full">

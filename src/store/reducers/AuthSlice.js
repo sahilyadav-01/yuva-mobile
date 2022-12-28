@@ -271,6 +271,14 @@ const authSlice = createSlice({
         action.payload?.resendVar === 'email'
           ? false
           : state.verified.emailVerified;
+
+          action.payload?.resendVar === 'phoneCorporate'
+          ? false
+          : state.verified.smsVerified;
+      state.verified.emailVerified =
+        action.payload?.resendVar === 'emailCorporate'
+          ? false
+          : state.verified.emailVerified;
     },
     [verifyThunk.fulfilled]: (state, action) => {
       state.loading = false;
@@ -280,6 +288,11 @@ const authSlice = createSlice({
         action.payload?.resendVar === 'phone' ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
       state.verified.emailVerified =
         action.payload?.resendVar === 'email' ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
+
+        state.verified.smsVerified =
+        action.payload?.resendVar === 'phoneCorporate' ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
+      state.verified.emailVerified =
+        action.payload?.resendVar === 'emailCorporate' ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -291,6 +304,15 @@ const authSlice = createSlice({
           : state.verified.smsVerified;
       state.verified.emailVerified =
         action.payload?.resendVar === 'email'
+          ? false
+          : state.verified.emailVerified;
+
+          state.verified.smsVerified =
+        action.payload?.resendVar === 'phoneCorporate'
+          ? false
+          : state.verified.smsVerified;
+      state.verified.emailVerified =
+        action.payload?.resendVar === 'emailCorporate'
           ? false
           : state.verified.emailVerified;
     },

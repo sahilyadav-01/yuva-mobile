@@ -5,6 +5,7 @@ import {
   StatusBar,
   Text,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Header from '../../components/Header';
 import OtpInputs from 'react-native-otp-inputs';
@@ -14,6 +15,7 @@ import {
   verifyThunk,
   verifyEmailOtpThunk,
   verifySmsThunk,
+  loginThunk,
 } from '../../store/reducers/AuthSlice';
 import Timer from '../../components/Timer';
 
@@ -26,6 +28,7 @@ const EnterOTP = ({props, route}) => {
   const attributeName = route?.params?.attributeName;
   const emailOrNumber = route?.params?.emailOrNumber;
   const resendVar = route?.params?.var;
+  const password =  route?.params?.password;
   const {smsVerified, emailVerified} = useSelector(state => state.auth.verified);
 
   const onVerify = () => {
@@ -42,6 +45,22 @@ const EnterOTP = ({props, route}) => {
     //   }
     //   return resp.data});
   };
+
+  useEffect(() => {
+    if(resendVar === 'emailCorporate' && emailVerified || resendVar ==='phoneCorporate' && smsVerified) {
+
+       dispatch(loginThunk({email:emailOrNumber, password})).then(resp => {
+
+         if(resp?.payload?.jwt !== null){
+
+          navigation.navigate('HomeScreen');
+         }
+         else {
+          Alert.alert("Alert","something went wrong please login again");
+         }
+        return resp.data});
+    }
+  }, [emailVerified, smsVerified])
 
   useEffect(() => {
     if(resendVar === 'email' && emailVerified || resendVar ==='phone' && smsVerified) {
