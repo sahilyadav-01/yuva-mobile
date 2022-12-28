@@ -30,6 +30,7 @@ const EnterOTP = ({props, route}) => {
   const resendVar = route?.params?.var;
   const password =  route?.params?.password;
   const {smsVerified, emailVerified} = useSelector(state => state.auth.verified);
+  const {jwt} = useSelector(state => state.auth.user);
 
   const onVerify = () => {
     //apply to verify function
@@ -49,18 +50,16 @@ const EnterOTP = ({props, route}) => {
   useEffect(() => {
     if(resendVar === 'emailCorporate' && emailVerified || resendVar ==='phoneCorporate' && smsVerified) {
 
-       dispatch(loginThunk({email:emailOrNumber, password})).then(resp => {
-
-         if(resp?.payload?.jwt !== null){
-
-          navigation.navigate('HomeScreen');
-         }
-         else {
-          Alert.alert("Alert","something went wrong please login again");
-         }
-        return resp.data});
+       dispatch(loginThunk({email:emailOrNumber, password}));
     }
   }, [emailVerified, smsVerified])
+
+  useEffect(() => {
+    if(jwt !== null){
+      navigation.navigate('HomeScreen');
+     }
+   
+  }, [jwt])
 
   useEffect(() => {
     if(resendVar === 'email' && emailVerified || resendVar ==='phone' && smsVerified) {
