@@ -1,47 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
-import LoginScreen from '../screens/login/LoginScreen';
-import ForgotPassword from '../screens/login/ForgotPassword';
-import EnterOTP from '../screens/login/EnterOTP';
-import ResetPassword from '../screens/login/ResetPassword';
-import Signup from '../screens/login/Signup';
+import Authentication from './Authentication';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialLoad } from '../store/reducers/AuthSlice';
 
 const Stack = createStackNavigator();
 
 const IntroStackNav = () => {
+  const dispatch = useDispatch();
+  useEffect(()=> {
+    dispatch(initialLoad())
+  }, []);
+  const {loggedIn, isAppReady} = useSelector(state => state.auth);
+  
+  if(!isAppReady){
+    return null;
+  };
+  
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ForgotPassword"
-        component={ForgotPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="EnterOTP"
-        component={EnterOTP}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ResetPassword"
-        component={ResetPassword}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={Signup}
-        options={{headerShown: false}}
-      />
+    {loggedIn === 'loggedIn' ? 
       <Stack.Screen
         name="HomeScreen"
         component={BottomTabs}
         options={{headerShown: false}}
       />
+      :
+      <Stack.Screen
+        name="Login"
+        component={Authentication}
+        options={{headerShown: false}}
+    />}
     </Stack.Navigator>
   );
 };
