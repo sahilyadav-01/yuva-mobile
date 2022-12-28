@@ -136,6 +136,7 @@ const NewAppointment = () => {
           style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
           selectionColor="#1D2334"
           theme={{colors: {text: 'black'}}}
+          minimumDate={new Date()}
         />
       </View>
 
