@@ -148,10 +148,9 @@ export const getTime = (timestamp) => {
 }
 
 export const getEpoch = (date, time) => {
-    // const dtString = date.toISOString().slice(0, 10)
-    // const timeString = processTime(time)
-    // return Date.parse(dtString + " " + timeString)
-    return Date.parse(date)
+    const dtString = date.toISOString().slice(0, 10)
+    const timeString = processTime(time)
+    return Date.parse(dtString + "T" + timeString) - (5.5 * 60 * 60 * 1000);
 }
 
 const getOffsetTime = (time) => {
@@ -160,7 +159,12 @@ const getOffsetTime = (time) => {
 }
 
 const processTime = (time) => {
-    return time.getHours() + ":" + time.getMinutes() + ":00"
+    function addZero(i) {
+        if (i < 10) { i = "0" + i }
+        return i;
+    }
+    return addZero(time.getHours()) + ":" + addZero(time.getMinutes()) + ":00";
+    //  return `${time.getHours()}:${time.getMinutes()}:00`
 }
 
 export const getDateObject = (slot) => {
