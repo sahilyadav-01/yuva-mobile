@@ -298,11 +298,11 @@ const authSlice = createSlice({
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone'
+        action.payload?.resendVar === 'phone'||action.payload?.resendVar ===  'phoneCorporate' 
           ? false
           : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email'
+        action.payload?.resendVar === 'email'||action.payload?.resendVar ===  'emailCorporate' 
           ? false
           : state.verified.emailVerified;
     },
@@ -311,20 +311,22 @@ const authSlice = createSlice({
       state.user.emailOrNumber = action.payload?.emailOrNumber;
       state.user.otp = action.payload?.otp;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone' ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
+        action.payload?.resendVar === 'phone'|| action.payload?.resendVar ==='phoneCorporate' 
+        ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email' ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
+        action.payload?.resendVar === 'email'|| action.payload?.resendVar ==='emailCorporate'
+         ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.response;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone'
+        action.payload?.resendVar === 'phone'||action.payload?.resendVar ==='phoneCorporate'
           ? false
           : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email'
+        action.payload?.resendVar === 'email'|| action.payload?.resendVar ==='emailCorporate'
           ? false
           : state.verified.emailVerified;
     },

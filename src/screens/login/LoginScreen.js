@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView,Alert} from 'react-native';
 import {Divider} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import AlertBox from '../../components/AlertBox';
@@ -37,9 +37,9 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const {loggedIn, loading, apiError, apiErrorMessage} = useSelector(
-    state => state.auth,
-  );
+  const {loggedIn, loading, apiError, apiErrorMessage} = useSelector(state => state.auth,);
+  const {jwt} = useSelector(state =>state.auth.user,);
+
 
   /**
    * Routes
@@ -90,10 +90,38 @@ const LoginScreen = () => {
    * React hooks
    */
   useEffect(() => {
-    if (loggedIn == 'loggedIn') {
-      navigation.navigate('HomeScreen');
+
+    if(jwt === null){
+        
+      if(isNaN(email)){
+        Alert.alert("Alert","An OTP has been sent to your registered email account");
+
+          navigation.navigate('EnterOTP', {
+            emailOrNumber: email,
+            password:password,
+            attributeName: 'Email',
+            var: 'emailCorporate',
+
+        })
+      }
+      else{
+        Alert.alert("Alert","An OTP has been sent to your registered mobile number");
+
+          navigation.navigate('EnterOTP', {
+            emailOrNumber: email,
+            password:password,
+            attributeName: 'Phone Number',
+            var: 'phoneCorporate',
+          })
+      }
     }
-  }, [loggedIn]);
+else{
+  if (loggedIn == 'loggedIn') {
+         navigation.navigate('HomeScreen');
+}
+}
+
+  }, [jwt]);
 
   return (
     <SafeAreaView className="flex h-full">
