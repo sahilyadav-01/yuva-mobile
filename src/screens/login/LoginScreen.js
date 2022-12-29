@@ -38,7 +38,7 @@ const LoginScreen = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const {loggedIn, loading, apiError, apiErrorMessage} = useSelector(state => state.auth,);
-  const {jwt} = useSelector(state =>state.auth.user,);
+  const {jwt, status} = useSelector(state =>state.auth.user);
 
 
   /**
@@ -90,8 +90,7 @@ const LoginScreen = () => {
    * React hooks
    */
   useEffect(() => {
-
-    if(jwt === null){
+    if(status && jwt === null){
         
       if(isNaN(email)){
         Alert.alert("Alert","An OTP has been sent to your registered email account");
@@ -105,7 +104,7 @@ const LoginScreen = () => {
         })
       }
       else{
-        Alert.alert("Alert","An OTP has been sent to your registered mobile number");
+        Alert.alert("Alert","An OTP has been sent to your registered mobile number......");
 
           navigation.navigate('EnterOTP', {
             emailOrNumber: email,
@@ -116,12 +115,12 @@ const LoginScreen = () => {
       }
     }
 else{
-  if (loggedIn == 'loggedIn') {
+  if (loggedIn == 'loggedIn' && jwt) {
          navigation.navigate('HomeScreen');
 }
 }
 
-  }, [jwt]);
+  }, [status]);
 
   return (
     <SafeAreaView className="flex h-full">
