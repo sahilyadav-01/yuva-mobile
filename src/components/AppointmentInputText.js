@@ -14,6 +14,7 @@ const AppointmentInputText = ({text, defValue}) => {
                 placeholder={defValue}
                 onChangeText={setInput}
                 multiline={true}
+                editable={false}
             />
         </View>
     )

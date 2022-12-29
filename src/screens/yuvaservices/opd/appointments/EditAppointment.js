@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput,Alert} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import {useNavigation} from '@react-navigation/core';
 import AppointmentInput from '../../../../components/AppointmentInput';
@@ -33,13 +33,15 @@ const EditAppointment = () => {
   } = useSelector(state => state.appointment.currentAppointment);
   const {jwt} = useSelector(state => state.auth.user);
 
-  const [date, setDate] = useState(getDateObject(slot));
-  const [time, setTime] = useState(getDateObject(slot));
+  // const [date, setDate] = useState(getDateObject(slot));
+  // const [time, setTime] = useState(getDateObject(slot));
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
   const [cancelFlag, setCancelFlag] = useState(false);
   const [saveFlag, setSaveFlag] = useState(false);
 
-  const cancelMessage = 'Are you sure you want to cancel ?';
-  const saveMessage = 'Rescheduled appointment';
+  // const cancelMessage = 'Are you sure you want to cancel ?';
+  // const saveMessage = 'Rescheduled appointment';
 
   /**
    * Hooks
@@ -57,21 +59,44 @@ const EditAppointment = () => {
   const saveAppointment = () => {
     dispatch(
       rescheduleAppointmentThunk({timeSlot: getEpoch(date, time), id, jwt}),
-    ).then(() => {
-      setSaveFlag(true);
+    ).then((resp) => {
+      if (resp) {
+
+        if (resp.payload.message) {
+            Alert.alert("Alert", resp.payload.message, [{
+                text: "Ok",
+                onPress: () => { navigation.navigate("AppointmentHome") }
+                
+            }])
+        } else if (resp.payload.errorMessage) {
+
+            Alert.alert("Alert", resp.payload.errorMessage, [{
+                text: "Ok",
+            }])
+        }
+    }
+    else {
+    
+        Alert.alert("Alert", "Something went wrong", [{
+            text: "Ok",
+        }])
+
+
+    }
+   
     });
   };
 
-  const cancelAppointment = () => {
-    setCancelFlag(true);
-  };
+  // const cancelAppointment = () => {
+  //   setCancelFlag(true);
+  // };
 
-  const cancelAppointmentMessagBox = () => {
-    setCancelFlag(false);
-    dispatch(cancelAppointmentThunk({jwt, id}))
-      .then(() => dispatch(allAppointmentThunk({jwt})))
-      .then(() => navigation.navigate('AppointmentHome'));
-  };
+  // const cancelAppointmentMessagBox = () => {
+  //   setCancelFlag(false);
+  //   dispatch(cancelAppointmentThunk({jwt, id}))
+  //     .then(() => dispatch(allAppointmentThunk({jwt})))
+  //     .then(() => navigation.navigate('AppointmentHome'));
+  // };
 
   const closeSaveMessageBox = () => {
     setSaveFlag(false);
@@ -81,6 +106,7 @@ const EditAppointment = () => {
   };
 
   const handleDate = date => {
+
     setDate(date);
   };
 
@@ -91,7 +117,7 @@ const EditAppointment = () => {
   return (
     <View className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />
-      <Text className="text-bold text-lg ml-4">Edit Appointment</Text>
+      <Text className="text-bold text-lg ml-4">Reschedule Appointment</Text>
 
       <AppointmentInput text="Doctor" defValue={doctorName} />
       <AppointmentInput text="Specialization" defValue={speciality} />
@@ -138,24 +164,24 @@ const EditAppointment = () => {
           color="#E68D36"
           action={saveAppointment}
         />
-        <AppointmentButton
+        {/* <AppointmentButton
           name="Cancel"
           color="#B7AC8F"
           action={cancelAppointment}
-        />
+        /> */}
       </View>
-      <MessageBox
+      {/* <MessageBox
         head="Message"
         showDialog={cancelFlag}
         hideDialog={cancelAppointmentMessagBox}
         message={cancelMessage}
-      />
-      <MessageBox
+      /> */}
+      {/* <MessageBox
         head="Message"
         showDialog={saveFlag}
         hideDialog={closeSaveMessageBox}
         message={saveMessage}
-      />
+      /> */}
     </View>
   );
 };

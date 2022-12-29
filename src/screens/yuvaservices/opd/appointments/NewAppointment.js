@@ -50,17 +50,19 @@ const NewAppointment = () => {
         jwt,
       }),
     ).then((resp) =>{if(resp?.payload?.message==="Appointment added successfully"){
-      // setSignupFlag(true);
-      //  setSignupMessage('Successfully Booked!');
-      return Alert.alert("Alert",resp?.payload?.message)
+      setSignupFlag(true);
+       setSignupMessage('Successfully Booked!');
+      // return Alert.alert("Alert",resp?.payload?.message)
     }
     else if(resp?.payload?.description==="Description cannot be null/empty"){
-      setSignupFlag(true);
-      setSignupMessage("Description cannot be null/empty");
+      // setSignupFlag(false);
+      // setSignupMessage("Description cannot be null/empty");
+       Alert.alert("Alert","Description cannot be null/empty")
     }
     else if(resp?.error?.message==="Rejected"){
-
-      return Alert.alert("Alert",resp?.payload?.errorMessage)
+      // setSignupFlag(true);
+      // setSignupMessage(resp?.payload?.errorMessage);
+      Alert.alert("Alert",resp?.payload?.errorMessage)
     }
     else{
       setSignupFlag(true);

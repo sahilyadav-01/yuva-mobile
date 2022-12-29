@@ -14,6 +14,7 @@ const AppointmentInput = ({defValue, text}) => {
                 placeholderTextColor={'black'} 
                 placeholder={defValue}
                 onChangeText={setInput}
+                editable={false}
             />
         </View>
     )

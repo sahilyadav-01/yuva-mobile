@@ -113,13 +113,13 @@ const checkEmptyReplaceZero = (val) => {
 }
 
 export const appointmentStatus = (status) => {
-    let retStatus = "Pending"
+    let retStatus = "Initiated"
     switch (status) {
         case "CANCELLED":
             retStatus = "Cancelled"
             break;
         case "INITIATED":
-            retStatus = "Pending"
+            retStatus = "Initiated"
             break;
         case "CONFIRMED":
             retStatus = "Confirmed"
@@ -150,7 +150,7 @@ export const getTime = (timestamp) => {
 export const getEpoch = (date, time) => {
     const dtString = date.toISOString().slice(0, 10)
     const timeString = processTime(time)
-    return Date.parse(dtString + "T" + timeString) - (5.5 * 60 * 60 * 1000);
+    return Date.parse(dtString + "T" + timeString)
 }
 
 const getOffsetTime = (time) => {
@@ -167,10 +167,10 @@ const processTime = (time) => {
     //  return `${time.getHours()}:${time.getMinutes()}:00`
 }
 
-export const getDateObject = (slot) => {
-    let tstring = slot.split(".")[0];
-    return new Date(tstring)
-}
+// export const getDateObject = (slot) => {
+//     let tstring = slot.split(".")[0];
+//     return new Date(tstring)
+// }
 
 export const granted = () => {
     PermissionsAndroid.request(
