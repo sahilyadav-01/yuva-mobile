@@ -165,6 +165,8 @@ const authSlice = createSlice({
     user: {
       name: '',
       jwt: '',
+      status: false,
+      roles: [],
       version: '1',
     },
     loggedIn: 'init',
@@ -202,17 +204,25 @@ const authSlice = createSlice({
      */
     [loginThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.loggedIn = 'notLoggedIn';
+      state.user.status = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
       state.loading = false;
-
-      const userData = {name: action.payload.name, jwt: action.payload.jwt};
-      setObject('user', userData);
-      state.user.name = action.payload.name;
+      const userData = {
+        name: action.payload.name, 
+        jwt: action.payload.jwt,
+        roles: action.payload.roles,
+      };
+      action.payload.jwt && setObject('user', userData);
+      state.user.name = action.payload.name || 'User';
       state.user.jwt = action.payload.jwt;
-      state.loggedIn = 'loggedIn';
+      state.user.roles = action.payload.roles;
+      state.loggedIn = action.payload.jwt ? 'loggedIn': state.loggedIn;
+      state.user.status = true;
     },
     [loginThunk.rejected]: (state, action) => {
+      state.user.status = false;
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
