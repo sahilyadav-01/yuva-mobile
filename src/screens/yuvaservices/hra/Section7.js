@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,16 +9,16 @@ import {
   FlatList,
 } from 'react-native';
 import Backbutton from '../../../components/Backbutton';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import * as Progress from 'react-native-progress';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import SectionInput from '../../../components/SectionInput';
 import SectionPicker from '../../../components/SectionPicker';
-import {useSelector, useDispatch} from 'react-redux';
-import {section7QThunk} from '../../../store/reducers/Section7Slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { section7QThunk } from '../../../store/reducers/Section7Slice';
 import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton';
-import {dispatch_option} from '../../../store/reducers/Section7Slice';
+import { dispatch_option ,dispatch_option_extra_questions} from '../../../store/reducers/Section7Slice';
 import SelectList from 'react-native-dropdown-select-list';
 
 const Section7 = () => {
@@ -32,10 +32,12 @@ const Section7 = () => {
   const [medicalConditionDiabetes, setMedicalConditionDiabetes] = useState(false);
   const [medicalConditionHypertension, setMedicalConditionHypertension] = useState(false);
   const [medicalConditionDoYouSufferFromAnyIllness, setMedicalConditionDoYouSufferFromAnyIllness] = useState(false);
-  
-   
-   
-   
+  const [medicalConditionAnyCancer, setMedicalConditionAnyCancer] = useState(false);
+  const [medicalConditionChronicIllness, setMedicalConditionChronicIllness] = useState(false);
+
+
+
+
 
   /**
    * State
@@ -44,62 +46,76 @@ const Section7 = () => {
 
   const questionData = useSelector(state => state.section7.rawQuestions);
 
-  const {jwt} = useSelector(state => state.auth.user);
+  const { jwt } = useSelector(state => state.auth.user);
 
   const setQuestion1 = value => {
     {
       value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
     }
-    dispatch(dispatch_option({key: questionData[0].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
   };
   const setQuestion2 = value => {
     {
       value == 1 ? setMedicalConditionDiabetes(true) : setMedicalConditionDiabetes(false);
     }
-    dispatch(dispatch_option({key: questionData[1].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
   };
 
   const setQuestion3 = value => {
     {
       value == 1 ? setMedicalCondition(true) : setMedicalCondition(false);
     }
-    dispatch(dispatch_option({key: questionData[2].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
   };
 
   const setQuestion4 = value => {
-    dispatch(dispatch_option({key: questionData[3].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
   };
 
   const setQuestion5 = value => {
     {
       value == 1 ? setMedicalConditionHypertension(true) : setMedicalConditionHypertension(false);
     }
-    dispatch(dispatch_option({key: questionData[4].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[4].questionId, value: value }));
   };
   const setQuestion6 = value => {
     {
       value == 1 ? setMedicalCondition1(true) : setMedicalCondition1(false);
     }
-    dispatch(dispatch_option({key: questionData[5].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[5].questionId, value: value }));
   };
   const setQuestion7 = value => {
-    dispatch(dispatch_option({key: questionData[6].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
   };
   const setQuestion8 = value => {
-    dispatch(dispatch_option({key: questionData[7].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
   };
   const setQuestion9 = value => {
-    dispatch(dispatch_option({key: questionData[8].questionId, value: value}));
+    {
+      value == 1 ? setMedicalConditionAnyCancer(true) : setMedicalConditionAnyCancer(false);
+    }
+    dispatch(dispatch_option({ key: questionData[8].questionId, value: value }));
   };
+  const setQuestion9A = value => {
+    dispatch(dispatch_option_extra_questions({key: "setQuestion9A",value: value }));
+
+  }
   const setQuestion10 = value => {
-    dispatch(dispatch_option({key: questionData[9].questionId, value: value}));
+    {
+      value == 1 ? setMedicalConditionChronicIllness(true) : setMedicalConditionChronicIllness(false);
+    }
+    dispatch(dispatch_option({ key: questionData[9].questionId, value: value }));
   };
+  const setQuestion10A = value => {
+    dispatch(dispatch_option_extra_questions({ key: "setQuestion10A",value: value }));
+
+  }
   //Metadata
   const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
   const selectionData = [
-    {key: '0', value: 'No'},
-    {key: '1', value: 'Yes'},
+    { key: '0', value: 'No' },
+    { key: '1', value: 'Yes' },
   ];
 
   /**
@@ -108,7 +124,7 @@ const Section7 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section7QThunk({jwt}));
+    dispatch(section7QThunk({ jwt }));
   }, []);
 
   /**
@@ -190,62 +206,62 @@ const Section7 = () => {
               />
             </View>
             {medicalConditionDoYouSufferFromAnyIllness ? (
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
-                {questionData[1]?.question}
-              </Text>
-              <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
-                placeholder={
-                  answers[questionData[1]?.questionId] === undefined
-                    ? answers[questionData[1]?.questionId] === ''
-                    : ''
-                }
-                setSelected={setQuestion2}
-                data={PickerData[questionData[1]?.questionType]}
-                search={false}
-              />
-            </View>
-             ) : (
+              <View className="mt-[20px]">
+                <Text className="text-base mb-[8px]">
+                  {questionData[1]?.question}
+                </Text>
+                <SelectList
+                  boxStyles={{
+                    backgroundColor: 'white',
+                    borderRadius: 8,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#1D2334',
+                  }}
+                  placeholder={
+                    answers[questionData[1]?.questionId] === undefined
+                      ? answers[questionData[1]?.questionId] === ''
+                      : ''
+                  }
+                  setSelected={setQuestion2}
+                  data={PickerData[questionData[1]?.questionType]}
+                  search={false}
+                />
+              </View>
+            ) : (
               <></>
             )}
             {medicalConditionDiabetes ? (
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
-                {questionData[2]?.question}
-              </Text>
-              <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
-                placeholder={
-                  answers[questionData[2]?.questionId] === undefined
-                    ? answers[questionData[2]?.questionId] === ''
-                    : ''
-                }
-                setSelected={setQuestion3}
-                data={PickerData[questionData[2]?.questionType]}
-                search={false}
-              />
-            </View>
-             ) : (
+              <View className="mt-[20px]">
+                <Text className="text-base mb-[8px]">
+                  {questionData[2]?.question}
+                </Text>
+                <SelectList
+                  boxStyles={{
+                    backgroundColor: 'white',
+                    borderRadius: 8,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#1D2334',
+                  }}
+                  placeholder={
+                    answers[questionData[2]?.questionId] === undefined
+                      ? answers[questionData[2]?.questionId] === ''
+                      : ''
+                  }
+                  setSelected={setQuestion3}
+                  data={PickerData[questionData[2]?.questionType]}
+                  search={false}
+                />
+              </View>
+            ) : (
               <></>
             )}
             {medicalCondition ? (
               <View className="mt-[20px]">
                 <Text className="text-base">{questionData[3]?.question}</Text>
                 <TextInput
-                  style={{backgroundColor: '#ffffff', borderWidth: 1}}
+                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                   className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                   keyboardType="numeric"
                   placeholderTextColor={'black'}
@@ -257,63 +273,63 @@ const Section7 = () => {
               <></>
             )}
             {medicalConditionDoYouSufferFromAnyIllness ? (
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
-                {questionData[4]?.question}
-              </Text>
-              <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
-                placeholder={
-                  answers[questionData[4]?.questionId] === undefined
-                    ? answers[questionData[4]?.questionId] === ''
-                    : ''
-                }
-                setSelected={setQuestion5}
-                data={PickerData[questionData[4]?.questionType]}
-                search={false}
-              />
-            </View>
-              ) : (
-                <></>
-              )}
+              <View className="mt-[20px]">
+                <Text className="text-base mb-[8px]">
+                  {questionData[4]?.question}
+                </Text>
+                <SelectList
+                  boxStyles={{
+                    backgroundColor: 'white',
+                    borderRadius: 8,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#1D2334',
+                  }}
+                  placeholder={
+                    answers[questionData[4]?.questionId] === undefined
+                      ? answers[questionData[4]?.questionId] === ''
+                      : ''
+                  }
+                  setSelected={setQuestion5}
+                  data={PickerData[questionData[4]?.questionType]}
+                  search={false}
+                />
+              </View>
+            ) : (
+              <></>
+            )}
             {medicalConditionHypertension ? (
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
-                {questionData[5]?.question}
-              </Text>
-              <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
-                placeholder={
-                  answers[questionData[5]?.questionId] === undefined
-                    ? answers[questionData[5]?.questionId] === ''
-                    : ''
-                }
-                setSelected={setQuestion6}
-                data={PickerData[questionData[5]?.questionType]}
-                search={false}
-              />
-            </View>
-              ) : (
-                <></>
-              )}
+              <View className="mt-[20px]">
+                <Text className="text-base mb-[8px]">
+                  {questionData[5]?.question}
+                </Text>
+                <SelectList
+                  boxStyles={{
+                    backgroundColor: 'white',
+                    borderRadius: 8,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#1D2334',
+                  }}
+                  placeholder={
+                    answers[questionData[5]?.questionId] === undefined
+                      ? answers[questionData[5]?.questionId] === ''
+                      : ''
+                  }
+                  setSelected={setQuestion6}
+                  data={PickerData[questionData[5]?.questionType]}
+                  search={false}
+                />
+              </View>
+            ) : (
+              <></>
+            )}
             {medicalCondition1 ? (
               <View>
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[6]?.question}</Text>
                   <TextInput
-                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
+                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
@@ -324,7 +340,7 @@ const Section7 = () => {
                 <View className="mt-[20px]">
                   <Text className="text-base">{questionData[7]?.question}</Text>
                   <TextInput
-                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
+                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
@@ -338,31 +354,47 @@ const Section7 = () => {
             )}
             {medicalConditionDoYouSufferFromAnyIllness ? (
 
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
-                {questionData[8]?.question}
-              </Text>
-              <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
-                placeholder={
-                  answers[questionData[8]?.questionId] === undefined
-                    ? answers[questionData[8]?.questionId] === ''
-                    : ''
-                }
-                setSelected={setQuestion9}
-                data={PickerData[questionData[8]?.questionType]}
-                search={false}
-              />
-            </View>
-) : (
-  <></>
-)}
+              <View className="mt-[20px]">
+                <Text className="text-base mb-[8px]">
+                  {questionData[8]?.question}
+                </Text>
+                <SelectList
+                  boxStyles={{
+                    backgroundColor: 'white',
+                    borderRadius: 8,
+                    height: 50,
+                    borderWidth: 1,
+                    borderColor: '#1D2334',
+                  }}
+                  placeholder={
+                    answers[questionData[8]?.questionId] === undefined
+                      ? answers[questionData[8]?.questionId] === ''
+                      : ''
+                  }
+                  setSelected={setQuestion9}
+                  data={PickerData[questionData[8]?.questionType]}
+                  search={false}
+                />
+              </View>
+            ) : (
+              <></>
+            )}
+
+            {medicalConditionAnyCancer ? (
+              <View className="mt-[20px]">
+                <Text className="text-base">{"Please specify"}</Text>
+                <TextInput
+                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
+                  className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
+                  keyboardType="text"
+                  placeholderTextColor={'black'}
+                  placeholder=""
+                  onChangeText={setQuestion9A}
+                />
+              </View>
+            ) : (
+              <></>
+            )}
             <View className="mt-[20px]">
               <Text className="text-base mb-[8px]">
                 {questionData[9]?.question}
@@ -385,10 +417,25 @@ const Section7 = () => {
                 search={false}
               />
             </View>
+            {medicalConditionChronicIllness ? (
+              <View className="mt-[20px]">
+                <Text className="text-base">{"Please specify"}</Text>
+                <TextInput
+                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
+                  className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
+                  keyboardType="text"
+                  placeholderTextColor={'black'}
+                  placeholder=""
+                  onChangeText={setQuestion10A}
+                />
+              </View>
+            ) : (
+              <></>
+            )}
 
             <View className="flex-row justify-between mt-[30px]">
               <TouchableOpacity
-                style={{backgroundColor: '#52608E', marginBottom: '10%'}}
+                style={{ backgroundColor: '#52608E', marginBottom: '10%' }}
                 className="w-[100px] rounded"
                 onPress={previous}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
@@ -398,7 +445,7 @@ const Section7 = () => {
                 {/* </View> */}
               </TouchableOpacity>
               <TouchableOpacity
-                style={{backgroundColor: '#52608E', marginBottom: '10%'}}
+                style={{ backgroundColor: '#52608E', marginBottom: '10%' }}
                 className="w-[100px] rounded"
                 onPress={next}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
