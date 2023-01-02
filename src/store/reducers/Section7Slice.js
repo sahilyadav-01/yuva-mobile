@@ -68,6 +68,9 @@ const initialState = {
     Q49: '',
     Q50: '',
   },
+  extra_questions_Q9A: '',
+  extra_questions_Q10A: '',
+
 };
 
 const section7Slice = createSlice({
@@ -78,6 +81,17 @@ const section7Slice = createSlice({
     dispatch_option(state, {payload}) {
       state.answers[payload.key] = payload.value;
     },
+    dispatch_option_extra_questions(state, {payload}) {
+      if(payload.key=="setQuestion9A"){
+
+      state.extra_questions_Q9A = payload.value;
+        }
+      if(payload.key=="setQuestion10A"){
+        
+      state.extra_questions_Q10A = payload.value;
+      }
+    },
+
   },
 
   extraReducers: {
@@ -98,6 +112,6 @@ const section7Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option} = section7Slice.actions;
+export const {init, dispatch_option , dispatch_option_extra_questions} = section7Slice.actions;
 
 export default section7Slice.reducer;

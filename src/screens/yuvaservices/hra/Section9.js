@@ -38,6 +38,8 @@ const Section9 = () => {
     const answers8 = useSelector(state => state.section8.answers)
     const answers9 = useSelector(state => state.section9.answers)
     const version = useSelector(state => state.auth.user.version)
+    const extra_questions_Q9A = useSelector(state => state.section7.extra_questions_Q9A);
+    const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
 
 
     const questionData = useSelector(state => state.section9.rawQuestions)
@@ -66,11 +68,15 @@ const Section9 = () => {
     const previous = () =>{
         navigation.navigate("section8")
     }
-
+   
     const computeResult = () =>{
         let data = transforSubData(answers1,answers2,answers3,answers4,answers5,answers6,
-            answers7,answers8,answers9, version)
-            dispatch(finalSubmission({jwt, data})).then(() => {navigation.navigate("HRAHome")})
+            answers7,answers8,answers9,version)
+             let final_data={answers:data,
+                cancer:  extra_questions_Q9A,
+                illness: extra_questions_Q10A }
+             dispatch(finalSubmission({jwt, final_data})).then(() => {navigation.navigate("HRAHome")})
+            
     }
 
     return (

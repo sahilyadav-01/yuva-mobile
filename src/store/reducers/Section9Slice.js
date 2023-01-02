@@ -117,12 +117,12 @@ export const reportStatusThunk = createAsyncThunk(
 
 export const finalSubmission = createAsyncThunk(
   'section9/finalSubmission',
-  async ({jwt, data}, {fulfillWithValue, rejectWithValue}) => {
+  async ({jwt, final_data}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const authToken = 'Bearer ' + jwt;
 
       return await axios
-        .post(SUBMISSION_QUESTION, data, {
+        .post(SUBMISSION_QUESTION, final_data, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: authToken,
