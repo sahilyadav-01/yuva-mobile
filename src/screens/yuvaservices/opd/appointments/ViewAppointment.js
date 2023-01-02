@@ -49,9 +49,9 @@ const ViewAppointment = () => {
     navigation.navigate('EditAppointment');
   };
 
-  // const checkIn = () => {
-  //   setPin(!pin);
-  // };
+  const checkIn = () => {
+  navigation.navigate('CheckInAppointment',{otp:otp})
+  };
   const cancelAppointment = () => {
     setCancelFlag(true);
   };
@@ -131,18 +131,19 @@ const ViewAppointment = () => {
 
         {/* Actions */}
         <View className="mt-[25px]">
-          <AppointmentButton
-            disable={status === 'CANCELLED' ? true : false}
-            name="Reschedule"
-            color="#F2EFEA"
-            action={editAppointment}
-          />
-          {/* <AppointmentButton
-            disable={status === 'CANCELLED' ? true : false}
+        {status==='CONFIRMED' ?( 
+        <AppointmentButton
             name="Check In"
             color="#E68D36"
             action={checkIn}
-          /> */}
+          />):(
+            <AppointmentButton
+            name="Reschedule"
+            color="#F2EFEA"
+            action={editAppointment}
+            />
+         
+          )}
                 <AppointmentButton
           name="Cancel"
           color="#A53F2B"
