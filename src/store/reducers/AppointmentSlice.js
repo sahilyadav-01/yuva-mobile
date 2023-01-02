@@ -132,12 +132,24 @@ const initialState = {
   },
   userAppointments: [],
   currentAppointment: {},
+  newMessage:'',
+  appointmentDescription:'',
+  rescheduleAppointment:'',
+  errorAppointment:'',
 };
 
 const appointmentSlice = createSlice({
   name: 'appointment',
   initialState,
   reducers: {
+    resetMessage(state){
+   
+      state.newMessage=null;
+      state.appointmentDescription=null;
+       state.rescheduleAppointment=null;
+       state.errorAppointment=null;
+     
+    },
     newAppointment(state, {payload}) {
       state.appointment['name'] = payload.name;
       state.appointment['specialization'] = payload.specialization;
@@ -158,11 +170,15 @@ const appointmentSlice = createSlice({
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
+ 
     },
     [newAppointmentThunk.fulfilled]: (state, {payload}) => {
       state.homeRefresh = true;
+      state.newMessage=payload;
     },
-    [newAppointmentThunk.rejected]: (state, {payload}) => {},
+    [newAppointmentThunk.rejected]: (state, {payload}) => {
+      state.appointmentDescription=payload;
+    },
 
     [allAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
@@ -182,11 +198,15 @@ const appointmentSlice = createSlice({
     [rescheduleAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
     },
-    [rescheduleAppointmentThunk.fulfilled]: (state, {payload}) => {},
-    [rescheduleAppointmentThunk.rejected]: (state, {payload}) => {},
+    [rescheduleAppointmentThunk.fulfilled]: (state, {payload}) => {
+      state.rescheduleAppointment=payload;
+    },
+    [rescheduleAppointmentThunk.rejected]: (state, {payload}) => {
+      state.errorAppointment=payload;
+    },
   },
 });
 
-export const {newAppointment, currentAppointment} = appointmentSlice.actions;
+export const {newAppointment, currentAppointment,resetMessage} = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;

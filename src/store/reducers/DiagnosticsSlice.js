@@ -184,7 +184,8 @@ const diagnosticSlice = createSlice({
     testDetails: '',
     packageDetails: '',
     testBooked: '',
-    bookedDetailsById: ''
+    bookedDetailsById: '',
+    cancelled:''
 
   },
   reducers: {
@@ -278,10 +279,12 @@ const diagnosticSlice = createSlice({
 
     [rescheduleCancelBookingThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      state.cancelled='';
     },
     [rescheduleCancelBookingThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.reschedule = action.payload.data;
+      state.cancelled= action.payload.message;
     },
     [rescheduleCancelBookingThunk.rejected]: (state, action) => {
       state.loading = false;
