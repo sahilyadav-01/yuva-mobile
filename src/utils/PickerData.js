@@ -10,8 +10,32 @@ PickerData["pickerdiet"]=[
     {key:'0',value:'Never'}, 
     {key:'1',value:'1x/Week'},
     {key:'2',value:'2/3 times a week'}, 
-    {key:'3',value:'Daily'}
-];
+    {key:'3',value:'Daily'},
+]
+PickerData["pickerdiet1"]=[
+    {key:'0',value:'Never'}, 
+    {key:'3',value:'1x/Week'},
+    {key:'3',value:'2/3 times a week'}, 
+    {key:'3',value:'Daily'},
+]
+PickerData["pickerdiet2"]=[
+    {key:'3',value:'Never'}, 
+    {key:'2',value:'1x/Week'},
+    {key:'0',value:'2/3 times a week'}, 
+    {key:'0',value:'Daily'},
+]
+PickerData["pickerdiet3"]=[
+    {key:'3',value:'Never'}, 
+    {key:'1',value:'1x/Week'},
+    {key:'0',value:'2/3 times a week'}, 
+    {key:'0',value:'Daily'},
+]
+PickerData["pickerdiet4"]=[
+    {key:'3',value:'Never'}, 
+    {key:'3',value:'1x/Week'},
+    {key:'3',value:'2/3 times a week'}, 
+    {key:'0',value:'Daily'},
+]
 
 PickerData["pickeralcohol2"]=[
     {key:'0',value:'0-1'}, 
