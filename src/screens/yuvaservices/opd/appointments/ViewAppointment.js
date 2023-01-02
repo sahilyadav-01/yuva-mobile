@@ -4,17 +4,24 @@ import {useNavigation} from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import {appointmentStatus} from '../../../../utils/utils';
 import {getDate, getTime} from '../../../../utils/utils';
-
+import {
+  cancelAppointmentThunk,
+  allAppointmentThunk,
+} from '../../../../store/reducers/AppointmentSlice';
+import MessageBox from '../../../../components/MessageBox';
 const ViewAppointment = () => {
   /**
    * Hooks
    */
   const navigation = useNavigation();
-  const [pin, setPin] = useState(false);
+  const dispatch = useDispatch();
 
+  // const [pin, setPin] = useState(false);
+  const [cancelFlag, setCancelFlag] = useState(false);
+ const cancelMessage = 'Are you sure you want to cancel ?';
   /**
    * Handlers
    */
@@ -37,19 +44,28 @@ const ViewAppointment = () => {
     otp,
     hospitalName,
   } = useSelector(state => state.appointment.currentAppointment);
-
+  const {jwt} = useSelector(state => state.auth.user);
   const editAppointment = () => {
     navigation.navigate('EditAppointment');
   };
 
   const checkIn = () => {
-    setPin(!pin);
+  navigation.navigate('CheckInAppointment',{otp:otp})
+  };
+  const cancelAppointment = () => {
+    setCancelFlag(true);
   };
 
+  const cancelAppointmentMessagBox = () => {
+    setCancelFlag(false);
+    dispatch(cancelAppointmentThunk({jwt, id}))
+      .then(() => dispatch(allAppointmentThunk({jwt})))
+      .then(() => navigation.navigate('AppointmentHome'));
+  };
   return (
     <View className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />
-      <Text className="text-bold text-lg ml-4">View Appointment</Text>
+      {/* <Text className="text-bold text-lg ml-4">View Appointment</Text> */}
 
       {/* wrapper */}
       <View className="mx-[10px] mt-[20px]">
@@ -72,14 +88,14 @@ const ViewAppointment = () => {
           </View>
 
           {/* Pin */}
-          <View className="flex items-end">
+          {/* <View className="flex items-end">
             <Text className="font-semibold text-[#1D2334] text-sm">PIN</Text>
             <Text
               className="font-bold text-[#E68D36] text-lg mt-[15px]"
               style={{visibility: pin ? 'visible' : 'hidden'}}>
               {otp}
             </Text>
-          </View>
+          </View> */}
         </View>
 
         {/* Section - 2 */}
@@ -105,8 +121,8 @@ const ViewAppointment = () => {
         {/* Description */}
         <View className="mt-[18px]">
           <TextInput
-            className="h-[150px] bg-[#FFFFFF] pl-[10px] pt-[10px]"
-            style={{borderWidth: 1, borderRadius: 12}}
+            // className="h-[150px] bg-[#FFFFFF] pl-[10px] pt-[10px]"
+            // style={{borderWidth: 1, borderRadius: 12}}
             value={description}
             multiline={true}
             editable={false}
@@ -115,18 +131,32 @@ const ViewAppointment = () => {
 
         {/* Actions */}
         <View className="mt-[25px]">
-          <AppointmentButton
-            disable={status === 'CANCELLED' ? true : false}
-            name="Edit"
-            color="#F2EFEA"
-            action={editAppointment}
-          />
-          <AppointmentButton
-            disable={status === 'CANCELLED' ? true : false}
+        {status==='CONFIRMED' ?( 
+        <AppointmentButton
             name="Check In"
             color="#E68D36"
             action={checkIn}
-          />
+          />):(
+            <AppointmentButton
+            name="Reschedule"
+            color="#F2EFEA"
+            action={editAppointment}
+            />
+         
+          )}
+                <AppointmentButton
+          name="Cancel"
+          color="#A53F2B"
+          action={cancelAppointment}
+        /> 
+      </View>
+      <View>
+      <MessageBox
+        head="Message"
+        showDialog={cancelFlag}
+        hideDialog={cancelAppointmentMessagBox}
+        message={cancelMessage}
+      /> 
         </View>
       </View>
     </View>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AppointmentButton from '../../../components/AppointmentButton';
@@ -6,23 +6,36 @@ import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { useNavigation } from '@react-navigation/core'
 import MainHeader from '../../../components/MainHeader';
 import { bookedDetailsByIdThunk, rescheduleCancelBookingThunk } from '../../../store/reducers/DiagnosticsSlice';
+import MessageBox from '../../../components/MessageBox';
 const RescheduleTestAndPackage = ({ route }) => {
     const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
-    const { bookedDetailsById } = useSelector(state => state.diagnostic)
+    const { bookedDetailsById ,cancelled} = useSelector(state => state.diagnostic)
     const { id } = route.params;
     const navigation = useNavigation()
     useEffect(() => {
         dispatch(bookedDetailsByIdThunk({ jwt, id }));
     }, [])
+    const [cancelFlag, setCancelFlag] = useState(false);
+    const cancelMessage = 'Are you sure you want to cancel ?';
     const cancelBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' })).then(() => { navigation.navigate("Diagnostic") })
+        // dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' })).then(() => { navigation.navigate("Diagnostic") })
+        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' }))
+
     }
+    const cancelBookingButton = () => {
+        setCancelFlag(true);
+        
+      };
 
     const rescheduleBooking = () => {
         navigation.navigate("BookingTestAndPackage", { bookedDetailsById: { ...bookedDetailsById, flag: true } })
     }
 
+ useEffect(()=>{
+    if(cancelled){
+    navigation.navigate("Diagnostic") }
+ },[cancelled])
     return (
 
         <View >
@@ -82,9 +95,17 @@ const RescheduleTestAndPackage = ({ route }) => {
                     <AppointmentButton
                         name="Cancel"
                         color="#A53F2B"
-                        action={cancelBooking}
+                        action={cancelBookingButton}
                     />
                 </View>
+                <View>
+      <MessageBox
+        head="Message"
+        showDialog={cancelFlag}
+        hideDialog={cancelBooking}
+        message={cancelMessage}
+      /> 
+        </View>
             </ScrollView>
         </View>
     );

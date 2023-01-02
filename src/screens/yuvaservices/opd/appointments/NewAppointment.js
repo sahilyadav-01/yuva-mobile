@@ -1,17 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, ScrollView,Alert} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
 import Backbutton from '../../../../components/Backbutton';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import GoBackCross from '../../../../components/GoBackCross';
-import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
+import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   newAppointmentThunk,
   allAppointmentThunk,
+
 } from '../../../../store/reducers/AppointmentSlice';
 import MessageBox from '../../../../components/MessageBox';
-import {getEpoch} from '../../../../utils/utils';
+import { getEpoch } from '../../../../utils/utils';
+import { resetMessage } from '../../../../store/reducers/AppointmentSlice';
 
 const NewAppointment = () => {
   /**
@@ -29,10 +31,12 @@ const NewAppointment = () => {
   const [signupFlag, setSignupFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
 
-  const {doctorId, name, specialization} = useSelector(
+  const { doctorId, name, specialization } = useSelector(
     state => state.appointment.appointment,
   );
-  const {jwt} = useSelector(state => state.auth.user);
+
+  const { newMessage, appointmentDescription } = useSelector(state => state.appointment)
+  const { jwt } = useSelector(state => state.auth.user);
 
   /**
    * Handlers
@@ -49,35 +53,31 @@ const NewAppointment = () => {
         doctorId,
         jwt,
       }),
-    ).then((resp) =>{if(resp?.payload?.message==="Appointment added successfully"){
-      // setSignupFlag(true);
-      //  setSignupMessage('Successfully Booked!');
-      return Alert.alert("Alert",resp?.payload?.message)
-    }
-    else if(resp?.payload?.description==="Description cannot be null/empty"){
-      setSignupFlag(true);
-      setSignupMessage("Description cannot be null/empty");
-    }
-    else if(resp?.error?.message==="Rejected"){
-
-      return Alert.alert("Alert",resp?.payload?.errorMessage)
-    }
-    else{
-      setSignupFlag(true);
-      setSignupMessage("Booking Failed")
-    }
-  }
-
-    );
+    )
   };
+  useEffect(() => {
+    if (newMessage?.message) {
+      setSignupFlag(true);
+      setSignupMessage('Successfully Booked!');
 
+    }
+    else if (appointmentDescription?.description) {
+
+      Alert.alert("Alert", "Description cannot be null/empty")
+    }
+    else if (appointmentDescription?.errorMessage) {
+
+      Alert.alert("Alert", appointmentDescription?.errorMessage)
+    }
+    return () => dispatch(resetMessage())
+  }, [newMessage, appointmentDescription])
   const onChangeDescription = txt => {
     setDesciption(txt);
   };
 
   const closeMessageBox = () => {
     setSignupFlag(false);
-    dispatch(allAppointmentThunk({jwt})).then(
+    dispatch(allAppointmentThunk({ jwt })).then(
       navigation.navigate('AppointmentHome'),
     );
   };
@@ -110,7 +110,7 @@ const NewAppointment = () => {
 
       <TextInput
         multiline={true}
-        style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+        style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
         className="h-[50px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1"
         placeholder={
           specialization == undefined || '' ? 'Specialization' : specialization
@@ -120,7 +120,7 @@ const NewAppointment = () => {
 
       <TextInput
         multiline={true}
-        style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+        style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
         className="h-[100px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1"
         placeholder="Description"
         onChangeText={onChangeDescription}
@@ -133,9 +133,9 @@ const NewAppointment = () => {
           type="date"
           value={date}
           onChangeDate={handleDate}
-          style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+          style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
           selectionColor="#1D2334"
-          theme={{colors: {text: 'black'}}}
+          theme={{ colors: { text: 'black' } }}
           minimumDate={new Date()}
         />
       </View>
@@ -146,9 +146,9 @@ const NewAppointment = () => {
           type="time"
           value={time}
           onChangeDate={handleTime}
-          style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8}}
+          style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
           selectionColor="#1D2334"
-          theme={{colors: {text: 'black'}}}
+          theme={{ colors: { text: 'black' } }}
         />
       </View>
 
