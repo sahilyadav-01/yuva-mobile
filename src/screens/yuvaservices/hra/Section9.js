@@ -75,7 +75,6 @@ const Section9 = () => {
              let final_data={answers:data,
                 cancer:  extra_questions_Q9A,
                 illness: extra_questions_Q10A }
-             console.log("data hra",final_data);
              dispatch(finalSubmission({jwt, final_data})).then(() => {navigation.navigate("HRAHome")})
             
     }
