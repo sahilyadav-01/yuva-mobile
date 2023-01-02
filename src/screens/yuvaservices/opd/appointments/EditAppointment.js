@@ -1,19 +1,20 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput,Alert} from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { View, Text, TextInput, Alert } from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import AppointmentInput from '../../../../components/AppointmentInput';
 import AppointmentInputText from '../../../../components/AppointmentInputText';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
-import {useSelector, useDispatch} from 'react-redux';
+import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   cancelAppointmentThunk,
   allAppointmentThunk,
   rescheduleAppointmentThunk,
+  resetMessage
 } from '../../../../store/reducers/AppointmentSlice';
 import MessageBox from '../../../../components/MessageBox';
-import {getEpoch, getDateObject} from '../../../../utils/utils';
+import { getEpoch, getDateObject } from '../../../../utils/utils';
 
 const EditAppointment = () => {
   /**
@@ -31,8 +32,8 @@ const EditAppointment = () => {
     otp,
     hospitalName,
   } = useSelector(state => state.appointment.currentAppointment);
-  const {jwt} = useSelector(state => state.auth.user);
-
+  const { jwt } = useSelector(state => state.auth.user);
+  const { rescheduleAppointment, errorAppointment } = useSelector(state => state.appointment)
   // const [date, setDate] = useState(getDateObject(slot));
   // const [time, setTime] = useState(getDateObject(slot));
   const [date, setDate] = useState(new Date());
@@ -58,35 +59,24 @@ const EditAppointment = () => {
 
   const saveAppointment = () => {
     dispatch(
-      rescheduleAppointmentThunk({timeSlot: getEpoch(date, time), id, jwt}),
-    ).then((resp) => {
-      if (resp) {
-
-        if (resp.payload.message) {
-            Alert.alert("Alert", resp.payload.message, [{
-                text: "Ok",
-                onPress: () => { navigation.navigate("AppointmentHome") }
-                
-            }])
-        } else if (resp.payload.errorMessage) {
-
-            Alert.alert("Alert", resp.payload.errorMessage, [{
-                text: "Ok",
-            }])
-        }
-    }
-    else {
-    
-        Alert.alert("Alert", "Something went wrong", [{
-            text: "Ok",
-        }])
-
-
-    }
-   
-    });
+      rescheduleAppointmentThunk({ timeSlot: getEpoch(date, time), id, jwt }),
+    )
   };
+  useEffect(() => {
+    if (rescheduleAppointment?.message) {
+      Alert.alert("Message",rescheduleAppointment?.message, [{
+        text: "Ok", onPress: () => {
+          dispatch(allAppointmentThunk({ jwt }))
+            .then(() => navigation.navigate('AppointmentHome'));
+        }
+      }])
+    }
+    else if (errorAppointment?.errorMessage) {
 
+      Alert.alert("Alert", errorAppointment?.errorMessage)
+    }
+    return () => dispatch(resetMessage())
+  }, [rescheduleAppointment, errorAppointment])
   // const cancelAppointment = () => {
   //   setCancelFlag(true);
   // };
@@ -100,7 +90,7 @@ const EditAppointment = () => {
 
   const closeSaveMessageBox = () => {
     setSaveFlag(false);
-    dispatch(allAppointmentThunk({jwt})).then(
+    dispatch(allAppointmentThunk({ jwt })).then(
       navigation.navigate('AppointmentHome'),
     );
   };
@@ -137,7 +127,7 @@ const EditAppointment = () => {
             height: 45,
           }}
           selectionColor="#1D2334"
-          theme={{colors: {text: 'black'}}}
+          theme={{ colors: { text: 'black' } }}
         />
       </View>
 
@@ -154,7 +144,7 @@ const EditAppointment = () => {
             height: 45,
           }}
           selectionColor="#1D2334"
-          theme={{colors: {text: 'black'}}}
+          theme={{ colors: { text: 'black' } }}
         />
       </View>
 
