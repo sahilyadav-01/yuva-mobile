@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ScrollView, TextInput, Alert } from 'react-native';
+import SelectList from 'react-native-dropdown-select-list'
 import MainHeader from '../../../components/MainHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     diagnosisTestDetailsThunk,
     bookTestThunk,
-    diagnosisPackageDetailsThunk, rescheduleCancelBookingThunk
+    diagnosisPackageDetailsThunk, rescheduleCancelBookingThunk,
+    cityIdThunk
 } from '../../../store/reducers/DiagnosticsSlice';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
@@ -26,13 +28,16 @@ const BookingTestAndPackage = ({ route }) => {
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const { jwt } = useSelector(state => state.auth.user);
-    const { testDetails, packageDetails } = useSelector(state => state.diagnostic);
+    const { testDetails, packageDetails, cityId } = useSelector(state => state.diagnostic);
     const [location, setLocation] = useState('');
     const [pincode, setPincode] = useState('');
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [saveFlag, setSaveFalg] = useState(false);
     const [saveMessage, setSaveMessage] = useState(false);
+    const [selected, setSelected] = useState("");
+    const [data, setData] = useState()
+
     useEffect(() => {
         if (!bookedDetailsById) {
 
@@ -59,11 +64,30 @@ const BookingTestAndPackage = ({ route }) => {
     const onChangePincode = text => {
         setPincode(text);
     };
+
+
+    useEffect(() => {
+
+
+        if (cityId.length > 0) {
+            let newArray = cityId.map((item) => {
+                return { key: item.id, value: item.name }
+
+            }
+            )
+            setData(newArray)
+        } else {
+            dispatch(cityIdThunk({ jwt }))
+        }
+
+
+    }, [cityId])
+
     const bookTest = () => {
         var data = {
             address: location,
-            cityId: 1,
-            labId: 1,
+            cityId: selected,
+            // labId: 1,
             pinCode: pincode,
             timeSlot: getEpoch(date, time),
         };
@@ -166,6 +190,7 @@ const BookingTestAndPackage = ({ route }) => {
 
     // };
 
+
     const rescheduleBooking = () => {
         dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled: "false", timeSlot: getEpoch(date, time) })).then((resp) => {
             if (resp) {
@@ -183,7 +208,7 @@ const BookingTestAndPackage = ({ route }) => {
                 }
             }
             else {
-            
+
                 Alert.alert("Alert", "Something went wrong", [{
                     text: "Ok",
                 }])
@@ -340,6 +365,17 @@ const BookingTestAndPackage = ({ route }) => {
                                     selectionColor="#1D2334"
                                     theme={{ colors: { text: 'black' } }}
                                 />
+                                <SelectList
+                                 boxStyles={{
+                                    backgroundColor: 'white',
+                                    borderRadius: 8,
+                                    height: 50,
+                                    borderWidth: 1,
+                                    borderColor: '#1D2334',
+                                  }}
+                                    setSelected={setSelected}
+                                    data={data}
+                                />
                                 <TextInput
                                     multiline={true}
                                     style={{
@@ -388,7 +424,7 @@ const BookingTestAndPackage = ({ route }) => {
                                     }}
                                     selectionColor="#1D2334"
                                     theme={{ colors: { text: 'black' } }}
-                                     minimumDate={new Date()}
+                                    minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"

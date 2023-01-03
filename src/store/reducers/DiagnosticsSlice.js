@@ -14,8 +14,28 @@ const ADD_BOOKING_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
 const PACKAGE_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/package';
 const BOOKED_DETAILS_BY_ID = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
 const RESCHULDE_CANCEL_BOOKING = 'http://' + SERVER + ':8080/api/v1/yuva/booking/';
+const CITY_ID='http://' + SERVER + ':8080/api/v1/yuva/city/getAllCityNames';
 
-
+export const cityIdThunk = createAsyncThunk(
+  'city/getAllCityNames',
+  async ({ jwt }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const authToken = 'Bearer ' + jwt;
+      const url = CITY_ID;
+      return await axios
+        .get(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authToken,
+          },
+        })
+        .then(resp => resp.data);
+    } catch (error) {
+      //const errorOject =  JSON.stringify(error.response.data)
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const viewMyTestAndPackageThunk = createAsyncThunk(
   'employee/viewMyTestAndPackage',
   async ({ jwt }, { fulfillWithValue, rejectWithValue }) => {
@@ -185,7 +205,8 @@ const diagnosticSlice = createSlice({
     packageDetails: '',
     testBooked: '',
     bookedDetailsById: '',
-    cancelled:''
+    cancelled:'',
+    cityId:''
 
   },
   reducers: {
@@ -197,6 +218,15 @@ const diagnosticSlice = createSlice({
   extraReducers: {
     /**
      */
+     [cityIdThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [cityIdThunk.fulfilled]: (state, action) => {
+      state.cityId = action.payload?.data || [];
+    },
+    [cityIdThunk.rejected]: (state, action) => {
+      state.apiError = true;
+    },
     [viewMyTestAndPackageThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
