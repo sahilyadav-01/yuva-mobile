@@ -89,7 +89,7 @@ const RescheduleTestAndPackage = ({ route }) => {
                 </View>
                 <View className="">
                     <AppointmentButton
-                        name="Reschudule"
+                        name="Reschedule"
                         color="#FFFFFF"
                         action={rescheduleBooking}
                     />
