@@ -12,6 +12,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import AlertBox from '../../components/AlertBox';
 import {hideErrorBox} from '../../store/reducers/AuthSlice';
+import { styles } from '../styles';
 
 const ForgotPassword = () => {
   // const [email, onChangeEmail] = useState('Email');
@@ -75,7 +76,7 @@ else{
     setEmail(e);
   };
   return (
-    <SafeAreaView className="flex h-full">
+    <SafeAreaView style={styles.container}>
       <Backbutton onPress={login} />
 
       {/* Top Section */}

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
-import { View, Text, TextInput, FlatList, ScrollView } from 'react-native'
+import { View, Text, TextInput, FlatList, ScrollView, SafeAreaView } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
@@ -7,7 +7,7 @@ import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSl
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
-
+import {styles} from '../../styles';
 
 
 
@@ -31,6 +31,7 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
+        <SafeAreaView style={styles.container}>
         <ScrollView
             contentContainerStyle={{
                  flexGrow: 1,
@@ -87,6 +88,7 @@ const AvailableBooking = ({ name }) => {
                     </View>) : <Text className="font-bold ml-3 mt-10">No test or Package Available</Text>}
              </View> 
         </ScrollView>
+        </SafeAreaView>
     )
 }
 

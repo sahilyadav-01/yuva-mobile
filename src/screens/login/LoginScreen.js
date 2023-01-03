@@ -21,6 +21,7 @@ import {
 } from '../../utils/utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginThunk, hideErrorBox} from '../../store/reducers/AuthSlice';
+import { styles } from '../styles';
 // import { StatusBar } from 'expo-status-bar';
 
 const LoginScreen = () => {
@@ -123,7 +124,7 @@ else{
   }, [status]);
 
   return (
-    <SafeAreaView className="flex h-full">
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#1D2334" style="light" />
       {/* Top Section */}
       <Header name="LOGIN" />

@@ -22,6 +22,7 @@ import {
   resetVerifySms,
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
+import { styles } from '../styles';
 
 const Signup = ({route}) => {
    /**
@@ -200,7 +201,7 @@ const Signup = ({route}) => {
   };
 
   return (
-    <SafeAreaView className="flex h-full">
+    <SafeAreaView style={styles.container}>
       {/* <Backbutton onPress={goBack} /> */}
       {/* Top Section */}
       <Header name="SIGNUP" />
