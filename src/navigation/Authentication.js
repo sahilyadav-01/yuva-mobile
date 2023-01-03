@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from '../screens/login/LoginScreen';
 import ForgotPassword from '../screens/login/ForgotPassword';
 import EnterOTP from '../screens/login/EnterOTP';
-import ResetPassword from '../screens/login/ResetPassword';
 import Signup from '../screens/login/Signup';
 
 const Stack = createStackNavigator();
@@ -24,11 +23,6 @@ const Authentication = () => {
       <Stack.Screen
         name="EnterOTP"
         component={EnterOTP}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ResetPassword"
-        component={ResetPassword}
         options={{headerShown: false}}
       />
       <Stack.Screen

@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AppointmentButton from '../../../components/AppointmentButton';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/core'
 import MainHeader from '../../../components/MainHeader';
 import { bookedDetailsByIdThunk, rescheduleCancelBookingThunk } from '../../../store/reducers/DiagnosticsSlice';
 import MessageBox from '../../../components/MessageBox';
+import { styles } from '../../styles';
 const RescheduleTestAndPackage = ({ route }) => {
     const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const RescheduleTestAndPackage = ({ route }) => {
  },[cancelled])
     return (
 
-        <View >
+        <SafeAreaView style={styles.container}>
             <MainHeader />
             <DiagnosticHeader />
             <ScrollView className="pl-[15px] pr-[15px]" contentContainerStyle={{
@@ -107,7 +108,7 @@ const RescheduleTestAndPackage = ({ route }) => {
       /> 
         </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 

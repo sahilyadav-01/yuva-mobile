@@ -18,6 +18,7 @@ import {
   loginThunk,
 } from '../../store/reducers/AuthSlice';
 import Timer from '../../components/Timer';
+import { styles } from '../styles';
 
 const EnterOTP = ({props, route}) => {
   const [otp, setOtp] = useState('');
@@ -84,7 +85,7 @@ const EnterOTP = ({props, route}) => {
   }
 
   return (
-    <SafeAreaView className="flex h-full">
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#1D2334" style="light" />
       {/* Top Section */}
       <Header name="VERIFY" />

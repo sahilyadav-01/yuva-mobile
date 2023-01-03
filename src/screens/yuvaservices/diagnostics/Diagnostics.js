@@ -12,6 +12,7 @@ import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsS
 import { createStackNavigator } from '@react-navigation/stack';
 import CarouselContainerDiagnosis from '../../../components/CarousalContainerDiagnosis';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
+import { styles } from '../../styles';
 
 const Diagnostics = () => {
     const { jwt } = useSelector(state => state.auth.user)
@@ -26,7 +27,7 @@ const Diagnostics = () => {
     const Stack = createStackNavigator();
 
     return (
-        <View>
+        <SafeAreaView style={styles.container}>
             <YuvaStatusBar />
            
                 <MainHeader />
@@ -45,7 +46,7 @@ const Diagnostics = () => {
                     </Stack.Navigator>
                 </View>
           
-        </View>
+        </SafeAreaView>
     )
 }
 
