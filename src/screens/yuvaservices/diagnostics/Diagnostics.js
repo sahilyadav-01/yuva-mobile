@@ -6,7 +6,7 @@ import LabSearch from "./LabSearch";
 import { useSelector, useDispatch } from 'react-redux';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import DiagnosticsNavigation from './DiagnosticNaviagtion';
+import DiagnosticNav1 from '../../../navigation/DiagnosticNav';
 
 import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -37,13 +37,14 @@ const Diagnostics = () => {
                     <CarouselContainerDiagnosis />
                
                 <View className="h-[500]">
-                    <Stack.Navigator>
+                    {/* <Stack.Navigator>
                         <Stack.Screen
                             name="DiagnosticsNavigation"
                             component={DiagnosticsNavigation}
                             options={{ headerShown: false }}
                         />
-                    </Stack.Navigator>
+                    </Stack.Navigator> */}
+                    <DiagnosticNav1/>
                 </View>
           
         </SafeAreaView>

@@ -22,7 +22,7 @@ const Booking = ({ name }) => {
                     bounces={false}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingBottom: 60
+                        paddingBottom: 300
                     }}
                     showsVerticalScrollIndicator={false}>
                     {bookedData && bookedData.map((item, index) => {

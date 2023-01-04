@@ -31,11 +31,11 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
-        <SafeAreaView >
+        <View >
         <ScrollView
             contentContainerStyle={{
                  flexGrow: 1,
-                paddingBottom: 60
+                paddingBottom: 300
             }}
             
             >
@@ -89,7 +89,7 @@ const AvailableBooking = ({ name }) => {
                     </View>) : <Text className="font-bold ml-3 mt-10">No test or Package Available</Text>}
              </View> 
         </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 

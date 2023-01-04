@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import BookingTestAndPackage from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import Diagnostics from '../screens/yuvaservices/diagnostics/Diagnostics';
-import DiagnosticsNavigation from '../screens/yuvaservices/diagnostics/DiagnosticNaviagtion';
+import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
 const Stack = createStackNavigator();
 
