@@ -17,6 +17,8 @@ const Patient = () => {
     goBack,
     onPressNext,
     consultationList,
+    onDownload,
+    onConsult,
   } = usePatient();
 
   return (
@@ -39,7 +41,7 @@ const Patient = () => {
           onPress={onPressNext} 
         />
         <SecureView />
-        <ConsultationList data={consultationList}/>
+        <ConsultationList data={consultationList} onConsult={onConsult} onDownload={onDownload}/>
       </ScrollView>
     </View>
   )
