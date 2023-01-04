@@ -1,5 +1,5 @@
 import validator from "is_js"
-import { PermissionsAndroid } from "react-native";
+import { Dimensions, PermissionsAndroid } from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
 
 export const isEmail = (email) => {
@@ -232,4 +232,9 @@ const downloadFile = (path, fileName) => {
     const date = getDate(value);
     const time = getTime(value);
     return {date, time};
-  }
+  };
+
+  export const getDimensions = () => {
+    const {width, height} = Dimensions.get('screen');
+    return {width, height};
+  } 

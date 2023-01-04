@@ -18,11 +18,11 @@ export const usePatient = () => {
   };
 
   const onPressNext = () => {
-
+    navigation.navigate('HealthScreen');
   };
 
   const onConsult = () => {
-
+    navigation.navigate('HealthScreen');
   };
 
   const onDownload = (path) => {
