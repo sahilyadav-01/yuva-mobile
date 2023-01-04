@@ -5,6 +5,7 @@ import { Searchbar } from 'react-native-paper';
 import {searchDoctorThunk}  from './../../../../store/reducers/DoctorSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import SearchLabel from '../../../../components/SearchLabel';
+import { styles} from "../../../styles"
 
 
 
@@ -47,7 +48,7 @@ const Doctor = () => {
 
  
     return (
-        <View className="m-0">
+        <View className="m-0" style={styles.container} >
             {/* <TextInput  className="mt-4 border-box shadow-md h-12" placeholder="Search for Doctors"/> */}
             <Searchbar
                 style={{
@@ -72,9 +73,9 @@ const Doctor = () => {
                     showsVerticalScrollIndicator ={false}
                 />
             </View>  */}
-            <View  className="h-[500px] mt-[20px]">
+            <View  className=" mt-[20px]">
                 <ScrollView
-                    bounces={false}
+                    bounces={false}    
                     contentContainerStyle={{
                         flexGrow: 1,
                         paddingBottom:60

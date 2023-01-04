@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import Backbutton from '../../../../components/Backbutton';
 import {allAppointmentThunk} from '../../../../store/reducers/AppointmentSlice';
 import {useDispatch, useSelector} from 'react-redux';
-
+import { styles} from "../../../styles"
 const AppointmentHome = ({navigation}) => {
 
   const renderItem = ({item}) => (
@@ -53,7 +53,7 @@ const AppointmentHome = ({navigation}) => {
   useEffect(() => {});
 
   return (
-    <View className="m-[10px]">
+    <View className="m-[10px]"style={styles.container}>
       {/* Appointment */}
       <View className="flex-row items-center justify-between ml-2 mr-2 mt-[10px]">
         <Text className="text-bold  text-xl">Appointments</Text>
@@ -62,7 +62,7 @@ const AppointmentHome = ({navigation}) => {
         </TouchableOpacity> */}
       </View>
 
-      <View className="h-[500px] mt-[10px]">
+      <View className=" mt-[10px]" >
         <ScrollView
           bounces={false}
           contentContainerStyle={{
