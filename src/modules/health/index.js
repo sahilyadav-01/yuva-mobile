@@ -46,7 +46,7 @@ const Health = () => {
             <TextInput 
               style={styles.descriptionText} 
               multiline={true} 
-              onChange={onChange}
+              onChangeText={onChange}
               placeholder={DESCRIPTION_PLACEHOLDER}
               placeholderTextColor={CYAN_BLUE_OPACITY}
               value={description}
