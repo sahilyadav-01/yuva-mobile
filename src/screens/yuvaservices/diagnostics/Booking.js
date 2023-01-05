@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
-
+import { styles } from '../../styles';
 const Booking = ({ name }) => {
 
     const { bookedData } = useSelector(state => state.diagnostic)
@@ -15,8 +15,8 @@ const Booking = ({ name }) => {
 
 
     return (
-        <View className="m-2">
-            <View className="h-[500px] mt-[20px]">
+        <View className="m-2"  >
+            <View className=" mt-[20px]">
                 {bookedData ?(
                 <ScrollView
                     bounces={false}
@@ -29,14 +29,14 @@ const Booking = ({ name }) => {
                         if (item.packageName !== null) {
                             return <AvailableBookingCard
                                 key={index}
-                                name={item?.packageName}
+                                nameBooking={item?.packageName}
                                 imageUrl={image}
                             />
                         } else {
 
                             return <AvailableBookingCard
                                 key={index}
-                                name={item?.testName}
+                                nameBooking={item?.testName}
                                 imageUrl={image1}
                             />
                         }

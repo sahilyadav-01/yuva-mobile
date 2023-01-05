@@ -31,16 +31,17 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View >
         <ScrollView
             contentContainerStyle={{
                  flexGrow: 1,
                 paddingBottom: 300
             }}
+            
             >
              <View className="m-2"> 
                 {testData ? (
-                    <View className="h-300 mt-[40px]">
+                    <View className=" mt-[40px]">
                         {testData.myTestResponseDtoList ? (
                             <Text className="font-bold ml-3">Available lab test</Text>) : <Text className="font-bold ml-3">No test available</Text>}
                         <View>
@@ -88,7 +89,7 @@ const AvailableBooking = ({ name }) => {
                     </View>) : <Text className="font-bold ml-3 mt-10">No test or Package Available</Text>}
              </View> 
         </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 

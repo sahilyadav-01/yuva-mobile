@@ -61,14 +61,14 @@ const CarouselItem = (props) => {
                 </Text>
               ) : (
                 <Text className="text-[#E68D36] text-sm">
-                  {diagnosticItem.packageName}
+                 {diagnosticItem.packageName} 
                 </Text>
               )}
             </View>
             <View className="mt-[20px]">
               <View className="flex-row items-center">
                 <Text className="mr-2 text-[#1D2334] text-base  font-bold">
-                  {diagnosticItem.labName}
+                {diagnosticItem.labName && diagnosticItem.labName || "Lab Assign Pending"}
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />
               </View>

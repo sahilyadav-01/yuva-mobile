@@ -1,4 +1,6 @@
 import validator from "is_js"
+import { Dimensions, PermissionsAndroid } from "react-native";
+import RNFetchBlob from "rn-fetch-blob";
 
 export const isEmail = (email) => {
 
@@ -150,7 +152,7 @@ export const getTime = (timestamp) => {
 export const getEpoch = (date, time) => {
     const dtString = date.toISOString().slice(0, 10)
     const timeString = processTime(time)
-    return Date.parse(dtString + "T" + timeString)-(5.5*60*60*1000)
+    return Date.parse(dtString + "T" + timeString) - (5.5 * 60 * 60 * 1000)
 }
 
 const getOffsetTime = (time) => {
@@ -175,8 +177,64 @@ const processTime = (time) => {
 export const granted = () => {
     PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
-        title: 'storage permsioon reuqired',
-        message: 'app need to acess ypu sotrage'
+        title: 'Storage Permission Required',
+        message: 'App need to access you storage'
     }
     )
-}
+};
+
+export const checkPermission = async (path, fileName) => {
+    if (Platform.OS !== 'android') {
+        downloadFile(path, fileName);
+    } else {
+        try {
+            granted();
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                downloadFile(path, fileName);
+            }
+        } catch (error) {
+        }
+    }
+};
+
+const getExtention = filename => {
+    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined
+};
+
+const downloadFile = (path, fileName) => {
+    // path is the url from where it will download
+    // fileName represents in which name the file will be stored in the device
+
+    let ext = getExtention(path);
+    ext = `${fileName}.${ext[0]}`;
+    const { config, fs } = RNFetchBlob;
+    let DownloadDir = fs.dirs.DownloadDir;
+    let options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: `${DownloadDir}/yuva/${ext}`,
+        description: 'File',
+        mime: 'application/pdf',
+        showNotification: true,
+      },
+    };
+    config(options)
+      .fetch('GET', file_Url)
+      .then(res => {
+        // Alert after successful downloading;
+        alert('File Downloaded Successfully.', JSON.stringify(res));
+      });
+  };
+
+  export const getCalendarValue = (value) => {
+    const date = getDate(value);
+    const time = getTime(value);
+    return {date, time};
+  };
+
+  export const getDimensions = () => {
+    const {width, height} = Dimensions.get('screen');
+    return {width, height};
+  } 
