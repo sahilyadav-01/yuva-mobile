@@ -50,4 +50,8 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight400,
     textAlign: CENTER,
   },
+  selectedContainer: {
+    borderColor: CYAN_BLUE,
+    borderWidth: 1,
+  },
 });
