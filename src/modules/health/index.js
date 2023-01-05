@@ -37,7 +37,7 @@ const Health = () => {
           style={styles.healthContainer}
           contentContainerStyle={styles.contentContainer} 
         />
-        { selected &&
+        { !isNaN(selected)  &&
         <>
           <View style={styles.descriptionHView}>
             <Text style={styles.descriptionHText}>{DESCRIPTION_HEADER}</Text>

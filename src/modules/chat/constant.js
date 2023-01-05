@@ -1,0 +1,1 @@
+export const CHAT_NOW = 'Chat Now';

@@ -27,7 +27,7 @@ export const useHealth = () => {
     setDescription(text);
   }
   const onPressConsultation = () => {
-    if(description && selected) {
+    if(description && !isNaN(selected)) {
       const data = {
         description: description,
         healthConcern: HEALTH_LIST[selected]?.name || '',
