@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 const AvailableBookingCard = ({
-  name, id, packageName, imageUrl, packageUuid
+  name, id, packageName, imageUrl, packageUuid,nameBooking
 }) => {
 
   const navigation = useNavigation();
@@ -17,9 +17,9 @@ const AvailableBookingCard = ({
   }
 
   return (
-    <TouchableOpacity onPress={clicked}>
-
-      <View style={{ backgroundColor: "#FFFFFF" }} className='h-[130px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
+    <View>
+    <TouchableOpacity disabled={!name} onPress={clicked}>
+    <View style={{ backgroundColor: "#FFFFFF" }} className='h-[130px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
         {/* Top */}
         <View className="flex-row mt-[25px] mr-[24px]  ml-[20px]">
           <View className="ml-[16px] flexpayload1">
@@ -30,8 +30,7 @@ const AvailableBookingCard = ({
                 className="h-[32px] w-[28px]"
               />
               <Text className="text-medium text-base text-[#1D2334]">{name}</Text>
-
-
+              <Text className="text-medium text-base text-[#1D2334]">{nameBooking}</Text>
             </View>
 
           </View>
@@ -39,6 +38,7 @@ const AvailableBookingCard = ({
 
       </View>
     </TouchableOpacity>
+    </View>
   )
 }
 
