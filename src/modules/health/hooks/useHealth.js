@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequestThunk } from "../../../store/reducers/TalkToDoctorSlice";
+import { addRequestThunk, clearRequest } from "../../../store/reducers/TalkToDoctorSlice";
 import { HEALTH_LIST } from "../constant";
 
 export const useHealth = () => {
@@ -20,6 +20,7 @@ export const useHealth = () => {
     if(isRequested) {
       navigation.navigate('ChatScreen');
     }
+    return () => dispatch(clearRequest());
   }, [isRequested]);
 
   const onChange = (text) => {
