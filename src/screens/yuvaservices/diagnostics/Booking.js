@@ -29,14 +29,14 @@ const Booking = ({ name }) => {
                         if (item.packageName !== null) {
                             return <AvailableBookingCard
                                 key={index}
-                                name={item?.packageName}
+                                nameBooking={item?.packageName}
                                 imageUrl={image}
                             />
                         } else {
 
                             return <AvailableBookingCard
                                 key={index}
-                                name={item?.testName}
+                                nameBooking={item?.testName}
                                 imageUrl={image1}
                             />
                         }
