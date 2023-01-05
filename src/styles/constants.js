@@ -7,3 +7,4 @@ export const ABSOLUTE = 'absolute';
 export const WRAP = 'wrap';
 export const COLUMN = 'column';
 export const TOP = 'top';
+export const FLEX_END = 'flex-end';
