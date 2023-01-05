@@ -6,10 +6,10 @@ import { styles } from './styles';
 const HealthCard = (props) => {
   const {onHealthCardPress, selected, item} = props;
   const { iconName, name } = item?.item;
-
+  const isSelected = selected === item?.index;
   return (
-    <TouchableOpacity onPress={onHealthCardPress} style={styles.container}>
-      { selected === item?.index && 
+    <TouchableOpacity onPress={onHealthCardPress} style={isSelected ? [styles.container, styles.selectedContainer]: styles.container}>
+      { isSelected && 
         <View style={styles.selected}>
           <Image source={PNG.CHECK_CIRCLE}/>
         </View>

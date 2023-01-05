@@ -7,9 +7,20 @@ export const useHealth = () => {
     navigation.goBack();
   };
   const [selected, setSelected] = useState();
+  const [description, setDescription] = useState('');
+
+  const onChange = (text) => {
+    setDescription(text);
+  }
+  const onPressConsultation = () => {
+    
+  }
   return {
     goBack,
     selected,
     setSelected,
+    onChange,
+    description,
+    onPressConsultation,
   }
 };
