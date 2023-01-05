@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  Alert
 } from 'react-native';
 import Backbutton from '../../../components/Backbutton';
 import { useNavigation } from '@react-navigation/core';
@@ -18,7 +19,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { section7QThunk } from '../../../store/reducers/Section7Slice';
 import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton';
-import { dispatch_option ,dispatch_option_extra_questions} from '../../../store/reducers/Section7Slice';
+import { dispatch_option, dispatch_option_extra_questions } from '../../../store/reducers/Section7Slice';
 import SelectList from 'react-native-dropdown-select-list';
 
 const Section7 = () => {
@@ -34,8 +35,9 @@ const Section7 = () => {
   const [medicalConditionDoYouSufferFromAnyIllness, setMedicalConditionDoYouSufferFromAnyIllness] = useState(false);
   const [medicalConditionAnyCancer, setMedicalConditionAnyCancer] = useState(false);
   const [medicalConditionChronicIllness, setMedicalConditionChronicIllness] = useState(false);
-
-
+  const [requiredFieldQ4, setRequiredFieldQ4] = useState(false);
+  const [requiredFieldQ7, setRequiredFieldQ7] = useState(false);
+  const [requiredFieldQ8, setRequiredFieldQ8] = useState(false);
 
 
 
@@ -43,7 +45,8 @@ const Section7 = () => {
    * State
    */
   const answers = useSelector(state => state.section7.answers);
-
+  const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
+  const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
   const questionData = useSelector(state => state.section7.rawQuestions);
 
   const { jwt } = useSelector(state => state.auth.user);
@@ -69,7 +72,15 @@ const Section7 = () => {
   };
 
   const setQuestion4 = value => {
-    dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+    const reg = /^\d*\.?\d*$/;
+    if ((value > 0) && (reg.test(value) === true)) {
+      setRequiredFieldQ4(false);
+      dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+    }
+    else {
+      setRequiredFieldQ4(true);
+      Alert.alert("Alert", 'Worng input')
+    }
   };
 
   const setQuestion5 = value => {
@@ -85,10 +96,30 @@ const Section7 = () => {
     dispatch(dispatch_option({ key: questionData[5].questionId, value: value }));
   };
   const setQuestion7 = value => {
-    dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
+
+    const reg = /^\d*\.?\d*$/;
+    if ((value > 0) && (reg.test(value) === true)) {
+      setRequiredFieldQ7(false);
+      dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
+    }
+    else {
+      setRequiredFieldQ7(true);
+      Alert.alert("Alert", 'Worng input')
+    }
+
   };
   const setQuestion8 = value => {
-    dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
+
+    const reg = /^\d*\.?\d*$/;
+    if ((value > 0) && (reg.test(value) === true)) {
+      setRequiredFieldQ8(false);
+      dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
+    }
+    else {
+      setRequiredFieldQ8(true);
+      Alert.alert("Alert", 'Worng input')
+    }
+
   };
   const setQuestion9 = value => {
     {
@@ -97,7 +128,7 @@ const Section7 = () => {
     dispatch(dispatch_option({ key: questionData[8].questionId, value: value }));
   };
   const setQuestion9A = value => {
-    dispatch(dispatch_option_extra_questions({key: "setQuestion9A",value: value }));
+    dispatch(dispatch_option_extra_questions({ key: "setQuestion9A", value: value }));
 
   }
   const setQuestion10 = value => {
@@ -107,7 +138,7 @@ const Section7 = () => {
     dispatch(dispatch_option({ key: questionData[9].questionId, value: value }));
   };
   const setQuestion10A = value => {
-    dispatch(dispatch_option_extra_questions({ key: "setQuestion10A",value: value }));
+    dispatch(dispatch_option_extra_questions({ key: "setQuestion10A", value: value }));
 
   }
   //Metadata
@@ -134,7 +165,37 @@ const Section7 = () => {
     navigation.navigate('section6');
   };
   const next = () => {
-    navigation.navigate('section8');
+
+
+    if ((answers.Q41 === '0') && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
+
+      navigation.navigate("section8")
+
+    }
+
+    else if ((answers9A === undefined || answers9A === '') || (answers10A === undefined || answers10A === '')) {
+
+      Alert.alert("Alert", 'Please Answer All the Questions')
+
+    }
+    else if (((answers.Q41 === '1') && (answers.Q42 === '1')) && ((answers.Q43 === '0') || ((answers.Q43 === '1') &&
+      (answers.Q44))) && ((answers.Q45 === '0') || ((answers.Q45 === '1') && ((answers.Q46 === '0') || ((answers.Q46 === '1') && answers.Q47 && answers.Q48))))
+      && (answers.Q49 === '0') || ((answers.Q49 === '1') && answers9A) && (answers.Q50 === '0') || (answers.Q50 === '1' && answers10A)) {
+      navigation.navigate("section8")
+    }
+
+    else {
+
+      if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
+
+        Alert.alert("Alert", 'Please Answer All the Questions')
+      }
+
+      else {
+        navigation.navigate("section8")
+      }
+
+    }
   };
 
   return (
@@ -259,14 +320,18 @@ const Section7 = () => {
             )}
             {medicalCondition ? (
               <View className="mt-[20px]">
-                <Text className="text-base">{questionData[3]?.question}</Text>
+                <Text
+                  style={{
+                    color: requiredFieldQ4 ? 'red' : 'gray',
+                  }}
+                  className="text-base">{questionData[3]?.question}</Text>
                 <TextInput
                   style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                   className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                   keyboardType="numeric"
                   placeholderTextColor={'black'}
                   placeholder=""
-                  onChangeText={setQuestion4}
+                  onEndEditing={(e) => setQuestion4(e.nativeEvent.text)}
                 />
               </View>
             ) : (
@@ -327,25 +392,33 @@ const Section7 = () => {
             {medicalCondition1 ? (
               <View>
                 <View className="mt-[20px]">
-                  <Text className="text-base">{questionData[6]?.question}</Text>
+                  <Text
+                    style={{
+                      color: requiredFieldQ7 ? 'red' : 'gray',
+                    }}
+                    className="text-base">{questionData[6]?.question}</Text>
                   <TextInput
                     style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onChangeText={setQuestion7}
+                    onEndEditing={(e) => setQuestion7(e.nativeEvent.text)}
                   />
                 </View>
                 <View className="mt-[20px]">
-                  <Text className="text-base">{questionData[7]?.question}</Text>
+                  <Text
+                    style={{
+                      color: requiredFieldQ8 ? 'red' : 'gray',
+                    }}
+                    className="text-base">{questionData[7]?.question}</Text>
                   <TextInput
                     style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onChangeText={setQuestion8}
+                    onEndEditing={(e) => setQuestion8(e.nativeEvent.text)}
                   />
                 </View>
               </View>

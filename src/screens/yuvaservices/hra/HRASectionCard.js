@@ -54,10 +54,9 @@ const HRASectionCard = ({
     //     </View>
     // </TouchableOpacity>
 
-    <TouchableOpacity
+    <View
       className="w-[100px] h-[100px] mx-[5px] my-[10px] rounded shadow-inner"
-      disable={true}
-      onPress={onpress}>
+     >
       <View
         className={`flex justify-end h-[80px] w-full rounded-lg shadow-xl bg-[${bgColor}]`}
         style={{backgroundColor: bgColor}}>
@@ -72,7 +71,7 @@ const HRASectionCard = ({
           {name}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
