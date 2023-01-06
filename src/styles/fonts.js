@@ -14,6 +14,6 @@ export const fonts = {
     fontWeight400: '400',
   },
   family: {
-    fontFamilyRubix: 'Rubix',
+    fontFamilyRubix: 'Rubik-Regular',
   },
 };
