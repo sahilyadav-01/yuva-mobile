@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert } from 'react-native'
 import Backbutton from '../../../components/Backbutton'
 import { useNavigation } from '@react-navigation/core'
 import * as Progress from 'react-native-progress';
@@ -52,7 +52,12 @@ const Section3 = () => {
         navigation.navigate("section2")
     }
     const next = () => {
-        navigation.navigate("section4")
+        if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
+            Alert.alert("Alert", 'Please Answer All the Questions')
+        }
+        else {
+            navigation.navigate("section4")
+        }
     }
 
     return (
@@ -94,6 +99,7 @@ const Section3 = () => {
                             } else if (item.questionType == "input") {
                                 return <SectionInput
                                     key={item.questionId}
+                                    defValue={answers[item.questionId]}
                                     text={item.question}
                                     dispatcher={dispatch_option}
                                     questionId={item.questionId}

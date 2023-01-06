@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,25 +7,28 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  Alert
 } from 'react-native';
 import Backbutton from '../../../components/Backbutton';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import * as Progress from 'react-native-progress';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import SectionInput from '../../../components/SectionInput';
 import SectionPicker from '../../../components/SectionPicker';
-import {useSelector, useDispatch} from 'react-redux';
-import {section5QThunk} from '../../../store/reducers/Section5Slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { section5QThunk } from '../../../store/reducers/Section5Slice';
 import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton';
 import SelectList from 'react-native-dropdown-select-list';
-import {dispatch_option} from '../../../store/reducers/Section5Slice';
+import { dispatch_option } from '../../../store/reducers/Section5Slice';
 
 const Section5 = () => {
   /**
    * Hooks
    */
   const [smoke, setSmoke] = useState(false);
+  const [requiredFieldQ2, setRequiredFieldQ2] = useState(false);
+  const [requiredFieldQ3, setRequiredFieldQ3] = useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -34,34 +37,59 @@ const Section5 = () => {
    */
   const answers = useSelector(state => state.section5.answers);
 
+  const section1Answers = useSelector(state => state.section1.answers);
   const questionData = useSelector(state => state.section5.rawQuestions);
 
-  const {jwt} = useSelector(state => state.auth.user);
+  const { jwt } = useSelector(state => state.auth.user);
 
   const setQuestion1 = value => {
     {
       value == 1 ? setSmoke(true) : setSmoke(false);
     }
-    dispatch(dispatch_option({key: questionData[0].questionId, value: value}));
-  };
-  const setQuestion2 = value => {
-    dispatch(dispatch_option({key: questionData[1].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
   };
 
-  const setQuestion3 = value => {
-    dispatch(dispatch_option({key: questionData[2].questionId, value: value}));
-  };
 
+  const inputCheck = (id, value) => {
+    const reg = /^\d+$/;
+    switch (id) {
+      case 'Q2':
+        const validQ2 = ((reg.test(value) === true) && (value >= 12) && (value < section1Answers.Q2));
+        setRequiredFieldQ2(!validQ2);
+        if (validQ2) {
+          dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
+        } else {
+          Alert.alert("Alert Worng Input", "The age at which you started smoking cannot be before you turned 12 years old or after your current age.");
+
+        };
+        break;
+
+      case 'Q3':
+        const validQ3 = ((reg.test(value) === true) && (value > 0));
+        setRequiredFieldQ3(!validQ3);
+        if (validQ3) {
+          dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
+        } else {
+          Alert.alert("Alert", "Worng input");
+
+        };
+        break;
+
+      default:
+        Alert.alert("Alert", "Worng Input");
+    }
+
+  };
   const setQuestion4 = value => {
-    dispatch(dispatch_option({key: questionData[3].questionId, value: value}));
+    dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
   };
 
   //Metadata
   const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
   const selectionData = [
-    {key: '0', value: 'Yes'},
-    {key: '1', value: 'No'},
+    { key: '0', value: 'Yes' },
+    { key: '1', value: 'No' },
   ];
 
   /**
@@ -70,7 +98,7 @@ const Section5 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section5QThunk({jwt}));
+    dispatch(section5QThunk({ jwt }));
   }, []);
 
   /**
@@ -80,7 +108,22 @@ const Section5 = () => {
     navigation.navigate('section4');
   };
   const next = () => {
-    navigation.navigate('section6');
+
+    if ((answers.Q35 == '0') && (answers.Q38 == '0' || answers.Q38 == '1')) {
+
+      navigation.navigate("section6")
+
+    }
+    else {
+
+      if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
+        Alert.alert("Alert", 'Please Answer All the Questions')
+      }
+      else {
+        navigation.navigate("section6")
+      }
+
+    }
   };
 
   return (
@@ -164,26 +207,32 @@ const Section5 = () => {
             {smoke ? (
               <View>
                 <View className="mt-[20px]">
-                  <Text className="text-base">{questionData[1]?.question}</Text>
+                  <Text style={{
+                    color: requiredFieldQ2 ? 'red' : 'gray',
+                  }}
+                    className="text-base">{questionData[1]?.question}</Text>
                   <TextInput
-                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
+                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onChangeText={setQuestion2}
+                    onEndEditing={(e) => inputCheck('Q2', e.nativeEvent.text)}
                   />
                 </View>
 
                 <View className="mt-[20px]">
-                  <Text className="text-base">{questionData[2]?.question}</Text>
+                  <Text style={{
+                    color: requiredFieldQ3 ? 'red' : 'gray',
+                  }}
+                    className="text-base">{questionData[2]?.question}</Text>
                   <TextInput
-                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
+                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                     className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onChangeText={setQuestion3}
+                    onEndEditing={(e) => inputCheck('Q3', e.nativeEvent.text)}
                   />
                 </View>
               </View>
@@ -216,7 +265,7 @@ const Section5 = () => {
 
             <View className="flex-row justify-between mt-[30px]">
               <TouchableOpacity
-                style={{backgroundColor: '#52608E'}}
+                style={{ backgroundColor: '#52608E' }}
                 className="w-[100px] rounded"
                 onPress={previous}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
@@ -226,7 +275,7 @@ const Section5 = () => {
                 {/* </View> */}
               </TouchableOpacity>
               <TouchableOpacity
-                style={{backgroundColor: '#52608E'}}
+                style={{ backgroundColor: '#52608E' }}
                 className="w-[100px] rounded"
                 onPress={next}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}

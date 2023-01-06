@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,18 +7,19 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  Alert
 } from 'react-native';
 import Backbutton from '../../../components/Backbutton';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import * as Progress from 'react-native-progress';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import SectionInput from '../../../components/SectionInput';
 import SectionPicker from '../../../components/SectionPicker';
-import {useSelector, useDispatch} from 'react-redux';
-import {section8QThunk} from '../../../store/reducers/Section8Slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { section8QThunk } from '../../../store/reducers/Section8Slice';
 import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton';
-import {dispatch_option} from '../../../store/reducers/Section8Slice';
+import { dispatch_option } from '../../../store/reducers/Section8Slice';
 
 const Section8 = () => {
   /**
@@ -34,14 +35,14 @@ const Section8 = () => {
 
   const questionData = useSelector(state => state.section8.rawQuestions);
 
-  const {jwt} = useSelector(state => state.auth.user);
+  const { jwt } = useSelector(state => state.auth.user);
 
   //Metadata
   const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
   const selectionData = [
-    {key: '0', value: 'No'},
-    {key: '1', value: 'Yes'},
+    { key: '0', value: 'No' },
+    { key: '1', value: 'Yes' },
   ];
 
   /**
@@ -50,7 +51,7 @@ const Section8 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section8QThunk({jwt}));
+    dispatch(section8QThunk({ jwt }));
   }, []);
 
   /**
@@ -60,7 +61,12 @@ const Section8 = () => {
     navigation.navigate('section7');
   };
   const next = () => {
-    navigation.navigate('section9');
+    if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
+      Alert.alert("Alert", 'Please Answer All the Questions')
+    }
+    else {
+      navigation.navigate("section9")
+    }
   };
 
   return (
@@ -107,6 +113,7 @@ const Section8 = () => {
                 return (
                   <SectionInput
                     key={item.questionId}
+                    defValue={answers[item.questionId]}
                     text={item.question}
                     dispatcher={dispatch_option}
                     questionId={item.questionId}
@@ -116,7 +123,7 @@ const Section8 = () => {
             })}
             <View className="flex-row justify-between mt-[30px]">
               <TouchableOpacity
-                style={{backgroundColor: '#52608E'}}
+                style={{ backgroundColor: '#52608E' }}
                 className="w-[100px] rounded"
                 onPress={previous}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
@@ -126,7 +133,7 @@ const Section8 = () => {
                 {/* </View> */}
               </TouchableOpacity>
               <TouchableOpacity
-                style={{backgroundColor: '#52608E'}}
+                style={{ backgroundColor: '#52608E' }}
                 className="w-[100px] rounded"
                 onPress={next}>
                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}

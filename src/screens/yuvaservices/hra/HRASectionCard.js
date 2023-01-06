@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import speedmeter from '../../../../assets/speedmeter.png';
@@ -54,10 +53,9 @@ const HRASectionCard = ({
     //     </View>
     // </TouchableOpacity>
 
-    <TouchableOpacity
+    <View
       className="w-[100px] h-[100px] mx-[5px] my-[10px] rounded shadow-inner"
-      disable={true}
-      onPress={onpress}>
+     >
       <View
         className={`flex justify-end h-[80px] w-full rounded-lg shadow-xl bg-[${bgColor}]`}
         style={{backgroundColor: bgColor}}>
@@ -72,7 +70,7 @@ const HRASectionCard = ({
           {name}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

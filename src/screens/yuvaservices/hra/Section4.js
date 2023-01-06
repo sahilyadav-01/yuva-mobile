@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  Alert
 } from 'react-native';
 import Backbutton from '../../../components/Backbutton';
 import { useNavigation } from '@react-navigation/core';
@@ -80,7 +81,22 @@ const Section4 = () => {
     navigation.navigate('section3');
   };
   const next = () => {
-    navigation.navigate('section5');
+
+    if (answers.Q31 == '0') {
+
+      navigation.navigate("section5")
+
+    }
+    else {
+
+      if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
+        Alert.alert("Alert", 'Please Answer All the Questions')
+      }
+      else {
+        navigation.navigate("section5")
+      }
+    }
+
   };
 
   return (
