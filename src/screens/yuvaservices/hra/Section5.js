@@ -48,38 +48,38 @@ const Section5 = () => {
     }
     dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
   };
-  const setQuestion2 = value => {
+
+
+  const inputCheck = (id, value) => {
     const reg = /^\d+$/;
-    if ((reg.test(value) === true) && (value >= 12) && (value < section1Answers.Q2)) {
-      setRequiredFieldQ2(false);
-      dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
+    switch (id) {
+      case 'Q2':
+        const validQ2 = ((reg.test(value) === true) && (value >= 12) && (value < section1Answers.Q2));
+        setRequiredFieldQ2(!validQ2);
+        if (validQ2) {
+          dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
+        } else {
+          Alert.alert("Alert Worng Input", "The age at which you started smoking cannot be before you turned 12 years old or after your current age.");
 
-    }
+        };
+        break;
 
-    else {
-      setRequiredFieldQ2(true);
-      Alert.alert("Alert Worng Input", "The age at which you started smoking cannot be before you turned 12 years old or after your current age.");
+      case 'Q3':
+        const validQ3 = ((reg.test(value) === true) && (value > 0));
+        setRequiredFieldQ3(!validQ3);
+        if (validQ3) {
+          dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
+        } else {
+          Alert.alert("Alert", "Worng input");
 
+        };
+        break;
+
+      default:
+        Alert.alert("Alert", "Worng Input");
     }
 
   };
-
-  const setQuestion3 = value => {
-
-    const reg = /^\d+$/;
-    if ((reg.test(value) === true) && (value > 0)) {
-      setRequiredFieldQ3(false);
-      dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
-
-    }
-    else {
-      setRequiredFieldQ3(true);
-      Alert.alert("Alert", "Worng input");
-
-    }
-
-  };
-
   const setQuestion4 = value => {
     dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
   };
@@ -217,7 +217,7 @@ const Section5 = () => {
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onEndEditing={(e) => setQuestion2(e.nativeEvent.text)}
+                    onEndEditing={(e) => inputCheck('Q2', e.nativeEvent.text)}
                   />
                 </View>
 
@@ -232,7 +232,7 @@ const Section5 = () => {
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onEndEditing={(e) => setQuestion3(e.nativeEvent.text)}
+                    onEndEditing={(e) => inputCheck('Q3', e.nativeEvent.text)}
                   />
                 </View>
               </View>

@@ -71,16 +71,43 @@ const Section7 = () => {
     dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
   };
 
-  const setQuestion4 = value => {
+  const inputCheck = (id, value) => {
     const reg = /^\d*\.?\d*$/;
-    if ((value > 0) && (reg.test(value) === true)) {
-      setRequiredFieldQ4(false);
-      dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+    switch (id) {
+      case 'Q4':
+        const validQ4 = ((value > 0) && (reg.test(value) === true));
+        setRequiredFieldQ4(!validQ4);
+        if (validQ4) {
+          dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+        } else {
+          Alert.alert("Alert", "Worng Input");
+        };
+        break;
+
+        case 'Q7':
+          const validQ7 = ((value > 0) && (reg.test(value) === true));
+          setRequiredFieldQ7(!validQ7);
+          if (validQ7) {
+            dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
+          } else {
+            Alert.alert("Alert", "Worng Input");
+          };
+          break;
+
+      case 'Q8':
+        const validQ8 = ((reg.test(value) === true) && (value > 0));
+        setRequiredFieldQ8(!validQ8);
+        if (validQ8) {
+          dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
+        } else {
+          Alert.alert("Alert", "Worng input");
+        };
+        break;
+
+      default:
+        Alert.alert("Alert", "Worng Input");
     }
-    else {
-      setRequiredFieldQ4(true);
-      Alert.alert("Alert", 'Worng input')
-    }
+
   };
 
   const setQuestion5 = value => {
@@ -94,32 +121,6 @@ const Section7 = () => {
       value == 1 ? setMedicalCondition1(true) : setMedicalCondition1(false);
     }
     dispatch(dispatch_option({ key: questionData[5].questionId, value: value }));
-  };
-  const setQuestion7 = value => {
-
-    const reg = /^\d*\.?\d*$/;
-    if ((value > 0) && (reg.test(value) === true)) {
-      setRequiredFieldQ7(false);
-      dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
-    }
-    else {
-      setRequiredFieldQ7(true);
-      Alert.alert("Alert", 'Worng input')
-    }
-
-  };
-  const setQuestion8 = value => {
-
-    const reg = /^\d*\.?\d*$/;
-    if ((value > 0) && (reg.test(value) === true)) {
-      setRequiredFieldQ8(false);
-      dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
-    }
-    else {
-      setRequiredFieldQ8(true);
-      Alert.alert("Alert", 'Worng input')
-    }
-
   };
   const setQuestion9 = value => {
     {
@@ -331,7 +332,8 @@ const Section7 = () => {
                   keyboardType="numeric"
                   placeholderTextColor={'black'}
                   placeholder=""
-                  onEndEditing={(e) => setQuestion4(e.nativeEvent.text)}
+                  onEndEditing={(e) => inputCheck('Q4', e.nativeEvent.text)}
+
                 />
               </View>
             ) : (
@@ -403,7 +405,8 @@ const Section7 = () => {
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onEndEditing={(e) => setQuestion7(e.nativeEvent.text)}
+                    onEndEditing={(e) => inputCheck('Q7', e.nativeEvent.text)}
+
                   />
                 </View>
                 <View className="mt-[20px]">
@@ -418,7 +421,8 @@ const Section7 = () => {
                     keyboardType="numeric"
                     placeholderTextColor={'black'}
                     placeholder=""
-                    onEndEditing={(e) => setQuestion8(e.nativeEvent.text)}
+                    onEndEditing={(e) => inputCheck('Q8', e.nativeEvent.text)}
+
                   />
                 </View>
               </View>

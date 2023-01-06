@@ -38,49 +38,49 @@ const Section1 = () => {
 
     const inputCheck = (id, value) => {
         const regAge = /^\d+$/;
-        if ((id === 'Q1') && (regAge.test(value) === true) && ((value >= 12) && (value <= 100))) {
-            setRequiredFieldQ1(false);
-            dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
+        switch (id) {
+            case 'Q1':
+                const validQ1 = (regAge.test(value) === true) && ((value >= 12) && (value <= 100));
+                setRequiredFieldQ1(!validQ1);
+                if (validQ1) {
+                    dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
+                } else {
+                    Alert.alert("Alert", "Age should be in range of 12 to 100 years");
+                };
+                break;
 
-        }
-        else if ((id === 'Q2') && ((value >= 120) && (value <= 219))) {
-            setRequiredFieldQ2(false);
-            dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
+            case 'Q2':
+                const validQ2 = ((value >= 120) && (value <= 219));
+                setRequiredFieldQ2(!validQ2);
+                if (validQ2) {
+                    dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
+                } else {
+                    Alert.alert("Alert", "Height should be range of 120 to 219 cm");
+                };
+                break;
 
-        }
-        else if ((id === 'Q3') && ((value >= 20) && (value <= 200))) {
-            setRequiredFieldQ3(false);
-            dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
+            case 'Q3':
+                const validQ3 = ((value >= 20) && (value <= 200));
+                setRequiredFieldQ3(!validQ3);
+                if (validQ3) {
+                    dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
+                } else {
+                    Alert.alert("Alert", "Weight should be range of 20 to 200 kg");
+                };
+                break;
 
-        }
-        else if ((id === 'Q4') && ((value >= 20) && (value <= 47))) {
-            setRequiredFieldQ4(false);
-            dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+            case 'Q4':
+                const validQ4 = ((value >= 20) && (value <= 47));
+                setRequiredFieldQ4(!validQ4);
+                if (validQ4) {
+                    dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
+                } else {
+                    Alert.alert("Alert", "Waist size should be range of 20 to 47 inches");
+                };
+                break;
 
-        }
-
-        else {
-            if (id === 'Q1') {
-                setRequiredFieldQ1(true);
-                Alert.alert("Alert", "Age should be in range of 12 to 100 years");
-
-            }
-            else if (id === 'Q2') {
-                setRequiredFieldQ2(true);
-                Alert.alert("Alert", "Height should be range of 120 to 219 cm");
-
-            }
-            else if (id === 'Q3') {
-                setRequiredFieldQ3(true);
-                Alert.alert("Alert", "Weight should be range of 20 to 200 kg");
-
-            }
-            else if (id === 'Q4') {
-                setRequiredFieldQ4(true);
-                Alert.alert("Alert", "Waist size should be range of 20 to 47 inches");
-
-            }
-
+                default:
+                    Alert.alert("Alert", "Worng Input");
         }
 
     };
