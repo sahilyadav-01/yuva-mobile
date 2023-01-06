@@ -84,15 +84,15 @@ const Section7 = () => {
         };
         break;
 
-        case 'Q7':
-          const validQ7 = ((value > 0) && (reg.test(value) === true));
-          setRequiredFieldQ7(!validQ7);
-          if (validQ7) {
-            dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
-          } else {
-            Alert.alert("Alert", "Worng Input");
-          };
-          break;
+      case 'Q7':
+        const validQ7 = ((value > 0) && (reg.test(value) === true));
+        setRequiredFieldQ7(!validQ7);
+        if (validQ7) {
+          dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
+        } else {
+          Alert.alert("Alert", "Worng Input");
+        };
+        break;
 
       case 'Q8':
         const validQ8 = ((reg.test(value) === true) && (value > 0));
@@ -165,33 +165,24 @@ const Section7 = () => {
   const previous = () => {
     navigation.navigate('section6');
   };
+
+
   const next = () => {
-
-
     if ((answers.Q41 === '0') && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
-
-      navigation.navigate("section8")
-
+           navigation.navigate("section8")
     }
 
-    else if ((answers9A === undefined || answers9A === '') || (answers10A === undefined || answers10A === '')) {
-
-      Alert.alert("Alert", 'Please Answer All the Questions')
-
-    }
     else if (((answers.Q41 === '1') && (answers.Q42 === '1')) && ((answers.Q43 === '0') || ((answers.Q43 === '1') &&
       (answers.Q44))) && ((answers.Q45 === '0') || ((answers.Q45 === '1') && ((answers.Q46 === '0') || ((answers.Q46 === '1') && answers.Q47 && answers.Q48))))
-      && (answers.Q49 === '0') || ((answers.Q49 === '1') && answers9A) && (answers.Q50 === '0') || (answers.Q50 === '1' && answers10A)) {
+      && ((answers.Q49 === '0') || ((answers.Q49 === '1') && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
       navigation.navigate("section8")
     }
 
     else {
 
-      if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
-
+      if ((Object.keys(answers).map((x) => { return answers[x] }).includes('')) && ((answers9A && answers10A).includes(''))) {
         Alert.alert("Alert", 'Please Answer All the Questions')
       }
-
       else {
         navigation.navigate("section8")
       }
