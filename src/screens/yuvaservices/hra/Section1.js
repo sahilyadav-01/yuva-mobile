@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert, ToastAndroid } from 'react-native'
 import Backbutton from '../../../components/Backbutton'
 import { useNavigation } from '@react-navigation/core'
 import * as Progress from 'react-native-progress';
@@ -20,10 +20,16 @@ const Section1 = () => {
      */
     const navigation = useNavigation()
     const dispatch = useDispatch()
-    const [requiredFieldQ1, setRequiredFieldQ1] = useState(false);
-    const [requiredFieldQ2, setRequiredFieldQ2] = useState(false);
-    const [requiredFieldQ3, setRequiredFieldQ3] = useState(false);
-    const [requiredFieldQ4, setRequiredFieldQ4] = useState(false);
+    const [requiredFieldQ1, setRequiredFieldQ1] = useState(true);
+    const [requiredFieldQ2, setRequiredFieldQ2] = useState(true);
+    const [requiredFieldQ3, setRequiredFieldQ3] = useState(true);
+    const [requiredFieldQ4, setRequiredFieldQ4] = useState(true);
+    const totalCheck = [requiredFieldQ1, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4];
+
+  // Load Question Data
+  useEffect(() => {
+    dispatch(section1QThunk({ jwt }));
+}, [])
 
 
 
@@ -41,7 +47,7 @@ const Section1 = () => {
         switch (id) {
             case 'Q1':
                 const validQ1 = (regAge.test(value) === true) && ((value >= 12) && (value <= 100));
-                setRequiredFieldQ1(!validQ1);
+                setRequiredFieldQ1(validQ1);
                 if (validQ1) {
                     dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
                 } else {
@@ -51,7 +57,7 @@ const Section1 = () => {
 
             case 'Q2':
                 const validQ2 = ((value >= 120) && (value <= 219));
-                setRequiredFieldQ2(!validQ2);
+                setRequiredFieldQ2(validQ2);
                 if (validQ2) {
                     dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
                 } else {
@@ -61,7 +67,7 @@ const Section1 = () => {
 
             case 'Q3':
                 const validQ3 = ((value >= 20) && (value <= 200));
-                setRequiredFieldQ3(!validQ3);
+                setRequiredFieldQ3(validQ3);
                 if (validQ3) {
                     dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
                 } else {
@@ -71,7 +77,7 @@ const Section1 = () => {
 
             case 'Q4':
                 const validQ4 = ((value >= 20) && (value <= 47));
-                setRequiredFieldQ4(!validQ4);
+                setRequiredFieldQ4(validQ4);
                 if (validQ4) {
                     dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
                 } else {
@@ -82,13 +88,9 @@ const Section1 = () => {
                 default:
                     Alert.alert("Alert", "Worng Input");
         }
-
     };
 
-
     const setQuestion5 = value => {
-
-
         dispatch(dispatch_option({ key: questionData[4].questionId, value: value }));
     };
     //Metadata
@@ -100,10 +102,6 @@ const Section1 = () => {
       * React Hooks
       */
 
-    // Load Question Data
-    useEffect(() => {
-        dispatch(section1QThunk({ jwt }))
-    }, [])
 
     /**
      * Call back functions
@@ -116,15 +114,18 @@ const Section1 = () => {
      * Navigation
      */
     const previous = () => {
-        navigation.navigate("HRAHome")
+         navigation.navigate("HRAHome")
     }
     const next = () => {
 
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
             Alert.alert("Alert", 'Please Answer All the Questions')
         }
+        else if(totalCheck.includes(false)){
+            Alert.alert("Alert", 'Please Answer All the Questions');
+        }
         else {
-            navigation.navigate("section2")
+            navigation.navigate("section2");
         }
     }
 
@@ -182,7 +183,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ1 ? 'red' : 'gray',
+                                    color: requiredFieldQ1 ? 'gray' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[0]?.question}
@@ -199,7 +200,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ2 ? 'red' : 'gray',
+                                    color: requiredFieldQ2 ? 'gray' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[1]?.question}
@@ -211,14 +212,12 @@ const Section1 = () => {
                                 // placeholderTextColor={'black'}
                                 placeholder="Height should be range of 120 to 219 cm"
                                 onEndEditing={(e) => inputCheck('Q2', e.nativeEvent.text)}
-
-
                             />
                         </View>
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ3 ? 'red' : 'gray',
+                                    color: requiredFieldQ3 ? 'gray' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[2]?.question}
@@ -237,7 +236,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ4 ? 'red' : 'gray',
+                                    color: requiredFieldQ4 ? 'gray' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[3]?.question}

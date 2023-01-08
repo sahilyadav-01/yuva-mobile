@@ -39,16 +39,14 @@ const Section7 = () => {
   const [requiredFieldQ7, setRequiredFieldQ7] = useState(false);
   const [requiredFieldQ8, setRequiredFieldQ8] = useState(false);
 
-
-
   /**
    * State
    */
   const answers = useSelector(state => state.section7.answers);
   const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
   const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
-  const questionData = useSelector(state => state.section7.rawQuestions);
-
+  const questionData = useSelector(state => state.section7.rawQuestions);  
+  
   const { jwt } = useSelector(state => state.auth.user);
 
   const setQuestion1 = value => {
@@ -168,25 +166,15 @@ const Section7 = () => {
 
 
   const next = () => {
+
     if ((answers.Q41 === '0') && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
            navigation.navigate("section8")
     }
-
-    else if (((answers.Q41 === '1') && (answers.Q42 === '1')) && ((answers.Q43 === '0') || ((answers.Q43 === '1') &&
-      (answers.Q44))) && ((answers.Q45 === '0') || ((answers.Q45 === '1') && ((answers.Q46 === '0') || ((answers.Q46 === '1') && answers.Q47 && answers.Q48))))
-      && ((answers.Q49 === '0') || ((answers.Q49 === '1') && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
-      navigation.navigate("section8")
-    }
-
-    else {
-
-      if ((Object.keys(answers).map((x) => { return answers[x] }).includes('')) && ((answers9A && answers10A).includes(''))) {
-        Alert.alert("Alert", 'Please Answer All the Questions')
-      }
-      else {
+    else if((answers.Q41 === '1') && (((answers.Q42 === '0') || (answers.Q42 === '1' && (((answers.Q43 === '0') || (answers.Q43 === '1' && ( (answers.Q44) && (requiredFieldQ4==false)))))))) && ((answers.Q45 === '0') || (answers.Q45 === '1' && (((answers.Q46 === '0') || (answers.Q46 === '1' && (((answers.Q47) && (requiredFieldQ7==false)) && ((answers.Q48) && (requiredFieldQ8==false)))))))) && ((answers.Q49 === '0') || (answers.Q49 === '1' && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))){     
         navigation.navigate("section8")
-      }
-
+    }
+    else {
+         Alert.alert("Alert", 'Please Answer All the Questions');
     }
   };
 

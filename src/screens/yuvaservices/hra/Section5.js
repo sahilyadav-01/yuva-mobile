@@ -54,7 +54,7 @@ const Section5 = () => {
     const reg = /^\d+$/;
     switch (id) {
       case 'Q2':
-        const validQ2 = ((reg.test(value) === true) && (value >= 12) && (value < section1Answers.Q2));
+        const validQ2 = ((reg.test(value) === true) && (value >= 12) && (value <= section1Answers.Q2));
         setRequiredFieldQ2(!validQ2);
         if (validQ2) {
           dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
@@ -71,7 +71,6 @@ const Section5 = () => {
           dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
         } else {
           Alert.alert("Alert", "Worng input");
-
         };
         break;
 
@@ -107,22 +106,16 @@ const Section5 = () => {
   const previous = () => {
     navigation.navigate('section4');
   };
+
   const next = () => {
-
     if ((answers.Q35 == '0') && (answers.Q38 == '0' || answers.Q38 == '1')) {
-
-      navigation.navigate("section6")
-
+      navigation.navigate("section6");
+    }
+    else if((answers.Q35=='1') && ((answers.Q36) && (requiredFieldQ2==false)) && ((answers.Q37) && (requiredFieldQ3==false)) && (answers.Q38 == '0' || answers.Q38 == '1')){
+      navigation.navigate("section6");
     }
     else {
-
-      if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
-        Alert.alert("Alert", 'Please Answer All the Questions')
-      }
-      else {
-        navigation.navigate("section6")
-      }
-
+        Alert.alert("Alert", 'Please Answer All the Questions');
     }
   };
 
