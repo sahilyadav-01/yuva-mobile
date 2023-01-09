@@ -111,11 +111,11 @@ const Section5 = () => {
     if ((answers.Q35 == '0') && (answers.Q38 == '0' || answers.Q38 == '1')) {
       navigation.navigate("section6");
     }
-    else if((answers.Q35=='1') && ((answers.Q36) && (requiredFieldQ2==false)) && ((answers.Q37) && (requiredFieldQ3==false)) && (answers.Q38 == '0' || answers.Q38 == '1')){
+    else if ((answers.Q35 == '1') && ((answers.Q36) && (requiredFieldQ2 == false)) && ((answers.Q37) && (requiredFieldQ3 == false)) && (answers.Q38 == '0' || answers.Q38 == '1')) {
       navigation.navigate("section6");
     }
     else {
-        Alert.alert("Alert", 'Please Answer All the Questions');
+      Alert.alert("Alert", 'Please Answer All the Questions');
     }
   };
 
@@ -128,16 +128,12 @@ const Section5 = () => {
             Health Risk Assesment
           </Text>
         </View>
-        <ForwardButton color="white" size={24} onPress={next} />
       </View>
       <View className="w-full">
-        <Progress.Bar progress={0.5} width={progressWidth} />
+        <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.5} width={progressWidth} height={12} />
       </View>
       <View className="h-full mx-[30px] my-[20px] ">
-        <Text className="text-xl">Section Five - Smoking Risk</Text>
-
-        {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
-        {/* Questionaire */}
+        <Text style={{ fontWeight: '500', }} className="text-xl text-[#1D2334]">Section Five - Smoking Risk</Text>
         <View className="h-[650px]">
           <ScrollView
             bounces={false}
@@ -176,7 +172,7 @@ const Section5 = () => {
                                                 /> */}
 
             <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
+              <Text className="text-base mb-[8px] text-[#1D2334]">
                 {questionData[0]?.question}
               </Text>
               <SelectList
@@ -201,7 +197,7 @@ const Section5 = () => {
               <View>
                 <View className="mt-[20px]">
                   <Text style={{
-                    color: requiredFieldQ2 ? 'red' : 'gray',
+                    color: requiredFieldQ2 ? 'red' : '#1D2334',
                   }}
                     className="text-base">{questionData[1]?.question}</Text>
                   <TextInput
@@ -216,7 +212,7 @@ const Section5 = () => {
 
                 <View className="mt-[20px]">
                   <Text style={{
-                    color: requiredFieldQ3 ? 'red' : 'gray',
+                    color: requiredFieldQ3 ? 'red' : '#1D2334',
                   }}
                     className="text-base">{questionData[2]?.question}</Text>
                   <TextInput
@@ -234,7 +230,7 @@ const Section5 = () => {
             )}
 
             <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
+              <Text className="text-base mb-[8px] text-[#1D2334]">
                 {questionData[3]?.question}
               </Text>
               <SelectList
@@ -255,27 +251,15 @@ const Section5 = () => {
                 search={false}
               />
             </View>
-
-            <View className="flex-row justify-between mt-[30px]">
+            <View className="mt-[30px]">
               <TouchableOpacity
-                style={{ backgroundColor: '#52608E' }}
-                className="w-[100px] rounded"
-                onPress={previous}>
-                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                <Text className="text-center pt-[15px] pb-[15px] text-white">
-                  Previous
-                </Text>
-                {/* </View> */}
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ backgroundColor: '#52608E' }}
-                className="w-[100px] rounded"
-                onPress={next}>
-                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                <Text className="text-center pt-[15px] pb-[15px] text-white">
-                  Next
-                </Text>
-                {/* </View> */}
+                style={{
+                  borderRadius: 8,
+                  backgroundColor: "#E68D36"
+                }}
+                onPress={next}
+              >
+                <Text className="text-center pt-[15px] pb-[15px] text-white ">Next</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>

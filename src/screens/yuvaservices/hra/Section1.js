@@ -131,23 +131,17 @@ const Section1 = () => {
 
     return (
         <SafeAreaView>
-
             <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
                 <View className="flex flex-row h-full items-center">
                     <Backbutton color="white" size={24} onPress={previous} />
                     <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
                 </View>
-                <ForwardButton color="white" size={24} onPress={next} />
             </View>
-            {/* <View className="bg-gray-300 h-[75px]">
-                <Text className="text-2xl text-center">Health Risk Assesment</Text>
-            </View> */}
-
             <View className="w-full">
-                <Progress.Bar progress={0.1} width={progressWidth} />
+                <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.1} width={progressWidth } height={12}/>
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
-                <Text className="text-xl">Section One - General</Text>
+                <Text style={{fontWeight: '500'}} className="text-xl text-[#1D2334]">Section One - General</Text>
 
                 {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
                 {/* Questionaire */}
@@ -183,7 +177,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ1 ? 'gray' : 'red',
+                                    color: requiredFieldQ1 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[0]?.question}
@@ -200,7 +194,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ2 ? 'gray' : 'red',
+                                    color: requiredFieldQ2 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[1]?.question}
@@ -217,7 +211,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ3 ? 'gray' : 'red',
+                                    color: requiredFieldQ3 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[2]?.question}
@@ -236,7 +230,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ4 ? 'gray' : 'red',
+                                    color: requiredFieldQ4 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[3]?.question}
@@ -253,17 +247,18 @@ const Section1 = () => {
                             />
                         </View>
                         <View className="mt-[20px]">
-                            <Text className="text-base mb-[8px]">
+                            <Text style={{ color: '#282A2E'}} className="text-base mb-[8px]">
                                 {questionData[4]?.question}
                             </Text>
                             <SelectList
-                                boxStyles={{
-                                    backgroundColor: 'white',
+                            
+                                 boxStyles={{
+                                    backgroundColor: '#ffffff',
                                     borderRadius: 8,
                                     height: 50,
                                     borderWidth: 1,
                                     borderColor: '#1D2334',
-                                }}
+                            }}
                                 placeholder={
                                     answers[questionData[4]?.questionId] === undefined
                                         ? answers[questionData[4]?.questionId] === ''
@@ -274,24 +269,14 @@ const Section1 = () => {
                                 search={false}
                             />
                         </View>
-                        <View className="flex-row justify-between mt-[30px]">
+                        <View className="mt-[30px]">
                             <TouchableOpacity
-                                style={{ backgroundColor: "#52608E" }}
-                                className="w-[100px] rounded"
-                                onPress={previous}
+                                style={{ 
+                                    borderRadius: 8,
+                                    backgroundColor: "#E68D36" }}
+                                    onPress={next}
                             >
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Previous</Text>
-                                {/* </View> */}
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{ backgroundColor: "#52608E" }}
-                                className="w-[100px] rounded"
-                                onPress={next}
-                            >
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
-                                {/* </View> */}
+                                <Text className="text-center pt-[15px] pb-[15px] text-white ">Next</Text>
                             </TouchableOpacity>
                         </View>
 

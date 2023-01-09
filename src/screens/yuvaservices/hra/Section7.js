@@ -45,8 +45,8 @@ const Section7 = () => {
   const answers = useSelector(state => state.section7.answers);
   const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
   const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
-  const questionData = useSelector(state => state.section7.rawQuestions);  
-  
+  const questionData = useSelector(state => state.section7.rawQuestions);
+
   const { jwt } = useSelector(state => state.auth.user);
 
   const setQuestion1 = value => {
@@ -168,13 +168,13 @@ const Section7 = () => {
   const next = () => {
 
     if ((answers.Q41 === '0') && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
-           navigation.navigate("section8")
+      navigation.navigate("section8")
     }
-    else if((answers.Q41 === '1') && (((answers.Q42 === '0') || (answers.Q42 === '1' && (((answers.Q43 === '0') || (answers.Q43 === '1' && ( (answers.Q44) && (requiredFieldQ4==false)))))))) && ((answers.Q45 === '0') || (answers.Q45 === '1' && (((answers.Q46 === '0') || (answers.Q46 === '1' && (((answers.Q47) && (requiredFieldQ7==false)) && ((answers.Q48) && (requiredFieldQ8==false)))))))) && ((answers.Q49 === '0') || (answers.Q49 === '1' && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))){     
-        navigation.navigate("section8")
+    else if ((answers.Q41 === '1') && (((answers.Q42 === '0') || (answers.Q42 === '1' && (((answers.Q43 === '0') || (answers.Q43 === '1' && ((answers.Q44) && (requiredFieldQ4 == false)))))))) && ((answers.Q45 === '0') || (answers.Q45 === '1' && (((answers.Q46 === '0') || (answers.Q46 === '1' && (((answers.Q47) && (requiredFieldQ7 == false)) && ((answers.Q48) && (requiredFieldQ8 == false)))))))) && ((answers.Q49 === '0') || (answers.Q49 === '1' && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
+      navigation.navigate("section8")
     }
     else {
-         Alert.alert("Alert", 'Please Answer All the Questions');
+      Alert.alert("Alert", 'Please Answer All the Questions');
     }
   };
 
@@ -187,13 +187,12 @@ const Section7 = () => {
             Health Risk Assesment
           </Text>
         </View>
-        <ForwardButton color="white" size={24} onPress={next} />
       </View>
       <View className="w-full">
-        <Progress.Bar progress={0.7} width={progressWidth} />
+        <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.7} width={progressWidth} height={12} />
       </View>
       <View className="h-full mx-[30px] my-[20px] ">
-        <Text className="text-xl">Section Seven-Current Medical Condition</Text>
+        <Text style={{ fontWeight: '500' }} className="text-xl text-[#1D2334]">Section Seven-Current Medical Condition</Text>
 
         {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
         {/* Questionaire */}
@@ -225,7 +224,7 @@ const Section7 = () => {
                                     }
                                 })} */}
             <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
+              <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
                 {questionData[0]?.question}
               </Text>
               <SelectList
@@ -248,7 +247,7 @@ const Section7 = () => {
             </View>
             {medicalConditionDoYouSufferFromAnyIllness ? (
               <View className="mt-[20px]">
-                <Text className="text-base mb-[8px]">
+                <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
                   {questionData[1]?.question}
                 </Text>
                 <SelectList
@@ -274,7 +273,7 @@ const Section7 = () => {
             )}
             {medicalConditionDiabetes ? (
               <View className="mt-[20px]">
-                <Text className="text-base mb-[8px]">
+                <Text className="text-base mb-[8px] text-[#1D2334]">
                   {questionData[2]?.question}
                 </Text>
                 <SelectList
@@ -302,7 +301,7 @@ const Section7 = () => {
               <View className="mt-[20px]">
                 <Text
                   style={{
-                    color: requiredFieldQ4 ? 'red' : 'gray',
+                    color: requiredFieldQ4 ? 'red' : '#1D2334',
                   }}
                   className="text-base">{questionData[3]?.question}</Text>
                 <TextInput
@@ -320,7 +319,7 @@ const Section7 = () => {
             )}
             {medicalConditionDoYouSufferFromAnyIllness ? (
               <View className="mt-[20px]">
-                <Text className="text-base mb-[8px]">
+                <Text className="text-base mb-[8px] text-[#1D2334]">
                   {questionData[4]?.question}
                 </Text>
                 <SelectList
@@ -346,7 +345,7 @@ const Section7 = () => {
             )}
             {medicalConditionHypertension ? (
               <View className="mt-[20px]">
-                <Text className="text-base mb-[8px]">
+                <Text className="text-base mb-[8px] text-[#1D2334]">
                   {questionData[5]?.question}
                 </Text>
                 <SelectList
@@ -375,7 +374,7 @@ const Section7 = () => {
                 <View className="mt-[20px]">
                   <Text
                     style={{
-                      color: requiredFieldQ7 ? 'red' : 'gray',
+                      color: requiredFieldQ7 ? 'red' : '#1D2334',
                     }}
                     className="text-base">{questionData[6]?.question}</Text>
                   <TextInput
@@ -391,7 +390,7 @@ const Section7 = () => {
                 <View className="mt-[20px]">
                   <Text
                     style={{
-                      color: requiredFieldQ8 ? 'red' : 'gray',
+                      color: requiredFieldQ8 ? 'red' : '#1D2334',
                     }}
                     className="text-base">{questionData[7]?.question}</Text>
                   <TextInput
@@ -411,7 +410,7 @@ const Section7 = () => {
             {medicalConditionDoYouSufferFromAnyIllness ? (
 
               <View className="mt-[20px]">
-                <Text className="text-base mb-[8px]">
+                <Text className="text-base mb-[8px] text-[#1D2334]">
                   {questionData[8]?.question}
                 </Text>
                 <SelectList
@@ -438,7 +437,7 @@ const Section7 = () => {
 
             {medicalConditionAnyCancer ? (
               <View className="mt-[20px]">
-                <Text className="text-base">{"Please specify"}</Text>
+                <Text className="text-base text-[#1D2334]">{"Please specify"}</Text>
                 <TextInput
                   style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
                   className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
@@ -452,7 +451,7 @@ const Section7 = () => {
               <></>
             )}
             <View className="mt-[20px]">
-              <Text className="text-base mb-[8px]">
+              <Text className="text-base mb-[8px] text-[#1D2334]">
                 {questionData[9]?.question}
               </Text>
               <SelectList
@@ -489,26 +488,15 @@ const Section7 = () => {
               <></>
             )}
 
-            <View className="flex-row justify-between mt-[30px]">
+            <View className="mt-[30px]">
               <TouchableOpacity
-                style={{ backgroundColor: '#52608E', marginBottom: '10%' }}
-                className="w-[100px] rounded"
-                onPress={previous}>
-                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                <Text className="text-center pt-[15px] pb-[15px] text-white">
-                  Previous
-                </Text>
-                {/* </View> */}
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ backgroundColor: '#52608E', marginBottom: '10%' }}
-                className="w-[100px] rounded"
-                onPress={next}>
-                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                <Text className="text-center pt-[15px] pb-[15px] text-white">
-                  Next
-                </Text>
-                {/* </View> */}
+                style={{
+                  borderRadius: 8,
+                  backgroundColor: "#E68D36"
+                }}
+                onPress={next}
+              >
+                <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
