@@ -51,6 +51,6 @@ editAppointment,
 checkIn,
 cancelAppointment,
 cancelAppointmentMessagBox,
-
+otp
 
 }}
