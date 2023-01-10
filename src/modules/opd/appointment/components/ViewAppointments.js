@@ -85,7 +85,7 @@ const ViewAppointments = () => {
                         />) : (
                         <AppointmentButton
                             name="Reschedule"
-                            color="#F2EFEA"
+                            color="#FFFFFF"
                             action={editAppointment}
                         />
 
