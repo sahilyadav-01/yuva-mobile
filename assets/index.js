@@ -10,6 +10,8 @@ import PREGNANT from './pregnant.png';
 import SEXUAL_REPRODUCTIVE_HEALTH from './sexual_reproductive_health.png';
 import WOMAN from './woman.png';
 import CHECK_CIRCLE from './check_circle.png';
+import EditIcon from './edit';
+import PlusIcon from './plus';
 
 const PNG = {
   AMICO,
@@ -27,7 +29,8 @@ const PNG = {
 };
 
 const SVG = {
-
+ PlusIcon: PlusIcon,
+ Edit:EditIcon
 }
 
 export {PNG, SVG};
