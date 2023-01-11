@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert, ToastAndroid } from 'react-native'
 import Backbutton from '../../../components/Backbutton'
 import { useNavigation } from '@react-navigation/core'
 import * as Progress from 'react-native-progress';
@@ -20,10 +20,16 @@ const Section1 = () => {
      */
     const navigation = useNavigation()
     const dispatch = useDispatch()
-    const [requiredFieldQ1, setRequiredFieldQ1] = useState(false);
-    const [requiredFieldQ2, setRequiredFieldQ2] = useState(false);
-    const [requiredFieldQ3, setRequiredFieldQ3] = useState(false);
-    const [requiredFieldQ4, setRequiredFieldQ4] = useState(false);
+    const [requiredFieldQ1, setRequiredFieldQ1] = useState(true);
+    const [requiredFieldQ2, setRequiredFieldQ2] = useState(true);
+    const [requiredFieldQ3, setRequiredFieldQ3] = useState(true);
+    const [requiredFieldQ4, setRequiredFieldQ4] = useState(true);
+    const totalCheck = [requiredFieldQ1, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4];
+
+  // Load Question Data
+  useEffect(() => {
+    dispatch(section1QThunk({ jwt }));
+}, [])
 
 
 
@@ -41,7 +47,7 @@ const Section1 = () => {
         switch (id) {
             case 'Q1':
                 const validQ1 = (regAge.test(value) === true) && ((value >= 12) && (value <= 100));
-                setRequiredFieldQ1(!validQ1);
+                setRequiredFieldQ1(validQ1);
                 if (validQ1) {
                     dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
                 } else {
@@ -51,7 +57,7 @@ const Section1 = () => {
 
             case 'Q2':
                 const validQ2 = ((value >= 120) && (value <= 219));
-                setRequiredFieldQ2(!validQ2);
+                setRequiredFieldQ2(validQ2);
                 if (validQ2) {
                     dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
                 } else {
@@ -61,7 +67,7 @@ const Section1 = () => {
 
             case 'Q3':
                 const validQ3 = ((value >= 20) && (value <= 200));
-                setRequiredFieldQ3(!validQ3);
+                setRequiredFieldQ3(validQ3);
                 if (validQ3) {
                     dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
                 } else {
@@ -71,7 +77,7 @@ const Section1 = () => {
 
             case 'Q4':
                 const validQ4 = ((value >= 20) && (value <= 47));
-                setRequiredFieldQ4(!validQ4);
+                setRequiredFieldQ4(validQ4);
                 if (validQ4) {
                     dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
                 } else {
@@ -82,13 +88,9 @@ const Section1 = () => {
                 default:
                     Alert.alert("Alert", "Worng Input");
         }
-
     };
 
-
     const setQuestion5 = value => {
-
-
         dispatch(dispatch_option({ key: questionData[4].questionId, value: value }));
     };
     //Metadata
@@ -100,10 +102,6 @@ const Section1 = () => {
       * React Hooks
       */
 
-    // Load Question Data
-    useEffect(() => {
-        dispatch(section1QThunk({ jwt }))
-    }, [])
 
     /**
      * Call back functions
@@ -116,37 +114,34 @@ const Section1 = () => {
      * Navigation
      */
     const previous = () => {
-        navigation.navigate("HRAHome")
+         navigation.navigate("HRAHome")
     }
     const next = () => {
 
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
             Alert.alert("Alert", 'Please Answer All the Questions')
         }
+        else if(totalCheck.includes(false)){
+            Alert.alert("Alert", 'Please Answer All the Questions');
+        }
         else {
-            navigation.navigate("section2")
+            navigation.navigate("section2");
         }
     }
 
     return (
         <SafeAreaView>
-
             <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
                 <View className="flex flex-row h-full items-center">
                     <Backbutton color="white" size={24} onPress={previous} />
                     <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
                 </View>
-                <ForwardButton color="white" size={24} onPress={next} />
             </View>
-            {/* <View className="bg-gray-300 h-[75px]">
-                <Text className="text-2xl text-center">Health Risk Assesment</Text>
-            </View> */}
-
             <View className="w-full">
-                <Progress.Bar progress={0.1} width={progressWidth} />
+                <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.1} width={progressWidth } height={12}/>
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
-                <Text className="text-xl">Section One - General</Text>
+                <Text style={{fontWeight: '500'}} className="text-xl text-[#1D2334]">Section One - General</Text>
 
                 {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
                 {/* Questionaire */}
@@ -182,7 +177,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ1 ? 'red' : 'gray',
+                                    color: requiredFieldQ1 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[0]?.question}
@@ -199,7 +194,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ2 ? 'red' : 'gray',
+                                    color: requiredFieldQ2 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[1]?.question}
@@ -211,14 +206,12 @@ const Section1 = () => {
                                 // placeholderTextColor={'black'}
                                 placeholder="Height should be range of 120 to 219 cm"
                                 onEndEditing={(e) => inputCheck('Q2', e.nativeEvent.text)}
-
-
                             />
                         </View>
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ3 ? 'red' : 'gray',
+                                    color: requiredFieldQ3 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[2]?.question}
@@ -237,7 +230,7 @@ const Section1 = () => {
                         <View className="mt-[20px]">
                             <Text
                                 style={{
-                                    color: requiredFieldQ4 ? 'red' : 'gray',
+                                    color: requiredFieldQ4 ? '#282A2E' : 'red',
                                 }}
                                 className="text-base mb-[8px]">
                                 {questionData[3]?.question}
@@ -254,17 +247,18 @@ const Section1 = () => {
                             />
                         </View>
                         <View className="mt-[20px]">
-                            <Text className="text-base mb-[8px]">
+                            <Text style={{ color: '#282A2E'}} className="text-base mb-[8px]">
                                 {questionData[4]?.question}
                             </Text>
                             <SelectList
-                                boxStyles={{
-                                    backgroundColor: 'white',
+                            
+                                 boxStyles={{
+                                    backgroundColor: '#ffffff',
                                     borderRadius: 8,
                                     height: 50,
                                     borderWidth: 1,
                                     borderColor: '#1D2334',
-                                }}
+                            }}
                                 placeholder={
                                     answers[questionData[4]?.questionId] === undefined
                                         ? answers[questionData[4]?.questionId] === ''
@@ -275,24 +269,14 @@ const Section1 = () => {
                                 search={false}
                             />
                         </View>
-                        <View className="flex-row justify-between mt-[30px]">
+                        <View className="mt-[30px]">
                             <TouchableOpacity
-                                style={{ backgroundColor: "#52608E" }}
-                                className="w-[100px] rounded"
-                                onPress={previous}
+                                style={{ 
+                                    borderRadius: 8,
+                                    backgroundColor: "#E68D36" }}
+                                    onPress={next}
                             >
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Previous</Text>
-                                {/* </View> */}
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={{ backgroundColor: "#52608E" }}
-                                className="w-[100px] rounded"
-                                onPress={next}
-                            >
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
-                                {/* </View> */}
+                                <Text className="text-center pt-[15px] pb-[15px] text-white ">Next</Text>
                             </TouchableOpacity>
                         </View>
 

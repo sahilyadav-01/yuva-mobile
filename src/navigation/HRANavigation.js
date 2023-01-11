@@ -11,6 +11,7 @@ import Section6 from '../screens/yuvaservices/hra/Section6';
 import Section7 from '../screens/yuvaservices/hra/Section7';
 import Section8 from '../screens/yuvaservices/hra/Section8';
 import Section9 from '../screens/yuvaservices/hra/Section9';
+import Section10 from '../screens/yuvaservices/hra/Section10';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,11 @@ const HRANavigation = () => {
       <Stack.Screen
         name="section9"
         component={Section9}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="section10"
+        component={Section10}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

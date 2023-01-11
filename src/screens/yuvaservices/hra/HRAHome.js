@@ -197,7 +197,7 @@ const HRAHome = () => {
         </View>
         <View>
         <ScrollView contentContainerStyle={{
-            paddingBottom: 300
+            paddingBottom: 400
           }}>
           {/* <View style={{boxShadow:"0px 0px 4px 4px rgba(0, 0, 0, 0.1);"}}className="h-[150px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]"> */}
           <View
@@ -208,20 +208,19 @@ const HRAHome = () => {
               shadowRadius: 4,
               elevation: 4,
             }}
-            className="h-[150px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]">
+            className="h-[135px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]">
             {/* wrapper */}
             <View className="flex flex-row pl-[14px] py-[18px]">
               <View className="items-center">
-                <Text className="w-[180px] leading-2 text-[16px]">
-                  Generate your Health Risk Assesment Today
+                <Text 
+                 style={{
+                  color: '#1D2334',
+                  fontWeight: 'bold',
+                  marginTop: 30
+              }}
+                  className="h-[100px] w-[180px] leading-2 text-[15px]">
+                  Generate your Health Risk Assement report today.
                 </Text>
-                <TouchableOpacity
-                  className="flex items-center justify-center h-[30px] w-[160px] bg-[#E68D36] rounded-[8px] mt-[26px]"
-                  onPress={goToSection1}>
-                  <Text className="text-[10px] text-white">
-                    Enter your Health Parameters
-                  </Text>
-                </TouchableOpacity>
               </View>
               {/* SVG */}
               <View className="ml-[20px]">
@@ -235,7 +234,6 @@ const HRAHome = () => {
           <View>
             <DownloadButton onPress={display} />
           </View>
-        
             <HRASectionContainer />
           </ScrollView>
         </View>
