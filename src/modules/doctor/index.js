@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react'
 import { View, Text, TextInput, FlatList, ScrollView } from 'react-native'
-import DoctorCard from '../../../../components/DoctorCard';
+import DoctorCard from '../../components/DoctorCard';
 import { Searchbar } from 'react-native-paper';
-import { doctorHooks } from '../../hooks/doctorHooks';
-import SearchLabel from '../../../../components/SearchLabel';
+import { useDoctor } from './hooks/useDoctor';
+import SearchLabel from '../../components/SearchLabel';
 import { styles } from './styles';
 
 
@@ -11,7 +11,7 @@ const DoctorScreen = () => {
     const {
         onChangeSearch,
         searchQuery,
-        data } = doctorHooks();
+        data } = useDoctor();
     return (
         <View className>
 
@@ -38,7 +38,7 @@ const DoctorScreen = () => {
                             address={item.address}
                             rating={item.rating}
                             exp={item.experience}
-                            img={item.img}
+                            ViewAppointmentHooks                   img={item.img}
                             qual={item.qual == undefined ? "MBBS" : item.qual}
                         />
                     })

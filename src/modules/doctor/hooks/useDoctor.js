@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchDoctorThunk } from "../../../store/reducers/DoctorSlice";
 
-export const doctorHooks=()=>{
+export const useDoctor=()=>{
  
     const dispatch = useDispatch();
  

@@ -1,6 +1,6 @@
 import React from 'react'
 import {SafeAreaView} from 'react-native';
-import CheckInAppointments from '../../../../modules/opd/appointment/components/CheckInAppointments';
+import CheckInAppointments from '../../../../modules/appointment/components/checkInAppointment';
 
 const CheckInAppointment=()=> {
 

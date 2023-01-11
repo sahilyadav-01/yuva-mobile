@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/core';
-import { allAppointmentThunk,cancelAppointmentThunk } from "../../../store/reducers/AppointmentSlice";
+import { allAppointmentThunk,cancelAppointmentThunk} from "../../../../../store/reducers/AppointmentSlice";
 import { useState } from "react";
 import {useSelector,useDispatch } from "react-redux";
 
 
-export const ViewAppointmentHooks=()=>{
+export const useView=()=>{
     
     const [cancelFlag, setCancelFlag] = useState(false);
     const navigation = useNavigation();

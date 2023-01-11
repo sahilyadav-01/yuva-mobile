@@ -6,7 +6,7 @@ import AppointmentButton from '../../../../components/AppointmentButton';
 import { getDate, getTime, appointmentStatus } from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
 import { useSelector } from "react-redux";
-import { ViewAppointmentHooks } from '../../hooks/ViewAppointmentHooks';
+import { useView} from './hooks/useView';
 const ViewAppointments = () => {
     const {
         id,
@@ -21,7 +21,7 @@ const ViewAppointments = () => {
       } = useSelector(state => state.appointment.currentAppointment);
     const cancelMessage = 'Are you sure you want to cancel ?';
     const { goBack, editAppointment,
-        checkIn, cancelAppointment, cancelAppointmentMessagBox ,cancelFlag} = ViewAppointmentHooks();
+        checkIn, cancelAppointment, cancelAppointmentMessagBox ,cancelFlag} = useView();
     return (
         <View className="flex mr-2 ml-2 h-[800px]">
             <GoBackCross className="mt-4" onPress={goBack} />

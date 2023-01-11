@@ -2,11 +2,11 @@ import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState,useEffect } from 'react';
 import { allAppointmentThunk,  rescheduleAppointmentThunk,
-    resetMessage } from '../../../store/reducers/AppointmentSlice';
-  import { getEpoch } from '../../../utils/utils'; 
+    resetMessage } from '../../../../../store/reducers/AppointmentSlice';
+  import { getEpoch } from '../../../../../utils/utils'; 
   import {Alert } from 'react-native';
 
-export const EditAppointmentHooks=()=>{
+export const useEdit=()=>{
 
 
     const {id } = useSelector(state => state.appointment.currentAppointment);

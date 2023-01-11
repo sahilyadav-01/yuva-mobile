@@ -6,7 +6,7 @@ import ActionButton from '../../../../components/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
 
 import MessageBox from '../../../../components/MessageBox';
-import { NewAppointmentHooks } from '../../hooks/NewAppointmentHooks';
+import { useNew } from './hooks/useNew'
 
 const NewAppointments = () => {
 
@@ -23,7 +23,7 @@ const NewAppointments = () => {
     handleDate,
     handleTime,
     date,
-    time}=NewAppointmentHooks();
+    time}=useNew();
  
   return (
     <ScrollView className="flex mr-2 ml-2 h-[800px]">

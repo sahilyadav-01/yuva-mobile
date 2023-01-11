@@ -6,7 +6,7 @@ import AppointmentInputText from '../../../../components/AppointmentInputText';
 import AppointmentButton from '../../../../components/AppointmentButton';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { useSelector } from 'react-redux';
-import { EditAppointmentHooks } from '../../hooks/EditAppointmentHooks';
+import { useEdit } from './hooks/useEdit';
 
 const EditAppointments = () => {
 
@@ -27,7 +27,7 @@ const {goBack,
     handleDate,
     handleTime,
     date,
-    time}=EditAppointmentHooks();
+    time}=useEdit();
   return (
     <View className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />

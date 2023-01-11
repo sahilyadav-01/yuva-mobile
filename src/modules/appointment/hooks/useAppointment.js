@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allAppointmentThunk } from "../../../store/reducers/AppointmentSlice";
 import { useNavigation } from '@react-navigation/core';
 
-export const appointmentHooks=()=>{
+export const useAppointment=()=>{
 
  
     const {jwt} = useSelector(state => state.auth.user);

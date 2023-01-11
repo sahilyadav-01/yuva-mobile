@@ -1,8 +1,6 @@
 import React from 'react';
 import { View} from 'react-native';
-
-
-import EditAppointments from '../../../../modules/opd/appointment/components/EditAppointments';
+import EditAppointments from '../../../../modules/appointment/components/editAppointment';
 
 const EditAppointment = () => {
  

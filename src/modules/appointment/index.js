@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text,  ScrollView} from 'react-native';
-import AppointmentCard from '../../../../components/AppointmentCard';
+import AppointmentCard from '../../components/AppointmentCard';
 import { styles } from './styles';
-import { appointmentHooks } from '../../hooks/appointmentHooks';
+import { useAppointment } from './hooks/useAppointment';
 
 const AppointmentScreen = () => {
     const {appointments,
-        homeRefresh}=appointmentHooks();
+        homeRefresh}=useAppointment();
   return (
     <View className="m-[10px]">
       <View className="flex-row items-center justify-between ml-2 mr-2 mt-[10px]">

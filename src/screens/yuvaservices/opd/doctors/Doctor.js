@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView} from 'react-native'
 import { styles } from "../../../styles"
-import DoctorScreen from '../../../../modules/opd/doctor/components'
+import DoctorScreen from '../../../../modules/doctor'
 
 
 
