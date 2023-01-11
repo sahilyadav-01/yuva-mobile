@@ -79,10 +79,8 @@ const Section9 = () => {
                 cancer: extra_questions_Q9A,
                 illness: extra_questions_Q10A
             }
-            dispatch(finalSubmission({ jwt, final_data })).then(() => { navigation.navigate("HRAHome") })
+            dispatch(finalSubmission({ jwt, final_data })).then(() => { navigation.navigate("section10") })
         }
-
-
     }
 
     return (
@@ -92,13 +90,12 @@ const Section9 = () => {
                     <Backbutton color="white" size={24} onPress={previous} />
                     <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
                 </View>
-                {/* <ForwardButton color="white" size={24} onPress={next}/> */}
             </View>
             <View className="w-full">
-                <Progress.Bar progress={1} width={progressWidth} />
+             <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6"  progress={1} width={progressWidth } height={12}/>
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
-                <Text className="text-xl">Section Nine - Sleep</Text>
+                <Text style={{fontWeight: '500'}} className="text-xl text-[#1D2334]">Section Nine - Sleep</Text>
 
                 {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
                 {/* Questionaire */}
@@ -132,15 +129,14 @@ const Section9 = () => {
                             }
                         })}
 
-                        <View className="flex-row w-full justify-center mt-[30px]">
+                        <View className=" mt-[30px]">
                             <TouchableOpacity
-                                style={{ backgroundColor: "#52608E" }}
-                                className="w-[300px] rounded"
+                                style={{
+                                    borderRadius: 8,
+                                     backgroundColor: "#E68D36" }}
                                 onPress={computeResult}
                             >
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Compute</Text>
-                                {/* </View> */}
+                                <Text className="text-center pt-[15px] pb-[15px] text-white">Generate My Report</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>
