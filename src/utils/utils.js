@@ -238,3 +238,12 @@ const downloadFile = (path, fileName) => {
     const {width, height} = Dimensions.get('screen');
     return {width, height};
   } 
+
+  export const getDateText = (date) => {
+    return (
+        date &&
+        `${date.getDate()} ${date.toLocaleString('default', {
+          month: 'long',
+        })} ${date.getFullYear()}`
+      );
+  }
