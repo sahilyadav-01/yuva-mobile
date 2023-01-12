@@ -37,7 +37,9 @@ export const useProfile = () => {
   }, [focused]);
 
   useEffect(() => {
-    if (state.profile.dataUpdated) jwt && dispatch(profileThunk({jwt}));
+    if (state.profile.dataUpdated) {
+      setEdit(false);
+      jwt && dispatch(profileThunk({jwt}));}
   }, [state.profile.dataUpdated]);
 
   useEffect(() => {
