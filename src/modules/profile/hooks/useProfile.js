@@ -48,6 +48,7 @@ export const useProfile = () => {
       setAddMembers(false);
       setRelationSelected(false);
       jwt && dispatch(getRelations({jwt}));
+      jwt && dispatch(getActiveRelations({jwt}));
     }
   }, [state.profile.relationAdded]);
 
