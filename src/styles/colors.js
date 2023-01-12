@@ -9,4 +9,8 @@ export const GREEN = '#319B4B';
 export const CYAN_BLUE_OPACITY = '#44576A77';
 export const PLACEHOLDER_TEXT_COLOR="#9D9FA4";
 export const RED_SHADE="#A53F2B";
+export const ORANGE_GREY = 'rgba(230, 141, 54, 0.4)';
+export const SHADOW = 'rgba(0,0,0,0.9)';
+export const FLASH_WHITE = '#E7EAED';
+export const PLATINUM = '#E4E2E2';
 

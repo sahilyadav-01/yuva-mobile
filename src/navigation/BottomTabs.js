@@ -7,6 +7,7 @@ import { BLACK, CYAN_BLUE, ORANGE } from '../styles/colors';
 import { HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE } from './constants';
 import { CENTER } from '../styles/constants';
 import { fonts } from '../styles/fonts';
+import ProfileScreen from '../screens/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -93,7 +94,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={PROFILE}
-        component={Settings}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => {
             return (

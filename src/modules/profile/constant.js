@@ -1,0 +1,10 @@
+export const NAME = 'Name';
+export const AGE = 'Age';
+export const RELATIONSHIP = 'Relationship';
+export const ADD_MEMBER = 'Add Member';
+export const ADD_MEMBERS = 'Add Members';
+export const SAVE_DETAILS = 'Save Details';
+export const EDIT_PROFILE = 'Edit Profile';
+export const AGE_ = 'Age - ';
+export const SELECT_GENDER = 'Select Gender';
+export const DD_MM_YYYY = 'DD-MM-YYYY';

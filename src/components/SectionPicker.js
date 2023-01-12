@@ -20,7 +20,7 @@ const SectionPicker = ({
   };
   return (
     <View className="mt-[20px]">
-      <Text style={headerStyle} className="text-base mb-[8px]" >{text}</Text>
+      <Text style={{color: '#282A2E'}} className="text-base mb-[8px]" >{text}</Text>
       <SelectList
         boxStyles={{
           backgroundColor: 'white',
