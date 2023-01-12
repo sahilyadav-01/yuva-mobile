@@ -22,6 +22,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {loginThunk, hideErrorBox} from '../../store/reducers/AuthSlice';
 import { styles } from '../styles';
+import { profileThunk } from '../../store/reducers/ProfileSlice';
 // import { StatusBar } from 'expo-status-bar';
 
 const LoginScreen = () => {
@@ -115,12 +116,12 @@ const LoginScreen = () => {
           })
       }
     }
-else{
-  if (loggedIn == 'loggedIn' && jwt) {
-         navigation.navigate('HomeScreen');
-}
-}
-
+  else{
+    if (loggedIn == 'loggedIn' && jwt) {
+      dispatch(profileThunk({jwt}));
+      navigation.navigate('HomeScreen');
+      }
+    }
   }, [status]);
 
   return (
