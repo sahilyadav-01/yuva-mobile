@@ -1,11 +1,11 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import AddDependentCard from './AddDependent';
-import Dependents from './Dependents';
+import AddDependentCard from './components/addDependent';
+import Dependents from './components/dependents';
 import {useProfile} from './hooks/useProfile';
 import styles from './style';
-import UserDetailsCard from './UserDetailsCard';
+import UserDetailsCard from './components/userDetailsCard';
 
 const Profile = () => {
   const data = [

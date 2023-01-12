@@ -1,9 +1,9 @@
 import React  from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import { DARK_BLUE } from '../../styles/colors';
-import { ADD_MEMBER, AGE, NAME, RELATIONSHIP } from './constant';
 import styles from './style';
+import { DARK_BLUE } from '../../../../styles/colors';
+import { ADD_MEMBER, AGE, NAME, RELATIONSHIP } from '../../constant';
 
 const AddDependentCard = ({
   addMembers,

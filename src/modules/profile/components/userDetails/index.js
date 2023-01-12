@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, TouchableOpacity, TextInput} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import {DARK_BLUE} from '../../styles/colors';
-import {getDateText} from '../../utils/utils';
-import {DD_MM_YYYY, SELECT_GENDER} from './constant';
+import {DD_MM_YYYY, SELECT_GENDER} from '../../constant';
 import styles from './style';
+import {DARK_BLUE} from '../../../../styles/colors';
+import {getDateText} from '../../../../utils/utils';
 
-function UserDetails({
+const UserDetails = ({
   setSelectedGender,
   gender,
   openPicker,
@@ -16,7 +16,7 @@ function UserDetails({
   edit,
   name,
   changeName,
-}) {
+}) => {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,
   });

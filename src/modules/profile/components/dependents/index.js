@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {AGE_} from './constant';
+import {AGE_} from '../../constant';
 import styles from './style';
 
-function Dependents({dependents}) {
+const Dependents = ({dependents}) => {
   const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender} = styles({
     disabled: false,
   });

@@ -12,8 +12,8 @@ import {
 
 export const useProfile = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
-  const jwt = state.auth.user.jwt ?? null;
+  const {profile, auth} = useSelector(state => state);
+  const jwt = auth.user.jwt ?? null;
   const focused = useIsFocused();
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -37,13 +37,14 @@ export const useProfile = () => {
   }, [focused]);
 
   useEffect(() => {
-    if (state.profile.dataUpdated) {
+    if (profile.dataUpdated) {
       setEdit(false);
-      jwt && dispatch(profileThunk({jwt}));}
-  }, [state.profile.dataUpdated]);
+      jwt && dispatch(profileThunk({jwt}));
+    }
+  }, [profile.dataUpdated]);
 
   useEffect(() => {
-    if (state.profile.relationAdded) {
+    if (profile.relationAdded) {
       setDependentAge('');
       setDependentName('');
       setDependentRelation('');
@@ -52,20 +53,20 @@ export const useProfile = () => {
       jwt && dispatch(getRelations({jwt}));
       jwt && dispatch(getActiveRelations({jwt}));
     }
-  }, [state.profile.relationAdded]);
+  }, [profile.relationAdded]);
 
   useEffect(() => {
-    if (state.profile.userDetails) {
-      setUserDetails(state.profile.userDetails);
-      setName(state.profile.userDetails.name);
-      state.profile.userDetails.dob
-        ? setDate(new Date(state.profile.userDetails.dob))
+    if (profile.userDetails) {
+      setUserDetails(profile.userDetails);
+      setName(profile.userDetails.name);
+      profile.userDetails.dob
+        ? setDate(new Date(profile.userDetails.dob))
         : null;
-      setGender(state.profile.userDetails.gender);
+      setGender(profile.userDetails.gender);
     }
-  }, [state.profile]);
+  }, [profile]);
 
-  const relationsData = state.profile.activeRelations.map((item, index) => {
+  const relationsData = profile.activeRelations.map((item, index) => {
     return {key: `${index + 1}`, value: item};
   });
 
@@ -94,12 +95,10 @@ export const useProfile = () => {
   };
 
   const addMemberToList = () => {
-    if(!date || !gender)
-    Alert.alert('Alert','Please save DOB and Gender')
-    else if(state.profile.activeRelations.length === 0)
-    Alert.alert('Alert','No active relations left')
-    else
-    setAddMembers(true);
+    if (!date || !gender) Alert.alert('Alert', 'Please save DOB and Gender details');
+    else if (profile.activeRelations.length === 0)
+      Alert.alert('Alert', 'No active relations left');
+    else setAddMembers(true);
   };
 
   const editDetails = () => setEdit(true);
@@ -123,19 +122,18 @@ export const useProfile = () => {
   const onDependentAgeChange = age => setDependentAge(age);
 
   const updateUserData = () => {
-    if(!date || !gender){
-      Alert.alert('Alert','Please fill the details');
-    }
-    else {
-    setUserDetails(null);
-    dispatch(
-      updateProfile({
-        jwt,
-        dob: Date.parse(date).toString(),
-        gender,
-        userDetails,
-      }),
-    );
+    if (!date || !gender) {
+      Alert.alert('Alert', 'Please fill the details');
+    } else {
+      setUserDetails(null);
+      dispatch(
+        updateProfile({
+          jwt,
+          dob: Date.parse(date).toString(),
+          gender,
+          userDetails,
+        }),
+      );
     }
   };
 
@@ -157,13 +155,13 @@ export const useProfile = () => {
     edit,
     gender,
     addMembers,
-    dependents: state.profile.relations,
+    dependents: profile.relations,
     date,
     picker,
     userDetails,
     name,
-    loading: state.profile.loading,
-    activeRelations: state.profile.activeRelations,
+    loading: profile.loading,
+    activeRelations: profile.activeRelations,
     relationSelected,
     relationsData,
   };
