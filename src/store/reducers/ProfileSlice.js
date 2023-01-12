@@ -43,8 +43,7 @@ export const getActiveRelations = createAsyncThunk(
 
 export const getRelations = createAsyncThunk(
   'profile/getRelations',
-  async ({jwt, userId}, {fulfillWithValue, rejectWithValue}) => {
-    const id = 7;
+  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const response = await axios.get(`${profileEndpoint}/employee/relation`, {
         headers: {
@@ -186,7 +185,7 @@ const profileSlice = createSlice({
     [updateProfile.pending]: state => {
       state.loading = true;
     },
-    [updateProfile.fulfilled]: (state) => {
+    [updateProfile.fulfilled]: state => {
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -203,7 +202,7 @@ const profileSlice = createSlice({
     [addRelation.pending]: state => {
       state.loading = true;
     },
-    [addRelation.fulfilled]: (state) => {
+    [addRelation.fulfilled]: state => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = true;
