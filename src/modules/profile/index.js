@@ -32,29 +32,15 @@ const Profile = () => {
     date,
     userDetails,
     name,
-    activeRelations,
+    setSelectedRelation,
+    onDependentAgeChange,
+    onDependentNameChange,
     relationSelected,
+    relationsData,
   } = useProfile();
 
-  const relationsData = activeRelations.map((item, index) => {
-    return {key: `${index + 1}`, value: item};
-  });
-
+  
   const {container} = styles({disabled: false});
-
-  let temporaryDetails = {name: '', age: '', gender: '', relation: ''};
-
-  const onAddMember = () => {
-    onAddMembersPress(temporaryDetails);
-    temporaryDetails = {name: '', age: '', gender: '', relation: ''};
-  };
-
-  const setSelectedRelation = arg => {
-    temporaryDetails['relation'] = relationsData.find(
-      item => arg.toString() === item.key,
-    ).value;
-    temporaryDetails['gender'] = 'Male';
-  };
 
   if (!userDetails) {
     return null;
@@ -78,9 +64,9 @@ const Profile = () => {
       />
       <Dependents dependents={dependents} />
       <AddDependentCard
-        onNameChange={text => (temporaryDetails['name'] = text)}
-        onAgeChange={age => (temporaryDetails['age'] = age)}
-        onAddMember={onAddMember}
+        onNameChange={onDependentNameChange}
+        onAgeChange={onDependentAgeChange}
+        onAddMember={onAddMembersPress}
         gender={gender}
         setSelectedRelation={setSelectedRelation}
         relationsData={relationsData}
