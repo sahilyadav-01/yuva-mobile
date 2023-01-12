@@ -6,9 +6,10 @@ import AppointmentButton from '../../../../components/AppointmentButton';
 import { getDate, getTime, appointmentStatus } from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
 import { useSelector } from "react-redux";
-import { useView} from './hooks/useView';
-import { CANCEL, CHECK, RESCHEDULE } from '../../constant';
+import { useView } from './hooks/useView';
+import { CANCEL, CHECK, RESCHEDULE, WAITING } from '../../constant';
 import { ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
+import { styles } from './styles';
 const ViewAppointments = () => {
     const {
         id,
@@ -20,23 +21,30 @@ const ViewAppointments = () => {
         slot,
         otp,
         hospitalName,
-      } = useSelector(state => state.appointment.currentAppointment);
+    } = useSelector(state => state.appointment.currentAppointment);
     const cancelMessage = 'Are you sure you want to cancel ?';
     const { goBack, editAppointment,
-        checkIn, cancelAppointment, cancelAppointmentMessagBox ,cancelFlag} = useView();
+        checkIn, cancelAppointment, cancelAppointmentMessagBox, cancelFlag } = useView();
     return (
         <View className="flex mr-2 ml-2 h-[800px]">
             <GoBackCross className="mt-4" onPress={goBack} />
-          
+
             <View className="mx-[10px] mt-[20px]">
-              
+
                 <View className="flex-row justify-between">
-                 
+
                     <View>
-                        <Text className="text-lg font-bold text-[#000000]">
+                        {status === 'CONFIRMED' ? (
+                            <Text className="text-lg font-bold text-[#319B4B]">
+                                {appointmentStatus(status)}
+                            </Text>
+                        ) : (<View> 
+                            <Text className="text-lg font-bold text-[#E68D36]">
                             {appointmentStatus(status)}
-                        </Text>
-                     
+                            </Text>
+                        <Text className="text-x mt-[20px] text-[#E68D36]">{WAITING}</Text>
+                        </View>)}
+
                         <View className="mt-[26px]">
                             <Text className="text-base font-semibold text-[#52608E]">
                                 Doctor - {doctorName}
@@ -69,9 +77,9 @@ const ViewAppointments = () => {
                     </View>
                 </View>
 
-                <View className="mt-[18px]">
+                <View  style={styles.description}>
                     <TextInput
-                      
+
                         value={description}
                         multiline={true}
                         editable={false}
