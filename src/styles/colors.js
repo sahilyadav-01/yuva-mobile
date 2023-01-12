@@ -7,3 +7,6 @@ export const INDIGO = '#2D354E';
 export const GREY = '#B7AC8F';
 export const GREEN = '#319B4B';
 export const CYAN_BLUE_OPACITY = '#44576A77';
+export const PLACEHOLDER_TEXT_COLOR="#9D9FA4";
+export const RED_SHADE="#A53F2B";
+

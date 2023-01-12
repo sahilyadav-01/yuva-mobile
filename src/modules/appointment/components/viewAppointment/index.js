@@ -7,6 +7,8 @@ import { getDate, getTime, appointmentStatus } from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
 import { useSelector } from "react-redux";
 import { useView} from './hooks/useView';
+import { CANCEL, CHECK, RESCHEDULE } from '../../constant';
+import { ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
 const ViewAppointments = () => {
     const {
         id,
@@ -79,20 +81,20 @@ const ViewAppointments = () => {
                 <View className="mt-[25px]">
                     {status === 'CONFIRMED' ? (
                         <AppointmentButton
-                            name="Check In"
-                            color="#E68D36"
+                            name={CHECK}
+                            color={ORANGE}
                             action={checkIn}
                         />) : (
                         <AppointmentButton
-                            name="Reschedule"
-                            color="#FFFFFF"
+                            name={RESCHEDULE}
+                            color={WHITE}
                             action={editAppointment}
                         />
 
                     )}
                     <AppointmentButton
-                        name="Cancel"
-                        color="#A53F2B"
+                        name={CANCEL}
+                        color={RED_SHADE}
                         action={cancelAppointment}
                     />
                 </View>

@@ -12,6 +12,7 @@ import WOMAN from './woman.png';
 import CHECK_CIRCLE from './check_circle.png';
 import THANK_DESIGN from './thank_you_design.png';
 import THANK_IMAGE from './thank_image.png'
+import VECTOR1 from './Vector1.png'
 
 const PNG = {
   AMICO,
@@ -26,7 +27,8 @@ const PNG = {
   SEXUAL_REPRODUCTIVE_HEALTH,
   WOMAN,
   CHECK_CIRCLE,
-  THANK_DESIGN
+  THANK_DESIGN,
+  VECTOR1
 };
 
 const SVG = {

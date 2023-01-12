@@ -4,9 +4,11 @@ import GoBackCross from '../../../../components/GoBackCross';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
-
+import {styles} from "./styles";
 import MessageBox from '../../../../components/MessageBox';
 import { useNew } from './hooks/useNew'
+import { BOOK_AN_APPOINTMENT, DESCRIPTION } from '../../constant';
+import { DARK_BLUE } from '../../../../styles/colors';
 
 const NewAppointments = () => {
 
@@ -28,15 +30,9 @@ const NewAppointments = () => {
   return (
     <ScrollView className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />
-      <Text className="text-bold text-lg ml-4">New Appointment</Text>
+      <Text className="text-bold text-lg ml-4 text-[#44576A]">{BOOK_AN_APPOINTMENT}</Text>
 
       <TextInput
-        style={{
-          backgroundColor: '#FFFFFF',
-          borderWidth: 1,
-          borderRadius: 8,
-          heigth: 50,
-        }}
         className="h-[50px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1 text-sm"
         placeholder={name == undefined || '' ? 'Doctor' : name}
         editable={false}
@@ -44,7 +40,6 @@ const NewAppointments = () => {
 
       <TextInput
         multiline={true}
-        style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
         className="h-[50px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1"
         placeholder={
           specialization == undefined || '' ? 'Specialization' : specialization
@@ -53,11 +48,12 @@ const NewAppointments = () => {
       />
 
       <TextInput
-        multiline={true}
-        style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
-        className="h-[100px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1"
-        placeholder="Description"
+      style={styles.lineStyle}
+         multiline={true}
+        className="h-[100px] mr-[30px] ml-[30px] mt-[20px] "
+        placeholder={DESCRIPTION}
         onChangeText={onChangeDescription}
+        
       />
 
       {/* Date */}
@@ -67,9 +63,9 @@ const NewAppointments = () => {
           type="date"
           value={date}
           onChangeDate={handleDate}
-          style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
-          selectionColor="#1D2334"
-          theme={{ colors: { text: 'black' } }}
+          style={styles.dateTimePicker}
+          selectionColor={DARK_BLUE}
+          theme={styles.theme}
           minimumDate={new Date()}
         />
       </View>
@@ -80,9 +76,9 @@ const NewAppointments = () => {
           type="time"
           value={time}
           onChangeDate={handleTime}
-          style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 8 }}
-          selectionColor="#1D2334"
-          theme={{ colors: { text: 'black' } }}
+           style={styles.dateTimePicker}
+          selectionColor={DARK_BLUE}
+          theme={styles.theme}
         />
       </View>
 

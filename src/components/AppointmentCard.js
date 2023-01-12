@@ -56,7 +56,7 @@ const AppointmentCard = ({
           <View className="flex my-[10px] mx-[10px]">
             {/* Doctor */}
             <View className="flex-row justify-between">
-              <Text className="text-[#E68D36] text-base">
+              <Text className="text-[#319B4B] text-base">
                 {appointmentStatus(status)}
               </Text>
               <Text className="text-[#E68D36] text-sm">{doctorName}</Text>

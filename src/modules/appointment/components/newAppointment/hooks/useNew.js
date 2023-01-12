@@ -1,12 +1,10 @@
 
-
 import { useNavigation } from '@react-navigation/core';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEpoch } from "../../../../../utils/utils";
-import { resetMessage } from "../../../../../store/reducers/AppointmentSlice";
 import { Alert } from 'react-native';
-import { newAppointmentThunk, allAppointmentThunk } from "../../../../../store/reducers/AppointmentSlice";
+import { newAppointmentThunk, allAppointmentThunk,resetMessage } from "../../../../../store/reducers/AppointmentSlice";
 
 export const useNew=()=> {
     const [signupFlag, setSignupFlag] = useState(false);

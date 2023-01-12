@@ -8,9 +8,11 @@ export const styles = StyleSheet.create({
         paddingBottom:60
     },
     search:{
-        backgroundColor:"#FAEADB",
+        backgroundColor:"#F2EFEA",
         color:"#52608E",
         marginTop:10,
         fontSize:12
+    },
+    theme:{colors: { text: "black" }
     }
 })

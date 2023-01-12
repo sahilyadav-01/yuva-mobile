@@ -7,6 +7,9 @@ import AppointmentButton from '../../../../components/AppointmentButton';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { useSelector } from 'react-redux';
 import { useEdit } from './hooks/useEdit';
+import { DOCTOR, RESCHEDULE_APPOINTMENT } from '../../constant';
+import { styles } from './styles';
+import { DARK_BLUE } from '../../../../styles/colors';
 
 const EditAppointments = () => {
 
@@ -31,24 +34,19 @@ const {goBack,
   return (
     <View className="flex mr-2 ml-2 h-[800px]">
       <GoBackCross className="mt-4" onPress={goBack} />
-      <Text className="text-bold text-lg ml-4">Reschedule Appointment</Text>
-      <AppointmentInput text="Doctor" defValue={doctorName} />
-      <AppointmentInput text="Specialization" defValue={speciality} />
-      <AppointmentInputText text="Description" defValue={description} />
+      <Text className="text-bold text-lg ml-4">{RESCHEDULE_APPOINTMENT}</Text>
+      <AppointmentInput text={DOCTOR} defValue={doctorName} />
+      <AppointmentInput text={SPECIALIZATION} defValue={speciality} />
+      <AppointmentInputText text={DESCRIPTION} defValue={description} />
       <View className="mt-[10px] mx-[15px]">
         <Text>Date</Text>
         <DateTimePicker
           type="date"
           value={date}
           onChangeDate={handleDate}
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderWidth: 1,
-            borderRadius: 8,
-            height: 45,
-          }}
-          selectionColor="#1D2334"
-          theme={{ colors: { text: 'black' } }}
+          style={styles.dateTimePicker}
+          selectionColor={DARK_BLUE}
+          theme={styles.theme}
         />
       </View>
 
@@ -58,21 +56,16 @@ const {goBack,
           type="time"
           value={time}
           onChangeDate={handleTime}
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderWidth: 1,
-            borderRadius: 8,
-            height: 45,
-          }}
-          selectionColor="#1D2334"
-          theme={{ colors: { text: 'black' } }}
+          style={styles.dateTimePicker}
+          selectionColor={DARK_BLUE}
+          theme={styles.theme}
         />
       </View>
 
       <View className="">
         <AppointmentButton
           name="Save"
-          color="#E68D36"
+          color={ORANGE}
           action={saveAppointment}
         />
        

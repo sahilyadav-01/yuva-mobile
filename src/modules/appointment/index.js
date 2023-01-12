@@ -1,43 +1,40 @@
 import React from 'react';
-import {View, Text,  ScrollView} from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import AppointmentCard from '../../components/AppointmentCard';
 import { styles } from './styles';
 import { useAppointment } from './hooks/useAppointment';
 
-const AppointmentScreen = () => {
-    const {appointments,
-        homeRefresh}=useAppointment();
+const Appointment = () => {
+  const { appointments,
+    homeRefresh } = useAppointment();
+  const renderItem = ({ item, index }) => {
+    return (
+      <AppointmentCard
+        key={item.id}
+        id={item.id}
+        doctorName={item.doctorName}
+        address={item.address}
+        status={item.status}
+        speciality={item.speciality}
+        description={item.description}
+        slot={item.slot}
+        otp={item.otp}
+        hospitalName={item.hospitalName}
+      />
+    );
+  }
   return (
     <View className="m-[10px]">
-      <View className="flex-row items-center justify-between ml-2 mr-2 mt-[10px]">
-        <Text className="text-bold  text-xl">Appointments</Text>
-      </View>
-
       <View className=" mt-[10px]" >
-        <ScrollView
-          bounces={false}
-          style={styles.contentContainerStyle}
-          showsVerticalScrollIndicator={false}>
-          {appointments.map(item => {
-            return (
-              <AppointmentCard
-                key={item.id}
-                id={item.id}
-                doctorName={item.doctorName}
-                address={item.address}
-                status={item.status}
-                speciality={item.speciality}
-                description={item.description}
-                slot={item.slot}
-                otp={item.otp}
-                hospitalName={item.hospitalName}
-              />
-            );
-          })}
-        </ScrollView>
+        <FlatList
+          renderItem={renderItem}
+          data={appointments}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+        />
       </View>
     </View>
   );
 };
 
-export default AppointmentScreen;
+export default Appointment;

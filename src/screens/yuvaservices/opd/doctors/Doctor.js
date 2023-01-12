@@ -1,17 +1,17 @@
 import React from 'react'
 import { SafeAreaView} from 'react-native'
 import { styles } from "../../../styles"
-import DoctorScreen from '../../../../modules/doctor'
+import Doctor from '../../../../modules/doctor'
 
 
 
-const Doctor = () => {
+const DoctorScreen = () => {
 
     return (
         <SafeAreaView  style={styles.container} >
-            <DoctorScreen />
+            <Doctor/>
         </SafeAreaView>
     )
 }
 
-export default Doctor
+export default DoctorScreen
