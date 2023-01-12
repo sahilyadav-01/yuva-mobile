@@ -8,8 +8,7 @@ import { ERROR_MESSAGE } from "../constant";
 export const useChat = () => {
   const [error, setError] = useState(false);
   const navigation = useNavigation();
-  const {user} = useSelector(state => state.auth);
-
+  const {profile} = useSelector(state => state.profile);
   const goBack = () => {
     navigation.goBack();
   };
@@ -28,11 +27,10 @@ export const useChat = () => {
   }, [error]);
   const onPressChat = () => {
     var freshchatUser = new FreshchatUser();
-    freshchatUser.firstName = user?.name;
-    // freshchatUser.lastName = "Doe";
-    // freshchatUser.email = "johndoe@dead.man";
-    // freshchatUser.phoneCountryCode = "+91";
-    // freshchatUser.phone = "1234234123";
+    freshchatUser.firstName = profile?.name;
+    freshchatUser.email = profile?.email;
+    freshchatUser.phoneCountryCode = '+91';
+    freshchatUser.phone = profile?.number;
     Freshchat.setUser(freshchatUser, (error) =>
     {
       setError(true);
