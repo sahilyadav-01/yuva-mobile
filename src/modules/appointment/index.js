@@ -24,9 +24,9 @@ const Appointment = () => {
     );
   }
   return (
-    <View className="m-[10px]">
-      <View className=" mt-[10px]" >
-        <FlatList
+    <View style={styles.contentContainerStyle}>
+      <View >
+        <FlatList    
           renderItem={renderItem}
           data={appointments}
           keyExtractor={(item) => item.id}
