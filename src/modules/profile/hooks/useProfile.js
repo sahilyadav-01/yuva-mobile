@@ -4,7 +4,7 @@ import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   addRelation,
-  getProfile,
+  profileThunk,
   getActiveRelations,
   updateProfile,
   getRelations,
@@ -30,14 +30,14 @@ export const useProfile = () => {
 
   useEffect(() => {
     navigation.addListener('focus', () => {
-      jwt && dispatch(getProfile({jwt}));
+      jwt && dispatch(profileThunk({jwt}));
       jwt && dispatch(getRelations({jwt}));
       jwt && dispatch(getActiveRelations({jwt}));
     });
   }, [focused]);
 
   useEffect(() => {
-    if (state.profile.dataUpdated) jwt && dispatch(getProfile({jwt}));
+    if (state.profile.dataUpdated) jwt && dispatch(profileThunk({jwt}));
   }, [state.profile.dataUpdated]);
 
   useEffect(() => {

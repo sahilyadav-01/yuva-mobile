@@ -4,8 +4,8 @@ import {SERVER} from '../../utils/utils';
 
 const profileEndpoint = 'http://' + SERVER + ':8080/api/v1/yuva';
 
-export const getProfile = createAsyncThunk(
-  'profile/getProfile',
+export const profileThunk = createAsyncThunk(
+  'profile/profileThunk',
   async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const response = await axios.get(`${profileEndpoint}/profile`, {
@@ -130,12 +130,12 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   extraReducers: {
-    [getProfile.pending]: state => {
+    [profileThunk.pending]: state => {
       state.loading = true;
       state.apiError = false;
       state.apiErrorMessage = '';
     },
-    [getProfile.fulfilled]: (state, {payload}) => {
+    [profileThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.profile = action.payload.data;
       state.userDetails = payload.data.data;
@@ -143,12 +143,12 @@ const profileSlice = createSlice({
       state.apiErrorMessage = '';
       state.dataUpdated = false;
     },
-    [getProfile.rejected]: (state, {payload}) => {
+    [profileThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
       state.dataUpdated = false;
-      state.apiErrorMessage = action.payload.message;
+      state.apiErrorMessage = payload.message;
       state.status = false;
     },
     [getRelations.pending]: state => {
@@ -165,7 +165,7 @@ const profileSlice = createSlice({
       state.apiError = true;
       state.loading = false;
       state.relationAdded = false;
-      state.apiErrorMessage = action.payload.message;
+      state.apiErrorMessage = payload.message;
       state.status = false;
     },
     [getActiveRelations.pending]: state => {
@@ -180,13 +180,13 @@ const profileSlice = createSlice({
     [getActiveRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = action.payload.message;
+      state.apiErrorMessage = payload.message;
       state.status = false;
     },
     [updateProfile.pending]: state => {
       state.loading = true;
     },
-    [updateProfile.fulfilled]: (state, {payload}) => {
+    [updateProfile.fulfilled]: (state) => {
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -197,13 +197,13 @@ const profileSlice = createSlice({
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
-      state.apiErrorMessage = action.payload.message;
+      state.apiErrorMessage = payload.message;
       state.status = false;
     },
     [addRelation.pending]: state => {
       state.loading = true;
     },
-    [addRelation.fulfilled]: (state, {payload}) => {
+    [addRelation.fulfilled]: (state) => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = true;
@@ -212,7 +212,7 @@ const profileSlice = createSlice({
     [addRelation.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = action.payload.message;
+      state.apiErrorMessage = payload.message;
       state.status = false;
     },
   },
