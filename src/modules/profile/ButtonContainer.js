@@ -5,12 +5,12 @@ import styles from './style';
 import {WHITE} from '../../styles/colors';
 import {SVG} from '../../../assets';
 
-const ButtonContainer = ({edit, addMemberToList, addMembers, editDetails}) => {
+const ButtonContainer = ({edit, addMemberToList, addMembers, editDetails, updateUserData}) => {
   const {addMembersButton, saveDetailsButton, saveButtonText, addIconStyle} =
     styles({disabled: false});
   return edit ? (
     <>
-      <TouchableOpacity style={saveDetailsButton}>
+      <TouchableOpacity onPress={updateUserData} style={saveDetailsButton}>
         <Text style={saveButtonText}>{SAVE_DETAILS}</Text>
       </TouchableOpacity>
       <TouchableOpacity

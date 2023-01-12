@@ -6,15 +6,25 @@ import {getDateText} from '../../utils/utils';
 import {DD_MM_YYYY, SELECT_GENDER} from './constant';
 import styles from './style';
 
-function UserDetails({setSelectedGender, gender, openPicker, data, date}) {
+function UserDetails({
+  setSelectedGender,
+  gender,
+  openPicker,
+  data,
+  date,
+  userDetails,
+  edit,
+  name,
+  changeName
+}) {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,
   });
   const mockData = {
-    email: 'abhishek.kumar@gmail.com',
-    phoneNumber: '9999999999',
-    name: 'Abhishek Kumar',
-    organisation: 'Nineleaps Technology Solutions Pvt Ltd',
+    email: userDetails.email,
+    phoneNumber: userDetails.number,
+    name: userDetails.name,
+    organisation: userDetails.companyName,
   };
   return (
     <>
@@ -29,26 +39,44 @@ function UserDetails({setSelectedGender, gender, openPicker, data, date}) {
         editable={false}
         style={textInputStyle}
       />
-      <>
-        <SelectList
-          setSelected={arg => setSelectedGender(arg, data)}
-          search={false}
-          data={data}
-          placeholder={SELECT_GENDER}
-          boxStyles={dropdownBoxStyle}
-          inputStyles={gender ? {color: DARK_BLUE} : undefined}
-        />
-        <View style={separatorStyle} />
-      </>
-      <TouchableOpacity onPress={openPicker}>
+      {!edit ? (
         <TextInput
-          placeholder={DD_MM_YYYY}
-          value={getDateText(date)}
+          value={gender}
           editable={false}
           style={textInputStyle}
+          placeholder={SELECT_GENDER}
         />
-      </TouchableOpacity>
-      <TextInput value={mockData.name} style={textInputStyle} />
+      ) : (
+        <>
+          <SelectList
+            setSelected={arg => setSelectedGender(arg, data)}
+            search={false}
+            data={data}
+            placeholder={gender ?? SELECT_GENDER}
+            boxStyles={dropdownBoxStyle}
+            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+          />
+          <View style={separatorStyle} />
+        </>
+      )}
+      {!edit ? (
+        <TextInput
+          value={getDateText(new Date(userDetails.dob))}
+          editable={false}
+          style={textInputStyle}
+          placeholder={DD_MM_YYYY}
+        />
+      ) : (
+        <TouchableOpacity onPress={openPicker}>
+          <TextInput
+            placeholder={DD_MM_YYYY}
+            value={getDateText(date)}
+            editable={false}
+            style={textInputStyle}
+          />
+        </TouchableOpacity>
+      )}
+      <TextInput onChangeText={changeName} value={name} style={textInputStyle} editable={edit}/>
       <TextInput
         value={mockData.organisation}
         editable={false}

@@ -26,12 +26,17 @@ const Profile = () => {
     editDetails,
     openPicker,
     closePicker,
+    changeName,
+    updateUserData,
     picker,
     edit,
     gender,
     addMembers,
     dependents,
     date,
+    userDetails,
+    name,
+    loading
   } = useProfile();
 
   const {container} = styles({disabled: false});
@@ -50,6 +55,9 @@ const Profile = () => {
     temporaryDetails['gender'] = 'Male';
   };
 
+  if (!userDetails) {
+    return null;
+  }
   return (
     <ScrollView style={container}>
       <UserDetailsCard
@@ -62,6 +70,10 @@ const Profile = () => {
         editDetails={editDetails}
         data={data}
         date={date}
+        userDetails={userDetails}
+        name={name}
+        changeName={changeName}
+        updateUserData={updateUserData}
       />
       <Dependents dependents={dependents} />
       <AddDependentCard
