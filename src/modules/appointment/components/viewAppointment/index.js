@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useView } from './hooks/useView';
 import { CANCEL, CHECK, RESCHEDULE, WAITING } from '../../constant';
 import { ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
+import { styles } from './styles';
 const ViewAppointments = () => {
     const {
         id,
@@ -76,7 +77,7 @@ const ViewAppointments = () => {
                     </View>
                 </View>
 
-                <View className="mt-[18px] mb-[80px]">
+                <View  style={styles.description}>
                     <TextInput
 
                         value={description}
