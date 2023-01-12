@@ -136,7 +136,7 @@ const profileSlice = createSlice({
     },
     [profileThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      state.profile = action.payload.data;
+      state.profile = payload.data;
       state.userDetails = payload.data.data;
       state.apiError = false;
       state.apiErrorMessage = '';
