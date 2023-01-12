@@ -9,3 +9,4 @@ export const BOOK_AN_APPOINTMENT=" Book An Appointment";
 export const CANCEL="cancel";
 export const RESCHEDULE ="Reschedule";
 export const CHECK="Check In";
+export const WAITING="Waiting for Confirmation From Hospital...";
