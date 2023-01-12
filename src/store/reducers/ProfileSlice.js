@@ -43,18 +43,15 @@ export const getActiveRelations = createAsyncThunk(
 
 export const getRelations = createAsyncThunk(
   'profile/getRelations',
-  async ({jwt,userId}, {fulfillWithValue, rejectWithValue}) => {
+  async ({jwt, userId}, {fulfillWithValue, rejectWithValue}) => {
     const id = 7;
     try {
-      const response = await axios.get(
-        `${profileEndpoint}/employee/relation`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
+      const response = await axios.get(`${profileEndpoint}/employee/relation`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwt}`,
         },
-      );
+      });
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -109,9 +106,20 @@ export const addRelation = createAsyncThunk(
 );
 
 const initialState = {
-  loading: true,
-  error: null,
+  profile: {
+    companyName: '',
+    dob: '',
+    email: '',
+    gender: '',
+    name: '',
+    number: '',
+  },
   userDetails: null,
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  id: '',
+  status: false,
   activeRelations: [],
   relations: [],
   dataUpdated: false,
@@ -121,79 +129,93 @@ const initialState = {
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
   extraReducers: {
     [getProfile.pending]: state => {
       state.loading = true;
+      state.apiError = false;
+      state.apiErrorMessage = '';
     },
     [getProfile.fulfilled]: (state, {payload}) => {
-      state.userDetails = payload.data.data;
-      state.error = null;
-      state.loadUserData = false;
       state.loading = false;
+      state.profile = action.payload.data;
+      state.userDetails = payload.data.data;
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.dataUpdated = false;
     },
     [getProfile.rejected]: (state, {payload}) => {
-      state.error = payload;
+      state.apiError = true;
       state.userDetails = null;
-      state.loadUserData = false;
       state.loading = false;
       state.dataUpdated = false;
+      state.apiErrorMessage = action.payload.message;
+      state.status = false;
     },
     [getRelations.pending]: state => {
       state.loading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
       state.relations = payload.data.data;
-      state.error = null;
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
     },
     [getRelations.rejected]: (state, {payload}) => {
-      state.error = payload;
+      state.apiError = true;
       state.loading = false;
       state.relationAdded = false;
+      state.apiErrorMessage = action.payload.message;
+      state.status = false;
     },
     [getActiveRelations.pending]: state => {
       state.loading = true;
     },
     [getActiveRelations.fulfilled]: (state, {payload}) => {
       state.activeRelations = payload.data.data;
-      state.error = null;
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.loading = false;
     },
     [getActiveRelations.rejected]: (state, {payload}) => {
-      state.error = payload;
+      state.apiError = true;
       state.loading = false;
+      state.apiErrorMessage = action.payload.message;
+      state.status = false;
     },
     [updateProfile.pending]: state => {
       state.loading = true;
     },
     [updateProfile.fulfilled]: (state, {payload}) => {
       state.userDetails = null;
-      state.error = null;
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.loading = true;
       state.dataUpdated = true;
     },
     [updateProfile.rejected]: (state, {payload}) => {
-      state.error = payload;
+      state.apiError = true;
       state.userDetails = null;
       state.loading = false;
+      state.apiErrorMessage = action.payload.message;
+      state.status = false;
     },
     [addRelation.pending]: state => {
       state.loading = true;
     },
     [addRelation.fulfilled]: (state, {payload}) => {
-      state.error = null;
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.loading = true;
       state.relationAdded = true;
     },
     [addRelation.rejected]: (state, {payload}) => {
-      state.error = payload;
+      state.apiError = true;
       state.loading = false;
+      state.apiErrorMessage = action.payload.message;
+      state.status = false;
     },
   },
 });
 
-export const {action} = profileSlice.actions;
 export default profileSlice.reducer;
