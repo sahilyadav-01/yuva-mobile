@@ -7,7 +7,7 @@ const AppointmentButton = ({color, name, action, disable}) => {
         <TouchableOpacity 
             onPress={action}
             disabled={disable === undefined ? false:disable}
-            className="flex items-center justify-center h-[50px] mx-[30px] mt-[20px] shadow-xl rounded"
+            className="flex items-center justify-center h-[48px] mx-[5px] mt-[20px] shadow-xl rounded"
             style={{backgroundColor:color}}
         >
             <Text>{name}</Text>

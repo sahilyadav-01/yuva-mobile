@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Backbutton from '../components/Backbutton';
 import {CurrentRenderContext, useNavigation} from '@react-navigation/native';
-import Doctor from '../screens/yuvaservices/opd/doctors/Doctor';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import AppointmentNav from './AppointmentNav';
+import DoctorScreen from '../screens/yuvaservices/opd/doctors/Doctor';
 // import Entypo from 'react-native-vector-icons/Entypo';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Tab = createMaterialTopTabNavigator();
 
 const OPDNavigation = () => {
@@ -23,7 +22,7 @@ const OPDNavigation = () => {
         swipeEnabled: true, // fixes a bug in react navigation
         lazy: false, // fixes a bug in react navigation
       }}>
-      <Tab.Screen name="Doctor" component={Doctor} />
+      <Tab.Screen name="Doctor" component={DoctorScreen} />
       <Tab.Screen name="Appointments" component={AppointmentNav} />
     </Tab.Navigator>
   );
