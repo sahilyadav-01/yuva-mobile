@@ -15,7 +15,7 @@ function UserDetails({
   userDetails,
   edit,
   name,
-  changeName
+  changeName,
 }) {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,

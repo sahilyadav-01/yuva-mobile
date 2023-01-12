@@ -9,10 +9,11 @@ const AddDependentCard = ({
   addMembers,
   relationsData,
   setSelectedRelation,
-  gender,
   onAddMember,
   onNameChange,
   onAgeChange,
+  onSelect,
+  relationSelected
 }) => {
   const {
     scrollViewContainer,
@@ -43,7 +44,8 @@ const AddDependentCard = ({
             data={relationsData}
             placeholder={RELATIONSHIP}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            inputStyles={{color: relationSelected ? DARK_BLUE : undefined}}
+            onSelect={onSelect}
           />
           <View style={separatorStyle} />
         </>

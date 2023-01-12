@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
+import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProfile, updateProfile} from '../../../store/reducers/ProfileSlice';
-import {getDateText} from '../../../utils/utils';
+import {addRelation, getProfile, getActiveRelations, updateProfile, getRelations} from '../../../store/reducers/ProfileSlice';
 
 export const useProfile = () => {
   const dispatch = useDispatch();
@@ -13,17 +13,24 @@ export const useProfile = () => {
   const [picker, setPicker] = useState(false);
   const [edit, setEdit] = useState(false);
   const [addMembers, setAddMembers] = useState(false);
-  const [dependents, setDependents] = useState([]);
+  const [relationSelected, setRelationSelected] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     jwt && dispatch(getProfile({jwt}));
+    jwt && dispatch(getRelations({jwt}));
+    jwt && dispatch(getActiveRelations({jwt}));
   }, []);
 
   useEffect(() => {
     if(state.profile.dataUpdated)
     jwt && dispatch(getProfile({jwt}));
   } ,[state.profile.dataUpdated])
+
+  useEffect(() => {
+    if(state.profile.relationAdded)
+    jwt && dispatch(getRelations({jwt}));
+  } ,[state.profile.relationAdded])
 
   useEffect(() => {
     if (state.profile.userDetails) {
@@ -36,9 +43,12 @@ export const useProfile = () => {
     }
   }, [state.profile]);
 
-  const onAddMembersPress = details => {
+  const onAddMembersPress = ({name,age,relation}) => {
+    if(!name || !age || !relation){
+      Alert.alert("Alert", 'Please enter all the details')
+    }
+    dispatch(addRelation({jwt,age,name,relation}))
     setAddMembers(false);
-    setDependents(dependents.concat([details]));
   };
 
   const onConfirmDate = date => {
@@ -51,7 +61,9 @@ export const useProfile = () => {
     setGender(selectedGender);
   };
 
-  const addMemberToList = () => setAddMembers(true);
+  const addMemberToList = () => {
+    setAddMembers(true);
+  }
 
   const editDetails = () => setEdit(true);
 
@@ -60,6 +72,8 @@ export const useProfile = () => {
   const closePicker = () => setPicker(false);
 
   const changeName = value => setName(value);
+
+  const onSelect = () => setRelationSelected(true);
 
   const updateUserData = () => {
     setUserDetails(null);
@@ -76,15 +90,18 @@ export const useProfile = () => {
     closePicker,
     changeName,
     updateUserData,
+    onSelect,
     picker,
     edit,
     gender,
     addMembers,
-    dependents,
+    dependents:state.profile.relations,
     date,
     picker,
     userDetails,
     name,
-    loading:state.profile.loading
+    loading:state.profile.loading,
+    activeRelations:state.profile.activeRelations,
+    relationSelected
   };
 };

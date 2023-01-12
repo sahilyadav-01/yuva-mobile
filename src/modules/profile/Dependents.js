@@ -14,7 +14,7 @@ function Dependents({dependents}) {
           <View style={{flexDirection:'row'}}>
           <Text style={dependentName}>{item.name}</Text>
           <Text style={{marginHorizontal:14}}>|</Text>
-          <Text style={dependentGender}>{item.gender}</Text>
+          <Text style={dependentGender}>Male</Text>
         </View>
           <Text style={dependentGender}>{`${AGE_}${item.age}`}</Text>
         </View>

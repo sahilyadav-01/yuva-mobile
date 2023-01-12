@@ -12,11 +12,6 @@ const Profile = () => {
     {key: '1', value: 'Male'},
     {key: '2', value: 'Female'},
   ];
-  const relationsData = [
-    {key: '1', value: 'Father'},
-    {key: '2', value: 'Mother'},
-    {key: '3', value: 'Sister'},
-  ];
 
   const {
     onAddMembersPress,
@@ -28,6 +23,7 @@ const Profile = () => {
     closePicker,
     changeName,
     updateUserData,
+    onSelect,
     picker,
     edit,
     gender,
@@ -36,8 +32,13 @@ const Profile = () => {
     date,
     userDetails,
     name,
-    loading
+    activeRelations,
+    relationSelected,
   } = useProfile();
+
+  const relationsData = activeRelations.map((item, index) => {
+    return {key: `${index + 1}`, value: item};
+  });
 
   const {container} = styles({disabled: false});
 
@@ -84,6 +85,8 @@ const Profile = () => {
         setSelectedRelation={setSelectedRelation}
         relationsData={relationsData}
         addMembers={addMembers}
+        onSelect={onSelect}
+        relationSelected={relationSelected}
       />
       <DateTimePickerModal
         date={date ?? new Date()}
