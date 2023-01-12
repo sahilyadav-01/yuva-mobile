@@ -8,30 +8,32 @@ import {
   FLASH_WHITE,
   PLATINUM,
   CYAN_BLUE,
+  DARK_BLUE
 } from '../../styles/colors';
+import { CENTER, ROW, SPACE_BETWEEN } from '../../styles/constants';
 
 const styles = ({disabled}) => {
   return StyleSheet.create({
-    container: {flex: 1, paddingHorizontal: 15, backgroundColor: '#E7EAED'},
+    container: {flex: 1, paddingHorizontal: 15, backgroundColor: FLASH_WHITE},
     saveDetailsButton: {
       width: '100%',
-      flexDirection: 'row',
+      flexDirection: ROW,
       paddingVertical: 16,
       marginBottom: 20,
       backgroundColor: ORANGE,
       borderRadius: 8,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: CENTER,
+      justifyContent: CENTER,
     },
     addMembersButton: {
       width: '100%',
-      flexDirection: 'row',
+      flexDirection: ROW,
       paddingVertical: 14,
       marginBottom: 45,
       backgroundColor: disabled ? ORANGE_GREY : ORANGE,
       borderRadius: 8,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: CENTER,
+      justifyContent: CENTER,
     },
     scrollViewContainer: {
       marginTop: 24,
@@ -60,7 +62,7 @@ const styles = ({disabled}) => {
       width: 85,
       borderRadius: 42.5,
       backgroundColor: FLASH_WHITE,
-      alignSelf: 'center',
+      alignSelf: CENTER,
       marginBottom: 41,
       marginTop: 3,
     },
@@ -69,14 +71,14 @@ const styles = ({disabled}) => {
       borderColor: PLATINUM,
       paddingBottom: 5,
       marginBottom: 35,
-      color: '#1D2334',
+      color: DARK_BLUE,
     },
     saveButtonText: {
       fontFamily: fonts.family.fontFamilyRubix,
       fontSize: fonts.size.fontSize14,
       fontWeight: fonts.weight.fontWeight700,
       color: WHITE,
-      textAlign: 'center',
+      textAlign: CENTER,
     },
     separatorStyle: {
       height: 1,
@@ -85,11 +87,11 @@ const styles = ({disabled}) => {
       marginBottom: 30,
     },
     dependentNameGenderContainer: {
-      flexDirection: 'row',
+      flexDirection: ROW,
       width: '100%',
-      justifyContent: 'space-between',
+      justifyContent: SPACE_BETWEEN,
     },
-    addIconStyle: {marginRight: 15, alignSelf: 'center'},
+    addIconStyle: {marginRight: 15, alignSelf: CENTER},
     dropdownBoxStyle: {borderWidth: 0, paddingLeft: 5},
     relationText: {
       color: ORANGE,

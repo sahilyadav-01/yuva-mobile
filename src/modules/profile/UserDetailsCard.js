@@ -13,7 +13,11 @@ const UserDetailsCard = ({
   addMembers,
   editDetails,
   data,
-  date
+  date,
+  userDetails,
+  name,
+  changeName,
+  updateUserData
 }) => {
   const {scrollViewContainer} = styles({disabled: false});
   return (
@@ -27,12 +31,17 @@ const UserDetailsCard = ({
         openPicker={openPicker}
         data={data}
         date={date}
+        userDetails={userDetails}
+        edit={edit}
+        name={name}
+        changeName={changeName}
       />
       <ButtonContainer
         edit={edit}
         addMemberToList={addMemberToList}
         addMembers={addMembers}
         editDetails={editDetails}
+        updateUserData={updateUserData}
       />
     </View>
   );

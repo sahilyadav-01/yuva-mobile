@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import { DARK_BLUE } from '../../styles/colors';
@@ -9,10 +9,11 @@ const AddDependentCard = ({
   addMembers,
   relationsData,
   setSelectedRelation,
-  gender,
   onAddMember,
   onNameChange,
   onAgeChange,
+  onSelect,
+  relationSelected
 }) => {
   const {
     scrollViewContainer,
@@ -22,6 +23,7 @@ const AddDependentCard = ({
     separatorStyle,
     dropdownBoxStyle,
   } = styles({disabled: false});
+  
   return (
     addMembers && (
       <View style={scrollViewContainer}>
@@ -43,7 +45,8 @@ const AddDependentCard = ({
             data={relationsData}
             placeholder={RELATIONSHIP}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            inputStyles={{color: relationSelected ? DARK_BLUE : undefined}}
+            onSelect={onSelect}
           />
           <View style={separatorStyle} />
         </>
