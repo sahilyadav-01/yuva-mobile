@@ -93,9 +93,9 @@ export const useProfile = () => {
 
   const addMemberToList = () => {
     if(!date || !gender)
-    Alert.alert('Alert, Please save DOB and Gender')
+    Alert.alert('Alert','Please save DOB and Gender')
     else if(state.profile.activeRelations.length === 0)
-    Alert.alert('Alert, No active relations left')
+    Alert.alert('Alert','No active relations left')
     else
     setAddMembers(true);
   };
@@ -121,6 +121,10 @@ export const useProfile = () => {
   const onDependentAgeChange = age => setDependentAge(age);
 
   const updateUserData = () => {
+    if(!date || !gender){
+      Alert.alert('Alert','Please fill the details');
+    }
+    else {
     setUserDetails(null);
     dispatch(
       updateProfile({
@@ -130,6 +134,7 @@ export const useProfile = () => {
         userDetails,
       }),
     );
+    }
   };
 
   return {
