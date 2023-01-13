@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../store/reducers/AppointmentSlice';
 
 import YuvaStatusBar from '../components/YuvaStatusBar';
-
 //const Stack = createStackNavigator();
 
 const HomeScreen = ({navigation}) => {
