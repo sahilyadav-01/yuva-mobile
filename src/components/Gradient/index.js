@@ -5,7 +5,7 @@ import { styles, absoluteFillObject } from './styles';
 
 const Gradient = (props) => {
   let x1 = '0%', x2 = '0%', y1 = '0%', y2 = '0%';
-  const { startColor, stopColor, containerStyle, isHorizontal } = props;
+  const { startColor, stopColor, containerStyle, isHorizontal, children } = props;
   if (isHorizontal) {
     x2 = '100%';
     y2 = '0%';
@@ -24,6 +24,7 @@ const Gradient = (props) => {
         </Defs>
         <Rect width="100%" height="100%" fill="url(#grad)" />
       </Svg>
+      {children}
     </View>
   );
 };
