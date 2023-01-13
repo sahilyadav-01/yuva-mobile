@@ -3,19 +3,16 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
 import { NEXT, DESCRIPTION_SCREEN1TOP_PART1, DESCRIPTION_SCREEN1TOP_PART2, DESCRIPTION_SCREEN1TOP_PART3, DESCRIPTION_SCREEN1BOTTOM_PART1, DESCRIPTION_SCREEN1BOTTOM_PART2, BOTTOMNAVIMG1 } from '../constant';
 import IntroHeader from './IntroHeader';
-import { useNavigation } from '@react-navigation/core'
 import { PNG } from "../../../../assets";
 
 
-const IntroStaticScreen1 = () => {
-  const navigation = useNavigation()
-  const next = () => {
-    navigation.navigate("IntroStaticScreen2");
-  }
+const IntroStaticScreen1 = (props) => {
 
   return (
-    <View>
-      <IntroHeader />
+    <View  style={styles.screenMainContainer}>
+      <View>
+        <IntroHeader />
+      </View>
       <View>
         <View style={styles.IntroStaticScreen1Container}>
           <Image
@@ -43,19 +40,11 @@ const IntroStaticScreen1 = () => {
         />
 
         <TouchableOpacity
-          onPress={next}>
+           onPress={props.onNext}>
           <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text>
-
         </TouchableOpacity>
 
-
       </View>
-
-
-
-
-
-
     </View>
   );
 };

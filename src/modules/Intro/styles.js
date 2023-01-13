@@ -9,9 +9,13 @@ export const styles = StyleSheet.create({
     container: {
         position: "relative",
     },
+    screenMainContainer:{
+        flexDirection: 'column',
+
+    },
     headerBackgroundTopContainer: {
         width: '100%',
-        marginTop: 120,
+        marginTop: 110,
         position: "absolute",
     },
     headerTopContainer: {
@@ -42,11 +46,22 @@ export const styles = StyleSheet.create({
     IntroStaticScreen1Container: {
         height: '50%',
         alignItems: 'center',
-        marginTop:60,
+        // marginTop:60,
     },
     IntroStaticScreen1Img:{
-        height: '65%',
-        width: '55%',
+        marginTop:110,
+        height: '150%',
+        width: '75%',
+    },
+    IntroStaticScreen2Img:{
+        marginTop:110,
+
+        height: 51,
+        width: 183,
+    },
+    IntroStaticScreen4Img:{
+        height: 51,
+        width: 183,
     },
     IntroStaticScreen1Text:{
         // lineHeight: fonts.Height.lineHeight30,
@@ -75,7 +90,7 @@ export const styles = StyleSheet.create({
       IntroStaticScreen1BottomContainer:{
         margin:35,
         justifyContent: 'space-between',
-        marginTop: 100,
+        marginTop: 80,
         flexDirection: 'row',
 
       },

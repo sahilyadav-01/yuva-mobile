@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
+import SplashNav from './SplashNav';
 
 const Stack = createStackNavigator();
 const ServicesNav = () => {
@@ -44,6 +45,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="ProfessionalServices"
         component={ProfessionalServices}
+        options={{headerShown: false}}
+      />
+         <Stack.Screen
+        name="SplashNav"
+        component={SplashNav}
         options={{headerShown: false}}
       />
          

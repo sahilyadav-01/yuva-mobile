@@ -6,7 +6,11 @@ import IntroHeader from './IntroHeader';
 import { PNG } from "../../../../assets";
 
 
-const IntroStaticScreen2 = (props) => {
+const IntroStaticScreen4 = (props) => {
+  // const navigation = useNavigation()
+  const next = () => {
+    // navigation.navigate("IntroStaticScreen3");
+  }
 
   return (
     <View>
@@ -14,8 +18,8 @@ const IntroStaticScreen2 = (props) => {
       <View>
         <View style={styles.IntroStaticScreen1Container}>
           <Image
-            source={PNG.SLIDDERIMG2}
-            style={styles.IntroStaticScreen2Img}
+            source={PNG.SLIDDERIMG4}
+            style={styles.IntroStaticScreen4Img}
           />
           <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN2TOP_PART1}</Text>
           <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN2BOTTOM_PART1}<Text style={styles.IntroStaticScreen1ColorText}>{DESCRIPTION_SCREEN2BOTTOM_PART2}</Text>{DESCRIPTION_SCREEN2BOTTOM_PART3}</Text>
@@ -30,14 +34,16 @@ const IntroStaticScreen2 = (props) => {
       </View>
 
       <View style={styles.IntroStaticScreen1BottomContainer}>
-        <Image
-          source={PNG.BOTTOMNAVIMG2}
-          style={styles.BottomContaierImage1}
-        />
-
+    
         <TouchableOpacity
-           onPress={props.onNext}>
-          <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text>
+              style={{ 
+                borderRadius: 8,
+                backgroundColor: "#E68D36" }}
+
+                onPress={props.onNext}>
+        
+          {/* <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text> */}
+          <Text className="text-center pt-[15px] pb-[15px] text-white">{NEXT}</Text>
 
         </TouchableOpacity>
 
@@ -49,4 +55,4 @@ const IntroStaticScreen2 = (props) => {
   );
 };
 
-export default IntroStaticScreen2;
+export default IntroStaticScreen4;

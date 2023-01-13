@@ -18,6 +18,8 @@ import SLIDDERIMG3 from './slidderImg3.png';
 import SLIDDERIMG4 from './slidderImg4.png';
 import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
+import BOTTOMNAVIMG2 from './BottomNavImg2.png';
+import BOTTOMNAVIMG3 from './BottomNavImg3.png';
 
 
 const PNG = {
@@ -38,7 +40,9 @@ const PNG = {
   SLIDDERIMG3,
   SLIDDERIMG4,
   SLIDDERBOTTOMIMG,
-  BOTTOMNAVIMG1
+  BOTTOMNAVIMG1,
+  BOTTOMNAVIMG2,
+  BOTTOMNAVIMG3,
 };
 
 const SVG = {

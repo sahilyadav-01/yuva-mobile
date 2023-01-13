@@ -6,7 +6,8 @@ import IntroHeader from './IntroHeader';
 import { PNG } from "../../../../assets";
 
 
-const IntroStaticScreen2 = (props) => {
+const IntroStaticScreen3 = (props) => {
+
 
   return (
     <View>
@@ -14,7 +15,7 @@ const IntroStaticScreen2 = (props) => {
       <View>
         <View style={styles.IntroStaticScreen1Container}>
           <Image
-            source={PNG.SLIDDERIMG2}
+            source={PNG.SLIDDERIMG3}
             style={styles.IntroStaticScreen2Img}
           />
           <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN2TOP_PART1}</Text>
@@ -31,12 +32,12 @@ const IntroStaticScreen2 = (props) => {
 
       <View style={styles.IntroStaticScreen1BottomContainer}>
         <Image
-          source={PNG.BOTTOMNAVIMG2}
+          source={PNG.BOTTOMNAVIMG3}
           style={styles.BottomContaierImage1}
         />
 
         <TouchableOpacity
-           onPress={props.onNext}>
+             onPress={props.onNext}>
           <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text>
 
         </TouchableOpacity>
@@ -49,4 +50,4 @@ const IntroStaticScreen2 = (props) => {
   );
 };
 
-export default IntroStaticScreen2;
+export default IntroStaticScreen3;
