@@ -15,7 +15,11 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {user:{jwt},loggedIn} = useSelector(state => state.auth);
   const onPressRightIcon = () => {
-
+    if (loggedIn !=='loggedIn') {
+      navigation.navigate('LoginScreen');
+    } else {
+      //open drawer
+    }
   }
   useEffect(() => {
     const isActive = 'true';
@@ -27,8 +31,6 @@ const HomeScreen = ({navigation}) => {
         isLoggedIn={loggedIn ==='loggedIn'} 
         onPressRightIcon={onPressRightIcon}
       />
-      {/* <YuvaStatusBar />
-        <MainHeader showLogin={loggedIn==='loggedIn'} onLoginPress={()=>{navigation.navigate('LoginScreen')}}/> */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <CarouselContainer />
         <View className="flex-row justify-center">

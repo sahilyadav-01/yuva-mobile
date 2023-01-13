@@ -21,7 +21,7 @@ const Header = (props) => {
 
       </View>
       <TouchableOpacity onPress={onPressRightIcon} style={styles.rightIcon}>
-        {isLoggedIn ?
+        {!isLoggedIn ?
           <View>
             <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
           </View>
