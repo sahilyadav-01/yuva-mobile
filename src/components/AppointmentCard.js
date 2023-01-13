@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import CardButton from '../../../../components/CardButton';
-import { currentAppointment } from '../../../../store/reducers/AppointmentSlice';
-import { appointmentStatus } from '../../../../utils/utils';
-import { getDate, getTime } from '../../../../utils/utils';
+import CardButton from './CardButton';
+import { currentAppointment } from '../store/reducers/AppointmentSlice';
+import { appointmentStatus } from '../utils/utils';
+import { getDate,getTime } from '../utils/utils';
 
 const AppointmentCard = ({
   id,
@@ -56,7 +56,7 @@ const AppointmentCard = ({
           <View className="flex my-[10px] mx-[10px]">
             {/* Doctor */}
             <View className="flex-row justify-between">
-              <Text className="text-[#E68D36] text-base">
+              <Text className="text-[#319B4B] text-base">
                 {appointmentStatus(status)}
               </Text>
               <Text className="text-[#E68D36] text-sm">{doctorName}</Text>

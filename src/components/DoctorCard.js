@@ -5,7 +5,8 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import  {newAppointment} from '../store/reducers/AppointmentSlice'
-
+import { PNG } from '../../assets';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const DoctorCard = ({
     doctorId,
     name,
@@ -31,7 +32,7 @@ const DoctorCard = ({
 
     return (
         
-        <View style={{backgroundColor:"#FAEADB"}} className='h-[130px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
+        <View style={{backgroundColor:"#FFFFFF"}} className='h-[139px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
             {/* Top */}
             <View className="flex-row mt-[25px] mr-[24px]  ml-[20px]">
                 <View>
@@ -52,30 +53,31 @@ const DoctorCard = ({
 
                     {/* Line3 */}
                     <View className="flex-row mt-[4px]">
+                    <Icon name="map-marker-outline" size={14} color="black" />
                         <Text 
                             className= "text-center mr-2  text-[#1D2334]"
                             style={{fontSize:12}}
                             >{address == undefined ? "":address.slice(0,20)}</Text>
-                        <TouchableOpacity className="h-[14px] w-[14px]">
-                        </TouchableOpacity>
+                            <View className="ml-[100px]">
+                        <AirbnbRating
+                    className="p-3"
+                    showRating={false}
+                    count={5}
+                    size={12}
+                    isDisabled={true}
+                    unSelectedColor="white"
+                    selectedColor="#E68D36"
+                />
+                </View>
                     </View>
                 </View>
             </View>
 
             {/* Bottom */}
-            <View className="flex-row justify-between items-center ml-2 mt-[8px]">
-                <AirbnbRating
-                    className="p-3"
-                    showRating={false}
-                    count={5}
-                    size={16}
-                    isDisabled={true}
-                    unSelectedColor="white"
-                    selectedColor="#E68D36"
-                />
+            <View className=" mt-[18px]">
                 <TouchableOpacity 
                     style={{backgroundColor:'#E68D36'}}  
-                    className="flex p-1 h-9 items-center rounded-tl-lg  rounded-br-lg"
+                    className="h-[31px] rounded-b-lg"
                     onPress={bookAppointment}
                 >
                     <Text className="text-center mt-2 text-xs px-[25px] text-white">Book Appointment</Text>

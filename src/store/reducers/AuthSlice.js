@@ -4,6 +4,7 @@ import {setObject, getObject, removeObject} from '../LocalStore';
 import axios from 'axios';
 import {SERVER} from '../../utils/utils';
 import {Alert} from 'react-native';
+import {Freshchat } from 'react-native-freshchat-sdk';
 /**
  * Contants
  */
@@ -127,7 +128,9 @@ export const logoutThunk = createAsyncThunk(
     try {
       const value = await removeObject('user');
       //return fulfillWithValue(data)
-
+      try{
+        Freshchat.resetUser();
+      } catch (e) {};
       return value;
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
@@ -168,6 +171,7 @@ const authSlice = createSlice({
       status: false,
       roles: [],
       version: '1',
+      id: '',
     },
     loggedIn: 'init',
     isAppReady: false,
@@ -213,6 +217,7 @@ const authSlice = createSlice({
         name: action.payload.name, 
         jwt: action.payload.jwt,
         roles: action.payload.roles,
+        id: action.payload.id,
       };
       action.payload.jwt && setObject('user', userData);
       state.user.name = action.payload.name || 'User';
@@ -220,6 +225,7 @@ const authSlice = createSlice({
       state.user.roles = action.payload.roles;
       state.loggedIn = action.payload.jwt ? 'loggedIn': state.loggedIn;
       state.user.status = true;
+      state.user.id = action.payload.id;
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;

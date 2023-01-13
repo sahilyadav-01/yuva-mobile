@@ -13,7 +13,12 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
-import { getEpoch } from '../../../utils/utils';
+import { getEpoch, getTime } from '../../../utils/utils';
+import MessageBox from '../../../components/MessageBox';
+import { styles } from './style';
+import { DARK_BLUE } from '../../../styles/colors';
+import { getRelations } from '../../../store/reducers/ProfileSlice';
+
 
 const BookingTestAndPackage = ({ route }) => {
     const { id, packageData, bookedDetailsById } = route.params;
@@ -26,12 +31,15 @@ const BookingTestAndPackage = ({ route }) => {
     const navigation = useNavigation()
     const { jwt } = useSelector(state => state.auth.user);
     const { testDetails, packageDetails, cityId } = useSelector(state => state.diagnostic);
+    const {relationId}=useSelector(state=>state.profile);
     const [location, setLocation] = useState('');
     const [pincode, setPincode] = useState('');
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
+    const [selected1, setSelected1] = useState("");
     const [data, setData] = useState()
+    const [dataRelation,setDataRelation]=useState();
 
     useEffect(() => {
         if (!bookedDetailsById) {
@@ -82,7 +90,7 @@ const BookingTestAndPackage = ({ route }) => {
         var data = {
             address: location,
             cityId: selected,
-            // labId: 1,
+            relationId:selected1,
             pinCode: pincode,
             timeSlot: getEpoch(date, time),
         };
@@ -204,15 +212,24 @@ const BookingTestAndPackage = ({ route }) => {
             }
         })
     }
+    useEffect(() => {
+        if (relationId?.length > 0) {
+            let newArray = relationId.map((item) => {
+                return { key: item.id, value: item.name+"-"+item.relation+"("+item.age+")"}
+            }
+            )
+            setDataRelation(newArray)
+        } else {
+            dispatch(getRelations({ jwt }))
+        }   
+    }, [relationId])
+    
     return (
         <View>
             <MainHeader />
             <DiagnosticHeader />
             <ScrollView
-                contentContainerStyle={{
-                    flexGrow: 1,
-                    paddingBottom: 200,
-                }}>
+               style={styles.contentContainerStyle}>
                 <View className="pl-[15px] pr-[15px]">
                     {!bookedDetailsById ? (
                         <View>
@@ -329,66 +346,48 @@ const BookingTestAndPackage = ({ route }) => {
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                 />
                                 <SelectList
-                                 boxStyles={{
-                                    backgroundColor: 'white',
-                                    borderRadius: 8,
-                                    height: 50,
-                                    borderWidth: 1,
-                                    borderColor: '#1D2334',
-                                  }}
+                                  boxStyles={styles.boxStyles1}
                                     setSelected={setSelected}
                                     data={data}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Location"
                                     onChangeText={onChangeLocation}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Pincode"
                                     onChangeText={onChangePincode}
                                 />
+                                <SelectList
+                                    boxStyles={styles.boxStyles}
+                                    defaultOption={{ key: 'null', value: 'Myself' }}
+                                    setSelected={setSelected1}
+                                    data={dataRelation}
+                                />
                             </View>
                             <TouchableOpacity
                                 onPress={bookTest}
-                                style={{ backgroundColor: '#E68D36' }}
+                                style={styles.touchable}
                                 className="mt-[40px] rounded">
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
                                     Book Now
@@ -402,37 +401,23 @@ const BookingTestAndPackage = ({ route }) => {
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                 />
                                 <TextInput
                                     multiline={true}
                                     value={bookedDetailsById.patientLocation}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Location"
                                     editable={false}
@@ -441,11 +426,7 @@ const BookingTestAndPackage = ({ route }) => {
                                 <TextInput
                                     multiline={true}
                                     value={pincodeData[pincodeData.length - 1]}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Pincode"
                                     editable={false}
@@ -453,7 +434,7 @@ const BookingTestAndPackage = ({ route }) => {
                             </View>
                             <TouchableOpacity
                                 onPress={rescheduleBooking}
-                                style={{ backgroundColor: '#E68D36' }}
+                                style={styles.touchable}
                                 className="mt-[40px] rounded">
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
                                     Reschedule

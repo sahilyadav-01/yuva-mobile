@@ -7,4 +7,4 @@ function ProfileScreen(props) {
     );
 }
 
-export default Profile;
+export default ProfileScreen;
