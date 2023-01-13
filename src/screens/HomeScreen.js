@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../store/reducers/AppointmentSlice';
 
 import YuvaStatusBar from '../components/YuvaStatusBar';
+import Header from '../components/Header1';
 //const Stack = createStackNavigator();
 
 const HomeScreen = ({navigation}) => {
@@ -21,8 +22,9 @@ const HomeScreen = ({navigation}) => {
   }, []);
   return (
     <SafeAreaView style={{flex: 1}}>
-      <YuvaStatusBar />
-        <MainHeader showLogin={loggedIn==='loggedIn'} onLoginPress={()=>{navigation.navigate('LoginScreen')}}/>
+      <Header />
+      {/* <YuvaStatusBar />
+        <MainHeader showLogin={loggedIn==='loggedIn'} onLoginPress={()=>{navigation.navigate('LoginScreen')}}/> */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <CarouselContainer />
         <View className="flex-row justify-center">
