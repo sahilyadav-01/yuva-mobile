@@ -28,7 +28,7 @@ const IntroStackNav = () => {
       />
       <Stack.Screen
         name="IntroScreen"
-        component={<></>}
+        component={()=><></>}
         options={{headerShown: false}}
       />
       <Stack.Screen
