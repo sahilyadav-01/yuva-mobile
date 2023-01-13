@@ -5,8 +5,8 @@ import { styles, absoluteFillObject } from './styles';
 
 const Gradient = (props) => {
   let x1 = '0%', x2 = '0%', y1 = '0%', y2 = '0%';
-  const { startColor, stopColor, containerStyle, horizontal } = props;
-  if (horizontal) {
+  const { startColor, stopColor, containerStyle, isHorizontal } = props;
+  if (isHorizontal) {
     x2 = '100%';
     y2 = '0%';
   } else {
