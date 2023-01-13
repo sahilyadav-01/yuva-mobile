@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 // import {ReactComponent as Yuva} from '../../assets/yuva-white.svg';
 import {useDispatch, useSelector} from 'react-redux';
 
-const MainHeader = () => {
+const MainHeader = ({onLoginPress}) => {
   const {user} = useSelector(state => state.auth);
 
   return (
@@ -40,11 +40,12 @@ const MainHeader = () => {
               <Text className="text-center text-xs">Upgrade</Text>
             </TouchableOpacity>
           </View>
-
+          <TouchableOpacity onPress={onLoginPress}>
           <Image
             source={require('../../assets/icon.png')}
             className="h-[45px] w-[45px] rounded-full border-4 border-white ml-[10px]"
           />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
