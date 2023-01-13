@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getEpoch } from "../../../../../utils/utils";
 import { Alert } from 'react-native';
 import { newAppointmentThunk, allAppointmentThunk,resetMessage } from "../../../../../store/reducers/AppointmentSlice";
+import { getRelations } from '../../../../../store/reducers/ProfileSlice';
 
 export const useNew=()=> {
     const [signupFlag, setSignupFlag] = useState(false);
@@ -13,6 +14,7 @@ export const useNew=()=> {
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
+    const [dataRelation,setDataRelation]=useState();
 
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -23,6 +25,7 @@ export const useNew=()=> {
     const {jwt} = useSelector(state => state.auth.user);
     const { newMessage, appointmentDescription } = useSelector(state => state.appointment)
     const { doctorId, name, specialization } = useSelector(state => state.appointment.appointment);
+    const {relationId}=useSelector(state=>state.profile);
     useEffect(() => {
         if (newMessage?.message) {
             setSignupFlag(true);
@@ -46,6 +49,7 @@ export const useNew=()=> {
                 epoch: getEpoch(date, time),
                 doctorId,
                 jwt,
+                selected
             }),
         )
     };
@@ -65,13 +69,18 @@ export const useNew=()=> {
         setTime(time);
         getEpoch(date, time);
     };
-const  data= [
-    {key:'1', value:'Rahul'},
-    {key:'2', value:'Sita'},
-    {key:'3', value:'Sunitha'},
-    {key:'4', value:'rohit'},
-    {key:'5', value:'Anjali'},
-  ]
+  useEffect(() => {
+    if (relationId?.length > 0) {
+        let newArray = relationId.map((item) => {
+            return { key: item.id, value: item.name+"-"+item.relation+"("+item.age+")"}
+        }
+        )
+        setDataRelation(newArray)
+    } else {
+        dispatch(getRelations({ jwt }))
+    }   
+}, [relationId])
+
     return {
         goBack,
         signupFlag,
@@ -83,8 +92,8 @@ const  data= [
         handleDate,
         handleTime,
         date,
-        time,
-        data,
-         setSelected
+        time,  
+        setSelected,
+        dataRelation
     }
 };
