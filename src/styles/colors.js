@@ -13,4 +13,4 @@ export const ORANGE_GREY = 'rgba(230, 141, 54, 0.4)';
 export const SHADOW = 'rgba(0,0,0,0.9)';
 export const FLASH_WHITE = '#E7EAED';
 export const PLATINUM = '#E4E2E2';
-
+export const INDIGO_LIGHT = '#38466C';
