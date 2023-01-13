@@ -121,6 +121,7 @@ const initialState = {
   status: false,
   activeRelations: [],
   relations: [],
+  relationId:[],
   dataUpdated: false,
   relationAdded: false,
 };
@@ -159,6 +160,7 @@ const profileSlice = createSlice({
       state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
+      state.relationId= payload?.data.data || [];
     },
     [getRelations.rejected]: (state, {payload}) => {
       state.apiError = true;

@@ -31,7 +31,7 @@ const Settings = () => {
 
     useEffect(()=>{
         if(loggedIn  != "loggedIn"){
-            navigation.navigate("Login")
+            navigation.navigate("LoginScreen")
         }
     },[loggedIn])
 

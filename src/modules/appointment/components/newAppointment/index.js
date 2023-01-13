@@ -16,7 +16,7 @@ const NewAppointments = () => {
   const { doctorId, name, specialization } = useSelector(
     state => state.appointment.appointment,
   );
-  
+
   const { goBack,
     signupFlag,
     signupMessage,
@@ -28,7 +28,7 @@ const NewAppointments = () => {
     date,
     time,
     setSelected,
-  data } = useNew();
+    dataRelation } = useNew();
 
   return (
     <ScrollView className="flex mr-1 ml-1 h-[800px]">
@@ -42,13 +42,6 @@ const NewAppointments = () => {
         onChangeText={onChangeDescription}
 
       />
-      {/* <TextInput
-        style={styles.textInputStyle}
-        className="h-[50px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1 text-sm"
-        placeholder={name == undefined || '' ? 'Doctor' : name}
-        editable={false}
-      /> */}
-
       <TextInput
         style={styles.textInputStyle}
         multiline={true}
@@ -83,14 +76,14 @@ const NewAppointments = () => {
           theme={styles.theme}
         />
       </View>
-    <View ><Text style={styles.textHeader}>Booking For</Text>
-      <SelectList
-       boxStyles={styles.boxStyles}
-       defaultOption={{ key:'0', value:'Myself' }} 
-         setSelected={setSelected}
-         data={data}
-      />
-   </View>
+      <View ><Text style={styles.textHeader}>Booking For</Text>
+        <SelectList
+          boxStyles={styles.boxStyles}
+          defaultOption={{ key: 'null', value: 'Myself' }}
+          setSelected={setSelected}
+          data={dataRelation}
+        />
+      </View>
       <ActionButton onPress={newAppointment} name="Book Appointment" />
       <MessageBox
         head="Message"

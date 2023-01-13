@@ -21,7 +21,7 @@ const CANCEL_APPOINTMENT =
 export const newAppointmentThunk = createAsyncThunk(
   'appointment/newAppointment',
   async (
-    {doctorId, description, jwt, epoch},
+    {doctorId, description, jwt, epoch,selected},
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
@@ -29,7 +29,8 @@ export const newAppointmentThunk = createAsyncThunk(
       const data = {
         doctorId,
         description,
-        timeSlot: epoch,
+        relationId:selected,
+        timeSlot: epoch,      
       };
       return await axios
         .post(NEW_APPOINTMENT, data, {
