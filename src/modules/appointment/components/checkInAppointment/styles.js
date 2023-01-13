@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-
+import {  WHITE, ORANGE} from '../../../../styles/colors';
 export const styles = StyleSheet.create({
     contentContainerStyle:{
-        backgroundColor:"#FFFFFF",
+        backgroundColor:WHITE,
     },
     text:{
-        color:'#E68D36'
+        color:ORANGE
     },
     
     

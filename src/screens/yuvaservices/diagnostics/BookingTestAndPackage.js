@@ -17,6 +17,7 @@ import { getEpoch, getTime } from '../../../utils/utils';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './style';
 import { DARK_BLUE } from '../../../styles/colors';
+import { getRelations } from '../../../store/reducers/ProfileSlice';
 
 
 const BookingTestAndPackage = ({ route }) => {
@@ -30,12 +31,15 @@ const BookingTestAndPackage = ({ route }) => {
     const navigation = useNavigation()
     const { jwt } = useSelector(state => state.auth.user);
     const { testDetails, packageDetails, cityId } = useSelector(state => state.diagnostic);
+    const {relationId}=useSelector(state=>state.profile);
     const [location, setLocation] = useState('');
     const [pincode, setPincode] = useState('');
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
+    const [selected1, setSelected1] = useState("");
     const [data, setData] = useState()
+    const [dataRelation,setDataRelation]=useState();
 
     useEffect(() => {
         if (!bookedDetailsById) {
@@ -86,7 +90,7 @@ const BookingTestAndPackage = ({ route }) => {
         var data = {
             address: location,
             cityId: selected,
-            // labId: 1,
+            relationId:selected1,
             pinCode: pincode,
             timeSlot: getEpoch(date, time),
         };
@@ -208,13 +212,18 @@ const BookingTestAndPackage = ({ route }) => {
             }
         })
     }
-    const  mockData= [
-        {key:'1', value:'Rahul'},
-        {key:'2', value:'Sita'},
-        {key:'3', value:'Sunitha'},
-        {key:'4', value:'rohit'},
-        {key:'5', value:'Anjali'},
-      ]
+    useEffect(() => {
+        if (relationId?.length > 0) {
+            let newArray = relationId.map((item) => {
+                return { key: item.id, value: item.name+"-"+item.relation+"("+item.age+")"}
+            }
+            )
+            setDataRelation(newArray)
+        } else {
+            dispatch(getRelations({ jwt }))
+        }   
+    }, [relationId])
+    
     return (
         <View>
             <MainHeader />
@@ -371,9 +380,9 @@ const BookingTestAndPackage = ({ route }) => {
                                 />
                                 <SelectList
                                     boxStyles={styles.boxStyles}
-                                    defaultOption={{ key: '0', value: 'Myself' }}
-                                    setSelected={setSelected}
-                                    data={mockData}
+                                    defaultOption={{ key: 'null', value: 'Myself' }}
+                                    setSelected={setSelected1}
+                                    data={dataRelation}
                                 />
                             </View>
                             <TouchableOpacity
