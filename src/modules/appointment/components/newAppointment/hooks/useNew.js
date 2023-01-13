@@ -12,6 +12,7 @@ export const useNew=()=> {
     const [description, setDesciption] = useState('');
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
+    const [selected, setSelected] = useState("");
 
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -64,7 +65,13 @@ export const useNew=()=> {
         setTime(time);
         getEpoch(date, time);
     };
-
+const  data= [
+    {key:'1', value:'Rahul'},
+    {key:'2', value:'Sita'},
+    {key:'3', value:'Sunitha'},
+    {key:'4', value:'rohit'},
+    {key:'5', value:'Anjali'},
+  ]
     return {
         goBack,
         signupFlag,
@@ -76,6 +83,8 @@ export const useNew=()=> {
         handleDate,
         handleTime,
         date,
-        time
+        time,
+        data,
+         setSelected
     }
 };

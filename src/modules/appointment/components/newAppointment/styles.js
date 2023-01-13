@@ -1,19 +1,34 @@
 import { StyleSheet } from 'react-native';
-import { PLATINUM ,WHITE} from '../../../../styles/colors';
+import { DARK_BLUE, PLATINUM ,FLASH_WHITE, WHITE, BLACK} from '../../../../styles/colors';
 
 
 export const styles = StyleSheet.create({
-theme:{colors: { text: "black" }
+theme:{colors: { text: BLACK}
 },
 textInputStyle: {
   borderBottomWidth: 1,
   borderColor: PLATINUM,
   paddingBottom: 5,
-  marginBottom: 25,
-  color: '#1D2334',
+  marginBottom: 15,
+  color:DARK_BLUE,
 },
-// dateTimePicker:{
-//   // backgroundColor:WHITE,
-//   color:WHITE,
-// }
+dateTimePicker:{
+backgroundColor:{FLASH_WHITE}
+},
+boxStyles:{
+borderWidth: 0,
+ margin: 15,
+ borderBottomWidth: 1,
+ borderColor: PLATINUM,
+ paddingBottom: 5,
+ marginBottom: 15,
+ color:DARK_BLUE,
+height: 50,
+
+},
+textHeader:{
+  marginTop:10,
+  marginLeft:30,
+  marginRight:30,
+}
  });
