@@ -19,18 +19,6 @@ const ServiceCard = ({icon, name, inactive, disp, screenname, bgColor, elipseCol
     }
 
     return (
-        // <TouchableOpacity 
-        //     style={{backgroundColor:"#f5f9fa", borderColor:"#52608E"}}
-        //     className="w-{90px} h-{90px}  border-b-4 border-r-4  border-t-1 shadow-2xl m-4 rounded shadow-inner"
-        //     disable={true}
-        //     onPress={onpress}
-        // >
-        //     <Icon style={{display:disp}} name="lock-outline" size={16} color="black" />           
-        //     <View className="w-20 h-20 flex items-center justify-center"> 
-        //         <Icon name={icon} size={24} color="black"/>
-        //         <Text className="text-xs text-center pb-2">{name}</Text>
-        //     </View>
-        // </TouchableOpacity>
          <TouchableOpacity 
              className="w-[100px] h-[100px] mx-[10px] my-[20px] rounded shadow-inner"
              disable={true}

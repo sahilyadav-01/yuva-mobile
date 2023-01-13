@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AppointmentButton from '../../../components/AppointmentButton';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
@@ -11,7 +11,7 @@ import { styles } from '../../styles';
 const RescheduleTestAndPackage = ({ route }) => {
     const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
-    const { bookedDetailsById ,cancelled} = useSelector(state => state.diagnostic)
+    const { bookedDetailsById, cancelled } = useSelector(state => state.diagnostic)
     const { id } = route.params;
     const navigation = useNavigation()
     useEffect(() => {
@@ -20,32 +20,27 @@ const RescheduleTestAndPackage = ({ route }) => {
     const [cancelFlag, setCancelFlag] = useState(false);
     const cancelMessage = 'Are you sure you want to cancel ?';
     const cancelBooking = () => {
-        // dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' })).then(() => { navigation.navigate("Diagnostic") })
         dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' }))
-
     }
     const cancelBookingButton = () => {
         setCancelFlag(true);
-        
-      };
-
+    };
     const rescheduleBooking = () => {
         navigation.navigate("BookingTestAndPackage", { bookedDetailsById: { ...bookedDetailsById, flag: true } })
     }
-
- useEffect(()=>{
-    if(cancelled){
-    navigation.navigate("Diagnostic") }
- },[cancelled])
+    useEffect(() => {
+        if (cancelled) {
+            navigation.navigate("Diagnostic")
+        }
+    }, [cancelled])
     return (
-
         <SafeAreaView style={styles.container}>
             <MainHeader />
             <DiagnosticHeader />
             <ScrollView className="pl-[15px] pr-[15px]" contentContainerStyle={{
-                            flexGrow: 1,
-                            paddingBottom: 300
-                        }}>
+                flexGrow: 1,
+                paddingBottom: 300
+            }}>
                 <View>
                     <View>
                         <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
@@ -100,13 +95,13 @@ const RescheduleTestAndPackage = ({ route }) => {
                     />
                 </View>
                 <View>
-      <MessageBox
-        head="Message"
-        showDialog={cancelFlag}
-        hideDialog={cancelBooking}
-        message={cancelMessage}
-      /> 
-        </View>
+                    <MessageBox
+                        head="Message"
+                        showDialog={cancelFlag}
+                        hideDialog={cancelBooking}
+                        message={cancelMessage}
+                    />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
