@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import ButtonContainer from './ButtonContainer';
-import UserDetails from './UserDetails';
+import ButtonContainer from '../buttonContainer';
+import UserDetails from '../userDetails';
 import styles from './style';
 
 const UserDetailsCard = ({

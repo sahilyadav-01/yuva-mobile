@@ -1,7 +1,5 @@
-
-
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, ScrollView, TextInput, Alert } from 'react-native';
+import { View, Text, ScrollView, TextInput, Alert } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list'
 import MainHeader from '../../../components/MainHeader';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +18,7 @@ import MessageBox from '../../../components/MessageBox';
 import { styles } from './style';
 import { DARK_BLUE } from '../../../styles/colors';
 
+
 const BookingTestAndPackage = ({ route }) => {
     const { id, packageData, bookedDetailsById } = route.params;
     if (!bookedDetailsById) {
@@ -35,8 +34,6 @@ const BookingTestAndPackage = ({ route }) => {
     const [pincode, setPincode] = useState('');
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
-    const [saveFlag, setSaveFalg] = useState(false);
-    const [saveMessage, setSaveMessage] = useState(false);
     const [selected, setSelected] = useState("");
     const [data, setData] = useState()
 
@@ -184,14 +181,6 @@ const BookingTestAndPackage = ({ route }) => {
             );
         }
     };
-
-
-    // const closeSaveMessageBox = () => {
-    //     setSaveFalg(false);
-    //     navigation.navigate("Diagnostic");
-
-    // };
-
 
     const rescheduleBooking = () => {
         dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled: "false", timeSlot: getEpoch(date, time) })).then((resp) => {
@@ -391,7 +380,6 @@ const BookingTestAndPackage = ({ route }) => {
                                 onPress={bookTest}
                                 style={styles.touchable}
                                 className="mt-[40px] rounded">
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
                                     Book Now
                                 </Text>
@@ -439,7 +427,6 @@ const BookingTestAndPackage = ({ route }) => {
                                 onPress={rescheduleBooking}
                                 style={styles.touchable}
                                 className="mt-[40px] rounded">
-                                {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
                                     Reschedule
                                 </Text>
@@ -451,13 +438,6 @@ const BookingTestAndPackage = ({ route }) => {
 
                 </View>
             </ScrollView>
-            {/* <MessageBox
-                head="Message"
-                showDialog={saveFlag}
-                hideDialog={closeSaveMessageBox}
-                message={saveMessage}
-
-            /> */}
         </View>
     );
 };

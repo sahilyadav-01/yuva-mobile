@@ -10,7 +10,7 @@ import { SERVER } from '../../utils/utils';
 const VIEW_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/employee/viewMyTestAndPackage';
 const BOOKED_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking/user';
 const TEST_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/services/attribute/test';
-const ADD_BOOKING_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
+const ADD_BOOKING_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking?fromWeb=false';
 const PACKAGE_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/package';
 const BOOKED_DETAILS_BY_ID = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
 const RESCHULDE_CANCEL_BOOKING = 'http://' + SERVER + ':8080/api/v1/yuva/booking/';
