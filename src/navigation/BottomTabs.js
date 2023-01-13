@@ -1,6 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from '../screens/Settings';
+import Intro from '../screens/Intro/IntroScreen';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BLACK, CYAN_BLUE, ORANGE } from '../styles/colors';
@@ -79,7 +80,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={OUR_OFFERS}
-        component={Settings}
+        component={Intro}
         options={{
           tabBarIcon: ({focused}) => {
             return (
