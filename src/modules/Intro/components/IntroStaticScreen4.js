@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
-import { NEXT,DESCRIPTION_SCREEN2TOP_PART1,DESCRIPTION_SCREEN2BOTTOM_PART1,DESCRIPTION_SCREEN2BOTTOM_PART2 ,DESCRIPTION_SCREEN2BOTTOM_PART3} from '../constant';
+import { NEXT,DESCRIPTION_SCREEN4TOP_PART1,DESCRIPTION_SCREEN4TOP_PART2,DESCRIPTION_SCREEN4TOP_PART3 ,DESCRIPTION_SCREEN4BOTTOM_PART1} from '../constant';
 import IntroHeader from './IntroHeader';
 import { PNG } from "../../../../assets";
 
@@ -16,13 +16,13 @@ const IntroStaticScreen4 = (props) => {
     <View>
       <IntroHeader />
       <View>
-        <View style={styles.IntroStaticScreen1Container}>
+        <View style={styles.IntroStaticScreen4Container}>
           <Image
             source={PNG.SLIDDERIMG4}
             style={styles.IntroStaticScreen4Img}
           />
-          <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN2TOP_PART1}</Text>
-          <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN2BOTTOM_PART1}<Text style={styles.IntroStaticScreen1ColorText}>{DESCRIPTION_SCREEN2BOTTOM_PART2}</Text>{DESCRIPTION_SCREEN2BOTTOM_PART3}</Text>
+          <Text style={styles.IntroStaticScreen1Text}><Text style={styles.IntroStaticScreen1ColorText}>{DESCRIPTION_SCREEN4TOP_PART1}</Text>{DESCRIPTION_SCREEN4TOP_PART2}<Text style={styles.IntroStaticScreen1ColorText}>{DESCRIPTION_SCREEN4TOP_PART3}</Text></Text>
+     <Text style={styles.IntroStaticScreen1Text}>{DESCRIPTION_SCREEN4BOTTOM_PART1}</Text>
 
           <Image
             source={PNG.SLIDDERBOTTOMIMG}
@@ -35,15 +35,11 @@ const IntroStaticScreen4 = (props) => {
 
       <View style={styles.IntroStaticScreen1BottomContainer}>
     
-        <TouchableOpacity
-              style={{ 
-                borderRadius: 8,
-                backgroundColor: "#E68D36" }}
-
+        <TouchableOpacity style={styles.BottomContaierTextScreen4}
                 onPress={props.onNext}>
         
-          {/* <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text> */}
-          <Text className="text-center pt-[15px] pb-[15px] text-white">{NEXT}</Text>
+          <Text style={styles.IntroStaticScreen4Text}>{NEXT}</Text>
+          {/* <Text className="text-center pt-[15px] pb-[15px] text-white">{NEXT}</Text> */}
 
         </TouchableOpacity>
 

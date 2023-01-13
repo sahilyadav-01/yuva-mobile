@@ -10,9 +10,12 @@ const IntroStaticScreen2 = (props) => {
 
   return (
     <View>
-      <IntroHeader />
+    <View >
       <View>
-        <View style={styles.IntroStaticScreen1Container}>
+        <IntroHeader />
+      </View>
+      <View>
+        <View style={styles.IntroStaticScreen2Container}>
           <Image
             source={PNG.SLIDDERIMG2}
             style={styles.IntroStaticScreen2Img}
@@ -23,29 +26,29 @@ const IntroStaticScreen2 = (props) => {
           <Image
             source={PNG.SLIDDERBOTTOMIMG}
             style={styles.BackgroundBottomImage}
-
           />
           <View style={styles.line} />
         </View>
       </View>
 
-      <View style={styles.IntroStaticScreen1BottomContainer}>
-        <Image
-          source={PNG.BOTTOMNAVIMG2}
-          style={styles.BottomContaierImage1}
-        />
-
-        <TouchableOpacity
-           onPress={props.onNext}>
-          <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text>
-
-        </TouchableOpacity>
-
-
-      </View>
-
-
     </View>
+    
+      <View>
+        <View style={styles.IntroStaticScreen2BottomContainer}>
+          <Image
+            source={PNG.BOTTOMNAVIMG2}
+            style={styles.BottomContaierImage1}
+          />
+
+          <TouchableOpacity style={styles.BottomContaierText}
+            onPress={props.onNext}>
+            <Text style={styles.IntroStaticScreen1ColorText}>{NEXT}</Text>
+          </TouchableOpacity>
+
+        </View>
+      </View> 
+      </View> 
+      
   );
 };
 
