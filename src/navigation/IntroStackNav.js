@@ -20,19 +20,22 @@ const IntroStackNav = () => {
   };
   
   return (
-    <Stack.Navigator>
-    {loggedIn === 'loggedIn' && !!jwt ? 
+    <Stack.Navigator initialRouteName='HomeScreen'>
       <Stack.Screen
         name="HomeScreen"
         component={BottomTabs}
         options={{headerShown: false}}
       />
-      :
       <Stack.Screen
-        name="Login"
+        name="IntroScreen"
+        component={()=><></>}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LoginScreen"
         component={Authentication}
         options={{headerShown: false}}
-    />}
+    />
     </Stack.Navigator>
   );
 };

@@ -12,18 +12,18 @@ import YuvaStatusBar from '../components/YuvaStatusBar';
 //const Stack = createStackNavigator();
 
 const HomeScreen = ({navigation}) => {
+  console.log('Navigation',navigation)
   const route = useRoute();
   const dispatch = useDispatch();
-  const {jwt} = useSelector(state => state.auth.user);
+  const {user:{jwt},loggedIn} = useSelector(state => state.auth);
   useEffect(() => {
-
     const isActive = 'true';
     dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
   }, []);
   return (
     <SafeAreaView style={{flex: 1}}>
       <YuvaStatusBar />
-        <MainHeader />
+        <MainHeader showLogin={loggedIn==='loggedIn'} onLoginPress={()=>{navigation.navigate('LoginScreen')}}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <CarouselContainer />
         <View className="flex-row justify-center">
