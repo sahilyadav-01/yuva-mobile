@@ -17,6 +17,8 @@ import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { getEpoch, getTime } from '../../../utils/utils';
 import MessageBox from '../../../components/MessageBox';
+import { styles } from './style';
+import { DARK_BLUE } from '../../../styles/colors';
 
 const BookingTestAndPackage = ({ route }) => {
     const { id, packageData, bookedDetailsById } = route.params;
@@ -217,15 +219,19 @@ const BookingTestAndPackage = ({ route }) => {
             }
         })
     }
+    const  mockData= [
+        {key:'1', value:'Rahul'},
+        {key:'2', value:'Sita'},
+        {key:'3', value:'Sunitha'},
+        {key:'4', value:'rohit'},
+        {key:'5', value:'Anjali'},
+      ]
     return (
         <View>
             <MainHeader />
             <DiagnosticHeader />
             <ScrollView
-                contentContainerStyle={{
-                    flexGrow: 1,
-                    paddingBottom: 200,
-                }}>
+               style={styles.contentContainerStyle}>
                 <View className="pl-[15px] pr-[15px]">
                     {!bookedDetailsById ? (
                         <View>
@@ -342,66 +348,48 @@ const BookingTestAndPackage = ({ route }) => {
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                 />
                                 <SelectList
-                                 boxStyles={{
-                                    backgroundColor: 'white',
-                                    borderRadius: 8,
-                                    height: 50,
-                                    borderWidth: 1,
-                                    borderColor: '#1D2334',
-                                  }}
+                                  boxStyles={styles.boxStyles1}
                                     setSelected={setSelected}
                                     data={data}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Location"
                                     onChangeText={onChangeLocation}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Pincode"
                                     onChangeText={onChangePincode}
                                 />
+                                <SelectList
+                                    boxStyles={styles.boxStyles}
+                                    defaultOption={{ key: '0', value: 'Myself' }}
+                                    setSelected={setSelected}
+                                    data={mockData}
+                                />
                             </View>
                             <TouchableOpacity
                                 onPress={bookTest}
-                                style={{ backgroundColor: '#E68D36' }}
+                                style={styles.touchable}
                                 className="mt-[40px] rounded">
                                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
@@ -416,37 +404,23 @@ const BookingTestAndPackage = ({ route }) => {
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
                                     type="time"
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                        height: 50,
-                                    }}
-                                    selectionColor="#1D2334"
-                                    theme={{ colors: { text: 'black' } }}
+                                    style={styles.dateTime}
+                                    selectionColor={DARK_BLUE}
+                                    theme={styles.theme}
                                 />
                                 <TextInput
                                     multiline={true}
                                     value={bookedDetailsById.patientLocation}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Location"
                                     editable={false}
@@ -455,11 +429,7 @@ const BookingTestAndPackage = ({ route }) => {
                                 <TextInput
                                     multiline={true}
                                     value={pincodeData[pincodeData.length - 1]}
-                                    style={{
-                                        backgroundColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        borderRadius: 8,
-                                    }}
+                                    style={styles.textInput}
                                     className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
                                     placeholder="Pincode"
                                     editable={false}
@@ -467,7 +437,7 @@ const BookingTestAndPackage = ({ route }) => {
                             </View>
                             <TouchableOpacity
                                 onPress={rescheduleBooking}
-                                style={{ backgroundColor: '#E68D36' }}
+                                style={styles.touchable}
                                 className="mt-[40px] rounded">
                                 {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
                                 <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
