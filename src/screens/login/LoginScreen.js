@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {SafeAreaView,Alert} from 'react-native';
 import {Divider} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import AlertBox from '../../components/AlertBox';
 import {ActivityIndicator} from 'react-native-paper';
 import Header from '../../components/Header';
@@ -31,7 +31,7 @@ const LoginScreen = () => {
    */
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
+  const route = useRoute();
   /**
    * State
    */
@@ -48,7 +48,8 @@ const LoginScreen = () => {
    */
 
   // Handle login button
-  const login = () => {
+  const login = (props) => {
+    const {from} = props;
     if (!isEmail(email)) {
       setError(true);
       setErrorMessage(EMAIL_VALIDATION);
@@ -119,7 +120,7 @@ const LoginScreen = () => {
   else{
     if (loggedIn == 'loggedIn' && jwt) {
       dispatch(profileThunk({jwt}));
-      navigation.navigate('HomeScreen');
+      navigation.navigate('Home');
       }
     }
   }, [status]);

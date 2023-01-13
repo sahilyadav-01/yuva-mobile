@@ -96,6 +96,7 @@ const BottomTabs = ({loggedIn}) => {
       {loggedIn !== 'loggedIn' ? <Tab.Screen
         name={PROFILE}
         component={Authentication}
+        initialParams={{from: PROFILE}}
         options={{
           tabBarIcon: ({focused}) => {
             return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux'
@@ -6,7 +6,7 @@ import { logoutThunk } from '../store/reducers/AuthSlice'
 
 
 const Settings = () => {
-
+    const [isLoggedOut, setIsLoggedOut] = useState(false)
     /**
      * Hooks
      */
@@ -22,6 +22,7 @@ const Settings = () => {
      * Internal functions
      */
     const logoff = () => {
+        setIsLoggedOut(true);
         dispatch(logoutThunk())
     }
 
@@ -30,10 +31,10 @@ const Settings = () => {
      */
 
     useEffect(()=>{
-        if(loggedIn  != "loggedIn"){
-            navigation.navigate("LoginScreen")
-        }
-    },[loggedIn])
+        if((loggedIn === 'notLoggedIn' || loggedIn === 'init') && isLoggedOut){
+            navigation.navigate("Home", {prevScreen: 'Home'})
+        } 
+    },[loggedIn, isLoggedOut])
 
     return (
         <View className="flex h-full justify-center items-center">
