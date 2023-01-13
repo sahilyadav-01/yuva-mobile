@@ -12,8 +12,6 @@ const IntroStackNav = () => {
     dispatch(initialLoad())
   }, []);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
-  const {jwt} = useSelector(state => state.auth.user);
-  
   if(!isAppReady){
     return null;
   };
@@ -23,7 +21,8 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="HomeScreen"
         component={BottomTabs}
-        options={{headerShown: false,loggedIn}}
+        initialParams={{loggedIn}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="IntroScreen"

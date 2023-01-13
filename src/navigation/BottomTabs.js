@@ -9,10 +9,12 @@ import { CENTER } from '../styles/constants';
 import { fonts } from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = ({loggedIn}) => {
+const BottomTabs = () => {
+  const {loggedIn} = useSelector(state => state.auth);
   return (
     <Tab.Navigator
       screenOptions={{

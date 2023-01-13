@@ -8,15 +8,14 @@ import Signup from '../screens/login/Signup';
 const Stack = createStackNavigator();
 
 const Authentication = (props) => {
-  const from = props?.route?.params?.from || '';
-
+  const from = props?.route?.params?.from ?? null;
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Login"
         component={LoginScreen}
         options={{headerShown: false}}
-        initialParams={from}
+        initialParams={{from}}
       />
       <Stack.Screen
         name="ForgotPassword"
