@@ -72,7 +72,7 @@ export const useNew=()=> {
   useEffect(() => {
     if (relationId?.length > 0) {
         let newArray = relationId.map((item) => {
-            return { key: item.id, value: item.name+"-"+item.relation+"("+item.age+")"}
+            return { key: item.id, value: item.name+"   -  "+item.relation+ "   "+"("+item.age+")"}
         }
         )
         setDataRelation(newArray)
