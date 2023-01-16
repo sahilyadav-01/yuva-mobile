@@ -46,3 +46,19 @@ export const getObject = async key => {
     // read error
   }
 };
+export const setExistingUser = async () => {
+  try {
+    await AsyncStorage.setItem('existingUser',JSON.stringify(true));
+  } catch (error) {
+    
+  }
+}
+
+export const getExistingUser = async () => {
+  try {
+    const existingUser = await AsyncStorage.getItem('existingUser');
+    return JSON.parse(existingUser) ?? null;
+  } catch (error) {
+    
+  }
+}

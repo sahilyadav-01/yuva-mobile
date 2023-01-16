@@ -13,6 +13,9 @@ export const fonts = {
     fontWeight500: '500',
     fontWeight400: '400',
   },
+  Height:{
+    lineHeight30: '30',
+  },
   family: {
     fontFamilyRubix: 'Rubik-Regular',
   },

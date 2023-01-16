@@ -12,3 +12,4 @@ export const AVAILABLE="Available";
 export const BOOKING="Booking";
 export const UPCOMING="Upcoming"
 export const BOLD="bold"
+export const RELATIVE = 'relative';

@@ -15,6 +15,17 @@ import THANK_IMAGE from './thank_image.png'
 import VECTOR1 from './Vector1.png'
 import EditIcon from './edit';
 import PlusIcon from './plus';
+import SLIDDERIMG1 from './slidderImg1.png';
+import SLIDDERIMG2 from './slidderImg2.png';
+import SLIDDERIMG3 from './slidderImg3.png';
+import SLIDDERIMG4 from './slidderImg4.png';
+import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
+import BOTTOMNAVIMG1 from './BottomNavImg1.png';
+import BOTTOMNAVIMG2 from './BottomNavImg2.png';
+import BOTTOMNAVIMG3 from './BottomNavImg3.png';
+
+import HeaderLogo from './headerLogo';
+import MenuIcon from './menu';
 
 
 const PNG = {
@@ -30,15 +41,24 @@ const PNG = {
   SEXUAL_REPRODUCTIVE_HEALTH,
   WOMAN,
   CHECK_CIRCLE,
+  SLIDDERIMG1,
+  SLIDDERIMG2,
+  SLIDDERIMG3,
+  SLIDDERIMG4,
+  SLIDDERBOTTOMIMG,
+  BOTTOMNAVIMG1,
+  BOTTOMNAVIMG2,
+  BOTTOMNAVIMG3,
   THANK_DESIGN,
   VECTOR1,
   THANK_IMAGE
 };
 
 const SVG = {
-
- PlusIcon: PlusIcon,
- Edit:EditIcon
+  HeaderLogo: HeaderLogo,
+  MenuIcon: MenuIcon,
+  PlusIcon: PlusIcon,
+  Edit:EditIcon
 }
 
 export {PNG, SVG};
