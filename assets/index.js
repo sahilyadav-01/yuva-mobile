@@ -24,6 +24,8 @@ import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
 
+import HeaderLogo from './headerLogo';
+import MenuIcon from './menu';
 
 
 const PNG = {
@@ -53,9 +55,10 @@ const PNG = {
 };
 
 const SVG = {
-
- PlusIcon: PlusIcon,
- Edit:EditIcon
+  HeaderLogo: HeaderLogo,
+  MenuIcon: MenuIcon,
+  PlusIcon: PlusIcon,
+  Edit:EditIcon
 }
 
 export {PNG, SVG};
