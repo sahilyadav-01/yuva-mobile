@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import {SafeAreaView,Alert} from 'react-native';
+import {SafeAreaView, Alert} from 'react-native';
 import {Divider} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import AlertBox from '../../components/AlertBox';
 import {ActivityIndicator} from 'react-native-paper';
 import Header from '../../components/Header';
@@ -21,34 +21,35 @@ import {
 } from '../../utils/utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginThunk, hideErrorBox} from '../../store/reducers/AuthSlice';
-import { styles } from '../styles';
-import { profileThunk } from '../../store/reducers/ProfileSlice';
+import {styles} from '../styles';
+import {profileThunk} from '../../store/reducers/ProfileSlice';
 // import { StatusBar } from 'expo-status-bar';
 
-const LoginScreen = () => {
+const LoginScreen = props => {
   /**
    * Hooks
    */
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
   /**
    * State
    */
+  const from = props?.route?.params?.from ?? null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const {loggedIn, loading, apiError, apiErrorMessage} = useSelector(state => state.auth,);
-  const {jwt, status} = useSelector(state =>state.auth.user);
-
+  const {loggedIn, loading, apiError, apiErrorMessage} = useSelector(
+    state => state.auth,
+  );
+  const {jwt, status} = useSelector(state => state.auth.user);
 
   /**
    * Routes
    */
 
   // Handle login button
-  const login = () => {
+  const login = props => {
     if (!isEmail(email)) {
       setError(true);
       setErrorMessage(EMAIL_VALIDATION);
@@ -92,34 +93,37 @@ const LoginScreen = () => {
    * React hooks
    */
   useEffect(() => {
-    if(status && jwt === null){
-        
-      if(isNaN(email)){
-        Alert.alert("Alert","An OTP has been sent to your registered email account");
+    if (status && jwt === null) {
+      if (isNaN(email)) {
+        Alert.alert(
+          'Alert',
+          'An OTP has been sent to your registered email account',
+        );
 
-          navigation.navigate('EnterOTP', {
-            emailOrNumber: email,
-            password:password,
-            attributeName: 'Email',
-            var: 'emailCorporate',
+        navigation.navigate('EnterOTP', {
+          emailOrNumber: email,
+          password: password,
+          attributeName: 'Email',
+          var: 'emailCorporate',
+        });
+      } else {
+        Alert.alert(
+          'Alert',
+          'An OTP has been sent to your registered mobile number......',
+        );
 
-        })
+        navigation.navigate('EnterOTP', {
+          emailOrNumber: email,
+          password: password,
+          attributeName: 'Phone Number',
+          var: 'phoneCorporate',
+        });
       }
-      else{
-        Alert.alert("Alert","An OTP has been sent to your registered mobile number......");
-
-          navigation.navigate('EnterOTP', {
-            emailOrNumber: email,
-            password:password,
-            attributeName: 'Phone Number',
-            var: 'phoneCorporate',
-          })
-      }
-    }
-  else{
-    if (loggedIn == 'loggedIn' && jwt) {
-      dispatch(profileThunk({jwt}));
-      navigation.navigate('HomeScreen');
+    } else {
+      if (loggedIn == 'loggedIn' && jwt) {
+        dispatch(profileThunk({jwt}));
+        if (from === 'Profile') navigation.navigate('Home');
+        else navigation.navigate('HomeService');
       }
     }
   }, [status]);

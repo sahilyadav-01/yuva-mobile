@@ -8,10 +8,13 @@ import { HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE } from './constants';
 import { CENTER } from '../styles/constants';
 import { fonts } from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
+import Authentication from './Authentication';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
+  const {loggedIn} = useSelector(state => state.auth);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -92,9 +95,10 @@ const BottomTabs = () => {
           },
         }}
       />
-      <Tab.Screen
+      {loggedIn !== 'loggedIn' ? <Tab.Screen
         name={PROFILE}
-        component={ProfileScreen}
+        component={Authentication}
+        initialParams={{from: PROFILE}}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -106,7 +110,21 @@ const BottomTabs = () => {
             );
           },
         }}
-      />
+      /> : <Tab.Screen
+      name={PROFILE}
+      component={ProfileScreen}
+      options={{
+        tabBarIcon: ({focused}) => {
+          return (
+            <Icon
+              name="account-outline"
+              size={35}
+              color={focused ? ORANGE : CYAN_BLUE}
+            />
+          );
+        },
+      }}
+    />}
     </Tab.Navigator>
   );
 };

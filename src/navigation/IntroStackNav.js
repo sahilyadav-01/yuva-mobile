@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
-import Authentication from './Authentication';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialLoad } from '../store/reducers/AuthSlice';
 
@@ -13,8 +12,6 @@ const IntroStackNav = () => {
     dispatch(initialLoad())
   }, []);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
-  const {jwt} = useSelector(state => state.auth.user);
-  
   if(!isAppReady){
     return null;
   };
@@ -24,6 +21,7 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="HomeScreen"
         component={BottomTabs}
+        initialParams={{loggedIn}}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -31,11 +29,6 @@ const IntroStackNav = () => {
         component={()=><></>}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="LoginScreen"
-        component={Authentication}
-        options={{headerShown: false}}
-    />
     </Stack.Navigator>
   );
 };

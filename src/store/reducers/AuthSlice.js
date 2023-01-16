@@ -257,7 +257,7 @@ const authSlice = createSlice({
      */
     [logoutThunk.pending]: (state, {payload}) => {},
     [logoutThunk.fulfilled]: (state, {payload}) => {
-      state.loggedIn = 'init';
+      state.loggedIn = 'notLoggedIn';
       state.user.name = '';
       state.user.jwt = '';
     },
