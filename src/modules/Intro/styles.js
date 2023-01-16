@@ -1,29 +1,29 @@
 import { StyleSheet } from "react-native";
 import { pink100 } from "react-native-paper/lib/typescript/styles/colors";
 import { DARK_BLUE, ORANGE, WHITE } from "../../styles/colors";
-import { CENTER, FLEX_END } from "../../styles/constants";
+import { CENTER, FLEX_END,RELATIVE,ABSOLUTE,SPACE_BETWEEN,ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 
 
 export const styles = StyleSheet.create({
 
     container: {
-        position: "relative",
+        position: RELATIVE,
     },
     headerBackgroundTopContainer: {
         width: '100%',
         marginTop: 110,
-        position: "absolute",
+        position: ABSOLUTE,
     },
     headerTopContainer: {
         width: '100%',
         height: '150%',
-        position: "absolute",
+        position: ABSOLUTE,
     },
     logoContainer: {
         marginTop: 50,
-        justifyContent: 'center',
-        flexDirection: 'row',
+        justifyContent: CENTER,
+        flexDirection: ROW,
     },
     logoImage1: {
         height: 38,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     },
     logoImage2Container: {
         marginLeft: 6,
-        alignItems: 'flex-end'
+        alignItems: FLEX_END
     },
     logoImage2: {
         height: 20,
@@ -43,22 +43,22 @@ export const styles = StyleSheet.create({
     IntroStaticScreen1Container: {
         marginTop: 30,
         height: '50%',
-        alignItems: 'center',
+        alignItems: CENTER,
     },
     IntroStaticScreen2Container: {
         marginTop: 20,
         height: '50%',
-        alignItems: 'center',
+        alignItems: CENTER,
     },
     IntroStaticScreen3Container: {
         marginTop: 30,
         height: '50%',
-        alignItems: 'center',
+        alignItems: CENTER,
     },
     IntroStaticScreen4Container: {
         marginTop: 30,
         height: '30%',
-        alignItems: 'center',
+        alignItems: CENTER,
     },
     IntroStaticScreen1Img: {
         marginTop: 110,
@@ -106,20 +106,20 @@ export const styles = StyleSheet.create({
     IntroStaticScreen1BottomContainer: {
         padding: 10,
         marginTop: 170,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
+        justifyContent: SPACE_BETWEEN,
+        flexDirection: ROW,
     },
     IntroStaticScreen2BottomContainer: {
         padding: 10,
         marginTop: 180,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
+        justifyContent: SPACE_BETWEEN,
+        flexDirection: ROW,
     },
     IntroStaticScreen3BottomContainer: {
         padding: 10,
         marginTop: 170,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
+        justifyContent: SPACE_BETWEEN,
+        flexDirection: ROW,
     },
     BottomContaierImage1: {
         marginLeft: 10
@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
     },
     BottomContaierTextScreen4:{
         marginTop:120,
-        alignItems: 'center',
+        alignItems: CENTER,
         height:'30%',
         borderRadius: 8,
         backgroundColor: ORANGE ,

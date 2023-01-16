@@ -4,11 +4,9 @@ import IntroStaticScreen1 from './components/IntroStaticScreen1';
 import IntroStaticScreen2 from './components/IntroStaticScreen2';
 import IntroStaticScreen3 from './components/IntroStaticScreen3';
 import IntroStaticScreen4 from './components/IntroStaticScreen4';
-import { useIntro,useFocusEffect } from './hooks/useIntro';
+import { useIntro } from './hooks/useIntro';
 
 const Intro = () => {
-
-
 
   const {index, setScreen} = useIntro()
   const RenderStaticScreen = (index) => {
