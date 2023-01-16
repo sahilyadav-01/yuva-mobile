@@ -11,8 +11,8 @@ import SEXUAL_REPRODUCTIVE_HEALTH from './sexual_reproductive_health.png';
 import WOMAN from './woman.png';
 import CHECK_CIRCLE from './check_circle.png';
 import THANK_DESIGN from './thank_you_design.png';
-import THANK_IMAGE from './thank_image.png'
-import VECTOR1 from './Vector1.png'
+import THANK_IMAGE from './thank_image.png';
+import VECTOR1 from './Vector1.png';
 import EditIcon from './edit';
 import PlusIcon from './plus';
 import SLIDDERIMG1 from './slidderImg1.png';
@@ -23,21 +23,26 @@ import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-
-
-
+import INTERNALMEDICINE from './internalMedicine.png';
+import NEUROLOGY from './Neurology.png';
+import PEDIATRICS from './Pediatrics.png';
+import SURGERY from './Surgery.png';
 const PNG = {
   AMICO,
   BACTERIA,
   CALM,
   CHILD_CARE,
   CHILLS,
+  NEUROLOGY,
+  PEDIATRICS,
+  SURGERY,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
   PREGNANT,
   SEXUAL_REPRODUCTIVE_HEALTH,
   WOMAN,
+  INTERNALMEDICINE,
   CHECK_CIRCLE,
   SLIDDERIMG1,
   SLIDDERIMG2,
@@ -49,13 +54,12 @@ const PNG = {
   BOTTOMNAVIMG3,
   THANK_DESIGN,
   VECTOR1,
-  THANK_IMAGE
+  THANK_IMAGE,
 };
 
 const SVG = {
-
- PlusIcon: PlusIcon,
- Edit:EditIcon
-}
+  PlusIcon: PlusIcon,
+  Edit: EditIcon,
+};
 
 export {PNG, SVG};
