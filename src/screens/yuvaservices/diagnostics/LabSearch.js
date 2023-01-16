@@ -3,11 +3,11 @@ import { View } from 'react-native'
 import { Searchbar } from 'react-native-paper';
 import { PLACEHOLDER_TEXT_COLOR} from "../../../styles/colors" 
 import { SEARCH } from './constants';
-import { styles } from './style';
+import { styles } from './styles';
 const LabSearch = () => {
 
     return (
-        <View className="m-2">
+        <View style={styles.card}>
             <Searchbar
                 style={styles.search}
                 placeholder={SEARCH}

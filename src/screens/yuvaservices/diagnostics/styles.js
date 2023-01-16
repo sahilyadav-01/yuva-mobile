@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BLACK, DARK_BLUE,ORANGE,PLATINUM, WHITE ,AMBER, GAINSBORO, CYAN_BLUE} from '../../../styles/colors';
-import { COLUMN, SPACE_BETWEEN } from '../../../styles/constants';
+import { BOLD, COLUMN, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts'; 
 
 export const styles = StyleSheet.create({
@@ -24,7 +24,7 @@ boxStyles1:{
 },
 contentContainerStyle:{
     flexGrow: 1,
-    paddingBottom: 200,
+    paddingBottom: 300,
 },
 dateTime:{
     backgroundColor:WHITE,
@@ -45,11 +45,18 @@ search:{
     backgroundColor: AMBER,
     color: GAINSBORO,
     marginTop: 1,
-    marginBottom: -55,
     fontSize: 1,
 },
 textColor:{
-color:CYAN_BLUE
+color:CYAN_BLUE,
+fontWeight:BOLD,
+marginLeft:3,
+},
+textColor2:{
+    color:CYAN_BLUE,
+    fontWeight:BOLD,
+    marginLeft:3,  
+    marginTop:10
 },
 labTest:{
     flexDirection:COLUMN,
@@ -61,7 +68,7 @@ labTest:{
 },
 cards:{
     backgroundColor:WHITE,
-     height:96,
+      height:96,
      marginTop:19,
      marginLeft:15,
      marginRight:15,
@@ -79,7 +86,16 @@ packageTest:{
  
 },
 card:{
-    marginLeft:13,
-    marginRight:13,
-}
+   margin:2,
+},
+contentContainerStyle:{
+    flexGrow:1,
+    paddingBottom: 300,
+},
+textPackage:{
+    marginTop:33,
+  },
+  container:{
+    marginBottom:132,
+  }
 })

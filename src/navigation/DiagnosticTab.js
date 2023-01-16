@@ -19,7 +19,12 @@ const DiagnosticsNavigation = () => {
   return (
     <Tab.Navigator
       style={styles.tabNavigation}
-      screenOptions={styles.screenOptions}>
+      screenOptions={{
+        tabBarLabelStyle:styles.tab,
+        tabBarStyle:styles.height,
+        swipeEnabled: true,
+        lazy: false, 
+      }}>
       <Tab.Screen
         name={AVAILABLE}
         component={AvailableBooking}

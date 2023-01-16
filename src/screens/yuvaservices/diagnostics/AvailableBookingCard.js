@@ -3,7 +3,7 @@ import React from 'react'
 import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { styles } from './style';
+import { styles } from './styles';
 const AvailableBookingCard = ({
   name, id, packageName, imageUrl, packageUuid, nameBooking
 }) => {
@@ -23,9 +23,9 @@ const AvailableBookingCard = ({
               <View style={styles.labTest}>
                 <Image
                   source={imageUrl}
-   style={styles.image}
+                  style={styles.image}
                 />
-                <Text className="text-medium text-base text-[#1D2334]">{name}</Text>
+                <Text style={styles.packageTest}>{name}</Text>
                 <Text style={styles.packageTest}>{nameBooking}</Text>         
               </View>
         </View>
