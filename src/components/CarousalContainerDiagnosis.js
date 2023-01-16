@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, FlatList, Dimensions } from 'react-native';
 import CarouselItem from './CarouselItem';
 import { useSelector, useDispatch } from 'react-redux';
+import { styles } from '../screens/styles';
 const CarouselContainerDiagnosis = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -27,7 +28,9 @@ const CarouselContainerDiagnosis = () => {
         return <CarouselItem diagnosticItem={item} index={index} totalItem={caraouselData?.length} />
     }
     return (
+       
         <View className="flex items-center justify-center mt-2 mx-4 my-4">
+             <View><Text style={styles.carouselText}>Upcoming</Text></View>
             <FlatList
                 renderItem={renderItem}
                 data={caraouselData}

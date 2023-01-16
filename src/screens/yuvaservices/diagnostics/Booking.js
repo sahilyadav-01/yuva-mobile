@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
+import { styles } from './style';
 const Booking = ({ name }) => {
     const { bookedData } = useSelector(state => state.diagnostic)
 
@@ -36,7 +37,7 @@ const Booking = ({ name }) => {
                         })
                         }
                     </ScrollView>
-                ) : <Text className="font-bold ml-3">No Booking Found</Text>}
+                ) : <Text className="font-bold ml-3" style={styles.textColor}>No Booking Found</Text>}
 
             </View>
         </View>

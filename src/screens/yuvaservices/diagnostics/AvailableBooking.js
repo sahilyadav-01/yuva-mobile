@@ -5,6 +5,7 @@ import AvailableBookingCard from './AvailableBookingCard';
 import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSlice';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
+import { styles } from './style';
 
 
 
@@ -27,7 +28,7 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
-        <View >
+   
             <ScrollView
                 contentContainerStyle={{
                     flexGrow: 1,
@@ -35,11 +36,11 @@ const AvailableBooking = ({ name }) => {
                 }}
 
             >
-                <View className="m-2">
+                <View style={styles.card}>
                     {testData ? (
-                        <View className=" mt-[40px]">
+                        <View className=" mt-[33px]">
                             {testData.myTestResponseDtoList ? (
-                                <Text className="font-bold ml-3">Available lab test</Text>) : <Text className="font-bold ml-3">No test available</Text>}
+                                <Text className="font-bold ml-3" style={styles.textColor}>Available lab test</Text>) : <Text style={styles.textColor} className="font-bold ml-3">No test available</Text>}
                             <View>
                                 {testData && testData?.myTestResponseDtoList && testData?.myTestResponseDtoList.map((item) => {
                                     return <AvailableBookingCard
@@ -53,7 +54,7 @@ const AvailableBooking = ({ name }) => {
                                 }
                             </View>
                             {testData.myPackageResponseDtoList ? (
-                                <Text className="font-bold ml-3 mt-10">Available Package test</Text>) : <Text className="font-bold ml-3 mt-10">No Available Package </Text>}
+                                <Text className="font-bold ml-3 mt-10" style={styles.textColor}>Available Package test</Text>) : <Text className="font-bold ml-3 mt-10" style={styles.textColor}>No Available Package </Text>}
                             {testData && testData?.myPackageResponseDtoList && testData?.myPackageResponseDtoList.map((item) => {
                                 return <AvailableBookingCard
                                     key={item?.id}
@@ -64,10 +65,9 @@ const AvailableBooking = ({ name }) => {
                                 />
                             })
                             }
-                        </View>) : <Text className="font-bold ml-3 mt-10">No test or Package Available</Text>}
+                        </View>) : <Text className="font-bold ml-3 mt-10" style={styles.textColor}>No test or Package Available</Text>}
                 </View>
             </ScrollView>
-        </View>
     )
 }
 

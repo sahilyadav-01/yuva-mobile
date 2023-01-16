@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE,ORANGE,PLATINUM, WHITE } from '../../../styles/colors';
-
+import { BLACK, DARK_BLUE,ORANGE,PLATINUM, WHITE ,AMBER, GAINSBORO, CYAN_BLUE} from '../../../styles/colors';
+import { COLUMN, SPACE_BETWEEN } from '../../../styles/constants';
+import { fonts } from '../../../styles/fonts'; 
 
 export const styles = StyleSheet.create({
 
@@ -40,4 +41,45 @@ touchable:{
     backgroundColor:ORANGE,
 },
 theme:{colors: { text:BLACK }},
+search:{
+    backgroundColor: AMBER,
+    color: GAINSBORO,
+    marginTop: 1,
+    marginBottom: -55,
+    fontSize: 1,
+},
+textColor:{
+color:CYAN_BLUE
+},
+labTest:{
+    flexDirection:COLUMN,
+    marginLeft:20,
+    marginRight:24,
+    marginTop:25,
+    flex:1,
+    justifyContent:SPACE_BETWEEN
+},
+cards:{
+    backgroundColor:WHITE,
+     height:96,
+     marginTop:19,
+     marginLeft:15,
+     marginRight:15,
+     borderRadius:12
+},
+image:{
+    height:33,
+    width:33
+    
+},
+packageTest:{
+    color:DARK_BLUE,
+    fontSize: fonts.size.fontSize12,
+     fontWeight: fonts.weight.fontWeight500,
+ 
+},
+card:{
+    marginLeft:13,
+    marginRight:13,
+}
 })
