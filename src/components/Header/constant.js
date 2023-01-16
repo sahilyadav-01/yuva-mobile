@@ -1,0 +1,1 @@
+export const LOGIN_TEXT = 'Login/Sign Up';
