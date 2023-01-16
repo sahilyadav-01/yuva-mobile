@@ -20,7 +20,6 @@ const IntroStackNav = () => {
   const { jwt } = useSelector(state => state.auth.user);
   const getInitialRoute = async () => {
     const existingUser = await getExistingUser();
-    console.log('Existing user', existingUser)
     if (existingUser) return 'HomeScreen';
     return 'IntroScreen';
   };

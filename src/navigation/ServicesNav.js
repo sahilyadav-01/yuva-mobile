@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
+import Authentication from './Authentication';
 
 const Stack = createStackNavigator();
 const ServicesNav = () => {
@@ -44,7 +45,13 @@ const ServicesNav = () => {
         name="ProfessionalServices"
         component={ProfessionalServices}
         options={{headerShown: false}}
-      />    
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={Authentication}
+        options={{headerShown: false}}
+    />
+         
     </Stack.Navigator>
 
   );
