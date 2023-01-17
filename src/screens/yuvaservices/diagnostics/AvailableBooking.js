@@ -6,7 +6,7 @@ import { viewMyTestAndPackageThunk } from '../../../store/reducers/DiagnosticsSl
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
 import { styles } from './styles';
-import { AVAILABLE, AVAILABLE_PACKAGE, NO_PACKAGE, NO_TEST, NO_TEST_PACKAGE } from './constant';
+import { AVAILABLE, AVAILABLE_PACKAGE, NO_PACKAGE, NO_TEST, NO_TEST_PACKAGE } from './constants';
 
 const AvailableBooking = ({ name }) => {
 
@@ -19,7 +19,7 @@ const AvailableBooking = ({ name }) => {
     }, [])
 
     return (
- <View style={styles.container}>
+ <View style={styles.margin}>
             <ScrollView
              style={styles.contentContainerStyle}  >
                 <View style={styles.card}>

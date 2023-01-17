@@ -18,6 +18,7 @@ import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import { DARK_BLUE } from '../../../styles/colors';
 import { getRelations } from '../../../store/reducers/ProfileSlice';
+import { ABOUT_TEST, ALERT, BOOK_NOW, DIAGNOSTIC, FALSE, INDIVIDUAL_TEST, INSTRUCTIONS, LAB, LOCATION, MYSELF, NULL, OK, PACKAGE, PINCODE, RESCHEDULE, SELECT, SOMETHING_WENT_WRONG, TIME } from './constants';
 
 
 const BookingTestAndPackage = ({ route }) => {
@@ -98,41 +99,41 @@ const BookingTestAndPackage = ({ route }) => {
             data = {
                 ...data,
                 attributeId: testDetails.id,
-                attributeType: 'INDIVIDUAL_TEST',
+                attributeType: INDIVIDUAL_TEST,
             };
             dispatch(bookTestThunk({ jwt, data })).then((resp) => {
                 if (resp) {
                     if (resp?.payload?.message) {
-                        Alert.alert("Alert", resp?.payload?.message, [{
-                            text: "Ok",
-                            onPress: () => { navigation.navigate("Diagnostic") }
+                        Alert.alert(ALERT, resp?.payload?.message, [{
+                            text: OK,
+                            onPress: () => { navigation.navigate(DIAGNOSTIC) }
                         }])
                     } else if (resp?.payload?.address) {
 
-                        Alert.alert("Alert", resp?.payload?.address, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.address, [{
+                            text: OK,
                         }])
                     } else if (resp?.payload?.pinCode) {
 
-                        Alert.alert("Alert", resp?.payload?.pinCode, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.pinCode, [{
+                            text:OK,
                         }])
                     } else if (resp?.payload?.errorMessage) {
 
-                        Alert.alert("Alert", resp?.payload?.errorMessage, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.errorMessage, [{
+                            text: OK,
                         }])
                     }
                     else {
-                        Alert.alert("Alert", "Something went wrong", [{
-                            text: "Ok",
+                        Alert.alert(ALERT, SOMETHING_WENT_WRONG, [{
+                            text:OK,
                         }])
                     }
                 }
                 else {
                     //setSaveFalg(true);
-                    Alert.alert("Alert", "Something went wrong", [{
-                        text: "Ok",
+                    Alert.alert(ALERT, SOMETHING_WENT_WRONG, [{
+                        text:OK,
                     }])
                 }
             }
@@ -142,42 +143,42 @@ const BookingTestAndPackage = ({ route }) => {
             data = {
                 ...data,
                 attributeId: packageUuid,
-                attributeType: 'PACKAGE',
+                attributeType: PACKAGE,
             };
             dispatch(bookTestThunk({ jwt, data })).then((resp) => {
                 if (resp) {
                     // setSaveFalg(true);
                     if (resp?.payload?.message) {
-                        Alert.alert("Alert", resp?.payload?.message, [{
-                            text: "Ok",
-                            onPress: () => { navigation.navigate("Diagnostic") }
+                        Alert.alert(ALERT, resp?.payload?.message, [{
+                            text:OK,
+                            onPress: () => { navigation.navigate(DIAGNOSTIC) }
                         }])
                     } else if (resp?.payload?.address) {
 
-                        Alert.alert("Alert", resp?.payload?.address, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.address, [{
+                            text:OK,
                         }])
                     } else if (resp?.payload?.pinCode) {
 
-                        Alert.alert("Alert", resp?.payload?.pinCode, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.pinCode, [{
+                            text:OK,
                         }])
                     } else if (resp?.payload?.errorMessage) {
 
-                        Alert.alert("Alert", resp?.payload?.errorMessage, [{
-                            text: "Ok",
+                        Alert.alert(ALERT, resp?.payload?.errorMessage, [{
+                            text:OK,
                         }])
                     }
                     else {
-                        Alert.alert("Alert", "Something went wrong", [{
-                            text: "Ok",
+                        Alert.alert(ALERT,SOMETHING_WENT_WRONG, [{
+                            text: OK,
                         }])
                     }
                 }
                 else {
                     //setSaveFalg(true);
-                    Alert.alert("Alert", "Something went wrong", [{
-                        text: "Ok",
+                    Alert.alert(ALERT,SOMETHING_WENT_WRONG, [{
+                        text: OK,
                     }])
                 }
             }
@@ -187,25 +188,25 @@ const BookingTestAndPackage = ({ route }) => {
     };
 
     const rescheduleBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled: "false", timeSlot: getEpoch(date, time) })).then((resp) => {
+        dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled:FALSE, timeSlot: getEpoch(date, time) })).then((resp) => {
             if (resp) {
 
                 if (resp.payload.message) {
-                    Alert.alert("Alert", resp.payload.message, [{
-                        text: "Ok",
-                        onPress: () => { navigation.navigate("Diagnostic") }
+                    Alert.alert(ALERT, resp.payload.message, [{
+                        text: OK,
+                        onPress: () => { navigation.navigate(DIAGNOSTIC) }
                     }])
                 } else if (resp.payload.errorMessage) {
 
-                    Alert.alert("Alert", resp.payload.errorMessage, [{
-                        text: "Ok",
+                    Alert.alert(ALERT, resp.payload.errorMessage, [{
+                        text: OK,
                     }])
                 }
             }
             else {
 
-                Alert.alert("Alert", "Something went wrong", [{
-                    text: "Ok",
+                Alert.alert(ALERT, SOMETHING_WENT_WRONG, [{
+                    text: OK,
                 }])
 
 
@@ -225,29 +226,29 @@ const BookingTestAndPackage = ({ route }) => {
     }, [relationId])
     
     return (
-        <View>
+        <View style={styles.margin}>
             <MainHeader />
             <DiagnosticHeader />
             <ScrollView
                style={styles.contentContainerStyle}>
-                <View className="pl-[15px] pr-[15px]">
+                <View style={styles.booksID}>
                     {!bookedDetailsById ? (
                         <View>
                             {testDetails && packageDetails === '' ? (
                                 <View>
                                     <View>
-                                        <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
+                                        <Text style={styles.booked}>
                                             {testDetails.name}
                                         </Text>
                                     </View>
                                     <View>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            About the test
+                                        <Text style={styles.bookingDetails}>
+                                         {ABOUT_TEST}
                                         </Text>
                                         <Text>{testDetails.description}</Text>
 
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            Instructions
+                                        <Text style={styles.bookingDetails}>
+                                           {INSTRUCTIONS}
                                         </Text>
                                         <Text>{testDetails.instruction}</Text>
                                     </View>
@@ -255,27 +256,27 @@ const BookingTestAndPackage = ({ route }) => {
                             ) : (
                                 <View>
                                     <View>
-                                        <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
+                                        <Text style={styles.booked}>
                                             {packageDetails.packageName}
                                         </Text>
                                     </View>
                                     <View>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            About the test
+                                        <Text style={styles.bookingDetails}>
+                                         {ABOUT_TEST}
                                         </Text>
                                         <Text>{packageDetails.description}</Text>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            Instructions
+                                        <Text style={styles.bookingDetails}>
+                                          {INSTRUCTIONS}
                                         </Text>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            {packageDetails.totalTest} Lab Tests in this package
+                                        <Text style={styles.bookingDetails}>
+                                            {packageDetails.totalTest} {LAB}
                                         </Text>
                                         {packageDetails &&
                                             packageDetails.attributeResponseDtoList.map((item, index) => {
                                                 return (
 
-                                                    <View className="bg-[#1D2334] mb-[10px] pb-[20px] flex-row">
-                                                        <Text className="text-base ml-[10px] text-white py-[1px]">
+                                                    <View style={styles.itemView}>
+                                                        <Text style={styles.itemText}>
                                                             {item.attributeName}
                                                         </Text>
                                                     </View>
@@ -290,18 +291,18 @@ const BookingTestAndPackage = ({ route }) => {
                             {bookedDetailsById && !bookedDetailsById.packageName ? (
                                 <View>
                                     <View>
-                                        <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
+                                        <Text style={styles.booked}>
                                             {bookedDetailsById?.testName[0]}
                                         </Text>
                                     </View>
                                     <View>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            About the test
+                                        <Text style={styles.bookingDetails}>
+                                         {ABOUT_TEST}
                                         </Text>
                                         <Text>{bookedDetailsById?.testOrPackageDescription}</Text>
 
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            Instructions
+                                        <Text style={styles.bookingDetails}>
+                                           {INSTRUCTIONS}
                                         </Text>
                                         <Text>{bookedDetailsById?.instruction}</Text>
                                     </View>
@@ -309,27 +310,27 @@ const BookingTestAndPackage = ({ route }) => {
                             ) : (
                                 <View>
                                     <View>
-                                        <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
+                                        <Text style={styles.booked}>
                                             {bookedDetailsById.packageName}
                                         </Text>
                                     </View>
                                     <View>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            About the test
+                                        <Text style={styles.bookingDetails}>
+                                          {ABOUT_TEST}
                                         </Text>
                                         <Text>{bookedDetailsById.description}</Text>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            Instructions
+                                        <Text style={styles.bookingDetails}>
+                                          {INSTRUCTIONS}
                                         </Text>
-                                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                            {bookedDetailsById.testName.length} Lab Tests in this package
+                                        <Text style={styles.bookingDetails}>
+                                            {bookedDetailsById.testName.length}{LAB}
                                         </Text>
                                         {bookedDetailsById.testName &&
                                             bookedDetailsById.testName.map((item, index) => {
                                                 return (
 
-                                                    <View className="bg-[#1D2334] mb-[10px] pb-[20px] flex-row">
-                                                        <Text className="text-base ml-[10px] text-white py-[1px]">
+                                                    <View style={styles.itemView}>
+                                                        <Text style={styles.itemText}>
                                                             {item}
                                                         </Text>
                                                     </View>
@@ -342,62 +343,63 @@ const BookingTestAndPackage = ({ route }) => {
                     )}
                     {!bookedDetailsById ? (
                         <View>
-                            <View className="mt-[20px]">
+                            <View style={styles.dateView}>
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={styles.dateTime}
+                                    style={styles.dateTimePicker}
                                     selectionColor={DARK_BLUE}
                                     theme={styles.theme}
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
-                                    type="time"
+                                    type={TIME}
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={styles.dateTime}
+                                     style={styles.dateTimePicker}
                                     selectionColor={DARK_BLUE}
                                     theme={styles.theme}
                                 />
                                 <SelectList
-                                  boxStyles={styles.boxStyles1}
+                                style={styles.textInputStyle}
+                                  boxStyles={styles.boxStyles}
                                     setSelected={setSelected}
                                     data={data}
+                                    placeholder={SELECT}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={styles.textInput}
-                                    className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
-                                    placeholder="Location"
+                                    style={styles.textInputStyle}
+                                    
+                                    placeholder={LOCATION}
                                     onChangeText={onChangeLocation}
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={styles.textInput}
-                                    className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
-                                    placeholder="Pincode"
+                                    style={styles.textInputStyle}
+                                    
+                                    placeholder={PINCODE}
                                     onChangeText={onChangePincode}
                                 />
                                 <SelectList
                                     boxStyles={styles.boxStyles}
-                                    defaultOption={{ key: 'null', value: 'Myself' }}
+                                    defaultOption={{ key:NULL, value:MYSELF }}
                                     setSelected={setSelected1}
                                     data={dataRelation}
                                 />
                             </View>
                             <TouchableOpacity
                                 onPress={bookTest}
-                                style={styles.touchable}
-                                className="mt-[40px] rounded">
-                                <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
-                                    Book Now
+                                style={styles.touchable}>
+                                <Text style={styles.textBook}>
+                                    {BOOK_NOW}
                                 </Text>
                                 {/* </View> */}
                             </TouchableOpacity>
                         </View>
                     ) : (
                         <View>
-                            <View className="mt-[20px]">
+                            <View style={styles.view}>
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
@@ -407,7 +409,7 @@ const BookingTestAndPackage = ({ route }) => {
                                     minimumDate={new Date()}
                                 />
                                 <DateTimePicker
-                                    type="time"
+                                    type={TIME}
                                     value={time}
                                     onChangeDate={handleTime}
                                     style={styles.dateTime}
@@ -418,8 +420,7 @@ const BookingTestAndPackage = ({ route }) => {
                                     multiline={true}
                                     value={bookedDetailsById.patientLocation}
                                     style={styles.textInput}
-                                    className="h-[50px] rounded shadow-2xl pl-2 pb-0 pt-1"
-                                    placeholder="Location"
+                                    placeholder={LOCATION}
                                     editable={false}
 
                                 />
@@ -427,19 +428,17 @@ const BookingTestAndPackage = ({ route }) => {
                                     multiline={true}
                                     value={pincodeData[pincodeData.length - 1]}
                                     style={styles.textInput}
-                                    className="h-[50px] mt-[15px]  rounded shadow-2xl pl-2 pb-0 pt-1"
-                                    placeholder="Pincode"
+                                 
+                                    placeholder={PINCODE}
                                     editable={false}
                                 />
                             </View>
                             <TouchableOpacity
                                 onPress={rescheduleBooking}
-                                style={styles.touchable}
-                                className="mt-[40px] rounded">
-                                <Text className="text-center font-bold pt-[15px] pb-[15px] text-white">
-                                    Reschedule
+                                style={styles.touchable}>
+                                <Text style={styles.textBook}>
+                                    {RESCHEDULE}
                                 </Text>
-                                {/* </View> */}
                             </TouchableOpacity>
                         </View>
                     )}
