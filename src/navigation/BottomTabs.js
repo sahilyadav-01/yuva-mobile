@@ -83,7 +83,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={OUR_OFFERS}
-        component={Intro}
+        component={Settings}
         options={{
           tabBarIcon: ({focused}) => {
             return (
