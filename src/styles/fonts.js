@@ -1,5 +1,6 @@
 export const fonts = {
   size: {
+    fontSize18: 18,
     fontSize16: 16,
     fontSize14: 14,
     fontSize12: 12,
@@ -13,7 +14,7 @@ export const fonts = {
     fontWeight500: '500',
     fontWeight400: '400',
   },
-  Height:{
+  Height: {
     lineHeight30: '30',
   },
   family: {

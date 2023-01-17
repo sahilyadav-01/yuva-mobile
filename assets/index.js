@@ -27,19 +27,27 @@ import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
 import PEDIATRICS from './Pediatrics.png';
 import SURGERY from './Surgery.png';
+import CORONA from './Corona.png';
+import COUGH from './cough.png';
+import SEX from './sex.png';
+import SKIN from './skin.png';
 const PNG = {
   AMICO,
   BACTERIA,
   CALM,
+  COUGH,
   CHILD_CARE,
   CHILLS,
   NEUROLOGY,
   PEDIATRICS,
   SURGERY,
+  CORONA,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
   PREGNANT,
+  SEX,
+  SKIN,
   SEXUAL_REPRODUCTIVE_HEALTH,
   WOMAN,
   INTERNALMEDICINE,
