@@ -15,7 +15,7 @@ const Booking = ({ name }) => {
                 {bookedData.length ? (
                     <ScrollView
                         bounces={false}
-                    style={styles.contentContainerStyle}
+                        contentContainerStyle={styles.contentContainerStyle}
                         showsVerticalScrollIndicator={false}>
                         {bookedData && bookedData.map((item, index) => {
                             if (item.packageName !== null) {
