@@ -23,7 +23,7 @@ import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-
+import DOWNLOAD from './download.png'
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 
@@ -51,7 +51,8 @@ const PNG = {
   BOTTOMNAVIMG3,
   THANK_DESIGN,
   VECTOR1,
-  THANK_IMAGE
+  THANK_IMAGE,
+  DOWNLOAD
 };
 
 const SVG = {

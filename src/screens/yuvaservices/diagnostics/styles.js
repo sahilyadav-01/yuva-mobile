@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         color: DARK_BLUE,
         height: 50,
-        width: "102%",
+        width:fonts.width.width102,
     },
 
     contentContainerStyle: {
@@ -80,11 +80,12 @@ export const styles = StyleSheet.create({
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize12,
         fontWeight: fonts.weight.fontWeight500,
-
+        justifyContent: CENTER,
+        marginBottom: 20,
     },
     contentContainerStyle: {
         flexGrow: 1,
-        paddingBottom: 300,
+        paddingBottom: 60,
     },
     textPackage: {
         marginTop: 33,
@@ -110,7 +111,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 8,
     },
     margin: {
-        marginBottom: 242,
+        marginBottom: 172,
     },
     card: {
         margin: 2
@@ -123,34 +124,48 @@ export const styles = StyleSheet.create({
         color: WHITE
 
     },
-    view:{
-        marginTop:20,
+    view: {
+        marginTop: 20,
     },
-    dateView:{
-        marginTop:66,
+    dateView: {
+        marginTop: 66,
     },
-    bookingDetails:{
-        fontWeight:fonts.weight.fontWeight500,
+    bookingDetails: {
+        fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
-        paddingBottom:15,
-        color:CYAN_BLUE
+        paddingBottom: 15,
+        color: CYAN_BLUE
     },
-    itemText:{
-        marginLeft:10,
-color:WHITE,
-paddingBottom:1,
-paddingTop:1
+    itemText: {
+        marginLeft: 10,
+        color: WHITE,
+        paddingBottom: 1,
+        paddingTop: 1
     },
-    itemView:{
-        backgroundColor:DARK_BLUE,
-        marginBottom:10,
-        paddingBottom:20,
-        flexDirection:ROW
+    itemView: {
+        backgroundColor: DARK_BLUE,
+        marginBottom: 10,
+        paddingBottom: 20,
+        flexDirection: ROW
     },
-    booked:{
-        marginTop:10,
-        marginBottom:10,
-        fontWeight:fonts.weight.fontWeight600,
+    booked: {
+        marginTop: 10,
+        marginBottom: 10,
+        fontWeight: fonts.weight.fontWeight600,
+        color: CYAN_BLUE
+    },
+    download: {
+        marginLeft: 160,
+        marginTop: 2,
+        color: DARK_BLUE,
+        fontSize: fonts.size.fontSize12,
+        fontWeight: fonts.weight.fontWeight500,
+
+    },
+    booking: {
+        flexDirection: ROW
+    },
+    color:{
         color:CYAN_BLUE
     }
 })

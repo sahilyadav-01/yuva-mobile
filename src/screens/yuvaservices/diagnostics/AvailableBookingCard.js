@@ -4,6 +4,8 @@ import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
+import { DOWNLOAD_REPORT } from './constants';
+import { PNG } from '../../../../assets';
 const AvailableBookingCard = ({
   name, id, packageName, imageUrl, packageUuid, nameBooking
 }) => {
@@ -20,14 +22,25 @@ const AvailableBookingCard = ({
     <View>
       <TouchableOpacity disabled={!name} onPress={clicked}>
         <View style={styles.cards}>
-              <View style={styles.labTest}>
-                <Image
-                  source={imageUrl}
-                  style={styles.image}
-                />
-                <Text style={styles.packageTest}>{name}</Text>
-                <Text style={styles.packageTest}>{nameBooking}</Text>         
-              </View>
+          <View style={styles.labTest}>
+            <Image
+              source={imageUrl}
+              style={styles.image}
+            />
+            <View >
+              {name ? (
+                <View>
+                  <Text style={styles.packageTest}>{name}</Text></View>
+              ) : (
+                <View style={styles.booking}>
+                  <Text style={styles.packageTest}>{nameBooking}</Text>
+                  <View >
+                    <TouchableOpacity ><Text style={styles.download}><Image source={PNG.DOWNLOAD}></Image>{DOWNLOAD_REPORT}</Text></TouchableOpacity>
+                  </View>
+                </View>
+              )}
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
     </View>

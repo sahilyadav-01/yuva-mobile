@@ -245,12 +245,12 @@ const BookingTestAndPackage = ({ route }) => {
                                         <Text style={styles.bookingDetails}>
                                          {ABOUT_TEST}
                                         </Text>
-                                        <Text>{testDetails.description}</Text>
+                                        <Text style={styles.color}>{testDetails.description}</Text>
 
                                         <Text style={styles.bookingDetails}>
                                            {INSTRUCTIONS}
                                         </Text>
-                                        <Text>{testDetails.instruction}</Text>
+                                        <Text style={styles.color}>{testDetails.instruction}</Text>
                                     </View>
                                 </View>
                             ) : (
@@ -264,7 +264,7 @@ const BookingTestAndPackage = ({ route }) => {
                                         <Text style={styles.bookingDetails}>
                                          {ABOUT_TEST}
                                         </Text>
-                                        <Text>{packageDetails.description}</Text>
+                                        <Text style={styles.color}>{packageDetails.description}</Text>
                                         <Text style={styles.bookingDetails}>
                                           {INSTRUCTIONS}
                                         </Text>
@@ -299,12 +299,12 @@ const BookingTestAndPackage = ({ route }) => {
                                         <Text style={styles.bookingDetails}>
                                          {ABOUT_TEST}
                                         </Text>
-                                        <Text>{bookedDetailsById?.testOrPackageDescription}</Text>
+                                        <Text style={styles.color}>{bookedDetailsById?.testOrPackageDescription}</Text>
 
                                         <Text style={styles.bookingDetails}>
                                            {INSTRUCTIONS}
                                         </Text>
-                                        <Text>{bookedDetailsById?.instruction}</Text>
+                                        <Text style={styles.color}>{bookedDetailsById?.instruction}</Text>
                                     </View>
                                 </View>
                             ) : (
@@ -318,7 +318,7 @@ const BookingTestAndPackage = ({ route }) => {
                                         <Text style={styles.bookingDetails}>
                                           {ABOUT_TEST}
                                         </Text>
-                                        <Text>{bookedDetailsById.description}</Text>
+                                        <Text style={styles.color}>{bookedDetailsById.description}</Text>
                                         <Text style={styles.bookingDetails}>
                                           {INSTRUCTIONS}
                                         </Text>
