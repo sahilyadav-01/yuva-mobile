@@ -10,13 +10,13 @@ const IntroStaticScreen3 = (props) => {
 
 
   return (
-<View>
-    <View >
+    <View style={styles.mainContainer}>
+    <View style={styles.topContainer}>
       <View>
         <IntroHeader />
       </View>
       <View>
-        <View style={styles.IntroStaticScreen3Container}>
+        <View style={styles.IntroStaticScreen1Container}>
           <Image
             source={PNG.SLIDDERIMG3}
             style={styles.IntroStaticScreen3Img}
@@ -32,8 +32,8 @@ const IntroStaticScreen3 = (props) => {
 
     </View>
     
-      <View>
-        <View style={styles.IntroStaticScreen3BottomContainer}>
+    <View style={styles.bottomContainer}>
+        <View style={styles.subBottomContainer}>
           <Image
             source={PNG.BOTTOMNAVIMG3}
             style={styles.BottomContaierImage1}
