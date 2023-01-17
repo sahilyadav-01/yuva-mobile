@@ -5,12 +5,12 @@ import AvailableBookingCard from './AvailableBookingCard';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';
 import { styles } from './styles';
-import { NO_BOOKING } from './constant';
+import { NO_BOOKING } from './constants';
 const Booking = ({ name }) => {
     const { bookedData } = useSelector(state => state.diagnostic)
 
     return (
-        <View style={styles.card}>
+        <View style={styles.margin}>
             <View >
                 {bookedData.length ? (
                     <ScrollView
