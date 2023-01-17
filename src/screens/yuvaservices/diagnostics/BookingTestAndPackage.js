@@ -15,7 +15,7 @@ import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { getEpoch, getTime } from '../../../utils/utils';
 import MessageBox from '../../../components/MessageBox';
-import { styles } from './style';
+import { styles } from './styles';
 import { DARK_BLUE } from '../../../styles/colors';
 import { getRelations } from '../../../store/reducers/ProfileSlice';
 
