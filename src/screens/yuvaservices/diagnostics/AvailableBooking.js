@@ -21,7 +21,7 @@ const AvailableBooking = ({ name }) => {
     return (
  <View style={styles.margin}>
             <ScrollView
-             style={styles.contentContainerStyle}  >
+             contentContainerStyle={styles.contentContainerStyle}  >
                 <View style={styles.card}>
                     {testData ? (
                         <View style={styles.textPackage}>
