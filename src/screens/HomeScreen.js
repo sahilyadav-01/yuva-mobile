@@ -10,7 +10,6 @@ import Header from '../components/Header';
 //const Stack = createStackNavigator();
 
 const HomeScreen = ({navigation}) => {
-  console.log('Navigation',navigation)
   const route = useRoute();
   const dispatch = useDispatch();
   const {user:{jwt},loggedIn} = useSelector(state => state.auth);
