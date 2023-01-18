@@ -34,6 +34,9 @@ import SKIN from './skin.png';
 import CIRCLE from './Circle.png';
 import LINE from './Line.png';
 import OCIRCLE from './Ocircle.png';
+import DOWNLOAD from './download.png';
+import HeaderLogo from './headerLogo';
+import MenuIcon from './menu';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -69,14 +72,14 @@ const PNG = {
   THANK_DESIGN,
   VECTOR1,
   THANK_IMAGE,
-  DOWNLOAD
+  DOWNLOAD,
 };
 
 const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit:EditIcon
-}
+  Edit: EditIcon,
+};
 
 export {PNG, SVG};
