@@ -69,11 +69,14 @@ const PNG = {
   THANK_DESIGN,
   VECTOR1,
   THANK_IMAGE,
+  DOWNLOAD
 };
 
 const SVG = {
+  HeaderLogo: HeaderLogo,
+  MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit: EditIcon,
-};
+  Edit:EditIcon
+}
 
 export {PNG, SVG};
