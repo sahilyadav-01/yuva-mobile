@@ -31,6 +31,9 @@ import CORONA from './Corona.png';
 import COUGH from './cough.png';
 import SEX from './sex.png';
 import SKIN from './skin.png';
+import CIRCLE from './Circle.png';
+import LINE from './Line.png';
+import OCIRCLE from './Ocircle.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -38,6 +41,7 @@ const PNG = {
   COUGH,
   CHILD_CARE,
   CHILLS,
+  CIRCLE,
   NEUROLOGY,
   PEDIATRICS,
   SURGERY,
@@ -45,6 +49,8 @@ const PNG = {
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
+  LINE,
+  OCIRCLE,
   PREGNANT,
   SEX,
   SKIN,

@@ -1,6 +1,7 @@
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import React from 'react';
 import MainHeader from '../../components/MainHeader';
+import {PNG} from '../../../assets';
 import {
   HEALTH_CHECKUP,
   PACKAGE,
@@ -48,9 +49,18 @@ const HealthCheckUP = () => {
         </View>
         <Text style={styles.headTitle}>{PARAMETER}</Text>
         <View>
-          <Text style={styles.paramText}>{PARAM_1}</Text>
-          <Text style={styles.paramText}>{PARAM_2}</Text>
-          <Text style={styles.paramText}>{PARAM_3}</Text>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_1}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_2}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_3}</Text>
+          </View>
         </View>
         <View style={styles.moreContainer}>
           <View style={styles.moreInfoContainer}>
@@ -74,9 +84,18 @@ const HealthCheckUP = () => {
 
         <Text style={styles.headTitle}>{PARAMETER}</Text>
         <View>
-          <Text style={styles.paramText}>{PARAM_1}</Text>
-          <Text style={styles.paramText}>{PARAM_2}</Text>
-          <Text style={styles.paramText}>{PARAM_3}</Text>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_1}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_2}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_3}</Text>
+          </View>
         </View>
         <View style={styles.moreContainer}>
           <View style={styles.moreInfoContainer}>
@@ -98,9 +117,18 @@ const HealthCheckUP = () => {
         </View>
         <Text style={styles.headTitle}>{PARAMETER}</Text>
         <View>
-          <Text style={styles.paramText}>{PARAM_1}</Text>
-          <Text style={styles.paramText}>{PARAM_2}</Text>
-          <Text style={styles.paramText}>{PARAM_3}</Text>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_1}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_2}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.paramText1}>{PARAM_3}</Text>
+          </View>
         </View>
         <View style={styles.moreContainer}>
           <View style={styles.moreInfoContainer}>

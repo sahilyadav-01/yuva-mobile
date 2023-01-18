@@ -25,6 +25,7 @@ import {
   BEST_DOCTORS,
   TIP_1,
   TIP_2,
+  TIP_21,
   TIP_3,
   DOCTOR_DESC,
 } from './constant';
@@ -76,15 +77,42 @@ const TalkToDoctor = () => {
             <Text style={styles.boxText}>{SORE_THROAT}</Text>
           </View>
         </View>
-        <Text style={styles.description}>{DEDICATED}</Text>
-        <Text style={styles.description}>{FACILITY_1}</Text>
-        <Text style={styles.description}>{FACILITY_2}</Text>
-        <Text style={styles.description}>{FACILITY_3}</Text>
+        <Text style={styles.headTitle}>{DEDICATED}</Text>
+        <View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.Odescription1}>{FACILITY_1}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.Odescription1}>{FACILITY_2}</Text>
+          </View>
+          <View style={styles.Ocircle}>
+            <Image style={styles.imageO} source={PNG.OCIRCLE} />
+            <Text style={styles.Odescription1}>{FACILITY_3}</Text>
+          </View>
+        </View>
         <Text style={styles.title}>{CONSULTATION}</Text>
-        <Text style={styles.description}>{TIP_1}</Text>
-        <Text style={styles.description}>{TIP_2}</Text>
-        <Text style={styles.description}>{TIP_3}</Text>
-        <Text style={styles.title}>{BEST_DOCTORS}</Text>
+        <View>
+          <View style={styles.textDia}>
+            <Image source={PNG.CIRCLE} />
+            <Text style={styles.description1}>{TIP_1}</Text>
+          </View>
+          <Image style={styles.imgL1} source={PNG.LINE} />
+          <View style={styles.textDia}>
+            <Image source={PNG.CIRCLE} />
+            <View style={styles.textView}>
+              <Text style={styles.description1}>{TIP_2}</Text>
+              <Text style={styles.description1}>{TIP_21}</Text>
+            </View>
+          </View>
+          <Image style={styles.imgL1} source={PNG.LINE} />
+          <View style={styles.textDia}>
+            <Image source={PNG.CIRCLE} />
+            <Text style={styles.description1}>{TIP_3}</Text>
+          </View>
+        </View>
+        <Text style={styles.title1}>{BEST_DOCTORS}</Text>
         <Text style={styles.description}>{DOCTOR_DESC}</Text>
       </ScrollView>
     </View>

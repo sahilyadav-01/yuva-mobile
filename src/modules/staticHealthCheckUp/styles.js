@@ -1,9 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {ORANGE, CYAN_BLUE, WHITE, RED_SHADE, BLACK} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
-
 import {fonts} from '../../styles/fonts';
-
 export const styles = StyleSheet.create({
   containerStyle: {
     marginLeft: '5%',
@@ -122,5 +120,19 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     backgroundColor: ORANGE,
     width: '50%',
+  },
+  Ocircle: {
+    marginVertical: '2%',
+    flexDirection: 'row',
+  },
+  paramText1: {
+    color: CYAN_BLUE,
+    marginLeft: '5%',
+    alignSelf: CENTER,
+    fontSize: fonts.size.fontSize12,
+    fontWeight: fonts.weight.fontWeight400,
+  },
+  imageO: {
+    marginTop: '1%',
   },
 });
