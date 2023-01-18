@@ -31,6 +31,9 @@ import BANNER from './banner.png';
 import DOWNLOAD from './download.png'
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
+import DIAGNOSTIC from './diagnosticImg.png';
+import HEALTHIMG from './healthImg.png';
+
 
 
 const PNG = {
@@ -62,7 +65,9 @@ const PNG = {
   Health_Checkup_Packages,
   Talk_To_Doctor,
   BANNER,
-  DOWNLOAD
+  DOWNLOAD,
+  DIAGNOSTIC,
+  HEALTHIMG
 };
 
 const SVG = {

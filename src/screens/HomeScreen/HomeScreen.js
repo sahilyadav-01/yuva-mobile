@@ -9,6 +9,7 @@ import { styles } from '../styles';
 import Header from '../../components/Header';
 import { PNG } from '../../../assets';
 import { LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2 } from '../constant';
+import CarouselItem from '../../components/CarouselItem';
 
 const HomeScreen = ({ navigation }) => {
   const route = useRoute();
@@ -33,7 +34,9 @@ const HomeScreen = ({ navigation }) => {
       />
       <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <CarouselContainer isIndexed={true}></CarouselContainer>
+        <CarouselContainer isIndexed={true}>
+        <CarouselItem />
+        </CarouselContainer>
         <View className="flex-row justify-center">
           <ServiceContainer />
         </View>
@@ -50,7 +53,9 @@ const HomeScreen = ({ navigation }) => {
          </TouchableOpacity> 
         </View>
         <View>
-
+        <CarouselContainer isIndexed={false}>
+        <CarouselItem />
+        </CarouselContainer>
         </View>
       </ScrollView>
     </SafeAreaView>
