@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
   },
   carouselText: {
-    marginRight: 300,
+    marginLeft: 20,
     color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight700,
     fontSize: fonts.size.fontSize14,

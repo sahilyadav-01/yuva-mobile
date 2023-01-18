@@ -8,6 +8,7 @@ import { UPCOMING } from '../styles/constants';
 const CarouselContainerDiagnosis = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [upcoming,setUpcoming]=useState(false);
   
     const {caraouselData } = useSelector(state => state.diagnostic)
     const wp = Dimensions.get('screen').width;
@@ -28,9 +29,19 @@ const CarouselContainerDiagnosis = () => {
     const renderItem = ({ item, index }) => {
         return <CarouselItem diagnosticItem={item} index={index} totalItem={caraouselData?.length} />
     }
+    useEffect(()=>{
+        if(caraouselData.length>0){
+            setUpcoming(true)
+        }
+        else{
+            setUpcoming(false)
+        }
+
+    },[caraouselData])
     return (
        <View>
-             <View><Text style={styles.carouselText}>{UPCOMING}</Text></View>
+         {upcoming ?( 
+         <View ><Text style={styles.carouselText}>{UPCOMING}</Text> 
         <View style={styles.carouselMain}>
             <FlatList
                 renderItem={renderItem}
@@ -55,6 +66,7 @@ const CarouselContainerDiagnosis = () => {
                 }}
             />
         </View>
+        </View> ):('')}
         </View>
     );
 };

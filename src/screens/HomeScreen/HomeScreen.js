@@ -11,7 +11,6 @@ import { PNG } from '../../../assets';
 import { LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2 } from '../constant';
 
 const HomeScreen = ({ navigation }) => {
-  console.log('Navigation', navigation)
   const route = useRoute();
   const dispatch = useDispatch();
   const { user: { jwt }, loggedIn } = useSelector(state => state.auth);
