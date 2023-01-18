@@ -12,6 +12,7 @@ export const fonts = {
     fontWeight600: '600',
     fontWeight500: '500',
     fontWeight400: '400',
+    fontWeight300: '300',
   },
   Height:{
     lineHeight30: '30',
