@@ -16,4 +16,5 @@ export const PLATINUM = '#E4E2E2';
 export const AMBER="#F2EFEA";
 export const GAINSBORO="#9D9FA4";
 export const INDIGO_LIGHT = '#38466C';
+export const SEASHELL = '#F1F1F1';
 

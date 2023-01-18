@@ -15,6 +15,7 @@ export const fonts = {
   },
   Height:{
     lineHeight30: '30',
+    lineHeight21: '21',
   },
   family: {
     fontFamilyRubix: 'Rubik-Regular',

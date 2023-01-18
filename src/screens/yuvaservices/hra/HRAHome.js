@@ -199,7 +199,6 @@ const HRAHome = () => {
         <ScrollView contentContainerStyle={{
             paddingBottom: 400
           }}>
-          {/* <View style={{boxShadow:"0px 0px 4px 4px rgba(0, 0, 0, 0.1);"}}className="h-[150px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]"> */}
           <View
             style={{
               shadowColor: 'rgba(0, 0, 0, 0.1)',

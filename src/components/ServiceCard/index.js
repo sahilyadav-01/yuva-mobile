@@ -2,17 +2,17 @@ import React,{useEffect} from 'react'
 import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import opd from  '../../assets/opd.png'
-import hra from  '../../assets/hra.png'
-import diagnostics from  '../../assets/diagnostics.png'
+import {styles} from './styles';
+import { PNG } from "../../../assets";
 
 const imageData = {
-    "opd": opd,
-    "hra":hra,
-    "diagnostics":diagnostics
+    "OPD_Consultation": PNG.OPD_Consultation,
+    "Health_Risk_Assessment":PNG.Health_Risk_Assessment,
+    "Health_Checkup_Packages":PNG.Health_Checkup_Packages,
+    "Talk_To_Doctor":PNG.Talk_To_Doctor
 }
 
-const ServiceCard = ({icon, name, inactive, disp, screenname, bgColor, elipseColor, image}) => {
+const ServiceCard = ({name, screenname, image}) => {
     const navigation = useNavigation();
     const onpress= () =>{
         navigation.navigate(`${screenname}`)
@@ -20,16 +20,16 @@ const ServiceCard = ({icon, name, inactive, disp, screenname, bgColor, elipseCol
 
     return (
          <TouchableOpacity 
-             className="w-[100px] h-[100px] mx-[10px] my-[20px] rounded shadow-inner"
+         style={styles.touchableOpacityContainerStyle}
              disable={true}
              onPress={onpress}>            
              <View 
-                className={`flex justify-end h-[80px] w-full rounded-lg shadow-xl bg-[${bgColor}]`}
-                style={{backgroundColor:bgColor}}
+                className={`flex justify-end h-[80px] w-full rounded-lg shadow-xl`}
+               
              >
                 <View 
-                className={`flex-row justify-center bg-[${elipseColor}] h-[53px] w-[100px] rounded-tr-full rounded-tl-full`}
-                style={{backgroundColor:elipseColor}}
+                className={`flex-row justify-center h-[53px] w-[100px] rounded-tr-full rounded-tl-full`}
+                // style={{backgroundColor:elipseColor}}
                 >
                     <Image
                         
