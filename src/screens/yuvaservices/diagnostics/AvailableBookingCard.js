@@ -17,7 +17,6 @@ const AvailableBookingCard = ({
       packageData: packageName ? { packageName, packageUuid } : '',
     });
   }
-  console.log(status, "status")
   return (
     <View>
       <TouchableOpacity disabled={!name} onPress={clicked}>
