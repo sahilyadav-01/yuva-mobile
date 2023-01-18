@@ -40,11 +40,6 @@ const IntroStackNav = () => {
         component={IntroScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="LoginScreen"
-        component={Authentication}
-        options={{headerShown: false}}
-      />
     </Stack.Navigator>
   );
 };
