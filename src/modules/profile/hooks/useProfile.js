@@ -29,12 +29,12 @@ export const useProfile = () => {
   const [dependentRelation, setDependentRelation] = useState('');
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
-      jwt && dispatch(profileThunk({jwt}));
-      jwt && dispatch(getRelations({jwt}));
-      jwt && dispatch(getActiveRelations({jwt}));
-    });
-  }, [focused]);
+    if (navigation.isFocused() && jwt && auth.loggedIn === 'loggedIn') {
+      dispatch(profileThunk({jwt}));
+      dispatch(getRelations({jwt}));
+      dispatch(getActiveRelations({jwt}));
+    }
+  }, [focused, auth.loggedIn]);
 
   useEffect(() => {
     if (profile.dataUpdated) {
@@ -95,7 +95,8 @@ export const useProfile = () => {
   };
 
   const addMemberToList = () => {
-    if (!date || !gender) Alert.alert('Alert', 'Please save DOB and Gender details');
+    if (!date || !gender)
+      Alert.alert('Alert', 'Please save DOB and Gender details');
     else if (profile.activeRelations.length === 0)
       Alert.alert('Alert', 'No active relations left');
     else setAddMembers(true);
