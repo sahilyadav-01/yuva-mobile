@@ -9,15 +9,17 @@ import { bookingTestAndPackageThunk } from '../../../store/reducers/DiagnosticsS
 import { createStackNavigator } from '@react-navigation/stack';
 import CarouselContainerDiagnosis from '../../../components/CarousalContainerDiagnosis';
 import DiagnosticHeader from '../../../components/DiagnosticHeader';
-import { styles } from '../../styles';
+import { styles } from './styles';
+import Header from '../../../components/Header';
+import { FALSE, TRUE } from './constants';
 
 const Diagnostics = () => {
     const { jwt } = useSelector(state => state.auth.user)
     const dispatch = useDispatch();
     useEffect(() => {
-        let isActive = "true";
+        let isActive = TRUE;
         dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
-        isActive = "false";
+        isActive = FALSE
         dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
     }, []);
 
@@ -25,13 +27,13 @@ const Diagnostics = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <YuvaStatusBar />
-
+            {/* <YuvaStatusBar />
             <MainHeader />
-            <DiagnosticHeader />
+            <DiagnosticHeader /> */}
+            <Header/>
             <LabSearch />
             <CarouselContainerDiagnosis />
-            <View className="h-[500]">
+            <View style={styles.height}>
                 <DiagnosticNav1 />
             </View>
         </SafeAreaView>

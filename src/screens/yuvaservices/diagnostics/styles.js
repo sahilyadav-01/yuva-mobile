@@ -16,7 +16,9 @@ export const styles = StyleSheet.create({
         height: 50,
         width:fonts.width.width102,
     },
-
+height:{
+    height:500,
+},
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 300,
@@ -93,7 +95,7 @@ export const styles = StyleSheet.create({
         marginTop: 23,
     },
     container: {
-        marginBottom: 132,
+        marginBottom: 162,
     },
     booksID: {
         paddingLeft: 15,
@@ -155,7 +157,7 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         fontWeight: fonts.weight.fontWeight600,
-        color: CYAN_BLUE
+        color: ORANGE
     },
     download: {
         marginLeft: 160,
@@ -170,5 +172,22 @@ export const styles = StyleSheet.create({
     },
     color:{
         color:CYAN_BLUE
-    }
+    },
+    button:{
+        marginTop:47,
+        marginLeft:13,
+        marginRight:14,
+        },
+        textReschedule:{
+        
+            color:ORANGE,
+            fontSize:fonts.size.fontSize14
+        },
+        testName:{
+            marginTop:27,
+            marginBottom:10,
+            marginLeft:13,
+fontWeight:fonts.weight.fontWeight700,
+
+        }
 })
