@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
         marginBottom: 172,
     },
     card: {
-        margin: 2
+        marginBottom:0
     },
     textBook: {
         textAlign: CENTER,

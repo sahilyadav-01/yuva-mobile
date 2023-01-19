@@ -22,15 +22,17 @@ export const styles = StyleSheet.create({
   },
   carouselText: {
     marginLeft: 20,
+   marginTop:10,
     color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight700,
-    fontSize: fonts.size.fontSize14,
+    fontSize: fonts.size.fontSize16,
   },
   carouselMain: {
     justifyContent: CENTER,
     marginLeft: 12,
     marginRight: 4,
-    alignItems: CENTER
+    alignItems: CENTER,
+   
   },
   tab: {
     fontSize: fonts.size.fontSize16,
@@ -50,5 +52,9 @@ export const styles = StyleSheet.create({
   //   borderRadius: 9,
   //   borderColor: 'grey', borderWidth: 2
   // }
-
+car:{
+  // flexDirection:"column",
+  // justifyContent:"center" ,
+  // backgroundColor:ORANGE
+}
 });
