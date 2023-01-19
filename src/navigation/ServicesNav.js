@@ -11,9 +11,18 @@ import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
 import Authentication from './Authentication';
+import CashlessOPD from '../modules/staticOPD';
+import {useSelector} from 'react-redux';
+import StaticHra from '../modules/staticHRA';
+import HealthCheckUP from '../modules/staticHealthCheckUp';
+import TalkToDoctor from '../modules/staticDoctor';
 
 const Stack = createStackNavigator();
+
 const ServicesNav = () => {
+  const {
+    auth: {loggedIn},
+  } = useSelector(state => state);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -23,22 +32,24 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="OPD"
-        component={OPDNavigation}
+        component={loggedIn !== 'loggedIn' ? CashlessOPD : OPDNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="HRA"
-        component={HRANavigation}
+        component={loggedIn !== 'loggedIn' ? StaticHra : HRANavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="Diagnostics"
-        component={DiagnosticNav}
+        component={loggedIn !== 'loggedIn' ? HealthCheckUP : DiagnosticNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="TalkToDoctor"
-        component={TalkToDoctorNavigation}
+        component={
+          loggedIn !== 'loggedIn' ? TalkToDoctor : TalkToDoctorNavigation
+        }
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -50,10 +61,8 @@ const ServicesNav = () => {
         name="LoginScreen"
         component={Authentication}
         options={{headerShown: false}}
-    />
-         
+      />
     </Stack.Navigator>
-
   );
 };
 
