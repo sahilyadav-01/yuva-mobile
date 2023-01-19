@@ -15,7 +15,12 @@ import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
 import Header from '../../components/Header';
 import {PNG} from '../../../assets';
-import {LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2, LANDING_PAGE_TEXT3, LANDING_PAGE_TEXT4} from '../constant';
+import {
+  LANDING_PAGE_TEXT1,
+  LANDING_PAGE_TEXT2,
+  LANDING_PAGE_TEXT3,
+  LANDING_PAGE_TEXT4,
+} from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
@@ -68,12 +73,11 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
               imgPath={require('../../../assets/healthImg.png')}
               onPressAdd={() => onPressAdd()}
-              description={'Vitamin D and B12 Combo'}
-              subText={'Include 83 Tests'}
+              healthCheckUp={true}
             />
           </CarouselContainer>
         </View>
@@ -88,12 +92,10 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
               imgPath={require('../../../assets/diagnosticImg.png')}
               onPressAdd={() => onPressAdd()}
-              description={'Lipid Profile'}
-              subText={'Include 83 Tests'}
             />
           </CarouselContainer>
         </View>
@@ -105,11 +107,10 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem3
               imgPath={require('../../../assets/woman_HealthCheckUp.png')}
               onPressAdd={() => onPressAdd()}
-              description={'Women-Health Check Up'}
             />
           </CarouselContainer>
         </View>

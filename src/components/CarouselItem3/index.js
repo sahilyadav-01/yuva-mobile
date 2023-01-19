@@ -3,14 +3,8 @@ import {Image, Text, View} from 'react-native';
 import {styles} from './styles';
 
 const CarouselItem3 = props => {
-  const {imgPath, index, totalItem, onPressAdd, description} = props;
-  let mockData = [
-    {description},
-    {description},
-    {description},
-    {description},
-    {description},
-  ];
+  const {imgPath, index, totalItem} = props;
+  const mockData = {description:'Women-Health Check Up'}
   return (
     <View
       style={{
@@ -22,7 +16,7 @@ const CarouselItem3 = props => {
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={styles.descriptionStyle}>
-          {mockData[index]?.description}
+        {mockData.description}
         </Text>
       </View>
     </View>
