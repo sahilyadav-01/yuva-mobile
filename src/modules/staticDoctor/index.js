@@ -37,6 +37,23 @@ const TalkToDoctor = () => {
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
         showsVerticalScrollIndicator={false}>
+        <Text style={styles.headTitle}>{DOCTOR}</Text>
+        <Text style={styles.title}>{CHAT_WITH_DOCTOR}</Text>
+        <Text style={styles.description}>{DESC}</Text>
+        <View style={styles.imageViews}>
+          <View>
+            <Image source={PNG.COUGH} />
+            <Text style={styles.imageText}>{SYMPTOMS}</Text>
+          </View>
+          <View>
+            <Image source={PNG.SEX} />
+            <Text style={styles.imageText}>{SEXUAL_PROBLEMS}</Text>
+          </View>
+          <View>
+            <Image source={PNG.SKIN} />
+            <Text style={styles.imageText}>{SKIN_PROBLEMS}</Text>
+          </View>
+        </View>
         <Text style={styles.title}>{MOST_SEARCHED}</Text>
         <View style={styles.boxView}>
           <View style={styles.box}>
