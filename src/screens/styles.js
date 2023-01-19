@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { CYAN_BLUE, ORANGE } from "../styles/colors";
+import { CYAN_BLUE,FLASH_WHITE} from "../styles/colors";
 import { CENTER, ROW } from "../styles/constants";
 import { fonts } from "../styles/fonts";
 
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   tabNavigation: {
     flex: 1,
-    marginTop: 5,
+    marginTop: 21,
   },
   screenOptions: {
     tabBarLabelStyle: { fontSize: 16, marginTop: 0 },
@@ -21,40 +21,32 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
   },
   carouselText: {
-    marginLeft: 20,
-   marginTop:10,
+    marginLeft: 17,
+   marginTop:11,
     color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight700,
     fontSize: fonts.size.fontSize16,
+    
   },
   carouselMain: {
-    justifyContent: CENTER,
-    marginLeft: 12,
-    marginRight: 4,
+    justifyContent:CENTER,
+    marginTop:16,
+    marginLeft: 14,
+    marginRight: 15,
     alignItems: CENTER,
-   
+
   },
   tab: {
     fontSize: fonts.size.fontSize16,
-    marginTop: 0
+    marginTop: 0,
   },
   height: {
     height: 40,
+    backgroundColor:FLASH_WHITE,
   },
   flatlist: {
     flexDirection: ROW,
     marginTop: 20,
   },
-  // carouselCard: {
-  //   height: 2,
-  //   width: 2,
-  //   marginLeft: 2,
-  //   borderRadius: 9,
-  //   borderColor: 'grey', borderWidth: 2
-  // }
-car:{
-  // flexDirection:"column",
-  // justifyContent:"center" ,
-  // backgroundColor:ORANGE
-}
+
 });

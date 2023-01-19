@@ -3,19 +3,15 @@ import React from 'react'
 import { View, Text, Image,TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FILE_DOWNLOADED, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
+import { COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FILE_DOWNLOADED, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
 import { PNG } from '../../../../assets';
-import { downloadReportThunk } from '../../../store/reducers/DiagnosticsSlice';
-import { useDispatch ,useSelector} from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
 import * as FileSystem from 'react-native-fs';
 const { StorageAccessFramework } = FileSystem;
 import { granted } from '../../../utils/utils';
 const AvailableBookingCard = ({
-  name, id, packageName, imageUrl, packageUuid, nameBooking, status,attachmentId
+  name, id, packageName, imageUrl, packageUuid, nameBooking, status,filePath,fileName
 }) => {
-  const { jwt } = useSelector(state => state.auth.user)
-  const dispatch=useDispatch();
   const navigation = useNavigation();
   const clicked = () => {
     navigation.navigate('BookingTestAndPackage', {
@@ -37,10 +33,9 @@ const AvailableBookingCard = ({
     }
   }
   const downloadFile = () => {
-    let date = new Date()
-    let file_Url =attachmentId
+    let file_Url =filePath
     let ext = getExtention(file_Url)
-    ext = 'reportpdf.' + ext[0]
+    ext =fileName
     const { config, fs } = RNFetchBlob
     let DownloadDir = fs.dirs.DownloadDir;
     let options = {

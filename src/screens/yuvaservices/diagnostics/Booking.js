@@ -23,7 +23,8 @@ const Booking = ({ name }) => {
                                     nameBooking={item?.packageName}
                                     imageUrl={image}
                                     status={item.bookingStatus}
-                                    attachmentId={item?.attachmentList[0]?.filePath}
+                                    filePath={item?.attachmentList[0]?.filePath}
+                                    fileName={item?.attachmentList[0]?.fileName}
                                 />
                             } else {
 
@@ -32,7 +33,8 @@ const Booking = ({ name }) => {
                                     nameBooking={item?.testName}
                                     imageUrl={image1}
                                     status={item.bookingStatus}
-                                    attachmentId={item?.attachmentList[0]?.filePath}
+                                    filePath={item?.attachmentList[0]?.filePath}
+                                    fileName={item?.attachmentList[0]?.fileName}
                                 />
                             }
                         })

@@ -41,39 +41,41 @@ export const styles = StyleSheet.create({
     search: {
         backgroundColor: AMBER,
         color: GAINSBORO,
-        marginTop: 1,
+        marginTop: 23,
         fontSize: 1,
+        height:51,
     },
     textColor: {
         color: CYAN_BLUE,
         fontWeight: BOLD,
-        marginLeft: 3,
+        marginLeft: 17,
+        // marginTop: 23,
     },
     textColor2: {
         color: CYAN_BLUE,
         fontWeight: BOLD,
-        marginLeft: 3,
-        marginTop: 10
+        marginLeft: 17,
+         marginTop: 27,
     },
     labTest: {
         flexDirection: COLUMN,
-        marginLeft: 20,
+        marginLeft: 18,
         marginRight: 24,
-        marginTop: 25,
+        marginTop: 16,
         flex: 1,
         justifyContent: SPACE_BETWEEN
     },
     cards: {
         backgroundColor: WHITE,
-        height: 96,
+        height: 76,
         marginTop: 19,
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: 13,
+        marginRight: 14,
         borderRadius: 12
     },
     image: {
-        height: 33,
-        width: 33
+        height: 24,
+        width: 24
 
     },
     packageTest: {
@@ -81,14 +83,14 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         fontWeight: fonts.weight.fontWeight500,
         justifyContent: CENTER,
-        marginBottom: 20,
+        marginBottom: 10,
     },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 60,
     },
     textPackage: {
-        marginTop: 33,
+        marginTop: 23,
     },
     container: {
         marginBottom: 132,
@@ -114,7 +116,8 @@ export const styles = StyleSheet.create({
         marginBottom: 172,
     },
     card: {
-        marginBottom:0
+        marginBottom:0,
+        marginRight:14,
     },
     textBook: {
         textAlign: CENTER,

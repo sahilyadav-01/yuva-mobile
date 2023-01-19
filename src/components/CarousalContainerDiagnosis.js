@@ -8,9 +8,9 @@ import { UPCOMING } from '../styles/constants';
 const CarouselContainerDiagnosis = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
-    const [upcoming,setUpcoming]=useState(false);
-  
-    const {caraouselData } = useSelector(state => state.diagnostic)
+    const [upcoming, setUpcoming] = useState(false);
+
+    const { caraouselData } = useSelector(state => state.diagnostic)
     const wp = Dimensions.get('screen').width;
 
     const onViewableItemsChanged = ({ viewableItems }) => {
@@ -29,47 +29,47 @@ const CarouselContainerDiagnosis = () => {
     const renderItem = ({ item, index }) => {
         return <CarouselItem diagnosticItem={item} index={index} totalItem={caraouselData?.length} />
     }
-    useEffect(()=>{
-        if(caraouselData.length>0){
+    useEffect(() => {
+        if (caraouselData.length > 0) {
             setUpcoming(true)
         }
-        else{
+        else {
             setUpcoming(false)
         }
 
-    },[caraouselData])
+    }, [caraouselData])
     return (
-       <View>
-         {upcoming ?( 
-         <View style={styles.car}>
-            <View><Text style={styles.carouselText}>{UPCOMING}</Text> 
-            </View>
-        <View style={styles.carouselMain}>
+        <View>
+            {upcoming ? (
+                <View><Text style={styles.carouselText}>{UPCOMING}</Text>
+                </View>) : ('')}
+            <View style={styles.carouselMain}>
+
+                <FlatList
             
-            <FlatList
-                renderItem={renderItem}
-                data={caraouselData}
-                keyExtractor={(item) => item.id}
-                snapToAlignment={"start"}
-                snapToInterval={wp - 10}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                // onScrollEndDrag={onScrollEndDrag} 
-                viewabilityConfigCallbackPairs={
-                    viewabilityConfigCallbackPairs.current
-                }
-                viewabilityConfig={viewabilityConfig}
-            />
-            <FlatList
-                style={styles.flatlist}
-                horizontal={true}
-                data={new Array(caraouselData?.length)}
-                renderItem={({ diagnosticItem, index }) => {
-                    return <View className="h-2 w-2 rounded-full ml-2" style={{ backgroundColor: index === activeIndex ? 'white' : 'grey', borderColor: 'grey', borderWidth: 2 }}></View>
-                }}
-            />
-        </View>
-        </View> ):('')}
+                    renderItem={renderItem}
+                    data={caraouselData}
+                    keyExtractor={(item) => item.id}
+                    snapToAlignment={"start"}
+                    snapToInterval={wp - 10}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    // onScrollEndDrag={onScrollEndDrag} 
+                    viewabilityConfigCallbackPairs={
+                        viewabilityConfigCallbackPairs.current
+                    }
+                    viewabilityConfig={viewabilityConfig}
+                />
+                <FlatList
+                    style={styles.flatlist}
+                    horizontal={true}
+                    data={new Array(caraouselData?.length)}
+                    renderItem={({ diagnosticItem, index }) => {
+                        return <View className="h-2 w-2 rounded-full ml-2" style={{ backgroundColor: index === activeIndex ? 'white' : 'grey', borderColor: 'grey', borderWidth: 2 }}></View>
+                    }}
+                />
+            </View>
+
         </View>
     );
 };
