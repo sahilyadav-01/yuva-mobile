@@ -11,7 +11,7 @@ import {fonts} from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
-import CashlessOPD from '../modules/staticOPD';
+import Med from '../modules/staticDoctor/medCondition/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +69,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={CashlessOPD}
+        component={Med}
         options={{
           tabBarIcon: ({focused}) => {
             return (

@@ -2,11 +2,9 @@ import {View, Text, Image, FlatList} from 'react-native';
 import React from 'react';
 import {SPECIALITIES, SPECIALITY} from '../../constant';
 import {styles} from './styles';
-import {PNG} from '../../../../../assets';
 const SpecialityCard = () => {
   const renderItem = ({item}) => {
     return (
-      //console.log(renderItem, 'sdasdka')
       <View style={styles.imageStyle}>
         <Image source={item.image} />
         <Text style={styles.imageName}>{item.imageName}</Text>
