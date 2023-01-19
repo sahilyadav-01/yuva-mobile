@@ -32,7 +32,7 @@ const Booking = ({ name }) => {
                                     nameBooking={item?.testName}
                                     imageUrl={image1}
                                     status={item.bookingStatus}
-                                    attachmentId={item?.attachmentList[0]?.id}
+                                    attachmentId={item?.attachmentList[0]?.filePath}
                                 />
                             }
                         })

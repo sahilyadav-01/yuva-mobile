@@ -3,7 +3,7 @@ import React from 'react'
 import { View, Text, Image,TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
+import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FILE_DOWNLOADED, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
 import { PNG } from '../../../../assets';
 import { downloadReportThunk } from '../../../store/reducers/DiagnosticsSlice';
 import { useDispatch ,useSelector} from 'react-redux';
@@ -38,7 +38,7 @@ const AvailableBookingCard = ({
   }
   const downloadFile = () => {
     let date = new Date()
-    let file_Url ="https://yuva-pdf.s3.ap-south-1.amazonaws.com/https%3A/%2Fyuva-pdf.s3.amazonaws.com/1674035021498-YUVA_ERD.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230119T055941Z&X-Amz-SignedHeaders=host&X-Amz-Expires=899&X-Amz-Credential=AKIAXSO7RTFTJVQH5A7N%2F20230119%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=83eb0502b99c63b9d793612c73e43c9206d38fe1019b7a09c731e7939b6d3d35"
+    let file_Url =attachmentId
     let ext = getExtention(file_Url)
     ext = 'reportpdf.' + ext[0]
     const { config, fs } = RNFetchBlob
@@ -58,8 +58,7 @@ const AvailableBookingCard = ({
     config(options)
       .fetch('GET', file_Url)
       .then(res => {
-        // Alert after successful downloading;
-        alert('File Downloaded Successfully.');
+        alert(FILE_DOWNLOADED);
       })
 
   }
@@ -68,11 +67,7 @@ const AvailableBookingCard = ({
   }
   const display = () => {
       checkpermission();
-      // download();
   };
-  const download=()=>{
-    dispatch(downloadReportThunk({jwt,attachmentId}))
-  }
   return (
     <View>
       <TouchableOpacity disabled={!name} onPress={clicked}>

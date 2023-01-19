@@ -31,4 +31,5 @@ export const COMPLETED="COMPLETED";
 export const RESCHEDULED="RESCHEDULED";
 export const INITIATED="INITIATED";
 export const PENDING="Pending";
-export const CONFIRMED="CONFIRMED"
+export const CONFIRMED="CONFIRMED";
+export const FILE_DOWNLOADED='File Downloaded Successfully.'
