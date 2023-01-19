@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, FlatList, Dimensions} from 'react-native';
-import CarouselItem from './CarouselItem';
+import {View, FlatList, Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const CarouselContainer = props => {
@@ -12,8 +11,14 @@ const CarouselContainer = props => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const {userAppointments} = useSelector(state => state?.appointment);
-
-  const wp = Dimensions.get('screen').width;
+  const getUserAppointmentsMockData = () => {
+    let mockData = [];
+    for(let i = 0; i < 10; i++){
+      mockData = mockData.concat([{status:'CONFIRMED',doctorName:'Vamsi',hospitalName:'magnum',description:'free'}])
+    }
+    return mockData;
+  }
+   const wp = Dimensions.get('screen').width;
 
   const onViewableItemsChanged = ({viewableItems}) => {
     if (viewableItems?.length === 1) {
@@ -28,8 +33,6 @@ const CarouselContainer = props => {
     itemVisiblePercentThreshold: 100,
   };
   const renderItem = ({item, index}) => {
-    // return <CarouselItem item={item} index={index} totalItem={userAppointments.length}/>
-    // console.log("ffffffffffffff",children);
     return React.cloneElement(children, {
       item,
       index,
@@ -40,7 +43,7 @@ const CarouselContainer = props => {
     <View className="flex items-center justify-center mt-2 mx-4 my-4">
       <FlatList
         renderItem={renderItem}
-        data={userAppointments}
+        data={userAppointments.length > 0 ? userAppointments : getUserAppointmentsMockData()}
         keyExtractor={item => item.id}
         // initialNumToRender={1.5}
         key={(item, index) => index}

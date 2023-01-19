@@ -1,12 +1,24 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {dummyData} from './mockData';
 import {styles} from './styles';
 
 const CarouselItem2 = props => {
-  const {imgPath, index, totalItem, onPressAdd} = props;
-  const mockData = dummyData(totalItem, props.description, props.subText);
+  const {
+    imgPath,
+    index,
+    totalItem,
+    onPressAdd,
+    description,
+    subText: text,
+  } = props;
+  let mockData = [
+    {description, text},
+    {description, text},
+    {description, text},
+    {description, text},
+    {description, text},
+  ];
   return (
     <View
       style={{
@@ -22,11 +34,11 @@ const CarouselItem2 = props => {
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={styles.descriptionStyle}>
-          {mockData[index].description} 
+          {mockData[index]?.description}
         </Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{mockData[index].text}</Text>
+        <Text style={styles.textStyle}>{mockData[index]?.text}</Text>
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
