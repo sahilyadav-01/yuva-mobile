@@ -1,12 +1,7 @@
-export const dummyData = arrayLength => {
+export const dummyData = (arrayLength, description, text) => {
   let dummyArray = [];
   for (let i = 0; i < arrayLength; i++) {
-    dummyArray = dummyArray.concat([
-      {
-        description: 'This is a description',
-        text: 'This is a text',
-      },
-    ]);
+    dummyArray = dummyArray.concat([{description, text}]);
   }
   return dummyArray;
 };

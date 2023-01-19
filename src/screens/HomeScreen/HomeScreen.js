@@ -71,6 +71,8 @@ const HomeScreen = ({navigation}) => {
             <CarouselItem2
               imgPath={require('../../../assets/healthImg.png')}
               onPressAdd={() => onPressAdd()}
+              description={'Vitamin D and B12 Combo'}
+              subText={'Include 83 Tests'}
             />
           </CarouselContainer>
         </View>

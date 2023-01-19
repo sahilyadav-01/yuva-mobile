@@ -6,7 +6,7 @@ import {styles} from './styles';
 
 const CarouselItem2 = props => {
   const {imgPath, index, totalItem, onPressAdd} = props;
-  const mockData = dummyData(totalItem);
+  const mockData = dummyData(totalItem, props.description, props.subText);
   return (
     <View
       style={{
@@ -29,7 +29,9 @@ const CarouselItem2 = props => {
         <Text style={styles.textStyle}>{mockData[index].text}</Text>
       </View>
       <View style={styles.addButtonViewContainer}>
-        <TouchableOpacity onPress={onPressAdd} style={styles.addButtonContainer}>
+        <TouchableOpacity
+          onPress={onPressAdd}
+          style={styles.addButtonContainer}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
