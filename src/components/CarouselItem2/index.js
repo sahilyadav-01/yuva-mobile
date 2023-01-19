@@ -22,7 +22,7 @@ const CarouselItem2 = props => {
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={styles.descriptionStyle}>
-          {mockData[index].description}
+          {mockData[index].description} 
         </Text>
       </View>
       <View style={styles.textContainer}>

@@ -92,6 +92,8 @@ const HomeScreen = ({navigation}) => {
             <CarouselItem2
               imgPath={require('../../../assets/diagnosticImg.png')}
               onPressAdd={() => onPressAdd()}
+              description={'Lipid Profile'}
+              subText={'Include 83 Tests'}
             />
           </CarouselContainer>
         </View>
@@ -107,6 +109,7 @@ const HomeScreen = ({navigation}) => {
             <CarouselItem3
               imgPath={require('../../../assets/woman_HealthCheckUp.png')}
               onPressAdd={() => onPressAdd()}
+              description={'Women-Health Check Up'}
             />
           </CarouselContainer>
         </View>

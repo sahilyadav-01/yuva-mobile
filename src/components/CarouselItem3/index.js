@@ -5,8 +5,8 @@ import {dummyData1} from './mockData';
 import {styles} from './styles';
 
 const CarouselItem3 = props => {
-  const {imgPath, index, totalItem, onPressAdd} = props;
-  const mockData = dummyData1(totalItem);
+  const {imgPath, index, totalItem, onPressAdd, description} = props;
+  const mockData = dummyData1(totalItem,description);
   return (
     <View
       style={{
@@ -17,7 +17,6 @@ const CarouselItem3 = props => {
         <Image
           resizeMode="contain"
           source={imgPath}
-          style={styles.imageStyle}
         />
       </View>
       <View style={styles.descriptionContainer}>
@@ -25,10 +24,6 @@ const CarouselItem3 = props => {
           {mockData[index].description}
         </Text>
       </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{mockData[index].text}</Text>
-      </View>
-      
     </View>
   );
 };
