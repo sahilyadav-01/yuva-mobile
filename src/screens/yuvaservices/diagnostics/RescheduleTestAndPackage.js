@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/core'
 import MainHeader from '../../../components/MainHeader';
 import { bookedDetailsByIdThunk, rescheduleCancelBookingThunk } from '../../../store/reducers/DiagnosticsSlice';
 import MessageBox from '../../../components/MessageBox';
-import { styles } from '../../styles';
+import { styles } from './styles';
 const RescheduleTestAndPackage = ({ route }) => {
     const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
@@ -58,31 +58,31 @@ const RescheduleTestAndPackage = ({ route }) => {
                     <View>
                         {!bookedDetailsById?.packageName &&
                             <View>
-                                <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                                <Text style={styles.bookingDetails}>
                                     About the test
                                 </Text>
                                 <Text>{bookedDetailsById?.testOrPackageDescription}</Text>
-                                <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                                <Text style={styles.bookingDetails}>
                                     Instructions
                                 </Text>
                             </View>
                         }
                         <Text>{bookedDetailsById?.instruction}</Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                        <Text style={styles.bookingDetails}>
                             Appointment {bookedDetailsById?.bookingStatus} - Offline
                         </Text>
                         <Text>{bookedDetailsById?.labAssistantName}</Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                        <Text style={styles.bookingDetails}>
                             {bookedDetailsById?.labName}
                         </Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                        <Text style={styles.bookingDetails}>
                             Location
                         </Text>
 
                         <Text>{bookedDetailsById?.patientLocation}</Text>
                     </View>
                 </View>
-                <View className="">
+                <View className="mt-[47px] ml-[13px] mr-[14px]">
                     <AppointmentButton
                         name="Reschedule"
                         color="#FFFFFF"
