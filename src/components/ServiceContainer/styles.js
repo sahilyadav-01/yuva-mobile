@@ -12,11 +12,6 @@ export const styles = StyleSheet.create({
         alignItems: CENTER,
         flexDirection: ROW,
         justifyContent: SPACE_BETWEEN,
-        marginHorizontal: 16,
-        // borderBottomColor: GREY,
-        // borderBottomWidth: 1,
-        // width: '100%',
-
     },
     subContainerStyle2: {
         marginTop: 16,

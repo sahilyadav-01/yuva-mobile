@@ -33,7 +33,8 @@ import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
-
+import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
+import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
 
 
 const PNG = {
@@ -67,7 +68,9 @@ const PNG = {
   BANNER,
   DOWNLOAD,
   DIAGNOSTIC,
-  HEALTHIMG
+  HEALTHIMG,
+  HEALTHCHECKUP1,
+  HEALTHCHECKUP2
 };
 
 const SVG = {

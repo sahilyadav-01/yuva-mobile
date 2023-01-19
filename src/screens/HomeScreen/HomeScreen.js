@@ -15,9 +15,10 @@ import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
 import Header from '../../components/Header';
 import {PNG} from '../../../assets';
-import {LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2} from '../constant';
+import {LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2, LANDING_PAGE_TEXT3, LANDING_PAGE_TEXT4} from '../constant';
 import CarouselItem from '../../components/CarouselItem';
-import CarouselItem2 from '../../components/CarouselItem2/index';
+import CarouselItem2 from '../../components/CarouselItem2';
+import CarouselItem3 from '../../components/CarouselItem3';
 
 const HomeScreen = ({navigation}) => {
   const route = useRoute();
@@ -70,6 +71,36 @@ const HomeScreen = ({navigation}) => {
           <CarouselContainer isIndexed={false}>
             <CarouselItem2
               imgPath={require('../../../assets/healthImg.png')}
+              onPressAdd={() => onPressAdd()}
+            />
+          </CarouselContainer>
+        </View>
+        <View style={styles.PopularHealthCheckups}>
+          <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
+          <View style={styles.line} />
+          <TouchableOpacity>
+            <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <CarouselContainer isIndexed={false}>
+            <CarouselItem2
+              imgPath={require('../../../assets/diagnosticImg.png')}
+              onPressAdd={() => onPressAdd()}
+            />
+          </CarouselContainer>
+        </View>
+        <View style={styles.PopularHealthCheckups}>
+          <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
+          <View style={styles.line} />
+          <TouchableOpacity>
+            <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <CarouselContainer isIndexed={false}>
+            <CarouselItem3
+              imgPath={require('../../../assets/woman_HealthCheckUp.png')}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
