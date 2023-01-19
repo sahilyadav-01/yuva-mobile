@@ -41,7 +41,7 @@ const CarouselItem = (props) => {
             </View>
             <View className="mt-[10px]">
               <View className="flex-row items-center">
-                <Text className="ml-11 text-[#1D2334] text-base  font-bold">
+                <Text className=" text-[#1D2334] text-base  font-bold">
                   {item?.hospitalName}
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />

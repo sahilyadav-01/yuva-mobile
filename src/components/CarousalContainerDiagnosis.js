@@ -41,8 +41,12 @@ const CarouselContainerDiagnosis = () => {
     return (
         <View>
             {upcoming ? (
-                <View><Text style={styles.carouselText}>{UPCOMING}</Text>
+                <View style={styles.lineJustify}>
+                    <Text style={styles.carouselText}>{UPCOMING}</Text>
+
+                <View  style={styles.line} ></View>
                 </View>) : ('')}
+                
             <View style={styles.carouselMain}>
 
                 <FlatList

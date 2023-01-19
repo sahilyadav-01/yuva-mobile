@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { CYAN_BLUE,FLASH_WHITE} from "../styles/colors";
-import { CENTER, ROW } from "../styles/constants";
+import { CYAN_BLUE,FLASH_WHITE, GREY} from "../styles/colors";
+import { CENTER, ROW, SPACE_BETWEEN } from "../styles/constants";
 import { fonts } from "../styles/fonts";
 
 export const styles = StyleSheet.create({
@@ -26,6 +26,21 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight700,
     fontSize: fonts.size.fontSize16,
+    height:21
+    
+  },
+  line:{
+    borderBottomColor: GREY,
+    borderBottomWidth: 1,
+    width: 246,
+    marginLeft:35,
+    marginTop:19,
+  },
+  lineJustify:{
+    alignItems:CENTER,
+    flexDirection: ROW,
+     justifyContent: SPACE_BETWEEN,
+
     
   },
   carouselMain: {
