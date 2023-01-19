@@ -28,6 +28,7 @@ import Health_Risk_Assessment from './Health_Risk_Assessment.png';
 import Health_Checkup_Packages from './Health_Checkup_Packages.png';
 import Talk_To_Doctor from './Talk_To_Doctor.png';
 import BANNER from './banner.png';
+import BANNER2 from './banner2.png';
 import DOWNLOAD from './download.png'
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
@@ -66,6 +67,7 @@ const PNG = {
   Health_Checkup_Packages,
   Talk_To_Doctor,
   BANNER,
+  BANNER2,
   DOWNLOAD,
   DIAGNOSTIC,
   HEALTHIMG,

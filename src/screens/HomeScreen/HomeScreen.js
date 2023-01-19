@@ -75,6 +75,9 @@ const HomeScreen = ({navigation}) => {
             />
           </CarouselContainer>
         </View>
+        <View style={styles.bannerContainer}>
+          <Image style={styles.bannerImage} source={PNG.BANNER2}></Image>
+        </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
           <View style={styles.line} />
