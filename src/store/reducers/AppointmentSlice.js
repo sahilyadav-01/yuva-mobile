@@ -167,6 +167,9 @@ const appointmentSlice = createSlice({
       state.currentAppointment['otp'] = payload.otp;
       state.currentAppointment['hospitalName'] = payload.hospitalName;
     },
+    resetAppointments(state) {
+      state.userAppointments = [];
+    }
   },
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
@@ -188,7 +191,9 @@ const appointmentSlice = createSlice({
       state.userAppointments = payload.data;
       state.homeRefresh = false;
     },
-    [allAppointmentThunk.rejected]: (state, {payload}) => {},
+    [allAppointmentThunk.rejected]: (state, {payload}) => {
+      state.userAppointments = [];
+    },
 
     [cancelAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
@@ -208,6 +213,6 @@ const appointmentSlice = createSlice({
   },
 });
 
-export const {newAppointment, currentAppointment,resetMessage} = appointmentSlice.actions;
+export const {newAppointment, currentAppointment,resetMessage,resetAppointments} = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;

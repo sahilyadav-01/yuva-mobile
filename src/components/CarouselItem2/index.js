@@ -4,21 +4,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './styles';
 
 const CarouselItem2 = props => {
-  const {
-    imgPath,
-    index,
-    totalItem,
-    onPressAdd,
-    description,
-    subText: text,
-  } = props;
-  let mockData = [
-    {description, text},
-    {description, text},
-    {description, text},
-    {description, text},
-    {description, text},
-  ];
+  const {imgPath, index, totalItem, onPressAdd, healthCheckUp} = props;
+  const mockData = {
+    description: healthCheckUp ? 'Vitamin D and B12 Combo' : 'Lipid Profile',
+    text: 'Include 83 Tests',
+  };
   return (
     <View
       style={{
@@ -33,12 +23,10 @@ const CarouselItem2 = props => {
         />
       </View>
       <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>
-          {mockData[index]?.description}
-        </Text>
+        <Text style={styles.descriptionStyle}>{mockData.description}</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{mockData[index]?.text}</Text>
+        <Text style={styles.textStyle}>{mockData.text}</Text>
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity

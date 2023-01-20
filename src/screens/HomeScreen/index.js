@@ -9,13 +9,18 @@ import {
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
-import {useRoute} from '@react-navigation/native';
+import {useIsFocused, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
 import Header from '../../components/Header';
 import {PNG} from '../../../assets';
-import {LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2, LANDING_PAGE_TEXT3, LANDING_PAGE_TEXT4} from '../constant';
+import {
+  LANDING_PAGE_TEXT1,
+  LANDING_PAGE_TEXT2,
+  LANDING_PAGE_TEXT3,
+  LANDING_PAGE_TEXT4,
+} from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
@@ -23,7 +28,11 @@ import CarouselItem3 from '../../components/CarouselItem3';
 const HomeScreen = ({navigation}) => {
   const route = useRoute();
   const dispatch = useDispatch();
-  const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
+  const focused = useIsFocused();
+  const {
+    user: {jwt},
+    loggedIn,
+  } = useSelector(state => state.auth);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
@@ -36,9 +45,11 @@ const HomeScreen = ({navigation}) => {
     //On add press logic to be added here
   };
   useEffect(() => {
+    if(navigation.isFocused()){
     const isActive = 'true';
     dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
-  }, []);
+    }
+  }, [focused]);
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
@@ -65,12 +76,11 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={require('../../../assets/healthImg.png')}
+              imgPath={PNG.HEALTHIMG}
               onPressAdd={() => onPressAdd()}
-              description={'Vitamin D and B12 Combo'}
-              subText={'Include 83 Tests'}
+              healthCheckUp={true}
             />
           </CarouselContainer>
         </View>
@@ -85,12 +95,10 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={require('../../../assets/diagnosticImg.png')}
+              imgPath={PNG.DIAGNOSTIC}
               onPressAdd={() => onPressAdd()}
-              description={'Lipid Profile'}
-              subText={'Include 83 Tests'}
             />
           </CarouselContainer>
         </View>
@@ -102,11 +110,10 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false}>
+          <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem3
-              imgPath={require('../../../assets/woman_HealthCheckUp.png')}
+              imgPath={PNG.HEALTHCHECKUP1}
               onPressAdd={() => onPressAdd()}
-              description={'Women-Health Check Up'}
             />
           </CarouselContainer>
         </View>

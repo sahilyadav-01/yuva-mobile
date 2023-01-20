@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutThunk } from '../store/reducers/AuthSlice'
+import { resetAppointments } from '../store/reducers/AppointmentSlice'
 
 
 const Settings = () => {
@@ -23,7 +24,8 @@ const Settings = () => {
      */
     const logoff = () => {
         setIsLoggedOut(true);
-        dispatch(logoutThunk())
+        dispatch(logoutThunk());
+        dispatch(resetAppointments());
     }
 
     /**

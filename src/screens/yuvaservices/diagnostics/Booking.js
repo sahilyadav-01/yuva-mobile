@@ -8,7 +8,6 @@ import { styles } from './styles';
 import { NO_BOOKING } from './constants';
 const Booking = ({ name }) => {
     const { bookedData } = useSelector(state => state.diagnostic)
-
     return (
         <View style={styles.margin}>
             <View >
@@ -23,6 +22,7 @@ const Booking = ({ name }) => {
                                     key={index}
                                     nameBooking={item?.packageName}
                                     imageUrl={image}
+                                    status={item.bookingStatus}
                                 />
                             } else {
 
@@ -30,6 +30,7 @@ const Booking = ({ name }) => {
                                     key={index}
                                     nameBooking={item?.testName}
                                     imageUrl={image1}
+                                    status={item.bookingStatus}
                                 />
                             }
                         })

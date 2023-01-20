@@ -6,7 +6,7 @@ import DiagnosticNav from './Diagnosticnavigation';
 import HRA from '../screens/yuvaservices/hra/HRA';
 
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import HomeScreen from '../screens/HomeScreen/index';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
