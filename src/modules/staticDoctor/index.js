@@ -1,6 +1,6 @@
 import {View, Text, Image, ScrollView} from 'react-native';
 import React from 'react';
-import MainHeader from '../../components/MainHeader';
+import Header from '../../components/Header/index';
 import {styles} from './styles';
 import {PNG} from '../../../assets';
 import {
@@ -29,10 +29,25 @@ import {
   TIP_3,
   DOCTOR_DESC,
 } from './constant';
-const TalkToDoctor = () => {
+import {useSelector} from 'react-redux';
+const TalkToDoctor = ({navigation}) => {
+  const {
+    user: {jwt},
+    loggedIn,
+  } = useSelector(state => state.auth);
+  const onPressRightIcon = () => {
+    if (loggedIn !== 'loggedIn') {
+      navigation.navigate('LoginScreen');
+    } else {
+      //open drawer
+    }
+  };
   return (
     <View>
-      <MainHeader />
+      <Header
+        isLoggedIn={loggedIn === 'loggedIn'}
+        onPressRightIcon={onPressRightIcon}
+      />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

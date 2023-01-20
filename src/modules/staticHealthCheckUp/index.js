@@ -1,6 +1,6 @@
 import {View, Text, ScrollView, Image} from 'react-native';
 import React from 'react';
-import MainHeader from '../../components/MainHeader';
+import Header from '../../components/Header/index';
 import {PNG} from '../../../assets';
 import {
   HEALTH_CHECKUP,
@@ -33,10 +33,26 @@ import {
   LAB_TEST_AT_DOOR,
 } from './constant';
 import {styles} from './styles';
-const HealthCheckUP = () => {
+import {useSelector} from 'react-redux';
+const HealthCheckUP = ({navigation}) => {
+  const {
+    user: {jwt},
+    loggedIn,
+  } = useSelector(state => state.auth);
+  const onPressRightIcon = () => {
+    if (loggedIn !== 'loggedIn') {
+      navigation.navigate('LoginScreen');
+    } else {
+      //open drawer
+    }
+  };
   return (
     <View>
-      <MainHeader />
+      <Header
+        isLoggedIn={loggedIn === 'loggedIn'}
+        onPressRightIcon={onPressRightIcon}
+      />
+
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

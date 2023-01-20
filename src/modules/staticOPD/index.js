@@ -1,13 +1,28 @@
 import {View, ScrollView} from 'react-native';
 import React from 'react';
-import MainHeader from '../../components/MainHeader';
 import {styles} from './styles';
 import OpdCard from './components/opdCard';
 import SpecialityCard from './components/specialityCard';
-const CashlessOPD = () => {
+import Header from '../../components/Header/index';
+import {useSelector} from 'react-redux';
+const CashlessOPD = ({navigation}) => {
+  const {
+    user: {jwt},
+    loggedIn,
+  } = useSelector(state => state.auth);
+  const onPressRightIcon = () => {
+    if (loggedIn !== 'loggedIn') {
+      navigation.navigate('LoginScreen');
+    } else {
+      //open drawer
+    }
+  };
   return (
     <View>
-      <MainHeader />
+      <Header
+        isLoggedIn={loggedIn === 'loggedIn'}
+        onPressRightIcon={onPressRightIcon}
+      />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
