@@ -1,11 +1,10 @@
+import {PNG} from '../../../assets';
+
 export const HEALTH_CHECKUP = 'Health Checkups';
 export const PACKAGE = 'POPULAR HEALTH CHECKUP PACAKGES';
 export const ADV_BODY_CHECKUP1 = 'YUVA ADVANCE WITH VITAMIN';
 export const ADV_BODY_CHECKUP2 = 'FULL BODY CHECKUP';
 export const PARAMETER = 'Parameter: 85';
-export const PARAM_1 = 'Liver Function Test';
-export const PARAM_2 = 'Kidney Function';
-export const PARAM_3 = '25-OH Vitamin D3 Test';
 export const INFO = 'More  Information +';
 export const PRICE = 'MARKET PRICE';
 export const PRICE_1 = 'OFFER PRICE';
@@ -33,3 +32,18 @@ export const BOOK_LAB_TEST_DESC =
 export const LAB_TEST_AT_DOOR = 'Lab tests at your doorstep';
 export const LAB_TEST_AT_DOOR_DESC =
   'YUVA  offers the facility of doorstep collection. The phlebotomist will come to your house to collect  samples free of cost. We follow all the safety guidelines as prescribed by the World health organization.We provide a fresh collection kit and/or needle will be used so that there is no contamination of samples  of the spread of diseases. We use special ice boxes that meet NABL guidelines to transport your samples.All the reports can be accessed online through YUVA Health APP.';
+
+export const PARAMETERS = [
+  {
+    image: PNG.OCIRCLE,
+    text: 'Liver Function Test',
+  },
+  {
+    image: PNG.OCIRCLE,
+    text: 'Kidney Function',
+  },
+  {
+    image: PNG.OCIRCLE,
+    text: '25-OH Vitamin D3 Test',
+  },
+];

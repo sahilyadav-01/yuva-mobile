@@ -34,6 +34,10 @@ import {
 } from './constant';
 import {styles} from './styles';
 import {useSelector} from 'react-redux';
+import Parameters from './components/paramCard/index';
+import PriceCard from './components/priceCard';
+import MoreInformation from './components/moreInformation';
+import Description from './components/description';
 const HealthCheckUP = ({navigation}) => {
   const {
     user: {jwt},
@@ -52,7 +56,6 @@ const HealthCheckUP = ({navigation}) => {
         isLoggedIn={loggedIn === 'loggedIn'}
         onPressRightIcon={onPressRightIcon}
       />
-
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
@@ -64,120 +67,23 @@ const HealthCheckUP = ({navigation}) => {
           <Text style={styles.subtitleText}>{ADV_BODY_CHECKUP2}</Text>
         </View>
         <Text style={styles.headTitle}>{PARAMETER}</Text>
-        <View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_1}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_2}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_3}</Text>
-          </View>
-        </View>
-        <View style={styles.moreContainer}>
-          <View style={styles.moreInfoContainer}>
-            <Text style={styles.moreInfoText}>{INFO}</Text>
-          </View>
-        </View>
-        <View style={styles.priceContainer}>
-          <View style={styles.marketPrice}>
-            <Text style={styles.mPriceText}>{PRICE}</Text>
-            <Text style={styles.price}>{PRICE_2}</Text>
-          </View>
-          <View style={styles.offerPrice}>
-            <Text style={styles.oPriceText}>{PRICE_1}</Text>
-            <Text style={styles.price}>{PRICE_3}</Text>
-          </View>
-        </View>
+        <Parameters />
+        <PriceCard />
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitleText}>{BASIC_BODY_CHECKUP1}</Text>
           <Text style={styles.subtitleText}>{BASIC_BODY_CHECKUP2}</Text>
         </View>
-
         <Text style={styles.headTitle}>{PARAMETER}</Text>
-        <View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_1}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_2}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_3}</Text>
-          </View>
-        </View>
-        <View style={styles.moreContainer}>
-          <View style={styles.moreInfoContainer}>
-            <Text style={styles.moreInfoText}>{INFO}</Text>
-          </View>
-        </View>
-        <View style={styles.priceContainer}>
-          <View style={styles.marketPrice}>
-            <Text style={styles.mPriceText}>{PRICE}</Text>
-            <Text style={styles.price}>{PRICE_2}</Text>
-          </View>
-          <View style={styles.offerPrice}>
-            <Text style={styles.oPriceText}>{PRICE_1}</Text>
-            <Text style={styles.price}>{PRICE_3}</Text>
-          </View>
-        </View>
+        <Parameters />
+        <PriceCard />
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitleText}>{YUVA}</Text>
         </View>
         <Text style={styles.headTitle}>{PARAMETER}</Text>
-        <View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_1}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_2}</Text>
-          </View>
-          <View style={styles.Ocircle}>
-            <Image style={styles.imageO} source={PNG.OCIRCLE} />
-            <Text style={styles.paramText1}>{PARAM_3}</Text>
-          </View>
-        </View>
-        <View style={styles.moreContainer}>
-          <View style={styles.moreInfoContainer}>
-            <Text style={styles.moreInfoText}>{INFO}</Text>
-          </View>
-        </View>
-        <View style={styles.priceContainer}>
-          <View style={styles.marketPrice}>
-            <Text style={styles.mPriceText}>{PRICE}</Text>
-            <Text style={styles.price}>{PRICE_2}</Text>
-          </View>
-          <View style={styles.offerPrice}>
-            <Text style={styles.oPriceText}>{PRICE_1}</Text>
-            <Text style={styles.price}>{PRICE_3}</Text>
-          </View>
-        </View>
-        <View>
-          <View>
-            <Text style={styles.subtitle}>{ACCURATE_REPORT}</Text>
-            <Text style={styles.description}>{ACCURATE_REPORT_DESC}</Text>
-          </View>
-
-          <Text style={styles.subtitle}>{TRUSTED_LAB}</Text>
-          <Text style={styles.description}>{TRUSTED_LAB_DESC}</Text>
-          <Text style={styles.subtitle}>{DISCOUNT}</Text>
-          <Text style={styles.description}>{DISCOUNT_DESC}</Text>
-          <Text style={styles.subtitle}>{FREE_SAMPLE}</Text>
-          <Text style={styles.description}>{FREE_SAMPLE_DESC}</Text>
-          <Text style={styles.subtitle}>{BOOK_LAB_TEST}</Text>
-          <Text style={styles.description}>{BOOK_LAB_TEST_DESC}</Text>
-          <Text style={styles.subtitle}>{LAB_TEST_AT_DOOR}</Text>
-          <Text style={styles.description}>{LAB_TEST_AT_DOOR_DESC}</Text>
-        </View>
+        <Parameters />
+        <MoreInformation />
+        <PriceCard />
+        <Description />
       </ScrollView>
     </View>
   );
