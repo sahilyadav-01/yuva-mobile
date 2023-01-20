@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
     lineHeight: 18,
+    maxWidth: 144,
   },
   textStyle: {
     fontFamily: fonts.family.fontFamilyRubix,
@@ -42,6 +43,7 @@ export const styles = StyleSheet.create({
     color: ECHO_BLUE,
     fontSize: fonts.size.fontSize10,
     lineHeight: 15,
+    maxWidth:132,
   },
   buttonText: {
     fontFamily: fonts.family.fontFamilyRubix,
