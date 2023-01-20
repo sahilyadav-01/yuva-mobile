@@ -11,7 +11,7 @@ const CarouselContainer = props => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const {userAppointments} = useSelector(state => state?.appointment);
-   const wp = Dimensions.get('screen').width;
+  const wp = Dimensions.get('screen').width;
 
   const onViewableItemsChanged = ({viewableItems}) => {
     if (viewableItems?.length === 1) {
@@ -36,9 +36,10 @@ const CarouselContainer = props => {
     <View className="flex items-center justify-center mt-2 mx-4 my-4">
       <FlatList
         renderItem={renderItem}
-        data={includeMockData ? [0,0,0,0,0] : userAppointments} /* Need to change the mock data once API's are ready* */
+        data={
+          includeMockData ? [0, 0, 0, 0, 0] : userAppointments
+        } /* Need to change the mock data once API's are ready* */
         keyExtractor={item => item.id}
-        // initialNumToRender={1.5}
         key={(item, index) => index}
         snapToAlignment={'start'}
         snapToInterval={wp - 10}
