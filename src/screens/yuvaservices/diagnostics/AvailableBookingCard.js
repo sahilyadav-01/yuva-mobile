@@ -4,10 +4,10 @@ import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-import { DOWNLOAD_REPORT } from './constants';
+import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
 import { PNG } from '../../../../assets';
 const AvailableBookingCard = ({
-  name, id, packageName, imageUrl, packageUuid, nameBooking
+  name, id, packageName, imageUrl, packageUuid, nameBooking, status
 }) => {
 
   const navigation = useNavigation();
@@ -17,7 +17,6 @@ const AvailableBookingCard = ({
       packageData: packageName ? { packageName, packageUuid } : '',
     });
   }
-
   return (
     <View>
       <TouchableOpacity disabled={!name} onPress={clicked}>
@@ -35,7 +34,11 @@ const AvailableBookingCard = ({
                 <View style={styles.booking}>
                   <Text style={styles.packageTest}>{nameBooking}</Text>
                   <View >
-                    <TouchableOpacity ><Text style={styles.download}><Image source={PNG.DOWNLOAD}></Image>{DOWNLOAD_REPORT}</Text></TouchableOpacity>
+                    {status === FINISHED ? (
+                      <TouchableOpacity ><Text style={styles.download}><Image source={PNG.DOWNLOAD}></Image>{DOWNLOAD_REPORT}</Text></TouchableOpacity>)
+                      : (<View>
+                        {status === INITIATED || status === RESCHEDULED || status === COMPLETED || status===CONFIRMED ? (<Text style={styles.download}>{PENDING}</Text>) : ("")}
+                      </View>)}
                   </View>
                 </View>
               )}
