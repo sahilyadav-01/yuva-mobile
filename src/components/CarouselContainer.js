@@ -49,7 +49,7 @@ const CarouselContainer = () => {
         viewabilityConfig={viewabilityConfig}
       />
       <FlatList 
-        className="flex-row mt-[20px] "
+        className="flex-row mt-[20px]"
         horizontal={true}
         data={new Array(userAppointments.length)}
         renderItem={({item, index}) => {
