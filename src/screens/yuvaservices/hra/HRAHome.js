@@ -15,6 +15,7 @@ import {
   ScrollView,TouchableOpacity
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
+import Header from '../../../components/Header';
 import HealthMetricCard from './HealthMetricCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/core';
@@ -33,6 +34,7 @@ import { granted } from '../../../utils/utils';
 // import * as IntentLauncher from 'expo-intent-launcher';
 import hraImg from '../../../../assets/hra_img.png';
 import { date } from 'is_js';
+import {styles} from './styles';
 
 LogBox.ignoreAllLogs();
 
@@ -60,10 +62,10 @@ const HRAHome = () => {
    *   State
    */
   const [report, setReport] = useState(false);
-  const { jwt } = useSelector(state => state.auth.user);
+  const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
+  // const { jwt,loggedIn } = useSelector(state => state.auth.user);
   const [qReport, setQReport] = useState(true);
   const [message, setMessage] = useState('')
-
   /**
    * React Hooks
    */
@@ -185,20 +187,33 @@ const HRAHome = () => {
   const goToSection1 = () => {
     navigation.navigate('section1');
   };
-
+  const onPressRightIcon = () => {
+    if (loggedIn !== 'loggedIn') {
+      navigation.navigate('LoginScreen');
+    } else {
+      // <Text>ggggggggg</Text>
+    }
+  };
   return (
     <SafeAreaView>
+       <Header 
+           isLoggedIn={loggedIn === 'loggedIn'}
+           onPressRightIcon={onPressRightIcon}/>
       <View className="flex">
-        <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[0px] mt-[42px]">
+       
+        {/* <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[0px] mt-[42px]">
           <Backbutton color="white" onPress={goBack} size={22} />
           <Text className="text-center text-white text-xl ml-[20px]">
             Health Risk Assesment
           </Text>
-        </View>
+        </View> */}
         <View>
         <ScrollView contentContainerStyle={{
-            paddingBottom: 400
+            paddingBottom: 400,
+            // paddingLeft:15,
+            // paddingRight:15
           }}>
+          {/* <View style={{boxShadow:"0px 0px 4px 4px rgba(0, 0, 0, 0.1);"}}className="h-[150px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]"> */}
           <View
             style={{
               shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -206,8 +221,9 @@ const HRAHome = () => {
               shadowOpacity: 0.2,
               shadowRadius: 4,
               elevation: 4,
+              marginTop: 24
             }}
-            className="h-[135px] mx-[10px] mt-[20px] rounded-[12px] bg-[#FFFFFF]">
+            className="h-[135px] mx-[14px] mt-[20px] rounded-[12px] bg-[#FFFFFF]">
             {/* wrapper */}
             <View className="flex flex-row pl-[14px] py-[18px]">
               <View className="items-center">
@@ -230,9 +246,9 @@ const HRAHome = () => {
             {/* <PureChart data={chart} type='bar' defaultColumnWidth={20}/> */}
           </View>
 
-          <View>
+          <View className="mx-[14px]">
             <DownloadButton onPress={display} />
-          </View>
+          </View >
             <HRASectionContainer />
           </ScrollView>
         </View>

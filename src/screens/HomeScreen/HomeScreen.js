@@ -23,10 +23,7 @@ import CarouselItem3 from '../../components/CarouselItem3';
 const HomeScreen = ({navigation}) => {
   const route = useRoute();
   const dispatch = useDispatch();
-  const {
-    user: {jwt},
-    loggedIn,
-  } = useSelector(state => state.auth);
+  const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
