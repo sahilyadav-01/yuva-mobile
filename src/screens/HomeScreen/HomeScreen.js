@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
-import {useRoute} from '@react-navigation/native';
+import {useIsFocused, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
@@ -28,6 +28,7 @@ import CarouselItem3 from '../../components/CarouselItem3';
 const HomeScreen = ({navigation}) => {
   const route = useRoute();
   const dispatch = useDispatch();
+  const focused = useIsFocused();
   const {
     user: {jwt},
     loggedIn,
@@ -44,9 +45,11 @@ const HomeScreen = ({navigation}) => {
     //On add press logic to be added here
   };
   useEffect(() => {
+    if(navigation.isFocused()){
     const isActive = 'true';
     dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
-  }, []);
+    }
+  }, [focused]);
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
@@ -75,7 +78,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={require('../../../assets/healthImg.png')}
+              imgPath={PNG.HEALTHIMG}
               onPressAdd={() => onPressAdd()}
               healthCheckUp={true}
             />
@@ -94,7 +97,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={require('../../../assets/diagnosticImg.png')}
+              imgPath={PNG.DIAGNOSTIC}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
@@ -109,7 +112,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem3
-              imgPath={require('../../../assets/woman_HealthCheckUp.png')}
+              imgPath={PNG.HEALTHCHECKUP1}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>

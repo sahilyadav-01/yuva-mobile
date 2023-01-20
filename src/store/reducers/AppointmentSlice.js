@@ -191,7 +191,9 @@ const appointmentSlice = createSlice({
       state.userAppointments = payload.data;
       state.homeRefresh = false;
     },
-    [allAppointmentThunk.rejected]: (state, {payload}) => {},
+    [allAppointmentThunk.rejected]: (state, {payload}) => {
+      state.userAppointments = [];
+    },
 
     [cancelAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;

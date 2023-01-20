@@ -1,11 +1,12 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView,Text} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AddDependentCard from './components/addDependent';
 import Dependents from './components/dependents';
 import {useProfile} from './hooks/useProfile';
 import styles from './style';
 import UserDetailsCard from './components/userDetailsCard';
+import Header from '../../components/Header';
 
 const Profile = () => {
   const data = [
@@ -46,6 +47,8 @@ const Profile = () => {
     return null;
   }
   return (
+    <>
+    <Header isLoggedIn={true}/>
     <ScrollView style={container}>
       <UserDetailsCard
         setSelectedGender={setSelectedGender}
@@ -82,6 +85,7 @@ const Profile = () => {
         onConfirm={onConfirmDate}
       />
     </ScrollView>
+    </>
   );
 };
 
