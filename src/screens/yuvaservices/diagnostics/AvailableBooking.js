@@ -57,4 +57,4 @@ const AvailableBooking = ({ name }) => {
     )
 }
 
-export default AvailableBooking;
+export default AvailableBooking;;

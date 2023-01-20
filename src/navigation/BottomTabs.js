@@ -4,13 +4,13 @@ import Settings from '../screens/Settings';
 import Intro from '../screens/Intro/IntroScreen';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { BLACK, CYAN_BLUE, ORANGE } from '../styles/colors';
-import { HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE } from './constants';
-import { CENTER } from '../styles/constants';
-import { fonts } from '../styles/fonts';
+import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
+import {HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE} from './constants';
+import {CENTER} from '../styles/constants';
+import {fonts} from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,11 +24,11 @@ const BottomTabs = () => {
         showLabel: false,
         tabBarShowLabel: true,
         tabBarActiveTintColor: ORANGE,
-        tabBarStyle:{ 
-          height: 72, 
+        tabBarStyle: {
+          height: 72,
           shadowOffset: {
             width: 0,
-            height: 2
+            height: 2,
           },
           shadowOpacity: 0.1,
           shadowColor: BLACK,
@@ -48,7 +48,7 @@ const BottomTabs = () => {
           paddingVertical: 4,
           justifyContent: CENTER,
           alignItems: CENTER,
-        }
+        },
       }}
       initialRouteName={HOME}>
       <Tab.Screen
@@ -96,36 +96,40 @@ const BottomTabs = () => {
           },
         }}
       />
-      {loggedIn !== 'loggedIn' ? <Tab.Screen
-        name={PROFILE}
-        component={Authentication}
-        initialParams={{from: PROFILE}}
-        options={{
-          tabBarIcon: ({focused}) => {
-            return (
-              <Icon
-                name="account-outline"
-                size={35}
-                color={focused ? ORANGE : CYAN_BLUE}
-              />
-            );
-          },
-        }}
-      /> : <Tab.Screen
-      name={PROFILE}
-      component={ProfileScreen}
-      options={{
-        tabBarIcon: ({focused}) => {
-          return (
-            <Icon
-              name="account-outline"
-              size={35}
-              color={focused ? ORANGE : CYAN_BLUE}
-            />
-          );
-        },
-      }}
-    />}
+      {loggedIn !== 'loggedIn' ? (
+        <Tab.Screen
+          name={PROFILE}
+          component={Authentication}
+          initialParams={{from: PROFILE}}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <Icon
+                  name="account-outline"
+                  size={35}
+                  color={focused ? ORANGE : CYAN_BLUE}
+                />
+              );
+            },
+          }}
+        />
+      ) : (
+        <Tab.Screen
+          name={PROFILE}
+          component={ProfileScreen}
+          options={{
+            tabBarIcon: ({focused}) => {
+              return (
+                <Icon
+                  name="account-outline"
+                  size={35}
+                  color={focused ? ORANGE : CYAN_BLUE}
+                />
+              );
+            },
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };

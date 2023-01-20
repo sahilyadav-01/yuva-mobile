@@ -11,8 +11,8 @@ import SEXUAL_REPRODUCTIVE_HEALTH from './sexual_reproductive_health.png';
 import WOMAN from './woman.png';
 import CHECK_CIRCLE from './check_circle.png';
 import THANK_DESIGN from './thank_you_design.png';
-import THANK_IMAGE from './thank_image.png'
-import VECTOR1 from './Vector1.png'
+import THANK_IMAGE from './thank_image.png';
+import VECTOR1 from './Vector1.png';
 import EditIcon from './edit';
 import PlusIcon from './plus';
 import SLIDDERIMG1 from './slidderImg1.png';
@@ -23,23 +23,43 @@ import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-import DOWNLOAD from './download.png'
+import INTERNALMEDICINE from './internalMedicine.png';
+import NEUROLOGY from './Neurology.png';
+import PEDIATRICS from './Pediatrics.png';
+import SURGERY from './Surgery.png';
+import CORONA from './Corona.png';
+import COUGH from './cough.png';
+import SEX from './sex.png';
+import SKIN from './skin.png';
+import CIRCLE from './Circle.png';
+import LINE from './Line.png';
+import OCIRCLE from './Ocircle.png';
+import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
-
-
 const PNG = {
   AMICO,
   BACTERIA,
   CALM,
+  COUGH,
   CHILD_CARE,
   CHILLS,
+  CIRCLE,
+  NEUROLOGY,
+  PEDIATRICS,
+  SURGERY,
+  CORONA,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
+  LINE,
+  OCIRCLE,
   PREGNANT,
+  SEX,
+  SKIN,
   SEXUAL_REPRODUCTIVE_HEALTH,
   WOMAN,
+  INTERNALMEDICINE,
   CHECK_CIRCLE,
   SLIDDERIMG1,
   SLIDDERIMG2,
@@ -52,14 +72,14 @@ const PNG = {
   THANK_DESIGN,
   VECTOR1,
   THANK_IMAGE,
-  DOWNLOAD
+  DOWNLOAD,
 };
 
 const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit:EditIcon
-}
+  Edit: EditIcon,
+};
 
 export {PNG, SVG};
