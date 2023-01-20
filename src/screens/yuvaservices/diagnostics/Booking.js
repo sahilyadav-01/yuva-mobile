@@ -1,6 +1,6 @@
-import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
-import { useSelector } from 'react-redux';
+import React from 'react';
+import {View, Text, ScrollView} from 'react-native';
+import {useSelector} from 'react-redux';
 import AvailableBookingCard from './AvailableBookingCard';
 import image1 from '../../../../assets/Diagnostic_Test.png';
 import image from '../../../../assets/Diagnostic_Package.png';

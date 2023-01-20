@@ -1,5 +1,6 @@
 export const fonts = {
   size: {
+    fontSize18: 18,
     fontSize16: 16,
     fontSize14: 14,
     fontSize12: 12,
@@ -14,14 +15,11 @@ export const fonts = {
     fontWeight400: '400',
     fontWeight300: '300',
   },
-  Height:{
+  Height: {
     lineHeight30: '30',
     lineHeight21: '21',
   },
   family: {
     fontFamilyRubix: 'Rubik-Regular',
   },
-  width:{
-    width102:"102%"
-  }
 };
