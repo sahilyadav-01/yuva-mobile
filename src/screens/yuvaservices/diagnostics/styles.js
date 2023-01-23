@@ -16,7 +16,9 @@ export const styles = StyleSheet.create({
         height: 50,
         width:fonts.width.width102,
     },
-
+height:{
+    height:500,
+},
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 300,
@@ -31,6 +33,7 @@ export const styles = StyleSheet.create({
         backgroundColor: WHITE,
         borderWidth: 1,
         borderRadius: 8,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     touchable: {
         backgroundColor: ORANGE,
@@ -41,39 +44,44 @@ export const styles = StyleSheet.create({
     search: {
         backgroundColor: AMBER,
         color: GAINSBORO,
-        marginTop: 1,
+        marginTop: 23,
         fontSize: 1,
+        height:51,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     textColor: {
         color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
         fontWeight: BOLD,
-        marginLeft: 3,
+        marginLeft: 17,
+        // marginTop: 23,
     },
     textColor2: {
         color: CYAN_BLUE,
         fontWeight: BOLD,
-        marginLeft: 3,
-        marginTop: 10
+        marginLeft: 17,
+         marginTop: 27,
+         fontFamily: fonts.family.fontFamilyRubix,
     },
     labTest: {
         flexDirection: COLUMN,
-        marginLeft: 20,
+        marginLeft: 18,
         marginRight: 24,
-        marginTop: 25,
+        marginTop: 16,
         flex: 1,
         justifyContent: SPACE_BETWEEN
     },
     cards: {
         backgroundColor: WHITE,
-        height: 96,
+        height: 76,
         marginTop: 19,
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: 13,
+        marginRight: 14,
         borderRadius: 12
     },
     image: {
-        height: 33,
-        width: 33
+        height: 24,
+        width: 24
 
     },
     packageTest: {
@@ -81,17 +89,18 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         fontWeight: fonts.weight.fontWeight500,
         justifyContent: CENTER,
-        marginBottom: 20,
+        marginBottom: 10,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 60,
     },
     textPackage: {
-        marginTop: 33,
+        marginTop: 23,
     },
     container: {
-        marginBottom: 132,
+        marginBottom: 162,
     },
     booksID: {
         paddingLeft: 15,
@@ -114,14 +123,16 @@ export const styles = StyleSheet.create({
         marginBottom: 172,
     },
     card: {
-        margin: 2
+        marginBottom:0,
+        marginRight:14,
     },
     textBook: {
         textAlign: CENTER,
         fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
-        color: WHITE
+        color: WHITE,
+        fontFamily: fonts.family.fontFamilyRubix,
 
     },
     view: {
@@ -134,13 +145,15 @@ export const styles = StyleSheet.create({
         fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
-        color: CYAN_BLUE
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     itemText: {
         marginLeft: 10,
         color: WHITE,
         paddingBottom: 1,
-        paddingTop: 1
+        paddingTop: 1,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     itemView: {
         backgroundColor: DARK_BLUE,
@@ -152,7 +165,8 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         fontWeight: fonts.weight.fontWeight600,
-        color: CYAN_BLUE
+        color: ORANGE,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     download: {
         marginLeft: 160,
@@ -160,12 +174,32 @@ export const styles = StyleSheet.create({
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize12,
         fontWeight: fonts.weight.fontWeight500,
-
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     booking: {
         flexDirection: ROW
     },
     color:{
-        color:CYAN_BLUE
-    }
+        color:CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+    },
+    button:{
+        marginTop:47,
+        marginLeft:13,
+        marginRight:14,
+        },
+        textReschedule:{
+        
+            color:ORANGE,
+            fontSize:fonts.size.fontSize14,
+            fontFamily: fonts.family.fontFamilyRubix,
+        },
+        testName:{
+            marginTop:27,
+            marginBottom:10,
+            marginLeft:13,
+fontWeight:fonts.weight.fontWeight700,
+fontFamily: fonts.family.fontFamilyRubix,
+
+        }
 })

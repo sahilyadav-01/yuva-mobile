@@ -26,7 +26,6 @@ import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
 
 const HomeScreen = ({navigation}) => {
-  const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const {
@@ -59,7 +58,7 @@ const HomeScreen = ({navigation}) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <CarouselContainer isIndexed={true}>
+        <CarouselContainer isIndexed={true} includeMockData={false}>
           <CarouselItem />
         </CarouselContainer>
         <View className="flex-row justify-center">

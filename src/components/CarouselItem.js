@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
-import { getDate, getTime } from '../utils/utils';
+import { getDimensions } from '../utils/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+
 const CarouselItem = (props) => {
   const { item, index, totalItem, diagnosticItem } = props;
   const { name, setName } = useState('');
-  const wp = Dimensions.get('screen').width;
+ 
   const navigation = useNavigation();
   const onReschedule = () => {
 
@@ -22,41 +23,42 @@ const CarouselItem = (props) => {
       navigation.navigate('RescheduleTestAndPackage', { id: diagnosticItem.id })
     }
   }
+  const {width} = getDimensions();
   return (
     <TouchableOpacity onPress={rescheuleBookingAndCancel}>
       <View
         style={{
           minHeight: 170,
-          width: wp - 30,
+          width: width - 30,
           marginLeft: index === 0 ? 0 : 10,
           marginRight: index === totalItem - 1 ? 0 : 10,
         }}
-        className="mt-[40px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
+        className="rounded-lg drop-shadow-2xl shadow-2xl h-[137px] bg-[#FEFCFF]">
         {/* wrapper */}
         {item && diagnosticItem === undefined ? (
-          <View className="flex my-[10px] mx-[10px]">
+          <View className="flex mt-[11px] ml-[11px]">
             <View className="flex-row justify-between">
               <Text className="text-[#E68D36] text-base">{item?.status}</Text>
               <Text className="text-[#E68D36] text-sm">{item?.doctorName}</Text>
             </View>
-            <View className="mt-[20px]">
+            <View className="mt-[10px]">
               <View className="flex-row items-center">
-                <Text className="mr-2 text-[#1D2334] text-base  font-bold">
+                <Text className=" text-[#1D2334] text-base  font-bold">
                   {item?.hospitalName}
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />
               </View>
-              <Text className="mt-[10px] font-medium text-xs">
+              <Text className="mt-[16px] font-medium text-xs">
                 {item?.description}
               </Text>
             </View>
           </View>
         ) : (
-          <View className="flex my-[10px] mx-[10px]">
-            <View className="flex-row justify-between">
+          <View className="flex mt-[11px] ml-[11px]">
+            <View className="flex-row justify-between mr-[5px]">
               <Text className="text-[#E68D36] text-base">{diagnosticItem.bookingStatus}</Text>
               {!diagnosticItem.packageName ? (
-                <Text className="text-[#E68D36] text-sm">
+                <Text className="text-[#E68D36] text-sm ">
                   {diagnosticItem.testName}
                 </Text>
               ) : (
@@ -65,14 +67,14 @@ const CarouselItem = (props) => {
                 </Text>
               )}
             </View>
-            <View className="mt-[20px]">
+            <View className="mt-[10px]">
               <View className="flex-row items-center">
                 <Text className="mr-2 text-[#1D2334] text-base  font-bold">
                 {diagnosticItem.labName && diagnosticItem.labName || "Lab Assign Pending"}
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />
               </View>
-              <Text className="mt-[10px] font-medium text-xs" numberOfLines={2} ellipsizeMode="tail">
+              <Text className="mt-[16px] font-medium text-xs" numberOfLines={2} ellipsizeMode="tail">
                  {diagnosticItem.testOrPackageDescription} 
               </Text>
             </View>
@@ -87,7 +89,7 @@ const CarouselItem = (props) => {
               <Text style={{fontSize: 10}}>{getTime(item?.timeSlot)}</Text>
             </View>
         </View>  */}
-        <View className="flex-row justify-between mt-[30px] mr-[10px]">
+        <View className="flex-row justify-between mt-[19px] mr-[5px] ml-[17.3px] mb-[9px]">
           <CardButton
             text="Reschedule"
             iconName="clock-outline"

@@ -5,7 +5,7 @@ import { fonts } from "../../styles/fonts";
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    height: '23%',
+    height: '18%',
     width: '100%',
     justifyContent: CENTER,
     flexDirection: ROW,
