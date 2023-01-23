@@ -1,14 +1,20 @@
 import {View, Text, Image, FlatList} from 'react-native';
 import React from 'react';
-import {DOCTOR, CHAT_WITH_DOCTOR, DESC, TALKDOCTOR} from '../../constant';
+import {DOCTOR, CHAT_WITH_DOCTOR, DESC, HEALTH_CONDITION} from '../../constant';
 import {styles} from './styles';
+
 const TalkToDoctorCard = () => {
+  console.log(HEALTH_CONDITION, 'gdashgdj');
   const renderItem = ({item}) => {
     return (
-      <View style={styles.imageViews}>
-        <View>
-          <Image source={item.image} />
-          <Text style={styles.imageName}>{item.imageName}</Text>
+      <View>
+        <View style={styles.container}>
+          <View style={styles.imageView}>
+            <Image source={item.iconName} style={styles.imageStyle} />
+          </View>
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.textStyle}>{item.name}</Text>
         </View>
       </View>
     );
@@ -24,7 +30,7 @@ const TalkToDoctorCard = () => {
       <View>
         <FlatList
           horizontal
-          data={TALKDOCTOR}
+          data={HEALTH_CONDITION}
           keyExtractor={index => `${index}`}
           renderItem={renderItem}
         />

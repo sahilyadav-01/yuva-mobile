@@ -79,3 +79,17 @@ export const DEDICATED_DOCTOR = [
     data: '24 hours support team to assist you.',
   },
 ];
+export const HEALTH_CONDITION = [
+  {
+    name: 'Cold, Cough & Fever',
+    iconName: PNG.CHILLS,
+  },
+  {
+    name: 'Sexual Problems',
+    iconName: PNG.SEXUAL_REPRODUCTIVE_HEALTH,
+  },
+  {
+    name: 'Skin Problem',
+    iconName: PNG.BACTERIA,
+  },
+];
