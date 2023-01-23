@@ -1,38 +1,65 @@
-import {configureStore} from '@reduxjs/toolkit';
-import authReducer from './reducers/AuthSlice';
-import section1 from './reducers/Section1Slice';
-import section2 from './reducers/Section2Slice';
-import section3 from './reducers/Section3Slice';
-import section4 from './reducers/Section4Slice';
-import section5 from './reducers/Section5Slice';
-import section6 from './reducers/Section6Slice';
-import section7 from './reducers/Section7Slice';
-import section8 from './reducers/Section8Slice';
-import section9 from './reducers/Section9Slice';
-import doctor from './reducers/DoctorSlice';
-import appointment from './reducers/AppointmentSlice';
-import diagnostic from './reducers/DiagnosticsSlice';
-import talkToDoctor from './reducers/TalkToDoctorSlice';
-import profile from './reducers/ProfileSlice';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import authReducer, {authInit} from './reducers/AuthSlice';
+import section1, {section1Init} from './reducers/Section1Slice';
+import section2, {section2Init} from './reducers/Section2Slice';
+import section3, {section3Init} from './reducers/Section3Slice';
+import section4, {section4Init} from './reducers/Section4Slice';
+import section5, {section5Init} from './reducers/Section5Slice';
+import section6, {section6Init} from './reducers/Section6Slice';
+import section7, {section7Init} from './reducers/Section7Slice';
+import section8, {section8Init} from './reducers/Section8Slice';
+import section9, {section9Init} from './reducers/Section9Slice';
+import doctor, {doctorInit} from './reducers/DoctorSlice';
+import appointment, {appointmentInit} from './reducers/AppointmentSlice';
+import diagnostic, {diagnosticInit} from './reducers/DiagnosticsSlice';
+import talkToDoctor, {talkToDoctorInit} from './reducers/TalkToDoctorSlice';
+import profile, {profileInit} from './reducers/ProfileSlice';
+
+const storeInitialState = {
+  auth: authInit,
+  section1: section1Init,
+  section2: section2Init,
+  section3: section3Init,
+  section4: section4Init,
+  section5: section5Init,
+  section6: section6Init,
+  section7: section7Init,
+  section8: section8Init,
+  section9: section9Init,
+  doctor: doctorInit,
+  appointment: appointmentInit,
+  diagnostic: diagnosticInit,
+  talkToDoctor: talkToDoctorInit,
+  profile: profileInit,
+};
+
+const appReducer = combineReducers({
+  auth: authReducer,
+  section1,
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+  section7,
+  section8,
+  section9,
+  doctor,
+  appointment,
+  diagnostic,
+  talkToDoctor,
+  profile,
+});
+
+const rootReducer = (state, action) => {
+  if (action.type === 'auth/logoutThunk/fulfilled') {
+    return appReducer(storeInitialState, action);
+  }
+  return appReducer(state, action);
+};
 
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    section1: section1,
-    section2: section2,
-    section3: section3,
-    section4: section4,
-    section5: section5,
-    section6: section6,
-    section7: section7,
-    section8: section8,
-    section9: section9,
-    doctor: doctor,
-    appointment: appointment,
-    diagnostic:diagnostic,
-    talkToDoctor: talkToDoctor,
-    profile: profile,
-  },
+  reducer: rootReducer,
 });
 
 export default store;

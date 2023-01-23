@@ -6,6 +6,8 @@ import Dependents from './components/dependents';
 import {useProfile} from './hooks/useProfile';
 import styles from './style';
 import UserDetailsCard from './components/userDetailsCard';
+import Header from '../../components/Header';
+import ErrorScreen from '../../components/ErrorScreen';
 
 const Profile = () => {
   const data = [
@@ -37,51 +39,59 @@ const Profile = () => {
     onDependentNameChange,
     relationSelected,
     relationsData,
+    showErrorMessage,
+    onRetryPress,
   } = useProfile();
 
-  
   const {container} = styles({disabled: false});
+  if (showErrorMessage) {
+    return <ErrorScreen onRetryPress={onRetryPress} />;
+  }
 
   if (!userDetails) {
     return null;
   }
+
   return (
-    <ScrollView style={container}>
-      <UserDetailsCard
-        setSelectedGender={setSelectedGender}
-        gender={gender}
-        openPicker={openPicker}
-        edit={edit}
-        addMemberToList={addMemberToList}
-        addMembers={addMembers}
-        editDetails={editDetails}
-        data={data}
-        date={date}
-        userDetails={userDetails}
-        name={name}
-        changeName={changeName}
-        updateUserData={updateUserData}
-      />
-      <Dependents dependents={dependents} />
-      <AddDependentCard
-        onNameChange={onDependentNameChange}
-        onAgeChange={onDependentAgeChange}
-        onAddMember={onAddMembersPress}
-        gender={gender}
-        setSelectedRelation={setSelectedRelation}
-        relationsData={relationsData}
-        addMembers={addMembers}
-        onSelect={onSelect}
-        relationSelected={relationSelected}
-      />
-      <DateTimePickerModal
-        date={date ?? new Date()}
-        isVisible={picker}
-        mode={'date'}
-        onCancel={closePicker}
-        onConfirm={onConfirmDate}
-      />
-    </ScrollView>
+    <>
+      <Header isLoggedIn={true} />
+      <ScrollView style={container}>
+        <UserDetailsCard
+          setSelectedGender={setSelectedGender}
+          gender={gender}
+          openPicker={openPicker}
+          edit={edit}
+          addMemberToList={addMemberToList}
+          addMembers={addMembers}
+          editDetails={editDetails}
+          data={data}
+          date={date}
+          userDetails={userDetails}
+          name={name}
+          changeName={changeName}
+          updateUserData={updateUserData}
+        />
+        <Dependents dependents={dependents} />
+        <AddDependentCard
+          onNameChange={onDependentNameChange}
+          onAgeChange={onDependentAgeChange}
+          onAddMember={onAddMembersPress}
+          gender={gender}
+          setSelectedRelation={setSelectedRelation}
+          relationsData={relationsData}
+          addMembers={addMembers}
+          onSelect={onSelect}
+          relationSelected={relationSelected}
+        />
+        <DateTimePickerModal
+          date={date ?? new Date()}
+          isVisible={picker}
+          mode={'date'}
+          onCancel={closePicker}
+          onConfirm={onConfirmDate}
+        />
+      </ScrollView>
+    </>
   );
 };
 

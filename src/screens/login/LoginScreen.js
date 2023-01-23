@@ -121,7 +121,7 @@ const LoginScreen = props => {
       }
     } else {
       if (loggedIn == 'loggedIn' && jwt) {
-        dispatch(profileThunk({jwt}));
+        dispatch(profileThunk());
         if (from === 'Profile') navigation.navigate('Home');
         else navigation.navigate('HomeService');
       }

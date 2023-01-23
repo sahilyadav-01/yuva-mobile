@@ -1,19 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
-
-const profileEndpoint = 'http://' + SERVER + ':8080/api/v1/yuva';
+import {YuvaService} from '../../network/yuvaService';
 
 export const profileThunk = createAsyncThunk(
   'profile/profileThunk',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await axios.get(`${profileEndpoint}/profile`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const response = await YuvaService.get('/profile');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -23,17 +15,9 @@ export const profileThunk = createAsyncThunk(
 
 export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await axios.get(
-        `${profileEndpoint}/employee/relation/active`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-        },
-      );
+      const response = await YuvaService.get('/employee/relation/active');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -43,14 +27,9 @@ export const getActiveRelations = createAsyncThunk(
 
 export const getRelations = createAsyncThunk(
   'profile/getRelations',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await axios.get(`${profileEndpoint}/employee/relation`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const response = await YuvaService.get('/employee/relation');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -60,24 +39,9 @@ export const getRelations = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async (
-    {jwt, dob, gender, userDetails},
-    {fulfillWithValue, rejectWithValue},
-  ) => {
+  async ({dob, gender}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await axios.put(
-        `${profileEndpoint}/profile/update`,
-        {
-          dob,
-          gender,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-        },
-      );
+      await YuvaService.put('/profile/update', {dob, gender});
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -86,18 +50,13 @@ export const updateProfile = createAsyncThunk(
 
 export const addRelation = createAsyncThunk(
   'profile/addRelation',
-  async ({jwt, age, name, relation}, {fulfillWithValue, rejectWithValue}) => {
+  async ({age, name, relation}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await axios.post(
-        `${profileEndpoint}/employee/relation`,
-        {age, name, relation},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-        },
-      );
+      await YuvaService.post('/employee/relation', {
+        age,
+        name,
+        relation,
+      });
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -121,9 +80,12 @@ const initialState = {
   status: false,
   activeRelations: [],
   relations: [],
-  relationId:[],
+  relationId: [],
   dataUpdated: false,
   relationAdded: false,
+  userDetailsErrorMessage: '',
+  activeRelationsErrorMessage: '',
+  relationsErrorMessage: '',
 };
 
 const profileSlice = createSlice({
@@ -142,6 +104,7 @@ const profileSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
       state.dataUpdated = false;
+      state.userDetailsErrorMessage = '';
     },
     [profileThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
@@ -150,6 +113,7 @@ const profileSlice = createSlice({
       state.dataUpdated = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
+      state.userDetailsErrorMessage = payload.message;
     },
     [getRelations.pending]: state => {
       state.loading = true;
@@ -160,7 +124,8 @@ const profileSlice = createSlice({
       state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
-      state.relationId= payload?.data.data || [];
+      state.relationId = payload?.data.data || [];
+      state.relationsErrorMessage = '';
     },
     [getRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
@@ -168,6 +133,7 @@ const profileSlice = createSlice({
       state.relationAdded = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
+      state.relationsErrorMessage = payload.message;
     },
     [getActiveRelations.pending]: state => {
       state.loading = true;
@@ -177,12 +143,14 @@ const profileSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
+      state.activeRelationsErrorMessage = '';
     },
     [getActiveRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
+      state.activeRelationsErrorMessage = payload.message;
     },
     [updateProfile.pending]: state => {
       state.loading = true;
@@ -219,4 +187,5 @@ const profileSlice = createSlice({
   },
 });
 
+export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

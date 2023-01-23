@@ -208,6 +208,7 @@ const appointmentSlice = createSlice({
   },
 });
 
-export const {newAppointment, currentAppointment,resetMessage} = appointmentSlice.actions;
+export const {newAppointment, currentAppointment,resetMessage,resetAppointments} = appointmentSlice.actions;
+export const appointmentInit = appointmentSlice.getInitialState();
 
 export default appointmentSlice.reducer;

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {setObject, getObject, removeObject} from '../LocalStore';
+import {setObject, getObject, removeObject, setJwt, clearJwt} from '../LocalStore';
 import axios from 'axios';
 import {SERVER} from '../../utils/utils';
 import {Alert} from 'react-native';
@@ -212,6 +212,7 @@ const authSlice = createSlice({
       state.user.status = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
+      setJwt(action.payload.jwt)
       state.loading = false;
       const userData = {
         name: action.payload.name, 
@@ -257,9 +258,12 @@ const authSlice = createSlice({
      */
     [logoutThunk.pending]: (state, {payload}) => {},
     [logoutThunk.fulfilled]: (state, {payload}) => {
+      state.user.status = false;
       state.loggedIn = 'notLoggedIn';
       state.user.name = '';
       state.user.jwt = '';
+      state.isAppReady = true;
+      clearJwt();
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
     /**
@@ -370,4 +374,5 @@ export const {
   resetVerifyEmail,
   resetVerifySms,
 } = authSlice.actions;
+export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

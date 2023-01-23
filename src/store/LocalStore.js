@@ -48,7 +48,19 @@ export const getObject = async key => {
 };
 export const setExistingUser = async () => {
   try {
-    await AsyncStorage.setItem('existingUser',JSON.stringify(true));
+    await AsyncStorage.setItem('existingUser', JSON.stringify(true));
+  } catch (error) {}
+};
+
+export const setJwt = async jwt => {
+  try {
+    await AsyncStorage.setItem('jwt', jwt);
+  } catch (error) {}
+};
+
+export const clearJwt = async () => {
+  try {
+    await AsyncStorage.removeItem('jwt');
   } catch (error) {
     
   }
@@ -58,7 +70,12 @@ export const getExistingUser = async () => {
   try {
     const existingUser = await AsyncStorage.getItem('existingUser');
     return JSON.parse(existingUser) ?? null;
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
+
+export const getJwt = async () => {
+  try {
+    const jwtToken = await AsyncStorage.getItem('jwt');
+    return jwtToken;
+  } catch (error) {}
+};

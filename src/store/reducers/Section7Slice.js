@@ -113,5 +113,5 @@ const section7Slice = createSlice({
 });
 
 export const {init, dispatch_option , dispatch_option_extra_questions} = section7Slice.actions;
-
+export const section7Init = section7Slice.getInitialState();
 export default section7Slice.reducer;

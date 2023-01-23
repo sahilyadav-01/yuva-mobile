@@ -91,5 +91,5 @@ const section8Slice = createSlice({
 });
 
 export const {init, dispatch_option} = section8Slice.actions;
-
+export const section8Init = section8Slice.getInitialState();
 export default section8Slice.reducer;

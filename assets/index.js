@@ -37,6 +37,8 @@ import OCIRCLE from './Ocircle.png';
 import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
+import BackgroundImage from './background';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -79,7 +81,8 @@ const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit: EditIcon,
-};
+  Edit:EditIcon,
+  BackgroundImage: BackgroundImage,
+}
 
 export {PNG, SVG};

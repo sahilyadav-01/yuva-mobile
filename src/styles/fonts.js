@@ -19,5 +19,8 @@ export const fonts = {
   },
   family: {
     fontFamilyRubix: 'Rubik-Regular',
+    rubikMedium: 'Rubik-Medium',
+    rubikLight: 'Rubik-Light',
+    nunitoSemiBold: 'Nunito-SemiBold',
   },
 };

@@ -98,4 +98,5 @@ const talkToDoctorSlice = createSlice({
 });
 
 export const { clearRequest } = talkToDoctorSlice.actions;
+export const talkToDoctorInit = talkToDoctorSlice.getInitialState();
 export default talkToDoctorSlice.reducer;

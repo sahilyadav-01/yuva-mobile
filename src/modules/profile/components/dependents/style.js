@@ -22,21 +22,21 @@ const styles = ({disabled}) => {
       justifyContent: SPACE_BETWEEN,
     },
     relationText: {
+      fontFamily: fonts.family.nunitoSemiBold,
       color: ORANGE,
       fontSize: fonts.size.fontSize16,
-      fontWeight: fonts.weight.fontWeight600,
       height: 24,
     },
     dependentName: {
+      fontFamily: fonts.family.rubikMedium,
       color: CYAN_BLUE,
       fontSize: fonts.size.fontSize14,
-      fontWeight: fonts.weight.fontWeight500,
       height: 21,
     },
     dependentGender: {
+      fontFamily: fonts.family.fontFamilyRubix,
       color: CYAN_BLUE,
       fontSize: fonts.size.fontSize14,
-      fontWeight: fonts.weight.fontWeight400,
       height: 21,
     },
   });

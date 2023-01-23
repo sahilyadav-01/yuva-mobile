@@ -326,4 +326,5 @@ const diagnosticSlice = createSlice({
 export const {
   hideErrorBox,
 } = diagnosticSlice.actions;
+export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;

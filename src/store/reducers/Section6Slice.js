@@ -83,5 +83,5 @@ const section6Slice = createSlice({
 });
 
 export const {init, dispatch_option} = section6Slice.actions;
-
+export const section6Init = section6Slice.getInitialState();
 export default section6Slice.reducer;

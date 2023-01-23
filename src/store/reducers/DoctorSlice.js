@@ -60,5 +60,5 @@ const doctorSlice = createSlice({
     [searchDoctorThunk.rejected]: (state, {payload}) => {},
   },
 });
-
+export const doctorInit =  doctorSlice.getInitialState();
 export default doctorSlice.reducer;

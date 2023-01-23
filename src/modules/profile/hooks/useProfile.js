@@ -27,19 +27,20 @@ export const useProfile = () => {
   const [dependentName, setDependentName] = useState('');
   const [dependentAge, setDependentAge] = useState('');
   const [dependentRelation, setDependentRelation] = useState('');
+  const [reloadScreenCount, setReloadScreenCount] = useState(0);
 
   useEffect(() => {
-    if (navigation.isFocused() && jwt && auth.loggedIn === 'loggedIn') {
-      dispatch(profileThunk({jwt}));
-      dispatch(getRelations({jwt}));
-      dispatch(getActiveRelations({jwt}));
+    if (navigation.isFocused()) {
+      dispatch(profileThunk());
+      dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
-  }, [focused, auth.loggedIn]);
+  }, [focused, auth.loggedIn, reloadScreenCount]);
 
   useEffect(() => {
     if (profile.dataUpdated) {
       setEdit(false);
-      jwt && dispatch(profileThunk({jwt}));
+      jwt && dispatch(profileThunk());
     }
   }, [profile.dataUpdated]);
 
@@ -50,8 +51,8 @@ export const useProfile = () => {
       setDependentRelation('');
       setAddMembers(false);
       setRelationSelected(false);
-      jwt && dispatch(getRelations({jwt}));
-      jwt && dispatch(getActiveRelations({jwt}));
+      jwt && dispatch(getRelations());
+      jwt && dispatch(getActiveRelations());
     }
   }, [profile.relationAdded]);
 
@@ -76,7 +77,6 @@ export const useProfile = () => {
     }
     dispatch(
       addRelation({
-        jwt,
         age: dependentAge,
         name: dependentName,
         relation: dependentRelation,
@@ -127,16 +127,11 @@ export const useProfile = () => {
       Alert.alert('Alert', 'Please fill the details');
     } else {
       setUserDetails(null);
-      dispatch(
-        updateProfile({
-          jwt,
-          dob: Date.parse(date).toString(),
-          gender,
-          userDetails,
-        }),
-      );
+      dispatch(updateProfile({dob: Date.parse(date).toString(), gender}));
     }
   };
+
+  const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
   return {
     onAddMembersPress,
@@ -165,5 +160,10 @@ export const useProfile = () => {
     activeRelations: profile.activeRelations,
     relationSelected,
     relationsData,
+    onRetryPress,
+    showErrorMessage:
+      profile.userDetailsErrorMessage ||
+      profile.relationsErrorMessage ||
+      profile.activeRelationsErrorMessage,
   };
 };
