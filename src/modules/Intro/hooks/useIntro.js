@@ -4,7 +4,7 @@ import { BackHandler } from 'react-native'
 import { getExistingUser, setExistingUser } from "../../../store/LocalStore";
 
 export const useIntro = () => {
-    const [index, setIndex] = useState(1)
+    const [index, setIndex] = useState(0)
     const navigation = useNavigation();
     useFocusEffect(() => {
         getExistingUser().then(resp => {
@@ -13,8 +13,7 @@ export const useIntro = () => {
     }, []);
 
     const setScreen = (index) => {
-
-        if (index > 0 && index <= 4) {
+        if (index >= 0 && index <= 3) {
             setIndex(index)
         }
         else {
@@ -22,5 +21,10 @@ export const useIntro = () => {
         }
     }
 
-    return { index, setScreen }
+    const onNext = () => {
+        const value = index + 1;
+        setIndex(value);
+    }
+
+    return { onNext, index, setScreen }
 };
