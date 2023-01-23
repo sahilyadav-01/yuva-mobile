@@ -1,17 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {View, FlatList, Dimensions} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
-
-const CarouselContainer = props => {
-  const {isIndexed, children, includeMockData} = props;
-  const data = [
-    {id: 1, text: 'text1'},
-    {id: 1, text: 'text2'},
-  ];
-
+import {getDimensions} from '../utils/utils';
+const CarouselContainer = (props) => {
+  const {includeMockData,isIndexed, children} = props;
   const [activeIndex, setActiveIndex] = useState(0);
   const {userAppointments} = useSelector(state => state?.appointment);
-  const wp = Dimensions.get('screen').width;
+  const {width} = getDimensions();
 
   const onViewableItemsChanged = ({viewableItems}) => {
     if (viewableItems?.length === 1) {
@@ -32,6 +27,18 @@ const CarouselContainer = props => {
       totalItem: userAppointments.length ?? 10,
     });
   };
+
+  const render = ({item, index}) => {
+    return (
+      <View
+        className="h-2 w-2 rounded-full ml-2"
+        style={{
+          backgroundColor: index === activeIndex ? 'white' : 'grey',
+          borderColor: 'grey',
+          borderWidth: 2,
+        }}></View>
+    );
+  };
   return (
     <View className="flex items-center justify-center mt-2 mx-4 my-4">
       <FlatList
@@ -42,7 +49,7 @@ const CarouselContainer = props => {
         keyExtractor={item => item.id}
         key={(item, index) => index}
         snapToAlignment={'start'}
-        snapToInterval={wp - 10}
+        snapToInterval={width - 10}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
@@ -53,17 +60,7 @@ const CarouselContainer = props => {
           className="flex-row mt-[20px]"
           horizontal={true}
           data={new Array(userAppointments.length ?? 10)}
-          renderItem={({item, index}) => {
-            return (
-              <View
-                className="h-2 w-2 rounded-full ml-2"
-                style={{
-                  backgroundColor: index === activeIndex ? 'white' : 'grey',
-                  borderColor: 'grey',
-                  borderWidth: 2,
-                }}></View>
-            );
-          }}
+          renderItem={render}
         />
       )}
     </View>

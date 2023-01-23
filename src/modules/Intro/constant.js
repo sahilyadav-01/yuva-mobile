@@ -16,9 +16,8 @@ export const DESCRIPTION_SCREEN4TOP_PART1 =  'Purchase Medicines ';
 export const DESCRIPTION_SCREEN4TOP_PART2 =  'and';
 export const DESCRIPTION_SCREEN4TOP_PART3 =  'Rent Medical Equipments';
 export const DESCRIPTION_SCREEN4BOTTOM_PART1 =  ' with a tap of your finger.';
-export const DESCRIPTION_SCREEN4BOTTOM_PART2 =  ' Lets Start';
 
-
+export const LETS_START =  'Lets Start';
 export const NEXT =  'Next';
 
 

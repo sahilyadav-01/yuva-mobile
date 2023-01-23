@@ -26,16 +26,19 @@ export const styles = StyleSheet.create({
     color: RED_SHADE,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   oPriceText: {
     color: BLACK,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   price: {
     color: BLACK,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   offerPrice: {
     alignItems: CENTER,
