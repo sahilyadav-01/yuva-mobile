@@ -29,9 +29,6 @@ import Health_Checkup_Packages from './Health_Checkup_Packages.png';
 import Talk_To_Doctor from './Talk_To_Doctor.png';
 import BANNER from './banner.png';
 import BANNER2 from './banner2.png';
-import DOWNLOAD from './download.png'
-import HeaderLogo from './headerLogo';
-import MenuIcon from './menu';
 import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
@@ -98,7 +95,6 @@ const PNG = {
   HEALTHIMG,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
-  DOWNLOAD,
 };
 
 const SVG = {
