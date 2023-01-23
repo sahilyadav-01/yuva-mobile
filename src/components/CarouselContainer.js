@@ -45,7 +45,6 @@ const CarouselContainer = props => {
         snapToInterval={wp - 10}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        // onScrollEndDrag={onScrollEndDrag}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
       />

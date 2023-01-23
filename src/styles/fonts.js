@@ -22,4 +22,7 @@ export const fonts = {
   family: {
     fontFamilyRubix: 'Rubik-Regular',
   },
+  width: {
+    width102: '102'
+  }
 };

@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  View,
-  SafeAreaView,
-  ScrollView,
-  Image,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {View,SafeAreaView,ScrollView,Image,Text,TouchableOpacity} from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
 import {useIsFocused, useRoute} from '@react-navigation/native';
@@ -15,12 +8,7 @@ import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
 import Header from '../../components/Header';
 import {PNG} from '../../../assets';
-import {
-  LANDING_PAGE_TEXT1,
-  LANDING_PAGE_TEXT2,
-  LANDING_PAGE_TEXT3,
-  LANDING_PAGE_TEXT4,
-} from '../constant';
+import {LANDING_PAGE_TEXT1,LANDING_PAGE_TEXT2,LANDING_PAGE_TEXT3,LANDING_PAGE_TEXT4,} from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
@@ -37,7 +25,7 @@ const HomeScreen = ({navigation}) => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
     } else {
-      //open drawer
+      //The logic for opening the drawer should be added here
     }
   };
 
@@ -62,7 +50,7 @@ const HomeScreen = ({navigation}) => {
         <CarouselContainer isIndexed={true}>
           <CarouselItem />
         </CarouselContainer>
-        <View className="flex-row justify-center">
+        <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer />
         </View>
         <View style={styles.bannerContainer}>

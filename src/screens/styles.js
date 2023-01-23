@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { CYAN_BLUE, GREY } from "../styles/colors";
-import { CENTER, ROW, SPACE_BETWEEN } from "../styles/constants";
+import { CENTER, FLEX, ROW, SPACE_BETWEEN } from "../styles/constants";
 import { fonts } from "../styles/fonts";
 
 export const styles = StyleSheet.create({
@@ -12,6 +12,12 @@ export const styles = StyleSheet.create({
   },
   ScrollViewContainerStyle: {
     paddingBottom: 400,
+  },
+  serviceContainerWrapperStyle: {
+    display: FLEX,
+    flexDirection: ROW,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
   tabNavigation: {
     flex: 1,
@@ -49,13 +55,6 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     marginTop: 20,
   },
-  // carouselCard: {
-  //   height: 2,
-  //   width: 2,
-  //   marginLeft: 2,
-  //   borderRadius: 9,
-  //   borderColor: 'grey', borderWidth: 2
-  // }
   bannerContainer: {
     marginTop: 13,
     flexDirection: ROW,
@@ -66,28 +65,28 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   PopularHealthCheckups: {
-    alignItems:CENTER,
+    alignItems: CENTER,
     marginTop: 15,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
   },
-  LandingPageText1:{
+  LandingPageText1: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.fontFamilyRubix,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight700, 
+    fontWeight: fonts.weight.fontWeight700,
   },
-  LandingPageText2:{
+  LandingPageText2: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.fontFamilyRubix,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400, 
+    fontWeight: fonts.weight.fontWeight400,
   },
-  line:{
+  line: {
     borderBottomColor: GREY,
     borderBottomWidth: 1,
     width: 118,
   }
-  
+
 });
