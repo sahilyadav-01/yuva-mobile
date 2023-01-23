@@ -218,7 +218,7 @@ const diagnosticSlice = createSlice({
     apiError: false,
     apiErrorMessage: '',
     testData: '',
-    caraouselData: '',
+    diagnosticCarouselData: '',
     bookedData: '',
     testDetails: '',
     packageDetails: '',
@@ -264,7 +264,7 @@ const diagnosticSlice = createSlice({
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.bookedData = action.payload.isActive === "false" ? action.payload.data : state.bookedData;
-      state.caraouselData = action.payload.isActive === "true" ? action.payload.data : state.caraouselData;
+      state.diagnosticCarouselData = action.payload.isActive === "true" ? action.payload.data : state.diagnosticCarouselData;
 
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {

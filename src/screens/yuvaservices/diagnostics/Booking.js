@@ -17,30 +17,27 @@ const Booking = ({ name }) => {
                         contentContainerStyle={styles.contentContainerStyle}
                         showsVerticalScrollIndicator={false}>
                         {bookedData && bookedData.map((item, index) => {
+                            let nameBooking = '';
+                            let imageName = '';
                             if (item.packageName !== null) {
-                                return <AvailableBookingCard
-                                    key={index}
-                                    nameBooking={item?.packageName}
-                                    imageUrl={image}
-                                    status={item.bookingStatus}
-                                    filePath={item?.attachmentList[0]?.filePath}
-                                    fileName={item?.attachmentList[0]?.fileName}
-                                />
+                                nameBooking = item?.packageName;
+                                imageName = image;
                             } else {
-
-                                return <AvailableBookingCard
-                                    key={index}
-                                    nameBooking={item?.testName}
-                                    imageUrl={image1}
-                                    status={item.bookingStatus}
-                                    filePath={item?.attachmentList[0]?.filePath}
-                                    fileName={item?.attachmentList[0]?.fileName}
-                                />
+                                nameBooking = item?.testName;
+                                imageName = image1;
                             }
+                            return <AvailableBookingCard
+                                key={index}
+                                nameBooking={nameBooking}
+                                imageUrl={imageName}
+                                status={item.bookingStatus}
+                                filePath={item?.attachmentList[0]?.filePath}
+                                fileName={item?.attachmentList[0]?.fileName} />
+
                         })
                         }
                     </ScrollView>
-                ) : <Text  style={styles.textColor}>{NO_BOOKING}</Text>}
+                ) : <Text style={styles.textColor}>{NO_BOOKING}</Text>}
 
             </View>
         </View>

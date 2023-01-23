@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AppointmentButton from '../../../components/AppointmentButton';
-import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { useNavigation } from '@react-navigation/core'
-import MainHeader from '../../../components/MainHeader';
 import { bookedDetailsByIdThunk, rescheduleCancelBookingThunk } from '../../../store/reducers/DiagnosticsSlice';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
@@ -23,7 +21,8 @@ const RescheduleTestAndPackage = ({ route }) => {
     const [cancelFlag, setCancelFlag] = useState(false);
     const cancelMessage = ARE_YOU_SURE;
     const cancelBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: TRUE, timeSlot: '' }))
+        const isCancelled= TRUE;
+        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled, timeSlot: '' }))
     }
     const cancelBookingButton = () => {
         setCancelFlag(true);
@@ -38,8 +37,6 @@ const RescheduleTestAndPackage = ({ route }) => {
     }, [cancelled])
     return (
         <SafeAreaView style={styles.container}>
-            {/* <MainHeader />
-            <DiagnosticHeader /> */}
             <Header/>
             <ScrollView style={styles.booksID} contentContainerStyle={styles.contentContainerStyle}
     >

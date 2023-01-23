@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
-import { getDate, getTime } from '../utils/utils';
+import { getDimensions } from '../utils/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+
 const CarouselItem = (props) => {
   const { item, index, totalItem, diagnosticItem } = props;
   const { name, setName } = useState('');
-  const wp = Dimensions.get('screen').width;
+ 
   const navigation = useNavigation();
   const onReschedule = () => {
 
@@ -22,12 +23,13 @@ const CarouselItem = (props) => {
       navigation.navigate('RescheduleTestAndPackage', { id: diagnosticItem.id })
     }
   }
+  const {width} = getDimensions();
   return (
     <TouchableOpacity onPress={rescheuleBookingAndCancel}>
       <View
         style={{
           minHeight: 170,
-          width: wp - 30,
+          width: width - 30,
           marginLeft: index === 0 ? 0 : 10,
           marginRight: index === totalItem - 1 ? 0 : 10,
         }}

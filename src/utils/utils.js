@@ -1,5 +1,5 @@
 import validator from "is_js"
-import { Dimensions, PermissionsAndroid } from "react-native";
+import { Dimensions, PermissionsAndroid, Platform } from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
 
 export const isEmail = (email) => {
@@ -182,15 +182,42 @@ export const granted = () => {
     }
     )
 };
-
-export const checkPermission = async (path, fileName) => {
-    if (Platform.OS !== 'android') {
-        downloadFile(path, fileName);
+const downloadFile = (filePath, fileName) => {
+    // path is the url from where it will download
+    // fileName represents in which name the file will be stored in the device
+    let file_Url = filePath
+    let ext = getExtention(file_Url);
+    ext = fileName;
+    const { config, fs } = RNFetchBlob;
+    let DownloadDir = fs.dirs.DownloadDir;
+    let options = {
+        fileCache: true,
+        addAndroidDownloads: {
+            useDownloadManager: true,
+            notification: true,
+            path: DownloadDir + '/yuva/' + ext,
+            description: 'File',
+            mime: 'application/pdf',
+            showNotification: true,
+        }
+    }
+    config(options)
+        .fetch('GET', file_Url)
+        .then(res => {
+            // Alert after successful downloading;
+            alert('File Downloaded Successfully.', JSON.stringify(res));
+        }).catch((err) => {
+            alert('Download Failed');
+        });
+};
+export const checkPermission = async (filePath, fileName) => {
+    if (Platform.OS === 'android') {
+        downloadFile(filePath, fileName);
     } else {
         try {
-            granted();
+            granted(filePath, fileName);
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                downloadFile(path, fileName);
+                downloadFile(filePath, fileName);
             }
         } catch (error) {
         }
@@ -201,49 +228,24 @@ const getExtention = filename => {
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined
 };
 
-const downloadFile = (path, fileName) => {
-    // path is the url from where it will download
-    // fileName represents in which name the file will be stored in the device
 
-    let ext = getExtention(path);
-    ext = `${fileName}.${ext[0]}`;
-    const { config, fs } = RNFetchBlob;
-    let DownloadDir = fs.dirs.DownloadDir;
-    let options = {
-      fileCache: true,
-      addAndroidDownloads: {
-        useDownloadManager: true,
-        notification: true,
-        path: `${DownloadDir}/yuva/${ext}`,
-        description: 'File',
-        mime: 'application/pdf',
-        showNotification: true,
-      },
-    };
-    config(options)
-      .fetch('GET', file_Url)
-      .then(res => {
-        // Alert after successful downloading;
-        alert('File Downloaded Successfully.', JSON.stringify(res));
-      });
-  };
 
-  export const getCalendarValue = (value) => {
+export const getCalendarValue = (value) => {
     const date = getDate(value);
     const time = getTime(value);
-    return {date, time};
-  };
+    return { date, time };
+};
 
-  export const getDimensions = () => {
-    const {width, height} = Dimensions.get('screen');
-    return {width, height};
-  } 
+export const getDimensions = () => {
+    const { width, height } = Dimensions.get('screen');
+    return { width, height };
+}
 
-  export const getDateText = (date) => {
+export const getDateText = (date) => {
     return (
         date &&
         `${date.getDate()} ${date.toLocaleString('default', {
-          month: 'long',
+            month: 'long',
         })} ${date.getFullYear()}`
-      );
-  }
+    );
+}

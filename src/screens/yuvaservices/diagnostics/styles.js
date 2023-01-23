@@ -33,6 +33,7 @@ height:{
         backgroundColor: WHITE,
         borderWidth: 1,
         borderRadius: 8,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     touchable: {
         backgroundColor: ORANGE,
@@ -46,9 +47,11 @@ height:{
         marginTop: 23,
         fontSize: 1,
         height:51,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     textColor: {
         color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
         fontWeight: BOLD,
         marginLeft: 17,
         // marginTop: 23,
@@ -58,6 +61,7 @@ height:{
         fontWeight: BOLD,
         marginLeft: 17,
          marginTop: 27,
+         fontFamily: fonts.family.fontFamilyRubix,
     },
     labTest: {
         flexDirection: COLUMN,
@@ -86,6 +90,7 @@ height:{
         fontWeight: fonts.weight.fontWeight500,
         justifyContent: CENTER,
         marginBottom: 10,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     contentContainerStyle: {
         flexGrow: 1,
@@ -126,7 +131,8 @@ height:{
         fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
-        color: WHITE
+        color: WHITE,
+        fontFamily: fonts.family.fontFamilyRubix,
 
     },
     view: {
@@ -139,13 +145,15 @@ height:{
         fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
-        color: CYAN_BLUE
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     itemText: {
         marginLeft: 10,
         color: WHITE,
         paddingBottom: 1,
-        paddingTop: 1
+        paddingTop: 1,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     itemView: {
         backgroundColor: DARK_BLUE,
@@ -157,7 +165,8 @@ height:{
         marginTop: 10,
         marginBottom: 10,
         fontWeight: fonts.weight.fontWeight600,
-        color: ORANGE
+        color: ORANGE,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     download: {
         marginLeft: 160,
@@ -165,13 +174,14 @@ height:{
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize12,
         fontWeight: fonts.weight.fontWeight500,
-
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     booking: {
         flexDirection: ROW
     },
     color:{
-        color:CYAN_BLUE
+        color:CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     button:{
         marginTop:47,
@@ -181,13 +191,15 @@ height:{
         textReschedule:{
         
             color:ORANGE,
-            fontSize:fonts.size.fontSize14
+            fontSize:fonts.size.fontSize14,
+            fontFamily: fonts.family.fontFamilyRubix,
         },
         testName:{
             marginTop:27,
             marginBottom:10,
             marginLeft:13,
 fontWeight:fonts.weight.fontWeight700,
+fontFamily: fonts.family.fontFamilyRubix,
 
         }
 })
