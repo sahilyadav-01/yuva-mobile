@@ -20,14 +20,16 @@ const Header = (props) => {
       <View style={styles.body}>
 
       </View>
-      <TouchableOpacity onPress={onPressRightIcon} style={styles.rightIcon}>
-        {!isLoggedIn ?
-          <View>
-            <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
-          </View>
-          : <SVG.MenuIcon />
-        }
-      </TouchableOpacity>
+      { !!isLoggedIn && 
+        <TouchableOpacity onPress={onPressRightIcon} style={styles.rightIcon}>
+          {!isLoggedIn ?
+            <View>
+              <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
+            </View>
+            : <SVG.MenuIcon />
+          }
+        </TouchableOpacity>
+      }
     </Gradient>
   );
 };
