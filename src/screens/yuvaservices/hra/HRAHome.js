@@ -15,124 +15,41 @@ import {
   ScrollView,TouchableOpacity
 } from 'react-native';
 import HRASectionContainer from './HRASectionContainer';
-import HealthMetricCard from './HealthMetricCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/core';
 import { reportStatusThunk } from '../../../store/reducers/Section9Slice';
 import DownloadButton from '../../../components/DownloadButton';
-import AlertBox from '../../../components/AlertBox';
-import MessageBox from '../../../components/MessageBox';
-import HealthReportSVG from '../../../components/svg/HealthReportSVG';
 import Backbutton from '../../../components/Backbutton';
-import RNFetchBlob from 'rn-fetch-blob';
-import * as FileSystem from 'react-native-fs';
-const { StorageAccessFramework } = FileSystem;
-// import * as Sharing from 'expo-sharing';
-import { granted } from '../../../utils/utils';
-//const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
-// import * as IntentLauncher from 'expo-intent-launcher';
+import { checkPermission } from '../../../utils/utils';
 import hraImg from '../../../../assets/hra_img.png';
 import { date } from 'is_js';
 
 LogBox.ignoreAllLogs();
 
-/**
- * Download dir
- */
-
 
 const HRAHome = () => {
-  /**
-   * Download meta data
-   */
+
 
   let { chart, metrics, result, reportStatus, apiErrorMessage, reportDownload } = useSelector(
     state => state.section9,
   );
 
-  /**
-   *  Hooks
-   */
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  /**
-   *   State
-   */
   const [report, setReport] = useState(false);
   const { jwt } = useSelector(state => state.auth.user);
-  const [qReport, setQReport] = useState(true);
   const [message, setMessage] = useState('')
 
-  /**
-   * React Hooks
-   */
   useEffect(() => {
     if (Object.keys(metrics).length != 0) {
     }
   });
 
-  /**
-   * callbacks
-   */
-  const checkpermission = async () => {
-    if (Platform.OS === 'android') {
-      downloadFile()
-    } else {
-      try {
-        // const granted =await PermissionsAndroid.request(
-        //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,{
-        //     title:'storage permsioon reuqired',
-        //     message:'app need to acess ypu sotrage'
-        //   }
-        // )
-        granted();
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          downloadFile();
-        }
-      } catch (error) {
-      }
-    }
-  }
-
-
-  const downloadFile = () => {
-    let date = new Date()
-    let file_Url = reportDownload;
-    let ext = getExtention(file_Url)
-    ext = 'reportpdf.' + ext[0]
-    const { config, fs } = RNFetchBlob
-    let DownloadDir = fs.dirs.DownloadDir;
-    let options = {
-      fileCache: true,
-      addAndroidDownloads: {
-        useDownloadManager: true,
-        notification: true,
-        path: DownloadDir + '/foldername/' + ext,
-        description: 'File',
-        mime: 'application/pdf',
-        showNotification: true,
-       
-      }
-    }
-    config(options)
-      .fetch('GET', file_Url)
-      .then(res => {
-        // Alert after successful downloading;
-        alert('File Downloaded Successfully.');
-      })
-
-  }
-  const getExtention = filename => {
-    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined
-  }
-
-  const display = () => {
+  const onDisplay = () => {
     if (reportStatus === null) {
-      // setMessage("Fill the details first")
       Alert.alert("Alert", "Fill the details first", [{
         text: "Ok",
-
       }])
       fetchReport();
     }
@@ -146,7 +63,7 @@ const HRAHome = () => {
     }
     if (reportStatus?.ready != null && reportStatus.ready) {
 
-      checkpermission();
+      checkPermission(reportDownload,'reportPdf.pdf');
 
     }
     else {
@@ -156,36 +73,18 @@ const HRAHome = () => {
     }
   };
   const fetchReport = () => {
-
     dispatch(reportStatusThunk({ jwt })).then(() => { });
   };
-
   useEffect(() => {
-    //fetchReport();
     const timer = setInterval(() => {
-
-      // if(reportStatus !=null && !reportStatus?.ready)
-      // {
       fetchReport();
-      //}
     }, 2500);
     return () => clearTimeout(timer);
   }, [])
 
-
-
-  const disbaleAlert = () => {
-    setReport(false);
-  };
-
   const goBack = () => {
     navigation.goBack();
   };
-
-  const goToSection1 = () => {
-    navigation.navigate('section1');
-  };
-
   return (
     <SafeAreaView>
       <View className="flex">
@@ -232,7 +131,7 @@ const HRAHome = () => {
           </View>
 
           <View>
-            <DownloadButton onPress={display} />
+            <DownloadButton onPress={onDisplay} />
           </View>
             <HRASectionContainer />
           </ScrollView>

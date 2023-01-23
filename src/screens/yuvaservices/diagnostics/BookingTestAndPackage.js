@@ -19,6 +19,7 @@ import { styles } from './styles';
 import { DARK_BLUE } from '../../../styles/colors';
 import { getRelations } from '../../../store/reducers/ProfileSlice';
 import { ABOUT_TEST, ALERT, BOOK_NOW, DIAGNOSTIC, FALSE, INDIVIDUAL_TEST, INSTRUCTIONS, LAB, LOCATION, MYSELF, NULL, OK, PACKAGE, PINCODE, RESCHEDULE, SELECT, SOMETHING_WENT_WRONG, TIME } from './constants';
+import Header from '../../../components/Header';
 
 
 const BookingTestAndPackage = ({ route }) => {
@@ -227,8 +228,9 @@ const BookingTestAndPackage = ({ route }) => {
     
     return (
         <View style={styles.margin}>
-            <MainHeader />
-            <DiagnosticHeader />
+            {/* <MainHeader />
+            <DiagnosticHeader /> */}
+            <Header/>
             <ScrollView
                style={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

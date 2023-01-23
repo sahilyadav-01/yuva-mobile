@@ -15,6 +15,7 @@ const PACKAGE_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/package';
 const BOOKED_DETAILS_BY_ID = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
 const RESCHULDE_CANCEL_BOOKING = 'http://' + SERVER + ':8080/api/v1/yuva/booking/';
 const CITY_ID='http://' + SERVER + ':8080/api/v1/yuva/city/getAllCityNames';
+const DOWNLOAD_LAB_REPORT='http://' + SERVER + ':8080/api/v1/yuva/download';
 
 export const cityIdThunk = createAsyncThunk(
   'city/getAllCityNames',
@@ -184,7 +185,25 @@ export const rescheduleCancelBookingThunk = createAsyncThunk(
     }
   },
 );
-
+export const downloadReportThunk = createAsyncThunk(
+  'download',
+  async ({ jwt,attachmentId }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const authToken = 'Bearer ' + jwt;
+      const url =DOWNLOAD_LAB_REPORT+'?attachmentId='+`${attachmentId}`;
+      return await axios
+        .get(url,{
+          headers: {
+            'Content-Type': 'application/octet-stream',
+            Authorization: authToken,
+          },
+        })
+        .then(resp => resp.data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 
 const diagnosticSlice = createSlice({
@@ -199,7 +218,7 @@ const diagnosticSlice = createSlice({
     apiError: false,
     apiErrorMessage: '',
     testData: '',
-    caraouselData: '',
+    diagnosticCarouselData: '',
     bookedData: '',
     testDetails: '',
     packageDetails: '',
@@ -245,7 +264,7 @@ const diagnosticSlice = createSlice({
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.bookedData = action.payload.isActive === "false" ? action.payload.data : state.bookedData;
-      state.caraouselData = action.payload.isActive === "true" ? action.payload.data : state.caraouselData;
+      state.diagnosticCarouselData = action.payload.isActive === "true" ? action.payload.data : state.diagnosticCarouselData;
 
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {

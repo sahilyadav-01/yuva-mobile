@@ -1,9 +1,9 @@
 
 import React, {useRef, useState} from 'react';
-import {View, Text, FlatList, Dimensions} from 'react-native';
+import {View, FlatList} from 'react-native';
 import CarouselItem from './CarouselItem';
 import { useSelector } from 'react-redux';
-
+import { getDimensions } from '../utils/utils'; 
 const CarouselContainer = () => {
   const data = [
     {id: 1, text: 'text1'},
@@ -13,7 +13,7 @@ const CarouselContainer = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const {userAppointments} = useSelector(state => state?.appointment);
   
-  const wp = Dimensions.get('screen').width;
+  const {width} = getDimensions();
 
   const onViewableItemsChanged = ({viewableItems}) => {
     if(viewableItems?.length === 1){
@@ -32,6 +32,9 @@ const CarouselContainer = () => {
   const renderItem = ({item, index}) => {
     return <CarouselItem item={item} index={index} totalItem={userAppointments.length}/>
   }
+  const render=({item, index}) => {
+    return <View className="h-2 w-2 rounded-full ml-2" style={{backgroundColor: index === activeIndex ? 'white': 'grey', borderColor: 'grey', borderWidth: 2 }}></View>
+  }
   return (
     <View className="flex items-center justify-center mt-2 mx-4 my-4">
       <FlatList 
@@ -39,7 +42,7 @@ const CarouselContainer = () => {
         data={userAppointments}
         keyExtractor={(item) => item.id}
         snapToAlignment={"start"}
-        snapToInterval={wp-10}
+        snapToInterval={width-10}
         horizontal={true}  
         showsHorizontalScrollIndicator={false}   
         // onScrollEndDrag={onScrollEndDrag} 
@@ -52,9 +55,7 @@ const CarouselContainer = () => {
         className="flex-row mt-[20px]"
         horizontal={true}
         data={new Array(userAppointments.length)}
-        renderItem={({item, index}) => {
-          return <View className="h-2 w-2 rounded-full ml-2" style={{backgroundColor: index === activeIndex ? 'white': 'grey', borderColor: 'grey', borderWidth: 2 }}></View>
-        }}
+        renderItem={render}
       />
     </View>
   );

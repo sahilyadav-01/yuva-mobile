@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AppointmentButton from '../../../components/AppointmentButton';
-import DiagnosticHeader from '../../../components/DiagnosticHeader';
 import { useNavigation } from '@react-navigation/core'
-import MainHeader from '../../../components/MainHeader';
 import { bookedDetailsByIdThunk, rescheduleCancelBookingThunk } from '../../../store/reducers/DiagnosticsSlice';
 import MessageBox from '../../../components/MessageBox';
-import { styles } from '../../styles';
+import { styles } from './styles';
+import Header from '../../../components/Header';
+import { ABOUT_TEST, ARE_YOU_SURE, BOKINGTESTANDPACKAGE, CANCEL, DIAGNOSTIC, INSTRUCTIONS, LOCATION, MESSAGE, RESCHEDULE, TRUE } from './constants';
+import { RED_SHADE, WHITE } from '../../../styles/colors';
 const RescheduleTestAndPackage = ({ route }) => {
     const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
@@ -18,38 +19,36 @@ const RescheduleTestAndPackage = ({ route }) => {
         dispatch(bookedDetailsByIdThunk({ jwt, id }));
     }, [])
     const [cancelFlag, setCancelFlag] = useState(false);
-    const cancelMessage = 'Are you sure you want to cancel ?';
+    const cancelMessage = ARE_YOU_SURE;
     const cancelBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' }))
+        const isCancelled= TRUE;
+        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled, timeSlot: '' }))
     }
     const cancelBookingButton = () => {
         setCancelFlag(true);
     };
     const rescheduleBooking = () => {
-        navigation.navigate("BookingTestAndPackage", { bookedDetailsById: { ...bookedDetailsById, flag: true } })
+        navigation.navigate(BOKINGTESTANDPACKAGE, { bookedDetailsById: { ...bookedDetailsById, flag: true } })
     }
     useEffect(() => {
         if (cancelled) {
-            navigation.navigate("Diagnostic")
+            navigation.navigate(DIAGNOSTIC)
         }
     }, [cancelled])
     return (
         <SafeAreaView style={styles.container}>
-            <MainHeader />
-            <DiagnosticHeader />
-            <ScrollView className="pl-[15px] pr-[15px]" contentContainerStyle={{
-                flexGrow: 1,
-                paddingBottom: 300
-            }}>
+            <Header/>
+            <ScrollView style={styles.booksID} contentContainerStyle={styles.contentContainerStyle}
+    >
                 <View>
                     <View>
-                        <Text className="mt-[10px] mb-[10px] font-bold text-lg text-black">
+                        <Text style={styles.testName}>
                             {!bookedDetailsById?.packageName ? (
-                                <Text className="text-[#E68D36] text-sm">
+                                <Text style={styles.textReschedule}>
                                     {bookedDetailsById?.testName}
                                 </Text>
                             ) : (
-                                <Text className="text-[#E68D36] text-sm">
+                                <Text style={styles.textReschedule}>
                                     {bookedDetailsById?.packageName}
                                 </Text>
                             )}
@@ -58,45 +57,45 @@ const RescheduleTestAndPackage = ({ route }) => {
                     <View>
                         {!bookedDetailsById?.packageName &&
                             <View>
-                                <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                    About the test
+                                <Text style={styles.bookingDetails}>
+                                   {ABOUT_TEST}
                                 </Text>
-                                <Text>{bookedDetailsById?.testOrPackageDescription}</Text>
-                                <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                                    Instructions
+                                <Text style={styles.color}>{bookedDetailsById?.testOrPackageDescription}</Text>
+                                <Text style={styles.bookingDetails}>
+                                    {INSTRUCTIONS}
                                 </Text>
                             </View>
                         }
                         <Text>{bookedDetailsById?.instruction}</Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                        <Text style={styles.bookingDetails}>
                             Appointment {bookedDetailsById?.bookingStatus} - Offline
                         </Text>
                         <Text>{bookedDetailsById?.labAssistantName}</Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
+                        <Text style={styles.bookingDetails}>
                             {bookedDetailsById?.labName}
                         </Text>
-                        <Text className="font-bold pt-[15px] pb-[15px] text-black">
-                            Location
+                        <Text style={styles.bookingDetails}>
+                            {LOCATION}
                         </Text>
 
                         <Text>{bookedDetailsById?.patientLocation}</Text>
                     </View>
                 </View>
-                <View className="">
+                <View style={styles.button}>
                     <AppointmentButton
-                        name="Reschedule"
-                        color="#FFFFFF"
+                        name={RESCHEDULE}
+                        color={WHITE}
                         action={rescheduleBooking}
                     />
                     <AppointmentButton
-                        name="Cancel"
-                        color="#A53F2B"
+                        name={CANCEL}
+                        color={RED_SHADE}
                         action={cancelBookingButton}
                     />
                 </View>
                 <View>
                     <MessageBox
-                        head="Message"
+                        head={MESSAGE}
                         showDialog={cancelFlag}
                         hideDialog={cancelBooking}
                         message={cancelMessage}
