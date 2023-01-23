@@ -21,6 +21,7 @@ const RescheduleTestAndPackage = ({ route }) => {
     const [cancelFlag, setCancelFlag] = useState(false);
     const cancelMessage = ARE_YOU_SURE;
     const cancelBooking = () => {
+        //TRUE is string imported from constants file.
         const isCancelled= TRUE;
         dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled, timeSlot: '' }))
     }
