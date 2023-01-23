@@ -19,8 +19,6 @@ const DedicatedDoctor = () => {
         keyExtractor={index => `${index}`}
         renderItem={renderItem}
       />
-
-      {/* </View> */}
     </View>
   );
 };

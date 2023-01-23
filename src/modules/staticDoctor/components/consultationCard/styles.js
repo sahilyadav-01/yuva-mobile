@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {ORANGE, CYAN_BLUE} from '../../../../styles/colors';
-import {CENTER} from '../../../../styles/constants';
+import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     marginLeft: '5%',
   },
   textDia: {
-    flexDirection: 'row',
+    flexDirection: ROW,
   },
   imgL1: {
     marginHorizontal: '6%',

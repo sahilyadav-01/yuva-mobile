@@ -3,7 +3,7 @@ import React from 'react';
 import {styles} from './styles';
 import {MEDCONDITIONS, MOST_SEARCHED} from '../../constant';
 const MedicalCondition = () => {
-  const renderItem = ({item}) => {
+  const renderItem = ({key, item}) => {
     return (
       <View style={styles.box}>
         <Text style={styles.textStyle}>{item.data}</Text>
@@ -13,14 +13,14 @@ const MedicalCondition = () => {
   return (
     <View>
       <Text style={styles.title}>{MOST_SEARCHED}</Text>
+
       <FlatList
         numColumns={3}
         data={MEDCONDITIONS}
         keyExtractor={index => `${index}`}
         renderItem={renderItem}
+        contentContainerStyle={styles.boxView}
       />
-
-      {/* </View> */}
     </View>
   );
 };

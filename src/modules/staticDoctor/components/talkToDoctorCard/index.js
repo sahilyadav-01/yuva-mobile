@@ -5,7 +5,7 @@ import {styles} from './styles';
 
 const TalkToDoctorCard = () => {
   console.log(HEALTH_CONDITION, 'gdashgdj');
-  const renderItem = ({item}) => {
+  const renderItem = ({key, item}) => {
     return (
       <View>
         <View style={styles.container}>
