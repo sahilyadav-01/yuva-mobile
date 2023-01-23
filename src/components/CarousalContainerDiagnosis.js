@@ -1,38 +1,24 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import CarouselItem from './CarouselItem';
 import { useSelector } from 'react-redux';
 import { styles } from '../screens/styles';
 import { UPCOMING } from '../styles/constants';
 import { getDimensions } from '../utils/utils';
+import { useCarousalContainerDiagnosis } from './hooks/useCarousalContainerDiagnosis';
 
 const CarouselContainerDiagnosis = () => {
 
-    const [activeIndex, setActiveIndex] = useState(0);
-
     const { diagnosticCarouselData } = useSelector(state => state.diagnostic)
     const {width} = getDimensions();
-    const onViewableItemsChanged = ({ viewableItems }) => {
-        if (viewableItems?.length === 1) {
-            setActiveIndex(viewableItems[0]?.index);
-        }
-    };
-    const viewabilityConfigCallbackPairs = useRef([
-        { onViewableItemsChanged },
-    ]);
 
-    const viewabilityConfig = {
-        waitForInteraction: true,
-        itemVisiblePercentThreshold: 100
-    }
-    const renderItem = ({ item, index }) => {
-        return <CarouselItem diagnosticItem={item} index={index} totalItem={diagnosticCarouselData?.length} />
-    }
-    const renderIndex=({ diagnosticItem, index }) => {
-            return <View className="h-2 w-2 rounded-full ml-2" style={{ backgroundColor: index === activeIndex ? 'white' : 'grey', borderColor: 'grey', borderWidth: 2 }} />
-    }
-   
+const {   renderIndexData,
+    renderItem,
+    renderIndex,
+    onViewableItemsChanged,
+    viewabilityConfigCallbackPairs,
+    viewabilityConfig}=useCarousalContainerDiagnosis();
+  
     if(!diagnosticCarouselData)
     {
         return null;
@@ -66,7 +52,7 @@ const CarouselContainerDiagnosis = () => {
                 <FlatList
                     style={styles.flatlist}
                     horizontal={true}
-                    data={new Array(diagnosticCarouselData?.length)}
+                    data={renderIndexData}
                     renderItem={renderIndex}              
                 />
             </View>
