@@ -1,45 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  FlatList,
-  Alert
-} from 'react-native';
-import Backbutton from '../../../components/Backbutton';
+import React, { useState, useEffect } from 'react';
+import {View,Text,SafeAreaView,ScrollView,TouchableOpacity,Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import * as Progress from 'react-native-progress';
 import { Dimensions } from 'react-native';
-import SectionInput from '../../../components/SectionInput';
-import SectionPicker from '../../../components/SectionPicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { section4QThunk } from '../../../store/reducers/Section4Slice';
 import PickerData from '../../../utils/PickerData';
-import ForwardButton from '../../../components/ForwardButton';
 import { dispatch_option } from '../../../store/reducers/Section4Slice';
 import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 
 const Section4 = () => {
-  /**
-   * Hooks
-   */
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [alochol, setAlochol] = useState(false);
-
-  /**
-   * State
-   */
   const answers = useSelector(state => state.section4.answers);
-
   const questionData = useSelector(state => state.section4.rawQuestions);
-
-    const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
-
+  const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
   const setQuestion1 = value => {
     {
       value == 1 ? setAlochol(true) : setAlochol(false);
@@ -53,34 +30,14 @@ const Section4 = () => {
   const setQuestion3 = value => {
     dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
   };
-
   const setQuestion4 = value => {
     dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
   };
-
-  //Metadata
   const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
-  const selectionData = [
-    { key: '0', value: 'Yes' },
-    { key: '1', value: 'No' },
-  ];
-
-  /**
-   * React Hooks
-   */
-
-  // Load Question Data
   useEffect(() => {
     dispatch(section4QThunk({ jwt }));
   }, []);
-
-  /**
-   * Navigation
-   */
-  const previous = () => {
-    navigation.navigate('section3');
-  };
   const next = () => {
 
     if (answers.Q31 == '0') {
@@ -97,13 +54,12 @@ const Section4 = () => {
         navigation.navigate("section5")
       }
     }
-
   };
     const onPressRightIcon = () => {
         if (loggedIn !== 'loggedIn') {
           navigation.navigate('LoginScreen');
         } else {
-          // <Text>ggggggggg</Text>
+           //The logic for opening the drawer should be added here
         }
       };
 
@@ -113,22 +69,11 @@ const Section4 = () => {
         isLoggedIn={loggedIn === 'loggedIn'}
         onPressRightIcon={onPressRightIcon}
       />
-      {/* <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
-        <View className="flex flex-row h-full items-center">
-          <Backbutton color="white" size={24} onPress={previous} />
-          <Text className="text-center text-white text-xl ml-[20px]">
-            Health Risk Assesment
-          </Text>
-        </View>
-      </View> */}
       <View className="w-full">
         <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.4} width={progressWidth} height={12} />
       </View>
       <View className="h-full mx-[30px] my-[20px] ">
         <Text style={{ fontWeight: '500', }} className="text-xl text-[#1D2334]">Section Four - Alcoholic Risk</Text>
-
-        {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
-        {/* Questionaire */}
         <View className="h-[650px]">
           <ScrollView
             bounces={false}
@@ -137,27 +82,6 @@ const Section4 = () => {
               paddingBottom: 300,
             }}
             showsVerticalScrollIndicator={false}>
-            {/* {questionData.map((item)=>{
-                                    if(item.questionType.includes("picker")){
-                                        const data  = PickerData[item.questionType];
-                                        return  <SectionPicker key={item.questionId} 
-                                                        text={item.question} 
-                                                        data={PickerData[item.questionType]}
-                                                        defaultAnswer={answers[item.questionId]}
-                                                        dispatcher={dispatch_option}
-                                                        questionId={item.questionId}
-                                                />
-                                    }else if(item.questionType=="input"){
-                                        return <SectionInput  
-                                            key={item.questionId} 
-                                            text={item.question}
-                                            dispatcher={dispatch_option}
-                                            questionId={item.questionId}
-                                            />
-
-                                    }
-                                })} */}
-
             <View className="mt-[20px]">
               <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
                 {questionData[0]?.question}
@@ -204,16 +128,7 @@ const Section4 = () => {
                 </View>
 
                 <View className="mt-[20px]">
-                  <Text style={{ color: '#282A2E' }} className="text-base">{questionData[2]?.question}</Text>
-                  {/* <TextInput
-                    style={{backgroundColor: '#ffffff', borderWidth: 1}}
-                    className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                    keyboardType="numeric"
-                    placeholderTextColor={'black'}
-                    placeholder=""
-                    onChangeText={setQuestion3}
-                  /> */}
-
+                  <Text style={{ color: '#282A2E' }} className="text-base">{questionData[2]?.question}</Text>               
                   <SelectList
                     boxStyles={{
                       backgroundColor: 'white',
@@ -258,7 +173,6 @@ const Section4 = () => {
             ) : (
               <></>
             )}
-
             <View className="mt-[30px]">
               <TouchableOpacity
                 style={{

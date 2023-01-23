@@ -1,7 +1,5 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 import speedmeter from '../../../../assets/speedmeter.png';
 import brain from '../../../../assets/brain.png';
 import diet from '../../../../assets/diet.png';
@@ -25,34 +23,13 @@ const imageData = {
 };
 
 const HRASectionCard = ({
-  icon,
   name,
-  inactive,
-  disp,
-  screenname,
   bgColor,
   elipseColor,
   image,
 }) => {
-  const navigation = useNavigation();
-  const onpress = () => {
-    navigation.navigate(`${screenname}`);
-  };
 
   return (
-    // <TouchableOpacity
-    //     style={{backgroundColor:"#f5f9fa", borderColor:"#52608E"}}
-    //     className="w-{80px} h-{80px}  border-b-4 border-r-4  border-t-1 shadow-2xl my-3 mx-5 rounded shadow-inner"
-    //     disable={true}
-    //     onPress={onpress}
-    // >
-    //     {/* <MaterialCommunityIcons style={{display:disp}} name="lock-outline" size={16} color="black" />            */}
-    //     <View className="w-20 h-20 flex items-center justify-center">
-    //         <MaterialCommunityIcons name={icon} size={26} color="black"/>
-    //         <Text className="text-xs text-center pb-2 mt-1">{name}</Text>
-    //     </View>
-    // </TouchableOpacity>
-
     <View
       className="w-[100px] h-[100px] mx-[5px] my-[10px] rounded shadow-inner"
      >

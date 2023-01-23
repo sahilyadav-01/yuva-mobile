@@ -73,7 +73,7 @@ const Section8 = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
     } else {
-      // <Text>ggggggggg</Text>
+        //The logic for opening the drawer should be added here
     }
   };
 
