@@ -9,10 +9,9 @@ export const useDiagnostic = () => {
     const dispatch = useDispatch();
     const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
     useEffect(() => {
-        let isActive = "true";
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
-        isActive = "false"
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
+        dispatch(bookingTestAndPackageThunk({ jwt, isActive:"true"}));
+
+        dispatch(bookingTestAndPackageThunk({ jwt, isActive:"false" }));
     }, []);
     const onPressRightIcon = () => {
         if (loggedIn !== 'loggedIn') {
