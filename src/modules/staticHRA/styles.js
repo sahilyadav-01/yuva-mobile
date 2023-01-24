@@ -5,6 +5,11 @@ export const styles = StyleSheet.create({
     marginRight: '5%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: 400,
+    paddingBottom: 500,
+  },
+  imageStyle: {
+    width: '100%',
+    height: '80%',
+    marginVertical: '3%',
   },
 });

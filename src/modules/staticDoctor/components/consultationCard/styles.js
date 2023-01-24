@@ -1,7 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {ORANGE, CYAN_BLUE} from '../../../../styles/colors';
+import {ORANGE, CYAN_BLUE, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
+import {getDimensions} from '../../../../utils/utils';
+const {width, height} = getDimensions();
 
 export const styles = StyleSheet.create({
   description1: {
@@ -19,6 +21,12 @@ export const styles = StyleSheet.create({
     marginHorizontal: '6%',
     height: 80,
   },
+  imageBgStyle: {
+    height: 0.055 * height,
+    width: 0.12 * width,
+    justifyContent: CENTER,
+  },
+  imageNumStyle: {color: WHITE, alignSelf: CENTER},
   textView: {
     justifyContent: CENTER,
   },

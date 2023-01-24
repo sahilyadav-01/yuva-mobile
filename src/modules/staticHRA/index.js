@@ -5,6 +5,7 @@ import {styles} from './styles';
 import HraCard from './components/hraCard';
 import BenfitsCard from './components/benifitsCard';
 import {useSelector} from 'react-redux';
+import {PNG} from '../../../assets';
 const StaticHra = ({navigation}) => {
   const {
     user: {jwt},
@@ -29,6 +30,7 @@ const StaticHra = ({navigation}) => {
         showsVerticalScrollIndicator={false}>
         <HraCard />
         <BenfitsCard />
+        <Image source={PNG.CORONA} style={styles.imageStyle} />
       </ScrollView>
     </View>
   );

@@ -18,8 +18,4 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.fontFamilyRubix,
     marginBottom: '2%',
   },
-  imageStyle: {
-    width: '100%',
-    height: '22%',
-  },
 });
