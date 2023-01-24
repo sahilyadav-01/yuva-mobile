@@ -36,7 +36,7 @@ const Section5 = () => {
         if (validQ2) {
           dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
         } else {
-          Alert.alert("Alert Worng Input", "The age at which you started smoking cannot be before you turned 12 years old or after your current age.");
+          Alert.alert("Alert Wrong Input", "The age at which you started smoking cannot be before you turned 12 years old or after your current age.");
 
         };
         break;
@@ -75,7 +75,7 @@ const Section5 = () => {
       navigation.navigate("section6");
     }
     else {
-      Alert.alert("Alert", 'Please Answer All the Questions');
+      Alert.alert("Alert", 'Please Complete the form to proceed next section');
     }
   };
   const onPressRightIcon = () => {

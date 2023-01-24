@@ -134,7 +134,7 @@ const Section7 = () => {
       navigation.navigate("section8")
     }
     else {
-      Alert.alert("Alert", 'Please Answer All the Questions');
+      Alert.alert("Alert", 'Please Complete the form to proceed next section');
     }
   };
   const onPressRightIcon = () => {

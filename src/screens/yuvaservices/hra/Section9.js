@@ -41,7 +41,7 @@ const Section9 = () => {
 
     const computeResult = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
-            Alert.alert("Alert", 'Please Answer All the Questions')
+            Alert.alert("Alert", 'Please Complete the form to proceed next section')
         }
         else {
             let data = transforSubData(answers1, answers2, answers3, answers4, answers5, answers6,

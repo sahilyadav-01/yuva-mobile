@@ -26,7 +26,7 @@ const Section3 = () => {
 
     const next = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
-            Alert.alert("Alert", 'Please Answer All the Questions')
+            Alert.alert("Alert", 'Please Complete the form to proceed next section')
         }
         else {
             navigation.navigate("section4")

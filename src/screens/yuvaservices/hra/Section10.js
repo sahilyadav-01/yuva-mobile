@@ -23,7 +23,7 @@ const Section10 = () => {
       />
             <View className="h-full mx-[30px] my-[20px] ">
                 <Text style={{ marginTop:106,fontWeight: '600' }} className="text-center text-xl text-[#E68D36]">YOUR RESPONSE HAS BEEN COLLECTED</Text>
-                <Text style={{ marginTop:30,fontWeight: '500' }} className="text-center leading-2 text-[14px] text-[#44576A]">Your can access your report again from the My Report section under Profile.</Text>
+                <Text style={{ marginTop:30,fontWeight: '500' }} className="text-center leading-2 text-[14px] text-[#44576A]">You can access your report again from the My Report section under Profile.</Text>
             </View>
         </SafeAreaView>
     )

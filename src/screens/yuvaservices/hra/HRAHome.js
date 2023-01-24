@@ -38,8 +38,8 @@ const HRAHome = () => {
       fetchReport();
     }
     if (reportStatus?.ready != null && !reportStatus.ready) {
-      setMessage('Your Report is being generated, Please wait ..');
-      Alert.alert('Alert', 'Your Report is being generated, Please wait ..', [
+      setMessage('You have successfully completed Health Risk Assessment, We are in process of generating your report. Wait for few minutes');
+      Alert.alert('Alert', 'You have successfully completed Health Risk Assessment, We are in process of generating your report. Wait for few minutes', [
         {
           text: 'Ok',
         },
