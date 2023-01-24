@@ -1,1 +1,17 @@
 export const SERVICE_HEADING = 'Our Services ';
+export const OPD = 'OPD';
+export const HRA = 'HRA';
+export const DIAGNOSTICS = 'Diagnostics';
+export const Talk_TO_DOCTOR = 'TalkToDoctor';
+export const OPD_CONSULTATION = 'OPD Consultation';
+export const HEALTH_RISK_ASSESSMENT = 'Health Risk Assessment';
+export const HEALTH_CHECKUP_PACKAGES= 'Health Checkup Packages';
+export const TALK_TO_DOCTOR_NAME = 'Talk To Doctor';
+export const OPD_CONSULTATION_IMAGE = 'OPD_Consultation';
+export const HEALTH_RISK_ASSESSMENT_IMAGE = 'Health_Risk_Assessment';
+export const HEALTH_CHECKUP_PACKAGES_IMAGE = 'Health_Checkup_Packages';
+export const TALK_TO_DOCTOR_IMAGE = 'Talk_To_Doctor';
+
+
+
+

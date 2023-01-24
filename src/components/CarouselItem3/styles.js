@@ -3,7 +3,6 @@ import {
   WHITE,
   INDIGO_LIGHT,
   GAINSBORO_LIGHT,
-  ECHO_BLUE,
 } from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
@@ -24,8 +23,8 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight500,
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
-    lineHeight: 18,
+    lineHeight: fonts.Height.lineHeight18,
     maxWidth: 115,
-    textAlign:'center'
+    textAlign:CENTER,
   },
 });

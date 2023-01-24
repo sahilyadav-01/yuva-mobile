@@ -18,6 +18,7 @@ export const fonts = {
   Height: {
     lineHeight30: '30',
     lineHeight21: '21',
+    lineHeight18: '18',
   },
   width: {
     width102: '102',
@@ -25,4 +26,7 @@ export const fonts = {
   family: {
     fontFamilyRubix: 'Rubik-Regular',
   },
+  width: {
+    width102: '102'
+  }
 };
