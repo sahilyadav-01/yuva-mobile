@@ -1,21 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import ServiceContainer from '../components/ServiceContainer';
 import DiagnosticNav from './Diagnosticnavigation';
-import HRA from '../screens/yuvaservices/hra/HRA';
-
-import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
-import HomeScreen from '../screens/HomeScreen/index';
+import ProfessionalServices from '../../screens/yuvaservices/professionalservices/ProfessionalServices';
+import HomeScreen from '../../screens/HomeScreen';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
 import Authentication from './Authentication';
-import CashlessOPD from '../modules/staticOPD';
+import CashlessOPD from '../../modules/staticOPD';
 import {useSelector} from 'react-redux';
-import StaticHra from '../modules/staticHRA';
-import HealthCheckUP from '../modules/staticHealthCheckUp';
-import TalkToDoctor from '../modules/staticDoctor';
+import StaticHra from '../../modules/staticHRA';
+import HealthCheckUP from '../../modules/staticHealthCheckUp';
+import TalkToDoctor from '../../modules/staticDoctor';
 
 const Stack = createStackNavigator();
 
