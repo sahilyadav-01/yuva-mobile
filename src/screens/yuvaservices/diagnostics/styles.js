@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE } from '../../../styles/colors';
+import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT } from '../../../styles/colors';
 import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
@@ -11,14 +11,14 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: PLATINUM,
         paddingBottom: 5,
-        marginBottom: 15,
+        marginBottom: 0,
         color: DARK_BLUE,
         height: 50,
-        width:fonts.width.width102,
+        width: fonts.width.width102,
     },
-height:{
-    height:500,
-},
+    height: {
+        height: 500,
+    },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 300,
@@ -46,7 +46,7 @@ height:{
         color: GAINSBORO,
         marginTop: 23,
         fontSize: 1,
-        height:51,
+        height: 51,
         fontFamily: fonts.family.fontFamilyRubix,
     },
     textColor: {
@@ -60,8 +60,8 @@ height:{
         color: CYAN_BLUE,
         fontWeight: BOLD,
         marginLeft: 17,
-         marginTop: 27,
-         fontFamily: fonts.family.fontFamilyRubix,
+        marginTop: 27,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     labTest: {
         flexDirection: COLUMN,
@@ -109,11 +109,12 @@ height:{
     textInputStyle: {
         borderBottomWidth: 1,
         borderColor: PLATINUM,
-        paddingBottom: 15,
-        marginBottom: 12,
+        paddingBottom: 5,
+        marginTop: 10,
         color: DARK_BLUE,
         height: 40,
         paddingLeft: 18,
+        fontFamily: fonts.family.fontFamilyRubix,
     },
     dateTimePicker: {
         backgroundColor: { FLASH_WHITE },
@@ -123,8 +124,8 @@ height:{
         marginBottom: 172,
     },
     card: {
-        marginBottom:0,
-        marginRight:14,
+        marginBottom: 0,
+        marginRight: 14,
     },
     textBook: {
         textAlign: CENTER,
@@ -139,7 +140,7 @@ height:{
         marginTop: 20,
     },
     dateView: {
-        marginTop: 66,
+        marginTop: 20,
     },
     bookingDetails: {
         fontWeight: fonts.weight.fontWeight500,
@@ -149,17 +150,20 @@ height:{
         fontFamily: fonts.family.fontFamilyRubix,
     },
     itemText: {
-        marginLeft: 10,
+        marginLeft: 14,
         color: WHITE,
-        paddingBottom: 1,
-        paddingTop: 1,
+        marginTop:21,
         fontFamily: fonts.family.fontFamilyRubix,
+        fontWeight: fonts.weight.fontWeight400,
+        fontSize: fonts.size.fontSize12,
     },
     itemView: {
-        backgroundColor: DARK_BLUE,
+        backgroundColor: INDIGO_LIGHT,
         marginBottom: 10,
         paddingBottom: 20,
-        flexDirection: ROW
+        flexDirection: ROW,
+        height:55,
+        borderRadius:12
     },
     booked: {
         marginTop: 10,
@@ -179,27 +183,27 @@ height:{
     booking: {
         flexDirection: ROW
     },
-    color:{
-        color:CYAN_BLUE,
+    color: {
+        color: CYAN_BLUE,
         fontFamily: fonts.family.fontFamilyRubix,
     },
-    button:{
-        marginTop:47,
-        marginLeft:13,
-        marginRight:14,
-        },
-        textReschedule:{
-        
-            color:ORANGE,
-            fontSize:fonts.size.fontSize14,
-            fontFamily: fonts.family.fontFamilyRubix,
-        },
-        testName:{
-            marginTop:27,
-            marginBottom:10,
-            marginLeft:13,
-fontWeight:fonts.weight.fontWeight700,
-fontFamily: fonts.family.fontFamilyRubix,
+    button: {
+        marginTop: 47,
+        marginLeft: 13,
+        marginRight: 14,
+    },
+    textReschedule: {
 
-        }
+        color: ORANGE,
+        fontSize: fonts.size.fontSize14,
+        fontFamily: fonts.family.fontFamilyRubix,
+    },
+    testName: {
+        marginTop: 27,
+        marginBottom: 10,
+        marginLeft: 13,
+        fontWeight: fonts.weight.fontWeight700,
+        fontFamily: fonts.family.fontFamilyRubix,
+
+    }
 })
