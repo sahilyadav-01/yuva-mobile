@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Profile from '../modules/profile';
 import { styles } from './styles';
 
-function ProfileScreen() {
+const ProfileScreen = () => {
     return (
         <SafeAreaView style={styles.homeScreenContainer}>
         <Profile/>

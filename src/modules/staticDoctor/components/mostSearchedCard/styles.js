@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {ORANGE, CYAN_BLUE, WHITE, BLACK} from '../../../../styles/colors';
+import {ORANGE, CYAN_BLUE, WHITE} from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 
 import {fonts} from '../../../../styles/fonts';

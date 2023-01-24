@@ -8,19 +8,19 @@ const CarouselContainer = (props) => {
   const {userAppointments} = useSelector(state => state?.appointment);
   const {width} = getDimensions();
 
-  const onViewableItemsChanged = ({viewableItems}) => {
+  const onViewableItemsChanged = ({ viewableItems }) => {
     if (viewableItems?.length === 1) {
       setActiveIndex(viewableItems[0]?.index);
     }
   };
 
-  const viewabilityConfigCallbackPairs = useRef([{onViewableItemsChanged}]);
+  const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
 
   const viewabilityConfig = {
     waitForInteraction: true,
     itemVisiblePercentThreshold: 100,
   };
-  const renderItem = ({item, index}) => {
+  const renderItem = ({ item, index }) => {
     return React.cloneElement(children, {
       item,
       index,

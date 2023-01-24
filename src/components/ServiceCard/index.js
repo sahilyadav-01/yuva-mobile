@@ -3,8 +3,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { useServiceCard } from './hooks/useServiceCard';
 
-const ServiceCard = ({ name, screenname, image }) => {
-  const { onpress, imageData } = useServiceCard({ screenname });
+const ServiceCard = ({ name, screenName, image }) => {
+  const { onpress, imageData } = useServiceCard({ screenName });
 
   return (
     <TouchableOpacity

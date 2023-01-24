@@ -16,8 +16,9 @@ export const fonts = {
     fontWeight300: '300',
   },
   Height: {
-    lineHeight30: '30',
-    lineHeight21: '21',
+    lineHeight30: 30,
+    lineHeight21: 21,
+    lineHeight18: 18,
   },
   width: {
     width102: '102',

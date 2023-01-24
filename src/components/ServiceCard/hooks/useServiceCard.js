@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { PNG } from '../../../../assets';
-export const useServiceCard = ({ screenname }) => {
+export const useServiceCard = ({ screenName }) => {
 
     const navigation = useNavigation();
     const imageData = {
@@ -10,7 +10,7 @@ export const useServiceCard = ({ screenname }) => {
         Talk_To_Doctor: PNG.Talk_To_Doctor,
       };
     const onpress = () => {
-        navigation.navigate(`${screenname}`);
+        navigation.navigate(`${screenName}`);
     };
     return {
         onpress,

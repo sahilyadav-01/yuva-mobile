@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { CENTER, FLEX, ROW, SPACE_BETWEEN } from "../styles/constants";
+import { CENTER, SPACE_BETWEEN,FLEX, ROW } from "../styles/constants";
 import { CYAN_BLUE,FLASH_WHITE, GREY} from "../styles/colors";
 import { fonts } from "../styles/fonts";
 

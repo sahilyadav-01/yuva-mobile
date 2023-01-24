@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight500,
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
-    lineHeight: 18,
+    lineHeight: fonts.Height.lineHeight18,
     maxWidth: 115,
-    textAlign:CENTER
+    textAlign:CENTER,
   },
 });
