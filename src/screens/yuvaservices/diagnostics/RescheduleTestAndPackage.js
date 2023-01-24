@@ -79,7 +79,7 @@ const RescheduleTestAndPackage = ({ route }) => {
                             {LOCATION}
                         </Text>
 
-                        <Text>{bookedDetailsById?.patientLocation}</Text>
+                        <Text style={styles.color}>{bookedDetailsById?.patientLocation}</Text>
                     </View>
                 </View>
                 <View style={styles.button}>
