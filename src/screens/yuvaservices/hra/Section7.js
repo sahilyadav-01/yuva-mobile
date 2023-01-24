@@ -1,32 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  FlatList,
-  Alert
-} from 'react-native';
-import Backbutton from '../../../components/Backbutton';
+import React, { useState, useEffect } from 'react';
+import {View,Text,SafeAreaView,ScrollView,TouchableOpacity,TextInput,Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import * as Progress from 'react-native-progress';
 import { Dimensions } from 'react-native';
-import SectionInput from '../../../components/SectionInput';
-import SectionPicker from '../../../components/SectionPicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { section7QThunk } from '../../../store/reducers/Section7Slice';
 import PickerData from '../../../utils/PickerData';
-import ForwardButton from '../../../components/ForwardButton';
 import { dispatch_option, dispatch_option_extra_questions } from '../../../store/reducers/Section7Slice';
 import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 
 const Section7 = () => {
-  /**
-   * Hooks
-   */
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [medicalCondition, setMedicalCondition] = useState(false);
@@ -39,17 +23,11 @@ const Section7 = () => {
   const [requiredFieldQ4, setRequiredFieldQ4] = useState(false);
   const [requiredFieldQ7, setRequiredFieldQ7] = useState(false);
   const [requiredFieldQ8, setRequiredFieldQ8] = useState(false);
-
-  /**
-   * State
-   */
   const answers = useSelector(state => state.section7.answers);
   const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
   const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
   const questionData = useSelector(state => state.section7.rawQuestions);
-
   const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
-
   const setQuestion1 = value => {
     {
       value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
@@ -62,14 +40,12 @@ const Section7 = () => {
     }
     dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
   };
-
   const setQuestion3 = value => {
     {
       value == 1 ? setMedicalCondition(true) : setMedicalCondition(false);
     }
     dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
   };
-
   const inputCheck = (id, value) => {
     const reg = /^\d*\.?\d*$/;
     switch (id) {
@@ -141,30 +117,13 @@ const Section7 = () => {
     dispatch(dispatch_option_extra_questions({ key: "setQuestion10A", value: value }));
 
   }
-  //Metadata
+
   const windowWidth = Dimensions.get('window').width;
   const progressWidth = windowWidth;
-  const selectionData = [
-    { key: '0', value: 'No' },
-    { key: '1', value: 'Yes' },
-  ];
 
-  /**
-   * React Hooks
-   */
-
-  // Load Question Data
   useEffect(() => {
     dispatch(section7QThunk({ jwt }));
   }, []);
-
-  /**
-   * Navigation
-   */
-  const previous = () => {
-    navigation.navigate('section6');
-  };
-
 
   const next = () => {
 
@@ -192,22 +151,11 @@ const Section7 = () => {
         isLoggedIn={loggedIn === 'loggedIn'}
         onPressRightIcon={onPressRightIcon}
       />
-      {/* <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
-        <View className="flex flex-row h-full items-center">
-          <Backbutton color="white" size={24} onPress={previous} />
-          <Text className="text-center text-white text-xl ml-[20px]">
-            Health Risk Assesment
-          </Text>
-        </View>
-      </View> */}
       <View className="w-full">
         <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.7} width={progressWidth} height={12} />
       </View>
       <View className="h-full mx-[30px] my-[20px] ">
         <Text style={{ fontWeight: '500' }} className="text-xl text-[#1D2334]">Section Seven-Current Medical Condition</Text>
-
-        {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
-        {/* Questionaire */}
         <View className="h-[650px]">
           <ScrollView
             bounces={false}
@@ -216,25 +164,6 @@ const Section7 = () => {
               paddingBottom: 300,
             }}
             showsVerticalScrollIndicator={false}>
-            {/* {questionData.map((item)=>{
-                                    if(item.questionType.includes("picker")){
-                                        const data  = PickerData[item.questionType];
-                                        return  <SectionPicker key={item.questionId} 
-                                                        text={item.question} 
-                                                        data={PickerData[item.questionType]}
-                                                        defaultAnswer={answers[item.questionId]}
-                                                        dispatcher={dispatch_option}
-                                                        questionId={item.questionId}
-                                                />
-                                    }else if(item.questionType=="input"){
-                                        return <SectionInput  
-                                            key={item.questionId} 
-                                            text={item.question}
-                                            dispatcher={dispatch_option}
-                                            questionId={item.questionId}
-                                            />
-                                    }
-                                })} */}
             <View className="mt-[20px]">
               <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
                 {questionData[0]?.question}
@@ -323,7 +252,6 @@ const Section7 = () => {
                   placeholderTextColor={'black'}
                   placeholder=""
                   onEndEditing={(e) => inputCheck('Q4', e.nativeEvent.text)}
-
                 />
               </View>
             ) : (
@@ -499,7 +427,6 @@ const Section7 = () => {
             ) : (
               <></>
             )}
-
             <View className="mt-[30px]">
               <TouchableOpacity
                 style={{

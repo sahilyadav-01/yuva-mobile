@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput, FlatList, Alert } from 'react-native'
-import Backbutton from '../../../components/Backbutton'
+import React, { useEffect } from 'react'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import * as Progress from 'react-native-progress';
 import { Dimensions } from 'react-native';
@@ -9,7 +8,6 @@ import SectionPicker from '../../../components/SectionPicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { section9QThunk } from '../../../store/reducers/Section9Slice';
 import PickerData from '../../../utils/PickerData';
-import ForwardButton from '../../../components/ForwardButton'
 import { dispatch_option } from '../../../store/reducers/Section9Slice';
 import { transforSubData } from '../../../utils/utils'
 import { finalSubmission } from '../../../store/reducers/Section9Slice';
@@ -17,18 +15,9 @@ import Header from '../../../components/Header';
 
 const Section9 = () => {
 
-    /**
-     * Hooks
-     */
     const navigation = useNavigation()
     const dispatch = useDispatch()
-
-
-    /**
-     * State
-     */
     const answers = useSelector(state => state.section9.answers)
-
     const answers1 = useSelector(state => state.section1.answers)
     const answers2 = useSelector(state => state.section2.answers)
     const answers3 = useSelector(state => state.section3.answers)
@@ -42,31 +31,13 @@ const Section9 = () => {
     const extra_questions_Q9A = useSelector(state => state.section7.extra_questions_Q9A);
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
-
     const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
-
-    const result = useSelector(state => state.result)
-
-    //Metadata
     const windowWidth = Dimensions.get('window').width;
     const progressWidth = windowWidth
-    const selectionData = [{ key: '0', value: '<7 hr' }, { key: '1', value: '7-9' }, { key: '2', value: '>9hr' }];
 
-    /**
-      * React Hooks
-      */
-
-    // Load Question Data
     useEffect(() => {
         dispatch(section9QThunk({ jwt }))
     }, [])
-
-    /**
-     * Navigation
-     */
-    const previous = () => {
-        navigation.navigate("section8")
-    }
 
     const computeResult = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
@@ -97,20 +68,11 @@ const Section9 = () => {
         isLoggedIn={loggedIn === 'loggedIn'}
         onPressRightIcon={onPressRightIcon}
       />
-            {/* <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
-                <View className="flex flex-row h-full items-center">
-                    <Backbutton color="white" size={24} onPress={previous} />
-                    <Text className="text-center text-white text-xl ml-[20px]">Health Risk Assesment</Text>
-                </View>
-            </View> */}
             <View className="w-full">
              <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6"  progress={1} width={progressWidth } height={12}/>
             </View>
             <View className="h-full mx-[30px] my-[20px] ">
                 <Text style={{fontWeight: '500'}} className="text-xl text-[#1D2334]">Section Nine - Sleep</Text>
-
-                {/* <Text className="text-base mt-2">How Often you consume these foods?</Text> */}
-                {/* Questionaire */}
                 <View className="h-[650px]">
                     <ScrollView
                         bounces={false}
@@ -137,7 +99,6 @@ const Section9 = () => {
                                     dispatcher={dispatch_option}
                                     questionId={item.questionId}
                                 />
-
                             }
                         })}
 
