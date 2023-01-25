@@ -101,6 +101,18 @@ export const rescheduleCancelBookingThunk = createAsyncThunk(
     }
   },
 );
+export const downloadReportThunk = createAsyncThunk(
+  'download',
+  async ({attachmentId}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = `/download?attachmentId=${attachmentId}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
@@ -114,7 +126,7 @@ const diagnosticSlice = createSlice({
     apiError: false,
     apiErrorMessage: '',
     testData: '',
-    caraouselData: '',
+    diagnosticCarouselData: '',
     bookedData: '',
     testDetails: '',
     packageDetails: '',
@@ -162,10 +174,10 @@ const diagnosticSlice = createSlice({
         action.payload.isActive === 'false'
           ? action.payload.data
           : state.bookedData;
-      state.caraouselData =
+      state.diagnosticCarouselData =
         action.payload.isActive === 'true'
           ? action.payload.data
-          : state.caraouselData;
+          : state.diagnosticCarouselData;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;

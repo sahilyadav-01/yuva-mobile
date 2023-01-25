@@ -21,6 +21,7 @@ import PickerData from '../../../utils/PickerData';
 import ForwardButton from '../../../components/ForwardButton';
 import { dispatch_option } from '../../../store/reducers/Section4Slice';
 import SelectList from 'react-native-dropdown-select-list';
+import Header from '../../../components/Header';
 
 const Section4 = () => {
   /**
@@ -37,7 +38,7 @@ const Section4 = () => {
 
   const questionData = useSelector(state => state.section4.rawQuestions);
 
-  const { jwt } = useSelector(state => state.auth.user);
+    const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
 
   const setQuestion1 = value => {
     {
@@ -98,17 +99,28 @@ const Section4 = () => {
     }
 
   };
+    const onPressRightIcon = () => {
+        if (loggedIn !== 'loggedIn') {
+          navigation.navigate('LoginScreen');
+        } else {
+          // <Text>ggggggggg</Text>
+        }
+      };
 
   return (
     <SafeAreaView>
-      <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
+      <Header
+        isLoggedIn={loggedIn === 'loggedIn'}
+        onPressRightIcon={onPressRightIcon}
+      />
+      {/* <View className="flex-row justify-between items-center bg-[#1D2334] h-[60px] px-[10px] mt-[42px]">
         <View className="flex flex-row h-full items-center">
           <Backbutton color="white" size={24} onPress={previous} />
           <Text className="text-center text-white text-xl ml-[20px]">
             Health Risk Assesment
           </Text>
         </View>
-      </View>
+      </View> */}
       <View className="w-full">
         <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.4} width={progressWidth} height={12} />
       </View>

@@ -9,7 +9,7 @@ const HRASectionContainer = () => {
     navigation.navigate("section1");
   };
   return (
-    <View className="ml-1 mt-[10px]">
+    <View className=" mx-[15px] mt-[24px] flex items-center justify-center">
       {/* <View className="flex flex-row flex-wrap  px-[15px]">
                 <HRASectionCard  icon="weight" name="General" disp="none" screenname="section1" bgColor="#F6FDF0" elipseColor="#F0FCE7" image="speedmeter"/>
                 <HRASectionCard  icon="food-outline" name="Diet" disp="none" screenname="section2"  bgColor="#F9FCFF" elipseColor="#E8F3FE" image="diet"/>
@@ -23,17 +23,10 @@ const HRASectionContainer = () => {
                 <HRASectionCard  icon="mother-heart" name="Hereditary" inactive={true} screenname="section8" bgColor="#F9FCFF" elipseColor="#E8F3FE" image="heredity"/>
                 <HRASectionCard  icon="bed-outline" name="Sleep" inactive={true} screenname="section9" bgColor="#F6FFFC" elipseColor="#E9FFF8" image="sleep"/>
             </View> */}
-      <View className="px-[10px]">
-        <View className="flex flex-row justify-between">
-          <Image source={ hraHome }
-      />
-        </View>
+      <View >
+          <Image source={ hraHome }/>
       </View>
-      <View 
-         style={{
-            marginTop: 30,
-      }} 
-      className="flex items-center justify-center">
+      <View style={{marginTop: 41,marginHorizontal:14 }}>
         <TouchableOpacity
           className="flex items-center justify-center h-[45px] w-[348px] bg-[#E68D36] rounded-[8px] mt-[15px]"
           onPress={goToSection1}

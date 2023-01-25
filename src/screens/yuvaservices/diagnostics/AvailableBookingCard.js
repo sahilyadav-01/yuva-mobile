@@ -1,22 +1,26 @@
 
 import React from 'react'
-import { View, Text, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
+import { COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
 import { PNG } from '../../../../assets';
+import { checkPermission } from '../../../utils/utils';
 const AvailableBookingCard = ({
-  name, id, packageName, imageUrl, packageUuid, nameBooking, status
+  name, id, packageName, imageUrl, packageUuid, nameBooking, status, filePath, fileName
 }) => {
-
   const navigation = useNavigation();
   const clicked = () => {
-    navigation.navigate('BookingTestAndPackage', {
-      id: id ? id : '',
+    const params = {
+      id: id ?? '', 
       packageData: packageName ? { packageName, packageUuid } : '',
-    });
+    }
+    navigation.navigate('BookingTestAndPackage', params);
   }
+
+  const onDisplay = () => {
+    checkPermission(filePath,fileName);
+  };
   return (
     <View>
       <TouchableOpacity disabled={!name} onPress={clicked}>
@@ -35,9 +39,9 @@ const AvailableBookingCard = ({
                   <Text style={styles.packageTest}>{nameBooking}</Text>
                   <View >
                     {status === FINISHED ? (
-                      <TouchableOpacity ><Text style={styles.download}><Image source={PNG.DOWNLOAD}></Image>{DOWNLOAD_REPORT}</Text></TouchableOpacity>)
+                      <TouchableOpacity onPress={onDisplay}><Text style={styles.download}><Image source={PNG.DOWNLOAD}></Image>{DOWNLOAD_REPORT}</Text></TouchableOpacity>)
                       : (<View>
-                        {status === INITIATED || status === RESCHEDULED || status === COMPLETED || status===CONFIRMED ? (<Text style={styles.download}>{PENDING}</Text>) : ("")}
+                        {status === INITIATED || status === RESCHEDULED || status === COMPLETED || status === CONFIRMED ? (<Text style={styles.download}>{PENDING}</Text>) : ("")}
                       </View>)}
                   </View>
                 </View>

@@ -15,9 +15,6 @@ const BenfitsCard = () => {
         keyExtractor={index => `${index}`}
         renderItem={renderItem}
       />
-      <View style={styles.imageStyle}>
-        <Image source={PNG.CORONA} />
-      </View>
     </View>
   );
 };

@@ -19,6 +19,7 @@ import { styles } from './styles';
 import { DARK_BLUE } from '../../../styles/colors';
 import { getRelations } from '../../../store/reducers/ProfileSlice';
 import { ABOUT_TEST, ALERT, BOOK_NOW, DIAGNOSTIC, FALSE, INDIVIDUAL_TEST, INSTRUCTIONS, LAB, LOCATION, MYSELF, NULL, OK, PACKAGE, PINCODE, RESCHEDULE, SELECT, SOMETHING_WENT_WRONG, TIME } from './constants';
+import Header from '../../../components/Header';
 
 
 const BookingTestAndPackage = ({ route }) => {
@@ -227,8 +228,7 @@ const BookingTestAndPackage = ({ route }) => {
     
     return (
         <View style={styles.margin}>
-            <MainHeader />
-            <DiagnosticHeader />
+            <Header/>
             <ScrollView
                style={styles.contentContainerStyle}>
                 <View style={styles.booksID}>
@@ -369,8 +369,7 @@ const BookingTestAndPackage = ({ route }) => {
                                 />
                                 <TextInput
                                     multiline={true}
-                                    style={styles.textInputStyle}
-                                    
+                                    style={styles.textInputStyle}                                
                                     placeholder={LOCATION}
                                     onChangeText={onChangeLocation}
                                 />
@@ -403,7 +402,7 @@ const BookingTestAndPackage = ({ route }) => {
                                 <DateTimePicker
                                     value={date}
                                     onChangeDate={handleDate}
-                                    style={styles.dateTime}
+                                    style={styles.dateTimePicker}
                                     selectionColor={DARK_BLUE}
                                     theme={styles.theme}
                                     minimumDate={new Date()}
@@ -412,14 +411,14 @@ const BookingTestAndPackage = ({ route }) => {
                                     type={TIME}
                                     value={time}
                                     onChangeDate={handleTime}
-                                    style={styles.dateTime}
+                                    style={styles.dateTimePicker}
                                     selectionColor={DARK_BLUE}
                                     theme={styles.theme}
                                 />
                                 <TextInput
                                     multiline={true}
                                     value={bookedDetailsById.patientLocation}
-                                    style={styles.textInput}
+                                    style={styles.textInputStyle}
                                     placeholder={LOCATION}
                                     editable={false}
 
@@ -427,8 +426,7 @@ const BookingTestAndPackage = ({ route }) => {
                                 <TextInput
                                     multiline={true}
                                     value={pincodeData[pincodeData.length - 1]}
-                                    style={styles.textInput}
-                                 
+                                    style={styles.textInputStyle}
                                     placeholder={PINCODE}
                                     editable={false}
                                 />
