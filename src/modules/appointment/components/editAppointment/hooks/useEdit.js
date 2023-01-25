@@ -29,14 +29,14 @@ export const useEdit=()=>{
 
   const saveAppointment = () => {
     dispatch(
-      rescheduleAppointmentThunk({ timeSlot: getEpoch(date, time), id, jwt }),
+      rescheduleAppointmentThunk({ timeSlot: getEpoch(date, time), id}),
     )
   };
   useEffect(() => {
     if (rescheduleAppointment?.message) {
       Alert.alert("Message",rescheduleAppointment?.message, [{
         text: "Ok", onPress: () => {
-          dispatch(allAppointmentThunk({ jwt }))
+          dispatch(allAppointmentThunk())
             .then(() => navigation.navigate('AppointmentHome'));
         }
       }])
@@ -51,7 +51,7 @@ export const useEdit=()=>{
 
   const closeSaveMessageBox = () => {
     setSaveFlag(false);
-    dispatch(allAppointmentThunk({ jwt })).then(
+    dispatch(allAppointmentThunk()).then(
       navigation.navigate('AppointmentHome'),
     );
   };

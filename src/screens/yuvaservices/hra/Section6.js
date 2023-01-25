@@ -38,7 +38,7 @@ const Section6 = () => {
 
     // Load Question Data
     useEffect(() => {
-        dispatch(section6QThunk({ jwt }))
+        dispatch(section6QThunk())
     }, [])
 
     /**

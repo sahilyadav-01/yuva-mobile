@@ -10,7 +10,7 @@ export const usePatient = () => {
   const {jwt} = useSelector(state => state.auth.user);
   const {consultationList} = useSelector(state => state.talkToDoctor)
   useEffect(() => {
-    dispatch(getAppointmentThunk({jwt}));
+    dispatch(getAppointmentThunk());
   }, []);
   const navigation = useNavigation();
   const goBack = () => {

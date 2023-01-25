@@ -46,10 +46,10 @@ const BookingTestAndPackage = ({ route }) => {
         if (!bookedDetailsById) {
 
             if (id && packageData === '') {
-                dispatch(diagnosisTestDetailsThunk({ jwt, id }));
+                dispatch(diagnosisTestDetailsThunk({ id }));
 
             } else if (packageData?.packageName && id === '') {
-                dispatch(diagnosisPackageDetailsThunk({ jwt, packageName }));
+                dispatch(diagnosisPackageDetailsThunk({ packageName }));
             }
         }
     }, []);
@@ -81,7 +81,7 @@ const BookingTestAndPackage = ({ route }) => {
             )
             setData(newArray)
         } else {
-            dispatch(cityIdThunk({ jwt }))
+            dispatch(cityIdThunk())
         }
 
 
@@ -101,7 +101,7 @@ const BookingTestAndPackage = ({ route }) => {
                 attributeId: testDetails.id,
                 attributeType: INDIVIDUAL_TEST,
             };
-            dispatch(bookTestThunk({ jwt, data })).then((resp) => {
+            dispatch(bookTestThunk({ data })).then((resp) => {
                 if (resp) {
                     if (resp?.payload?.message) {
                         Alert.alert(ALERT, resp?.payload?.message, [{
@@ -145,7 +145,7 @@ const BookingTestAndPackage = ({ route }) => {
                 attributeId: packageUuid,
                 attributeType: PACKAGE,
             };
-            dispatch(bookTestThunk({ jwt, data })).then((resp) => {
+            dispatch(bookTestThunk({ data })).then((resp) => {
                 if (resp) {
                     // setSaveFalg(true);
                     if (resp?.payload?.message) {
@@ -188,7 +188,7 @@ const BookingTestAndPackage = ({ route }) => {
     };
 
     const rescheduleBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id: bookedDetailsById.id, isCancelled:FALSE, timeSlot: getEpoch(date, time) })).then((resp) => {
+        dispatch(rescheduleCancelBookingThunk({ id: bookedDetailsById.id, isCancelled:FALSE, timeSlot: getEpoch(date, time) })).then((resp) => {
             if (resp) {
 
                 if (resp.payload.message) {

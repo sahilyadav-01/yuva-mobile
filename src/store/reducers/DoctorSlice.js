@@ -1,43 +1,18 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
-
-/**
- * URIs
- */
-// const LOCAL_SERVER='localhost'
-// const SERVER = LOCAL_SERVER;
-const DOCTOR_SEARCH =
-  'http://' + SERVER + ':8080/api/v1/yuva/doctor/search?fromApp=true';
-
-/**
- * Thunks
- */
+import {YuvaService} from '../../network/yuvaService';
 
 export const searchDoctorThunk = createAsyncThunk(
   'doctor/search',
-  async ({search, jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async ({search}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      return await axios
-        .get(DOCTOR_SEARCH + search, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = `/doctor/search?fromApp=true${search}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-/**
- * Initial State
- */
 
 const initialState = {
   loading: false,
@@ -60,5 +35,5 @@ const doctorSlice = createSlice({
     [searchDoctorThunk.rejected]: (state, {payload}) => {},
   },
 });
-export const doctorInit =  doctorSlice.getInitialState();
+export const doctorInit = doctorSlice.getInitialState();
 export default doctorSlice.reducer;

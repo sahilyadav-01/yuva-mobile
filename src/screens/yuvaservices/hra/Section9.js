@@ -57,7 +57,7 @@ const Section9 = () => {
 
     // Load Question Data
     useEffect(() => {
-        dispatch(section9QThunk({ jwt }))
+        dispatch(section9QThunk())
     }, [])
 
     /**
@@ -79,7 +79,7 @@ const Section9 = () => {
                 cancer: extra_questions_Q9A,
                 illness: extra_questions_Q10A
             }
-            dispatch(finalSubmission({ jwt, final_data })).then(() => { navigation.navigate("section10") })
+            dispatch(finalSubmission({ final_data })).then(() => { navigation.navigate("section10") })
         }
     }
 

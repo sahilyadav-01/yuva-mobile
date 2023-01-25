@@ -157,7 +157,7 @@ const HRAHome = () => {
   };
   const fetchReport = () => {
 
-    dispatch(reportStatusThunk({ jwt })).then(() => { });
+    dispatch(reportStatusThunk()).then(() => { });
   };
 
   useEffect(() => {

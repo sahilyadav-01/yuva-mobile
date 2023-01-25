@@ -15,12 +15,12 @@ const RescheduleTestAndPackage = ({ route }) => {
     const { id } = route.params;
     const navigation = useNavigation()
     useEffect(() => {
-        dispatch(bookedDetailsByIdThunk({ jwt, id }));
+        dispatch(bookedDetailsByIdThunk({ id }));
     }, [])
     const [cancelFlag, setCancelFlag] = useState(false);
     const cancelMessage = 'Are you sure you want to cancel ?';
     const cancelBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled: "true", timeSlot: '' }))
+        dispatch(rescheduleCancelBookingThunk({ id, isCancelled: "true", timeSlot: '' }))
     }
     const cancelBookingButton = () => {
         setCancelFlag(true);

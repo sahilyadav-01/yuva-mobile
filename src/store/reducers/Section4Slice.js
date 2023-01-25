@@ -1,43 +1,18 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
+import { YuvaService } from '../../network/yuvaService';
 
-/**
- * Thunks
- */
-
-// Constants
-//  const LOCAL_SERVER='localhost'
-//  const SERVER = LOCAL_SERVER;
-const SECTION_QUESTION =
-  'http://' + SERVER + ':8080/api/v1/yuva/hra/questions/4';
-
-// Load section question
 export const section4QThunk = createAsyncThunk(
   'section4/section4QThunk',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-
-      return await axios
-        .get(SECTION_QUESTION, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/hra/questions/4';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-/**
- * initialState
- */
 
 const initialState = {
   loading: false,

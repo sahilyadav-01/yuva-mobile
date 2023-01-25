@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         color: DARK_BLUE,
         height: 50,
-        width:fonts.width.width102,
+        //width:fonts.width.width102,
     },
 
     contentContainerStyle: {

@@ -48,7 +48,6 @@ export const useNew=()=> {
                 description,
                 epoch: getEpoch(date, time),
                 doctorId,
-                jwt,
                 selected
             }),
         )
@@ -58,7 +57,7 @@ export const useNew=()=> {
     };
     const closeMessageBox = () => {
         setSignupFlag(false);
-        dispatch(allAppointmentThunk({ jwt })).then(
+        dispatch(allAppointmentThunk()).then(
             navigation.navigate('AppointmentHome'),
         );
     };

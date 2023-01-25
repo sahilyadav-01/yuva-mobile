@@ -22,7 +22,7 @@ const HomeScreen = ({navigation}) => {
   }
   useEffect(() => {
     const isActive = 'true';
-    dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
+    dispatch(allAppointmentThunk({isActive})).then().catch();
   }, []);
   return (
     <SafeAreaView style={{flex: 1}}>

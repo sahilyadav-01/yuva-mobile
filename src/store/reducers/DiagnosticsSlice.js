@@ -1,140 +1,75 @@
-
-
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { LogBox } from 'react-native';
-import { SERVER } from '../../utils/utils';
-
-
-const VIEW_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/employee/viewMyTestAndPackage';
-const BOOKED_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking/user';
-const TEST_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/services/attribute/test';
-const ADD_BOOKING_TEST = 'http://' + SERVER + ':8080/api/v1/yuva/booking?fromWeb=false';
-const PACKAGE_DETAILS = 'http://' + SERVER + ':8080/api/v1/yuva/package';
-const BOOKED_DETAILS_BY_ID = 'http://' + SERVER + ':8080/api/v1/yuva/booking';
-const RESCHULDE_CANCEL_BOOKING = 'http://' + SERVER + ':8080/api/v1/yuva/booking/';
-const CITY_ID='http://' + SERVER + ':8080/api/v1/yuva/city/getAllCityNames';
+import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {YuvaService} from '../../network/yuvaService';
 
 export const cityIdThunk = createAsyncThunk(
   'city/getAllCityNames',
-  async ({ jwt }, { fulfillWithValue, rejectWithValue }) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = CITY_ID;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/city/getAllCityNames';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
 export const viewMyTestAndPackageThunk = createAsyncThunk(
   'employee/viewMyTestAndPackage',
-  async ({ jwt }, { fulfillWithValue, rejectWithValue }) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = VIEW_TEST;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/employee/viewMyTestAndPackage';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
 export const bookingTestAndPackageThunk = createAsyncThunk(
   'booking/user',
-  async ({ jwt, isActive }, { fulfillWithValue, rejectWithValue }) => {
+  async ({isActive}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${BOOKED_TEST}/${isActive}`;;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => {
-          return { ...resp.data, isActive };
-
-        });
+      const endpoint = `/booking/user/${isActive}`;
+      const response = await YuvaService.get(endpoint);
+      return {...response.data, isActive};
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
 export const diagnosisTestDetailsThunk = createAsyncThunk(
   'services/attribute/test',
-  async ({ jwt, id }, { fulfillWithValue, rejectWithValue }) => {
+  async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${TEST_DETAILS}/${id}`;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = `/services/attribute/test/${id}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
 export const diagnosisPackageDetailsThunk = createAsyncThunk(
   'package',
-  async ({ jwt, packageName }, { fulfillWithValue, rejectWithValue }) => {
+  async ({packageName}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${PACKAGE_DETAILS}/${packageName}`;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = `/package/${packageName}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
 export const bookTestThunk = createAsyncThunk(
   'booking',
-  async ({ jwt, data }, { fulfillWithValue, rejectWithValue }) => {
+  async ({data}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${ADD_BOOKING_TEST}`;
-      return await axios
-        .post(url, data, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/booking?fromWeb=false';
+      const response = await YuvaService.post(endpoint, data);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
@@ -142,50 +77,30 @@ export const bookTestThunk = createAsyncThunk(
 
 export const bookedDetailsByIdThunk = createAsyncThunk(
   'booking',
-  async ({ jwt, id }, { fulfillWithValue, rejectWithValue }) => {
+  async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${BOOKED_DETAILS_BY_ID}/${id}`;;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = `/booking/${id}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-
 
 export const rescheduleCancelBookingThunk = createAsyncThunk(
   'booking/',
-  async ({ id, jwt, isCancelled, timeSlot }, { fulfillWithValue, rejectWithValue }) => {
+  async ({id, isCancelled, timeSlot}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-      const url = `${RESCHULDE_CANCEL_BOOKING}${id}` + '?cancelled=' + isCancelled + '&timeSlot=' + timeSlot
+      const endpoint = `/booking/${id}?cancelled=${isCancelled}&timeSlot=${timeSlot}`;
       const data = {};
-      return await axios
-        .put(url, data, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const response = await YuvaService.put(endpoint, data);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-
 
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
@@ -205,9 +120,8 @@ const diagnosticSlice = createSlice({
     packageDetails: '',
     testBooked: '',
     bookedDetailsById: '',
-    cancelled:'',
-    cityId:''
-
+    cancelled: '',
+    cityId: '',
   },
   reducers: {
     hideErrorBox(state) {
@@ -218,7 +132,7 @@ const diagnosticSlice = createSlice({
   extraReducers: {
     /**
      */
-     [cityIdThunk.pending]: (state, { payload }) => {
+    [cityIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [cityIdThunk.fulfilled]: (state, action) => {
@@ -227,7 +141,7 @@ const diagnosticSlice = createSlice({
     [cityIdThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
-    [viewMyTestAndPackageThunk.pending]: (state, { payload }) => {
+    [viewMyTestAndPackageThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [viewMyTestAndPackageThunk.fulfilled]: (state, action) => {
@@ -239,49 +153,52 @@ const diagnosticSlice = createSlice({
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [bookingTestAndPackageThunk.pending]: (state, { payload }) => {
+    [bookingTestAndPackageThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData = action.payload.isActive === "false" ? action.payload.data : state.bookedData;
-      state.caraouselData = action.payload.isActive === "true" ? action.payload.data : state.caraouselData;
-
+      state.bookedData =
+        action.payload.isActive === 'false'
+          ? action.payload.data
+          : state.bookedData;
+      state.caraouselData =
+        action.payload.isActive === 'true'
+          ? action.payload.data
+          : state.caraouselData;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [diagnosisTestDetailsThunk.pending]: (state, { payload }) => {
+    [diagnosisTestDetailsThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [diagnosisTestDetailsThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.packageDetails = ''
+      state.packageDetails = '';
       state.testDetails = action.payload.data;
-
     },
     [diagnosisTestDetailsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [diagnosisPackageDetailsThunk.pending]: (state, { payload }) => {
+    [diagnosisPackageDetailsThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [diagnosisPackageDetailsThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.testDetails = ''
+      state.testDetails = '';
       state.packageDetails = action.payload.data;
-
     },
     [diagnosisPackageDetailsThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [bookTestThunk.pending]: (state, { payload }) => {
+    [bookTestThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [bookTestThunk.fulfilled]: (state, action) => {
@@ -293,7 +210,7 @@ const diagnosticSlice = createSlice({
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [bookedDetailsByIdThunk.pending]: (state, { payload }) => {
+    [bookedDetailsByIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [bookedDetailsByIdThunk.fulfilled]: (state, action) => {
@@ -306,15 +223,14 @@ const diagnosticSlice = createSlice({
       //state.apiErrorMessage = action.payload.errorMessage;
     },
 
-
-    [rescheduleCancelBookingThunk.pending]: (state, { payload }) => {
+    [rescheduleCancelBookingThunk.pending]: (state, {payload}) => {
       state.loading = true;
-      state.cancelled='';
+      state.cancelled = '';
     },
     [rescheduleCancelBookingThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.reschedule = action.payload.data;
-      state.cancelled= action.payload.message;
+      state.cancelled = action.payload.message;
     },
     [rescheduleCancelBookingThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -323,8 +239,6 @@ const diagnosticSlice = createSlice({
     },
   },
 });
-export const {
-  hideErrorBox,
-} = diagnosticSlice.actions;
+export const {hideErrorBox} = diagnosticSlice.actions;
 export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;

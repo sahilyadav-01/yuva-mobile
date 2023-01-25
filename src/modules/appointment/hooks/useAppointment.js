@@ -19,7 +19,7 @@ export const useAppointment=()=>{
     
     useEffect(() => {
       const isActive = 'false';
-      dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
+      dispatch(allAppointmentThunk({isActive})).then().catch();
     }, [homeRefresh]);
   
     useEffect(() => {});

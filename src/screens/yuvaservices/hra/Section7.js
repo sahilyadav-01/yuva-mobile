@@ -154,7 +154,7 @@ const Section7 = () => {
 
   // Load Question Data
   useEffect(() => {
-    dispatch(section7QThunk({ jwt }));
+    dispatch(section7QThunk());
   }, []);
 
   /**

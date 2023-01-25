@@ -39,8 +39,8 @@ export const useView=()=>{
         
   const cancelAppointmentMessagBox = () => {
     setCancelFlag(false);
-    dispatch(cancelAppointmentThunk({jwt, id}))
-      .then(() => dispatch(allAppointmentThunk({jwt})))
+    dispatch(cancelAppointmentThunk({id}))
+      .then(() => dispatch(allAppointmentThunk()))
       .then(() => navigation.navigate('AppointmentHome'));
   };
 

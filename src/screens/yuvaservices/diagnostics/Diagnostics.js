@@ -16,9 +16,9 @@ const Diagnostics = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         let isActive = "true";
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
+        dispatch(bookingTestAndPackageThunk({ isActive }));
         isActive = "false";
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive }));
+        dispatch(bookingTestAndPackageThunk({ isActive }));
     }, []);
 
     const Stack = createStackNavigator();

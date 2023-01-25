@@ -15,7 +15,7 @@ const AvailableBooking = ({ name }) => {
     const dispatch = useDispatch()
     const { testData } = useSelector(state => state.diagnostic)
     useEffect(() => {
-        dispatch(viewMyTestAndPackageThunk({ jwt }))
+        dispatch(viewMyTestAndPackageThunk())
     }, [])
 
     return (

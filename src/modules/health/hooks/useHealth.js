@@ -32,7 +32,7 @@ export const useHealth = () => {
         description: description,
         healthConcern: HEALTH_LIST[selected]?.name || '',
       };
-      dispatch(addRequestThunk({jwt, data}));
+      dispatch(addRequestThunk({data}));
     };
   };
   return {

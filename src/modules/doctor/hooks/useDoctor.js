@@ -10,14 +10,14 @@ export const useDoctor=()=>{
     const {jwt}    =  useSelector(state => state.auth.user)
     const [searchQuery, setSearchQuery] =useState('');
     useEffect(()=>{
-        dispatch(searchDoctorThunk({search:"", jwt}))
+        dispatch(searchDoctorThunk({search:""}))
     },[])
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         if(query.length >  2){
-            dispatch(searchDoctorThunk({search:'&search='+query, jwt}))
+            dispatch(searchDoctorThunk({search:'&search='+query}))
         } else if(query == ""){
-            dispatch(searchDoctorThunk({search:"", jwt}))
+            dispatch(searchDoctorThunk({search:""}))
         }
     }
     return {
