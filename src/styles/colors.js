@@ -19,4 +19,7 @@ export const INDIGO_LIGHT = '#38466C';
 export const SEASHELL = '#F1F1F1';
 export const ECHO_BLUE = '#ACB2C1';
 export const GAINSBORO_LIGHT = '#E3E3E3';
+export const SLATE_GRAY = '#282A2E';
+export const RED = '#FF0000';
+
 

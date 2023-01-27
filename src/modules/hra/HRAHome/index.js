@@ -14,7 +14,7 @@ const HRAHome = () => {
   return (
     <SafeAreaView>
       <Header
-        isLoggedIn={loggedIn === {LOGGEDIN}}
+        isLoggedIn={loggedIn === LOGGEDIN}
         onPressRightIcon={onPressRightIcon}
       />
       <View style={styles.mainContainer}>

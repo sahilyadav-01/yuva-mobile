@@ -1,67 +1,37 @@
-import React, { useEffect } from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Alert } from 'react-native'
-import { useNavigation } from '@react-navigation/core'
+import React from 'react'
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
 import * as Progress from 'react-native-progress';
-import { Dimensions } from 'react-native';
 import SectionInput from '../../../components/SectionInput'
 import SectionPicker from '../../../components/SectionPicker';
-import { useSelector, useDispatch } from 'react-redux';
-import { section6QThunk } from '../../../store/reducers/Section6Slice';
 import PickerData from '../../../utils/PickerData';
 import { dispatch_option } from '../../../store/reducers/Section6Slice';
 import Header from '../../../components/Header';
+import { BUTTON_TEXT, LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_6_HEADING } from '../constant';
+import { useSection6 } from './hooks/useSection6';
+import { styles } from './styles';
 
 const Section6 = () => {
 
-    const navigation = useNavigation()
-    const dispatch = useDispatch()
-    const answers = useSelector(state => state.section6.answers)
-    const questionData = useSelector(state => state.section6.rawQuestions)
-    const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
-    const windowWidth = Dimensions.get('window').width;
-    const progressWidth = windowWidth
-
-    useEffect(() => {
-        dispatch(section6QThunk({ jwt }))
-    }, [])
-
-    const next = () => {
-        if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
-            Alert.alert("Alert", 'Please Complete the form to proceed next section')
-        }
-        else {
-            navigation.navigate("section7")
-        }
-    }
-    const onPressRightIcon = () => {
-        if (loggedIn !== 'loggedIn') {
-          navigation.navigate('LoginScreen');
-        } else {
-            //The logic for opening the drawer should be added here
-        }
-      };
+    const { loggedIn, onPressRightIcon, progressWidth, questionData, answers, next } = useSection6();
 
     return (
         <SafeAreaView>
-                  <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
-            <View className="w-full">
+            <Header
+                isLoggedIn={loggedIn === LOGGEDIN}
+                onPressRightIcon={onPressRightIcon}
+            />
+            <View style={styles.progressBarContainer}>
                 <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.6} width={progressWidth} height={12} />
             </View>
-            <View className="h-full mx-[30px] my-[20px] ">
-                <Text style={{ fontWeight: '500' }} className="text-xl text-[#1D2334]">Section Six - Safety</Text>
-                <View style={{ height: "60%" }}>
+            <View style={styles.topContainer}>
+                <Text style={styles.topContainerTextStyle}>{SECTION_6_HEADING}</Text>
+                <View style={styles.scrollViewContainer}>
                     <ScrollView
                         bounces={false}
-                        contentContainerStyle={{
-                            flexGrow: 1,
-                            paddingBottom: 300
-                        }}
+                        contentContainerStyle={styles.scrollViewContentContainerStyle}
                         showsVerticalScrollIndicator={false}>
                         {questionData.map((item) => {
-                            if (item.questionType.includes("picker")) {
+                            if (item.questionType.includes(QUESTION_TYPE_PICKER)) {
                                 const data = PickerData[item.questionType];
                                 return <SectionPicker key={item.questionId}
                                     text={item.question}
@@ -70,7 +40,7 @@ const Section6 = () => {
                                     dispatcher={dispatch_option}
                                     questionId={item.questionId}
                                 />
-                            } else if (item.questionType == "input") {
+                            } else if (item.questionType == QUESTION_TYPE_INPUT) {
                                 return <SectionInput
                                     key={item.questionId}
                                     defValue={answers[item.questionId]}
@@ -80,16 +50,9 @@ const Section6 = () => {
                                 />
                             }
                         })}
-
-                        <View className="mt-[30px]">
-                            <TouchableOpacity
-                                style={{
-                                    borderRadius: 8,
-                                    backgroundColor: "#E68D36"
-                                }}
-                                onPress={next}
-                            >
-                                <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
+                        <View style={styles.touchableOpacityViewContainer}>
+                            <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>
+                                <Text style={styles.touchableOpacityTextStyle}>{BUTTON_TEXT}</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>

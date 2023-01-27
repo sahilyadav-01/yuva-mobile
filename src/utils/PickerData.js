@@ -36,7 +36,6 @@ PickerData["pickerdiet4"]=[
     {key:'3',value:'2/3 times a week'}, 
     {key:'0',value:'Daily'},
 ]
-
 PickerData["pickeralcohol2"]=[
     {key:'0',value:'0-1'}, 
     {key:'1',value:'2-3'},
@@ -61,7 +60,7 @@ PickerData["pickeryesnomedication"] = [
 ]
 PickerData["pickeryesno"] = [
     {key:'0',value:'No'}, 
-    {key:'1',value:'Yes'}
+    {key:'1',value:'Yes'},
 ]
 
 PickerData["pickersleep"] = [

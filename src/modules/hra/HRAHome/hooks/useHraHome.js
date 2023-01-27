@@ -50,7 +50,7 @@ export const useHraHome = () => {
     }, []);
 
     const onPressRightIcon = () => {
-        if (loggedIn !== { LOGGEDIN }) {
+        if (loggedIn !==  LOGGEDIN ) {
             navigation.navigate({ LOGIN_SCREEN });
         }
         //Drawer logic to be implemented in the else block here

@@ -15,7 +15,7 @@ const Section1 = () => {
     return (
         <SafeAreaView>
             <Header
-                isLoggedIn={loggedIn === { LOGGEDIN }}
+                isLoggedIn={loggedIn ===  LOGGEDIN }
                 onPressRightIcon={onPressRightIcon}
             />
             <View style={styles.progressBarContainer}>

@@ -1,181 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import {View,Text,SafeAreaView,ScrollView,TouchableOpacity,TextInput,Alert} from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import React from 'react';
+import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import * as Progress from 'react-native-progress';
-import { Dimensions } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { section7QThunk } from '../../../store/reducers/Section7Slice';
 import PickerData from '../../../utils/PickerData';
-import { dispatch_option, dispatch_option_extra_questions } from '../../../store/reducers/Section7Slice';
 import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
+import { useSection7 } from './hooks/useSection7';
+import { styles } from './styles';
+import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, KEYBOARD_TYPE_VALUE, KEYBOARD_TYPE_VALUE_TEXT, LOGGEDIN, PLACEHOLDER_COLOR, SECTION_7_HEADING, SECTION_7_QUESTION, SEVENTH_QUESTION } from '../constant';
 
 const Section7 = () => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const [medicalCondition, setMedicalCondition] = useState(false);
-  const [medicalCondition1, setMedicalCondition1] = useState(false);
-  const [medicalConditionDiabetes, setMedicalConditionDiabetes] = useState(false);
-  const [medicalConditionHypertension, setMedicalConditionHypertension] = useState(false);
-  const [medicalConditionDoYouSufferFromAnyIllness, setMedicalConditionDoYouSufferFromAnyIllness] = useState(false);
-  const [medicalConditionAnyCancer, setMedicalConditionAnyCancer] = useState(false);
-  const [medicalConditionChronicIllness, setMedicalConditionChronicIllness] = useState(false);
-  const [requiredFieldQ4, setRequiredFieldQ4] = useState(false);
-  const [requiredFieldQ7, setRequiredFieldQ7] = useState(false);
-  const [requiredFieldQ8, setRequiredFieldQ8] = useState(false);
-  const answers = useSelector(state => state.section7.answers);
-  const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
-  const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
-  const questionData = useSelector(state => state.section7.rawQuestions);
-  const {user: {jwt},loggedIn,} = useSelector(state => state.auth);
-  const setQuestion1 = value => {
-    {
-      value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
-    }
-    dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
-  };
-  const setQuestion2 = value => {
-    {
-      value == 1 ? setMedicalConditionDiabetes(true) : setMedicalConditionDiabetes(false);
-    }
-    dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
-  };
-  const setQuestion3 = value => {
-    {
-      value == 1 ? setMedicalCondition(true) : setMedicalCondition(false);
-    }
-    dispatch(dispatch_option({ key: questionData[2].questionId, value: value }));
-  };
-  const inputCheck = (id, value) => {
-    const reg = /^\d*\.?\d*$/;
-    switch (id) {
-      case 'Q4':
-        const validQ4 = ((value > 0) && (reg.test(value) === true));
-        setRequiredFieldQ4(!validQ4);
-        if (validQ4) {
-          dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
-        } else {
-          Alert.alert("Alert", "Worng Input");
-        };
-        break;
 
-      case 'Q7':
-        const validQ7 = ((value > 0) && (reg.test(value) === true));
-        setRequiredFieldQ7(!validQ7);
-        if (validQ7) {
-          dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
-        } else {
-          Alert.alert("Alert", "Worng Input");
-        };
-        break;
-
-      case 'Q8':
-        const validQ8 = ((reg.test(value) === true) && (value > 0));
-        setRequiredFieldQ8(!validQ8);
-        if (validQ8) {
-          dispatch(dispatch_option({ key: questionData[7].questionId, value: value }));
-        } else {
-          Alert.alert("Alert", "Worng input");
-        };
-        break;
-
-      default:
-        Alert.alert("Alert", "Worng Input");
-    }
-
-  };
-
-  const setQuestion5 = value => {
-    {
-      value == 1 ? setMedicalConditionHypertension(true) : setMedicalConditionHypertension(false);
-    }
-    dispatch(dispatch_option({ key: questionData[4].questionId, value: value }));
-  };
-  const setQuestion6 = value => {
-    {
-      value == 1 ? setMedicalCondition1(true) : setMedicalCondition1(false);
-    }
-    dispatch(dispatch_option({ key: questionData[5].questionId, value: value }));
-  };
-  const setQuestion9 = value => {
-    {
-      value == 1 ? setMedicalConditionAnyCancer(true) : setMedicalConditionAnyCancer(false);
-    }
-    dispatch(dispatch_option({ key: questionData[8].questionId, value: value }));
-  };
-  const setQuestion9A = value => {
-    dispatch(dispatch_option_extra_questions({ key: "setQuestion9A", value: value }));
-
-  }
-  const setQuestion10 = value => {
-    {
-      value == 1 ? setMedicalConditionChronicIllness(true) : setMedicalConditionChronicIllness(false);
-    }
-    dispatch(dispatch_option({ key: questionData[9].questionId, value: value }));
-  };
-  const setQuestion10A = value => {
-    dispatch(dispatch_option_extra_questions({ key: "setQuestion10A", value: value }));
-
-  }
-
-  const windowWidth = Dimensions.get('window').width;
-  const progressWidth = windowWidth;
-
-  useEffect(() => {
-    dispatch(section7QThunk({ jwt }));
-  }, []);
-
-  const next = () => {
-
-    if ((answers.Q41 === '0') && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
-      navigation.navigate("section8")
-    }
-    else if ((answers.Q41 === '1') && (((answers.Q42 === '0') || (answers.Q42 === '1' && (((answers.Q43 === '0') || (answers.Q43 === '1' && ((answers.Q44) && (requiredFieldQ4 == false)))))))) && ((answers.Q45 === '0') || (answers.Q45 === '1' && (((answers.Q46 === '0') || (answers.Q46 === '1' && (((answers.Q47) && (requiredFieldQ7 == false)) && ((answers.Q48) && (requiredFieldQ8 == false)))))))) && ((answers.Q49 === '0') || (answers.Q49 === '1' && answers9A)) && ((answers.Q50 === '0') || (answers.Q50 === '1' && answers10A))) {
-      navigation.navigate("section8")
-    }
-    else {
-      Alert.alert("Alert", 'Please Complete the form to proceed next section');
-    }
-  };
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-        //The logic for opening the drawer should be added here
-    }
-  };
+  const { loggedIn, onPressRightIcon, requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next } = useSection7();
 
   return (
     <SafeAreaView>
-            <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
+      <Header
+        isLoggedIn={loggedIn === LOGGEDIN}
         onPressRightIcon={onPressRightIcon}
       />
-      <View className="w-full">
+      <View style={styles.progressBarContainer}>
         <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.7} width={progressWidth} height={12} />
       </View>
-      <View className="h-full mx-[30px] my-[20px] ">
-        <Text style={{ fontWeight: '500' }} className="text-xl text-[#1D2334]">Section Seven-Current Medical Condition</Text>
-        <View className="h-[650px]">
+      <View style={styles.topContainer}>
+        <Text style={styles.topContainerTextStyle}>{SECTION_7_HEADING}</Text>
+        <View style={styles.scrollViewContainer}>
           <ScrollView
             bounces={false}
-            contentContainerStyle={{
-              flexGrow: 1,
-              paddingBottom: 300,
-            }}
+            contentContainerStyle={styles.scrollViewContentContainerStyle}
             showsVerticalScrollIndicator={false}>
-            <View className="mt-[20px]">
-              <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
+            <View style={styles.questionViewContainer}>
+              <Text style={styles.questionViewContainerText}>
                 {questionData[0]?.question}
               </Text>
               <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
+                boxStyles={styles.boxStylesContainer}
                 placeholder={
                   answers[questionData[0]?.questionId] === undefined
                     ? answers[questionData[0]?.questionId] === ''
@@ -187,18 +45,12 @@ const Section7 = () => {
               />
             </View>
             {medicalConditionDoYouSufferFromAnyIllness ? (
-              <View className="mt-[20px]">
-                <Text style={{ color: '#282A2E' }} className="text-base mb-[8px]">
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>
                   {questionData[1]?.question}
                 </Text>
                 <SelectList
-                  boxStyles={{
-                    backgroundColor: 'white',
-                    borderRadius: 8,
-                    height: 50,
-                    borderWidth: 1,
-                    borderColor: '#1D2334',
-                  }}
+                  boxStyles={styles.boxStylesContainer}
                   placeholder={
                     answers[questionData[1]?.questionId] === undefined
                       ? answers[questionData[1]?.questionId] === ''
@@ -213,18 +65,12 @@ const Section7 = () => {
               <></>
             )}
             {medicalConditionDiabetes ? (
-              <View className="mt-[20px]">
-                <Text className="text-base mb-[8px] text-[#1D2334]">
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>
                   {questionData[2]?.question}
                 </Text>
                 <SelectList
-                  boxStyles={{
-                    backgroundColor: 'white',
-                    borderRadius: 8,
-                    height: 50,
-                    borderWidth: 1,
-                    borderColor: '#1D2334',
-                  }}
+                  boxStyles={styles.boxStylesContainer}
                   placeholder={
                     answers[questionData[2]?.questionId] === undefined
                       ? answers[questionData[2]?.questionId] === ''
@@ -239,37 +85,25 @@ const Section7 = () => {
               <></>
             )}
             {medicalCondition ? (
-              <View className="mt-[20px]">
-                <Text
-                  style={{
-                    color: requiredFieldQ4 ? 'red' : '#1D2334',
-                  }}
-                  className="text-base">{questionData[3]?.question}</Text>
-                <TextInput
-                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
-                  className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                  keyboardType="numeric"
-                  placeholderTextColor={'black'}
+              <View style={styles.questionViewContainer}>
+                <Text style={requiredFieldQ4 ? styles.textError : styles.text}>{questionData[3]?.question}</Text>
+                <TextInput style={styles.questionViewContainerTextInput}
+                  keyboardType={KEYBOARD_TYPE_VALUE}
+                  placeholderTextColor={PLACEHOLDER_COLOR}
                   placeholder=""
-                  onEndEditing={(e) => inputCheck('Q4', e.nativeEvent.text)}
+                  onEndEditing={(e) => inputCheck(FOURTH_QUESTION, e.nativeEvent.text)}
                 />
               </View>
             ) : (
               <></>
             )}
             {medicalConditionDoYouSufferFromAnyIllness ? (
-              <View className="mt-[20px]">
-                <Text className="text-base mb-[8px] text-[#1D2334]">
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>
                   {questionData[4]?.question}
                 </Text>
                 <SelectList
-                  boxStyles={{
-                    backgroundColor: 'white',
-                    borderRadius: 8,
-                    height: 50,
-                    borderWidth: 1,
-                    borderColor: '#1D2334',
-                  }}
+                  boxStyles={styles.boxStylesContainer}
                   placeholder={
                     answers[questionData[4]?.questionId] === undefined
                       ? answers[questionData[4]?.questionId] === ''
@@ -284,18 +118,12 @@ const Section7 = () => {
               <></>
             )}
             {medicalConditionHypertension ? (
-              <View className="mt-[20px]">
-                <Text className="text-base mb-[8px] text-[#1D2334]">
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>
                   {questionData[5]?.question}
                 </Text>
                 <SelectList
-                  boxStyles={{
-                    backgroundColor: 'white',
-                    borderRadius: 8,
-                    height: 50,
-                    borderWidth: 1,
-                    borderColor: '#1D2334',
-                  }}
+                  boxStyles={styles.boxStylesContainer}
                   placeholder={
                     answers[questionData[5]?.questionId] === undefined
                       ? answers[questionData[5]?.questionId] === ''
@@ -311,35 +139,22 @@ const Section7 = () => {
             )}
             {medicalCondition1 ? (
               <View>
-                <View className="mt-[20px]">
-                  <Text
-                    style={{
-                      color: requiredFieldQ7 ? 'red' : '#1D2334',
-                    }}
-                    className="text-base">{questionData[6]?.question}</Text>
-                  <TextInput
-                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
-                    className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                    keyboardType="numeric"
-                    placeholderTextColor={'black'}
+                <View style={styles.questionViewContainer}>
+                  <Text style={requiredFieldQ7 ? styles.textError : styles.text} >{questionData[6]?.question}</Text>
+                  <TextInput style={styles.questionViewContainerTextInput}
+                    keyboardType={KEYBOARD_TYPE_VALUE}
+                    placeholderTextColor={PLACEHOLDER_COLOR}
                     placeholder=""
-                    onEndEditing={(e) => inputCheck('Q7', e.nativeEvent.text)}
-
+                    onEndEditing={(e) => inputCheck(SEVENTH_QUESTION, e.nativeEvent.text)}
                   />
                 </View>
-                <View className="mt-[20px]">
-                  <Text
-                    style={{
-                      color: requiredFieldQ8 ? 'red' : '#1D2334',
-                    }}
-                    className="text-base">{questionData[7]?.question}</Text>
-                  <TextInput
-                    style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
-                    className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                    keyboardType="numeric"
-                    placeholderTextColor={'black'}
+                <View style={styles.questionViewContainer}>
+                  <Text style={requiredFieldQ8 ? styles.textError : styles.text}>{questionData[7]?.question}</Text>
+                  <TextInput style={styles.questionViewContainerTextInput}
+                    keyboardType={KEYBOARD_TYPE_VALUE}
+                    placeholderTextColor={PLACEHOLDER_COLOR}
                     placeholder=""
-                    onEndEditing={(e) => inputCheck('Q8', e.nativeEvent.text)}
+                    onEndEditing={(e) => inputCheck(EIGHTH_QUESTION, e.nativeEvent.text)}
 
                   />
                 </View>
@@ -348,19 +163,12 @@ const Section7 = () => {
               <></>
             )}
             {medicalConditionDoYouSufferFromAnyIllness ? (
-
-              <View className="mt-[20px]">
-                <Text className="text-base mb-[8px] text-[#1D2334]">
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>
                   {questionData[8]?.question}
                 </Text>
                 <SelectList
-                  boxStyles={{
-                    backgroundColor: 'white',
-                    borderRadius: 8,
-                    height: 50,
-                    borderWidth: 1,
-                    borderColor: '#1D2334',
-                  }}
+                  boxStyles={styles.boxStylesContainer}
                   placeholder={
                     answers[questionData[8]?.questionId] === undefined
                       ? answers[questionData[8]?.questionId] === ''
@@ -374,15 +182,12 @@ const Section7 = () => {
             ) : (
               <></>
             )}
-
             {medicalConditionAnyCancer ? (
-              <View className="mt-[20px]">
-                <Text className="text-base text-[#1D2334]">{"Please specify"}</Text>
-                <TextInput
-                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
-                  className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                  keyboardType="text"
-                  placeholderTextColor={'black'}
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
+                <TextInput style={styles.questionViewContainerTextInput}
+                  keyboardType={KEYBOARD_TYPE_VALUE_TEXT}
+                  placeholderTextColor={PLACEHOLDER_COLOR}
                   placeholder=""
                   onChangeText={setQuestion9A}
                 />
@@ -390,18 +195,12 @@ const Section7 = () => {
             ) : (
               <></>
             )}
-            <View className="mt-[20px]">
-              <Text className="text-base mb-[8px] text-[#1D2334]">
+            <View style={styles.questionViewContainer}>
+              <Text style={styles.questionViewContainerText}>
                 {questionData[9]?.question}
               </Text>
               <SelectList
-                boxStyles={{
-                  backgroundColor: 'white',
-                  borderRadius: 8,
-                  height: 50,
-                  borderWidth: 1,
-                  borderColor: '#1D2334',
-                }}
+                boxStyles={styles.boxStylesContainer}
                 placeholder={
                   answers[questionData[9]?.questionId] === undefined
                     ? answers[questionData[9]?.questionId] === ''
@@ -413,13 +212,11 @@ const Section7 = () => {
               />
             </View>
             {medicalConditionChronicIllness ? (
-              <View className="mt-[20px]">
-                <Text className="text-base">{"Please specify"}</Text>
-                <TextInput
-                  style={{ backgroundColor: '#ffffff', borderWidth: 1 }}
-                  className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
-                  keyboardType="text"
-                  placeholderTextColor={'black'}
+              <View style={styles.questionViewContainer}>
+                <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
+                <TextInput style={styles.questionViewContainerTextInput}
+                  keyboardType={KEYBOARD_TYPE_VALUE_TEXT}
+                  placeholderTextColor={PLACEHOLDER_COLOR}
                   placeholder=""
                   onChangeText={setQuestion10A}
                 />
@@ -427,15 +224,9 @@ const Section7 = () => {
             ) : (
               <></>
             )}
-            <View className="mt-[30px]">
-              <TouchableOpacity
-                style={{
-                  borderRadius: 8,
-                  backgroundColor: "#E68D36"
-                }}
-                onPress={next}
-              >
-                <Text className="text-center pt-[15px] pb-[15px] text-white">Next</Text>
+            <View style={styles.touchableOpacityViewContainer}>
+              <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>
+                <Text style={styles.touchableOpacityTextStyle}>{BUTTON_TEXT}</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
