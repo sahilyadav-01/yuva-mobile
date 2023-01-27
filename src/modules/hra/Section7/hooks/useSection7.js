@@ -3,7 +3,7 @@ import { Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { section7QThunk, dispatch_option, dispatch_option_extra_questions } from '../../../../store/reducers/Section7Slice';
-import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, KEY_VALUE10A, KEY_VALUE9A, LOGGEDIN, LOGIN_SCREEN, SECTION_8, WINDOW, ZERO } from '../../constant';
+import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, KEY_VALUE10A, KEY_VALUE9A, LOGGEDIN, LOGIN_SCREEN, ONE, SECTION_8, WINDOW, ZERO } from '../../constant';
 
 export const useSection7 = () => {
     const navigation = useNavigation();
