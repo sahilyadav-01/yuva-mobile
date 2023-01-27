@@ -23,6 +23,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {loginThunk, hideErrorBox} from '../../store/reducers/AuthSlice';
 import {styles} from '../styles';
 import {profileThunk} from '../../store/reducers/ProfileSlice';
+import { DARK_BLUE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
 // import { StatusBar } from 'expo-status-bar';
 
 const LoginScreen = props => {
@@ -130,30 +131,32 @@ const LoginScreen = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#1D2334" style="light" />
+      <StatusBar backgroundColor={DARK_BLUE} style="light" />
       {/* Top Section */}
       <Header name="LOGIN" isLoggedIn={loggedIn === 'loggedIn'}/>
 
       {/* Login Screen */}
       <View className="flex mt-[60px]">
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Email / Phone Number"
           onChangeText={onChangeEmail}
           value={email}
+          placeholderTextColor={SILVER_CHALICE}
         />
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Password"
           type="password"
           onChangeText={onChangePassword}
           secureTextEntry={true}
+          placeholderTextColor={SILVER_CHALICE}
         />
         <TouchableOpacity
           onPress={login}
-          style={{backgroundColor: '#E68D36'}}
+          style={{backgroundColor: ORANGE}}
           className="mt-[40px] mr-[30px] ml-[30px] rounded">
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
           <Text className="text-center pt-[15px] pb-[15px] text-white">
@@ -164,14 +167,14 @@ const LoginScreen = props => {
 
         <TouchableOpacity onPress={forgotPassword}>
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-          <Text style={{color: '#52608E'}} className="text-center mt-[20px]">
+          <Text style={{color: KASHMIR_BLUE}} className="text-center mt-[20px]">
             Forgot Password ? <Text className="font-bold">Click Here</Text>
           </Text>
           {/* </View> */}
         </TouchableOpacity>
         <TouchableOpacity onPress={signUp}>
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-          <Text style={{color: '#52608E'}} className="text-center mt-[20px]">
+          <Text style={{color: KASHMIR_BLUE}} className="text-center mt-[20px]">
             <Text className="font-bold">New to Yuva Health,</Text> Sign Up Here
           </Text>
           {/* </View> */}
