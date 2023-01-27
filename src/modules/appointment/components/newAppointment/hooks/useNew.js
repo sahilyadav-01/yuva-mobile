@@ -69,17 +69,19 @@ export const useNew=()=> {
         setTime(time);
         getEpoch(date, time);
     };
-  useEffect(() => {
-    if (relationId?.length > 0) {
-        let newArray = relationId.map((item) => {
-            return { key: item.id, value: item.name+"   -  "+item.relation+ "   "+"("+item.age+")"}
-        }
-        )
-        setDataRelation(newArray)
-    } else {
-        dispatch(getRelations({ jwt }))
-    }   
+useEffect(()=>{
+    dispatch(getRelations({ jwt }))
+},[])
+useEffect(() => {
+if (relationId?.length >=0) {
+    let newArray = relationId.map((item) => {
+        return { key: item.id, value: item.name+"   -  "+item.relation+ "   "+"("+item.age+")"}
+    }
+    )
+    setDataRelation(newArray)
+}   
 }, [relationId])
+
 
     return {
         goBack,
