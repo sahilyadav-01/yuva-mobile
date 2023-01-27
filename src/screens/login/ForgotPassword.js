@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import AlertBox from '../../components/AlertBox';
 import {hideErrorBox} from '../../store/reducers/AuthSlice';
 import { styles } from '../styles';
-import { CATSKILL_WHITE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE } from '../../styles/colors';
+import { CATSKILL_WHITE, CYAN_BLUE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE } from '../../styles/colors';
 
 const ForgotPassword = () => {
   // const [email, onChangeEmail] = useState('Email');
@@ -89,7 +89,7 @@ else{
           // handleChange={email => setEmail(email)}
           onChangeText={onChangeEmail}
           value={email}
-          style={{backgroundColor: CATSKILL_WHITE}}
+          style={{backgroundColor: CATSKILL_WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2"
           placeholder="Email"
           placeholderTextColor={SILVER_CHALICE}
