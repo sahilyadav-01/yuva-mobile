@@ -9,6 +9,7 @@ import Header from '../../../components/Header';
 import { BUTTON_TEXT, LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_6_HEADING } from '../constant';
 import { useSection6 } from './hooks/useSection6';
 import { styles } from './styles';
+import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section6 = () => {
 
@@ -21,7 +22,7 @@ const Section6 = () => {
                 onPressRightIcon={onPressRightIcon}
             />
             <View style={styles.progressBarContainer}>
-                <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.6} width={progressWidth} height={12} />
+            <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={0.6} width={progressWidth} height={12} />
             </View>
             <View style={styles.topContainer}>
                 <Text style={styles.topContainerTextStyle}>{SECTION_6_HEADING}</Text>

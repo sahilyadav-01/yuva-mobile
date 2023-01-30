@@ -7,6 +7,7 @@ import Header from '../../../components/Header';
 import { useSection4 } from './hooks/useSection4';
 import { styles } from './styles';
 import { BUTTON_TEXT, LOGGEDIN, SECTION_4_HEADING } from '../constant';
+import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section4 = () => {
 
@@ -19,7 +20,7 @@ const Section4 = () => {
         onPressRightIcon={onPressRightIcon}
       />
       <View style={styles.progressBarContainer}>
-        <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.4} width={progressWidth} height={12} />
+      <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={0.4} width={progressWidth} height={12} />
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle1}>{SECTION_4_HEADING}</Text>

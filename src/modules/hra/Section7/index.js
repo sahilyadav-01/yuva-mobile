@@ -7,6 +7,7 @@ import Header from '../../../components/Header';
 import { useSection7 } from './hooks/useSection7';
 import { styles } from './styles';
 import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, KEYBOARD_TYPE_VALUE, KEYBOARD_TYPE_VALUE_TEXT, LOGGEDIN, PLACEHOLDER_COLOR, SECTION_7_HEADING, SECTION_7_QUESTION, SEVENTH_QUESTION } from '../constant';
+import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section7 = () => {
 
@@ -19,7 +20,7 @@ const Section7 = () => {
         onPressRightIcon={onPressRightIcon}
       />
       <View style={styles.progressBarContainer}>
-        <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={0.7} width={progressWidth} height={12} />
+      <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={0.7} width={progressWidth} height={12} />
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle}>{SECTION_7_HEADING}</Text>

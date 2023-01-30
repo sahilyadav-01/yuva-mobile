@@ -8,6 +8,7 @@ import Header from '../../../components/Header';
 import { useSection9 } from './hooks/useSection9';
 import { styles } from './styles';
 import { LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_9_HEADING, SUBMIT_BUTTON_TEXT } from '../constant';
+import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section9 = () => {
 
@@ -20,7 +21,7 @@ const Section9 = () => {
                 onPressRightIcon={onPressRightIcon}
             />
             <View style={styles.progressBarContainer}>
-                <Progress.Bar color="#319B4B" unfilledColor="#F6ECB6" progress={1} width={progressWidth} height={12} />
+            <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={1} width={progressWidth} height={12} />
             </View>
             <View style={styles.topContainer}>
                 <Text style={styles.topContainerTextStyle}>{SECTION_9_HEADING}</Text>
