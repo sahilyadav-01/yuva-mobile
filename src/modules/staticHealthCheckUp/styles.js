@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     marginRight: '5%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: 400,
+    paddingBottom: '40%',
   },
   title: {
     marginBottom: '5%',

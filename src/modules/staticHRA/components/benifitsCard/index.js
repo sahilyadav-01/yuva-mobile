@@ -5,7 +5,13 @@ import {PNG} from '../../../../../assets';
 import {HRA_BENIFITS, BENIFITS_HRA} from '../../constant';
 const BenfitsCard = () => {
   const renderItem = ({item}) => {
-    return <Text style={styles.textStyle}>{item.data}</Text>;
+    return (
+      <View style={styles.bulletStyle}>
+        <Text style={styles.textStyle}>{`\u2022 `}</Text>
+
+        <Text style={styles.textStyle}>{item.data}</Text>
+      </View>
+    );
   };
   return (
     <View>
