@@ -23,7 +23,7 @@ import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-import OPD_Consultation from './OPD_Consultation.png'; 
+import OPD_Consultation from './OPD_Consultation.png';
 import Health_Risk_Assessment from './Health_Risk_Assessment.png';
 import Health_Checkup_Packages from './Health_Checkup_Packages.png';
 import Talk_To_Doctor from './Talk_To_Doctor.png';
@@ -33,7 +33,6 @@ import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
-
 
 import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
@@ -50,7 +49,7 @@ import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
-
+import DOCTOR from './doctor.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -63,6 +62,7 @@ const PNG = {
   PEDIATRICS,
   SURGERY,
   CORONA,
+  DOCTOR,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
@@ -103,8 +103,8 @@ const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit:EditIcon,
+  Edit: EditIcon,
   BackgroundImage: BackgroundImage,
-}
+};
 
 export {PNG, SVG};
