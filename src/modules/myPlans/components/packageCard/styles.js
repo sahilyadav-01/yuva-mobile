@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 19,
     margin: 11,
+    justifyContent: CENTER,
   },
   textStyle: {
     color: WHITE,
