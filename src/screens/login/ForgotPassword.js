@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import AlertBox from '../../components/AlertBox';
 import {hideErrorBox} from '../../store/reducers/AuthSlice';
 import { styles } from '../styles';
+import { CATSKILL_WHITE, CYAN_BLUE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE } from '../../styles/colors';
 
 const ForgotPassword = () => {
   // const [email, onChangeEmail] = useState('Email');
@@ -88,9 +89,10 @@ else{
           // handleChange={email => setEmail(email)}
           onChangeText={onChangeEmail}
           value={email}
-          style={{backgroundColor: '#f5f9fa'}}
+          style={{backgroundColor: CATSKILL_WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl border-b-2 pl-2"
           placeholder="Email"
+          placeholderTextColor={SILVER_CHALICE}
         />
 
         <TouchableOpacity
@@ -101,7 +103,7 @@ else{
           //   Send OTP
           // </Text>
           onPress={onForgotPassword}
-          style={{backgroundColor: '#E68D36'}}
+          style={{backgroundColor: ORANGE}}
           className="mt-[40px] mr-[30px] ml-[30px] rounded">
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
           <Text className="text-center pt-[15px] pb-[15px] text-white">
@@ -112,14 +114,14 @@ else{
 
         <TouchableOpacity onPress={login}>
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-          <Text style={{color: '#52608E'}} className="text-center mt-[20px]">
+          <Text style={{color: KASHMIR_BLUE}} className="text-center mt-[20px]">
             <Text className="font-bold">Already a member,</Text> Login Here
           </Text>
           {/* </View> */}
         </TouchableOpacity>
         <TouchableOpacity onPress={signUp}>
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
-          <Text style={{color: '#52608E'}} className="text-center mt-[20px]">
+          <Text style={{color: KASHMIR_BLUE}} className="text-center mt-[20px]">
             <Text className="font-bold">New to Yuva Health,</Text> Sign Up Here
           </Text>
           {/* </View> */}

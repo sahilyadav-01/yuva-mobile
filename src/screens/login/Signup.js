@@ -23,6 +23,7 @@ import {
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 import { styles } from '../styles';
+import { CATSKILL_WHITE, CYAN_BLUE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
 
 const Signup = ({route}) => {
    /**
@@ -209,20 +210,22 @@ const Signup = ({route}) => {
       {/* SignUP Screen */}
       <ScrollView className="flex h-full mt-[30px] my-8">
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Name"
           onChangeText={onChangeName}
           value={name}
+          placeholderTextColor={SILVER_CHALICE}
         />
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] mb-[10px] rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeNumber}
           onBlur={checkNumberText}
           keyboardType="phone-pad"
           value={number}
+          placeholderTextColor={SILVER_CHALICE}
         />
         <View className="ml-[30px] mb-[20px]">
           <Text className="text-red-500">
@@ -241,12 +244,13 @@ const Signup = ({route}) => {
         </View>
 
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] mb-[10px]  rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
           onBlur={checkEmailText}
           value={email}
+          placeholderTextColor={SILVER_CHALICE}
         />
         <View className="ml-[30px] mb-[20px]">
           <Text className="text-red-500">
@@ -265,7 +269,7 @@ const Signup = ({route}) => {
         </View>
 
         <TextInput
-          style={{backgroundColor: '#FFFFFF'}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Type Password"
           type="password"
@@ -273,6 +277,7 @@ const Signup = ({route}) => {
           onBlur={checkPasswordText}
           secureTextEntry={true}
           value={password}
+          placeholderTextColor={SILVER_CHALICE}
         />
         {checkPassword === true && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
@@ -280,7 +285,7 @@ const Signup = ({route}) => {
           </Text>
         )}
         <TextInput
-          style={{backgroundColor: '#F5F9FA'}}
+          style={{backgroundColor: CATSKILL_WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
@@ -288,6 +293,7 @@ const Signup = ({route}) => {
           //onBlur={checkConfirmPassowrdText}
           secureTextEntry={true}
           value={confirmPassword}
+          placeholderTextColor={SILVER_CHALICE}
         />
         {confirmPassword != 0 && confirmPassword !== password && (
           <Text className="mt-[10px] ml-[30px] text-red-500">
@@ -296,7 +302,7 @@ const Signup = ({route}) => {
         )}
         <TouchableOpacity
           onPress={signup}
-          style={{backgroundColor: '#E68D36'}}
+          style={{backgroundColor: ORANGE}}
           className="mt-[45px] mr-[30px] ml-[30px] rounded">
           {/* <View className="flex h-50px bg-gray-100 justify-center"> */}
           <Text className="text-center pt-[15px] pb-[15px] text-white">

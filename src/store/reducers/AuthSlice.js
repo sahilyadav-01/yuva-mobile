@@ -1,20 +1,17 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {setObject, getObject, removeObject, setJwt, clearJwt} from '../LocalStore';
 import axios from 'axios';
-import {SERVER} from '../../utils/utils';
-import {Alert} from 'react-native';
-import {Freshchat } from 'react-native-freshchat-sdk';
-/**
- * Contants
- */
-// const ANDRIOD_SERVER = "10.0.2.2"
-// const LOCAL_SERVER  = "localhost:8080"
+import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import {setObject, getObject, removeObject, setJwt, clearJwt} from '../LocalStore';
+import { SERVER } from '../../utils/utils';
+import { Freshchat } from 'react-native-freshchat-sdk';
+
 const SINGUP_URI = 'http://' + SERVER + ':8080/api/v1/yuva/signup';
-const GETSMS_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/generateSmsOtp';
+const CHECK_EXE__URI = 'http://' + SERVER + ':8080/api/v1/yuva/check';
+
+const GETSMS_URI = 'http://' + SERVER + ':8080/api/v1/yuva/generate-sms-otp';
 const EMAILOTP_URI =
   'http://' + SERVER + ':8080/api/v1/yuva/otp/generateEmailOtp';
-const VERIFY_URI = 'http://' + SERVER + ':8080/api/v1/yuva/otp/validate';
+const VERIFY_URI = 'http://' + SERVER + ':8080/api/v1/yuva/validate-otp';
 const FORGOT_PASSWORD =
   'http://' + SERVER + ':8080/api/v1/yuva/password/forgot';
 /**
@@ -22,7 +19,7 @@ const FORGOT_PASSWORD =
  */
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
-  async ({email}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ email }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const uri = FORGOT_PASSWORD + '?emailOrNumber=' + email;
       return await axios.post(uri, {}).then(resp => {
@@ -40,7 +37,7 @@ export const forgotPassword = createAsyncThunk(
 
 export const verifyEmailOtpThunk = createAsyncThunk(
   'auth/verifyEmailOtpThunk',
-  async ({email}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ email }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const uri = EMAILOTP_URI + '?email=' + email;
       return await axios.get(uri, {}).then(resp => resp.data);
@@ -53,8 +50,8 @@ export const verifyEmailOtpThunk = createAsyncThunk(
 export const verifyThunk = createAsyncThunk(
   'auth/verifyThunk',
   async (
-    {emailOrNumber, otp, resendVar},
-    {fulfillWithValue, rejectWithValue},
+    { emailOrNumber, otp, resendVar },
+    { fulfillWithValue, rejectWithValue },
   ) => {
     try {
       return await axios
@@ -63,11 +60,11 @@ export const verifyThunk = createAsyncThunk(
           otp,
         })
         .then(resp => {
-          if(resp?.data?.message === 'OTP_INVALID') {
-            const errorMsg = {response: 'Invalid OTP'}
+          if (resp?.data?.message === 'OTP_INVALID') {
+            const errorMsg = { response: 'Invalid OTP' }
             return rejectWithValue(errorMsg);
           }
-          return {...resp.data, resendVar};
+          return { ...resp.data, resendVar };
         });
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -76,10 +73,10 @@ export const verifyThunk = createAsyncThunk(
 );
 export const verifySmsThunk = createAsyncThunk(
   'auth/verifySmsThunk',
-  async ({number}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ number }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const uri = GETSMS_URI + '?number=' + number;
-      
+
       return await axios.get(uri, {}).then(resp => resp.data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -88,7 +85,7 @@ export const verifySmsThunk = createAsyncThunk(
 );
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
-  async ({email, password}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ email, password }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const uri =
         'http://' +
@@ -107,7 +104,7 @@ export const loginThunk = createAsyncThunk(
 );
 export const initialLoad = createAsyncThunk(
   'auth/initialLoad',
-  async (_, {fulfillWithValue, rejectWithValue}) => {
+  async (_, { fulfillWithValue, rejectWithValue }) => {
     try {
       const value = await getObject('user');
       //return fulfillWithValue(data)
@@ -124,13 +121,13 @@ export const initialLoad = createAsyncThunk(
  */
 export const logoutThunk = createAsyncThunk(
   'auth/logoutThunk',
-  async (_, {fulfillWithValue, rejectWithValue}) => {
+  async (_, { fulfillWithValue, rejectWithValue }) => {
     try {
       const value = await removeObject('user');
       //return fulfillWithValue(data)
-      try{
+      try {
         Freshchat.resetUser();
-      } catch (e) {};
+      } catch (e) { };
       return value;
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
@@ -182,7 +179,7 @@ const authSlice = createSlice({
       verifyEmail: false,
       verifySms: false,
     },
-    verified: {smsVerified: false, emailVerified: false},
+    verified: { smsVerified: false, emailVerified: false },
     forgotStatus: false,
   },
   reducers: {
@@ -206,7 +203,7 @@ const authSlice = createSlice({
     /**
      * Login thunk handler
      */
-    [loginThunk.pending]: (state, {payload}) => {
+    [loginThunk.pending]: (state, { payload }) => {
       state.loading = true;
       state.loggedIn = 'notLoggedIn';
       state.user.status = false;
@@ -215,18 +212,18 @@ const authSlice = createSlice({
       setJwt(action.payload.jwt)
       state.loading = false;
       const userData = {
-        name: action.payload.name, 
-        jwt: action.payload.jwt,
-        roles: action.payload.roles,
-        id: action.payload.id,
+        name: action.payload.data.name,
+        jwt: action.payload.data.jwt,
+        roles: action.payload.data.roles[0],
+        id: action.payload.data.id,
       };
       action.payload.jwt && setObject('user', userData);
-      state.user.name = action.payload.name || 'User';
-      state.user.jwt = action.payload.jwt;
-      state.user.roles = action.payload.roles;
-      state.loggedIn = action.payload.jwt ? 'loggedIn': state.loggedIn;
+      state.user.name = action.payload.data.name || 'User';
+      state.user.jwt = action.payload.data.jwt;
+      state.user.roles = action.payload.data.roles[0];
+      state.loggedIn = action.payload.data.jwt ? 'loggedIn' : state.loggedIn;
       state.user.status = true;
-      state.user.id = action.payload.id;
+      state.user.id = action.payload.data.id;
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -234,45 +231,44 @@ const authSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
     },
-     /**
-     * Initial loading thunk handler
-     */
-      [initialLoad.pending]: (state, {payload}) => {
-        state.isAppReady = false;
-      },
-      [initialLoad.fulfilled]: (state, {payload}) => {
-        if (payload == null) {
-          state.loggedIn = 'notLoggedIn';
-        } else {
-          state.loggedIn = 'loggedIn';
-          state.user.name = payload.name;
-          state.user.jwt = payload.jwt;
-        }
-        state.isAppReady = true;
-      },
-      [initialLoad.rejected]: (state, {payload}) => {
-        state.isAppReady = true;
-      },
+    /**
+    * Initial loading thunk handler
+    */
+    [initialLoad.pending]: (state, { payload }) => {
+      state.isAppReady = false;
+    },
+    [initialLoad.fulfilled]: (state, { payload }) => {
+      if (payload == null) {
+        state.loggedIn = 'notLoggedIn';
+      } else {
+        state.loggedIn = 'loggedIn';
+        state.user.name = payload.name;
+        state.user.jwt = payload.jwt;
+      }
+      state.isAppReady = true;
+    },
+    [initialLoad.rejected]: (state, { payload }) => {
+      state.isAppReady = true;
+    },
     /**
      * Logout thunk handler
      */
-    [logoutThunk.pending]: (state, {payload}) => {},
-    [logoutThunk.fulfilled]: (state, {payload}) => {
-      state.user.status = false;
+    [logoutThunk.pending]: (state, { payload }) => { },
+    [logoutThunk.fulfilled]: (state, { payload }) => {
       state.loggedIn = 'notLoggedIn';
       state.user.name = '';
       state.user.jwt = '';
       state.isAppReady = true;
       clearJwt();
     },
-    [logoutThunk.rejected]: (state, {payload}) => {},
+    [logoutThunk.rejected]: (state, { payload }) => { },
     /**
      * signup thunk handler
      */
-    [signupThunk.pending]: (state, {payload}) => {
+    [signupThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
-    [signupThunk.fulfilled]: (state, {payload}) => {
+    [signupThunk.fulfilled]: (state, { payload }) => {
       state.loading = false;
     },
     [signupThunk.rejected]: (state, action) => {
@@ -318,11 +314,11 @@ const authSlice = createSlice({
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone'||action.payload?.resendVar ===  'phoneCorporate' 
+        action.payload?.resendVar === 'phone' || action.payload?.resendVar === 'phoneCorporate'
           ? false
           : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email'||action.payload?.resendVar ===  'emailCorporate' 
+        action.payload?.resendVar === 'email' || action.payload?.resendVar === 'emailCorporate'
           ? false
           : state.verified.emailVerified;
     },
@@ -331,28 +327,28 @@ const authSlice = createSlice({
       state.user.emailOrNumber = action.payload?.emailOrNumber;
       state.user.otp = action.payload?.otp;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone'|| action.payload?.resendVar ==='phoneCorporate' 
-        ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
+        action.payload?.resendVar === 'phone' || action.payload?.resendVar === 'phoneCorporate'
+          ? action.payload?.message === 'OTP_VALID' : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email'|| action.payload?.resendVar ==='emailCorporate'
-         ? action.payload?.message === 'OTP_VALID': state.verified.emailVerified;
+        action.payload?.resendVar === 'email' || action.payload?.resendVar === 'emailCorporate'
+          ? action.payload?.message === 'OTP_VALID' : state.verified.emailVerified;
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.response;
       state.verified.smsVerified =
-        action.payload?.resendVar === 'phone'||action.payload?.resendVar ==='phoneCorporate'
+        action.payload?.resendVar === 'phone' || action.payload?.resendVar === 'phoneCorporate'
           ? false
           : state.verified.smsVerified;
       state.verified.emailVerified =
-        action.payload?.resendVar === 'email'|| action.payload?.resendVar ==='emailCorporate'
+        action.payload?.resendVar === 'email' || action.payload?.resendVar === 'emailCorporate'
           ? false
           : state.verified.emailVerified;
     },
 
     //forgot password thunk handler
-    [forgotPassword.pending]: (state, {payload}) => {
+    [forgotPassword.pending]: (state, { payload }) => {
       state.loading = true;
     },
     [forgotPassword.fulfilled]: (state, action) => {
