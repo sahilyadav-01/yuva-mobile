@@ -21,6 +21,10 @@ const PackageCard = () => {
   const renderItem = item => {
     return (
       <View style={styles.viewContainer}>
+        <Text style={styles.head}>{item.item.packageName}</Text>
+
+        <Text style={styles.expiry}>{item.item.expiryDate}</Text>
+
         <View style={styles.sideBySide}>
           <Image source={item.item.image} style={styles.imageStyle} />
           <View style={styles.text1}>
