@@ -19,7 +19,6 @@ const HRAHome = () => {
 
   const [report, setReport] = useState(false);
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const [message, setMessage] = useState('');
@@ -54,7 +53,7 @@ const HRAHome = () => {
   };
   const fetchReport = () => {
 
-    dispatch(reportStatusThunk()).then(() => { });
+    dispatch(reportStatusThunk());
   };
   useEffect(() => {
     const timer = setInterval(() => {

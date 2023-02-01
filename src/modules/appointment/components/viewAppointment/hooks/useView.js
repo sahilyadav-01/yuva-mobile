@@ -20,7 +20,6 @@ export const useView=()=>{
         otp,
         hospitalName,
       } = useSelector(state => state.appointment.currentAppointment);
-      const {jwt} = useSelector(state => state.auth.user);
         
     const goBack = () => {
         navigation.goBack();

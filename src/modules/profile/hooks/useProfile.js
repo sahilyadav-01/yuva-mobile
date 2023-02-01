@@ -13,7 +13,6 @@ import {
 export const useProfile = () => {
   const dispatch = useDispatch();
   const {profile, auth} = useSelector(state => state);
-  const jwt = auth.user.jwt ?? null;
   const focused = useIsFocused();
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -40,7 +39,7 @@ export const useProfile = () => {
   useEffect(() => {
     if (profile.dataUpdated) {
       setEdit(false);
-      jwt && dispatch(profileThunk());
+      dispatch(profileThunk());
     }
   }, [profile.dataUpdated]);
 
@@ -51,8 +50,8 @@ export const useProfile = () => {
       setDependentRelation('');
       setAddMembers(false);
       setRelationSelected(false);
-      jwt && dispatch(getRelations());
-      jwt && dispatch(getActiveRelations());
+      dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
   }, [profile.relationAdded]);
 
@@ -123,11 +122,12 @@ export const useProfile = () => {
   const onDependentAgeChange = age => setDependentAge(age);
 
   const updateUserData = () => {
+    const dob = Date.parse(date).toString();
     if (!date || !gender) {
       Alert.alert('Alert', 'Please fill the details');
     } else {
       setUserDetails(null);
-      dispatch(updateProfile({dob: Date.parse(date).toString(), gender}));
+      dispatch(updateProfile({dob, gender}));
     }
   };
 

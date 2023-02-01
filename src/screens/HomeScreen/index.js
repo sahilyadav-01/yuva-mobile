@@ -43,7 +43,7 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
-      dispatch(allAppointmentThunk({isActive})).then().catch();
+      dispatch(allAppointmentThunk({isActive}));
     }
   }, [focused]);
   return (

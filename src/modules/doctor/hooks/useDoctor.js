@@ -7,7 +7,6 @@ export const useDoctor=()=>{
     const dispatch = useDispatch();
  
     const data  =  useSelector(state  =>  state.doctor.data)
-    const {jwt}    =  useSelector(state => state.auth.user)
     const [searchQuery, setSearchQuery] =useState('');
     useEffect(()=>{
         dispatch(searchDoctorThunk({search:""}))

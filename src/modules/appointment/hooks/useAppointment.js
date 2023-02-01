@@ -1,12 +1,9 @@
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allAppointmentThunk } from "../../../store/reducers/AppointmentSlice";
 import { useNavigation } from '@react-navigation/core';
 
 export const useAppointment=()=>{
-
- 
-    const {jwt} = useSelector(state => state.auth.user);
     const appointments = useSelector(state => state.appointment.userAppointments);
     const homeRefresh = useSelector(state => state.appointment.homeRefresh);
   
@@ -19,19 +16,12 @@ export const useAppointment=()=>{
     
     useEffect(() => {
       const isActive = 'false';
-      dispatch(allAppointmentThunk({isActive})).then().catch();
+      dispatch(allAppointmentThunk({isActive}))
     }, [homeRefresh]);
   
-    useEffect(() => {});
     return {
 appointments,
 homeRefresh,
 goBack,
     }
 }
- 
- 
- 
- 
- 
- 

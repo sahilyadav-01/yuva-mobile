@@ -10,7 +10,6 @@ export const useEdit=()=>{
 
 
     const {id } = useSelector(state => state.appointment.currentAppointment);
-      const { jwt } = useSelector(state => state.auth.user);
       const { rescheduleAppointment, errorAppointment } = useSelector(state => state.appointment)
       const [date, setDate] = useState(new Date());
       const [time, setTime] = useState(new Date());

@@ -22,7 +22,6 @@ export const useNew=()=> {
     const goBack = () => {
         navigation.goBack();
     }
-    const {jwt} = useSelector(state => state.auth.user);
     const { newMessage, appointmentDescription } = useSelector(state => state.appointment)
     const { doctorId, name, specialization } = useSelector(state => state.appointment.appointment);
     const {relationId}=useSelector(state=>state.profile);
@@ -76,7 +75,7 @@ export const useNew=()=> {
         )
         setDataRelation(newArray)
     } else {
-        dispatch(getRelations({ jwt }))
+        dispatch(getRelations())
     }   
 }, [relationId])
 
