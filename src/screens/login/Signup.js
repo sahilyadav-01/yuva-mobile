@@ -23,7 +23,7 @@ import {
 } from './../../store/reducers/AuthSlice';
 import MessageBox from '../../components/MessageBox';
 import { styles } from '../styles';
-import { CATSKILL_WHITE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
+import { CATSKILL_WHITE, CYAN_BLUE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
 
 const Signup = ({route}) => {
    /**
@@ -210,7 +210,7 @@ const Signup = ({route}) => {
       {/* SignUP Screen */}
       <ScrollView className="flex h-full mt-[30px] my-8">
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Name"
           onChangeText={onChangeName}
@@ -218,7 +218,7 @@ const Signup = ({route}) => {
           placeholderTextColor={SILVER_CHALICE}
         />
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] mb-[10px] rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Contact Number"
           onChangeText={onChangeNumber}
@@ -244,7 +244,7 @@ const Signup = ({route}) => {
         </View>
 
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] mb-[10px]  rounded text-black-900 shadow-2xl border-b-2 pl-2 "
           placeholder="Email"
           onChangeText={onChangeEmail}
@@ -269,7 +269,7 @@ const Signup = ({route}) => {
         </View>
 
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Type Password"
           type="password"
@@ -285,7 +285,7 @@ const Signup = ({route}) => {
           </Text>
         )}
         <TextInput
-          style={{backgroundColor: CATSKILL_WHITE}}
+          style={{backgroundColor: CATSKILL_WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded shadow-2xl mt-{40px} border-b-2 pl-2  mt-[40px]"
           placeholder="Re-Type Password"
           type="password"
