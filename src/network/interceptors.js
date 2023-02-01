@@ -11,10 +11,17 @@ let axiosClient = axios.create();
 
 axiosClient.interceptors.request.use(
   async config => {
-    const jwt = await getJwt();
-    config['headers'] = {
-      Authorization: `Bearer ${jwt ?? ''}`,
-    };
+    const loginUrls = ['/login', '/signup', '/otp', '/password','/validate-otp','/generate-sms-otp'];
+    const isLoginApi = loginUrls.filter(item => {
+      if (config.url.includes(item)) return item;
+    });
+    if (isLoginApi.length === 0) {
+      const jwt = await getJwt();
+      config['headers'] = {
+        Authorization: `Bearer ${jwt ?? ''}`,
+      };
+      return config;
+    }
     return config;
   },
   error => {
@@ -33,3 +40,4 @@ axiosClient.interceptors.response.use(
 );
 
 export default axiosClient;
+
