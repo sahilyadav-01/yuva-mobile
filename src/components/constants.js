@@ -1,0 +1,10 @@
+export const CANCELLED="CANCELLED";
+export const FINISHED="FINISHED";
+export const COMPLETED="COMPLETED";
+export const RESCHEDULED="RESCHEDULED";
+export const INITIATED="INITIATED";
+export const PENDING="Pending";
+export const CONFIRMED="CONFIRMED";
+export const DOWNLOAD_REPORT="Get Report";
+export const UPCOMING="Upcoming";
+export const CENTER = 'center';

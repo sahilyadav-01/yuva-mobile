@@ -1,37 +1,39 @@
 
 
 
-import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Booking from '../screens/yuvaservices/diagnostics/Booking';
+import React from 'react';
+import {  Text } from 'react-native';
 
-import AvailableBooking from '../screens/yuvaservices/diagnostics/AvailableBooking';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import BookingScreen from '../screens/yuvaservices/diagnostics/Booking';
+
+import MyPlanScreen from '../screens/yuvaservices/diagnostics/MyplanScreen';
 import { styles } from '../screens/styles';
-import { AVAILABLE, BOOKING } from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
 const DiagnosticsNavigation = () => {
-  const navigation = useNavigation();
-  const goBack = () => navigation.goBack();
+
+
   return (
     <Tab.Navigator
       style={styles.tabNavigation}
       screenOptions={{
-        tabBarLabelStyle:styles.tab,
-        tabBarStyle:styles.height,
+        tabBarItemStyle:styles.verticalLine,
+         tabBarLabelStyle:styles.tab,
         swipeEnabled: true,
         lazy: false, 
+        tabBarStyle: {
+          style:styles.barColor
+    }
       }}>
       <Tab.Screen
-        name={AVAILABLE}
-        component={AvailableBooking}
+        name='MyPlan'
+        component={MyPlanScreen}
         options={{
           tabBarLabel: () => (
             <Text style={styles.textColor}>
-             {AVAILABLE}
+            MyPlan
             </Text>
           ),
         }}
@@ -39,10 +41,10 @@ const DiagnosticsNavigation = () => {
       <Tab.Screen options={{
         tabBarLabel: () => (
           <Text style={styles.textColor}>
-            {BOOKING} 
+           Bookings 
           </Text>
         ),
-      }} name={BOOKING} component={Booking} />
+      }} name='Bookings' component={BookingScreen} />
 
     </Tab.Navigator>
   );

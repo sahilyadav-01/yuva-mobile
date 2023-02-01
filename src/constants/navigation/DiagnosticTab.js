@@ -5,11 +5,10 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Booking from '../../screens/yuvaservices/diagnostics/Booking';
-
-import AvailableBooking from '../../screens/yuvaservices/diagnostics/AvailableBooking';
+import Bookings from '../../modules/diagnostic/Booking';
+import MyPlan from '../../modules/diagnostic/MyPlans';
 import { styles } from '../../screens/styles';
-import { AVAILABLE, BOOKING } from '../../styles/constants';
+import { AVAILABLE, BOOKING, MYPLAN } from '../../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -26,12 +25,12 @@ const DiagnosticsNavigation = () => {
         lazy: false, 
       }}>
       <Tab.Screen
-        name={AVAILABLE}
-        component={AvailableBooking}
+        name={MYPLAN}
+        component={MyPlan}
         options={{
           tabBarLabel: () => (
             <Text style={styles.textColor}>
-             {AVAILABLE}
+             {MYPLAN}
             </Text>
           ),
         }}
@@ -42,7 +41,7 @@ const DiagnosticsNavigation = () => {
             {BOOKING} 
           </Text>
         ),
-      }} name={BOOKING} component={Booking} />
+      }} name={BOOKING} component={Bookings} />
 
     </Tab.Navigator>
   );

@@ -20,8 +20,11 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   tabNavigation: {
-    flex: 1,
-    marginTop: 21,
+    marginTop: 0,
+  
+  },
+  barColor:{
+    backgroundColor:FLASH_WHITE,
   },
   screenOptions: {
     tabBarLabelStyle: { fontSize: 16, marginTop: 0 },
@@ -30,7 +33,10 @@ export const styles = StyleSheet.create({
     lazy: false,
   },
   textColor: {
-    color: CYAN_BLUE,
+    color:CYAN_BLUE,
+    fontWeight: fonts.weight.fontWeight600,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   carouselText: {
     marginLeft: 17,
@@ -65,7 +71,13 @@ export const styles = StyleSheet.create({
   },
   tab: {
     fontSize: fonts.size.fontSize16,
-    marginTop: 0,
+    marginTop: 100,
+  },
+  verticalLine:{
+    borderRightWidth:2,
+    marginTop:10,
+    height:40,
+    borderRightColor:CYAN_BLUE
   },
   height: {
     height: 40,
