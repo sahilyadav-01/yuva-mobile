@@ -11,7 +11,6 @@ import {fonts} from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
-import PackageCard from '../modules/myPlans/components/packageCard/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +68,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={PackageCard}
+        component={Settings}
         options={{
           tabBarIcon: ({focused}) => {
             return (

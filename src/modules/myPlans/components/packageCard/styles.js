@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     margin: 13,
     backgroundColor: WHITE,
-    marginTop: 239,
   },
   buttonStyle: {
     height: 32,
