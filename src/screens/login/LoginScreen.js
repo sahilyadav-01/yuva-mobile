@@ -23,7 +23,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {loginThunk, hideErrorBox} from '../../store/reducers/AuthSlice';
 import {styles} from '../styles';
 import {profileThunk} from '../../store/reducers/ProfileSlice';
-import { DARK_BLUE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
+import { CYAN_BLUE, DARK_BLUE, KASHMIR_BLUE, ORANGE, SILVER_CHALICE, WHITE } from '../../styles/colors';
 // import { StatusBar } from 'expo-status-bar';
 
 const LoginScreen = props => {
@@ -138,7 +138,7 @@ const LoginScreen = props => {
       {/* Login Screen */}
       <View className="flex mt-[60px]">
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl border-b-2 pl-2 mb-[40px]"
           placeholder="Email / Phone Number"
           onChangeText={onChangeEmail}
@@ -146,7 +146,7 @@ const LoginScreen = props => {
           placeholderTextColor={SILVER_CHALICE}
         />
         <TextInput
-          style={{backgroundColor: WHITE}}
+          style={{backgroundColor: WHITE,color:CYAN_BLUE}}
           className="h-[50px] mr-[30px] ml-[30px] rounded text-black-900 shadow-2xl mt-{40px} border-b-2 pl-2 "
           placeholder="Password"
           type="password"

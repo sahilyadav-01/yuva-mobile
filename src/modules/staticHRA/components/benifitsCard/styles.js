@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {ORANGE, CYAN_BLUE} from '../../../../styles/colors';
-
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -17,5 +16,8 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight500,
     fontFamily: fonts.family.fontFamilyRubix,
     marginBottom: '2%',
+  },
+  bulletStyle: {
+    flexDirection: 'row',
   },
 });
