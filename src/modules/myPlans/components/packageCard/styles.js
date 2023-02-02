@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, ORANGE, WHITE} from '../../../../styles/colors';
-import {CENTER, ROW} from '../../../../styles/constants';
+import {CYAN_BLUE, GREY, ORANGE, WHITE} from '../../../../styles/colors';
+import {CENTER, FLEX_END, FLEX_START, ROW} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   imageStyle: {
     width: 57,
@@ -10,9 +11,9 @@ export const styles = StyleSheet.create({
   viewContainer: {
     height: 166,
     borderRadius: 6,
-    margin: 13,
+    margin: '5%',
     backgroundColor: WHITE,
-    shadowColor: 'grey',
+    shadowColor: GREY,
     borderWidth: 1,
   },
   buttonStyle: {
@@ -25,15 +26,15 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   head: {
-    backgroundColor: 'rgba(239,239,240,1)',
-    alignSelf: 'flex-start',
+    backgroundColor: WHITE,
+    alignSelf: FLEX_START,
     marginLeft: '5%',
     top: -11,
     fontSize: 14,
     color: CYAN_BLUE,
   },
   expiry: {
-    alignSelf: 'flex-end',
+    alignSelf: FLEX_END,
     paddingRight: '3%',
     fontSize: 10,
     color: CYAN_BLUE,
@@ -50,6 +51,12 @@ export const styles = StyleSheet.create({
   text1: {
     alignSelf: CENTER,
     margin: '5%',
+  },
+  text2: {
+    color: GREY,
+    fontSize: fonts.size.fontSize12,
+    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   textColor: {
     color: CYAN_BLUE,
