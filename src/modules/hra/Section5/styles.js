@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     topContainerTextStyle: {
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     },
     questionViewContainerText: {
         fontSize: fonts.size.fontSize16,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         marginBottom: 9,
         color: DARK_BLUE,
     },
@@ -43,13 +43,13 @@ export const styles = StyleSheet.create({
     text: {
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize16,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         marginBottom: 9,
     },
     textError: {
         color: RED,
         fontSize: fonts.size.fontSize16,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         marginBottom: 8,
     },
     questionViewContainerTextInput: {
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 5,
         marginTop: 8,
         fontSize: fonts.size.fontSize12,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         backgroundColor: WHITE,
         borderWidth: 1,
     },

@@ -12,14 +12,14 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     topContainerTextStyle1: {
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize24,
         color: DARK_BLUE,
     },
     topContainerTextStyle2: {
         marginTop: 8,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize14,
         color: DARK_BLUE,

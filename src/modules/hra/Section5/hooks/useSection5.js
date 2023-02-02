@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { section5QThunk } from '../../../../store/reducers/Section5Slice';
 import { dispatch_option } from '../../../../store/reducers/Section5Slice';
-import { getDimensions } from '../utils/utils';
-import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, LOGGEDIN, LOGIN_SCREEN, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, WINDOW, ZERO } from '../../constant';
+import { getDimensions } from '../../../../utils/utils';
+import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, LOGGEDIN, LOGIN_SCREEN, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, ZERO } from '../../constant';
 
 export const useSection5 = () => {
     const [smoke, setSmoke] = useState(false);
@@ -56,7 +56,7 @@ export const useSection5 = () => {
         dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
     };
 
-    const {width} = getDimensions();
+    const { width } = getDimensions();
     const progressWidth = width;
 
     useEffect(() => {

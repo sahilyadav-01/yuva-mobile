@@ -29,5 +29,6 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize16,
         color: WHITE,
         fontWeight: fonts.weight.fontWeight600,
+        fontfamily: fonts.family.fontFamilyRubix,
     }
 });

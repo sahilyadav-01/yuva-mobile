@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text } from 'react-native'
 import Header from '../../../components/Header';
 import { LOGGEDIN, SECTION_10_HEADING, SECTION_10_SUB_HEADING } from '../constant';
 import { useSection10 } from './hooks/useSection10';
@@ -10,17 +10,17 @@ const Section10 = () => {
   const { loggedIn, onPressRightIcon } = useSection10();
 
   return (
-    <SafeAreaView>
-       <View style={styles.topContainer}>
-      <Header
-        isLoggedIn={loggedIn === LOGGEDIN}
-        onPressRightIcon={onPressRightIcon}
-      />
-     
+    <>
+      <View style={styles.topContainer}>
+        <Header
+          isLoggedIn={loggedIn === LOGGEDIN}
+          onPressRightIcon={onPressRightIcon}
+        />
+
         <Text style={styles.topContainerTextStyle}>{SECTION_10_HEADING}</Text>
         <Text style={styles.topContainerSubTextStyle}>{SECTION_10_SUB_HEADING}</Text>
       </View>
-    </SafeAreaView>
+    </>
   )
 }
 

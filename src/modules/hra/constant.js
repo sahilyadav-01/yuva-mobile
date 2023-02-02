@@ -1,42 +1,41 @@
 export const ALERT = 'Alert';
 export const REPORT_STATUS1 = 'Please complete the form to download the report';
 export const REPORT_STATUS2 = 'You have successfully completed Health Risk Assessment, We are in process of generating your report. Wait for few minutes';
-export const REPORT_STATUS3 = 'Due to Internal Server Error Your Report cant be generated right now' ;
+export const REPORT_STATUS3 = 'Due to Internal Server Error Your Report cant be generated right now';
 export const FILE_NAME = 'reportPdf.pdf';
 export const LOGGEDIN = 'loggedIn';
 export const LOGIN_SCREEN = 'LoginScreen';
 export const ALERT_TEXT1 = 'Ok';
 export const DEFAULT_ALERT_MESSAGE = 'Worng Input';
-export const WINDOW = 'window';
 export const ALL_QUESTION_CHECK = 'Please answer all questions to continue.';
 export const HRA_BANNER_TEXT = ' Generate your Health Risk Assement report today.';
-export const BUTTON_TEXT= 'Next';
-export const SUBMIT_BUTTON_TEXT= 'Generate My Report';
-export const SECTION_1= 'section1';
-export const SECTION_2= 'section2';
-export const SECTION_3= 'section3';
-export const SECTION_4= 'section4';
-export const SECTION_5= 'section5';
-export const SECTION_6= 'section6';
-export const SECTION_7= 'section7';
-export const SECTION_8= 'section8';
-export const SECTION_9= 'section9';
-export const SECTION_10= 'section10';
+export const BUTTON_TEXT = 'Next';
+export const SUBMIT_BUTTON_TEXT = 'Generate My Report';
+export const SECTION_1 = 'section1';
+export const SECTION_2 = 'section2';
+export const SECTION_3 = 'section3';
+export const SECTION_4 = 'section4';
+export const SECTION_5 = 'section5';
+export const SECTION_6 = 'section6';
+export const SECTION_7 = 'section7';
+export const SECTION_8 = 'section8';
+export const SECTION_9 = 'section9';
+export const SECTION_10 = 'section10';
 
-export const ZERO= '0';
-export const ONE= '1';
+export const ZERO = '0';
+export const ONE = '1';
 
-export const FIRST_QUESTION= 'Q1';
-export const SECOND_QUESTION= 'Q2';
-export const THIRD_QUESTION= 'Q3';
-export const FOURTH_QUESTION= 'Q4';
-export const SEVENTH_QUESTION= 'Q7';
-export const EIGHTH_QUESTION= 'Q8';
+export const FIRST_QUESTION = 'Q1';
+export const SECOND_QUESTION = 'Q2';
+export const THIRD_QUESTION = 'Q3';
+export const FOURTH_QUESTION = 'Q4';
+export const SEVENTH_QUESTION = 'Q7';
+export const EIGHTH_QUESTION = 'Q8';
 
 export const QUESTION_TYPE_PICKER = 'picker';
 export const QUESTION_TYPE_INPUT = 'input';
-export const KEYBOARD_TYPE_VALUE= 'numeric';
-export const KEYBOARD_TYPE_VALUE_TEXT= 'text';
+export const KEYBOARD_TYPE_VALUE = 'numeric';
+export const KEYBOARD_TYPE_VALUE_TEXT = 'text';
 export const PLACEHOLDER_COLOR = 'black';
 
 /*section1*/

@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
     },
     scrollViewContainer: {
         height: 650,

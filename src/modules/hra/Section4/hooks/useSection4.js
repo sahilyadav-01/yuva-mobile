@@ -4,14 +4,14 @@ import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
-import { getDimensions } from '../utils/utils';
-import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, WINDOW, ZERO } from '../../constant';
+import { getDimensions } from '../../../../utils/utils';
+import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, ZERO } from '../../constant';
 
 export const useSection4 = () => {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const [alochol, setAlochol] = useState(false);
+    const [alcohol, setAlochol] = useState(false);
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
     const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
@@ -31,7 +31,7 @@ export const useSection4 = () => {
     const setQuestion4 = value => {
         dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
     };
-    const {width} = getDimensions();
+    const { width } = getDimensions();
     const progressWidth = width;
     useEffect(() => {
         dispatch(section4QThunk({ jwt }));
@@ -67,7 +67,7 @@ export const useSection4 = () => {
         setQuestion3,
         setQuestion4,
         answers,
-        alochol,
+        alcohol,
         next,
     };
 };

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { Dimensions, Alert } from 'react-native'
+import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
 import { section9QThunk, dispatch_option, finalSubmission } from '../../../../store/reducers/Section9Slice';
 import { transforSubData } from '../../../../utils/utils'
-import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_10, WINDOW } from '../../constant';
-import { getDimensions } from '../utils/utils';
+import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_10 } from '../../constant';
+import { getDimensions } from '../../../../utils/utils';
 
 export const useSection9 = () => {
     const navigation = useNavigation()
@@ -25,7 +25,7 @@ export const useSection9 = () => {
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
     const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
-    const {width} = getDimensions();
+    const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {

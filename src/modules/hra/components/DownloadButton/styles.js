@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         marginTop: 4,
         color: ORANGE,
         fontSize: fonts.size.fontSize15,
+        fontfamily: fonts.family.fontFamilyRubix,
     },
 
     textStyle: {

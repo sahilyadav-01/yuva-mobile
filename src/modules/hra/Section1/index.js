@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native'
 import * as Progress from 'react-native-progress';
 import PickerData from '../../../utils/PickerData';
 import SelectList from 'react-native-dropdown-select-list';
@@ -14,13 +14,13 @@ const Section1 = () => {
     const { loggedIn, onPressRightIcon, progressWidth, requiredFieldQ1, questionData, inputCheck, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4, answers, setQuestion5, next } = useSection1();
 
     return (
-        <SafeAreaView>
+        <>
             <Header
-                isLoggedIn={loggedIn ===  LOGGEDIN }
+                isLoggedIn={loggedIn === LOGGEDIN}
                 onPressRightIcon={onPressRightIcon}
             />
             <View style={styles.progressBarContainer}>
-                <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={0.1} width={progressWidth} height={12} />
+                <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.1} width={progressWidth} height={12} />
             </View>
             <View style={styles.topContainer}>
                 <Text style={styles.topContainerTextStyle} >{SECTION_1_HEADING}</Text>
@@ -97,7 +97,7 @@ const Section1 = () => {
                     </ScrollView>
                 </View>
             </View>
-        </SafeAreaView>
+        </>
     )
 }
 

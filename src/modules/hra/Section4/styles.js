@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     topContainerTextStyle1: {
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     },
     questionViewContainerText: {
         fontSize: fonts.size.fontSize16,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         marginBottom: 9,
         color: SLATE_GRAY,
     },

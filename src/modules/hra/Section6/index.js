@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native'
 import * as Progress from 'react-native-progress';
 import SectionInput from '../../../components/SectionInput'
 import SectionPicker from '../../../components/SectionPicker';
@@ -16,13 +16,13 @@ const Section6 = () => {
     const { loggedIn, onPressRightIcon, progressWidth, questionData, answers, next } = useSection6();
 
     return (
-        <SafeAreaView>
+        <>
             <Header
                 isLoggedIn={loggedIn === LOGGEDIN}
                 onPressRightIcon={onPressRightIcon}
             />
             <View style={styles.progressBarContainer}>
-            <Progress.Bar color= {GREEN} unfilledColor={PALE_GOLDENROD} progress={0.6} width={progressWidth} height={12} />
+                <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.6} width={progressWidth} height={12} />
             </View>
             <View style={styles.topContainer}>
                 <Text style={styles.topContainerTextStyle}>{SECTION_6_HEADING}</Text>
@@ -31,26 +31,37 @@ const Section6 = () => {
                         bounces={false}
                         contentContainerStyle={styles.scrollViewContentContainerStyle}
                         showsVerticalScrollIndicator={false}>
-                        {questionData.map((item) => {
-                            if (item.questionType.includes(QUESTION_TYPE_PICKER)) {
-                                const data = PickerData[item.questionType];
-                                return <SectionPicker key={item.questionId}
-                                    text={item.question}
-                                    data={PickerData[item.questionType]}
-                                    defaultAnswer={answers[item.questionId]}
-                                    dispatcher={dispatch_option}
-                                    questionId={item.questionId}
-                                />
-                            } else if (item.questionType == QUESTION_TYPE_INPUT) {
-                                return <SectionInput
-                                    key={item.questionId}
-                                    defValue={answers[item.questionId]}
-                                    text={item.question}
-                                    dispatcher={dispatch_option}
-                                    questionId={item.questionId}
-                                />
-                            }
-                        })}
+                        <FlatList
+                            data={questionData}
+                            keyExtractor={item => item.questionId}
+                            renderItem={({ item }) => {
+                                switch (true) {
+                                    case item.questionType.includes(QUESTION_TYPE_PICKER):
+                                        return (
+                                            <SectionPicker
+                                                key={item.questionId}
+                                                text={item.question}
+                                                data={PickerData[item.questionType]}
+                                                defaultAnswer={answers[item.questionId]}
+                                                dispatcher={dispatch_option}
+                                                questionId={item.questionId}
+                                            />
+                                        );
+                                    case item.questionType.includes(QUESTION_TYPE_INPUT):
+                                        return (
+                                            <SectionInput
+                                                key={item.questionId}
+                                                defValue={answers[item.questionId]}
+                                                text={item.question}
+                                                dispatcher={dispatch_option}
+                                                questionId={item.questionId}
+                                            />
+                                        );
+                                    default:
+                                        return null;
+                                }
+                            }}
+                        />
                         <View style={styles.touchableOpacityViewContainer}>
                             <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>
                                 <Text style={styles.touchableOpacityTextStyle}>{BUTTON_TEXT}</Text>
@@ -59,7 +70,7 @@ const Section6 = () => {
                     </ScrollView>
                 </View>
             </View>
-        </SafeAreaView>
+        </>
     )
 }
 

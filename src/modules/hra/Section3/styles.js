@@ -15,12 +15,12 @@ export const styles = StyleSheet.create({
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize16,
         color: DARK_BLUE,
-        fontfamily:fonts.family.fontFamilyRubix
+        fontfamily: fonts.family.fontFamilyRubix
     },
     topContainerTextStyle2: {
         marginTop: 8,
         fontWeight: fonts.weight.fontWeight500,
-        fontfamily:fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize16,
         color: DARK_BLUE,
     },

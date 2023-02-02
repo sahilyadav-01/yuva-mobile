@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
 import { section1QThunk } from '../../../../store/reducers/Section1Slice';
 import { dispatch_option } from '../../../../store/reducers/Section1Slice';
-import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, FIRST_QUESTION, FOURTH_QUESTION, LOGGEDIN, LOGIN_SCREEN, SECOND_QUESTION, SECTION_1_PLACEHOLDER_Q1, SECTION_1_PLACEHOLDER_Q2, SECTION_1_PLACEHOLDER_Q3, SECTION_1_PLACEHOLDER_Q4, SECTION_2, THIRD_QUESTION, WINDOW } from '../../constant';
+import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, FIRST_QUESTION, FOURTH_QUESTION, LOGGEDIN, LOGIN_SCREEN, SECOND_QUESTION, SECTION_1_PLACEHOLDER_Q1, SECTION_1_PLACEHOLDER_Q2, SECTION_1_PLACEHOLDER_Q3, SECTION_1_PLACEHOLDER_Q4, SECTION_2, THIRD_QUESTION } from '../../constant';
 import { getDimensions } from '../../../../utils/utils';
 
 

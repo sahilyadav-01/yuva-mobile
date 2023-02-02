@@ -3,8 +3,8 @@ import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
 import { section3QThunk } from '../../../../store/reducers/Section3Slice';
-import { getDimensions } from '../utils/utils';
-import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_4, WINDOW } from '../../constant';
+import { getDimensions } from '../../../../utils/utils';
+import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_4 } from '../../constant';
 
 export const useSection3 = () => {
     const navigation = useNavigation()
@@ -12,7 +12,7 @@ export const useSection3 = () => {
     const answers = useSelector(state => state.section3.answers)
     const questionData = useSelector(state => state.section3.rawQuestions)
     const { user: { jwt }, loggedIn, } = useSelector(state => state.auth)
-    const {width} = getDimensions();
+    const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {
