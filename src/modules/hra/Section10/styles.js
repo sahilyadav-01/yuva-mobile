@@ -13,16 +13,16 @@ export const styles = StyleSheet.create({
     },
     topContainerTextStyle: {
         marginHorizontal: 30,
-
         marginTop: 106,
         fontWeight: fonts.weight.fontWeight600,
+        fontfamily:fonts.family.fontFamilyRubix,
         textAlign: CENTER,
         fontSize: fonts.size.fontSize24,
         color: ORANGE,
     },
     topContainerSubTextStyle: {
         marginHorizontal: 30,
-
+        fontfamily:fonts.family.fontFamilyRubix,
         marginTop: 30,
         fontWeight: fonts.weight.fontWeight500,
         textAlign: CENTER,

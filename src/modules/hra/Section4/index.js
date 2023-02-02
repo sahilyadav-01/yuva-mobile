@@ -11,7 +11,7 @@ import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section4 = () => {
 
-  const { loggedIn, onPressRightIcon, progressWidth, alochol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next } = useSection4();
+  const { loggedIn, onPressRightIcon, progressWidth, alcohol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next } = useSection4();
 
   return (
     <SafeAreaView>
@@ -45,7 +45,7 @@ const Section4 = () => {
                 search={false}
               />
             </View>
-            {alochol ? (
+            {alcohol && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={styles.questionViewContainerText}>{questionData[1]?.question}</Text>
@@ -93,8 +93,6 @@ const Section4 = () => {
                   />
                 </View>
               </View>
-            ) : (
-              <></>
             )}
             <View style={styles.touchableOpacityViewContainer}>
               <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>

@@ -3,10 +3,10 @@ import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
 import HRASectionContainer from '../components/HRASectionContainer';
 import Header from '../../../components/Header';
 import DownloadButton from '../components/DownloadButton';
-import hraImg from '../../../../assets/hra_img.png';
 import { LOGGEDIN, HRA_BANNER_TEXT } from "../constant";
 import { styles } from './styles';
 import { useHraHome } from './hooks/useHraHome';
+import { PNG } from '../../../../assets';
 
 const HRAHome = () => {
   const { loggedIn, onPressRightIcon, onDisplay } = useHraHome();
@@ -28,7 +28,7 @@ const HRAHome = () => {
                   </Text>
                 </View>
                 <View style={styles.imageContainerStyle}>
-                  <Image source={hraImg} style={styles.imageStyle} />
+                  <Image source={PNG.HRA_SECTION_ICONS} style={styles.imageStyle} />
                 </View>
               </View>
             </View>

@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
         display: FLEX,
     },
     topContainer: {
-        shadowColor: 'rgba(0, 0, 0, 0.1)',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -36,6 +35,7 @@ export const styles = StyleSheet.create({
         height: 100,
         width: 180,
         fontSize: fonts.size.fontSize14,
+        fontfamily:fonts.family.fontFamilyRubix
     },
     imageContainerStyle: {
         marginLeft: 20,

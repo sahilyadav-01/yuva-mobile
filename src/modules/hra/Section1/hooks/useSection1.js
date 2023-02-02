@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
-import { Dimensions } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { section1QThunk } from '../../../../store/reducers/Section1Slice';
 import { dispatch_option } from '../../../../store/reducers/Section1Slice';
 import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, FIRST_QUESTION, FOURTH_QUESTION, LOGGEDIN, LOGIN_SCREEN, SECOND_QUESTION, SECTION_1_PLACEHOLDER_Q1, SECTION_1_PLACEHOLDER_Q2, SECTION_1_PLACEHOLDER_Q3, SECTION_1_PLACEHOLDER_Q4, SECTION_2, THIRD_QUESTION, WINDOW } from '../../constant';
+import { getDimensions } from '../../../../utils/utils';
 
 
 export const useSection1 = () => {
@@ -72,8 +72,8 @@ export const useSection1 = () => {
     const setQuestion5 = value => {
         dispatch(dispatch_option({ key: questionData[4].questionId, value: value }));
     };
-    const windowWidth = Dimensions.get(WINDOW).width;
-    const progressWidth = windowWidth
+    const {width} = getDimensions();
+    const progressWidth = width;
     const next = () => {
 
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {

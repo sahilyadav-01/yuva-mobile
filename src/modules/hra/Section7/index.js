@@ -45,7 +45,7 @@ const Section7 = () => {
                 search={false}
               />
             </View>
-            {medicalConditionDoYouSufferFromAnyIllness ? (
+            {medicalConditionDoYouSufferFromAnyIllness && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[1]?.question}
@@ -62,10 +62,8 @@ const Section7 = () => {
                   search={false}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalConditionDiabetes ? (
+            {medicalConditionDiabetes && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[2]?.question}
@@ -82,10 +80,8 @@ const Section7 = () => {
                   search={false}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalCondition ? (
+            {medicalCondition && (
               <View style={styles.questionViewContainer}>
                 <Text style={requiredFieldQ4 ? styles.textError : styles.text}>{questionData[3]?.question}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -95,10 +91,8 @@ const Section7 = () => {
                   onEndEditing={(e) => inputCheck(FOURTH_QUESTION, e.nativeEvent.text)}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalConditionDoYouSufferFromAnyIllness ? (
+            {medicalConditionDoYouSufferFromAnyIllness && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[4]?.question}
@@ -115,10 +109,8 @@ const Section7 = () => {
                   search={false}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalConditionHypertension ? (
+            {medicalConditionHypertension && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[5]?.question}
@@ -135,10 +127,8 @@ const Section7 = () => {
                   search={false}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalCondition1 ? (
+            {medicalCondition1 && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={requiredFieldQ7 ? styles.textError : styles.text} >{questionData[6]?.question}</Text>
@@ -160,10 +150,8 @@ const Section7 = () => {
                   />
                 </View>
               </View>
-            ) : (
-              <></>
             )}
-            {medicalConditionDoYouSufferFromAnyIllness ? (
+            {medicalConditionDoYouSufferFromAnyIllness && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[8]?.question}
@@ -180,10 +168,8 @@ const Section7 = () => {
                   search={false}
                 />
               </View>
-            ) : (
-              <></>
             )}
-            {medicalConditionAnyCancer ? (
+            {medicalConditionAnyCancer && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -193,8 +179,6 @@ const Section7 = () => {
                   onChangeText={setQuestion9A}
                 />
               </View>
-            ) : (
-              <></>
             )}
             <View style={styles.questionViewContainer}>
               <Text style={styles.questionViewContainerText}>
@@ -212,7 +196,7 @@ const Section7 = () => {
                 search={false}
               />
             </View>
-            {medicalConditionChronicIllness ? (
+            {medicalConditionChronicIllness && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -222,8 +206,6 @@ const Section7 = () => {
                   onChangeText={setQuestion10A}
                 />
               </View>
-            ) : (
-              <></>
             )}
             <View style={styles.touchableOpacityViewContainer}>
               <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>

@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     },
     topContainerTextStyle: {
         fontWeight: fonts.weight.fontWeight500,
+        fontfamily:fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
     },

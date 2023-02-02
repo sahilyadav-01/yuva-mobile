@@ -45,7 +45,7 @@ const Section5 = () => {
                 search={false}
               />
             </View>
-            {smoke ? (
+            {smoke && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={requiredFieldQ2 ? styles.textError : styles.text}>{questionData[1]?.question}</Text>
@@ -66,8 +66,6 @@ const Section5 = () => {
                   />
                 </View>
               </View>
-            ) : (
-              <></>
             )}
             <View style={styles.questionViewContainer}>
               <Text style={styles.questionViewContainerText}>

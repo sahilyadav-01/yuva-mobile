@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Alert, Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
+import { getDimensions } from '../utils/utils';
 import { section6QThunk } from '../../../../store/reducers/Section6Slice';
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_7, WINDOW } from '../../constant';
 
@@ -11,8 +12,8 @@ export const useSection6 = () => {
     const answers = useSelector(state => state.section6.answers)
     const questionData = useSelector(state => state.section6.rawQuestions)
     const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
-    const windowWidth = Dimensions.get(WINDOW).width;
-    const progressWidth = windowWidth
+    const {width} = getDimensions();
+    const progressWidth = width
 
     useEffect(() => {
         dispatch(section6QThunk({ jwt }))

@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     topContainerTextStyle: {
+        fontfamily:fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize17,
         color: DARK_BLUE,
@@ -27,6 +28,7 @@ export const styles = StyleSheet.create({
         marginTop: 20,
     },
     questionViewContainerText: {
+        fontfamily:fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize16,
         marginBottom: 9,
         color: DARK_BLUE,
@@ -36,6 +38,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         paddingLeft: 5,
         marginTop: 8,
+        fontfamily:fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize12,
         backgroundColor: WHITE,
         borderWidth: 1,
@@ -50,11 +53,13 @@ export const styles = StyleSheet.create({
     text: {
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize16,
+        fontfamily:fonts.family.fontFamilyRubix,
         marginBottom: 9,
     },
     textError: {
         color: RED,
         fontSize: fonts.size.fontSize16,
+        fontfamily:fonts.family.fontFamilyRubix,
         marginBottom: 8,
     },
     touchableOpacityViewContainer: {

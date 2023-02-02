@@ -33,6 +33,7 @@ import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
+import HRA_SECTION_ICONS from './hra_img.png';
 
 
 import INTERNALMEDICINE from './internalMedicine.png';
@@ -99,6 +100,7 @@ const PNG = {
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
   HRA_HOMEImage,
+  HRA_SECTION_ICONS,
 };
 
 const SVG = {

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Alert, Dimensions } from 'react-native';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
+import { getDimensions } from '../utils/utils';
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, WINDOW, ZERO } from '../../constant';
 
 export const useSection4 = () => {
@@ -30,8 +31,8 @@ export const useSection4 = () => {
     const setQuestion4 = value => {
         dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
     };
-    const windowWidth = Dimensions.get(WINDOW).width;
-    const progressWidth = windowWidth;
+    const {width} = getDimensions();
+    const progressWidth = width;
     useEffect(() => {
         dispatch(section4QThunk({ jwt }));
     }, []);

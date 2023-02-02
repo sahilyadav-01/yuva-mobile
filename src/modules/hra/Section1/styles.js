@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
         fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize24,
         color: DARK_BLUE,
+        fontfamily:fonts.family.fontFamilyRubix,
     },
     scrollViewContainer: {
         height: 650,
@@ -41,17 +42,20 @@ export const styles = StyleSheet.create({
     },
     questionViewContainerText: {
         fontSize: fonts.size.fontSize16,
+        fontfamily:fonts.family.fontFamilyRubix,
         marginBottom: 9,
         color: SLATE_GRAY,
     },
     text: {
         color: SLATE_GRAY,
         fontSize: fonts.size.fontSize16,
+        fontfamily:fonts.family.fontFamilyRubix,
         marginBottom: 9,
     },
     textError: {
         color: RED,
         fontSize: fonts.size.fontSize16,
+        fontfamily:fonts.family.fontFamilyRubix,
         marginBottom: 8,
     },
     questionViewContainerTextInput: {

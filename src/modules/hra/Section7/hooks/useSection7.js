@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
+import { getDimensions } from '../utils/utils';
 import { section7QThunk, dispatch_option, dispatch_option_extra_questions } from '../../../../store/reducers/Section7Slice';
 import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, KEY_VALUE10A, KEY_VALUE9A, LOGGEDIN, LOGIN_SCREEN, ONE, SECTION_8, WINDOW, ZERO } from '../../constant';
 
@@ -112,8 +113,8 @@ export const useSection7 = () => {
 
     }
 
-    const windowWidth = Dimensions.get(WINDOW).width;
-    const progressWidth = windowWidth;
+    const {width} = getDimensions();
+    const progressWidth = width;
 
     useEffect(() => {
         dispatch(section7QThunk({ jwt }));
