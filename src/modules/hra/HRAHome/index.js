@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import HRASectionContainer from '../components/HRASectionContainer';
 import Header from '../../../components/Header';
 import DownloadButton from '../components/DownloadButton';
@@ -12,7 +12,7 @@ const HRAHome = () => {
   const { loggedIn, onPressRightIcon, onDisplay } = useHraHome();
 
   return (
-    <SafeAreaView>
+    <>
       <Header
         isLoggedIn={loggedIn === LOGGEDIN}
         onPressRightIcon={onPressRightIcon}
@@ -39,7 +39,7 @@ const HRAHome = () => {
           </ScrollView>
         </View>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 
