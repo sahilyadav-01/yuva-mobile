@@ -1,7 +1,7 @@
 
 import { StyleSheet } from 'react-native';
 import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE } from '../styles/colors';
-import { COLUMN, ROW, SPACE_BETWEEN, CENTER } from '../styles/constants';
+import { COLUMN, ROW, SPACE_BETWEEN, CENTER, FLEX_END, ABSOLUTE, FLEX_START } from '../styles/constants';
 import { fonts } from '../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -145,7 +145,7 @@ marginTop: 10,
     marginRight:14,
     backgroundColor: WHITE,
     borderWidth: 1,
-    borderColor:'rgba(0, 0, 0, 0.1)',
+    borderColor:WHITE,
     marginTop:28,
   },
   buttonStyle: {
@@ -157,11 +157,10 @@ marginTop: 10,
     justifyContent: CENTER,
   },
   head: {
-    backgroundColor: 'rgba(239,239,240,1)',
-    alignSelf: 'flex-start',
+    alignSelf: FLEX_START,
     marginLeft: 9,
-    shadowColor: 'white',
-    position: 'absolute',
+    shadowColor:WHITE,
+    position: ABSOLUTE,
     top: -11,
     fontSize: 14,
     color: CYAN_BLUE,
@@ -195,7 +194,7 @@ marginTop: 10,
     fontFamily: fonts.family.fontFamilyRubix,
   },
   expiry: {
-    alignSelf: 'flex-end',
+    alignSelf: FLEX_END,
     marginTop:18,
     marginRight:11,
     marginTop:11,

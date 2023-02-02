@@ -8,3 +8,7 @@ export const CONFIRMED="CONFIRMED";
 export const DOWNLOAD_REPORT="Get Report";
 export const UPCOMING="Upcoming";
 export const CENTER = 'center';
+export const FLEXEND= 'flex-end'
+export const SELECT_THIS_PACKAGE='Select this package';
+export const AVAILABLE='Available Tests - ';
+export const USED='used -'

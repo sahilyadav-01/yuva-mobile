@@ -8,6 +8,7 @@ export const WRAP = 'wrap';
 export const COLUMN = 'column';
 export const TOP = 'top';
 export const FLEX = 'flex';
+export const FLEX_START='flex-start';
 export const FLEX_END = 'flex-end';
 export const MYPLAN="My Plan";
 export const BOOKING="Booking";

@@ -5,14 +5,11 @@ import { styles } from './styles';
 import { CANCELLED, COMPLETED, CONFIRMED, DOWNLOAD_REPORT, FINISHED, INITIATED, PENDING, RESCHEDULED } from './constants';
 import CardButton from './CardButton'
 import { GREEN, RED_SHADE } from '../styles/colors';
-const BookingsCard = ({ }) => {
-
-
-
+const BookingsCard = ({props }) => {
 
     return (
-
-
+<View>
+<TouchableOpacity>
         <View style={styles.BookingCard}>
             <View >
                 <View style={styles.status}>
@@ -44,9 +41,10 @@ const BookingsCard = ({ }) => {
                 />
             </View>
         </View>
+        </TouchableOpacity>
 
 
-
+        </View>
 
     )
 }

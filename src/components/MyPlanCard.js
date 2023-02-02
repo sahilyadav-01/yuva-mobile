@@ -1,54 +1,49 @@
 
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { PNG } from '../../assets';
+import { AVAILABLE, SELECT_THIS_PACKAGE, USED } from './constants';
 
 
-
-
-const MyPlanCard = () => {
-
+const MyPlanCard = ({ item }) => {
 
     return (
+
         <View style={styles.viewContainer}>
             <View>
-                <Text style={styles.head}>Silver YUVA Plan </Text>
-                <Text style={styles.expiry}>Valid Till 12/12/2023</Text>
-            </View>
-            <View style={styles.sideBySide}>
-                <Image source={PNG.PACKAGE} style={styles.imageStyle} />
-                <View style={styles.text1}>
-                    <Text style={styles.textColor}>Complete Health Checkup</Text>
-                    <Text>
-                        Used -2Available -2
 
-                    </Text>
-                </View>
-            </View>
-            <View>
-                <Text style={styles.Available}>Available Tests - 98</Text>
-            </View>
-            <TouchableOpacity style={styles.buttonStyle} >
-                <Text style={styles.textStyle}> Select this package</Text>
-            </TouchableOpacity>
-            <View style={styles.sideBySide}>
-                <Image source={PNG.PACKAGE} style={styles.imageStyle} />
-                <View style={styles.text1}>
-                    <Text style={styles.textColor}>Full Body Health Checkup</Text>
-                    <Text>
-                        Used -2Available -2
+                <Text style={styles.head}>{item?.name} </Text>
+                <Text style={styles.expiry}>{item.endDate}</Text>
 
-                    </Text>
-                </View>
+
             </View>
-            <View>
-                <Text style={styles.Available}>Available Tests - 98</Text>
-            </View>
-            <TouchableOpacity style={styles.buttonStyle} >
-                <Text style={styles.textStyle}> Select this package</Text>
-            </TouchableOpacity>
+
+            {item.assignedAttributeResponseDto.map((i) => {
+                return (
+                    <View>
+                        <View style={styles.sideBySide}>
+                            <Image source={PNG.PACKAGE} style={styles.imageStyle} />
+                            <View style={styles.text1}>
+                                <Text style={styles.textColor}>{i?.name}</Text>
+                                <Text>
+                                    {USED} {i?.used}
+
+                                </Text>
+                            </View>
+                        </View>
+                        <View>
+                            <Text style={styles.Available}>{AVAILABLE}{i.available}</Text>
+                        </View>
+
+                        <View>
+                            <TouchableOpacity style={styles.buttonStyle} >
+                                <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                )
+            })}
         </View>
     )
 

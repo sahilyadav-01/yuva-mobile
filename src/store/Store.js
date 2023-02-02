@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducers/AuthSlice';
 import section1 from './reducers/Section1Slice';
 import section2 from './reducers/Section2Slice';
@@ -14,6 +14,7 @@ import appointment from './reducers/AppointmentSlice';
 import diagnostic from './reducers/DiagnosticsSlice';
 import talkToDoctor from './reducers/TalkToDoctorSlice';
 import profile from './reducers/ProfileSlice';
+import programAndPlan from './reducers/ProgramAndPlanSlice';
 
 const store = configureStore({
   reducer: {
@@ -29,9 +30,10 @@ const store = configureStore({
     section9: section9,
     doctor: doctor,
     appointment: appointment,
-    diagnostic:diagnostic,
+    diagnostic: diagnostic,
     talkToDoctor: talkToDoctor,
     profile: profile,
+    programAndPlan: programAndPlan,
   },
 });
 
