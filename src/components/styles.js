@@ -139,7 +139,7 @@ marginTop: 10,
     marginLeft:19,
   },
   viewContainer: {
-    height: 383,
+  flexGrow:1,
     borderRadius: 6,
     marginLeft: 13,
     marginRight:14,

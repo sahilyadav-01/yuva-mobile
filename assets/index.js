@@ -49,6 +49,7 @@ import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
+import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
 
 const PNG = {
   AMICO,
@@ -96,7 +97,8 @@ const PNG = {
   HEALTHIMG,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
-  PACKAGE
+  PACKAGE,
+  DIAGNOSTICMYPLAN
 };
 
 const SVG = {
