@@ -31,7 +31,7 @@ const PackageCard = () => {
           <View style={styles.text1}>
             <Text style={styles.textColor}>{text}</Text>
             <Text style={styles.text2}>
-              {USED}-{used} {AVAILABLE}-{available}
+              {USED} {used} {AVAILABLE} {available}
             </Text>
           </View>
         </View>
