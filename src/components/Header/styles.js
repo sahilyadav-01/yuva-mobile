@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     flex:1,
   },
   sectionBottom: {
+    flexDirection: ROW,
     alignSelf: FLEX_START,
     marginHorizontal: 12,
     bottom: 12,
@@ -39,5 +40,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.fontFamilyRubix,
     fontSize: fonts.size.fontSize16,
     color: WHITE,
+    paddingHorizontal: 12,
   }
 });
