@@ -11,4 +11,6 @@ export const CENTER = 'center';
 export const FLEXEND= 'flex-end'
 export const SELECT_THIS_PACKAGE='Select this package';
 export const AVAILABLE='Available Tests - ';
-export const USED='used -'
+export const USED='used -';
+export const DATE='Date';
+export const DESCRIPTION='description';
