@@ -18,10 +18,10 @@ const PackageCard = () => {
   const bookNow = () => {
     navigation.navigate('Doctor');
   };
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     const {packageName, expiryDate, used, available, text} = item;
     return (
-      <View style={styles.viewContainer}>
+      <View style={styles.viewContainer} key={index}>
         <Text style={styles.head}>{packageName}</Text>
 
         <Text style={styles.expiry}>{expiryDate}</Text>

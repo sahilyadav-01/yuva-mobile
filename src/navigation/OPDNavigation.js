@@ -3,6 +3,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import AppointmentNav from './AppointmentNav';
 import MyPlansNav from './MyPlansNav';
 import {useSelector} from 'react-redux';
+import {DARK_BLUE} from '../styles/colors';
 const Tab = createMaterialTopTabNavigator();
 
 const OPDNavigation = () => {
@@ -14,7 +15,7 @@ const OPDNavigation = () => {
       screenOptions={{
         tabBarLabelStyle: {fontSize: 16, marginTop: 15},
         tabBarStyle: {
-          color: '#1D2334',
+          color: DARK_BLUE,
           height: 70,
           display: !tabBarVisible ? 'none' : undefined,
         },
