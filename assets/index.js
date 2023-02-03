@@ -33,7 +33,8 @@ import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
-
+import PACKAGE from './package.png';
+import HRA_SECTION_ICONS from './hra_img.png';
 import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
 import PEDIATRICS from './Pediatrics.png';
@@ -49,6 +50,8 @@ import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
+import HRA_HOMEImage from './HRA_HOME.png';
+import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import DOCTOR from './doctor.png';
 const PNG = {
   AMICO,
@@ -97,6 +100,10 @@ const PNG = {
   HEALTHIMG,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
+  HRA_HOMEImage,
+  HRA_SECTION_ICONS,
+  PACKAGE,
+  DIAGNOSTICMYPLAN,
 };
 
 const SVG = {

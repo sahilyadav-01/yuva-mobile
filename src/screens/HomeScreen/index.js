@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {View,SafeAreaView,ScrollView,Image,Text,TouchableOpacity} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
 import {useIsFocused, useRoute} from '@react-navigation/native';
@@ -8,10 +15,16 @@ import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
 import {styles} from '../styles';
 import Header from '../../components/Header';
 import {PNG} from '../../../assets';
-import {LANDING_PAGE_TEXT1,LANDING_PAGE_TEXT2,LANDING_PAGE_TEXT3,LANDING_PAGE_TEXT4,} from '../constant';
+import {
+  LANDING_PAGE_TEXT1,
+  LANDING_PAGE_TEXT2,
+  LANDING_PAGE_TEXT3,
+  LANDING_PAGE_TEXT4,
+} from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
+import {getServicesThunk} from '../../store/reducers/AttributeSlice';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -20,6 +33,8 @@ const HomeScreen = ({navigation}) => {
     user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
+  const {loading: appointmentLoading} = useSelector(state => state.appointment);
+  const {loading: servicesLoading} = useSelector(state => state.attribute);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
@@ -32,11 +47,13 @@ const HomeScreen = ({navigation}) => {
     //On add press logic to be added here
   };
   useEffect(() => {
-    if(navigation.isFocused()){
-    const isActive = 'true';
-    dispatch(allAppointmentThunk({jwt, isActive})).then().catch();
+    if (navigation.isFocused()) {
+      const isActive = 'true';
+      dispatch(allAppointmentThunk({jwt, isActive}));
+      dispatch(getServicesThunk({jwt}));
     }
   }, [focused]);
+  if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header

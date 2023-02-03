@@ -3,7 +3,6 @@ import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import ServiceContainer from '../components/ServiceContainer';
 import DiagnosticNav from './Diagnosticnavigation';
-import HRA from '../screens/yuvaservices/hra/HRA';
 
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
 import HomeScreen from '../screens/HomeScreen/index';
