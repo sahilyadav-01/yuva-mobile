@@ -16,10 +16,7 @@ const Section9 = () => {
 
     return (
         <>
-            <Header
-                isLoggedIn={loggedIn === LOGGEDIN}
-                onPressRightIcon={onPressRightIcon}
-            />
+            <Header isRightIcon={true} />
             <View style={styles.progressBarContainer}>
                 <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={1} width={progressWidth} height={12} />
             </View>

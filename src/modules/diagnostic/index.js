@@ -14,11 +14,7 @@ const Diagnostic = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
-            <Header
-                isLoggedIn={loggedIn === 'loggedIn'}
-                onPressRightIcon={onPressRightIcon}
-            />
+            <Header isRightIcon={true} />
             <View style={styles.height}>
                 <DiagnosticNav1 />
             </View>
