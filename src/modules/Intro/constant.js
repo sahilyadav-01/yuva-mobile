@@ -13,7 +13,7 @@ export const DESCRIPTION_SCREEN3TOP_PART1 =  'Health Checkups  ';
 export const DESCRIPTION_SCREEN3TOP_PART2 =  'at a fraction of their cost.';
 
 export const DESCRIPTION_SCREEN4TOP_PART1 =  'Purchase Medicines ';
-export const DESCRIPTION_SCREEN4TOP_PART2 =  'and';
+export const DESCRIPTION_SCREEN4TOP_PART2 =  'and ';
 export const DESCRIPTION_SCREEN4TOP_PART3 =  'Rent Medical Equipments';
 export const DESCRIPTION_SCREEN4BOTTOM_PART1 =  ' with a tap of your finger.';
 
