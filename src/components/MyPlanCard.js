@@ -3,7 +3,8 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
-import { AVAILABLE, SELECT_THIS_PACKAGE, USED } from './constants';
+import { AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
+import { getPlanDate } from '../utils/utils';
 
 
 const MyPlanCard = ({ item }) => {
@@ -43,7 +44,7 @@ const MyPlanCard = ({ item }) => {
         <View style={styles.viewContainer}>
             <View>
                 <Text style={styles.head}>{item?.name} </Text>
-                <Text style={styles.expiry}>{item.endDate}</Text>
+                <Text style={styles.expiry}>{VALID}{getPlanDate(item.endDate)}</Text>
             </View>
             {item.assignedAttributeResponseDto.length &&
                 <FlatList
