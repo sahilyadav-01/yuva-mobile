@@ -19,9 +19,7 @@ const CashlessOPD = ({navigation}) => {
   };
   return (
     <View>
-      <Header
-        isRightIcon={true}
-      />
+      <Header />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
