@@ -26,7 +26,7 @@ const Doctor = () => {
     );
   };
   return (
-    <View className>
+    <View>
       <Searchbar
         style={styles.search}
         placeholder={SEARCH}
@@ -36,7 +36,7 @@ const Doctor = () => {
         placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
         label={SearchLabel}
       />
-      <View className=" mb-[15px]">
+      <View>
         <FlatList
           renderItem={renderItem}
           data={data}

@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
-import {PARAMETERS} from './constant';
+import {AVAILABLE, BOOK_NOW, PARAMETERS, USED} from './constant';
 import {useNavigation} from '@react-navigation/native';
 
 const PackageCard = () => {
@@ -18,24 +18,25 @@ const PackageCard = () => {
   const bookNow = () => {
     navigation.navigate('Doctor');
   };
-  const renderItem = props => {
+  const renderItem = ({item}) => {
+    const {packageName, expiryDate, used, available, text} = item;
     return (
       <View style={styles.viewContainer}>
-        <Text style={styles.head}>{props.item.packageName}</Text>
+        <Text style={styles.head}>{packageName}</Text>
 
-        <Text style={styles.expiry}>{props.item.expiryDate}</Text>
+        <Text style={styles.expiry}>{expiryDate}</Text>
 
         <View style={styles.sideBySide}>
-          <Image source={props.item.image} style={styles.imageStyle} />
+          <Image source={PNG.DOCTOR} style={styles.imageStyle} />
           <View style={styles.text1}>
-            <Text style={styles.textColor}>{props.item.text}</Text>
+            <Text style={styles.textColor}>{text}</Text>
             <Text style={styles.text2}>
-              Used -{props.item.used} Available -{props.item.available}
+              {USED}-{used} {AVAILABLE}-{available}
             </Text>
           </View>
         </View>
         <TouchableOpacity style={styles.buttonStyle} onPress={bookNow}>
-          <Text style={styles.textStyle}> Book Now</Text>
+          <Text style={styles.textStyle}>{BOOK_NOW}</Text>
         </TouchableOpacity>
       </View>
     );

@@ -30,19 +30,24 @@ export const styles = StyleSheet.create({
     alignSelf: FLEX_START,
     marginLeft: '5%',
     top: -11,
-    fontSize: 14,
+    fontSize: fonts.size.fontSize14,
+    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.fontFamilyRubix,
     color: CYAN_BLUE,
   },
   expiry: {
     alignSelf: FLEX_END,
     paddingRight: '3%',
-    fontSize: 10,
+    fontSize: fonts.size.fontSize10,
+    fontWeight: fonts.weight.fontWeight400,
     color: CYAN_BLUE,
   },
 
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
+    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   sideBySide: {
     flexDirection: ROW,
@@ -51,6 +56,8 @@ export const styles = StyleSheet.create({
   text1: {
     alignSelf: CENTER,
     margin: '5%',
+    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.fontFamilyRubix,
   },
   text2: {
     color: GREY,
