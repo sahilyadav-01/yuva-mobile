@@ -20,8 +20,7 @@ const CashlessOPD = ({navigation}) => {
   return (
     <View>
       <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
+        isRightIcon={true}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}

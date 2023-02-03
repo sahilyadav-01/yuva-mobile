@@ -9,7 +9,7 @@ import { useHeader } from './hooks/useHeader';
 import {styles} from './styles';
 
 const Header = (props) => {
-  const {isLoggedIn, onPressRightIcon, isRightIcon, isSeachVisible, isIntroScreen} = useHeader(props);
+  const {isLoggedIn, onPressRightIcon, isRightIcon, isSeachVisible, isIntroScreen, canGoBack, onBackPress, title} = useHeader(props);
   const renderRightIcon = () => {
     if(isRightIcon) {
       return (
@@ -39,6 +39,19 @@ const Header = (props) => {
             }
           </TouchableOpacity>
         }
+      </View>
+      <View style={styles.sectionBottom}>
+        { canGoBack && 
+          <TouchableOpacity onPress={onBackPress}>
+            <SVG.Back />
+          </TouchableOpacity>
+        } 
+        {
+          title && 
+          <Text style={styles.titleText}>
+            {title}
+          </Text>
+        }     
       </View>
     </Gradient>
   );
