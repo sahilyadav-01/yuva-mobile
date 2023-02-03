@@ -5,7 +5,8 @@ export const useHeader = (props) => {
   const navigation = useNavigation();
   const route = useRoute();
   const isIntroScreen = (route?.name === 'IntroScreen');
-  const {isRightIcon, isSeachVisible} = props;
+  const canGoBack = navigation?.canGoBack();
+  const {isRightIcon, isSeachVisible, title} = props;
   const {loggedIn} = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const onPressRightIcon = () => {
@@ -14,6 +15,9 @@ export const useHeader = (props) => {
     } else {
       // navigation.toggleDrawer();
     }
+  };
+  const onBackPress = () => {
+    navigation.goBack();
   }
 
   return {
@@ -22,5 +26,8 @@ export const useHeader = (props) => {
     isRightIcon,
     isSeachVisible,
     isIntroScreen,
+    canGoBack,
+    onBackPress,
+    title,
   };
 }

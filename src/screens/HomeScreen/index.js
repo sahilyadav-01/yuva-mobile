@@ -57,8 +57,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
+        isRightIcon={true}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}

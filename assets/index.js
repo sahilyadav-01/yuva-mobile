@@ -53,6 +53,8 @@ import BackgroundImage from './background';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import DOCTOR from './doctor.png';
+import Back from './back';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -112,6 +114,7 @@ const SVG = {
   PlusIcon: PlusIcon,
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
+  Back: Back,
 };
 
 export {PNG, SVG};

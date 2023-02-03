@@ -1,14 +1,16 @@
 import { StyleSheet } from "react-native";
 import { WHITE } from "../../styles/colors";
-import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
+import { CENTER, FLEX_START, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
+import { getDimensions } from "../../utils/utils";
+
+const {height} = getDimensions();
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    height: '18%',
+    height: 0.12*height,
     width: '100%',
     justifyContent: CENTER,
-    alignItems: CENTER,
   },
   body: {
     flex:1
@@ -25,5 +27,17 @@ export const styles = StyleSheet.create({
   },
   sectionTop: {
     flexDirection: ROW,
+    alignItems: CENTER,
+    flex:1,
+  },
+  sectionBottom: {
+    alignSelf: FLEX_START,
+    marginHorizontal: 12,
+    bottom: 12,
+  },
+  titleText: {
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontSize: fonts.size.fontSize16,
+    color: WHITE,
   }
 });
