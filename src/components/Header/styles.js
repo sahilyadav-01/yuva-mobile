@@ -8,13 +8,7 @@ export const styles = StyleSheet.create({
     height: '18%',
     width: '100%',
     justifyContent: CENTER,
-    flexDirection: ROW,
     alignItems: CENTER,
-  },
-  logo: {
-    alignSelf: CENTER,
-    justifyContent: CENTER,
-    position: ABSOLUTE,
   },
   body: {
     flex:1
@@ -29,5 +23,7 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontSize: fonts.size.fontSize10,
   },
-
+  sectionTop: {
+    flexDirection: ROW,
+  }
 });

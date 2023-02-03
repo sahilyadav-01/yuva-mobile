@@ -5,17 +5,13 @@ import CardButton from '../../components/CardButton';
 import { CHAT_NOW } from './constant';
 import { useChat } from './hooks/useChat';
 import { styles } from './styles';
+import Header from '../../components/Header';
 
 const Chat = () => {
   const {goBack, onPressChat} = useChat();
   return (
     <View style={styles.container}>
-      <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[10px] mt-[20px]">
-        <Backbutton color="white" onPress={goBack} size={22} />
-        <Text className="text-center text-white text-xl ml-[20px]">
-          ChatScreen
-        </Text>
-      </View>
+      <Header isRightIcon={true} />
       <View style={styles.buttonView}>
           <CardButton 
             text={CHAT_NOW} 
