@@ -2,7 +2,7 @@ import React from 'react'
 import {SafeAreaView } from 'react-native'
 import Section8 from '../../../modules/hra/Section8';
 
-const section_1 = () => {
+const section_8 = () => {
   
   return (
     <SafeAreaView >
@@ -11,4 +11,4 @@ const section_1 = () => {
   )
 }
 
-export default section_1;
+export default section_8;
