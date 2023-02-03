@@ -33,7 +33,7 @@ import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
-import PACKAGE from './package.png'
+import PACKAGE from './package.png';
 import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
 import PEDIATRICS from './Pediatrics.png';

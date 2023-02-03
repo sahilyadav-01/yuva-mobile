@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BookingTestAndPackage from '../../screens/yuvaservices/diagnostics/BookingTestAndPackage';
-import Diagnostics from '../../modules/diagnostic/index';
+import Diagnostics from '../../screens/yuvaservices/diagnostics/Diagnostics';
 import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
 import GuestOPD from '../../screens/yuvaservices/opd/guestOPD/staticOPD';
@@ -16,12 +15,6 @@ const DiagnosticNav = () => {
         component={Diagnostics}
         options={{headerShown: false}}
       />
-      {/* 
-            <Stack.Screen
-                name="DiagnosticsNavigation"
-                component={DiagnosticsNavigation}
-                options={{ headerShown: false }}
-            />  */}
 
       <Stack.Screen
         name="BookingTestAndPackage"
