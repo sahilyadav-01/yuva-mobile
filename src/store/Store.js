@@ -15,6 +15,8 @@ import diagnostic from './reducers/DiagnosticsSlice';
 import talkToDoctor from './reducers/TalkToDoctorSlice';
 import profile from './reducers/ProfileSlice';
 import programAndPlan from './reducers/ProgramAndPlanSlice';
+import attribute from './reducers/AttributeSlice';
+
 
 const store = configureStore({
   reducer: {
@@ -34,6 +36,8 @@ const store = configureStore({
     talkToDoctor: talkToDoctor,
     profile: profile,
     programAndPlan: programAndPlan,
+    attribute: attribute,
+
   },
 });
 
