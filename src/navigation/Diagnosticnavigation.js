@@ -5,7 +5,6 @@ import BookingTestAndPackage from '../screens/yuvaservices/diagnostics/BookingTe
 import Diagnostics from '../modules/diagnostic/index';
 import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
-import GuestOPD from '../screens/yuvaservices/opd/guestOPD/staticOPD';
 const Stack = createStackNavigator();
 
 const DiagnosticNav = () => {
