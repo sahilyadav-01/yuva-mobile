@@ -88,7 +88,7 @@ const EnterOTP = ({props, route}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#1D2334" style="light" />
       {/* Top Section */}
-      <Header name="VERIFY" />
+      <Header title="VERIFY" />
 
       <View>
         <View style={{marginTop: '25%', marginHorizontal: '10%'}}>

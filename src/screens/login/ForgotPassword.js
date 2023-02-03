@@ -81,7 +81,7 @@ else{
       <Backbutton onPress={login} />
 
       {/* Top Section */}
-      <Header name="FORGOT" />
+      <Header title="FORGOT" />
 
       {/* Login Screen */}
       <View className="flex h-[260px] mt-[60px]">
