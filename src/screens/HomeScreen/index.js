@@ -24,11 +24,16 @@ import {
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
+import {getServicesThunk} from '../../store/reducers/AttributeSlice';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const {loggedIn} = useSelector(state => state.auth);
+  const {
+    loggedIn,
+  } = useSelector(state => state.auth);
+  const {loading: appointmentLoading} = useSelector(state => state.appointment);
+  const {loading: servicesLoading} = useSelector(state => state.attribute);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
@@ -44,13 +49,14 @@ const HomeScreen = ({navigation}) => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(allAppointmentThunk({isActive}));
+      dispatch(getServicesThunk());
     }
   }, [focused]);
+  if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
+        isRightIcon={true}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}

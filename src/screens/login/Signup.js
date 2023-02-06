@@ -205,7 +205,7 @@ const Signup = ({route}) => {
     <SafeAreaView style={styles.container}>
       {/* <Backbutton onPress={goBack} /> */}
       {/* Top Section */}
-      <Header name="SIGNUP" />
+      <Header title="SIGNUP" />
 
       {/* SignUP Screen */}
       <ScrollView className="flex h-full mt-[30px] my-8">

@@ -3,6 +3,7 @@ import {View, Text, ScrollView, TextInput} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Backbutton from '../../components/Backbutton';
 import CardButton from '../../components/CardButton';
+import Header from '../../components/Header';
 import { CYAN_BLUE_OPACITY } from '../../styles/colors';
 import SecureView from '../patient/components/secureView';
 import HealthCard from './components/healthCard';
@@ -19,12 +20,7 @@ const Health = () => {
   }
   return (
     <View>
-      <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[10px] mt-[20px]">
-        <Backbutton color="white" onPress={goBack} size={22} />
-        <Text className="text-center text-white text-xl ml-[20px]">
-          Health
-        </Text>
-      </View>
+      <Header isRightIcon={true} />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.headerView}>
           <Text style={styles.headerText}>{SELECT_HEALTH_CONCERN}</Text>

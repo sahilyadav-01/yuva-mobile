@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import Backbutton from '../../components/Backbutton';
 import CardButton from '../../components/CardButton';
+import Header from '../../components/Header';
 import ConsultationList from './components/consultationList';
 import PatientDetails from './components/patientDetails';
 import SecureView from './components/secureView';
@@ -16,12 +17,7 @@ const Patient = () => {
 
   return (
     <View>
-      <View className="flex flex-row items-center h-[60px] bg-[#1D2334] px-[10px] mt-[20px]">
-        <Backbutton color="white" onPress={goBack} size={22} />
-        <Text className="text-center text-white text-xl ml-[20px]">
-          Patient
-        </Text>
-      </View>
+      <Header isRightIcon={true} />
       <ScrollView
         style={styles.container}
         showsVerticalScrollIndicator={false}

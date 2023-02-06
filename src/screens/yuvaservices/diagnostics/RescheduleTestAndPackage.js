@@ -38,7 +38,7 @@ const RescheduleTestAndPackage = ({ route }) => {
     }, [cancelled])
     return (
         <SafeAreaView style={styles.container}>
-            <Header/>
+            <Header isRightIcon={true} />
             <ScrollView style={styles.booksID} contentContainerStyle={styles.contentContainerStyle}
     >
                 <View>

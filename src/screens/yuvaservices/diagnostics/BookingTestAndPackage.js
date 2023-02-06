@@ -228,7 +228,7 @@ const BookingTestAndPackage = ({ route }) => {
     
     return (
         <View style={styles.margin}>
-            <Header/>
+            <Header isRightIcon={true} />
             <ScrollView
                style={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

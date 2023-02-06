@@ -1,17 +1,16 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HRAHome from '../screens/yuvaservices/hra/HRAHome';
-import Section1 from '../screens/yuvaservices/hra/Section1';
-import Section2 from '../screens/yuvaservices/hra/Section2';
-import Section3 from '../screens/yuvaservices/hra/Section3';
-import Section4 from '../screens/yuvaservices/hra/Section4';
-import Section5 from '../screens/yuvaservices/hra/Section5';
-import Section6 from '../screens/yuvaservices/hra/Section6';
-import Section7 from '../screens/yuvaservices/hra/Section7';
-import Section8 from '../screens/yuvaservices/hra/Section8';
-import Section9 from '../screens/yuvaservices/hra/Section9';
-import Section10 from '../screens/yuvaservices/hra/Section10';
+import HRAHome from '../screens/yuvaservices/hra/homeScreen';
+import Section1 from '../screens/yuvaservices/hra/section_1';
+import Section2 from '../screens/yuvaservices/hra/section_2';
+import Section3 from '../screens/yuvaservices/hra/section_3';
+import Section4 from '../screens/yuvaservices/hra/section_4';
+import Section5 from '../screens/yuvaservices/hra/section_5';
+import Section6 from '../screens/yuvaservices/hra/section_6';
+import Section7 from '../screens/yuvaservices/hra/section_7';
+import Section8 from '../screens/yuvaservices/hra/section_8';
+import Section9 from '../screens/yuvaservices/hra/section_9';
+import Section10 from '../screens/yuvaservices/hra/section_10';
 
 const Stack = createStackNavigator();
 

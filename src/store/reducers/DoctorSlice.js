@@ -20,12 +20,17 @@ const initialState = {
   apiError: false,
   apiErrorMessage: '',
   appointment: {},
+  tabBarVisible: true,
 };
 
 const doctorSlice = createSlice({
   name: 'doctor',
   initialState,
-  reducers: {},
+  reducers: {
+    setTabBarVisible(state, action) {
+      state.tabBarVisible = action.payload;
+    },
+  },
   extraReducers: {
     [searchDoctorThunk.pending]: (state, {payload}) => {},
     [searchDoctorThunk.fulfilled]: (state, {payload}) => {
@@ -36,4 +41,5 @@ const doctorSlice = createSlice({
   },
 });
 export const doctorInit = doctorSlice.getInitialState();
+export const {setTabBarVisible} = doctorSlice.actions;
 export default doctorSlice.reducer;
