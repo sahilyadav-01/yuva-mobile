@@ -14,7 +14,6 @@ export const getServicesThunk = createAsyncThunk(
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("hhhhhhhh",response)
       return fulfillWithValue(response);
     } catch (error) {
       return rejectWithValue(error);
