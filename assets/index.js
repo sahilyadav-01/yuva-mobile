@@ -31,6 +31,8 @@ import BANNER from './banner.png';
 import BANNER2 from './banner2.png';
 import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
+import POPULARHEALTHICON from './popularHealthIcon.png';
+import POPULARDIAGNOSTICICON from './popularDiagnosticsIcon.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
 import PACKAGE from './package.png';
@@ -101,6 +103,8 @@ const PNG = {
   DOWNLOAD,
   DIAGNOSTIC,
   HEALTHIMG,
+  POPULARHEALTHICON,
+  POPULARDIAGNOSTICICON,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
   HRA_HOMEImage,
