@@ -16,7 +16,6 @@ const ServiceContainer = () => {
                 <ServiceCard name={MY_HEALTH_CHECKUP} screenName={'ProfessionalServices'} image={MY_HEALTH_CHECKUP_IMAGE} />
                 <ServiceCard name={TALK_TO_DOCTOR_NAME} screenName={Talk_TO_DOCTOR} image={TALK_TO_DOCTOR_IMAGE} />
                 <ServiceCard name={HEALTH_CHECKUP_PACKAGES} screenName={DIAGNOSTICS} image={HEALTH_CHECKUP_PACKAGES_IMAGE} />
-
             </View>
         </View>
     )

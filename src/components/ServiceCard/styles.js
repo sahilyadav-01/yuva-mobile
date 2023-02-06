@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
     alignItems: CENTER,
-
   },
   topContainerStyle: {
     display: FLEX,
