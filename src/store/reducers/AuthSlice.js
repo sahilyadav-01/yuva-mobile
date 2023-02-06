@@ -132,29 +132,34 @@ export const signupThunk = createAsyncThunk(
   },
 );
 
+const initialState = {
+  user: {
+    name: '',
+    jwt: '',
+    status: false,
+    roles: [],
+    version: '1',
+    id: '',
+  },
+  loggedIn: 'init',
+  isAppReady: false,
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  signUp: {
+    verifyEmail: false,
+    verifySms: false,
+  },
+  verified: {
+    smsVerified: false, 
+    emailVerified: false
+  },
+  forgotStatus: false,
+};
+
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: {
-      name: '',
-      jwt: '',
-      status: false,
-      roles: [],
-      version: '1',
-      id: '',
-    },
-    loggedIn: 'init',
-    isAppReady: false,
-    loading: false,
-    apiError: false,
-    apiErrorMessage: '',
-    signUp: {
-      verifyEmail: false,
-      verifySms: false,
-    },
-    verified: {smsVerified: false, emailVerified: false},
-    forgotStatus: false,
-  },
+  initialState,
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;

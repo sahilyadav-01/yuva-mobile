@@ -114,27 +114,24 @@ export const downloadReportThunk = createAsyncThunk(
   },
 );
 
+const initialState = {
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  testData: '',
+  diagnosticCarouselData: '',
+  bookedData: '',
+  testDetails: '',
+  packageDetails: '',
+  testBooked: '',
+  bookedDetailsById: '',
+  cancelled: '',
+  cityId: '',
+};
+
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
-  initialState: {
-    user: {
-      name: '',
-      jwt: '',
-      version: '1',
-    },
-    loading: false,
-    apiError: false,
-    apiErrorMessage: '',
-    testData: '',
-    diagnosticCarouselData: '',
-    bookedData: '',
-    testDetails: '',
-    packageDetails: '',
-    testBooked: '',
-    bookedDetailsById: '',
-    cancelled: '',
-    cityId: '',
-  },
+  initialState,
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;

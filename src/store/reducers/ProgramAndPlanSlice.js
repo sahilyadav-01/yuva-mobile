@@ -17,18 +17,16 @@ export const programAndPlanThunk = createAsyncThunk(
     },
   );
 
+const initialState = {
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  programAndPlan: [],
+}
+
 const programAndPlanSlice = createSlice({
     name: 'programAndPlan',
-    initialState: {
-      user: {
-        name: '',
-        jwt: '',
-        version: '1',
-      },
-      loading: false,
-      apiError: false,
-      apiErrorMessage: '', 
-    },
+    initialState,
     extraReducers: {
       /**
        */
