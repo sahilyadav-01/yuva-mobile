@@ -8,6 +8,7 @@ export const useServiceCard = ({ screenName }) => {
         Health_Risk_Assessment: PNG.Health_Risk_Assessment,
         Health_Checkup_Packages: PNG.Health_Checkup_Packages,
         Talk_To_Doctor: PNG.Talk_To_Doctor,
+        My_Health_Checkup: PNG.MY_HEALTH_CHECKUP
       };
     const onpress = () => {
         navigation.navigate(`${screenName}`);

@@ -23,7 +23,7 @@ import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
 import BOTTOMNAVIMG2 from './BottomNavImg2.png';
 import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-import OPD_Consultation from './OPD_Consultation.png'; 
+import OPD_Consultation from './OPD_Consultation.png';
 import Health_Risk_Assessment from './Health_Risk_Assessment.png';
 import Health_Checkup_Packages from './Health_Checkup_Packages.png';
 import Talk_To_Doctor from './Talk_To_Doctor.png';
@@ -54,6 +54,8 @@ import MenuIcon from './menu';
 import BackgroundImage from './background';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
+import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
+
 
 const PNG = {
   AMICO,
@@ -104,15 +106,16 @@ const PNG = {
   HRA_HOMEImage,
   HRA_SECTION_ICONS,
   PACKAGE,
-  DIAGNOSTICMYPLAN
+  DIAGNOSTICMYPLAN,
+  MY_HEALTH_CHECKUP,
 };
 
 const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
-  Edit:EditIcon,
+  Edit: EditIcon,
   BackgroundImage: BackgroundImage,
 }
 
-export {PNG, SVG};
+export { PNG, SVG };

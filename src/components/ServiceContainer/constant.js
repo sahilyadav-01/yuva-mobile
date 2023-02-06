@@ -11,6 +11,11 @@ export const OPD_CONSULTATION_IMAGE = 'OPD_Consultation';
 export const HEALTH_RISK_ASSESSMENT_IMAGE = 'Health_Risk_Assessment';
 export const HEALTH_CHECKUP_PACKAGES_IMAGE = 'Health_Checkup_Packages';
 export const TALK_TO_DOCTOR_IMAGE = 'Talk_To_Doctor';
+export const MY_HEALTH_CHECKUP = 'My Health Check-up';
+export const MY_HEALTH_CHECKUP_IMAGE = 'My_Health_Checkup';
+
+
+
 
 
 

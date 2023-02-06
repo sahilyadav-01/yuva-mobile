@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
-import { CYAN_BLUE, GREY, ORANGE, WHITE } from "../../styles/colors";
+import { CYAN_BLUE, GREY, ORANGE, RED, WHITE } from "../../styles/colors";
 import { CENTER, FLEX_END, RELATIVE, ABSOLUTE, SPACE_BETWEEN, ROW, WRAP } from "../../styles/constants";
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
     mainContainerStyle: {
         marginHorizontal: 16,
-        marginTop: 20
+        marginTop: 20,
+        // backgroundColor:RED
     },
     subContainerStyle1: {
         alignItems: CENTER,
@@ -15,10 +16,11 @@ export const styles = StyleSheet.create({
     },
     subContainerStyle2: {
         marginTop: 16,
+        // padding:10,
         flexDirection: ROW,
         flexWrap: WRAP,
         backgroundColor: WHITE,
-        borderRadius: 6
+        borderRadius: 6,
     },
     serviceHeading: {
         color: CYAN_BLUE,
