@@ -16,6 +16,14 @@ export const useDoctor=()=>{
     useEffect(()=>{
         dispatch(searchDoctorThunk({search:""}))
     },[])
+
+    useEffect(() => {
+      if (navigation.isFocused()) {
+        dispatch(setTabBarVisible(false));
+      } else if (!navigation.isFocused()) {
+        dispatch(setTabBarVisible(true));
+      }
+    }, [focused]);
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         if(query.length >  2){
@@ -24,24 +32,9 @@ export const useDoctor=()=>{
             dispatch(searchDoctorThunk({search:""}))
         }
     }
-    return {
-onChangeSearch,
-searchQuery,
-data
-    }
-  };
-
-  //   const dispatch = useDispatch();
-  useEffect(() => {
-    if (navigation.isFocused()) {
-      dispatch(setTabBarVisible(false));
-    } else if (!navigation.isFocused()) {
-      dispatch(setTabBarVisible(true));
-    }
-  }, [focused]);
   return {
     onChangeSearch,
     searchQuery,
-    data,
-  };
+    data
+  }
 };
