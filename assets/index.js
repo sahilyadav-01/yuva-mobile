@@ -33,10 +33,8 @@ import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
+import PACKAGE from './package.png';
 import HRA_SECTION_ICONS from './hra_img.png';
-
-
-import PACKAGE from './package.png'
 import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
 import PEDIATRICS from './Pediatrics.png';
@@ -55,7 +53,8 @@ import BackgroundImage from './background';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
 import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
-
+import DOCTOR from './doctor.png';
+import Back from './back';
 
 const PNG = {
   AMICO,
@@ -69,6 +68,7 @@ const PNG = {
   PEDIATRICS,
   SURGERY,
   CORONA,
+  DOCTOR,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
@@ -116,6 +116,7 @@ const SVG = {
   PlusIcon: PlusIcon,
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
-}
+  Back: Back,
+};
 
 export { PNG, SVG };

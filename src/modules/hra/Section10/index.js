@@ -12,10 +12,7 @@ const Section10 = () => {
   return (
     <>
       <View style={styles.topContainer}>
-        <Header
-          isLoggedIn={loggedIn === LOGGEDIN}
-          onPressRightIcon={onPressRightIcon}
-        />
+        <Header isRightIcon={true} />
 
         <Text style={styles.topContainerTextStyle}>{SECTION_10_HEADING}</Text>
         <Text style={styles.topContainerSubTextStyle}>{SECTION_10_SUB_HEADING}</Text>

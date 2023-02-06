@@ -13,10 +13,7 @@ const HRAHome = () => {
 
   return (
     <>
-      <Header
-        isLoggedIn={loggedIn === LOGGEDIN}
-        onPressRightIcon={onPressRightIcon}
-      />
+      <Header isRightIcon={true} />
       <View style={styles.mainContainer}>
         <View>
           <ScrollView contentContainerStyle={{ paddingBottom: 400, }}>

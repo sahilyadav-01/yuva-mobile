@@ -165,6 +165,13 @@ export const getDate = timestamp => {
     month: 'short',
   });
 };
+export const getPlanDate = timestamp => {
+  return new Date(timestamp).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: '2-digit',
+    year:'numeric'
+  });
+};
 
 export const getTime = timestamp => {
   // let time = Date.parse(timestamp?.split(".")[0])

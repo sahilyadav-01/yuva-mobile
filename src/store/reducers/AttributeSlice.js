@@ -45,6 +45,7 @@ const attributeSlice = createSlice({
     [getServicesThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.services = payload.data.data;
+
     },
     [getServicesThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
