@@ -80,7 +80,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={PNG.HEALTHIMG}
+              imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
               healthCheckUp={true}
             />
@@ -99,7 +99,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={PNG.DIAGNOSTIC}
+              imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>

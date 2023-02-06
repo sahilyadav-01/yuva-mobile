@@ -7,15 +7,14 @@ export const useMyPlan = () => {
     const dispatch = useDispatch();
     const { programAndPlan } = useSelector(state => state.programAndPlan)
     const { services } = useSelector(state => state.attribute)
-    const serviceUuid = services[1]?.id;
     useEffect(() => {
-
-        dispatch(programAndPlanThunk({ serviceUuid }))
-    }, [serviceUuid])
-
+        if(services?.length && services[1]?.id){
+            const serviceUuid=services[1].id;
+            dispatch(programAndPlanThunk({ serviceUuid }))
+        }
+    }, [services])
 
     return {
-
         programAndPlan
     }
-}
+};

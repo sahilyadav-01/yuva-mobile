@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { DARK_BLUE } from '../../styles/colors';
-import { CENTER, FLEX, ROW } from '../../styles/constants';
+import { CENTER, FLEX, ROW, WRAP } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
+    flexWrap: WRAP,
     width: 100,
-    height: 100,
+    height:100,
     marginHorizontal: 10,
-    marginVertical: 15,
+    marginVertical: 10,
     alignItems: CENTER,
   },
   topContainerStyle: {
@@ -15,7 +16,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     justifyContent: CENTER,
     alignItems: CENTER,
-    height: 80,
+     height: '50%',
     width: '100%',
     borderRadius: 10,
   },
@@ -24,20 +25,20 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     alignItems: CENTER,
     justifyContent: CENTER,
-    height: 68,
-    width: 60,
+    height: '100%',
+    width: '100%',
   },
   imageContainerStyle: {
-    height: 40,
-    width: 40,
+    height: 32,
+    width: 37,
   },
   bottomContainerStyle: {
-    marginTop: 10,
+    marginTop: 5,
   },
   subBottomContainerStyle: {
-    fontSize: 12,
+    fontSize: 10,
     textAlign: CENTER,
-    paddingBottom: 2,
-    color: DARK_BLUE
+    paddingHorizontal: '20%',
+    color: DARK_BLUE,
   },
 });
