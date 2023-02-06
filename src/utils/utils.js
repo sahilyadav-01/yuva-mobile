@@ -157,6 +157,30 @@ export const appointmentStatus = status => {
   }
   return retStatus;
 };
+export const dignosticStatus = status => {
+  let retStatus = 'Awaiting For Confirmation';
+  switch (status) {
+    case 'CANCELLED':
+      retStatus = 'Cancelled';
+      break;
+    case 'INITIATED':
+      retStatus = 'Awaiting For Confirmation';
+      break;
+    case 'CONFIRMED':
+      retStatus = 'Confirmed';
+      break;
+    case 'RESCHEDULED':
+      retStatus = 'Awaiting For Confirmation';
+      break;
+    case 'COMPLETED':
+      retStatus = 'Report Awaited';
+      break;
+    case 'FINISHED':
+      retStatus = 'Access your report from Download Section';
+      break;
+  }
+  return retStatus;
+};
 
 export const getDate = timestamp => {
   //  let date = Date.parse(timestamp?.split(".")[0])
