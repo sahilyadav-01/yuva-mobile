@@ -31,6 +31,8 @@ import BANNER from './banner.png';
 import BANNER2 from './banner2.png';
 import DIAGNOSTIC from './diagnosticImg.png';
 import HEALTHIMG from './healthImg.png';
+import POPULARHEALTHICON from './popularHealthIcon.png';
+import POPULARDIAGNOSTICICON from './popularDiagnosticsIcon.png';
 import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
 import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
 import PACKAGE from './package.png';
@@ -51,7 +53,8 @@ import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
 import HRA_HOMEImage from './HRA_HOME.png';
-import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
+import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
+import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
 import DOCTOR from './doctor.png';
 import Back from './back';
 
@@ -100,12 +103,15 @@ const PNG = {
   DOWNLOAD,
   DIAGNOSTIC,
   HEALTHIMG,
+  POPULARHEALTHICON,
+  POPULARDIAGNOSTICICON,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
   HRA_HOMEImage,
   HRA_SECTION_ICONS,
   PACKAGE,
   DIAGNOSTICMYPLAN,
+  MY_HEALTH_CHECKUP,
 };
 
 const SVG = {
@@ -117,4 +123,4 @@ const SVG = {
   Back: Back,
 };
 
-export {PNG, SVG};
+export { PNG, SVG };
