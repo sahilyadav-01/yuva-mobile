@@ -6,10 +6,8 @@ import { bookingTestAndPackageThunk} from '../../../../store/reducers/Diagnostic
 
 export const useBooking = () => {
     const dispatch = useDispatch();
-    const  { jwt }= useSelector(state => state.auth);
     useEffect(() => {
-
-        dispatch(bookingTestAndPackageThunk({ jwt, isActive:"false" }));
+        dispatch(bookingTestAndPackageThunk({isActive:"false" }));
     }, []);
  
     

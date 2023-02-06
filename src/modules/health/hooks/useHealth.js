@@ -11,7 +11,6 @@ export const useHealth = () => {
     navigation.goBack();
   };
 
-  const {jwt} = useSelector(state => state.auth.user);
   const {isRequested} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
   const [description, setDescription] = useState('');

@@ -10,7 +10,6 @@ import Header from '../../../components/Header';
 import { ABOUT_TEST, ARE_YOU_SURE, BOKINGTESTANDPACKAGE, CANCEL, DIAGNOSTIC, INSTRUCTIONS, LOCATION, MESSAGE, RESCHEDULE, TRUE } from './constants';
 import { RED_SHADE, WHITE } from '../../../styles/colors';
 const RescheduleTestAndPackage = ({ route }) => {
-    const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
     const { bookedDetailsById, cancelled } = useSelector(state => state.diagnostic)
     const { id } = route.params;

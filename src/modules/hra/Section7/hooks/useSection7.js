@@ -23,7 +23,7 @@ export const useSection7 = () => {
     const answers9A = useSelector(state => state.section7.extra_questions_Q9A);
     const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section7.rawQuestions);
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const setQuestion1 = value => {
         {
             value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
@@ -117,7 +117,7 @@ export const useSection7 = () => {
     const progressWidth = width;
 
     useEffect(() => {
-        dispatch(section7QThunk({ jwt }));
+        dispatch(section7QThunk());
     }, []);
 
     const next = () => {

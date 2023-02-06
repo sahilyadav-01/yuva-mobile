@@ -16,7 +16,7 @@ export const useSection5 = () => {
     const answers = useSelector(state => state.section5.answers);
     const section1Answers = useSelector(state => state.section1.answers);
     const questionData = useSelector(state => state.section5.rawQuestions);
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const setQuestion1 = value => {
         {
             value == 1 ? setSmoke(true) : setSmoke(false);
@@ -60,7 +60,7 @@ export const useSection5 = () => {
     const progressWidth = width;
 
     useEffect(() => {
-        dispatch(section5QThunk({ jwt }));
+        dispatch(section5QThunk());
     }, []);
 
     const next = () => {

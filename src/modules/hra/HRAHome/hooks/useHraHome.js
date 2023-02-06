@@ -10,7 +10,7 @@ export const useHraHome = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     let { reportStatus, reportDownload } = useSelector(state => state.section9,);
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const onDisplay = () => {
 
         if (reportStatus === null) {
@@ -41,7 +41,7 @@ export const useHraHome = () => {
         }
     };
     const fetchReport = () => {
-        dispatch(reportStatusThunk({ jwt })).then(() => { });
+        dispatch(reportStatusThunk());
     };
     useEffect(() => {
         const timer = setInterval(() => {

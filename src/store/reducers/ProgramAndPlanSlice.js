@@ -1,38 +1,21 @@
 
 
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { LogBox } from 'react-native';
-import { SERVER } from '../../utils/utils';
-
-
-const PROGRAM_AND_PLAN = 'http://' + SERVER + ':8080/api/v1/yuva/programAndPlan';
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { YuvaService } from '../../network/yuvaService';
 
 export const programAndPlanThunk = createAsyncThunk(
     'programAndPlan',
-    async ({ jwt,serviceUuid }, { fulfillWithValue, rejectWithValue }) => {
+    async ({ serviceUuid }, { fulfillWithValue, rejectWithValue }) => {
       try {
-        const authToken = 'Bearer ' + jwt;
-        const url = PROGRAM_AND_PLAN+'?serviceUuid='+`${serviceUuid}`;
-        return await axios
-          .get(url, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: authToken,
-            },
-          })
-          .then(resp => resp.data);
+        const endpoint = `?serviceUuid=${serviceUuid}`
+        const response = await YuvaService.get(endpoint);
+        return response.data;
       } catch (error) {
         //const errorOject =  JSON.stringify(error.response.data)
         return rejectWithValue(error.response.data);
       }
     },
   );
-
-
-
 
 const programAndPlanSlice = createSlice({
     name: 'programAndPlan',
@@ -61,5 +44,6 @@ const programAndPlanSlice = createSlice({
 
     },
   });
-  export default programAndPlanSlice.reducer;
-  
+
+export const programAndPlanInit = programAndPlanSlice.getInitialState();
+export default programAndPlanSlice.reducer;

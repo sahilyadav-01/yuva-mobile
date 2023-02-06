@@ -7,11 +7,10 @@ export const useMyPlan = () => {
     const dispatch = useDispatch();
     const { programAndPlan } = useSelector(state => state.programAndPlan)
     const { services } = useSelector(state => state.attribute)
-    const { jwt } = useSelector(state => state.auth.user);
     const serviceUuid = services[1]?.id;
     useEffect(() => {
 
-        dispatch(programAndPlanThunk({ jwt, serviceUuid }))
+        dispatch(programAndPlanThunk({ serviceUuid }))
     }, [serviceUuid])
 
 
