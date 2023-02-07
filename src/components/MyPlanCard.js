@@ -3,12 +3,16 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
-import { AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
+import { AVAIL, AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 
 
 const MyPlanCard = ({ item }) => {
+
+
     const renderItem = (plan) => {
+        const used = plan?.items?.used || 0;
+        const available = plan?.items?.available || 0;
         if (!plan) {
             return null;
         }
@@ -18,14 +22,21 @@ const MyPlanCard = ({ item }) => {
                     <Image source={PNG.DIAGNOSTICMYPLAN} style={styles.imageStyle} />
                     <View style={styles.text1}>
                         <Text style={styles.textColor}>{plan?.item?.name}</Text>
-                        <Text>
-                            {USED} {plan?.item?.used}
 
-                        </Text>
+                        <View style={styles.available}>
+                            <Text >
+                                {`${USED} ${used}`}
+
+                            </Text>
+                            <Text>
+                            {`${AVAIL} ${available}`}
+
+                            </Text>
+                        </View>
                     </View>
                 </View>
                 <View>
-                    <Text style={styles.Available}>{AVAILABLE}{plan?.item?.available}</Text>
+                    <Text style={styles.Available}>{AVAILABLE}</Text>
                 </View>
 
                 <View>
