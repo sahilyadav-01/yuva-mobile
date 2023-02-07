@@ -15,13 +15,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: SPACE_BETWEEN
   },
+
+  available: {
+    flexDirection: ROW,
+  },
   BookingCard: {
     marginTop: 28,
     borderRadius: 6,
     height: 137,
     backgroundColor: WHITE,
-    marginLeft:14,
-    marginRight:15
+    marginLeft: 14,
+    marginRight: 15
 
   },
   status: {
@@ -35,35 +39,35 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight500
   },
   lab: {
- 
-    flexDirection:ROW,
-    justifyContent:SPACE_BETWEEN
+
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN
   },
-  labs:{
+  labs: {
     color: CYAN_BLUE,
     marginTop: 10,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500,
-    fontSize:fonts.size.fontSize14
+    fontSize: fonts.size.fontSize14
   },
-  date:{
-marginRight:13,
-marginTop: 10,
+  date: {
+    marginRight: 13,
+    marginTop: 10,
   },
-  description:{
+  description: {
     color: CYAN_BLUE,
     marginTop: 16,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500
   },
-  reschedule:{
-    flexDirection:ROW,
-   justifyContent:SPACE_BETWEEN,
-    marginTop:19,
+  reschedule: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+    marginTop: 19,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500,
-    marginLeft:17.3,
-    marginRight:34,
+    marginLeft: 17.3,
+    marginRight: 34,
   },
   cards: {
     backgroundColor: WHITE,
@@ -136,17 +140,17 @@ marginTop: 10,
     width: 49,
     height: 50,
     marginVertical: '3%',
-    marginLeft:19,
+    marginLeft: 19,
   },
   viewContainer: {
-  flexGrow:1,
+    flexGrow: 1,
     borderRadius: 6,
     marginLeft: 13,
-    marginRight:14,
+    marginRight: 14,
     backgroundColor: WHITE,
     borderWidth: 1,
-    borderColor:WHITE,
-    marginTop:28,
+    borderColor: WHITE,
+    marginTop: 28,
   },
   buttonStyle: {
     height: 32,
@@ -159,7 +163,7 @@ marginTop: 10,
   head: {
     alignSelf: FLEX_START,
     marginLeft: 9,
-    shadowColor:WHITE,
+    shadowColor: WHITE,
     position: ABSOLUTE,
     top: -11,
     fontSize: 14,
@@ -176,7 +180,7 @@ marginTop: 10,
   },
   sideBySide: {
     flexDirection: ROW,
-    marginTop:15
+    marginTop: 15
   },
   text1: {
     alignSelf: CENTER,
@@ -185,9 +189,9 @@ marginTop: 10,
   textColor: {
     color: CYAN_BLUE,
   },
-  Available:{
-    marginLeft:11,
-    marginTop:15,
+  Available: {
+    marginLeft: 11,
+    marginTop: 15,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight400,
@@ -195,9 +199,9 @@ marginTop: 10,
   },
   expiry: {
     alignSelf: FLEX_END,
-    marginTop:18,
-    marginRight:11,
-    marginTop:11,
+    marginTop: 18,
+    marginRight: 11,
+    marginTop: 11,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
     fontWeight: fonts.weight.fontWeight400,
