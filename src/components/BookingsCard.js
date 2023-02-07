@@ -44,8 +44,8 @@ const BookingsCard = ({ item }) => {
                                 </View>
                             </View>
                         </View>
-                        {item?.status === "CONFIRMED" || item?.status === "INITIATED" || item?.status === "RESCHEDULED" ?
-                            (<View style={styles.reschedule}>
+                        {(item?.status === "CONFIRMED" || item?.status === "INITIATED" || item?.status === "RESCHEDULED") &&
+                            <View style={styles.reschedule}>
                                 <CardButton
                                     text={RESCHEDULED}
                                     iconName="clock-outline"
@@ -56,7 +56,7 @@ const BookingsCard = ({ item }) => {
                                     iconName="close"
                                     iconColor={RED_SHADE}
                                 />
-                            </View>) : ("")}
+                            </View>}
                     </View>
                 </TouchableOpacity>
                 <View>
