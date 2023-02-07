@@ -68,7 +68,7 @@ const BookingsCard = ({ item }) => {
                                         <View >
                                             <View style={styles.status}>
                                                 <View style={styles.customId}>
-                                                    <Text style={styles.initiatedColor}>{dignosticStatus(item?.status)}</Text>
+                                                    <Text style={styles.confirmedColor}>{dignosticStatus(item?.status)}</Text>
                                                 </View>
                                                 <View style={styles.lab}>
                                                     <Text style={styles.labs}>
