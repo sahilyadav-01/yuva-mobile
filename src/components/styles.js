@@ -15,6 +15,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: SPACE_BETWEEN
   },
+
+  available: {
+    flexDirection: ROW,
+  },
   BookingCard: {
     marginTop: 28,
     borderRadius: 6,
@@ -74,6 +78,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500,
     fontSize: fonts.size.fontSize8
+
   },
   description: {
     color: CYAN_BLUE,
