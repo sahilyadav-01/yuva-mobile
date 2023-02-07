@@ -12,8 +12,8 @@ const BookingsCard = ({ item }) => {
 
     const textStyle = (status) => {
         switch (status) {
-            case 'CANCELLED': return styles.cancelledColor; break;
-            case 'INITIATED': return styles.initiatedColor; break;
+            case 'CANCELLED': return styles.cancelledColor; 
+            case 'INITIATED': return styles.initiatedColor; 
             default: return styles.confirmedColor
         }
     }
