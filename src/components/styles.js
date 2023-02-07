@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
   customId: { 
     flexDirection:ROW,
-    justifyContent:"space-between"
+    justifyContent:SPACE_BETWEEN,
   },
   custom:{
     marginRight:13,

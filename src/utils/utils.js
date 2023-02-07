@@ -158,7 +158,7 @@ export const appointmentStatus = status => {
   return retStatus;
 };
 export const dignosticStatus = status => {
-  let retStatus = 'Awaiting For Confirmation';
+  let retStatus = '';
   switch (status) {
     case 'CANCELLED':
       retStatus = 'Cancelled';
@@ -178,6 +178,7 @@ export const dignosticStatus = status => {
     case 'FINISHED':
       retStatus = 'Access your report from Download Section';
       break;
+      default:retStatus='Awaiting For Confirmation';
   }
   return retStatus;
 };
