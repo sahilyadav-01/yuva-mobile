@@ -8,7 +8,11 @@ import { getPlanDate } from '../utils/utils';
 
 
 const MyPlanCard = ({ item }) => {
+
+
     const renderItem = (plan) => {
+        const used = plan?.items?.used || 0;
+        const available = plan?.items?.available || 0;
         if (!plan) {
             return null;
         }
@@ -21,11 +25,11 @@ const MyPlanCard = ({ item }) => {
 
                         <View style={styles.available}>
                             <Text >
-                                {USED} {plan?.item?.used}
+                                {`${USED} ${used}`}
 
                             </Text>
                             <Text>
-                                {AVAIL} {plan?.item?.available}
+                            {`${AVAIL} ${available}`}
 
                             </Text>
                         </View>
