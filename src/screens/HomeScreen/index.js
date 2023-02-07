@@ -34,13 +34,6 @@ const HomeScreen = ({navigation}) => {
   } = useSelector(state => state.auth);
   const {loading: appointmentLoading} = useSelector(state => state.appointment);
   const {loading: servicesLoading} = useSelector(state => state.attribute);
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-      //The logic for opening the drawer should be added here
-    }
-  };
 
   const onPressAdd = () => {
     //On add press logic to be added here
@@ -48,8 +41,8 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
+      dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({isActive}));
-      dispatch(getServicesThunk());
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;

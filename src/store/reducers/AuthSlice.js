@@ -187,7 +187,7 @@ const authSlice = createSlice({
       state.user.status = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
-      setJwt(action.payload.jwt);
+      setJwt(action.payload.data.jwt);
       state.loading = false;
       const userData = {
         name: action.payload.data.name,

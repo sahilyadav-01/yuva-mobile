@@ -3,7 +3,7 @@ import {YuvaService} from '../../network/yuvaService';
 
 export const getServicesThunk = createAsyncThunk(
   'attribute/getServices',
-  async ({fulfillWithValue, rejectWithValue}) => {
+  async ({}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/services/dropdown';
       const response = await YuvaService.get(endpoint);
