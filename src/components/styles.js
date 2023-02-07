@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE } from '../styles/colors';
+import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE, RED_SHADE, GREEN } from '../styles/colors';
 import { COLUMN, ROW, SPACE_BETWEEN, CENTER, FLEX_END, ABSOLUTE, FLEX_START } from '../styles/constants';
 import { fonts } from '../styles/fonts';
 
@@ -28,13 +28,35 @@ export const styles = StyleSheet.create({
     marginRight: 15
 
   },
+  customId: { 
+    flexDirection:ROW,
+    justifyContent:SPACE_BETWEEN,
+  },
+  custom:{
+    marginRight:13,
+    marginTop:6,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight400,
+    fontSize: fonts.size.fontSize8
+  },
   status: {
     marginTop: 11,
     marginLeft: 11,
-    flexGrow: 1
+    flexGrow: 1,
+
   },
   initiatedColor: {
     color: ORANGE,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500
+  },
+  cancelledColor:{
+    color: RED_SHADE,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500
+  },
+  confirmedColor:{
+    color: GREEN,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500
   },
@@ -53,6 +75,10 @@ export const styles = StyleSheet.create({
   date: {
     marginRight: 13,
     marginTop: 10,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500,
+    fontSize: fonts.size.fontSize8
+
   },
   description: {
     color: CYAN_BLUE,
@@ -63,7 +89,7 @@ export const styles = StyleSheet.create({
   reschedule: {
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
-    marginTop: 19,
+    marginTop: 50,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500,
     marginLeft: 17.3,

@@ -157,6 +157,31 @@ export const appointmentStatus = status => {
   }
   return retStatus;
 };
+export const dignosticStatus = status => {
+  let retStatus = '';
+  switch (status) {
+    case 'CANCELLED':
+      retStatus = 'Cancelled';
+      break;
+    case 'INITIATED':
+      retStatus = 'Awaiting For Confirmation';
+      break;
+    case 'CONFIRMED':
+      retStatus = 'Confirmed';
+      break;
+    case 'RESCHEDULED':
+      retStatus = 'Awaiting For Confirmation';
+      break;
+    case 'COMPLETED':
+      retStatus = 'Report Awaited';
+      break;
+    case 'FINISHED':
+      retStatus = 'Access your report from Download Section';
+      break;
+      default:retStatus='Awaiting For Confirmation';
+  }
+  return retStatus;
+};
 
 export const getDate = timestamp => {
   //  let date = Date.parse(timestamp?.split(".")[0])
@@ -172,6 +197,9 @@ export const getPlanDate = timestamp => {
     year:'numeric'
   });
 };
+export const splitCustomId=customId=>{
+  return customId.substr(0, 4)+'-'+customId.substr(4, 4)+'-'+customId.substr(8, 4);
+}
 
 export const getTime = timestamp => {
   // let time = Date.parse(timestamp?.split(".")[0])

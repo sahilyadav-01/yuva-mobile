@@ -59,10 +59,10 @@ export const viewMyTestAndPackageThunk = createAsyncThunk(
 );
 export const bookingTestAndPackageThunk = createAsyncThunk(
   'booking/user',
-  async ({ jwt, isActive }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ jwt }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const authToken = 'Bearer ' + jwt;
-      const url = `${BOOKED_TEST}/${isActive}`;;
+      const url = BOOKED_TEST;
       return await axios
         .get(url, {
           headers: {
@@ -70,10 +70,7 @@ export const bookingTestAndPackageThunk = createAsyncThunk(
             Authorization: authToken,
           },
         })
-        .then(resp => {
-          return { ...resp.data, isActive };
-
-        });
+        .then(resp =>resp.data );
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
@@ -263,9 +260,7 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData = action.payload.isActive === "false" ? action.payload.data : state.bookedData;
-      state.diagnosticCarouselData = action.payload.isActive === "true" ? action.payload.data : state.diagnosticCarouselData;
-
+      state.bookedData = action.payload.data ;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;
