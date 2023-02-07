@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE } from '../styles/colors';
+import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE, RED_SHADE, GREEN } from '../styles/colors';
 import { COLUMN, ROW, SPACE_BETWEEN, CENTER, FLEX_END, ABSOLUTE, FLEX_START } from '../styles/constants';
 import { fonts } from '../styles/fonts';
 
@@ -45,6 +45,16 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight500
   },
+  cancelledColor:{
+    color: RED_SHADE,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500
+  },
+  confirmedColor:{
+    color: GREEN,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500
+  },
   lab: {
 
     flexDirection: ROW,
@@ -60,6 +70,9 @@ export const styles = StyleSheet.create({
   date: {
     marginRight: 13,
     marginTop: 10,
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500,
+    fontSize: fonts.size.fontSize8
   },
   description: {
     color: CYAN_BLUE,

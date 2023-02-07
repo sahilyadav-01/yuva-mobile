@@ -196,6 +196,9 @@ export const getPlanDate = timestamp => {
     year:'numeric'
   });
 };
+export const splitCustomId=customId=>{
+  return customId.substr(0, 4)+'-'+customId.substr(4, 4)+'-'+customId.substr(8, 4);
+}
 
 export const getTime = timestamp => {
   // let time = Date.parse(timestamp?.split(".")[0])
