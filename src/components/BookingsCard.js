@@ -2,14 +2,21 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles } from './styles';
-import { CANCELLED, DATE, DESCRIPTION, INITIATED, PENDING, RESCHEDULED } from './constants';
+import { CANCELLED, RESCHEDULED } from './constants';
 import CardButton from './CardButton'
 import { GREEN, RED_SHADE } from '../styles/colors';
-import { dignosticStatus,getPlanDate,splitCustomId } from '../utils/utils';
-import {PNG} from '../../assets/index'
+import { dignosticStatus, getPlanDate, splitCustomId, textStyle } from '../utils/utils';
 
 
 const BookingsCard = ({ item }) => {
+
+    const textStyle = (status) => {
+        switch (status) {
+            case 'CANCELLED': return styles.cancelledColor; break;
+            case 'INITIATED': return styles.initiatedColor; break;
+            default: return styles.confirmedColor
+        }
+    }
 
     if (!item) {
         return null;
@@ -17,30 +24,28 @@ const BookingsCard = ({ item }) => {
 
     return (
         <View>
-            {item?.status === "INITIATED" || item?.status === "RESCHEDULED" || item?.status === "CONFIRMED" ?
-        
-                (<View>
+            <View>
 
-                    <TouchableOpacity>
-                        <View style={styles.BookingCard}>
-                            <View >
-                                <View style={styles.status}>
-                                    <View style={styles.customId}>
-                                        <Text style={styles.initiatedColor}>{dignosticStatus(item?.status)}</Text>
-                                        
-                                        <Text style={styles.custom}>{splitCustomId(item.customId)}</Text>
-                                    </View>
-                                    <View style={styles.lab}>
-                                        <Text style={styles.labs}>
-                                            {item?.labName === null && <Text>-</Text> || item?.labName}
-                                        </Text>
-                                        <Text style={styles.date}>{getPlanDate(item?.collectionTime)}</Text>
+                <TouchableOpacity>
+                    <View style={styles.BookingCard}>
+                        <View >
+                            <View style={styles.status}>
+                                <View style={styles.customId}>
+                                    <Text style={textStyle(item?.status)}>{dignosticStatus(item?.status)}</Text>
 
-                                    </View>
+                                    <Text style={styles.custom}>{splitCustomId(item.customId)}</Text>
+                                </View>
+                                <View style={styles.lab}>
+                                    <Text style={styles.labs}>
+                                        {item?.labName === null && <Text>-</Text> || item?.labName}
+                                    </Text>
+                                    <Text style={styles.date}>{getPlanDate(item?.collectionTime)}</Text>
+
                                 </View>
                             </View>
-
-                            <View style={styles.reschedule}>
+                        </View>
+                        {item?.status === "CONFIRMED" || item?.status === "INITIATED" || item?.status === "RESCHEDULED" ?
+                            (<View style={styles.reschedule}>
                                 <CardButton
                                     text={RESCHEDULED}
                                     iconName="clock-outline"
@@ -51,57 +56,13 @@ const BookingsCard = ({ item }) => {
                                     iconName="close"
                                     iconColor={RED_SHADE}
                                 />
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                    <View>
-                    
+                            </View>) : ("")}
                     </View>
+                </TouchableOpacity>
+                <View>
+
                 </View>
-
-                ) : (<View>
-                    {item.status === "COMPLETED" || item.status === "FINISHED" ?
-                        (
-                            <View>
-                                <TouchableOpacity>
-                                    <View style={styles.BookingCard}>
-                                        <View >
-                                            <View style={styles.status}>
-                                                <View style={styles.customId}>
-                                                    <Text style={styles.confirmedColor}>{dignosticStatus(item?.status)}</Text>
-                                                </View>
-                                                <View style={styles.lab}>
-                                                    <Text style={styles.labs}>
-                                                        {item?.labName === null && <Text>-</Text> || item?.labName}
-                                                    </Text>
-                                                    <Text style={styles.date}>{getPlanDate(item?.collectionTime)}</Text>
-
-                                                </View>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity></View>) : (<View>
-                                    {item.status === "CANCELLED" &&
-                                        <TouchableOpacity>
-                                            <View style={styles.BookingCard}>
-                                                <View >
-                                                    <View style={styles.status}>
-                                                        <View style={styles.customId}>
-                                                            <Text style={styles.cancelledColor}>{dignosticStatus(item?.status)}</Text>
-                                                        </View>
-                                                        <View style={styles.lab}>
-                                                            <Text style={styles.labs}>
-                                                                {item?.labName === null && <Text>-</Text> || item?.labName}
-                                                            </Text>
-                                                            <Text style={styles.date}>{getPlanDate(item?.collectionTime)}</Text>
-
-                                                        </View>
-                                                    </View>
-                                                </View>
-                                            </View>
-                                        </TouchableOpacity>}
-                                </View>)}
-                </View>)}
+            </View>
 
         </View>
 

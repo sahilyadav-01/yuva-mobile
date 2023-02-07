@@ -25,10 +25,11 @@ export const styles = StyleSheet.create({
 
   },
   customId: { 
-    flexDirection: ROW,
+    flexDirection:ROW,
+    justifyContent:"space-between"
   },
   custom:{
-    marginLeft: 120,
+    marginRight:13,
     marginTop:6,
     fontFamily: fonts.family.fontFamilyRubix,
     fontWeight: fonts.weight.fontWeight400,
