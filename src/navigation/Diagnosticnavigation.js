@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import BookingTestAndPackage from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
+import BookingTestAndPackage from '../modules/diagnostic/BookingTestAndPackage';
 import Diagnostics from '../modules/diagnostic/index';
 import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
