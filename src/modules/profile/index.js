@@ -7,6 +7,7 @@ import {useProfile} from './hooks/useProfile';
 import styles from './style';
 import UserDetailsCard from './components/userDetailsCard';
 import Header from '../../components/Header';
+import ErrorScreen from '../../components/ErrorScreen';
 
 const Profile = () => {
   const data = [
@@ -38,13 +39,19 @@ const Profile = () => {
     onDependentNameChange,
     relationSelected,
     relationsData,
+    showErrorMessage,
+    onRetryPress,
   } = useProfile();
 
   const {container} = styles({disabled: false});
+  if (showErrorMessage) {
+    return <ErrorScreen onRetryPress={onRetryPress} />;
+  }
 
   if (!userDetails) {
     return null;
   }
+
   return (
     <>
       <Header isRightIcon={true} />

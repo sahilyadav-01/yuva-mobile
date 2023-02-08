@@ -14,7 +14,7 @@ export const useSection4 = () => {
     const [alcohol, setAlochol] = useState(false);
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const setQuestion1 = value => {
         {
             value == 1 ? setAlochol(true) : setAlochol(false);
@@ -34,7 +34,7 @@ export const useSection4 = () => {
     const { width } = getDimensions();
     const progressWidth = width;
     useEffect(() => {
-        dispatch(section4QThunk({ jwt }));
+        dispatch(section4QThunk());
     }, []);
     const next = () => {
 

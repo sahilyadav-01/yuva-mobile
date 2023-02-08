@@ -1,65 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { LogBox } from 'react-native';
-import { SERVER } from '../../utils/utils';
-const PROGRAM_AND_PLAN = 'http://' + SERVER + ':8080/api/v1/yuva/programAndPlan';
-const PACKAGES_AND_PLAN_NAME = 'http://' + SERVER + ':8080/api/v1/yuva/package/popular';
+
+
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { YuvaService } from '../../network/yuvaService';
 
 export const programAndPlanThunk = createAsyncThunk(
-  'programAndPlan',
-  async ({ jwt, serviceUuid }, { fulfillWithValue, rejectWithValue }) => {
-    try {
-      const authToken = 'Bearer ' + jwt;
-      const url = PROGRAM_AND_PLAN + '?serviceUuid=' + `${serviceUuid}`;
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
-    } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
+    'programAndPlan',
+    async ({ serviceUuid }, { fulfillWithValue, rejectWithValue }) => {
+      try {
+        const endpoint = `/programAndPlan?serviceUuid=${serviceUuid}`
+        const response = await YuvaService.get(endpoint);
+        return response.data;
+      } catch (error) {
+        //const errorOject =  JSON.stringify(error.response.data)
+        return rejectWithValue(error.response.data);
+      }
+    },
+  );
 
-export const popularPackageNameThunk = createAsyncThunk(
-  'package/popular',
-  async ({ fulfillWithValue, rejectWithValue }) => {
-    try {
-      const url = PACKAGES_AND_PLAN_NAME + '?limited=true';
-      return await axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then(resp => resp.data);
-    } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
+const initialState = {
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  programAndPlan: [],
+}
 
 const programAndPlanSlice = createSlice({
-  name: 'programAndPlan',
-  initialState: {
-    user: {
-      name: '',
-      jwt: '',
-      version: '1',
-    },
-    loading: false,
-    apiError: false,
-    apiErrorMessage: '',
-    popularPackageName: [],
-  },
-  reducers: {
+    name: 'programAndPlan',
+    initialState,
+    extraReducers: {
+      /**
+       */
+       [programAndPlanThunk.pending]: (state, { payload }) => {
+        state.loading = true;
+      },
+      [programAndPlanThunk.fulfilled]: (state, action) => {
+        state.programAndPlan = action.payload?.data || [];
+      },
+      [programAndPlanThunk.rejected]: (state, action) => {
+        state.apiError = true;
+      },
 
     popularPackageName(state, { payload }) {
       state.popularPackageName['packageName'] = payload?.data?.packageName;
@@ -94,8 +73,8 @@ const programAndPlanSlice = createSlice({
     [popularPackageNameThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
-  
-  },
+  }
 });
-export const { popularPackageName} = programAndPlanSlice.actions;
+
+export const programAndPlanInit = programAndPlanSlice.getInitialState();
 export default programAndPlanSlice.reducer;

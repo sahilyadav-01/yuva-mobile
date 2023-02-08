@@ -40,7 +40,6 @@ import MoreInformation from './components/moreInformation';
 import Description from './components/description';
 const HealthCheckUP = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {

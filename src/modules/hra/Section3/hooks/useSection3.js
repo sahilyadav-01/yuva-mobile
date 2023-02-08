@@ -11,12 +11,12 @@ export const useSection3 = () => {
     const dispatch = useDispatch()
     const answers = useSelector(state => state.section3.answers)
     const questionData = useSelector(state => state.section3.rawQuestions)
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth)
+    const { loggedIn, } = useSelector(state => state.auth)
     const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {
-        dispatch(section3QThunk({ jwt }))
+        dispatch(section3QThunk())
     }, [])
 
     const next = () => {

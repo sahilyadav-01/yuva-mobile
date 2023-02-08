@@ -13,7 +13,6 @@ import {
 export const useProfile = () => {
   const dispatch = useDispatch();
   const {profile, auth} = useSelector(state => state);
-  const jwt = auth.user.jwt ?? null;
   const focused = useIsFocused();
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -27,19 +26,20 @@ export const useProfile = () => {
   const [dependentName, setDependentName] = useState('');
   const [dependentAge, setDependentAge] = useState('');
   const [dependentRelation, setDependentRelation] = useState('');
+  const [reloadScreenCount, setReloadScreenCount] = useState(0);
 
   useEffect(() => {
-    if (navigation.isFocused() && jwt && auth.loggedIn === 'loggedIn') {
-      dispatch(profileThunk({jwt}));
-      dispatch(getRelations({jwt}));
-      dispatch(getActiveRelations({jwt}));
+    if (navigation.isFocused()) {
+      dispatch(profileThunk());
+      dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
-  }, [focused, auth.loggedIn]);
+  }, [focused, auth.loggedIn, reloadScreenCount]);
 
   useEffect(() => {
     if (profile.dataUpdated) {
       setEdit(false);
-      jwt && dispatch(profileThunk({jwt}));
+      dispatch(profileThunk());
     }
   }, [profile.dataUpdated]);
 
@@ -50,8 +50,8 @@ export const useProfile = () => {
       setDependentRelation('');
       setAddMembers(false);
       setRelationSelected(false);
-      jwt && dispatch(getRelations({jwt}));
-      jwt && dispatch(getActiveRelations({jwt}));
+      dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
   }, [profile.relationAdded]);
 
@@ -76,7 +76,6 @@ export const useProfile = () => {
     }
     dispatch(
       addRelation({
-        jwt,
         age: dependentAge,
         name: dependentName,
         relation: dependentRelation,
@@ -123,20 +122,16 @@ export const useProfile = () => {
   const onDependentAgeChange = age => setDependentAge(age);
 
   const updateUserData = () => {
+    const dob = Date.parse(date).toString();
     if (!date || !gender) {
       Alert.alert('Alert', 'Please fill the details');
     } else {
       setUserDetails(null);
-      dispatch(
-        updateProfile({
-          jwt,
-          dob: Date.parse(date).toString(),
-          gender,
-          userDetails,
-        }),
-      );
+      dispatch(updateProfile({dob, gender}));
     }
   };
+
+  const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
   return {
     onAddMembersPress,
@@ -165,5 +160,10 @@ export const useProfile = () => {
     activeRelations: profile.activeRelations,
     relationSelected,
     relationsData,
+    onRetryPress,
+    showErrorMessage:
+      profile.userDetailsErrorMessage ||
+      profile.relationsErrorMessage ||
+      profile.activeRelationsErrorMessage,
   };
 };

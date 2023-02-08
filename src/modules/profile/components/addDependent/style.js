@@ -40,9 +40,8 @@ const styles = ({disabled}) => {
       color: DARK_BLUE,
     },
     saveButtonText: {
-      fontFamily: fonts.family.fontFamilyRubix,
+      fontFamily: fonts.family.rubikMedium,
       fontSize: fonts.size.fontSize14,
-      fontWeight: fonts.weight.fontWeight700,
       color: WHITE,
       textAlign: CENTER,
     },

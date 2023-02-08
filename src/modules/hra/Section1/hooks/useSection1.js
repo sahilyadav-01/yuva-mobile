@@ -17,11 +17,11 @@ export const useSection1 = () => {
     const [requiredFieldQ4, setRequiredFieldQ4] = useState(true);
     const totalCheck = [requiredFieldQ1, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4];
     useEffect(() => {
-        dispatch(section1QThunk({ jwt }));
+        dispatch(section1QThunk());
     }, [])
     const answers = useSelector(state => state.section1.answers)
     const questionData = useSelector(state => state.section1.rawQuestions)
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const inputCheck = (id, value) => {
         const regAge = /^\d+$/;
         switch (id) {

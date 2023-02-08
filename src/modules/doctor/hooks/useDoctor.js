@@ -6,36 +6,35 @@ import {
   setTabBarVisible,
 } from '../../../store/reducers/DoctorSlice';
 
-export const useDoctor = props => {
-  const dispatch = useDispatch();
-  const focused = useIsFocused();
-  const navigation = useNavigation();
-  const data = useSelector(state => state.doctor.data);
-  const {jwt} = useSelector(state => state.auth.user);
-  const [searchQuery, setSearchQuery] = useState('');
-  useEffect(() => {
-    dispatch(searchDoctorThunk({search: '', jwt}));
-  }, []);
-  const onChangeSearch = query => {
-    setSearchQuery(query);
-    if (query.length > 2) {
-      dispatch(searchDoctorThunk({search: '&search=' + query, jwt}));
-    } else if (query == '') {
-      dispatch(searchDoctorThunk({search: '', jwt}));
-    }
-  };
+export const useDoctor=()=>{
+ 
+    const dispatch = useDispatch();
+    const focused = useIsFocused();
+    const navigation = useNavigation();
+    const data  =  useSelector(state  =>  state.doctor.data)
+    const [searchQuery, setSearchQuery] =useState('');
+    useEffect(()=>{
+        dispatch(searchDoctorThunk({search:""}))
+    },[])
 
-  //   const dispatch = useDispatch();
-  useEffect(() => {
-    if (navigation.isFocused()) {
-      dispatch(setTabBarVisible(false));
-    } else if (!navigation.isFocused()) {
-      dispatch(setTabBarVisible(true));
+    useEffect(() => {
+      if (navigation.isFocused()) {
+        dispatch(setTabBarVisible(false));
+      } else if (!navigation.isFocused()) {
+        dispatch(setTabBarVisible(true));
+      }
+    }, [focused]);
+    const onChangeSearch = (query) => {
+        setSearchQuery(query)
+        if(query.length >  2){
+            dispatch(searchDoctorThunk({search:'&search='+query}))
+        } else if(query == ""){
+            dispatch(searchDoctorThunk({search:""}))
+        }
     }
-  }, [focused]);
   return {
     onChangeSearch,
     searchQuery,
-    data,
-  };
+    data
+  }
 };

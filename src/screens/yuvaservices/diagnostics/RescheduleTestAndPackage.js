@@ -10,20 +10,19 @@ import Header from '../../../components/Header';
 import { ABOUT_TEST, ARE_YOU_SURE, BOKINGTESTANDPACKAGE, CANCEL, DIAGNOSTIC, INSTRUCTIONS, LOCATION, MESSAGE, RESCHEDULE, TRUE } from './constants';
 import { RED_SHADE, WHITE } from '../../../styles/colors';
 const RescheduleTestAndPackage = ({ route }) => {
-    const { jwt } = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
     const { bookedDetailsById, cancelled } = useSelector(state => state.diagnostic)
     const { id } = route.params;
     const navigation = useNavigation()
     useEffect(() => {
-        dispatch(bookedDetailsByIdThunk({ jwt, id }));
+        dispatch(bookedDetailsByIdThunk({ id }));
     }, [])
     const [cancelFlag, setCancelFlag] = useState(false);
     const cancelMessage = ARE_YOU_SURE;
     const cancelBooking = () => {
         //TRUE is string imported from constants file.
         const isCancelled= TRUE;
-        dispatch(rescheduleCancelBookingThunk({ jwt, id, isCancelled, timeSlot: '' }))
+        dispatch(rescheduleCancelBookingThunk({ id, isCancelled, timeSlot: '' }))
     }
     const cancelBookingButton = () => {
         setCancelFlag(true);

@@ -10,7 +10,6 @@ import Consultation from './components/consultationCard';
 import BestDoctors from './components/doctorsTheBest';
 const TalkToDoctor = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {

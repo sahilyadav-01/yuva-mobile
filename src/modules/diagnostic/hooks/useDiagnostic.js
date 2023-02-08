@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const useDiagnostic = () => {
     const navigation = useNavigation();
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn } = useSelector(state => state.auth);
     const onPressRightIcon = () => {
         if (loggedIn !== 'loggedIn') {
             navigation.navigate('LoginScreen');

@@ -17,7 +17,6 @@ const IntroStackNav = () => {
     dispatch(initialLoad())
   }, []);
   const { loggedIn, isAppReady } = useSelector(state => state.auth);
-  const { jwt } = useSelector(state => state.auth.user);
   const getInitialRoute = async () => {
     const existingUser = await getExistingUser();
     if (existingUser) return 'HomeScreen';

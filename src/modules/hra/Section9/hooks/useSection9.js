@@ -24,12 +24,12 @@ export const useSection9 = () => {
     const extra_questions_Q9A = useSelector(state => state.section7.extra_questions_Q9A);
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
-    const { user: { jwt }, loggedIn, } = useSelector(state => state.auth);
+    const { loggedIn, } = useSelector(state => state.auth);
     const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {
-        dispatch(section9QThunk({ jwt }))
+        dispatch(section9QThunk())
     }, [])
     const computeResult = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
@@ -43,7 +43,7 @@ export const useSection9 = () => {
                 cancer: extra_questions_Q9A,
                 illness: extra_questions_Q10A
             }
-            dispatch(finalSubmission({ jwt, final_data })).then(() => { navigation.navigate(SECTION_10) })
+            dispatch(finalSubmission({final_data })).then(() => { navigation.navigate(SECTION_10) })
         }
     }
     const onPressRightIcon = () => {

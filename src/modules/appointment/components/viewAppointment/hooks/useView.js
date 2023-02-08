@@ -20,7 +20,6 @@ export const useView=()=>{
         otp,
         hospitalName,
       } = useSelector(state => state.appointment.currentAppointment);
-      const {jwt} = useSelector(state => state.auth.user);
         
     const goBack = () => {
         navigation.goBack();
@@ -39,8 +38,8 @@ export const useView=()=>{
         
   const cancelAppointmentMessagBox = () => {
     setCancelFlag(false);
-    dispatch(cancelAppointmentThunk({jwt, id}))
-      .then(() => dispatch(allAppointmentThunk({jwt})))
+    dispatch(cancelAppointmentThunk({id}))
+      .then(() => dispatch(allAppointmentThunk()))
       .then(() => navigation.navigate('AppointmentHome'));
   };
 

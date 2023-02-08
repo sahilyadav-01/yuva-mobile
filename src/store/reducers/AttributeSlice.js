@@ -1,19 +1,12 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
-
-const baseEndpoint = 'http://' + SERVER + ':8080/api/v1/yuva';
+import {YuvaService} from '../../network/yuvaService';
 
 export const getServicesThunk = createAsyncThunk(
   'attribute/getServices',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async ({}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await axios.get(`${baseEndpoint}/services/dropdown`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const endpoint = '/services/dropdown';
+      const response = await YuvaService.get(endpoint);
       return fulfillWithValue(response);
     } catch (error) {
       return rejectWithValue(error);
@@ -55,4 +48,5 @@ const attributeSlice = createSlice({
   },
 });
 
+export const attributeInit = attributeSlice.getInitialState();
 export default attributeSlice.reducer;

@@ -11,7 +11,6 @@ export const useHealth = () => {
     navigation.goBack();
   };
 
-  const {jwt} = useSelector(state => state.auth.user);
   const {isRequested} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
   const [description, setDescription] = useState('');
@@ -32,7 +31,7 @@ export const useHealth = () => {
         description: description,
         healthConcern: HEALTH_LIST[selected]?.name || '',
       };
-      dispatch(addRequestThunk({jwt, data}));
+      dispatch(addRequestThunk({data}));
     };
   };
   return {

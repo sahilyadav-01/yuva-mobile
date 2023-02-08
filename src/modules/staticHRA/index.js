@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux';
 import {PNG} from '../../../assets';
 const StaticHra = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {

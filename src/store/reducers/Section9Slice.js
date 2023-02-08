@@ -1,83 +1,43 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
-import * as FileSystem from 'react-native-fs';
+import {YuvaService} from '../../network/yuvaService';
 
-/**
- * Thunks
- */
-
-// Constants
-//  const LOCAL_SERVER='localhost'
-//  const SERVER = LOCAL_SERVER;
-const SECTION_QUESTION =
-  'http://' + SERVER + ':8080/api/v1/yuva/hra/questions/9';
-const SUBMISSION_QUESTION =
-  'http://' + SERVER + ':8080/api/v1/yuva/hra/answers2';
 //const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
-const CHECK_REPORT =
-  'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport/status';
-
-// Load section question
 export const section9QThunk = createAsyncThunk(
   'section9/section9QThunk',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-
-      return await axios
-        .get(SECTION_QUESTION, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/hra/questions/9';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
 );
 
-/**
- * Check the status of the report
- */
 export const reportStatusThunk = createAsyncThunk(
   'section9/status',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
+      const endpoint = '/hraPdfReport/status';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+      //  //Check condition
+      //  const response = await axios.get(DOWNLOAD_REPORT,{
+      //   headers: {
+      //   'Authorization':authToken
+      //   },
+      //   responseType: 'blob'
+      // });
+      //  const fr = new FileReader();
+      //  fr.onload = async () => {
+      //      const fileUri = `${FileSystem.documentDirectory}/document.pdf`;
+      //      const result = await FileSystem.writeAsStringAsync(fileUri, fr.result.split(',')[1], {encoding: FileSystem.EncodingType.Base64});
+      //      saveFile(fileUri);
 
-      return await axios
-        .get(CHECK_REPORT, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(async resp => {
-          return resp.data;
-          //  //Check condition
-          //  const response = await axios.get(DOWNLOAD_REPORT,{
-          //   headers: {
-          //   'Authorization':authToken
-          //   },
-          //   responseType: 'blob'
-          // });
-          //  const fr = new FileReader();
-          //  fr.onload = async () => {
-          //      const fileUri = `${FileSystem.documentDirectory}/document.pdf`;
-          //      const result = await FileSystem.writeAsStringAsync(fileUri, fr.result.split(',')[1], {encoding: FileSystem.EncodingType.Base64});
-          //      saveFile(fileUri);
-
-          //  };
-          //  fr.readAsDataURL(response.data);
-        });
+      //  };
+      //  fr.readAsDataURL(response.data);
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
@@ -117,29 +77,16 @@ export const reportStatusThunk = createAsyncThunk(
 
 export const finalSubmission = createAsyncThunk(
   'section9/finalSubmission',
-  async ({jwt, final_data}, {fulfillWithValue, rejectWithValue}) => {
+  async ({final_data}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-
-      return await axios
-        .post(SUBMISSION_QUESTION, final_data, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/hra/answers2';
+      const response = await YuvaService.post(endpoint, final_data);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-/**
- * initialState
- */
 
 const initialState = {
   loading: false,
@@ -169,8 +116,7 @@ const initialState = {
   metrics: {},
   result: false,
   reportStatus: false,
-  reportDownload:false,
- 
+  reportDownload: false,
 };
 
 const section9Slice = createSlice({
@@ -208,27 +154,23 @@ const section9Slice = createSlice({
     [reportStatusThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.reportStatus = payload.data;
-      state.reportDownload=payload.data?.filePath;
-     
+      state.reportDownload = payload.data?.filePath;
 
       //state.reportStatus=false
     },
     [reportStatusThunk.rejected]: (state, {payload}) => {
       state.loading = false;
-      state.apiError=true;
+      state.apiError = true;
       state.apiErrorMessage = payload.error;
-
     },
 
     // Final Submissionn
     [finalSubmission.pending]: (state, {payload}) => {
       state.loading = true;
       state.reportStatus = false;
-  
     },
     [finalSubmission.fulfilled]: (state, {payload}) => {
       state.loading = false;
-
 
       let score = 0;
       state.chart[0].data = [];
@@ -249,7 +191,6 @@ const section9Slice = createSlice({
       }
       state.metrics['Score'] = {label: 'Score', value: score};
       state.result = true;
-
     },
     [finalSubmission.rejected]: (state, {payload}) => {
       state.loading = false;
@@ -259,5 +200,5 @@ const section9Slice = createSlice({
 
 export const {init, dispatch_option, dispatch_reset_result} =
   section9Slice.actions;
-
+export const section9Init = section9Slice.getInitialState();
 export default section9Slice.reducer;

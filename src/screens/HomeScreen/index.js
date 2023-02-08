@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
-import { useIsFocused } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
-import { styles } from '../styles';
+import {useIsFocused} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
+import {styles} from '../styles';
 import Header from '../../components/Header';
 import { PNG } from '../../../assets';
 import {
@@ -32,18 +32,10 @@ const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const {
-    user: { jwt },
     loggedIn,
   } = useSelector(state => state.auth);
-  const { loading: appointmentLoading } = useSelector(state => state.appointment);
-  const { loading: servicesLoading } = useSelector(state => state.attribute);
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-      //The logic for opening the drawer should be added here
-    }
-  };
+  const {loading: appointmentLoading} = useSelector(state => state.appointment);
+  const {loading: servicesLoading} = useSelector(state => state.attribute);
 
   const onPressAdd = () => {
     //On add press logic to be added here
@@ -51,8 +43,8 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
-      dispatch(allAppointmentThunk({ jwt, isActive }));
-      dispatch(getServicesThunk({ jwt }));
+      dispatch(getServicesThunk({}));
+      dispatch(allAppointmentThunk({isActive}));
       dispatch(popularPackageNameThunk(isActive));
     }
 

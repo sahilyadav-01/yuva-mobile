@@ -1,43 +1,18 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {SERVER} from '../../utils/utils';
+import { YuvaService } from '../../network/yuvaService';
 
-/**
- * Thunks
- */
-
-// Constants
-//  const LOCAL_SERVER='localhost'
-//  const SERVER = LOCAL_SERVER;
-const SECTION_QUESTION =
-  'http://' + SERVER + ':8080/api/v1/yuva/hra/questions/7';
-
-// Load section question
 export const section7QThunk = createAsyncThunk(
   'section7/section7QThunk',
-  async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const authToken = 'Bearer ' + jwt;
-
-      return await axios
-        .get(SECTION_QUESTION, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: authToken,
-          },
-        })
-        .then(resp => resp.data);
+      const endpoint = '/hra/questions/7';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
-
       return rejectWithValue(error.response.data);
     }
   },
 );
-
-/**
- * initialState
- */
 
 const initialState = {
   loading: false,
@@ -113,5 +88,5 @@ const section7Slice = createSlice({
 });
 
 export const {init, dispatch_option , dispatch_option_extra_questions} = section7Slice.actions;
-
+export const section7Init = section7Slice.getInitialState();
 export default section7Slice.reducer;
