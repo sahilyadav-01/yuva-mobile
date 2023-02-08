@@ -30,9 +30,9 @@ export const bookingTestAndPackageThunk = createAsyncThunk(
   'booking/user',
   async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/booking/user`;
+      const endpoint = '/booking/user';
       const response = await YuvaService.get(endpoint);
-      return {...response.data, isActive};
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
