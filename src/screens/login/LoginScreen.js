@@ -1,13 +1,14 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import Login from '../../modules/login';
-import { FLASH_WHITE } from '../../styles/colors';
+import {styles} from './style';
 
 const LoginScreen = ({route}) => {
+  const {container} = styles();
   const from = route?.params?.from ?? null;
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:FLASH_WHITE}}>
-      <Login from={from}/>
+    <SafeAreaView style={container}>
+      <Login from={from} />
     </SafeAreaView>
   );
 };

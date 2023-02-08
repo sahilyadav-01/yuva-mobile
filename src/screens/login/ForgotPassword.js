@@ -1,11 +1,12 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import ForgotPasswordScreen from '../../modules/forgotPassword/index';
-import { FLASH_WHITE } from '../../styles/colors';
+import {styles} from './style';
 
 const ForgotPassword = ({route}) => {
+  const {container} = styles();
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:FLASH_WHITE}}>
+    <SafeAreaView style={container}>
       <ForgotPasswordScreen from={route?.params?.from} />
     </SafeAreaView>
   );

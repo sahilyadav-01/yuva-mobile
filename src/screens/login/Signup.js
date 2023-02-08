@@ -1,12 +1,13 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import Signup from '../../modules/signup/index';
-import { FLASH_WHITE } from '../../styles/colors';
+import {styles} from './style';
 
 const SignUp = ({route}) => {
+  const {container} = styles();
   return (
-    <SafeAreaView style={{flex:1,backgroundColor:FLASH_WHITE}}>
-      <Signup from={route?.params?.from}/>
+    <SafeAreaView style={container}>
+      <Signup from={route?.params?.from} />
     </SafeAreaView>
   );
 };
