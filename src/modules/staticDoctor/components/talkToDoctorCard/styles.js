@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
 
   imageView: {
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
     textAlign: CENTER,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     alignSelf: CENTER,
   },
 
@@ -48,14 +48,14 @@ export const styles = StyleSheet.create({
     color: ORANGE,
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   headTitle: {
     marginTop: '5%',
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight600,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   container: {
     backgroundColor: WHITE,

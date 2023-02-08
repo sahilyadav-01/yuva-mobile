@@ -1,6 +1,13 @@
 import validator from 'is_js';
-import {Dimensions, PermissionsAndroid, Platform} from 'react-native';
+import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+
+export const handleNetworkError = (status, message) => {
+  if (!message) {
+    if (status >= 500) Alert.alert('Error', 'Internal Server Error');
+    else if (status === 403) Alert.alert('Error', 'Forbidden');
+  } else Alert.alert('Error', message.toString());
+};
 
 export const isEmail = email => {
   let regEmail =

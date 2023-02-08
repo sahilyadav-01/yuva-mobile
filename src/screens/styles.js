@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
     backgroundColor:FLASH_WHITE,
   },
   screenOptions: {
-    tabBarLabelStyle: { fontSize: 16, marginTop: 0 },
-    tabBarStyle: { height: 40 },
+    tabBarLabelStyle: {fontSize: 16, marginTop: 0},
+    tabBarStyle: {height: 40},
     swipeEnabled: true,
     lazy: false,
   },
@@ -40,34 +40,30 @@ export const styles = StyleSheet.create({
   },
   carouselText: {
     marginLeft: 17,
-   marginTop:11,
+    marginTop: 11,
     color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight700,
     fontSize: fonts.size.fontSize16,
-    height:21
-    
+    height: 21,
   },
-  line:{
+  line: {
     borderBottomColor: GREY,
     borderBottomWidth: 1,
     width: 246,
-    marginLeft:35,
-    marginTop:19,
+    marginLeft: 35,
+    marginTop: 19,
   },
-  lineJustify:{
-    alignItems:CENTER,
+  lineJustify: {
+    alignItems: CENTER,
     flexDirection: ROW,
-     justifyContent: SPACE_BETWEEN,
-
-    
+    justifyContent: SPACE_BETWEEN,
   },
   carouselMain: {
-    justifyContent:CENTER,
-    marginTop:16,
+    justifyContent: CENTER,
+    marginTop: 16,
     marginLeft: 14,
     marginRight: 15,
     alignItems: CENTER,
-
   },
   tab: {
     fontSize: fonts.size.fontSize16,
@@ -81,7 +77,7 @@ export const styles = StyleSheet.create({
   },
   height: {
     height: 40,
-    backgroundColor:FLASH_WHITE,
+    backgroundColor: FLASH_WHITE,
   },
   flatlist: {
     flexDirection: ROW,
@@ -94,7 +90,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 13,
   },
   bannerImage: {
-    width: "100%",
+    width: '100%',
   },
   PopularHealthCheckups: {
     alignItems: CENTER,
@@ -105,13 +101,13 @@ export const styles = StyleSheet.create({
   },
   LandingPageText1: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight700,
   },
   LandingPageText2: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight400,
   },
@@ -119,6 +115,5 @@ export const styles = StyleSheet.create({
     borderBottomColor: GREY,
     borderBottomWidth: 1,
     width: 118,
-  }
-
+  },
 });

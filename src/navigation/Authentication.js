@@ -4,6 +4,7 @@ import LoginScreen from '../screens/login/LoginScreen';
 import ForgotPassword from '../screens/login/ForgotPassword';
 import EnterOTP from '../screens/login/EnterOTP';
 import Signup from '../screens/login/Signup';
+import ChangePassword from '../screens/login/ChangePassword';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,12 @@ const Authentication = (props) => {
       <Stack.Screen
         name="SignUp"
         component={Signup}
+        options={{headerShown: false}}
+        initialParams={{from}}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
