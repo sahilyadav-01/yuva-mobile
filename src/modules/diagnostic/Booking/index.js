@@ -12,8 +12,7 @@ const {bookedData}=useBooking();
     const renderItem = ({ item, index }) => {
         return <BookingsCard
             key={index}
-            nameBooking={nameBooking}
-            status={item.bookingStatus}
+            item={item}
             />
 
     }
