@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK} from '../../../../styles/colors';
+import {BLACK, KASHMIR_BLUE} from '../../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -12,7 +12,7 @@ const styles = () => {
       lineHeight: 21,
     },
     loginText: {
-      color: '#52608E',
+      color: KASHMIR_BLUE,
       fontFamily: fonts.family.nunito600,
       fontSize: 14,
       lineHeight: 21,

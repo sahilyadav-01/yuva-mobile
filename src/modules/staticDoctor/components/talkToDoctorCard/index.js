@@ -4,7 +4,6 @@ import {DOCTOR, CHAT_WITH_DOCTOR, DESC, HEALTH_CONDITION} from '../../constant';
 import {styles} from './styles';
 
 const TalkToDoctorCard = () => {
-  console.log(HEALTH_CONDITION, 'gdashgdj');
   const renderItem = ({key, item}) => {
     return (
       <View>

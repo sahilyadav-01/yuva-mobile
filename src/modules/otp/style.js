@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, FLASH_WHITE, ORANGE, WHITE} from '../../styles/colors';
+import {CYAN_BLUE, FLASH_WHITE, LIGHT_MERCURY, ORANGE, WHITE} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -17,8 +17,8 @@ const styles = () => {
       paddingHorizontal: 14,
     },
     otpInputContainer: {
-      backgroundColor: '#E7E5E5',
-      borderColor: '#E7E5E5',
+      backgroundColor: LIGHT_MERCURY,
+      borderColor: LIGHT_MERCURY,
       width: '20%',
       borderRadius: 10,
       justifyContent: CENTER,

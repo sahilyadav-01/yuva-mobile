@@ -47,7 +47,6 @@ export const useOtp = () => {
   }, [enableNavigation, from, verifyLinkLoading, number]);
 
   const onVerify = (params, from, resetPassword) => {
-    console.log(params, from, resetPassword);
     setFrom(from);
     if (resetPassword) {
       dispatch(verifyOtp({emailOrNumber: params?.number, otp}));

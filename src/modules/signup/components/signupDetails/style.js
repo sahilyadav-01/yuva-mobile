@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {
   BLACK,
   CYAN_BLUE,
+  KASHMIR_BLUE,
   MERCURY,
   RED_SHADE,
   WHITE,
@@ -70,7 +71,7 @@ const styles = () => {
       lineHeight: 21,
     },
     loginText: {
-      color: '#52608E',
+      color: KASHMIR_BLUE,
       fontFamily: fonts.family.rubik500,
       fontSize: 14,
       lineHeight: 21,

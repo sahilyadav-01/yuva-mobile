@@ -35,7 +35,6 @@ export const useForgotPassword = () => {
   };
   const onContinue = from => {
     const inputType = getInputType(text);
-    console.log('Input type', inputType);
     if (!inputType) setErrorText('Please enter a valid phone number or email');
     else {
       setFrom(from ?? undefined);
