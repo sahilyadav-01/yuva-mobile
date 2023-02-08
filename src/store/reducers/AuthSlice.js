@@ -88,6 +88,7 @@ export const initialLoad = createAsyncThunk(
   async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await getObject('user');
+      console.log('value', value);
       return value;
     } catch (error) {
       return rejectWithValue(error);
@@ -195,7 +196,7 @@ const authSlice = createSlice({
         roles: action.payload.data.roles[0],
         id: action.payload.data.id,
       };
-      action.payload.jwt && setObject('user', userData);
+      action.payload.data?.jwt && setObject('user', userData);
       state.user.name = action.payload.data.name || 'User';
       state.user.jwt = action.payload.data.jwt;
       state.user.roles = action.payload.data.roles[0];
