@@ -1,16 +1,29 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { searchDoctorThunk } from "../../../store/reducers/DoctorSlice";
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  searchDoctorThunk,
+  setTabBarVisible,
+} from '../../../store/reducers/DoctorSlice';
 
 export const useDoctor=()=>{
  
     const dispatch = useDispatch();
- 
+    const focused = useIsFocused();
+    const navigation = useNavigation();
     const data  =  useSelector(state  =>  state.doctor.data)
     const [searchQuery, setSearchQuery] =useState('');
     useEffect(()=>{
         dispatch(searchDoctorThunk({search:""}))
     },[])
+
+    useEffect(() => {
+      if (navigation.isFocused()) {
+        dispatch(setTabBarVisible(false));
+      } else if (!navigation.isFocused()) {
+        dispatch(setTabBarVisible(true));
+      }
+    }, [focused]);
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         if(query.length >  2){
@@ -19,10 +32,9 @@ export const useDoctor=()=>{
             dispatch(searchDoctorThunk({search:""}))
         }
     }
-    return {
-onChangeSearch,
-searchQuery,
-data
-    }
-
+  return {
+    onChangeSearch,
+    searchQuery,
+    data
+  }
 };

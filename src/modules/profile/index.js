@@ -54,7 +54,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header isLoggedIn={true} />
+      <Header isRightIcon={true} />
       <ScrollView style={container}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}

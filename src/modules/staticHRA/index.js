@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux';
 import {PNG} from '../../../assets';
 const StaticHra = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {
@@ -20,10 +19,7 @@ const StaticHra = ({navigation}) => {
   };
   return (
     <View>
-      <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
+      <Header />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

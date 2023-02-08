@@ -28,11 +28,11 @@ export const viewMyTestAndPackageThunk = createAsyncThunk(
 );
 export const bookingTestAndPackageThunk = createAsyncThunk(
   'booking/user',
-  async ({isActive}, {fulfillWithValue, rejectWithValue}) => {
+  async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/booking/user/${isActive}`;
+      const endpoint = '/booking/user';
       const response = await YuvaService.get(endpoint);
-      return {...response.data, isActive};
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -114,27 +114,24 @@ export const downloadReportThunk = createAsyncThunk(
   },
 );
 
+const initialState = {
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  testData: '',
+  diagnosticCarouselData: '',
+  bookedData: '',
+  testDetails: '',
+  packageDetails: '',
+  testBooked: '',
+  bookedDetailsById: '',
+  cancelled: '',
+  cityId: '',
+};
+
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
-  initialState: {
-    user: {
-      name: '',
-      jwt: '',
-      version: '1',
-    },
-    loading: false,
-    apiError: false,
-    apiErrorMessage: '',
-    testData: '',
-    diagnosticCarouselData: '',
-    bookedData: '',
-    testDetails: '',
-    packageDetails: '',
-    testBooked: '',
-    bookedDetailsById: '',
-    cancelled: '',
-    cityId: '',
-  },
+  initialState,
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;
@@ -170,14 +167,7 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData =
-        action.payload.isActive === 'false'
-          ? action.payload.data
-          : state.bookedData;
-      state.diagnosticCarouselData =
-        action.payload.isActive === 'true'
-          ? action.payload.data
-          : state.diagnosticCarouselData;
+      state.bookedData = action.payload.data ;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;

@@ -4,6 +4,7 @@ import {
   INDIGO_LIGHT,
   GAINSBORO_LIGHT,
   ECHO_BLUE,
+  ORANGE,
 } from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
   addButtonViewContainer: {paddingLeft: 14, paddingRight: 90},
   addButtonContainer: {
     borderRadius: 12,
-    backgroundColor: INDIGO_LIGHT,
+    backgroundColor: ORANGE,
     justifyContent: CENTER,
     alignItems: CENTER,
     paddingVertical: 5,

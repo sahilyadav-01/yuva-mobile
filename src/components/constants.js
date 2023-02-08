@@ -1,0 +1,16 @@
+export const CANCELLED="CANCELLED";
+export const FINISHED="FINISHED";
+export const COMPLETED="COMPLETED";
+export const RESCHEDULED="RESCHEDULED";
+export const INITIATED="INITIATED";
+export const PENDING="Pending";
+export const CONFIRMED="CONFIRMED";
+export const DOWNLOAD_REPORT="Get Report";
+export const UPCOMING="Upcoming";
+export const AVAIL="Available -"
+export const SELECT_THIS_PACKAGE='Select this package';
+export const AVAILABLE='Available Tests - ';
+export const USED='used -';
+export const DATE='Date';
+export const DESCRIPTION='description';
+export const VALID='Valid Till  ';

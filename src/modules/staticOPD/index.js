@@ -7,7 +7,6 @@ import Header from '../../components/Header/index';
 import {useSelector} from 'react-redux';
 const CashlessOPD = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {
@@ -19,10 +18,7 @@ const CashlessOPD = ({navigation}) => {
   };
   return (
     <View>
-      <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
+      <Header />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

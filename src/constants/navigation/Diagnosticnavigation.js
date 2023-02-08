@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BookingTestAndPackage from '../../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import Diagnostics from '../../screens/yuvaservices/diagnostics/Diagnostics';
@@ -16,12 +15,6 @@ const DiagnosticNav = () => {
         component={Diagnostics}
         options={{headerShown: false}}
       />
-      {/* 
-            <Stack.Screen
-                name="DiagnosticsNavigation"
-                component={DiagnosticsNavigation}
-                options={{ headerShown: false }}
-            />  */}
 
       <Stack.Screen
         name="BookingTestAndPackage"

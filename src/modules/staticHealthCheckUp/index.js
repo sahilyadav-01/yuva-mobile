@@ -40,7 +40,6 @@ import MoreInformation from './components/moreInformation';
 import Description from './components/description';
 const HealthCheckUP = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {
@@ -52,10 +51,7 @@ const HealthCheckUP = ({navigation}) => {
   };
   return (
     <View>
-      <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
+      <Header />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

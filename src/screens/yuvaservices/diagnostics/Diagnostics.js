@@ -1,28 +1,15 @@
-import React from 'react';
-import {View, SafeAreaView} from 'react-native';
-import LabSearch from './LabSearch';
-import DiagnosticNav1 from '../../../navigation/DiagnosticNav';
-import CarouselContainerDiagnosis from '../../../components/CarousalContainerDiagnosis';
-import {styles} from './styles';
-import Header from '../../../components/Header';
-import {useDiagnostic} from './hooks/useDiagnostics';
+
+import React from 'react'
+import { SafeAreaView } from 'react-native';
+import { styles } from '../../styles';
+import Diagnostic from '../../../modules/diagnostic';
 
 const Diagnostics = () => {
-  const {onPressRightIcon, loggedIn} = useDiagnostic();
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
-      <LabSearch />
-      <CarouselContainerDiagnosis />
-      <View style={styles.height}>
-        <DiagnosticNav1 />
-      </View>
-    </SafeAreaView>
-  );
-};
+    return (
+        <SafeAreaView style={styles.margin}>
+            <Diagnostic/>
+        </SafeAreaView>
+    )
+}
 
 export default Diagnostics;

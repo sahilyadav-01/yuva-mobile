@@ -24,18 +24,16 @@ import {
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
+import {getServicesThunk} from '../../store/reducers/AttributeSlice';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const {loggedIn} = useSelector(state => state.auth);
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-      //The logic for opening the drawer should be added here
-    }
-  };
+  const {
+    loggedIn,
+  } = useSelector(state => state.auth);
+  const {loading: appointmentLoading} = useSelector(state => state.appointment);
+  const {loading: servicesLoading} = useSelector(state => state.attribute);
 
   const onPressAdd = () => {
     //On add press logic to be added here
@@ -43,14 +41,15 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
+      dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({isActive}));
     }
   }, [focused]);
+  if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
+        isRightIcon={true}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
@@ -74,7 +73,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={PNG.HEALTHIMG}
+              imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
               healthCheckUp={true}
             />
@@ -93,7 +92,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem2
-              imgPath={PNG.DIAGNOSTIC}
+              imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>

@@ -133,7 +133,7 @@ const LoginScreen = props => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={DARK_BLUE} style="light" />
       {/* Top Section */}
-      <Header name="LOGIN" isLoggedIn={loggedIn === 'loggedIn'}/>
+      <Header title="LOGIN" />
 
       {/* Login Screen */}
       <View className="flex mt-[60px]">

@@ -31,7 +31,6 @@ const BookingTestAndPackage = ({ route }) => {
     }
     const dispatch = useDispatch();
     const navigation = useNavigation()
-    const { jwt } = useSelector(state => state.auth.user);
     const { testDetails, packageDetails, cityId } = useSelector(state => state.diagnostic);
     const {relationId}=useSelector(state=>state.profile);
     const [location, setLocation] = useState('');
@@ -222,13 +221,13 @@ const BookingTestAndPackage = ({ route }) => {
             )
             setDataRelation(newArray)
         } else {
-            dispatch(getRelations({ jwt }))
+            dispatch(getRelations())
         }   
     }, [relationId])
     
     return (
         <View style={styles.margin}>
-            <Header/>
+            <Header isRightIcon={true} />
             <ScrollView
                style={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

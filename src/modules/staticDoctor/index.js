@@ -10,7 +10,6 @@ import Consultation from './components/consultationCard';
 import BestDoctors from './components/doctorsTheBest';
 const TalkToDoctor = ({navigation}) => {
   const {
-    user: {jwt},
     loggedIn,
   } = useSelector(state => state.auth);
   const onPressRightIcon = () => {
@@ -22,10 +21,7 @@ const TalkToDoctor = ({navigation}) => {
   };
   return (
     <View>
-      <Header
-        isLoggedIn={loggedIn === 'loggedIn'}
-        onPressRightIcon={onPressRightIcon}
-      />
+      <Header />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}

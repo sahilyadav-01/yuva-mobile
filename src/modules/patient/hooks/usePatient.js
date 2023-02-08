@@ -7,7 +7,6 @@ import { PRESCRIPTION } from "../constant";
 
 export const usePatient = () => {
   const dispatch = useDispatch();
-  const {jwt} = useSelector(state => state.auth.user);
   const {consultationList} = useSelector(state => state.talkToDoctor)
   useEffect(() => {
     dispatch(getAppointmentThunk());

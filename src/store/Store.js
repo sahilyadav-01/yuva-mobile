@@ -14,6 +14,8 @@ import appointment, {appointmentInit} from './reducers/AppointmentSlice';
 import diagnostic, {diagnosticInit} from './reducers/DiagnosticsSlice';
 import talkToDoctor, {talkToDoctorInit} from './reducers/TalkToDoctorSlice';
 import profile, {profileInit} from './reducers/ProfileSlice';
+import programAndPlan, {programAndPlanInit} from './reducers/ProgramAndPlanSlice';
+import attribute, {attributeInit} from './reducers/AttributeSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -31,6 +33,8 @@ const storeInitialState = {
   diagnostic: diagnosticInit,
   talkToDoctor: talkToDoctorInit,
   profile: profileInit,
+  programAndPlan: programAndPlanInit,
+  attribute: attributeInit,
 };
 
 const appReducer = combineReducers({
@@ -49,6 +53,8 @@ const appReducer = combineReducers({
   diagnostic,
   talkToDoctor,
   profile,
+  programAndPlan,
+  attribute,
 });
 
 const rootReducer = (state, action) => {

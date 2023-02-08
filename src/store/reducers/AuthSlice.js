@@ -88,6 +88,7 @@ export const initialLoad = createAsyncThunk(
   async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await getObject('user');
+      console.log('value', value);
       return value;
     } catch (error) {
       return rejectWithValue(error);
@@ -132,29 +133,34 @@ export const signupThunk = createAsyncThunk(
   },
 );
 
+const initialState = {
+  user: {
+    name: '',
+    jwt: '',
+    status: false,
+    roles: [],
+    version: '1',
+    id: '',
+  },
+  loggedIn: 'init',
+  isAppReady: false,
+  loading: false,
+  apiError: false,
+  apiErrorMessage: '',
+  signUp: {
+    verifyEmail: false,
+    verifySms: false,
+  },
+  verified: {
+    smsVerified: false, 
+    emailVerified: false
+  },
+  forgotStatus: false,
+};
+
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: {
-      name: '',
-      jwt: '',
-      status: false,
-      roles: [],
-      version: '1',
-      id: '',
-    },
-    loggedIn: 'init',
-    isAppReady: false,
-    loading: false,
-    apiError: false,
-    apiErrorMessage: '',
-    signUp: {
-      verifyEmail: false,
-      verifySms: false,
-    },
-    verified: {smsVerified: false, emailVerified: false},
-    forgotStatus: false,
-  },
+  initialState,
   reducers: {
     hideErrorBox(state) {
       state.apiError = false;
@@ -182,7 +188,7 @@ const authSlice = createSlice({
       state.user.status = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
-      setJwt(action.payload.jwt);
+      setJwt(action.payload.data.jwt);
       state.loading = false;
       const userData = {
         name: action.payload.data.name,
@@ -190,7 +196,7 @@ const authSlice = createSlice({
         roles: action.payload.data.roles[0],
         id: action.payload.data.id,
       };
-      action.payload.jwt && setObject('user', userData);
+      action.payload.data?.jwt && setObject('user', userData);
       state.user.name = action.payload.data.name || 'User';
       state.user.jwt = action.payload.data.jwt;
       state.user.roles = action.payload.data.roles[0];
