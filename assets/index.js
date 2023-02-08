@@ -50,6 +50,7 @@ import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
+import EYE from './eye.png';
 
 const PNG = {
   AMICO,
@@ -97,6 +98,7 @@ const PNG = {
   HEALTHIMG,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
+  EYE
 };
 
 const SVG = {

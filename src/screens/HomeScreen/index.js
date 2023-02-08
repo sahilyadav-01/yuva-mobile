@@ -37,7 +37,7 @@ const HomeScreen = ({navigation}) => {
   const {loading: servicesLoading} = useSelector(state => state.attribute);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
+      navigation.navigate('LoginScreen',{from:null});
     } else {
       //The logic for opening the drawer should be added here
     }

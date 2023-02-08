@@ -3,7 +3,7 @@ import {FLASH_WHITE, WHITE} from '../../../../styles/colors';
 
 const styles = () => {
   return StyleSheet.create({
-    scrollViewContainer: {paddingHorizontal: 13, marginTop: 1},
+    scrollViewContainer: {paddingHorizontal: 13, marginVertical:32},
     signUpCard: {
       backgroundColor: WHITE,
       elevation: 100,

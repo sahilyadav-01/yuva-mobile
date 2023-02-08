@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { WHITE } from "../../styles/colors";
-import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
-import { fonts } from "../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {WHITE} from '../../styles/colors';
+import {ABSOLUTE, CENTER, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   headerContainer: {
@@ -17,17 +17,16 @@ export const styles = StyleSheet.create({
     position: ABSOLUTE,
   },
   body: {
-    flex:1
+    flex: 1,
   },
   rightIcon: {
     right: 0,
     paddingRight: 10,
   },
   loginText: {
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontWeight: fonts.weight.fontWeight600,
     color: WHITE,
     fontSize: fonts.size.fontSize10,
   },
-
 });

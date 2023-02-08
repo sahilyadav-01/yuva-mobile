@@ -10,15 +10,14 @@ const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
       borderRadius: 8,
-      backgroundColor: ORANGE,
     },
     buttonText: {
       marginVertical: 16,
       lineHeight: 16,
       fontSize: 14,
-      fontFamily: fonts.family.fontFamilyRubix,
+      fontFamily: fonts.family.rubik400,
       fontWeight: '700',
-      color: WHITE
+      color: WHITE,
     },
   });
 };

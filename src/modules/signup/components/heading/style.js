@@ -8,11 +8,9 @@ const styles = () => {
     headingContainer: {alignSelf: CENTER},
     headingText: {
       color: CYAN_BLUE,
-      letterSpacing: 0.15,
-      fontFamily: fonts.family.fontFamilyRubix,
+      fontFamily: fonts.family.rubik600,
       fontSize: 14,
       lineHeight: 21,
-      fontWeight: '600',
     },
     separator: {
       marginHorizontal: 16,

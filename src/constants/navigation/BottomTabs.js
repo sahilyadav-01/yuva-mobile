@@ -39,7 +39,7 @@ const BottomTabs = () => {
         },
         tabBarLabelStyle: {
           marginVertical: 4,
-          fontFamily: fonts.family.fontFamilyRubix,
+          fontFamily: fonts.family.rubik400,
           fontSize: fonts.size.fontSize12,
           fontWeight: fonts.weight.fontWeight500,
         },

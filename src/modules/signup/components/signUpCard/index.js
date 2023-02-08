@@ -5,15 +5,18 @@ import Heading from '../heading';
 import styles from './style';
 
 const SignUpCard = props => {
-  const {signUpProps} = props;
   const {scrollViewContainer, signUpCard} = styles();
   return (
-    <ScrollView style={scrollViewContainer}>
+    <View
+      style={scrollViewContainer}
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+      keyboardShouldPersistTaps="handled">
       <View style={signUpCard}>
         <Heading />
-        <Form signUpProps={signUpProps} />
+        <Form name={props.name} from={props?.from} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
