@@ -28,9 +28,9 @@ export const viewMyTestAndPackageThunk = createAsyncThunk(
 );
 export const bookingTestAndPackageThunk = createAsyncThunk(
   'booking/user',
-  async ({isActive}, {fulfillWithValue, rejectWithValue}) => {
+  async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/booking/user/${isActive}`;
+      const endpoint = `/booking/user`;
       const response = await YuvaService.get(endpoint);
       return {...response.data, isActive};
     } catch (error) {
@@ -167,14 +167,7 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData =
-        action.payload.isActive === 'false'
-          ? action.payload.data
-          : state.bookedData;
-      state.diagnosticCarouselData =
-        action.payload.isActive === 'true'
-          ? action.payload.data
-          : state.diagnosticCarouselData;
+      state.bookedData = action.payload.data ;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;

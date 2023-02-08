@@ -57,6 +57,7 @@ import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
 import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
 import DOCTOR from './doctor.png';
 import Back from './back';
+import DATE from './date.png'
 
 const PNG = {
   AMICO,
@@ -112,6 +113,7 @@ const PNG = {
   PACKAGE,
   DIAGNOSTICMYPLAN,
   MY_HEALTH_CHECKUP,
+  DATE
 };
 
 const SVG = {
