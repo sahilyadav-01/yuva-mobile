@@ -17,18 +17,10 @@ export const useSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
-  const [fetchNumberCheck, setFetchNumberCheck] = useState(false);
-  const [fetchEmailCheck, setFetchEmailCheck] = useState(false);
   const [enableSignUpButton, setEnableSignUpButton] = useState(false);
   const [existing, setExisting] = useState(false);
   const [terms, setTerms] = useState(false);
   useEffect(() => {
-    if (emailExisting !== null) {
-      setFetchEmailCheck(true);
-    }
-    if (numberExisting !== null) {
-      setFetchNumberCheck(true);
-    }
     setExisting(emailExisting || numberExisting);
   }, [emailExisting, numberExisting]);
 
@@ -59,7 +51,7 @@ export const useSignUp = () => {
 
   const toggleTerms = () => setTerms(!terms);
 
-  const onLoginPress = (from) => navigation.navigate('Login',{from})
+  const onLoginPress = from => navigation.navigate('Login', {from});
 
   const checkEmailText = e => {
     if (email.split('@').length < 2) {
@@ -115,6 +107,6 @@ export const useSignUp = () => {
     checkNumber,
     terms,
     toggleTerms,
-    onLoginPress
+    onLoginPress,
   };
 };

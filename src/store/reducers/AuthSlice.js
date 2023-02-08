@@ -9,7 +9,7 @@ import {
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
 import {YuvaService} from '../../network/yuvaService';
-import {handleNetworkError, SERVER} from '../../utils/utils';
+import {handleNetworkError} from '../../utils/utils';
 import { Alert } from 'react-native';
 
 export const forgotPassword = createAsyncThunk(
