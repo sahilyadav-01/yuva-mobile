@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     marginLeft: 55,
   },
 });

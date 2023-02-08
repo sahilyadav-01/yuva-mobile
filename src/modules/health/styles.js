@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
-import { CYAN_BLUE, ORANGE, WHITE } from "../../styles/colors";
-import { CENTER, COLUMN, ROW, TOP, WRAP } from "../../styles/constants";
+import {StyleSheet} from 'react-native';
+import {CYAN_BLUE, ORANGE, WHITE} from '../../styles/colors';
+import {CENTER, COLUMN, ROW, TOP, WRAP} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   headerText: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight500,
   },
@@ -20,15 +20,15 @@ export const styles = StyleSheet.create({
     flexDirection: COLUMN,
   },
   contentContainer: {
-    flexDirection : ROW,
-    flexWrap : WRAP,
+    flexDirection: ROW,
+    flexWrap: WRAP,
   },
   descriptionHView: {
     marginVertical: 12,
   },
   descriptionHText: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
   },
@@ -53,15 +53,15 @@ export const styles = StyleSheet.create({
     height: 48,
     borderRadius: 8,
     justifyContent: CENTER,
-    alignContent: CENTER
+    alignContent: CENTER,
   },
   textStyle: {
     color: WHITE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight600,
   },
   secureView: {
     marginBottom: 16,
-  }
+  },
 });

@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { CYAN_BLUE, WHITE } from "../../../../styles/colors";
-import { CENTER } from "../../../../styles/constants";
-import { fonts } from "../../../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {CYAN_BLUE, WHITE} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,14 +11,14 @@ export const styles = StyleSheet.create({
     marginVertical: 4,
   },
   headerText: {
-    color:CYAN_BLUE,
+    color: CYAN_BLUE,
     fontWeight: fonts.weight.fontWeight500,
     fontSize: fonts.size.fontSize16,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   patientItem: {
     width: 111,
-    height:48,
+    height: 48,
     backgroundColor: CYAN_BLUE,
     justifyContent: CENTER,
     alignItems: CENTER,
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 12,
   },
   patientItemText: {
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontWeight: fonts.weight.fontWeight600,
     fontSize: fonts.size.fontSize14,
     color: WHITE,
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     marginTop: 4,
   },
   patientFormHeader: {
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontWeight: fonts.weight.fontWeight500,
     fontSize: fonts.size.fontSize16,
     color: CYAN_BLUE,

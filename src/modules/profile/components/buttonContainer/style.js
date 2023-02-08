@@ -26,7 +26,7 @@ const styles = ({disabled}) => {
       justifyContent: CENTER,
     },
     saveButtonText: {
-      fontFamily: fonts.family.rubikMedium,
+      fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize14,
       color: WHITE,
       textAlign: CENTER,

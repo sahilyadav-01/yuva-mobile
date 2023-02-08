@@ -13,14 +13,14 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   body: {
-    flex:1
+    flex: 1,
   },
   rightIcon: {
     right: 0,
     paddingRight: 10,
   },
   loginText: {
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontWeight: fonts.weight.fontWeight600,
     color: WHITE,
     fontSize: fonts.size.fontSize10,
