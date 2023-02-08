@@ -29,9 +29,9 @@ const HRAHome = () => {
                 </View>
               </View>
             </View>
-            <View style={styles.bottomContainer}>
+            {/* <View style={styles.bottomContainer}>
               <DownloadButton onPress={onDisplay} />
-            </View>
+            </View> */}
             <HRASectionContainer />
           </ScrollView>
         </View>

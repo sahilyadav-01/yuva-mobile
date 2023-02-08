@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { CENTER, SPACE_BETWEEN,FLEX, ROW } from "../styles/constants";
-import { CYAN_BLUE,FLASH_WHITE, GREY} from "../styles/colors";
+import { CYAN_BLUE,FLASH_WHITE, SEASHELL, WHITE} from "../styles/colors";
 import { fonts } from "../styles/fonts";
 
 export const styles = StyleSheet.create({
@@ -9,9 +9,10 @@ export const styles = StyleSheet.create({
   },
   homeScreenContainer: {
     flex: 1,
+    backgroundColor:WHITE,
   },
   ScrollViewContainerStyle: {
-    paddingBottom: 400,
+    paddingBottom: 100,
   },
   serviceContainerWrapperStyle: {
     display: FLEX,
@@ -48,7 +49,7 @@ export const styles = StyleSheet.create({
     
   },
   line:{
-    borderBottomColor: GREY,
+    borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: 246,
     marginLeft:35,
@@ -116,7 +117,7 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight400,
   },
   line: {
-    borderBottomColor: GREY,
+    borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: 118,
   }

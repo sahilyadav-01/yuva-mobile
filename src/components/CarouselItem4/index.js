@@ -4,19 +4,21 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { styles } from './styles';
 
-const CarouselItem2 = props => {
+const CarouselItem4 = props => {
 
-  const { popularPackageName } = useSelector(state => state.programAndPlan);
+  // const { popularTest } = useSelector(state => state.test);
 
   const { imgPath, index, totalItem, onPressAdd, healthCheckUp } = props;
-  const mockData = {
-    description: healthCheckUp ? popularPackageName.map((i) => { return i.packageName }) : 'Lipid Profile',
-    text: 'Include 83 Tests',
-  };
+  // const mockData = {
+  //   description: healthCheckUp ? popularTest.map((i) => { return i.packageName }) : 'Lipid Profile',
+  //   text: 'Include 83 Tests',
+  // };
+  // console.log("popularTest", popularTest)
   return (
-    popularPackageName.map((item) => {
+    // popularTest.map((item) => {
        
-      return <View
+      // return
+       <View
       style={{
         ...styles.container,
         marginRight: index !== totalItem - 1 ? 15 : undefined,
@@ -29,10 +31,13 @@ const CarouselItem2 = props => {
         />
       </View>
       <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>{item.packageName}</Text>
+        <Text style={styles.descriptionStyle}>jj</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>Includes {item.parameterCount} Tests</Text>
+        {/* <Text style={styles.textStyle}>Includes {item.parameterCount} Tests</Text> */}
+        {/* <Text style={styles.textStyle}>Includes {item.parameterCount} Tests</Text> */}
+        <Text style={styles.textStyle}>Includes Tests</Text>
+      
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
@@ -42,8 +47,10 @@ const CarouselItem2 = props => {
         </TouchableOpacity>
       </View>
     </View>
-    })
+    // })
+
+
   );
 };
 
-export default CarouselItem2;
+export default CarouselItem4;

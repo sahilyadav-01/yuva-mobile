@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { DARK_BLUE } from '../../styles/colors';
+import { DARK_BLUE, RED } from '../../styles/colors';
 import { CENTER, FLEX, ROW, WRAP } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
+    display: FLEX,
+    flexDirection: ROW,
     flexWrap: WRAP,
+    justifyContent: CENTER,
     width: 100,
     height:100,
     marginHorizontal: 10,
@@ -25,8 +28,6 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     alignItems: CENTER,
     justifyContent: CENTER,
-    height: '100%',
-    width: '100%',
   },
   imageContainerStyle: {
     height: 32,
