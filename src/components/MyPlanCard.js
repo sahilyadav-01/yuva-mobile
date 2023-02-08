@@ -11,8 +11,8 @@ const MyPlanCard = ({ item }) => {
 
 
     const renderItem = (plan) => {
-        const used = plan?.items?.used || 0;
-        const available = plan?.items?.available || 0;
+        const used = plan?.item?.used || 0;
+        const available = plan?.item?.available || 0;
         if (!plan) {
             return null;
         }
