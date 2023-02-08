@@ -1,4 +1,4 @@
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {Alert} from 'react-native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,14 +13,13 @@ import {
 export const useLogin = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const focused = useIsFocused();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureEntry, setSecureEntry] = useState(true);
   const [from, setFrom] = useState(null);
   const {loggedIn} = useSelector(state => state.auth);
   const {
-    user: {jwt, status},
+    user: {status},
     navigateToRegister,
   } = useSelector(state => state.auth);
 
@@ -66,7 +65,7 @@ export const useLogin = () => {
         from,
       });
     } else {
-      if (loggedIn == 'loggedIn' && jwt && status) {
+      if (loggedIn == 'loggedIn' && status) {
         dispatch(profileThunk());
         if (from === 'Profile') navigation.navigate('Home');
         else navigation.navigate('HomeService');
