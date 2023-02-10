@@ -26,3 +26,5 @@ export const SILVER_CHALICE = '#A3A3A3';
 export const CATSKILL_WHITE = '#F5F9FA';
 export const KASHMIR_BLUE = '#52608E';
 export const VERY_DARK_GREY="#6F6F6F";
+export const MERCURY = '#E4E4E4';
+export const LIGHT_MERCURY = '#E7E5E5';

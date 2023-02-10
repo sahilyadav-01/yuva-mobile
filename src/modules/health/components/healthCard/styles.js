@@ -1,8 +1,8 @@
-import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, WHITE } from "../../../../styles/colors";
-import { ABSOLUTE, CENTER } from "../../../../styles/constants";
-import { fonts } from "../../../../styles/fonts";
-import { getDimensions } from "../../../../utils/utils";
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE, WHITE} from '../../../../styles/colors';
+import {ABSOLUTE, CENTER} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
+import {getDimensions} from '../../../../utils/utils';
 
 const {width} = getDimensions();
 
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 4,
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.01,
     shadowColor: BLACK,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
     textAlign: CENTER,

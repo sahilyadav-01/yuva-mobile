@@ -59,7 +59,7 @@ import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png'
 import dropDown from './dropDown'
-
+import EYE from './eye.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -114,7 +114,8 @@ const PNG = {
   PACKAGE,
   DIAGNOSTICMYPLAN,
   MY_HEALTH_CHECKUP,
-  DATE
+  DATE,
+  EYE
 };
 
 const SVG = {

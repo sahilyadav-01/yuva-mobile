@@ -11,7 +11,15 @@ let axiosClient = axios.create();
 
 axiosClient.interceptors.request.use(
   async config => {
-    const loginUrls = ['/login', '/signup', '/otp', '/password','/validate-otp','/generate-sms-otp'];
+    const loginUrls = [
+      '/forgot-password',
+      '/validate-otp',
+      '/verify-link',
+      '/generate-sms-otp',
+      '/login',
+      '/signup',
+      '/reset-password'
+    ];
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;
     });
@@ -40,4 +48,3 @@ axiosClient.interceptors.response.use(
 );
 
 export default axiosClient;
-

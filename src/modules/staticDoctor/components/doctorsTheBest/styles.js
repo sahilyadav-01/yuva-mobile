@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   title: {
     marginTop: '5%',
@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
     color: ORANGE,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
 });
