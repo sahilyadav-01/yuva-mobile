@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { useServiceCard } from './hooks/useServiceCard';
 import { styles } from './styles';
-import { useServiceCard } from '../ServiceContainer/hooks/useServiceContainer.js.js';
 
 const ServiceCard = ({ name, screenName, image }) => {
   const { onpress, imageData } = useServiceCard({ screenName });
