@@ -5,14 +5,14 @@ import SectionInput from '../../../components/SectionInput'
 import SectionPicker from '../../../components/SectionPicker';
 import PickerData from '../../../utils/PickerData';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADING, SECTION_2_SUB_HEADING } from "../constant";
+import { BUTTON_TEXT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADING, SECTION_2_SUB_HEADING } from "../constant";
 import { useSection2 } from './hooks/useSection2';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
 const Section2 = () => {
 
-    const { loggedIn, onPressRightIcon, progressWidth, dispatch_option, questionData, answers, next } = useSection2();
+    const { progressWidth, dispatch_option, questionData, answers, next } = useSection2();
 
     return (
         <>

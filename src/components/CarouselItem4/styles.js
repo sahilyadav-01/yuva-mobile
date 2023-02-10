@@ -5,6 +5,7 @@ import {
   GAINSBORO_LIGHT,
   ECHO_BLUE,
   ORANGE,
+  CYAN_BLUE,
 } from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
@@ -20,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {marginLeft: 20, width: 36, height: 36},
   descriptionContainer: {marginTop: 14, marginLeft: 14},
+  costContainer: {marginTop: 9, marginLeft: 14,marginBottom:9},
   textContainer: {marginLeft: 14, marginVertical: 8},
   addButtonViewContainer: {paddingLeft: 14, paddingRight: 90},
   addButtonContainer: {
@@ -36,6 +38,14 @@ export const styles = StyleSheet.create({
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
     lineHeight: 18,
+    maxWidth: 144,
+  },
+   costStyle: {
+    fontFamily: fonts.family.fontFamilyRubix,
+    fontWeight: fonts.weight.fontWeight500,
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+    lineHeight: 21,
     maxWidth: 144,
   },
   textStyle: {

@@ -34,5 +34,9 @@ export const styles = StyleSheet.create({
         borderBottomColor: SEASHELL,
         borderBottomWidth: 1,
         width: 246,
+    },
+    serviceCardContainerStyle:{
+        flexDirection: ROW, 
+        justifyContent: SPACE_BETWEEN 
     }
 })

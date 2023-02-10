@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
-import {useIsFocused} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
-import {styles} from '../styles';
+import { useIsFocused } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
+import { styles } from '../styles';
 import Header from '../../components/Header';
 import { PNG } from '../../../assets';
 import {
@@ -34,8 +34,8 @@ const HomeScreen = ({ navigation }) => {
   const {
     loggedIn,
   } = useSelector(state => state.auth);
-  const {loading: appointmentLoading} = useSelector(state => state.appointment);
-  const {loading: servicesLoading} = useSelector(state => state.attribute);
+  const { loading: appointmentLoading } = useSelector(state => state.appointment);
+  const { loading: servicesLoading } = useSelector(state => state.attribute);
 
   const onPressAdd = () => {
     //On add press logic to be added here
@@ -44,10 +44,9 @@ const HomeScreen = ({ navigation }) => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
-      dispatch(allAppointmentThunk({isActive}));
-      dispatch(popularPackageNameThunk(isActive));
+      dispatch(allAppointmentThunk({ isActive }));
+      dispatch(popularPackageNameThunk({isActive}));
     }
-
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;
   return (
@@ -79,7 +78,6 @@ const HomeScreen = ({ navigation }) => {
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
-              healthCheckUp={true}
             />
           </CarouselContainer>
         </View>

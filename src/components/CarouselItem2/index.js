@@ -7,41 +7,39 @@ import { styles } from './styles';
 const CarouselItem2 = props => {
 
   const { popularPackageName } = useSelector(state => state.programAndPlan);
-
-  const { imgPath, index, totalItem, onPressAdd, healthCheckUp } = props;
-  const mockData = {
-    description: healthCheckUp ? popularPackageName.map((i) => { return i.packageName }) : 'Lipid Profile',
-    text: 'Include 83 Tests',
-  };
+  const { imgPath, index, totalItem, onPressAdd } = props;
   return (
-    popularPackageName.map((item) => {
-       
-      return <View
-      style={{
-        ...styles.container,
-        marginRight: index !== totalItem - 1 ? 15 : undefined,
-      }}>
-      <View style={styles.iconContainer}>
-        <Image
-          resizeMode="contain"
-          source={imgPath}
-          style={styles.imageStyle}
-        />
+    popularPackageName?.popularPackageResponseDtoList?.map((item) => {
+
+     return <View
+        style={{
+          ...styles.container,
+          marginRight: index !== totalItem - 1 ? 15 : undefined,
+        }}>
+        <View style={styles.iconContainer}>
+          <Image
+            resizeMode="contain"
+            source={imgPath}
+            style={styles.imageStyle}
+          />
+        </View>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionStyle}>{item.packageName}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.textStyle}>Includes {item.parameterCount} Tests</Text>
+        </View>
+        <View style={styles.costContainer}>
+          <Text style={styles.costStyle}>₹{item.cost}/-</Text>
+        </View>
+        <View style={styles.addButtonViewContainer}>
+          <TouchableOpacity
+            onPress={onPressAdd}
+            style={styles.addButtonContainer}>
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>{item.packageName}</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>Includes {item.parameterCount} Tests</Text>
-      </View>
-      <View style={styles.addButtonViewContainer}>
-        <TouchableOpacity
-          onPress={onPressAdd}
-          style={styles.addButtonContainer}>
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
     })
   );
 };

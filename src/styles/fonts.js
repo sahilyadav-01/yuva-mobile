@@ -1,5 +1,6 @@
 export const fonts = {
   size: {
+    fontSize28: 28,
     fontSize24: 24,
     fontSize20: 20,
     fontSize18: 18,

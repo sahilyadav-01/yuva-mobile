@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { DARK_BLUE, RED } from '../../styles/colors';
+import { DARK_BLUE } from '../../styles/colors';
 import { CENTER, FLEX, ROW, WRAP } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   subBottomContainerStyle: {
     fontSize: 10,
     textAlign: CENTER,
-    paddingHorizontal: '20%',
+    paddingHorizontal: 15,
     color: DARK_BLUE,
   },
 });
