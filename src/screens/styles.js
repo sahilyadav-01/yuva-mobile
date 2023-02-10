@@ -10,6 +10,9 @@ export const styles = StyleSheet.create({
   homeScreenContainer: {
     flex: 1,
   },
+  margin:{
+    marginBottom: 0,
+  },
   ScrollViewContainerStyle: {
     paddingBottom: 400,
   },
