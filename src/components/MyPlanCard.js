@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
     const renderItem = (plan) => {
-        const OnBookingTestancPackage = () => {
+        const onBookingTestandPackage = () => {
             const params={
     
                 packageName: plan?.item?.id ,
@@ -46,7 +46,7 @@ const MyPlanCard = ({ item }) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.buttonStyle}  onPress={OnBookingTestancPackage}>
+                    <TouchableOpacity style={styles.buttonStyle}  onPress={onBookingTestandPackage}>
                         <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>
