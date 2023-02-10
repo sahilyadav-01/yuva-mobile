@@ -40,12 +40,11 @@ const Profile = () => {
     relationSelected,
     relationsData,
     showErrorMessage,
-    onRetryPress,
   } = useProfile();
 
   const {container} = styles({disabled: false});
   if (showErrorMessage) {
-    return <ErrorScreen onRetryPress={onRetryPress} />;
+    // return <ErrorScreen onRetryPress={onRetryPress} />;
   }
 
   if (!userDetails) {

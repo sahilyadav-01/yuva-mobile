@@ -10,7 +10,7 @@ export const useIntro = () => {
         getExistingUser().then(resp => {
             if (resp) BackHandler.exitApp();
         });
-    }, []);
+    });
 
     const setScreen = (index) => {
         if (index >= 0 && index <= 3) {

@@ -60,6 +60,8 @@ import Back from './back';
 import DATE from './date.png'
 import HRA_END_IMG from './HRA_END_IMG'
 
+import dropDown from './dropDown'
+import EYE from './eye.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -114,7 +116,8 @@ const PNG = {
   PACKAGE,
   DIAGNOSTICMYPLAN,
   MY_HEALTH_CHECKUP,
-  DATE
+  DATE,
+  EYE
 };
 
 const SVG = {
@@ -125,6 +128,7 @@ const SVG = {
   BackgroundImage: BackgroundImage,
   Back: Back,
   HRA_END_IMG:HRA_END_IMG,
+  dropDown:dropDown
 };
 
 export { PNG, SVG };

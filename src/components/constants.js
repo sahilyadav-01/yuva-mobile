@@ -14,3 +14,4 @@ export const USED='used -';
 export const DATE='Date';
 export const DESCRIPTION='description';
 export const VALID='Valid Till  ';
+export const BOKINGTESTANDPACKAGE="BookingTestAndPackage";

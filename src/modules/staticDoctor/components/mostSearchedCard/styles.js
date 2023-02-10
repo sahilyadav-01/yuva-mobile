@@ -21,13 +21,13 @@ export const styles = StyleSheet.create({
     color: ORANGE,
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   textStyle: {
     color: WHITE,
     fontSize: fonts.size.fontSize12,
     fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   boxView: {
     justifyContent: CENTER,

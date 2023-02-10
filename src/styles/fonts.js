@@ -30,9 +30,11 @@ export const fonts = {
     width102: '102',
   },
   family: {
-    fontFamilyRubix: 'Rubik-Regular',
-    rubikMedium: 'Rubik-Medium',
-    rubikLight: 'Rubik-Light',
-    nunitoSemiBold: 'Nunito-SemiBold',
-  },
+    rubik400: 'Rubik-Regular',
+    rubik500: 'Rubik-Medium',
+    rubik300: 'Rubik-Light',
+    rubik600: 'Rubik-SemiBold',
+    rubik700: 'Rubik-Bold',
+    nunito600: 'Nunito-SemiBold',
+  }
 };

@@ -17,7 +17,7 @@ export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await YuvaService.get('/employee/relation/active');
+      const response = await YuvaService.get('/relation/active');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -29,7 +29,7 @@ export const getRelations = createAsyncThunk(
   'profile/getRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await YuvaService.get('/employee/relation');
+      const response = await YuvaService.get('/relation');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -52,7 +52,7 @@ export const addRelation = createAsyncThunk(
   'profile/addRelation',
   async ({age, name, relation}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await YuvaService.post('/employee/relation', {
+      await YuvaService.post('/relation', {
         age,
         name,
         relation,
