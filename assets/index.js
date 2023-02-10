@@ -58,6 +58,7 @@ import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
 import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png'
+import HRA_END_IMG from './HRA_END_IMG'
 
 const PNG = {
   AMICO,
@@ -123,6 +124,7 @@ const SVG = {
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
   Back: Back,
+  HRA_END_IMG:HRA_END_IMG,
 };
 
 export { PNG, SVG };
