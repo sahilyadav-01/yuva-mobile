@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import BookingTestAndPackage from '../../modules/diagnostic/BookingTestAndPackage';
+import BookingTestAndPackageScreen from '../../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import Diagnostics from '../../screens/yuvaservices/diagnostics/Diagnostics';
 import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
@@ -18,7 +18,7 @@ const DiagnosticNav = () => {
 
       <Stack.Screen
         name="BookingTestAndPackage"
-        component={BookingTestAndPackage}
+        component={BookingTestAndPackageScreen}
         options={{headerShown: false}}
       />
 
