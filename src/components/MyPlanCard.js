@@ -9,14 +9,14 @@ import { useNavigation } from '@react-navigation/native';
 
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
-    const OnBookingTestancPackage = () => {
-        const params={
-
-            packageName: item?.uuid ?? '',
-        }
-        navigation.navigate(BOKINGTESTANDPACKAGE, params  );
-      }
     const renderItem = (plan) => {
+        const OnBookingTestancPackage = () => {
+            const params={
+    
+                packageName: plan?.item?.id ,
+            }
+            navigation.navigate(BOKINGTESTANDPACKAGE, params  );
+          }
         const used = plan?.item?.used || 0;
         const available = plan?.item?.available || 0;
         if (!plan) {

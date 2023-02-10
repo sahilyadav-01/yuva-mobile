@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT } from '../../../../styles/colors';
-import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY } from '../../../styles/colors';
+import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
 export const styles = StyleSheet.create({
@@ -35,6 +35,8 @@ export const styles = StyleSheet.create({
     touchable: {
         backgroundColor: ORANGE,
         marginTop: 40,
+        marginLeft: 13,
+        marginRight: 14,
         borderRadius: 8
     },
     theme: { colors: { text: BLACK } },
@@ -137,33 +139,77 @@ export const styles = StyleSheet.create({
     },
     bookingDetails: {
         fontWeight: fonts.weight.fontWeight500,
-        paddingTop: 15,
-        paddingBottom: 15,
+        marginTop: 27,
+        marginLeft: 16,
         color: CYAN_BLUE,
         fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
     },
     itemText: {
         marginLeft: 14,
         color: WHITE,
-        marginTop:21,
+        marginTop: 21,
         fontFamily: fonts.family.fontFamilyRubix,
         fontWeight: fonts.weight.fontWeight400,
         fontSize: fonts.size.fontSize12,
     },
+    itemCount: {
+        marginLeft: 6,
+        color: WHITE,
+        marginTop: 21,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontWeight: fonts.weight.fontWeight400,
+        fontSize: fonts.size.fontSize12,
+    },
+    itemHead: {
+        color: INDIGO_LIGHT,
+        marginTop: 21,
+        marginLeft: 13,
+    },
+    i: {
+        marginRight: 100,
+    },
     itemView: {
         backgroundColor: INDIGO_LIGHT,
-        marginBottom: 10,
-        paddingBottom: 20,
+        marginTop: 20,
         flexDirection: ROW,
-        height:55,
-        borderRadius:12
+        minHeight: 77,
+        borderRadius: 12,
+        marginLeft: 13,
+        marginRight: 14,
+
+    },
+    drop: {
+        marginTop: 35,
+        marginLeft: 152,
+    },
+    dropDown: {
+        backgroundColor: WHITE,
+        marginTop: 20,
+        minHeight: 77,
+        borderRadius: 12,
+        marginLeft: 13,
+        marginRight: 14,
+    },
+    dropDownDetails: {
+        marginTop: 12,
+        marginLeft: 13,
+        marginBottom: 11,
+    },
+    dropDownText: {
+        marginTop: 12,
+        fontWeight: fonts.weight.fontWeight400,
+        color: VERY_DARK_GREY,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize14,
     },
     booked: {
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 22,
+        marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
         color: ORANGE,
         fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize14,
     },
     download: {
         marginLeft: 160,
@@ -178,7 +224,11 @@ export const styles = StyleSheet.create({
     },
     color: {
         color: CYAN_BLUE,
+        fontSize: fonts.size.fontSize10,
+        fontWeight: fonts.weight.fontWeight400,
         fontFamily: fonts.family.fontFamilyRubix,
+        marginLeft: 16,
+        marginTop: 10,
     },
     button: {
         marginTop: 47,
@@ -198,5 +248,21 @@ export const styles = StyleSheet.create({
         fontWeight: fonts.weight.fontWeight700,
         fontFamily: fonts.family.fontFamilyRubix,
 
-    }
+    },
+    instructDetails: {
+        fontWeight: fonts.weight.fontWeight500,
+        marginTop: 11,
+        marginLeft: 16,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+    },
+    totalLabDetails: {
+        fontWeight: fonts.weight.fontWeight500,
+        marginTop: 20,
+        marginLeft: 16,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize16,
+    },
 })

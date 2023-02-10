@@ -58,6 +58,7 @@ import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
 import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png'
+import dropDown from './dropDown'
 
 const PNG = {
   AMICO,
@@ -123,6 +124,7 @@ const SVG = {
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
   Back: Back,
+  dropDown:dropDown
 };
 
 export { PNG, SVG };
