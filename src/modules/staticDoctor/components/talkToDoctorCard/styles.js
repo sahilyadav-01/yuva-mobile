@@ -61,8 +61,7 @@ export const styles = StyleSheet.create({
   title1: {
     color: WHITE,
     fontSize: fonts.size.fontSize16,
-    fontWeight: fonts.weight.fontWeight600,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik600,
     alignSelf: CENTER,
     marginBottom: '5%',
     marginTop: '5%',
