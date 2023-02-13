@@ -1,5 +1,6 @@
 import {PNG} from '../../../assets';
 export const DOCTOR = 'Talk To Doctor';
+export const GET_DOCTOR_NOW = 'Consult Our Doctor Now';
 export const CHAT_WITH_DOCTOR = 'CHAT WITH DOCTOR ANYTIME, ANYWHERE?';
 export const DESC =
   'From Dental infection to Super Specialisations Consultations we got you  24 /7';

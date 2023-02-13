@@ -1,9 +1,19 @@
-import {View, Text, Image, FlatList} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {DOCTOR, CHAT_WITH_DOCTOR, DESC, HEALTH_CONDITION} from '../../constant';
+import {
+  DOCTOR,
+  CHAT_WITH_DOCTOR,
+  DESC,
+  HEALTH_CONDITION,
+  GET_DOCTOR_NOW,
+} from '../../constant';
 import {styles} from './styles';
-
+import {useNavigation} from '@react-navigation/native';
 const TalkToDoctorCard = () => {
+  const navigation = useNavigation();
+  const onLogin = () => {
+    navigation.navigate('LoginScreen');
+  };
   const renderItem = ({key, item}) => {
     return (
       <View>
@@ -22,6 +32,9 @@ const TalkToDoctorCard = () => {
     <View>
       <View>
         <Text style={styles.headTitle}>{DOCTOR}</Text>
+        <TouchableOpacity style={styles.buttonStyle} onPress={onLogin}>
+          <Text style={styles.title1}>{GET_DOCTOR_NOW} </Text>
+        </TouchableOpacity>
         <Text style={styles.title}>{CHAT_WITH_DOCTOR}</Text>
         <Text style={styles.description}>{DESC}</Text>
       </View>

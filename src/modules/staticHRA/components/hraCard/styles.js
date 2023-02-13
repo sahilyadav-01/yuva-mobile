@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {ORANGE, CYAN_BLUE} from '../../../../styles/colors';
+import {ORANGE, CYAN_BLUE, WHITE} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
 
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
@@ -15,6 +16,20 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
     fontWeight: fonts.weight.fontWeight500,
     fontFamily: fonts.family.rubik400,
+    marginBottom: '5%',
+  },
+  title1: {
+    color: WHITE,
+    fontSize: fonts.size.fontSize16,
+    fontWeight: fonts.weight.fontWeight600,
+    fontFamily: fonts.family.rubik400,
+    alignSelf: CENTER,
+    marginBottom: '5%',
+    marginTop: '5%',
+  },
+  buttonStyle: {
+    backgroundColor: CYAN_BLUE,
+    borderRadius: 8,
     marginBottom: '5%',
   },
   headTitle: {

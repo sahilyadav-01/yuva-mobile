@@ -52,10 +52,25 @@ export const styles = StyleSheet.create({
   },
   headTitle: {
     marginTop: '5%',
+    marginBottom: '10%',
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight600,
     fontFamily: fonts.family.rubik400,
+  },
+  title1: {
+    color: WHITE,
+    fontSize: fonts.size.fontSize16,
+    fontWeight: fonts.weight.fontWeight600,
+    fontFamily: fonts.family.rubik400,
+    alignSelf: CENTER,
+    marginBottom: '5%',
+    marginTop: '5%',
+  },
+  buttonStyle: {
+    backgroundColor: CYAN_BLUE,
+    borderRadius: 8,
+    marginBottom: '5%',
   },
   container: {
     backgroundColor: WHITE,
