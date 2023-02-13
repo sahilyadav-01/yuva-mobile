@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   },
   title1: {
     color: WHITE,
+    fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
     alignSelf: CENTER,
     marginBottom: '5%',
