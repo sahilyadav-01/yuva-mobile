@@ -1,20 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY } from '../../../styles/colors';
-import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED } from '../../../styles/colors';
+import { BOLD, COLUMN, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
 export const styles = StyleSheet.create({
 
     boxStyles: {
-        borderWidth: 0,
-        borderBottomWidth: 1,
-        borderColor: PLATINUM,
-        paddingBottom: 5,
-        marginBottom: 0,
-        color: DARK_BLUE,
-        height: 50,
-        width: fonts.width.width102,
+        marginLeft: 28,
+        marginRight: 30,
+        borderWidth: 0.1,
+        backgroundColor: LIGHT_GREYISH_RED,
+        minHeight: 42,
+        borderRadius: 0,
     },
     contentContainerStyle: {
         flexGrow: 1,
@@ -39,68 +37,8 @@ export const styles = StyleSheet.create({
         marginRight: 14,
         borderRadius: 8
     },
-    theme: { colors: { text: BLACK } },
-    search: {
-        backgroundColor: AMBER,
-        color: GAINSBORO,
-        marginTop: 23,
-        fontSize: 1,
-        height: 51,
-        fontFamily: fonts.family.fontFamilyRubix,
-    },
-    textColor: {
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
-        fontWeight: BOLD,
-        marginLeft: 17,
-        // marginTop: 23,
-    },
-    textColor2: {
-        color: CYAN_BLUE,
-        fontWeight: BOLD,
-        marginLeft: 17,
-        marginTop: 27,
-        fontFamily: fonts.family.fontFamilyRubix,
-    },
-    labTest: {
-        flexDirection: COLUMN,
-        marginLeft: 18,
-        marginRight: 24,
-        marginTop: 16,
-        flex: 1,
-        justifyContent: SPACE_BETWEEN
-    },
-    cards: {
-        backgroundColor: WHITE,
-        height: 76,
-        marginTop: 19,
-        marginLeft: 13,
-        marginRight: 14,
-        borderRadius: 12
-    },
-    image: {
-        height: 24,
-        width: 24
+    theme: { colors: { text: DARK_GREY } },
 
-    },
-    packageTest: {
-        color: DARK_BLUE,
-        fontSize: fonts.size.fontSize12,
-        fontWeight: fonts.weight.fontWeight500,
-        justifyContent: CENTER,
-        marginBottom: 10,
-        fontFamily: fonts.family.fontFamilyRubix,
-    },
-    textPackage: {
-        marginTop: 23,
-    },
-    container: {
-        marginBottom: 162,
-    },
-    booksID: {
-        paddingLeft: 15,
-        paddingRight: 15,
-    },
     textInputStyle: {
         borderBottomWidth: 1,
         borderColor: PLATINUM,
@@ -112,8 +50,10 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.fontFamilyRubix,
     },
     dateTimePicker: {
-        backgroundColor: { FLASH_WHITE },
-        paddingLeft: 8,
+        marginLeft: 28,
+        marginRight: 30,
+        minHeight: 42,
+        backgroundColor: LIGHT_GREYISH_RED,
     },
     margin: {
         marginBottom: 172,
@@ -129,6 +69,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 15,
         color: WHITE,
         fontFamily: fonts.family.fontFamilyRubix,
+        marginLeft: 97,
 
     },
     view: {
@@ -265,4 +206,102 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize16,
     },
+    selectDate: {
+        fontWeight: fonts.weight.fontWeight600,
+        marginTop: 30,
+        marginLeft: 16,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize14,
+    },
+    Date: {
+        marginTop: 30,
+        fontWeight: fonts.weight.fontWeight400,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+    },
+    Time: {
+        marginTop: 27,
+        fontWeight: fonts.weight.fontWeight400,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+    },
+    dateAndTime: {
+        marginTop: 10,
+        marginLeft: 30,
+        marginRight: 30,
+        minHeight: 42
+    },
+    AddMember: {
+        marginLeft: 276,
+        fontWeight: fonts.weight.fontWeight500,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize10,
+    },
+    SelectMember: {
+        marginLeft: 28,
+        marginTop: 16,
+        fontWeight: fonts.weight.fontWeight400,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+    },
+    address: {
+        flexDirection: ROW,
+    },
+    addNew: {
+        marginLeft: 174,
+        marginTop:33,
+        fontWeight: fonts.weight.fontWeight500,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+    },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      checkboxContainer: {
+        flexDirection: 'row',
+        marginBottom: 20,
+      },
+      checkbox: {
+        alignSelf: 'center',
+      },
+      label: {
+        margin: 8,
+      },
+      checkboxAddress:{
+        marginLeft:284,
+        marginTop:37,
+      },
+      adressName:{
+        marginTop:3,
+        marginLeft:40,
+        fontWeight: fonts.weight.fontWeight500,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize16,
+
+      },
+      adressCheck:{
+        marginTop:3,
+        marginLeft:40,
+        fontWeight: fonts.weight.fontWeight400,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.fontFamilyRubix,
+        fontSize: fonts.size.fontSize12,
+      },
+    //   border:{
+    //     borderWidth:0.2,
+    //     borderTopWidth:0.2,
+    //     marginTop:14,
+    //     marginLeft:16,
+    //     marginRight:16,
+
+    //   }
 })
