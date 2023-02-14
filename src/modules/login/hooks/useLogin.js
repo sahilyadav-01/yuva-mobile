@@ -29,7 +29,7 @@ export const useLogin = () => {
       Alert.alert('Alert', EMAIL_VALIDATION);
     else if (!reg.test(email.toString()) && email.split('@').length !== 2)
       Alert.alert('Alert', EMAIL_VALIDATION);
-    else if (isEmpty(password)) {
+    else if (isEmpty(password) || password.length < 6) {
       Alert.alert('Alert', PASSWORD_VALIDATION);
     } else {
       setFrom(from);

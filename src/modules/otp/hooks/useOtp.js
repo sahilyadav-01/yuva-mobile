@@ -27,6 +27,7 @@ export const useOtp = () => {
   const [key, setKey] = useState(0);
   const [enableNavigation, setEnableNavigation] = useState(false);
   const [number, setNumber] = useState('');
+  const [enableResendOtp, setEnableResendOtp] = useState(false);
 
   useEffect(() => {
     if (!signUpLoading && !apiError && otp) {
@@ -63,13 +64,16 @@ export const useOtp = () => {
   const setOTP = otp => setOtp(otp);
 
   const onResend = (email, number, verificationType, password) => {
-    setKey(key + 1);
-    setOTP('');
-    otpRef.current.reset();
-    if (verificationType === 'number') {
-      dispatch(verifySmsThunk({number}));
-    } else {
-      dispatch(loginThunk({email, password}));
+    if (enableResendOtp) {
+      setEnableResendOtp(false);
+      setKey(key + 1);
+      setOTP('');
+      otpRef.current.reset();
+      if (verificationType === 'number') {
+        dispatch(verifySmsThunk({number}));
+      } else {
+        dispatch(loginThunk({email, password}));
+      }
     }
   };
 
@@ -77,12 +81,16 @@ export const useOtp = () => {
     if (type === 'number') return 'Verify Phone Number';
     else return 'Verify Email';
   };
+  const onEnableResend = () => setEnableResendOtp(true);
+
   return {
     getHeaderText,
     setOTP,
     onVerify,
     onResend,
+    onEnableResend,
     key,
     otpRef,
+    enableResendOtp,
   };
 };

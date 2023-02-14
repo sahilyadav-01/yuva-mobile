@@ -11,6 +11,10 @@ const Timer = (props) => {
     duration > 0 && setTimeout(durationCallback, 1000);
     resetEnable(duration === 0);
   }, [duration, durationCallback]);
+
+  useEffect(()=>{
+    if(duration === 0) props?.resetCallBack() ?? null
+  },[duration])
   return (
     <View style={{alignItems: 'flex-end'}}>
       <Text style={{color: (duration>0? 'red': 'black')}}>

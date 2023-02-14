@@ -7,7 +7,7 @@ import styles from './style';
 import Heading from '../../components/Heading';
 import {useOtp} from './hooks/useOtp';
 
-const OTP = (props) => {
+const OTP = props => {
   const {otpProps} = props;
   const {
     signUpCard,
@@ -21,10 +21,19 @@ const OTP = (props) => {
     verifyText,
     resendOtpText,
     headingText,
-    otpTextStyle
+    otpTextStyle,
   } = styles();
-  const {getHeaderText, setOTP, onResend, onVerify, key, from, otpRef} =
-    useOtp();
+  const {
+    getHeaderText,
+    setOTP,
+    onResend,
+    onVerify,
+    key,
+    from,
+    otpRef,
+    enableResendOtp,
+    onEnableResend,
+  } = useOtp();
   return (
     <>
       <Header name="VERIFY" />
@@ -36,7 +45,9 @@ const OTP = (props) => {
         <View style={signUpCard}>
           <Heading heading={getHeaderText(otpProps?.verificationType)} />
           <View style={headingContainer}>
-            <Text style={headingText}>{getHeaderText(otpProps?.verificationType)}</Text>
+            <Text style={headingText}>
+              {getHeaderText(otpProps?.verificationType)}
+            </Text>
           </View>
           <OtpInputs
             ref={ref => (otpRef.current = ref)}
@@ -48,15 +59,23 @@ const OTP = (props) => {
             inputStyles={otpTextStyle}
           />
           <TouchableOpacity
-            onPress={() => onVerify(otpProps, props?.from ?? from, props?.resetPassword)}
+            onPress={() =>
+              onVerify(otpProps, props?.from ?? from, props?.resetPassword)
+            }
             style={verifyButtonContainer}>
             <Text style={verifyText}>Verify</Text>
           </TouchableOpacity>
           <View style={timerContainer}>
-            <Timer interval={30} key={key} resetEnable={() => {}} />
+            <Timer
+              interval={60}
+              key={key}
+              resetEnable={() => {}}
+              resetCallBack={() => onEnableResend()}
+            />
           </View>
           <TouchableOpacity
             style={resendOtpContainer}
+            disabled={!enableResendOtp}
             onPress={() =>
               onResend(
                 otpProps?.email,
