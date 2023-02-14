@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
         color: DARK_BLUE,
         height: 40,
         paddingLeft: 18,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
     },
     dateTimePicker: {
         marginLeft: 28,
@@ -58,11 +58,10 @@ export const styles = StyleSheet.create({
     },
     textBook: {
         textAlign: CENTER,
-        fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
         color: WHITE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         marginLeft: 97,
 
     },
@@ -73,27 +72,24 @@ export const styles = StyleSheet.create({
         marginTop: 20,
     },
     bookingDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 27,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
     itemText: {
         marginLeft: 14,
         color: WHITE,
         marginTop: 21,
-        fontFamily: fonts.family.fontFamilyRubix,
-        fontWeight: fonts.weight.fontWeight400,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     itemCount: {
         marginLeft: 6,
         color: WHITE,
         marginTop: 21,
-        fontFamily: fonts.family.fontFamilyRubix,
-        fontWeight: fonts.weight.fontWeight400,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     itemHead: {
@@ -133,9 +129,8 @@ export const styles = StyleSheet.create({
     },
     dropDownText: {
         marginTop: 12,
-        fontWeight: fonts.weight.fontWeight400,
         color: VERY_DARK_GREY,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
     },
     booked: {
@@ -143,16 +138,8 @@ export const styles = StyleSheet.create({
         marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
         color: ORANGE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
-    },
-    download: {
-        marginLeft: 160,
-        marginTop: 2,
-        color: DARK_BLUE,
-        fontSize: fonts.size.fontSize12,
-        fontWeight: fonts.weight.fontWeight500,
-        fontFamily: fonts.family.fontFamilyRubix,
     },
     booking: {
         flexDirection: ROW
@@ -160,8 +147,7 @@ export const styles = StyleSheet.create({
     color: {
         color: CYAN_BLUE,
         fontSize: fonts.size.fontSize10,
-        fontWeight: fonts.weight.fontWeight400,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         marginLeft: 16,
         marginTop: 10,
     },
@@ -170,56 +156,45 @@ export const styles = StyleSheet.create({
         marginLeft: 13,
         marginRight: 14,
     },
-    textReschedule: {
-
-        color: ORANGE,
-        fontSize: fonts.size.fontSize14,
-        fontFamily: fonts.family.fontFamilyRubix,
-    },
     testName: {
         marginTop: 27,
         marginBottom: 10,
         marginLeft: 13,
-        fontWeight: fonts.weight.fontWeight700,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik700,
 
     },
     instructDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 11,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
     totalLabDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 20,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
     },
     selectDate: {
-        fontWeight: fonts.weight.fontWeight600,
         marginTop: 30,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
     },
     Date: {
         marginTop: 30,
-        fontWeight: fonts.weight.fontWeight400,
+
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     Time: {
         marginTop: 27,
-        fontWeight: fonts.weight.fontWeight400,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     dateAndTime: {
@@ -230,17 +205,15 @@ export const styles = StyleSheet.create({
     },
     AddMember: {
         marginLeft: 276,
-        fontWeight: fonts.weight.fontWeight500,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize10,
     },
     SelectMember: {
         marginLeft: 28,
         marginTop: 16,
-        fontWeight: fonts.weight.fontWeight400,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     address: {
@@ -248,56 +221,52 @@ export const styles = StyleSheet.create({
     },
     addNew: {
         marginLeft: 174,
-        marginTop:33,
-        fontWeight: fonts.weight.fontWeight500,
+        marginTop: 33,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
     container: {
         flex: 1,
-        alignItems:CENTER,
-        justifyContent:CENTER,
-      },
-      checkboxContainer: {
+        alignItems: CENTER,
+        justifyContent: CENTER,
+    },
+    checkboxContainer: {
         flexDirection: ROW,
         marginBottom: 20,
-      },
-      checkbox: {
+    },
+    checkbox: {
         alignSelf: CENTER,
-      },
-      label: {
+    },
+    label: {
         margin: 8,
-      },
-      checkboxAddress:{
-        marginLeft:284,
-        marginTop:37,
-      },
-      adressName:{
-        marginTop:3,
-        marginLeft:40,
-        fontWeight: fonts.weight.fontWeight500,
+    },
+    checkboxAddress: {
+        marginLeft: 284,
+        marginTop: 37,
+    },
+    adressName: {
+        marginTop: 3,
+        marginLeft: 40,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
 
-      },
-      adressCheck:{
-        marginTop:3,
-        marginLeft:40,
-        fontWeight: fonts.weight.fontWeight400,
+    },
+    adressCheck: {
+        marginTop: 3,
+        marginLeft: 40,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
-      },
-      border:{
-        borderWidth:0.2,
-        marginTop:14,
-        marginLeft:16,
-        marginRight:16,
-        shadowColor:WHITE,
-        shadowOpacity:"5%",
-    borderRadius:6,
-
-      }
+    },
+    border: {
+        borderWidth: 0.2,
+        marginTop: 14,
+        marginLeft: 16,
+        marginRight: 16,
+        shadowColor: WHITE,
+        shadowOpacity: "5%",
+        borderRadius: 6,
+    }
 })
