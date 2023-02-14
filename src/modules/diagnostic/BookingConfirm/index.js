@@ -70,7 +70,10 @@ const BookingConfirm = () => {
                         </Text>
                     </View>
                     <View style={styles.border}>
-                        <Text style={styles.AddMember}>{ADD_MEMBER}</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.AddMember}>{ADD_MEMBER}</Text>
+
+                        </TouchableOpacity>
                         <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                         <SelectList
                             boxStyles={styles.boxStyles}
@@ -86,13 +89,13 @@ const BookingConfirm = () => {
                         </Text>
                         <TouchableOpacity>
                             <View style={styles.address}>
-                          
-                               
+
+
 
                                 <Text style={styles.addNew}>
-                                <SVG.AddNewAdress/>
+                                    <SVG.AddNewAdress />
                                     {ADD_NEW}
-                                  
+
                                 </Text>
 
                             </View>
