@@ -24,12 +24,6 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         height: 50,
     },
-    textInput: {
-        backgroundColor: WHITE,
-        borderWidth: 1,
-        borderRadius: 8,
-        fontFamily: fonts.family.fontFamilyRubix,
-    },
     touchable: {
         backgroundColor: ORANGE,
         marginTop: 40,
@@ -262,15 +256,15 @@ export const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems:CENTER,
+        justifyContent:CENTER,
       },
       checkboxContainer: {
-        flexDirection: 'row',
+        flexDirection: ROW,
         marginBottom: 20,
       },
       checkbox: {
-        alignSelf: 'center',
+        alignSelf: CENTER,
       },
       label: {
         margin: 8,
