@@ -40,6 +40,12 @@ const Profile = () => {
     relationSelected,
     relationsData,
     showErrorMessage,
+    addressLine1,
+    city,
+    pinCode,
+    changeAddress,
+    changeCity,
+    changePincode
   } = useProfile();
 
   const {container} = styles({disabled: false});
@@ -67,8 +73,14 @@ const Profile = () => {
           date={date}
           userDetails={userDetails}
           name={name}
+          addressLine1={addressLine1}
+          city={city}
+          pinCode={pinCode}
           changeName={changeName}
           updateUserData={updateUserData}
+          changeAddress={changeAddress}
+          changeCity={changeCity}
+          changePincode={changePincode}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard
