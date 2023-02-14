@@ -296,7 +296,8 @@ export const styles = StyleSheet.create({
         marginLeft:16,
         marginRight:16,
         shadowColor:WHITE,
-        shadowOpacity:"5%"
+        shadowOpacity:"5%",
+    borderRadius:6,
 
       }
 })
