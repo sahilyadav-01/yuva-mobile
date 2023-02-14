@@ -12,7 +12,7 @@ const BookingTestAndPackage = () => {
         packageDetails,
         packageList,
         onUpdate,
-
+        bookPackageScreen
     } = useBookingTestAndPackage();
 
 
@@ -110,7 +110,7 @@ const BookingTestAndPackage = () => {
                     </View>
                 </View>
                 <TouchableOpacity
-                    // onPress={bookTestScreen}                        
+                     onPress={bookPackageScreen}                        
                     style={styles.touchable}>
                     <Text style={styles.textBook}>
                         {BOOK_NOW}

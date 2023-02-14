@@ -28,3 +28,5 @@ export const KASHMIR_BLUE = '#52608E';
 export const VERY_DARK_GREY="#6F6F6F";
 export const MERCURY = '#E4E4E4';
 export const LIGHT_MERCURY = '#E7E5E5';
+export const DARK_GREY="#9A9A9A"
+export const  LIGHT_GREYISH_RED="#F3F0F0"
