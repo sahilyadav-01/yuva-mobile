@@ -296,12 +296,13 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize12,
       },
-    //   border:{
-    //     borderWidth:0.2,
-    //     borderTopWidth:0.2,
-    //     marginTop:14,
-    //     marginLeft:16,
-    //     marginRight:16,
+      border:{
+        borderWidth:0.2,
+        marginTop:14,
+        marginLeft:16,
+        marginRight:16,
+        shadowColor:WHITE,
+        shadowOpacity:"5%"
 
-    //   }
+      }
 })
