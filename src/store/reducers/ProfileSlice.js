@@ -39,9 +39,9 @@ export const getRelations = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async ({dob, gender}, {fulfillWithValue, rejectWithValue}) => {
+  async ({dob, gender, address, cityId, pinCode}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await YuvaService.put('/profile/update', {dob, gender});
+      await YuvaService.put('/profile/update', {dob, gender, address, cityId, pinCode});
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -86,6 +86,7 @@ const initialState = {
   userDetailsErrorMessage: '',
   activeRelationsErrorMessage: '',
   relationsErrorMessage: '',
+  enableAddMember: null,
 };
 
 const profileSlice = createSlice({
@@ -119,13 +120,14 @@ const profileSlice = createSlice({
       state.loading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
-      state.relations = payload.data.data;
+      state.relations = payload.data.data.relativeResponseDto;
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
       state.relationId = payload?.data.data || [];
       state.relationsErrorMessage = '';
+      state.enableAddMember = payload.data.data.enableAddMember;
     },
     [getRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
