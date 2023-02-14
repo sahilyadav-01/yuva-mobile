@@ -7,6 +7,7 @@ import {
   SILVER_CHALICE,
   WHITE,
 } from '../../../../styles/colors';
+import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
 import styles from './style';
@@ -58,25 +59,35 @@ const SignUpDetailsCard = props => {
           </View>
         )}
         <View style={{height: signUp?.checkEmail ? 40 : 48}} />
-        <TextInput
-          style={style.textInputContainer}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={signUp?.onChangePassword}
+        <InputPassword
+          placeholderText="Password"
           value={signUp?.password}
-          placeholderTextColor={SILVER_CHALICE}
+          onChangeText={text => signUp?.onChangePassword(text)}
+          onPressIconIn={() => signUp?.onPasswordIconPress(false)}
+          onPressIconOut={() => signUp?.onPasswordIconPress(true)}
+          secureTextEntry={signUp?.securePasswordEntry}
+          onEndEditing={() => signUp?.onPasswordBlur()}
         />
-        <View style={style.separator} />
+        {signUp?.checkPassword && (
+          <View style={style.checkTextContainer}>
+            <Text style={style.warningText}>Password should be atleast 6 characters long</Text>
+          </View>
+        )}
         <View style={{height: 48}} />
-        <TextInput
-          style={style.textInputContainer}
-          placeholder="Re-type Password"
-          secureTextEntry={true}
-          onChangeText={signUp?.onChangeConfirmPassword}
+        <InputPassword
+          placeholderText="Confirm Password"
           value={signUp?.confirmPassword}
-          placeholderTextColor={SILVER_CHALICE}
+          onChangeText={text => signUp?.onChangeConfirmPassword(text)}
+          onPressIconIn={() => signUp?.onConfirmPasswordIconPress(false)}
+          onPressIconOut={() => signUp?.onConfirmPasswordIconPress(true)}
+          secureTextEntry={signUp?.secureConfirmPasswordEntry}
+          onEndEditing={() => signUp?.onConfirmPasswordBlur()}
         />
-        <View style={style.separator} />
+        {signUp?.checkConfirmPassword && (
+          <View style={style.checkTextContainer}>
+            <Text style={style.warningText}>Password should be atleast 6 characters long</Text>
+          </View>
+        )}
         <View style={style.termsAndConditionsContainer}>
           <TouchableOpacity
             onPress={signUp?.toggleTerms}
@@ -105,8 +116,8 @@ const SignUpDetailsCard = props => {
       </TouchableOpacity>
       <LoginTextContainer
         onButtonPress={() => signUp?.onLoginPress(props?.from)}
-        primaryText='Already a member, '
-        pressableText='Login Here'
+        primaryText="Already a member, "
+        pressableText="Login Here"
       />
     </>
   );
