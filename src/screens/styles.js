@@ -57,6 +57,16 @@ export const styles = StyleSheet.create({
     marginLeft: 35,
     marginTop: 19,
   },
+  line1:{
+    borderBottomColor: SEASHELL,
+    borderBottomWidth: 1,
+    width: "70%",
+  },
+  line2:{
+    borderBottomColor: SEASHELL,
+    borderBottomWidth: 1,
+    width: "45%",
+  },
   lineJustify: {
     alignItems: CENTER,
     flexDirection: ROW,

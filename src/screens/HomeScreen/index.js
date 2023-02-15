@@ -16,6 +16,7 @@ import { styles } from '../styles';
 import Header from '../../components/Header';
 import { PNG } from '../../../assets';
 import {
+  LANDING_PAGE_TEXT0,
   LANDING_PAGE_TEXT1,
   LANDING_PAGE_TEXT2,
   LANDING_PAGE_TEXT3,
@@ -23,10 +24,10 @@ import {
 } from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
-import CarouselItem3 from '../../components/CarouselItem3';
 import CarouselItem4 from '../../components/CarouselItem4';
 import { getServicesThunk } from '../../store/reducers/AttributeSlice';
 import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlice';
+import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice ';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -36,8 +37,9 @@ const HomeScreen = ({ navigation }) => {
   } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
-  const {userAppointments} = useSelector(state => state?.appointment);
+  const { userAppointments } = useSelector(state => state?.appointment);
   const { popularPackageName } = useSelector(state => state.programAndPlan);
+  const { popularTest } = useSelector(state => state.popularTests);
   const onPressAdd = () => {
     //On add press logic to be added here
   };
@@ -46,7 +48,8 @@ const HomeScreen = ({ navigation }) => {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({isActive}));
+      dispatch(popularPackageNameThunk({ isActive }));
+      dispatch(popularTestsSliceThunk({ isActive }));
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;
@@ -61,8 +64,12 @@ const HomeScreen = ({ navigation }) => {
         <CarouselContainer data={userAppointments} isIndexed={true} includeMockData={false}>
           <CarouselItem />
         </CarouselContainer>
+        <View style={styles.PopularHealthCheckups}>
+          <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT0} </Text>
+          <View style={styles.line1} />
+        </View>
         <View style={styles.serviceContainerWrapperStyle}>
-          <ServiceContainer />
+          <ServiceContainer serviceCard={true}/>
         </View>
         <View style={styles.bannerContainer}>
           <Image style={styles.bannerImage} source={PNG.BANNER}></Image>
@@ -92,28 +99,20 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
-        {/* <View>
-          <CarouselContainer isIndexed={false} includeMockData={true}>
+        <View>
+          <CarouselContainer data={popularTest.popularTestResponseDtoList} isIndexed={false} includeMockData={true}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
-        </View> */}
+        </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
-          <View style={styles.line} />
-          <TouchableOpacity>
-            <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-          </TouchableOpacity>
+          <View style={styles.line2} />
         </View>
-        <View>
-          <CarouselContainer isIndexed={false} includeMockData={true}>
-            <CarouselItem3
-              imgPath={PNG.HEALTHCHECKUP1}
-              onPressAdd={() => onPressAdd()}
-            />
-          </CarouselContainer>
+        <View style={styles.serviceContainerWrapperStyle}>
+          <ServiceContainer lifeStyleCard={true}/>
         </View>
       </ScrollView>
     </SafeAreaView>

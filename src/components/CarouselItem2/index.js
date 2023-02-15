@@ -24,7 +24,7 @@ const CarouselItem2 = props => {
         <Text style={styles.descriptionStyle}>{item.packageName}</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{TESTCOUNT(item.parameterCount)} </Text>
+      <Text style={styles.textStyle}>{TESTCOUNT(item.parameterCount === 0 ? item.totalTest : item.parameterCount)}</Text>
       </View>
       <View style={styles.costContainer}>
         <Text style={styles.costStyle}>{COST(item.cost)}</Text>

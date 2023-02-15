@@ -1,4 +1,3 @@
-export const SERVICE_HEADING = 'Our Services ';
 export const OPD = 'OPD';
 export const HRA = 'HRA';
 export const DIAGNOSTICS = 'Diagnostics';
