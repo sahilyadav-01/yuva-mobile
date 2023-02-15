@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { CENTER, SPACE_BETWEEN,FLEX, ROW } from "../styles/constants";
-import { CYAN_BLUE,FLASH_WHITE, SEASHELL, WHITE} from "../styles/colors";
+import { CYAN_BLUE,FLASH_WHITE, LIGHT_GREY, SEASHELL} from "../styles/colors";
 import { fonts } from "../styles/fonts";
 
 export const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   homeScreenContainer: {
     flex: 1,
-    backgroundColor:WHITE,
+    backgroundColor:LIGHT_GREY,
   },
   margin:{
     marginBottom: 0,

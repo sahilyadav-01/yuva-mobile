@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     maxWidth: 144,
   },
    costStyle: {
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik500,
     fontWeight: fonts.weight.fontWeight500,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,

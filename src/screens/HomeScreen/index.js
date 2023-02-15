@@ -36,7 +36,8 @@ const HomeScreen = ({ navigation }) => {
   } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
-
+  const {userAppointments} = useSelector(state => state?.appointment);
+  const { popularPackageName } = useSelector(state => state.programAndPlan);
   const onPressAdd = () => {
     //On add press logic to be added here
   };
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <CarouselContainer isIndexed={true} includeMockData={false}>
+        <CarouselContainer data={userAppointments} isIndexed={true} includeMockData={false}>
           <CarouselItem />
         </CarouselContainer>
         <View style={styles.serviceContainerWrapperStyle}>
@@ -74,7 +75,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false} includeMockData={true}>
+          <CarouselContainer data={popularPackageName.popularPackageResponseDtoList} isIndexed={false} includeMockData={true}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
@@ -91,14 +92,14 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        {/* <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
-        </View>
+        </View> */}
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line} />
