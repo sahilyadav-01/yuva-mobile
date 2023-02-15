@@ -62,6 +62,17 @@ export const addRelation = createAsyncThunk(
     }
   },
 );
+export const getUserAddress = createAsyncThunk(
+  'user/address',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const response = await YuvaService.get('/user/address');
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const initialState = {
   profile: {
@@ -183,6 +194,20 @@ const profileSlice = createSlice({
       state.loading = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
+    },
+    [getUserAddress.pending]: state => {
+      state.loading = true;
+    },
+    [getUserAddress.fulfilled]: (state, {payload}) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.userAddress = payload?.data?.data || [];
+    },
+    [getUserAddress.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload.message;
     },
   },
 });

@@ -5,10 +5,11 @@ import {
 } from '../../../../store/reducers/DiagnosticsSlice';
 import { useNavigation } from '@react-navigation/core'
 import { useRoute } from '@react-navigation/native';
+import { BOOKINGCONFIRM } from '../constants';
 
 export const useBookingTestAndPackage = () => {
     const route = useRoute();
-    const { packageName } = route.params;
+    const { packageName ,uuid,userVersion,version,plan} = route.params;
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const { packageDetails } = useSelector(state => state.diagnostic);
@@ -21,8 +22,11 @@ export const useBookingTestAndPackage = () => {
 
     }
     )
+    const PLAN={
+        Uuid:uuid,userVersion:userVersion,version:version,plan:plan
+    }
     const bookPackageScreen=()=>{
-        navigation.navigate("BookingConfirm")
+        navigation.navigate(BOOKINGCONFIRM, PLAN)
     }
     const [packageList, setPackageList] = useState(list)
    
