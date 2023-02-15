@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
+import { setProfileStatus } from '../LocalStore';
 import {
   loginThunk,
   signupThunk,
@@ -183,6 +184,7 @@ const profileSlice = createSlice({
     },
     [updateProfile.fulfilled]: state => {
       state.profileUpdated = true;
+      setProfileStatus('Y');
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
