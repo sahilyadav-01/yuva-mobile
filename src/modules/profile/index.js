@@ -43,9 +43,11 @@ const Profile = () => {
     addressLine1,
     city,
     pinCode,
+    cityData,
     changeAddress,
     changeCity,
-    changePincode
+    changePincode,
+    setSelectedCity
   } = useProfile();
 
   const {container} = styles({disabled: false});
@@ -75,12 +77,14 @@ const Profile = () => {
           name={name}
           addressLine1={addressLine1}
           city={city}
+          cityNames={cityData}
           pinCode={pinCode}
           changeName={changeName}
           updateUserData={updateUserData}
           changeAddress={changeAddress}
           changeCity={changeCity}
           changePincode={changePincode}
+          setSelectedCity={setSelectedCity}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard
