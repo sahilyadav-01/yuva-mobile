@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -9,12 +9,12 @@ import {
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
 import ServiceContainer from '../../components/ServiceContainer';
-import {useIsFocused} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {allAppointmentThunk} from '../../store/reducers/AppointmentSlice';
-import {styles} from '../styles';
+import { useIsFocused } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
+import { styles } from '../styles';
 import Header from '../../components/Header';
-import {PNG} from '../../../assets';
+import { PNG } from '../../../assets';
 import {
   LANDING_PAGE_TEXT1,
   LANDING_PAGE_TEXT2,
@@ -24,17 +24,20 @@ import {
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
 import CarouselItem3 from '../../components/CarouselItem3';
-import {getServicesThunk} from '../../store/reducers/AttributeSlice';
+import CarouselItem4 from '../../components/CarouselItem4';
+import { getServicesThunk } from '../../store/reducers/AttributeSlice';
+import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlice';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const {
     loggedIn,
   } = useSelector(state => state.auth);
-  const {loading: appointmentLoading} = useSelector(state => state.appointment);
-  const {loading: servicesLoading} = useSelector(state => state.attribute);
-
+  const { loading: appointmentLoading } = useSelector(state => state.appointment);
+  const { loading: servicesLoading } = useSelector(state => state.attribute);
+  const {userAppointments} = useSelector(state => state?.appointment);
+  const { popularPackageName } = useSelector(state => state.programAndPlan);
   const onPressAdd = () => {
     //On add press logic to be added here
   };
@@ -42,7 +45,8 @@ const HomeScreen = ({navigation}) => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
-      dispatch(allAppointmentThunk({isActive}));
+      dispatch(allAppointmentThunk({ isActive }));
+      dispatch(popularPackageNameThunk({isActive}));
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;
@@ -54,7 +58,7 @@ const HomeScreen = ({navigation}) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <CarouselContainer isIndexed={true} includeMockData={false}>
+        <CarouselContainer data={userAppointments} isIndexed={true} includeMockData={false}>
           <CarouselItem />
         </CarouselContainer>
         <View style={styles.serviceContainerWrapperStyle}>
@@ -71,11 +75,10 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer isIndexed={false} includeMockData={true}>
+          <CarouselContainer data={popularPackageName.popularPackageResponseDtoList} isIndexed={false} includeMockData={true}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
-              healthCheckUp={true}
             />
           </CarouselContainer>
         </View>
@@ -89,14 +92,14 @@ const HomeScreen = ({navigation}) => {
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        {/* <View>
           <CarouselContainer isIndexed={false} includeMockData={true}>
-            <CarouselItem2
+            <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
-        </View>
+        </View> */}
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line} />

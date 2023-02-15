@@ -79,4 +79,5 @@ export const SECTION_9_HEADING = 'Section Nine - Sleep';
 
 /*section10*/
 export const SECTION_10_HEADING = 'YOUR RESPONSE HAS BEEN COLLECTED';
-export const SECTION_10_SUB_HEADING = 'You can access your report again from the My Report section under Profile.';
+export const SECTION_10_SUB_HEADING1 = 'You can access your report again from the My Report section under Profile.';
+export const SECTION_10_SUB_HEADING2 = 'Redirecting you to the Home Page';

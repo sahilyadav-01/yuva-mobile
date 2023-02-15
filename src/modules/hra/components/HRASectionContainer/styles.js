@@ -6,24 +6,23 @@ import { fonts } from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
     mainContainer: {
         marginHorizontal: 15,
-        marginTop: 24,
+        marginTop: 39,
         display: FLEX,
         alignItems: CENTER,
         justifyContent: CENTER,
     },
     topContainer: {
-        marginTop: 41,
-        marginHorizontal: 14
+        marginTop: 30,
+        marginHorizontal: 14,
     },
     touchableOpacityContainer: {
         display: FLEX,
         alignItems: CENTER,
         justifyContent: CENTER,
-        height: 45,
-        width: 348,
+        height: 48,
+         width: 375,
         backgroundColor: ORANGE,
-        borderRadius: 8,
-        marginTop: 15
+        borderRadius:8,
     },
     textContainer: {
         fontSize: fonts.size.fontSize16,
