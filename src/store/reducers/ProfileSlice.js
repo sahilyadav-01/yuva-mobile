@@ -179,8 +179,10 @@ const profileSlice = createSlice({
     },
     [updateProfile.pending]: state => {
       state.loading = true;
+      state.profileUpdated = false;
     },
     [updateProfile.fulfilled]: state => {
+      state.profileUpdated = true;
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
