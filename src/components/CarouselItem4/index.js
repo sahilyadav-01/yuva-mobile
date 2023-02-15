@@ -1,12 +1,10 @@
 import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
-import { BUTTONCONTENT, COST, TESTCOUNT } from './constant';
 import { styles } from './styles';
 
-const CarouselItem2 = props => {
+const CarouselItem4 = props => {
 
-  const { imgPath, index, totalItem, onPressAdd, item } = props;
-
+  const { imgPath, index, totalItem, onPressAdd, healthCheckUp } = props;
   return (
     <View
       style={[
@@ -21,23 +19,24 @@ const CarouselItem2 = props => {
         />
       </View>
       <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>{item.packageName}</Text>
+        <Text style={styles.descriptionStyle}>Lipid Profile</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{TESTCOUNT(item.parameterCount)} </Text>
+        <Text style={styles.textStyle}>Includes 83 Tests </Text>
       </View>
       <View style={styles.costContainer}>
-        <Text style={styles.costStyle}>{COST(item.cost)}</Text>
+        <Text style={styles.costStyle}>₹1100/- </Text>
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
           onPress={onPressAdd}
           style={styles.addButtonContainer}>
-          <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>
+          <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
     </View>
+
   );
 };
 
-export default CarouselItem2;
+export default CarouselItem4;

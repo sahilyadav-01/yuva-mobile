@@ -4,7 +4,10 @@ import { CENTER, FLEX, ROW, WRAP } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
+    display: FLEX,
+    flexDirection: ROW,
     flexWrap: WRAP,
+    justifyContent: CENTER,
     width: 100,
     height:100,
     marginHorizontal: 10,
@@ -25,8 +28,6 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     alignItems: CENTER,
     justifyContent: CENTER,
-    height: '100%',
-    width: '100%',
   },
   imageContainerStyle: {
     height: 32,
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
   subBottomContainerStyle: {
     fontSize: 10,
     textAlign: CENTER,
-    paddingHorizontal: '20%',
+    paddingHorizontal: 15,
     color: DARK_BLUE,
   },
 });

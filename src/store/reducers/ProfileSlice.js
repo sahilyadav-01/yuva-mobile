@@ -1,5 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
+import { setProfileStatus } from '../LocalStore';
+import {
+  loginThunk,
+  signupThunk,
+  verifyThunk,
+  resetPassword,
+  logoutThunk,
+} from './AuthSlice';
 
 export const profileThunk = createAsyncThunk(
   'profile/profileThunk',
@@ -39,9 +47,18 @@ export const getRelations = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async ({dob, gender}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {dob, gender, address, cityId, pinCode},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
-      await YuvaService.put('/profile/update', {dob, gender});
+      await YuvaService.put('/profile', {
+        dob,
+        gender,
+        address,
+        cityId,
+        pinCode,
+      });
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -97,11 +114,19 @@ const initialState = {
   userDetailsErrorMessage: '',
   activeRelationsErrorMessage: '',
   relationsErrorMessage: '',
+  enableAddMember: null,
+  profileUpdated: false,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
+  reducers: {
+    updateProfileStatus(state, {payload}) {
+      let profileStatus = payload === 'Y' ? true : false;
+      state.profileUpdated = profileStatus;
+    },
+  },
   extraReducers: {
     [profileThunk.pending]: state => {
       state.loading = true;
@@ -130,13 +155,14 @@ const profileSlice = createSlice({
       state.loading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
-      state.relations = payload.data.data;
+      state.relations = payload.data.data.relativeResponseDto;
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
       state.relationId = payload?.data.data || [];
       state.relationsErrorMessage = '';
+      state.enableAddMember = payload.data.data.enableAddMember;
     },
     [getRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
@@ -165,8 +191,11 @@ const profileSlice = createSlice({
     },
     [updateProfile.pending]: state => {
       state.loading = true;
+      state.profileUpdated = false;
     },
     [updateProfile.fulfilled]: state => {
+      state.profileUpdated = true;
+      setProfileStatus('Y');
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -195,6 +224,7 @@ const profileSlice = createSlice({
       state.apiErrorMessage = payload.message;
       state.status = false;
     },
+
     [getUserAddress.pending]: state => {
       state.loading = true;
     },
@@ -208,9 +238,24 @@ const profileSlice = createSlice({
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
+    [loginThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [signupThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [verifyThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [resetPassword.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [logoutThunk.fulfilled]: state => {
+      state.profileUpdated = false;
     },
   },
 });
 
+export const {updateProfileStatus} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

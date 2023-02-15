@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   descriptionStyle: {
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik500,
     fontWeight: fonts.weight.fontWeight500,
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
@@ -49,15 +49,15 @@ export const styles = StyleSheet.create({
     maxWidth: 144,
   },
   textStyle: {
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik300,
     fontWeight: fonts.weight.fontWeight300,
     color: ECHO_BLUE,
     fontSize: fonts.size.fontSize10,
     lineHeight: 15,
-    maxWidth: 132,
+    maxWidth:132,
   },
   buttonText: {
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik500,
     fontWeight: fonts.weight.fontWeight500,
     color: WHITE,
     fontSize: fonts.size.fontSize14,

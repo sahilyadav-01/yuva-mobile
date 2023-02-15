@@ -1,12 +1,10 @@
-import React, {useRef, useState} from 'react';
-import {View, FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
-import {getDimensions} from '../utils/utils';
+import React, { useRef, useState } from 'react';
+import { View, FlatList } from 'react-native';
+import { getDimensions } from '../utils/utils';
 const CarouselContainer = (props) => {
-  const {includeMockData,isIndexed, children} = props;
+  const { isIndexed, children, data } = props;
   const [activeIndex, setActiveIndex] = useState(0);
-  const {userAppointments} = useSelector(state => state?.appointment);
-  const {width} = getDimensions();
+  const { width } = getDimensions();
 
   const onViewableItemsChanged = ({ viewableItems }) => {
     if (viewableItems?.length === 1) {
@@ -24,11 +22,11 @@ const CarouselContainer = (props) => {
     return React.cloneElement(children, {
       item,
       index,
-      totalItem: userAppointments.length ?? 10,
+      totalItem: data?.length ?? 10,
     });
   };
 
-  const render = ({item, index}) => {
+  const render = ({ item, index }) => {
     return (
       <View
         className="h-2 w-2 rounded-full ml-2"
@@ -43,9 +41,7 @@ const CarouselContainer = (props) => {
     <View className="flex items-center justify-center mt-2 mx-4 my-4">
       <FlatList
         renderItem={renderItem}
-        data={
-          includeMockData ? [0, 0, 0, 0, 0] : userAppointments
-        } /* Need to change the mock data once API's are ready* */
+        data={data}
         keyExtractor={item => item.id}
         key={(item, index) => index}
         snapToAlignment={'start'}
@@ -59,7 +55,7 @@ const CarouselContainer = (props) => {
         <FlatList
           className="flex-row mt-[20px]"
           horizontal={true}
-          data={new Array(userAppointments.length ?? 10)}
+          data={new Array(data?.length ?? 10)}
           renderItem={render}
         />
       )}

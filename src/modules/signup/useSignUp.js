@@ -17,9 +17,13 @@ export const useSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkNumber, setCheckNumber] = useState(false);
+  const [checkPassword, setCheckPassword] = useState(false);
+  const [checkConfirmPassword, setCheckConfirmPassword] = useState(false);
   const [enableSignUpButton, setEnableSignUpButton] = useState(false);
   const [existing, setExisting] = useState(false);
   const [terms, setTerms] = useState(false);
+  const [securePasswordEntry,setSecurePasswordEntry] = useState(true);
+  const [secureConfirmPasswordEntry,setSecureConfirmPasswordEntry] = useState(true);
   useEffect(() => {
     setExisting(emailExisting || numberExisting);
   }, [emailExisting, numberExisting]);
@@ -32,6 +36,7 @@ export const useSignUp = () => {
       password.length &&
       confirmPassword.length &&
       password === confirmPassword &&
+      password.length>=6 &&
       terms &&
       !existing;
     setEnableSignUpButton(enable);
@@ -53,6 +58,10 @@ export const useSignUp = () => {
 
   const onLoginPress = from => navigation.navigate('Login', {from});
 
+  const onPasswordIconPress = secureTextEntry => setSecurePasswordEntry(secureTextEntry);
+
+  const onConfirmPasswordIconPress = secureTextEntry => setSecureConfirmPasswordEntry(secureTextEntry);
+
   const checkEmailText = e => {
     if (email.split('@').length < 2) {
       setCheckEmail(true);
@@ -63,6 +72,16 @@ export const useSignUp = () => {
       );
     }
   };
+
+  const onPasswordBlur = () => {
+    if(password.toString().length < 6) setCheckPassword(true)
+    else setCheckPassword(false)
+  }
+
+  const onConfirmPasswordBlur = () => {
+    if(confirmPassword.toString().length < 6) setCheckConfirmPassword(true)
+    else setCheckConfirmPassword(false)
+  }
 
   const checkNumberText = e => {
     const reg = /^\d+$/;
@@ -106,7 +125,15 @@ export const useSignUp = () => {
     checkEmail,
     checkNumber,
     terms,
+    securePasswordEntry,
+    secureConfirmPasswordEntry,
+    checkPassword,
+    checkConfirmPassword,
     toggleTerms,
     onLoginPress,
+    onPasswordIconPress,
+    onConfirmPasswordIconPress,
+    onPasswordBlur,
+    onConfirmPasswordBlur,
   };
 };

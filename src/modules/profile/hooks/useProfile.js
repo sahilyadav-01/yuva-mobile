@@ -2,6 +2,7 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {cityIdThunk} from '../../../store/reducers/DiagnosticsSlice';
 import {
   addRelation,
   profileThunk,
@@ -12,7 +13,11 @@ import {
 
 export const useProfile = () => {
   const dispatch = useDispatch();
-  const {profile, auth} = useSelector(state => state);
+  const {
+    profile,
+    auth,
+    diagnostic: {cityId},
+  } = useSelector(state => state);
   const focused = useIsFocused();
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -27,14 +32,30 @@ export const useProfile = () => {
   const [dependentAge, setDependentAge] = useState('');
   const [dependentRelation, setDependentRelation] = useState('');
   const [reloadScreenCount, setReloadScreenCount] = useState(0);
+  const [addressLine1, setAddressLine1] = useState('');
+  const [city, setCity] = useState('');
+  const [pinCode, setPincode] = useState('');
+  const [cityData, setCityData] = useState(null);
+  const [selectedCityId, setSelectedCityId] = useState(null); 
 
   useEffect(() => {
     if (navigation.isFocused()) {
       dispatch(profileThunk());
       dispatch(getRelations());
       dispatch(getActiveRelations());
+      dispatch(cityIdThunk());
     }
   }, [focused, auth.loggedIn, reloadScreenCount]);
+
+  useEffect(() => {
+    if(cityId){
+    setCityData(
+      cityId.map((item, index) => {
+        return {key: index.toString(), value: JSON.stringify(item)};
+      }),
+    );
+    }
+  }, [cityId]);
 
   useEffect(() => {
     if (profile.dataUpdated) {
@@ -63,6 +84,10 @@ export const useProfile = () => {
         ? setDate(new Date(profile.userDetails.dob))
         : null;
       setGender(profile.userDetails.gender);
+      setAddressLine1(profile.userDetails.address ?? '');
+      setCity(profile.userDetails.cityName ?? '');
+      setSelectedCityId(profile.userDetails.cityId);
+      setPincode(profile.userDetails.pinCode ?? '');
     }
   }, [profile]);
 
@@ -93,11 +118,22 @@ export const useProfile = () => {
     setGender(selectedGender);
   };
 
+  const setSelectedCity = (arg, data) => {
+    console.log(arg,data)
+    const selectedCity = JSON.parse(data.find(item => arg.toString() === item.key).value);
+    setCity(selectedCity.name);
+    setSelectedCityId(selectedCity.id);
+  };
+
   const addMemberToList = () => {
-    if (!date || !gender)
-      Alert.alert('Alert', 'Please save DOB and Gender details');
+    if (!date || !gender || !addressLine1 || !city || !pinCode)
+      Alert.alert(
+        'Alert',
+        'Please save DOB, Gender, Address, City and Pin code details',
+      );
     else if (profile.activeRelations.length === 0)
       Alert.alert('Alert', 'No active relations left');
+    else if (!profile.enableAddMember) Alert.alert('Alert', 'Please add plans');
     else setAddMembers(true);
   };
 
@@ -108,6 +144,12 @@ export const useProfile = () => {
   const closePicker = () => setPicker(false);
 
   const changeName = value => setName(value);
+
+  const changeAddress = value => setAddressLine1(value);
+
+  const changeCity = value => setCity(value);
+
+  const changePincode = value => setPincode(value);
 
   const onSelect = () => setRelationSelected(true);
 
@@ -123,11 +165,25 @@ export const useProfile = () => {
 
   const updateUserData = () => {
     const dob = Date.parse(date).toString();
-    if (!date || !gender) {
+    const pinCheck = /^\d+$/;
+    if (!date || !gender || !addressLine1 || !city || !pinCode) {
       Alert.alert('Alert', 'Please fill the details');
-    } else {
+    } else if (
+      !pinCheck.test(pinCode) ||
+      !(pinCode.toString().trim().length === 6)
+    )
+      Alert.alert('Alert', 'Please enter a valid Pin Code');
+    else {
       setUserDetails(null);
-      dispatch(updateProfile({dob, gender}));
+      dispatch(
+        updateProfile({
+          dob,
+          gender,
+          address: addressLine1,
+          cityId: selectedCityId,
+          pinCode,
+        }),
+      );
     }
   };
 
@@ -137,6 +193,7 @@ export const useProfile = () => {
     onAddMembersPress,
     onConfirmDate,
     setSelectedGender,
+    setSelectedCity,
     addMemberToList,
     editDetails,
     openPicker,
@@ -160,7 +217,14 @@ export const useProfile = () => {
     activeRelations: profile.activeRelations,
     relationSelected,
     relationsData,
+    addressLine1,
+    city,
+    pinCode,
+    cityData,
     onRetryPress,
+    changeAddress,
+    changeCity,
+    changePincode,
     showErrorMessage:
       profile.userDetailsErrorMessage ||
       profile.relationsErrorMessage ||
