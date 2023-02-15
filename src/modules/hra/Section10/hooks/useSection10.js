@@ -1,19 +1,11 @@
-import { useNavigation } from '@react-navigation/core'
-import { useSelector } from 'react-redux';
+import { useState } from 'react'
 
 export const useSection10 = () => {
-  const navigation = useNavigation()
-  const { loggedIn } = useSelector(state => state.auth);
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-      //The logic for opening the drawer should be added here
-    }
-  };
-
+  const [isResend, setIsResend] = useState(false);
+  const onResetEnable = (isReset) => {
+    setIsResend(isReset);
+  }
   return {
-    loggedIn,
-    onPressRightIcon,
+    onResetEnable
   };
 };

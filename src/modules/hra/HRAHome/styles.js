@@ -6,6 +6,7 @@ import { fonts } from '../../../styles/fonts';
 export const styles = StyleSheet.create({
     mainContainer: {
         display: FLEX,
+        backgroundColor: WHITE,
     },
     topContainer: {
         shadowOffset: { width: 0, height: 0 },

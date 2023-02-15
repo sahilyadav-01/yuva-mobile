@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { WHITE, DARK_BLUE, ORANGE } from "../../../styles/colors";
-import { CENTER } from "../../../styles/constants";
+import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         width: '100%',
     },
     topContainer: {
-        marginHorizontal: 30,
+        marginHorizontal: 13,
         marginVertical: 20,
     },
     topContainerTextStyle: {
@@ -28,13 +28,15 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
     touchableOpacityStyle: {
-        borderRadius: 8,
+        display: FLEX,
+        alignItems: CENTER,
+        justifyContent: CENTER,
         backgroundColor: ORANGE,
+        borderRadius:8,
+        height: 48,
     },
     touchableOpacityTextStyle: {
         textAlign: CENTER,
-        paddingTop: 15,
-        paddingBottom: 15,
         color: WHITE,
     },
 });

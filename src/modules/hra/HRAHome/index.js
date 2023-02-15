@@ -2,21 +2,18 @@ import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import HRASectionContainer from '../components/HRASectionContainer';
 import Header from '../../../components/Header';
-import DownloadButton from '../components/DownloadButton';
-import { LOGGEDIN, HRA_BANNER_TEXT } from "../constant";
+import { HRA_BANNER_TEXT } from "../constant";
 import { styles } from './styles';
-import { useHraHome } from './hooks/useHraHome';
 import { PNG } from '../../../../assets';
 
 const HRAHome = () => {
-  const { loggedIn, onPressRightIcon, onDisplay } = useHraHome();
 
   return (
     <>
       <Header isRightIcon={true} />
       <View style={styles.mainContainer}>
         <View>
-          <ScrollView contentContainerStyle={{ paddingBottom: 400, }}>
+          <ScrollView contentContainerStyle={{ paddingBottom: 300, }}>
             <View style={styles.topContainer}>
               <View style={styles.subTopContainer}>
                 <View style={styles.parentTextContainer}>
@@ -29,9 +26,9 @@ const HRAHome = () => {
                 </View>
               </View>
             </View>
-            <View style={styles.bottomContainer}>
+            {/* <View style={styles.bottomContainer}>
               <DownloadButton onPress={onDisplay} />
-            </View>
+            </View> */}
             <HRASectionContainer />
           </ScrollView>
         </View>
