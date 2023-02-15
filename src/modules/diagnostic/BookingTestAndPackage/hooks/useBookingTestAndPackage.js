@@ -21,6 +21,9 @@ export const useBookingTestAndPackage = () => {
 
     }
     )
+    const bookPackageScreen=()=>{
+        navigation.navigate("BookingConfirm")
+    }
     const [packageList, setPackageList] = useState(list)
    
     const onUpdate = (index) => {
@@ -40,5 +43,6 @@ export const useBookingTestAndPackage = () => {
         packageDetails,
         packageList,
         onUpdate,
+        bookPackageScreen
     }
 }

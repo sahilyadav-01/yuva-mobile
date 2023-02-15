@@ -62,6 +62,7 @@ import HRA_END_IMG from './HRA_END_IMG'
 
 import dropDown from './dropDown'
 import EYE from './eye.png';
+import AddNewAdress from './AddNewAdress';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -128,7 +129,8 @@ const SVG = {
   BackgroundImage: BackgroundImage,
   Back: Back,
   HRA_END_IMG:HRA_END_IMG,
-  dropDown:dropDown
+  dropDown:dropDown,
+  AddNewAdress:AddNewAdress,
 };
 
 export { PNG, SVG };

@@ -8,3 +8,6 @@ export const EDIT_PROFILE = 'Edit Profile';
 export const AGE_ = 'Age - ';
 export const SELECT_GENDER = 'Select Gender';
 export const DD_MM_YYYY = 'DD-MM-YYYY';
+export const ADDRESS_1 = 'Address Line 1';
+export const CITY = 'City';
+export const PINCODE = 'Pin Code';

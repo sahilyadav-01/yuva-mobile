@@ -1,0 +1,15 @@
+export const SELECT_DATE= "Select Date & Time";
+export const DATE="Date";
+export const TIME="Time";
+export const time="time";
+export const BOOKING_FOR="Booking For";
+export const ADD_MEMBER="Add Member";
+export const SELECT_MEMBER="Select Member";
+export const MYSELF="Myself";
+export const NULL="null";
+export const SELECT_ADRESS="Select Address";
+export const SCHEDULE_APPOINMENT="Schedule Appointment";
+export const ADD_NEW="Add New";
+export const SUDHIR="DR.SUDHIR";
+export const ADDRESS="#3, 8th A Cross, Jakasandra, Koramangala 1st Block, Bengaluru, Karnataka";
+export const PHN="+91-7606036942";

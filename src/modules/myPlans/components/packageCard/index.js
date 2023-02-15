@@ -6,45 +6,49 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
 import {AVAILABLE, BOOK_NOW, PARAMETERS, USED} from './constant';
 import {useNavigation} from '@react-navigation/native';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {usePackageCard} from './hooks/usePackageCard';
 const PackageCard = () => {
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.attribute);
   const bookNow = () => {
     navigation.navigate('Doctor');
   };
+  const {programAndPlan} = usePackageCard();
   const renderItem = ({item, index}) => {
-    const {packageName, expiryDate, used, available, text} = item;
-    return (
-      <View style={styles.viewContainer} key={index}>
-        <Text style={styles.head}>{packageName}</Text>
+    return item.assignedAttributeResponseDto.map(i => {
+      return (
+        <View style={styles.viewContainer} key={index}>
+          <Text style={styles.head}>{item.name}</Text>
 
-        <Text style={styles.expiry}>{expiryDate}</Text>
+          <Text style={styles.expiry}>{item.endDate}</Text>
 
-        <View style={styles.sideBySide}>
-          <Image source={PNG.DOCTOR} style={styles.imageStyle} />
-          <View style={styles.text1}>
-            <Text style={styles.textColor}>{text}</Text>
-            <Text style={styles.text2}>
-              {USED} {used} {AVAILABLE} {available}
-            </Text>
+          <View style={styles.sideBySide}>
+            <Image source={PNG.DOCTOR} style={styles.imageStyle} />
+            <View style={styles.text1}>
+              <Text style={styles.textColor}>{i.name}</Text>
+              <Text style={styles.text2}>
+                {USED} {i.used} {AVAILABLE} {i.available}
+              </Text>
+            </View>
           </View>
+          <TouchableOpacity style={styles.buttonStyle} onPress={bookNow}>
+            <Text style={styles.textStyle}>{BOOK_NOW}</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.buttonStyle} onPress={bookNow}>
-          <Text style={styles.textStyle}>{BOOK_NOW}</Text>
-        </TouchableOpacity>
-      </View>
-    );
+      );
+    });
   };
 
   return (
     <FlatList
-      data={PARAMETERS}
+      data={programAndPlan}
       renderItem={renderItem}
       keyExtractor={index => `${index}`}
     />

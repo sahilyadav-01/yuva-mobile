@@ -27,6 +27,9 @@ export const useProfile = () => {
   const [dependentAge, setDependentAge] = useState('');
   const [dependentRelation, setDependentRelation] = useState('');
   const [reloadScreenCount, setReloadScreenCount] = useState(0);
+  const [addressLine1, setAddressLine1] = useState('');
+  const [city, setCity] = useState('');
+  const [pinCode, setPincode] = useState('');
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -63,6 +66,9 @@ export const useProfile = () => {
         ? setDate(new Date(profile.userDetails.dob))
         : null;
       setGender(profile.userDetails.gender);
+      setAddressLine1(profile.userDetails.address ?? '');
+      setCity(profile.userDetails.cityName ?? '');
+      setPincode(profile.userDetails.pinCode ?? '');
     }
   }, [profile]);
 
@@ -94,10 +100,14 @@ export const useProfile = () => {
   };
 
   const addMemberToList = () => {
-    if (!date || !gender)
-      Alert.alert('Alert', 'Please save DOB and Gender details');
+    if (!date || !gender || !addressLine1 || !city || !pinCode)
+      Alert.alert(
+        'Alert',
+        'Please save DOB, Gender, Address, City and Pin code details',
+      );
     else if (profile.activeRelations.length === 0)
       Alert.alert('Alert', 'No active relations left');
+    else if (!profile.enableAddMember) Alert.alert('Alert', 'Please add plans')
     else setAddMembers(true);
   };
 
@@ -108,6 +118,12 @@ export const useProfile = () => {
   const closePicker = () => setPicker(false);
 
   const changeName = value => setName(value);
+
+  const changeAddress = value => setAddressLine1(value);
+
+  const changeCity = value => setCity(value);
+
+  const changePincode = value => setPincode(value);
 
   const onSelect = () => setRelationSelected(true);
 
@@ -123,11 +139,25 @@ export const useProfile = () => {
 
   const updateUserData = () => {
     const dob = Date.parse(date).toString();
-    if (!date || !gender) {
+    const pinCheck = /^\d+$/;
+    if (!date || !gender || !addressLine1 || !city || !pinCode) {
       Alert.alert('Alert', 'Please fill the details');
-    } else {
+    } else if (
+      !pinCheck.test(pinCode) ||
+      !(pinCode.toString().trim().length === 6)
+    )
+      Alert.alert('Alert', 'Please enter a valid Pin Code');
+    else {
       setUserDetails(null);
-      dispatch(updateProfile({dob, gender}));
+      dispatch(
+        updateProfile({
+          dob,
+          gender,
+          address: addressLine1,
+          cityId: city,
+          pinCode,
+        }),
+      );
     }
   };
 
@@ -160,7 +190,13 @@ export const useProfile = () => {
     activeRelations: profile.activeRelations,
     relationSelected,
     relationsData,
+    addressLine1,
+    city,
+    pinCode,
     onRetryPress,
+    changeAddress,
+    changeCity,
+    changePincode,
     showErrorMessage:
       profile.userDetailsErrorMessage ||
       profile.relationsErrorMessage ||

@@ -1,4 +1,5 @@
 export const HRA = 'Health Risk Assessment';
+export const GET_HRA_NOW = 'Get Your Health Report Now';
 export const WHAT_IS_HRA = 'WHAT IS HEALTH RISK ASSESSMENT';
 export const HRA_DESC =
   'A health risk assessment, or HRA, sometimes called a health appraisal or health assessment, is a screening tool that helps individuals identify and understand their health risks and monitor health status over time. A health risk assessment includes a questionnaire, an assessment of health status, and personalised feedback about actions that can be taken to reduce risks, maintain health, and prevent disease.';
