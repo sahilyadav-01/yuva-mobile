@@ -6,6 +6,8 @@ import {
   removeObject,
   setJwt,
   clearJwt,
+  setProfileStatus,
+  clearProfileStatus,
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
 import {YuvaService} from '../../network/yuvaService';
@@ -263,6 +265,7 @@ const authSlice = createSlice({
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
         setJwt(action.payload.data.jwt);
+        setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N')
         state.loading = false;
         const userData = {
           name: action.payload.data.name,
@@ -316,6 +319,7 @@ const authSlice = createSlice({
       state.user.jwt = '';
       state.isAppReady = true;
       clearJwt();
+      clearProfileStatus();
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
     [signupThunk.pending]: (state, {payload}) => {
@@ -326,6 +330,7 @@ const authSlice = createSlice({
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
       setJwt(payload.data.jwt);
+      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
       state.loading = false;
       state.signUpLoading = false;
       const userData = {
@@ -370,6 +375,7 @@ const authSlice = createSlice({
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
       setJwt(payload.data.jwt);
+      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
       state.signUpLoading = false;
       const userData = {
         name: payload.data.name,
@@ -449,6 +455,7 @@ const authSlice = createSlice({
         id: payload.data.id,
       };
       setJwt(payload.data.jwt);
+      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
       state.user.jwt = payload.data.jwt;
       payload.jwt && setObject('user', userData);
       state.user.name = payload.data.name || 'User';

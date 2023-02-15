@@ -41,7 +41,7 @@ export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
   async ({dob, gender, address, cityId, pinCode}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await YuvaService.put('/profile/update', {dob, gender, address, cityId, pinCode});
+      await YuvaService.put('/profile', {dob, gender, address, cityId, pinCode});
     } catch (error) {
       return rejectWithValue(error);
     }
