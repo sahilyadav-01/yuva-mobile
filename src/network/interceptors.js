@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {getJwt} from '../store/LocalStore';
-import {logoutThunk} from '../store/reducers/AuthSlice';
+import { getJwt } from '../store/LocalStore';
+import { logoutThunk } from '../store/reducers/AuthSlice';
 import store from '../store/Store';
 
 const handleUserForbidden = () => {
@@ -18,7 +18,8 @@ axiosClient.interceptors.request.use(
       '/generate-sms-otp',
       '/login',
       '/signup',
-      '/reset-password'
+      '/reset-password',
+      '/package/popular',
     ];
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;

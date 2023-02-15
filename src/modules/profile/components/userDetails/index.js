@@ -1,7 +1,13 @@
 import React from 'react';
 import {View, TouchableOpacity, TextInput} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import {DD_MM_YYYY, SELECT_GENDER} from '../../constant';
+import {
+  DD_MM_YYYY,
+  SELECT_GENDER,
+  ADDRESS_1,
+  CITY,
+  PINCODE,
+} from '../../constant';
 import styles from './style';
 import {DARK_BLUE} from '../../../../styles/colors';
 import {getDateText} from '../../../../utils/utils';
@@ -15,7 +21,15 @@ const UserDetails = ({
   userDetails,
   edit,
   name,
+  addressLine1,
+  city,
+  pinCode,
   changeName,
+  changeAddress,
+  changeCity,
+  changePincode,
+  setSelectedCity,
+  cityNames,
 }) => {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,
@@ -25,6 +39,9 @@ const UserDetails = ({
     phoneNumber: userDetails.number,
     name: userDetails.name,
     organisation: userDetails.companyName,
+    address: userDetails.address,
+    city: userDetails.city,
+    pinCode: userDetails.pinCode,
   };
   return (
     <>
@@ -76,14 +93,60 @@ const UserDetails = ({
           />
         </TouchableOpacity>
       )}
-      <TextInput onChangeText={changeName} value={name} style={textInputStyle} editable={edit}/>
       <TextInput
-        value={mockData.organisation}
-        editable={false}
+        onChangeText={changeName}
+        value={name}
+        style={textInputStyle}
+        editable={edit}
+      />
+      {mockData.organisation && (
+        <TextInput
+          value={mockData.organisation}
+          editable={false}
+          style={textInputStyle}
+        />
+      )}
+      <TextInput
+        placeholder={ADDRESS_1}
+        value={mockData.address ?? addressLine1}
+        editable={edit}
+        style={textInputStyle}
+        onChangeText={changeAddress}
+      />
+      {cityNames &&
+        (!edit ? (
+          <TextInput
+            value={city}
+            editable={false}
+            style={textInputStyle}
+            placeholder={CITY}
+          />
+        ) : (
+          <>
+            <SelectList
+              setSelected={arg => {
+                setSelectedCity(arg, cityNames);
+              }}
+              search={false}
+              data={cityNames.map(item => {
+                return {...item, value: JSON.parse(item.value).name};
+              })}
+              placeholder={CITY}
+              boxStyles={dropdownBoxStyle}
+              inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
+            />
+            <View style={separatorStyle} />
+          </>
+        ))}
+      <TextInput
+        placeholder={PINCODE}
+        value={mockData.pinCode ?? pinCode}
+        editable={edit}
         style={{...textInputStyle, marginBottom: 32}}
+        onChangeText={changePincode}
       />
     </>
   );
-}
+};
 
 export default UserDetails;

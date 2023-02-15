@@ -58,9 +58,23 @@ export const setJwt = async jwt => {
   } catch (error) {}
 };
 
+export const setProfileStatus = async status => {
+  try {
+    await AsyncStorage.setItem('profileUpdated', status);
+  } catch (error) {}
+};
+
 export const clearJwt = async () => {
   try {
     await AsyncStorage.removeItem('jwt');
+  } catch (error) {
+    
+  }
+}
+
+export const clearProfileStatus = async () => {
+  try {
+    await AsyncStorage.removeItem('profileUpdated');
   } catch (error) {
     
   }
@@ -76,6 +90,13 @@ export const getExistingUser = async () => {
 export const getJwt = async () => {
   try {
     const jwtToken = await AsyncStorage.getItem('jwt');
+    return jwtToken;
+  } catch (error) {}
+};
+
+export const getProfileStatus = async () => {
+  try {
+    const jwtToken = await AsyncStorage.getItem('profileUpdated');
     return jwtToken;
   } catch (error) {}
 };

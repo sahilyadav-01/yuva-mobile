@@ -13,20 +13,28 @@ export const styles = StyleSheet.create({
     },
     topContainerTextStyle: {
         marginHorizontal: 30,
-        marginTop: 106,
+        marginTop: 23.64,
         fontWeight: fonts.weight.fontWeight600,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.rubik600,
         textAlign: CENTER,
-        fontSize: fonts.size.fontSize24,
+        fontSize: fonts.size.fontSize20,
         color: ORANGE,
     },
     topContainerSubTextStyle: {
         marginHorizontal: 30,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.rubik600,
         marginTop: 30,
-        fontWeight: fonts.weight.fontWeight500,
+        fontWeight: fonts.weight.fontWeight600,
         textAlign: CENTER,
         fontSize: fonts.size.fontSize14,
         color: CYAN_BLUE,
     },
+    imageBackground: {
+        alignItems: CENTER,
+        marginTop: 23.09,
+    },
+    bottomContainer: {
+        marginTop: 28,
+        alignItems: CENTER,
+    }
 });
