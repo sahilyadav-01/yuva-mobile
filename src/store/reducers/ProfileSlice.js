@@ -1,5 +1,12 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
+import {
+  loginThunk,
+  signupThunk,
+  verifyThunk,
+  resetPassword,
+  logoutThunk,
+} from './AuthSlice';
 
 export const profileThunk = createAsyncThunk(
   'profile/profileThunk',
@@ -39,9 +46,18 @@ export const getRelations = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async ({dob, gender, address, cityId, pinCode}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {dob, gender, address, cityId, pinCode},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
-      await YuvaService.put('/profile', {dob, gender, address, cityId, pinCode});
+      await YuvaService.put('/profile', {
+        dob,
+        gender,
+        address,
+        cityId,
+        pinCode,
+      });
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -87,11 +103,18 @@ const initialState = {
   activeRelationsErrorMessage: '',
   relationsErrorMessage: '',
   enableAddMember: null,
+  profileUpdated: false,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
+  reducers: {
+    updateProfileStatus(state, {payload}) {
+      let profileStatus = payload === 'Y' ? true : false;
+      state.profileUpdated = profileStatus;
+    },
+  },
   extraReducers: {
     [profileThunk.pending]: state => {
       state.loading = true;
@@ -186,8 +209,24 @@ const profileSlice = createSlice({
       state.apiErrorMessage = payload.message;
       state.status = false;
     },
+    [loginThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [signupThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [verifyThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [resetPassword.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [logoutThunk.fulfilled]: state => {
+      state.profileUpdated = false;
+    },
   },
 });
 
+export const {updateProfileStatus} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;
