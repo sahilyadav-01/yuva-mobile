@@ -23,7 +23,6 @@ export const programAndPlanThunk = createAsyncThunk(
       try {
         const endpoint = `/package/popular?pageNo=1&pageSize=4`;
         const response = await YuvaService.get(endpoint);
-        console.log("gg",response.data);
         return response.data;
       } catch (error) {
         //const errorOject =  JSON.stringify(error.response.data)
