@@ -63,11 +63,12 @@ export const diagnosisPackageDetailsThunk = createAsyncThunk(
   },
 );
 export const bookTestThunk = createAsyncThunk(
-  'booking',
+  '/booking',
   async ({data}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/booking?fromWeb=false';
       const response = await YuvaService.post(endpoint, data);
+      
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -137,6 +138,10 @@ const diagnosticSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
     },
+    resetMesage(state) {
+      state.testBooked = null;
+      state.apiErrorMessage =null;
+    },
   },
   extraReducers: {
     /**
@@ -205,12 +210,14 @@ const diagnosticSlice = createSlice({
     },
     [bookTestThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.testBooked = action.payload.data;
+      state.testBooked = action.payload;
+      state.apiErrorMessage =null;
     },
     [bookTestThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-      //state.apiErrorMessage = action.payload.errorMessage;
+      state.testBooked =null;
+      state.apiErrorMessage = action.payload.errorMessage;
     },
     [bookedDetailsByIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
@@ -241,6 +248,6 @@ const diagnosticSlice = createSlice({
     },
   },
 });
-export const {hideErrorBox} = diagnosticSlice.actions;
+export const {hideErrorBox,resetMesage} = diagnosticSlice.actions;
 export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;

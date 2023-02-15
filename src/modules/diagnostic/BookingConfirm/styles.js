@@ -243,22 +243,22 @@ export const styles = StyleSheet.create({
     },
     checkboxAddress: {
         marginLeft: 284,
-        marginTop: 37,
+        marginTop: 14,
     },
     adressName: {
-        marginTop: 3,
-        marginLeft: 40,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize16,
-
-    },
-    adressCheck: {
-        marginTop: 3,
         marginLeft: 40,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
+
+    },
+    adressCheck: {
+        marginTop: 11,
+        marginLeft: 40,
+        marginBottom:15,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
     },
     border: {
         borderWidth: 0.2,
