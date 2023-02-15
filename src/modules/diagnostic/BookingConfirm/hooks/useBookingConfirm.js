@@ -11,8 +11,7 @@ import { ALERT, BOOKED, MYPLAN, OK, PLEASE_CHECK_ADDRESS } from '../constants';
 
 export const useBookingConfirm = () => {
     const route = useRoute();
-    const { ...PLAN } = route.params;
-    const { Uuid, userVersion, version, plan } = PLAN;
+    const { Uuid, userVersion, version, plan } = route.params;
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
@@ -33,10 +32,8 @@ export const useBookingConfirm = () => {
     };
     useEffect(() => {
         dispatch(getRelations())
-
-    }, [])
-    useEffect(() => {
         dispatch(getUserAddress())
+
     }, [])
     useEffect(() => {
         if (relationId?.relativeResponseDto?.length > 0) {

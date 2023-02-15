@@ -24,7 +24,7 @@ const BookingConfirm = () => {
         dataRelation,
         userAddress,
         bookTestScreen } = useBookingConfirm();
-    const RenderAddress = ({ item, index }) => {
+    const renderAddress = ({ item, index }) => {
         if (item) {
             return (
 
@@ -148,7 +148,7 @@ const BookingConfirm = () => {
                         <View>
                             {userAddress.length &&
                                 <FlatList
-                                    renderItem={RenderAddress}
+                                    renderItem={renderAddress}
                                     data={userAddress}
                                     keyExtractor={(item) => item.id}
                                     showsHorizontalScrollIndicator={false}

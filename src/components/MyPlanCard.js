@@ -1,5 +1,5 @@
 
-import React, { version } from 'react'
+import React  from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
@@ -15,10 +15,10 @@ const MyPlanCard = ({ item }) => {
             const params={
     
                 packageName: plan?.item?.id ,
-                uuid:item.uuid,
-                userVersion:item.userVersion,
-                version:item.version,
-                plan:item.plan,
+                uuid:item?.uuid,
+                userVersion:item?.userVersion,
+                version:item?.version,
+                plan:item?.plan,
              
             }
             navigation.navigate(BOKINGTESTANDPACKAGE, params );
