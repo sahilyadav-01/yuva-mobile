@@ -1,0 +1,10 @@
+export const MESSAGE="Message";
+export const CANCEL="Cancel";
+export const ARE_YOU_SURE='Are you sure you want to cancel ?';
+export const SELECTED_ADRESS="Selected Address";
+export const RESCHEDULE="Reschedule";
+export const TEST='Tests';
+export const PACKAGE="Packages";
+export const DETAILS="Details";
+export const TRUE="true";
+export const MYPLAN="MyPlan";

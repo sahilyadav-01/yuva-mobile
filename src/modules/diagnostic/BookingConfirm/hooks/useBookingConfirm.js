@@ -7,7 +7,7 @@ import { bookTestThunk ,resetMesage} from '../../../../store/reducers/Diagnostic
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
 import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
-import { ALERT, BOOKED, MYPLAN, OK, PLEASE_CHECK_ADDRESS } from '../constants';
+import { ALERT, BOOKED, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL } from '../constants';
 
 export const useBookingConfirm = () => {
     const route = useRoute();
@@ -17,10 +17,9 @@ export const useBookingConfirm = () => {
     const [selected, setSelected] = useState("");
 
     const [dataRelation, setDataRelation] = useState();
-    const { packageDetails, testBooked, apiErrorMessage } = useSelector(state => state.diagnostic);
+    const { packageDetails, testBooked, apiErrorMessage ,cityId} = useSelector(state => state.diagnostic);
     const { relationId, userAddress } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
-    // userAddress?.map((item,index)=>{return {index,status:false}}) || []
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const handleDate = date => {
@@ -57,7 +56,7 @@ export const useBookingConfirm = () => {
             const contact= userAddress[checked]?.contactNumber;
             var data = {
                 address: address,
-                cityId: 1,
+                cityId: cityId[0]?.id,
                 contactNumber:contact,
                 packageUuid: [packageDetails?.packageUuid],
                 patientId: null,
@@ -80,7 +79,7 @@ export const useBookingConfirm = () => {
         if (testBooked?.message && !apiErrorMessage) {
             Alert.alert(ALERT, BOOKED, [{
                 text: OK,
-                onPress: () => { navigation.navigate(MYPLAN) }
+                onPress: () => { navigation.navigate(RESCHEDULEANDCANCEL ,testBooked) }
             }])
         }
         else if (apiErrorMessage && !testBooked) {
