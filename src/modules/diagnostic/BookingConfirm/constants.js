@@ -20,3 +20,4 @@ export const SOMETHING_WENT_WRONG="Something Went Wrong";
 export const BOOKED="Booking added successfully";
 export const SCHEDULE_TIME="The scheduled time for appointment should be 2 hours from now";
 export const MYPLAN="MyPlan";
+export const RESCHEDULEANDCANCEL="RescheduleTestAndPackage";

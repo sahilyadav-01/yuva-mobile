@@ -59,7 +59,7 @@ import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png'
 import HRA_END_IMG from './HRA_END_IMG'
-
+import dateAndTime from './dateAndTime'
 import dropDown from './dropDown'
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
@@ -131,6 +131,7 @@ const SVG = {
   HRA_END_IMG:HRA_END_IMG,
   dropDown:dropDown,
   AddNewAdress:AddNewAdress,
+  dateAndTime:dateAndTime,
 };
 
 export { PNG, SVG };
