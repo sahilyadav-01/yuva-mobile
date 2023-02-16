@@ -9,7 +9,7 @@ import {styles} from './style';
 import BackCross from '../../GoBackCross'
 
 function DependentsModal(props) {
-  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress} = props;
+  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress} = props;
   const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText} =
     styles();
   const listData = [0, ...data, 0];
@@ -20,7 +20,7 @@ function DependentsModal(props) {
     <Modal visible={visible} transparent={true}>
       <View style={{marginTop:8,marginHorizontal:6,flexDirection:'row',justifyContent:'space-between'}}>
       <Text style={selectText}>{heading}</Text>
-      <BackCross size={20}/>
+      <BackCross size={20} onPress={onCrossPress}/>
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
