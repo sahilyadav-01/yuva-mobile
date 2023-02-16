@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         height: 50,
     },
-    touchable: {
+    touchableButton: {
         backgroundColor: ORANGE,
         marginTop: 40,
         marginLeft: 13,
@@ -34,29 +34,12 @@ export const styles = StyleSheet.create({
     },
     theme: { colors: { text: DARK_GREY } },
 
-    textInputStyle: {
-        borderBottomWidth: 1,
-        borderColor: PLATINUM,
-        paddingBottom: 5,
-        marginTop: 10,
-        color: DARK_BLUE,
-        height: 40,
-        paddingLeft: 18,
-        fontFamily: fonts.family.rubik400,
-    },
     dateTimePicker: {
         marginLeft: 28,
         marginRight: 30,
         minHeight: 42,
         backgroundColor: LIGHT_GREYISH_RED,
         borderRadius:6
-    },
-    margin: {
-        marginBottom: 172,
-    },
-    card: {
-        marginBottom: 0,
-        marginRight: 14,
     },
     textBook: {
         textAlign: CENTER,
@@ -65,75 +48,8 @@ export const styles = StyleSheet.create({
         color: WHITE,
         fontFamily: fonts.family.rubik500,
         marginLeft: 97,
+        fontSize: fonts.size.fontSize16,
 
-    },
-    view: {
-        marginTop: 20,
-    },
-    dateView: {
-        marginTop: 20,
-    },
-    bookingDetails: {
-        marginTop: 27,
-        marginLeft: 16,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize12,
-    },
-    itemText: {
-        marginLeft: 14,
-        color: WHITE,
-        marginTop: 21,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize12,
-    },
-    itemCount: {
-        marginLeft: 6,
-        color: WHITE,
-        marginTop: 21,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize12,
-    },
-    itemHead: {
-        color: INDIGO_LIGHT,
-        marginTop: 21,
-        marginLeft: 13,
-    },
-    i: {
-        marginRight: 100,
-    },
-    itemView: {
-        backgroundColor: INDIGO_LIGHT,
-        marginTop: 20,
-        flexDirection: ROW,
-        minHeight: 77,
-        borderRadius: 12,
-        marginLeft: 13,
-        marginRight: 14,
-
-    },
-    drop: {
-        marginTop: 35,
-        marginLeft: 152,
-    },
-    dropDown: {
-        backgroundColor: WHITE,
-        marginTop: 20,
-        minHeight: 77,
-        borderRadius: 12,
-        marginLeft: 13,
-        marginRight: 14,
-    },
-    dropDownDetails: {
-        marginTop: 12,
-        marginLeft: 13,
-        marginBottom: 11,
-    },
-    dropDownText: {
-        marginTop: 12,
-        color: VERY_DARK_GREY,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize14,
     },
     booked: {
         marginTop: 22,
@@ -146,39 +62,6 @@ export const styles = StyleSheet.create({
     booking: {
         flexDirection: ROW
     },
-    color: {
-        color: CYAN_BLUE,
-        fontSize: fonts.size.fontSize10,
-        fontFamily: fonts.family.rubik400,
-        marginLeft: 16,
-        marginTop: 10,
-    },
-    button: {
-        marginTop: 47,
-        marginLeft: 13,
-        marginRight: 14,
-    },
-    testName: {
-        marginTop: 27,
-        marginBottom: 10,
-        marginLeft: 13,
-        fontFamily: fonts.family.rubik700,
-
-    },
-    instructDetails: {
-        marginTop: 11,
-        marginLeft: 16,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize12,
-    },
-    totalLabDetails: {
-        marginTop: 20,
-        marginLeft: 16,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize16,
-    },
     selectDate: {
         marginTop: 30,
         marginLeft: 16,
@@ -189,7 +72,6 @@ export const styles = StyleSheet.create({
     },
     Date: {
         marginTop: 30,
-
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,

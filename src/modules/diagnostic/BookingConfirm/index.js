@@ -32,22 +32,7 @@ const BookingConfirm = () => {
 
                     <View style={styles.checkboxAddress}>
                         <Checkbox
-                            // status={checked?.filter((i, ind) => { if (index === ind) return i })[0]?.status ? 'checked' : "unchecked"}
-                            // onPress={() => {
-                            //     setChecked(checked?.map((i, ind) => {
-
-                            //         if (index === ind) {
-                            //             i.status = !i.status;
-                            //         } else {
-                            //             i.status = false;
-                            //         }
-                            //         if (i.status === true) {
-                            //             return i;
-                            //         }
-
-                            //     }));
-                            // }}
-                            status={checked == index ? 'checked' : 'unchecked'}
+                            status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
                             }}
@@ -157,7 +142,7 @@ const BookingConfirm = () => {
                     </View>
                     <TouchableOpacity
                         onPress={bookTestScreen}
-                        style={styles.touchable}>
+                        style={styles.touchableButton}>
                         <Text style={styles.textBook}>
                             {SCHEDULE_APPOINMENT}
                         </Text>
