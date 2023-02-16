@@ -82,8 +82,6 @@ export const styles = StyleSheet.create({
   Location: {
     flexDirection: ROW,
     marginLeft: '15%',
-    fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.rubik,
     color: BLACK,
   },
 

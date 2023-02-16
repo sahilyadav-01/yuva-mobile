@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
   },
   tab: {
     fontSize: fonts.size.fontSize16,
-    fontFamily: fonts.family.rubik,
+    fontFamily: fonts.family.rubik400,
     marginTop: 100,
   },
   verticalLine: {

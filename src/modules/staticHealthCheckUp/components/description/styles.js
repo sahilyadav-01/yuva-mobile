@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
   description: {
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight400,
     fontFamily: fonts.family.rubik400,
     margin: '10%',
     alignSelf: CENTER,
