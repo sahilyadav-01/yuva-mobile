@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 export const useRescheduleAndCancel = () => {
     const route = useRoute();
-    const { ...reschedule } = route.params.data;
+    const {data:reschedule } = route.params;
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const { cancelled } = useSelector(state => state.diagnostic)
