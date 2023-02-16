@@ -124,6 +124,7 @@ const PNG = {
   MY_HEALTH_CHECKUP,
   DATE,
   EYE,
+  POPULAR_PLAN,
 };
 
 const SVG = {
