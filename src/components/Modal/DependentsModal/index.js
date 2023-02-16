@@ -10,7 +10,7 @@ import BackCross from '../../GoBackCross'
 
 function DependentsModal(props) {
   const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress} = props;
-  const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText} =
+  const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText, headingContainer} =
     styles();
   const listData = [0, ...data, 0];
   const renderDependent = ({item, index}) => (
@@ -18,7 +18,7 @@ function DependentsModal(props) {
   );
   return (
     <Modal visible={visible} transparent={true}>
-      <View style={{marginTop:8,marginHorizontal:6,flexDirection:'row',justifyContent:'space-between'}}>
+      <View style={headingContainer}>
       <Text style={selectText}>{heading}</Text>
       <BackCross size={20} onPress={onCrossPress}/>
       </View>

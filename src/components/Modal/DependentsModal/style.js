@@ -48,6 +48,7 @@ export const styles = () => {
     itemSeparatorStyle: {height: 24},
     primaryText: {fontFamily: fonts.family.rubik500, color:CYAN_BLUE,lineHeight:18},
     secondaryText: {fontFamily: fonts.family.rubik600, color:ORANGE,lineHeight:21},
-    emptyDependentContainer: {height:1,paddingVertical:0}
+    emptyDependentContainer: {height:1,paddingVertical:0},
+    headingContainer: {marginTop:8,marginHorizontal:6,flexDirection:ROW,justifyContent:SPACE_BETWEEN}
   });
 };
