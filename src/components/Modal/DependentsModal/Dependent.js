@@ -13,7 +13,7 @@ const Dependent = props => {
     <View style={dependentItemContainer}>
       <View style={dependentNameContainer}>
         <Text style={primaryText}>{detailsText}</Text>
-        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus} />
+        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'} />
       </View>
       <Text style={secondaryText}>{relation}</Text>
     </View>

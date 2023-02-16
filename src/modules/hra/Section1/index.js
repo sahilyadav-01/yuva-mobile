@@ -9,10 +9,8 @@ import { useSection1 } from './hooks/useSection1';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 
-const Section1 = () => {
-
-    const { loggedIn, onPressRightIcon, progressWidth, requiredFieldQ1, questionData, inputCheck, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4, answers, setQuestion5, next } = useSection1();
-
+const Section1 = (props) => {
+    const { loggedIn, onPressRightIcon, progressWidth, requiredFieldQ1, questionData, inputCheck, requiredFieldQ2, requiredFieldQ3, requiredFieldQ4, answers, setQuestion5, next } = useSection1(props?.userData ?? null);
     return (
         <>
             <Header isRightIcon={true} />
@@ -35,6 +33,7 @@ const Section1 = () => {
                                 keyboardType={KEYBOARD_TYPE_VALUE}
                                 placeholder={SECTION_1_PLACEHOLDER_Q1}
                                 onEndEditing={(e) => inputCheck(FIRST_QUESTION, e.nativeEvent.text)}
+                                value={props?.userData?.age.toString() ?? ''}
                             />
                         </View>
                         <View style={styles.questionViewContainer}>
@@ -72,12 +71,11 @@ const Section1 = () => {
                                 {questionData[4]?.question}
                             </Text>
                             <SelectList
-
                                 boxStyles={styles.boxStylesContainer}
                                 placeholder={
                                     answers[questionData[4]?.questionId] === undefined
                                         ? answers[questionData[4]?.questionId] === ''
-                                        : ''
+                                        : props?.userData?.gender ?? ''
                                 }
                                 setSelected={setQuestion5}
                                 data={PickerData[questionData[4]?.questionType]}

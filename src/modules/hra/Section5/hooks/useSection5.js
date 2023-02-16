@@ -6,6 +6,7 @@ import { section5QThunk } from '../../../../store/reducers/Section5Slice';
 import { dispatch_option } from '../../../../store/reducers/Section5Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, LOGGEDIN, LOGIN_SCREEN, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, ZERO } from '../../constant';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection5 = () => {
     const [smoke, setSmoke] = useState(false);
@@ -17,6 +18,15 @@ export const useSection5 = () => {
     const section1Answers = useSelector(state => state.section1.answers);
     const questionData = useSelector(state => state.section5.rawQuestions);
     const { loggedIn, } = useSelector(state => state.auth);
+    const {continueHRA} = useSelector(state => state.hra);
+    const { width } = getDimensions();
+    const progressWidth = width;
+    useEffect(() => {
+        dispatch(section5QThunk());
+    }, []);
+    useEffect(() => {
+        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 5}));
+      }, [continueHRA]);
     const setQuestion1 = value => {
         {
             value == 1 ? setSmoke(true) : setSmoke(false);
@@ -56,12 +66,6 @@ export const useSection5 = () => {
         dispatch(dispatch_option({ key: questionData[3].questionId, value: value }));
     };
 
-    const { width } = getDimensions();
-    const progressWidth = width;
-
-    useEffect(() => {
-        dispatch(section5QThunk());
-    }, []);
 
     const next = () => {
         if ((answers.Q35 == ZERO) && (answers.Q38 == ZERO || answers.Q38 == ONE)) {

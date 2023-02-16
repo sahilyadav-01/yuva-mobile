@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { section3QThunk } from '../../../../store/reducers/Section3Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_4 } from '../../constant';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection3 = () => {
     const navigation = useNavigation()
@@ -12,12 +13,17 @@ export const useSection3 = () => {
     const answers = useSelector(state => state.section3.answers)
     const questionData = useSelector(state => state.section3.rawQuestions)
     const { loggedIn, } = useSelector(state => state.auth)
+    const {continueHRA} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {
         dispatch(section3QThunk())
     }, [])
+
+    useEffect(() => {
+        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 3}));
+      }, [continueHRA]);
 
     const next = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {

@@ -6,6 +6,7 @@ import { section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, ZERO } from '../../constant';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection4 = () => {
 
@@ -15,6 +16,7 @@ export const useSection4 = () => {
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
     const { loggedIn, } = useSelector(state => state.auth);
+    const {continueHRA} = useSelector(state => state.hra);
     const setQuestion1 = value => {
         {
             value == 1 ? setAlochol(true) : setAlochol(false);
@@ -36,6 +38,9 @@ export const useSection4 = () => {
     useEffect(() => {
         dispatch(section4QThunk());
     }, []);
+    useEffect(() => {
+        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 4}));
+      }, [continueHRA]);
     const next = () => {
 
         if (answers.Q31 == ZERO) {

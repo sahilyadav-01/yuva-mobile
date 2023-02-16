@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDimensions } from '../../../../utils/utils';
 import { section7QThunk, dispatch_option, dispatch_option_extra_questions } from '../../../../store/reducers/Section7Slice';
 import { ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, KEY_VALUE10A, KEY_VALUE9A, LOGGEDIN, LOGIN_SCREEN, ONE, SECTION_8, ZERO } from '../../constant';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection7 = () => {
     const navigation = useNavigation();
@@ -24,6 +25,17 @@ export const useSection7 = () => {
     const answers10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section7.rawQuestions);
     const { loggedIn, } = useSelector(state => state.auth);
+    const {continueHRA} = useSelector(state => state.hra);
+    const { width } = getDimensions();
+    const progressWidth = width;
+
+    useEffect(() => {
+        dispatch(section7QThunk());
+    }, []);
+
+    useEffect(() => {
+        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 7}));
+      }, [continueHRA]);
     const setQuestion1 = value => {
         {
             value == 1 ? setMedicalConditionDoYouSufferFromAnyIllness(true) : setMedicalConditionDoYouSufferFromAnyIllness(false);
@@ -112,13 +124,6 @@ export const useSection7 = () => {
         dispatch(dispatch_option_extra_questions({ key: KEY_VALUE10A, value: value }));
 
     }
-
-    const { width } = getDimensions();
-    const progressWidth = width;
-
-    useEffect(() => {
-        dispatch(section7QThunk());
-    }, []);
 
     const next = () => {
 

@@ -6,6 +6,7 @@ import { section9QThunk, dispatch_option, finalSubmission } from '../../../../st
 import { transforSubData } from '../../../../utils/utils'
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_10 } from '../../constant';
 import { getDimensions } from '../../../../utils/utils';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection9 = () => {
     const navigation = useNavigation()
@@ -25,12 +26,17 @@ export const useSection9 = () => {
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
     const { loggedIn, } = useSelector(state => state.auth);
+    const {continueHRA} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width
 
     useEffect(() => {
         dispatch(section9QThunk())
     }, [])
+
+    useEffect(() => {
+        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 9}));
+      }, [continueHRA]);
     const computeResult = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
             Alert.alert(ALERT, ALL_QUESTION_CHECK)
