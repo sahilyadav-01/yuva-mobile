@@ -1,34 +1,119 @@
-import { StyleSheet } from 'react-native';
-import { DARK_BLUE, PLATINUM ,FLASH_WHITE, WHITE, BLACK} from '../../../../styles/colors';
-
-
+import {StyleSheet} from 'react-native';
+import {
+  DARK_BLUE,
+  PLATINUM,
+  FLASH_WHITE,
+  WHITE,
+  BLACK,
+  CYAN_BLUE,
+  LIGHT_GREYISH_RED,
+  DARK_GREY,
+  ORANGE,
+  LIGHT_MERCURY,
+  RED,
+} from '../../../../styles/colors';
+import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
-theme:{colors: { text: BLACK}
-},
-textInputStyle: {
-  borderBottomWidth: 1,
-  borderColor: PLATINUM,
-  paddingBottom: 5,
-  marginBottom: 15,
-  color:DARK_BLUE,
-},
-dateTimePicker:{
-backgroundColor:{FLASH_WHITE}
-},
-boxStyles:{
-borderWidth: 0,
- margin: 15,
- borderBottomWidth: 1,
- borderColor: PLATINUM,
- paddingBottom: 5,
- marginBottom: 15,
- color:DARK_BLUE,
-height: 50,
-
-},
-textHeader:{
-  marginTop:10,
-  marginLeft:30,
-  marginRight:30,
-}
- });
+  theme: {colors: {text: BLACK}},
+  textInputStyle: {
+    borderBottomWidth: 1,
+    borderColor: PLATINUM,
+    backgroundColor: LIGHT_MERCURY,
+    marginBottom: 15,
+    color: BLACK,
+    margin: '8%',
+  },
+  dateTimePicker: {
+    backgroundColor: {FLASH_WHITE},
+  },
+  boxStyles: {
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderColor: PLATINUM,
+    paddingBottom: 5,
+    marginBottom: 15,
+    color: DARK_BLUE,
+  },
+  dateAndTime: {
+    marginTop: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    minHeight: 42,
+    marginBottom: 15,
+  },
+  Date: {
+    marginTop: '10%',
+    marginBottom: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  Time: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  ContentHeading: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    marginLeft: '5%',
+  },
+  ContentStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  Description: {
+    marginTop: '10%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    marginLeft: '8%',
+  },
+  TitleStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  NameStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  border: {
+    marginLeft: '5%',
+    marginRight: '5%',
+    shadowColor: WHITE,
+    shadowOpacity: '15%',
+    borderRadius: 10,
+    backgroundColor: WHITE,
+  },
+  dateTimePicker: {
+    minHeight: 22,
+    backgroundColor: LIGHT_MERCURY,
+  },
+  theme: {colors: {text: DARK_GREY}},
+  ImageStyle: {
+    flexDirection: 'row',
+    marginLeft: '5%',
+  },
+  Image: {
+    height: 48,
+    width: 48,
+    alignSelf: 'center',
+  },
+});

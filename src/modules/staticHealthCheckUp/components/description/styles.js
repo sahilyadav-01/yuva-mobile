@@ -8,14 +8,17 @@ export const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight400,
     fontFamily: fonts.family.rubik400,
     margin: '10%',
+    alignSelf: 'center',
   },
   subtitle: {
-    marginTop: '30%',
+    marginTop: '10%',
     color: ORANGE,
     fontSize: fonts.size.fontSize18,
-    fontWeight: fonts.weight.fontWeight600,
-    fontFamily: fonts.family.rubik400,
-    marginLeft: '30%',
-    marginRight: '20%',
+    fontFamily: fonts.family.rubik600,
+    alignSelf: 'center',
+  },
+  ImageStyle: {
+    alignSelf: 'center',
+    marginTop: '10%',
   },
 });

@@ -12,10 +12,10 @@ export const styles = StyleSheet.create({
   },
   title: {
     marginBottom: '5%',
-    color: ORANGE,
-    fontSize: fonts.size.fontSize16,
-    fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.rubik400,
+    //alignSelf: CENTER,
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize20,
+    fontFamily: fonts.family.rubik500,
   },
   subtitleContainer: {
     backgroundColor: CYAN_BLUE,
@@ -26,10 +26,10 @@ export const styles = StyleSheet.create({
   headTitle: {
     marginBottom: '5%',
     marginTop: '5%',
+    alignSelf: CENTER,
     color: CYAN_BLUE,
-    fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight600,
-    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize20,
+    fontFamily: fonts.family.rubik600,
   },
   subtitleText: {
     color: WHITE,

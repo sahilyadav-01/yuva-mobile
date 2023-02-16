@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../components/Header/index';
 import {PNG} from '../../../assets';
 import {
-  HEALTH_CHECKUP,
+  FIND_HEALTH_CHECKUP,
   PACKAGE,
   ADV_BODY_CHECKUP1,
   ADV_BODY_CHECKUP2,
@@ -39,9 +39,7 @@ import PriceCard from './components/priceCard';
 import MoreInformation from './components/moreInformation';
 import Description from './components/description';
 const HealthCheckUP = ({navigation}) => {
-  const {
-    loggedIn,
-  } = useSelector(state => state.auth);
+  const {loggedIn} = useSelector(state => state.auth);
   const onPressRightIcon = () => {
     if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen');
@@ -56,12 +54,13 @@ const HealthCheckUP = ({navigation}) => {
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
         showsVerticalScrollIndicator={false}>
-        <Text style={styles.headTitle}>{HEALTH_CHECKUP}</Text>
+        <Text style={styles.headTitle}>{FIND_HEALTH_CHECKUP}</Text>
+
         <Text style={styles.title}>{PACKAGE}</Text>
-        <View style={styles.subtitleContainer}>
+        {/* <View style={styles.subtitleContainer}>
           <Text style={styles.subtitleText}>{ADV_BODY_CHECKUP1}</Text>
           <Text style={styles.subtitleText}>{ADV_BODY_CHECKUP2}</Text>
-        </View>
+        </View> */}
         <Text style={styles.headTitle}>{PARAMETER}</Text>
         <Parameters />
         <PriceCard />
