@@ -67,6 +67,7 @@ import FreeSample from './FreeSample';
 import Discount from './Discounts';
 import AccurateReport from './AccurateReport';
 import TrustedLab from './TrustedLab';
+import LocationOn from './LocationOn';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -139,6 +140,7 @@ const SVG = {
   Discount: Discount,
   AccurateReport: AccurateReport,
   TrustedLab: TrustedLab,
+  LocationOn: LocationOn,
 };
 
 export {PNG, SVG};

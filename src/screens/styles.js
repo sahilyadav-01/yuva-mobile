@@ -4,9 +4,6 @@ import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
 import {fonts} from '../styles/fonts';
 
 export const styles = StyleSheet.create({
-  container: {
-    // marginBottom: 162,
-  },
   homeScreenContainer: {
     flex: 1,
     backgroundColor: LIGHT_GREY,

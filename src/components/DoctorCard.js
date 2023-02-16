@@ -3,9 +3,10 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {newAppointment} from '../store/reducers/AppointmentSlice';
-import {PNG} from '../../assets';
+import {PNG, SVG} from '../../assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './styles';
+import {BOOK_APPOINTMENT} from './constants';
 const DoctorCard = ({
   doctorId,
   name,
@@ -52,7 +53,7 @@ const DoctorCard = ({
           <Text style={styles.ContentStyle}>{specialization}</Text>
 
           <View style={styles.Location}>
-            <Icon name="map-marker-outline" />
+            <SVG.LocationOn />
             <Text style={styles.Address}>
               {address == undefined ? '' : address.slice(0, 20)}
             </Text>
@@ -62,7 +63,7 @@ const DoctorCard = ({
 
       <View style={styles.buttonView}>
         <TouchableOpacity style={styles.Button} onPress={bookAppointment}>
-          <Text style={styles.ButtonText}>Book Appointment</Text>
+          <Text style={styles.ButtonText}>{BOOK_APPOINTMENT}</Text>
         </TouchableOpacity>
       </View>
     </View>
