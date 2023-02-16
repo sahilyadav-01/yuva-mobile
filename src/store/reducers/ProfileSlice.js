@@ -1,5 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
+import { setProfileStatus } from '../LocalStore';
+import {
+  loginThunk,
+  signupThunk,
+  verifyThunk,
+  resetPassword,
+  logoutThunk,
+} from './AuthSlice';
 
 export const profileThunk = createAsyncThunk(
   'profile/profileThunk',
@@ -39,9 +47,18 @@ export const getRelations = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
-  async ({dob, gender, address, cityId, pinCode}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {dob, gender, address, cityId, pinCode},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
-      await YuvaService.put('/profile', {dob, gender, address, cityId, pinCode});
+      await YuvaService.put('/profile', {
+        dob,
+        gender,
+        address,
+        cityId,
+        pinCode,
+      });
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -57,6 +74,17 @@ export const addRelation = createAsyncThunk(
         name,
         relation,
       });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+export const getUserAddress = createAsyncThunk(
+  'user/address',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const response = await YuvaService.get('/user/address');
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -87,11 +115,18 @@ const initialState = {
   activeRelationsErrorMessage: '',
   relationsErrorMessage: '',
   enableAddMember: null,
+  profileUpdated: false,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
+  reducers: {
+    updateProfileStatus(state, {payload}) {
+      let profileStatus = payload === 'Y' ? true : false;
+      state.profileUpdated = profileStatus;
+    },
+  },
   extraReducers: {
     [profileThunk.pending]: state => {
       state.loading = true;
@@ -156,8 +191,11 @@ const profileSlice = createSlice({
     },
     [updateProfile.pending]: state => {
       state.loading = true;
+      state.profileUpdated = false;
     },
     [updateProfile.fulfilled]: state => {
+      state.profileUpdated = true;
+      setProfileStatus('Y');
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -186,8 +224,39 @@ const profileSlice = createSlice({
       state.apiErrorMessage = payload.message;
       state.status = false;
     },
+
+    [getUserAddress.pending]: state => {
+      state.loading = true;
+    },
+    [getUserAddress.fulfilled]: (state, {payload}) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.userAddress = payload?.data?.data || [];
+    },
+    [getUserAddress.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload.message;
+    },
+    [loginThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [signupThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [verifyThunk.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [resetPassword.fulfilled]: (state, {payload}) => {
+      state.profileUpdated = payload.data.profileUpdated;
+    },
+    [logoutThunk.fulfilled]: state => {
+      state.profileUpdated = false;
+    },
   },
 });
 
+export const {updateProfileStatus} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

@@ -5,7 +5,8 @@ import Authentication from './Authentication';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialLoad } from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
-import { getExistingUser } from '../store/LocalStore';
+import { getExistingUser, getProfileStatus } from '../store/LocalStore';
+import { updateProfileStatus } from '../store/reducers/ProfileSlice';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,8 @@ const IntroStackNav = () => {
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute))
     dispatch(initialLoad())
+    getProfileStatus().then((status)=>
+      dispatch(updateProfileStatus(status)))
   }, []);
   const { loggedIn, isAppReady } = useSelector(state => state.auth);
   const getInitialRoute = async () => {

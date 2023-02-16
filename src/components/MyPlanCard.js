@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React  from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
@@ -11,11 +11,17 @@ const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
     const renderItem = (plan) => {
         const onBookingTestandPackage = () => {
+          
             const params={
     
                 packageName: plan?.item?.id ,
+                uuid:item?.uuid,
+                userVersion:item?.userVersion,
+                version:item?.version,
+                plan:item?.plan,
+             
             }
-            navigation.navigate(BOKINGTESTANDPACKAGE, params  );
+            navigation.navigate(BOKINGTESTANDPACKAGE, params );
           }
         const used = plan?.item?.used || 0;
         const available = plan?.item?.available || 0;

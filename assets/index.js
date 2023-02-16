@@ -59,7 +59,7 @@ import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png';
 import HRA_END_IMG from './HRA_END_IMG';
-
+import POPULAR_PLAN from './Popular_Plan.png';
 import dropDown from './dropDown';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
