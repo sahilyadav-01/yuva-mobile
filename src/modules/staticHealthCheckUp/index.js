@@ -57,10 +57,10 @@ const HealthCheckUP = ({navigation}) => {
         <Text style={styles.headTitle}>{FIND_HEALTH_CHECKUP}</Text>
 
         <Text style={styles.title}>{PACKAGE}</Text>
-        {/* <View style={styles.subtitleContainer}>
+        <View style={styles.subtitleContainer}>
           <Text style={styles.subtitleText}>{ADV_BODY_CHECKUP1}</Text>
           <Text style={styles.subtitleText}>{ADV_BODY_CHECKUP2}</Text>
-        </View> */}
+        </View>
         <Text style={styles.headTitle}>{PARAMETER}</Text>
         <Parameters />
         <PriceCard />

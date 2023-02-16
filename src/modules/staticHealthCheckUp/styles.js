@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     marginBottom: '5%',
-    //alignSelf: CENTER,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize20,
     fontFamily: fonts.family.rubik500,
@@ -20,8 +19,8 @@ export const styles = StyleSheet.create({
   subtitleContainer: {
     backgroundColor: CYAN_BLUE,
     height: 67,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: CENTER,
+    alignItems: CENTER,
   },
   headTitle: {
     marginBottom: '5%',

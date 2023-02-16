@@ -37,15 +37,14 @@ export const styles = StyleSheet.create({
   },
   textColor: {
     color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight600,
     fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik600,
   },
   carouselText: {
     marginLeft: 17,
     marginTop: 11,
     color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight700,
+    fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
     height: 21,
   },
@@ -70,6 +69,7 @@ export const styles = StyleSheet.create({
   },
   tab: {
     fontSize: fonts.size.fontSize16,
+    fontFamily: fonts.family.rubik,
     marginTop: 100,
   },
   verticalLine: {
@@ -104,15 +104,13 @@ export const styles = StyleSheet.create({
   },
   LandingPageText1: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight700,
   },
   LandingPageText2: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
   },
   line: {
     borderBottomColor: SEASHELL,
