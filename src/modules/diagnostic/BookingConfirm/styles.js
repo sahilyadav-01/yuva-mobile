@@ -182,6 +182,7 @@ export const styles = StyleSheet.create({
     selectDate: {
         marginTop: 30,
         marginLeft: 16,
+        marginRight:140,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
@@ -207,10 +208,18 @@ export const styles = StyleSheet.create({
         marginBottom:15,
     },
     AddMember: {
-        marginLeft: 276,
+        marginLeft: 278,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize10,
+        marginRight:18,
+        minHeight:28,
+        borderWidth:0.1,
+        shadowColor: WHITE,
+        shadowOpacity: "5%",
+        borderRadius: 2,
+        backgroundColor:WHITE,
+        dropShadow:BOX_SHADOW,
     },
     SelectMember: {
         marginLeft: 28,
@@ -223,8 +232,10 @@ export const styles = StyleSheet.create({
         flexDirection: ROW,
     },
     addNew: {
-        marginLeft: 174,
-        marginTop: 33,
+        marginLeft: 18,
+        marginRight:18,
+        minHeight:28,
+        marginTop:9,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
@@ -273,6 +284,26 @@ export const styles = StyleSheet.create({
         borderRadius: 6,
         backgroundColor:WHITE,
         dropShadow:BOX_SHADOW
+
+    },
+    Add:{
+        marginLeft:5,
+       borderWidth:0.1,
+       marginTop:18,
+       shadowColor: WHITE,
+       shadowOpacity: "5%",
+       borderRadius: 2,
+       backgroundColor:WHITE,
+       dropShadow:BOX_SHADOW
+    },
+    AddMem:{
+        marginLeft:5,
+        borderWidth:0.1,
+        shadowColor: WHITE,
+        shadowOpacity: "5%",
+        borderRadius: 2,
+        backgroundColor:WHITE,
+        dropShadow:BOX_SHADOW,
 
     }
 })

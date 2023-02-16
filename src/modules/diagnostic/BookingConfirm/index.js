@@ -32,25 +32,25 @@ const BookingConfirm = () => {
 
                     <View style={styles.checkboxAddress}>
                         <Checkbox
-                        // status={checked?.filter((i, ind) => { if (index === ind) return i })[0]?.status ? 'checked' : "unchecked"}
-                        // onPress={() => {
-                        //     setChecked(checked?.map((i, ind) => {
+                            // status={checked?.filter((i, ind) => { if (index === ind) return i })[0]?.status ? 'checked' : "unchecked"}
+                            // onPress={() => {
+                            //     setChecked(checked?.map((i, ind) => {
 
-                        //         if (index === ind) {
-                        //             i.status = !i.status;
-                        //         } else {
-                        //             i.status = false;
-                        //         }
-                        //         if (i.status === true) {
-                        //             return i;
-                        //         }
+                            //         if (index === ind) {
+                            //             i.status = !i.status;
+                            //         } else {
+                            //             i.status = false;
+                            //         }
+                            //         if (i.status === true) {
+                            //             return i;
+                            //         }
 
-                        //     }));
-                        // }}
-                        status={checked == index ? 'checked' : 'unchecked'}
-                        onPress={() => {
-                            checked !== index ? setChecked(index) : setChecked(null); 
-                        }}
+                            //     }));
+                            // }}
+                            status={checked == index ? 'checked' : 'unchecked'}
+                            onPress={() => {
+                                checked !== index ? setChecked(index) : setChecked(null);
+                            }}
 
                         />
                     </View>
@@ -115,8 +115,11 @@ const BookingConfirm = () => {
                         </View>
                         <View style={styles.border}>
                             <TouchableOpacity>
-                                <Text style={styles.AddMember}>{ADD_MEMBER}</Text>
-
+                                <View >
+                                    <Text style={styles.AddMember}>
+                                        <SVG.AddNewAdress />
+                                        {ADD_MEMBER}</Text>
+                                </View>
                             </TouchableOpacity>
                             <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                             <SelectList
@@ -131,11 +134,8 @@ const BookingConfirm = () => {
                             <Text style={styles.selectDate}>
                                 {SELECT_ADRESS}
                             </Text>
-                            <TouchableOpacity>
-                                <View style={styles.address}>
-
-
-
+                            <TouchableOpacity >
+                                <View style={styles.Add}>
                                     <Text style={styles.addNew}>
                                         <SVG.AddNewAdress />
                                         {ADD_NEW}
