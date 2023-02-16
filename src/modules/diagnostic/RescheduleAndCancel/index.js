@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList ,TouchableOpacity} from 'react-native';
 import AppointmentButton from '../../../components/AppointmentButton';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
@@ -8,7 +8,6 @@ import { ARE_YOU_SURE, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_A
 import { RED_SHADE, AMBER } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getPlanDate } from '../../../utils/utils';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SVG } from '../../../../assets';
 
 
