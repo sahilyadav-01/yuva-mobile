@@ -38,3 +38,4 @@ export const ARE_YOU_SURE='Are you sure you want to cancel ?';
 export const MESSAGE="Message";
 export const CANCEL="Cancel";
 export const BOKINGTESTANDPACKAGE="BookingTestAndPackage";
+export const BOOKINGCONFIRM="BookingConfirm";
