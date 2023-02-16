@@ -45,11 +45,6 @@ export const styles = () => {
       justifyContent: SPACE_BETWEEN,
       alignItems: CENTER,
     },
-    addMemberContainer: {
-      flexDirection: ROW,
-      alignSelf: CENTER,
-      justifyContent: CENTER,
-    },
     itemSeparatorStyle: {height: 24},
     primaryText: {fontFamily: fonts.family.rubik500, color:CYAN_BLUE,lineHeight:18},
     secondaryText: {fontFamily: fonts.family.rubik600, color:ORANGE,lineHeight:21},

@@ -9,11 +9,10 @@ import {styles} from './style';
 import BackCross from '../../GoBackCross'
 
 function DependentsModal(props) {
-  const {visible,heading,primaryText:primary,data, endText, onButtonPress} = props;
-  const {selectText, dependentContainer, listStyle, addMemberContainer, itemSeparatorStyle, primaryText} =
+  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress} = props;
+  const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText} =
     styles();
   const listData = [0, ...data, 0];
-  console.log(listData);
   const renderDependent = ({item, index}) => (
     <Dependent item={item} index={index} length={listData.length} />
   );
@@ -25,7 +24,7 @@ function DependentsModal(props) {
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
-        <Checkbox status='unchecked'/>
+        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
       </View>
       <FlatList
         data={listData}

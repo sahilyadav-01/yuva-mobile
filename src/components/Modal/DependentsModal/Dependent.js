@@ -5,7 +5,7 @@ import {styles} from './style';
 
 const Dependent = props => {
   const {dependentItemContainer, dependentNameContainer, primaryText, secondaryText, emptyDependentContainer} = styles();
-  const {item: {detailsText,relation}, index, length} = props;
+  const {item: {detailsText,relation,onCheckBoxPress, checkBoxStatus}, index, length, } = props;
   if(index === 0 || index===length-1){
     return <View style={[dependentItemContainer,emptyDependentContainer]}/>
   }
@@ -13,7 +13,7 @@ const Dependent = props => {
     <View style={dependentItemContainer}>
       <View style={dependentNameContainer}>
         <Text style={primaryText}>{detailsText}</Text>
-        <Checkbox />
+        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus} />
       </View>
       <Text style={secondaryText}>{relation}</Text>
     </View>
