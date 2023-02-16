@@ -27,6 +27,7 @@ import CarouselItem3 from '../../components/CarouselItem3';
 import CarouselItem4 from '../../components/CarouselItem4';
 import { getServicesThunk } from '../../store/reducers/AttributeSlice';
 import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlice';
+import OurPlan from '../../modules/ourPlan';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -114,6 +115,9 @@ const HomeScreen = ({ navigation }) => {
               onPressAdd={() => onPressAdd()}
             />
           </CarouselContainer>
+        </View>
+        <View>
+          <OurPlan />
         </View>
       </ScrollView>
     </SafeAreaView>
