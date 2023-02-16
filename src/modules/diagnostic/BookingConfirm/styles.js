@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED } from '../../../styles/colors';
+import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
 import { BOLD, COLUMN, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
         backgroundColor: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
+        marginBottom:23
     },
     contentContainerStyle: {
         flexGrow: 1,
@@ -48,6 +49,7 @@ export const styles = StyleSheet.create({
         marginRight: 30,
         minHeight: 42,
         backgroundColor: LIGHT_GREYISH_RED,
+        borderRadius:6
     },
     margin: {
         marginBottom: 172,
@@ -192,7 +194,7 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
     },
     Time: {
-        marginTop: 27,
+        marginTop: 12,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
@@ -201,7 +203,8 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 30,
         marginRight: 30,
-        minHeight: 42
+        minHeight: 42,
+        marginBottom:15,
     },
     AddMember: {
         marginLeft: 276,
@@ -268,5 +271,8 @@ export const styles = StyleSheet.create({
         shadowColor: WHITE,
         shadowOpacity: "5%",
         borderRadius: 6,
+        backgroundColor:WHITE,
+        dropShadow:BOX_SHADOW
+
     }
 })

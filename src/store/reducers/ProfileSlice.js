@@ -238,6 +238,7 @@ const profileSlice = createSlice({
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
+    },
     [loginThunk.fulfilled]: (state, {payload}) => {
       state.profileUpdated = payload.data.profileUpdated;
     },

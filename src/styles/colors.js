@@ -11,6 +11,7 @@ export const PLACEHOLDER_TEXT_COLOR = '#9D9FA4';
 export const RED_SHADE = '#A53F2B';
 export const ORANGE_GREY = 'rgba(230, 141, 54, 0.4)';
 export const SHADOW = 'rgba(0,0,0,0.9)';
+export const BOX_SHADOW='rgba(0,0,2,2)';
 export const FLASH_WHITE = '#E7EAED';
 export const PLATINUM = '#E4E2E2';
 export const AMBER = '#F2EFEA';
