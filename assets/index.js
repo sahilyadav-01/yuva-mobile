@@ -53,16 +53,24 @@ import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
 import BackgroundImage from './background';
 import HRA_HOMEImage from './HRA_HOME.png';
-import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png'
-import MY_HEALTH_CHECKUP from './MyHealthCheckup.png'
+import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
+import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png';
 import HRA_END_IMG from './HRA_END_IMG'
 import dateAndTime from './dateAndTime'
 import dropDown from './dropDown'
+import HRA_END_IMG from './HRA_END_IMG';
+import POPULAR_PLAN from './Popular_Plan.png';
+import dropDown from './dropDown';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
+import FreeSample from './FreeSample';
+import Discount from './Discounts';
+import AccurateReport from './AccurateReport';
+import TrustedLab from './TrustedLab';
+import LocationOn from './LocationOn';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -118,7 +126,8 @@ const PNG = {
   DIAGNOSTICMYPLAN,
   MY_HEALTH_CHECKUP,
   DATE,
-  EYE
+  EYE,
+  POPULAR_PLAN,
 };
 
 const SVG = {
@@ -132,6 +141,11 @@ const SVG = {
   dropDown:dropDown,
   AddNewAdress:AddNewAdress,
   dateAndTime:dateAndTime,
+  FreeSample: FreeSample,
+  Discount: Discount,
+  AccurateReport: AccurateReport,
+  TrustedLab: TrustedLab,
+  LocationOn: LocationOn,
 };
 
-export { PNG, SVG };
+export {PNG, SVG};

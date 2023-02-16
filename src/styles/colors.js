@@ -36,3 +36,5 @@ export const  LIGHT_GREYISH_RED="#F3F0F0";
 export const VERY_PALE_WHITE="#EEFFFC";
 export const VERY_LIGHT_GREY="#F6F6F6";
 export const V_LIGHT_GREY="#D9D9D9";
+export const LIGHT_SKY_BLUE = '#C4DEDC';
+export const VERY_LIGHT_SKY_BLUE = '#F7F8F7';
