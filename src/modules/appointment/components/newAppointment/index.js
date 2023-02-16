@@ -1,23 +1,40 @@
 import React from 'react';
-import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
+import {View, Text, TextInput, ScrollView, Alert, Image} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
-import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
+import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
-import { useSelector, useDispatch } from 'react-redux';
-import { styles } from "./styles";
+import {useSelector, useDispatch} from 'react-redux';
+import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
-import { useNew } from './hooks/useNew'
-import { BOOK_AN_APPOINTMENT, DESCRIPTION } from '../../constant';
-import { DARK_BLUE } from '../../../../styles/colors';
-import SelectList from 'react-native-dropdown-select-list'
+import {useNew} from './hooks/useNew';
+import {BOOK_AN_APPOINTMENT, DESCRIPTION} from '../../constant';
+import {DARK_BLUE} from '../../../../styles/colors';
+import SelectList from 'react-native-dropdown-select-list';
+import {
+  ADD_DESCRIPTION,
+  BOOKING_FOR,
+  BOOK_APPOINTMENT,
+  CONTACT_NUMBER,
+  DATE,
+  DESC,
+  MESSAGE,
+  PATIENT_CONTACT_NUMBER,
+  SELECT_DATE_TIME,
+  SELECT_MEMBER,
+  SELECT_MEMBER_HERE,
+  TIME,
+} from './constant';
+import {useRoute} from '@react-navigation/native';
 
 const NewAppointments = () => {
-
-  const { doctorId, name, specialization } = useSelector(
+  const route = useRoute();
+  const {Doctor, Specialization} = route.params;
+  const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
 
-  const { goBack,
+  const {
+    goBack,
     signupFlag,
     signupMessage,
     newAppointment,
@@ -28,70 +45,96 @@ const NewAppointments = () => {
     date,
     time,
     setSelected,
-    dataRelation } = useNew();
+    dataRelation,
+  } = useNew();
 
   return (
-    <ScrollView className="flex mr-1 ml-1 h-[800px]">
-      <GoBackCross className="mt-4" onPress={goBack} />
-      <Text className="text-bold text-lg ml-4 text-[#44576A]">{BOOK_AN_APPOINTMENT}</Text>
-      <TextInput
-        style={styles.textInputStyle}
-        multiline={true}
-        className="h-[50px] mr-[30px] ml-[30px] mt-[20px] "
-        placeholder={DESCRIPTION}
-        onChangeText={onChangeDescription}
+    <View>
+      <ScrollView>
+        <GoBackCross onPress={goBack} />
+        <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
-      />
-      <TextInput
-        style={styles.textInputStyle}
-        multiline={true}
-        className="h-[50px] mr-[30px] ml-[30px] mt-[20px] rounded shadow-2xl pl-2 pb-0 pt-1"
-        placeholder={
-          specialization == undefined || '' ? 'Specialization' : specialization
-        }
-        editable={false}
-      />
+        <View style={styles.border}>
+          <View style={styles.ImageStyle}>
+            <Image
+              source={require('../../../../../assets/icon.png')}
+              style={styles.Image}
+            />
+            <View>
+              <Text style={styles.NameStyle}>{Doctor}</Text>
+              <Text style={styles.ContentStyle}>{Specialization}</Text>
+            </View>
+          </View>
+        </View>
 
-      <View style={styles.textHeader}>
-        <Text>Date</Text>
-        <DateTimePicker
-          type="date"
-          value={date}
-          onChangeDate={handleDate}
-          style={styles.dateTimePicker}
-          selectionColor={DARK_BLUE}
-          theme={styles.theme}
-          minimumDate={new Date()}
+        <Text style={styles.TitleStyle}>{ADD_DESCRIPTION}</Text>
+        <View style={styles.border}>
+          <Text style={styles.Description}>{DESC}</Text>
+          <TextInput
+            style={styles.textInputStyle}
+            multiline={true}
+            onChangeText={onChangeDescription}
+          />
+        </View>
+        <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
+        <View style={styles.border}>
+          <View style={styles.dateAndTime}>
+            <Text style={styles.Date}>{DATE}</Text>
+            <DateTimePicker
+              type={DATE}
+              value={date}
+              onChangeDate={handleDate}
+              style={styles.dateTimePicker}
+              selectionColor={DARK_BLUE}
+              theme={styles.theme}
+              minimumDate={new Date()}
+            />
+          </View>
+          <View style={styles.dateAndTime}>
+            <Text style={styles.Time}>{TIME}</Text>
+            <DateTimePicker
+              type="time"
+              value={time}
+              onChangeDate={handleTime}
+              style={styles.dateTimePicker}
+              selectionColor={DARK_BLUE}
+              theme={styles.theme}
+            />
+          </View>
+        </View>
+        <View>
+          <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
+          <View style={styles.border}>
+            <Text style={styles.ContentHeading}>{SELECT_MEMBER}</Text>
+            <SelectList
+              boxStyles={styles.boxStyles}
+              defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
+              setSelected={setSelected}
+              data={dataRelation}
+            />
+          </View>
+        </View>
+        <View>
+          <Text style={styles.TitleStyle}>{PATIENT_CONTACT_NUMBER}</Text>
+          <View style={styles.border}>
+            <TextInput
+              style={styles.textInputStyle}
+              placeholder={CONTACT_NUMBER}
+              onChangeText={onChangeDescription}
+            />
+          </View>
+        </View>
+        <View>
+          <ActionButton onPress={newAppointment} name={BOOK_APPOINTMENT} />
+        </View>
+        <MessageBox
+          head={MESSAGE}
+          showDialog={signupFlag}
+          hideDialog={closeMessageBox}
+          message={signupMessage}
         />
-      </View>
-
-      <View style={styles.textHeader}>
-        <Text>Time</Text>
-        <DateTimePicker
-          type="time"
-          value={time}
-          onChangeDate={handleTime}
-          style={styles.dateTimePicker}
-          selectionColor={DARK_BLUE}
-          theme={styles.theme}
-        />
-      </View>
-      <View ><Text style={styles.textHeader}>Booking For</Text>
-        <SelectList
-          boxStyles={styles.boxStyles}
-          defaultOption={{ key: 'null', value: 'Myself' }}
-          setSelected={setSelected}
-          data={dataRelation}
-        />
-      </View>
-      <ActionButton onPress={newAppointment} name="Book Appointment" />
-      <MessageBox
-        head="Message"
-        showDialog={signupFlag}
-        hideDialog={closeMessageBox}
-        message={signupMessage}
-      />
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

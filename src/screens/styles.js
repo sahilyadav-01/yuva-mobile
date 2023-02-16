@@ -1,17 +1,14 @@
-import { StyleSheet } from "react-native";
-import { CENTER, SPACE_BETWEEN,FLEX, ROW } from "../styles/constants";
-import { CYAN_BLUE,FLASH_WHITE, LIGHT_GREY, SEASHELL} from "../styles/colors";
-import { fonts } from "../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
+import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
+import {fonts} from '../styles/fonts';
 
 export const styles = StyleSheet.create({
-  container: {
-    marginBottom: 162,
-  },
   homeScreenContainer: {
     flex: 1,
-    backgroundColor:LIGHT_GREY,
+    backgroundColor: LIGHT_GREY,
   },
-  margin:{
+  margin: {
     marginBottom: 0,
   },
   ScrollViewContainerStyle: {
@@ -25,10 +22,9 @@ export const styles = StyleSheet.create({
   },
   tabNavigation: {
     marginTop: 0,
-  
   },
-  barColor:{
-    backgroundColor:FLASH_WHITE,
+  barColor: {
+    backgroundColor: FLASH_WHITE,
   },
   screenOptions: {
     tabBarLabelStyle: {fontSize: 16, marginTop: 0},
@@ -37,20 +33,19 @@ export const styles = StyleSheet.create({
     lazy: false,
   },
   textColor: {
-    color:CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight600,
+    color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik600,
   },
   carouselText: {
     marginLeft: 17,
     marginTop: 11,
     color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight700,
+    fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
     height: 21,
   },
-  line:{
+  line: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: 246,
@@ -71,13 +66,14 @@ export const styles = StyleSheet.create({
   },
   tab: {
     fontSize: fonts.size.fontSize16,
+    fontFamily: fonts.family.rubik400,
     marginTop: 100,
   },
-  verticalLine:{
-    borderRightWidth:2,
-    marginTop:10,
-    height:40,
-    borderRightColor:CYAN_BLUE
+  verticalLine: {
+    borderRightWidth: 2,
+    marginTop: 10,
+    height: 40,
+    borderRightColor: CYAN_BLUE,
   },
   height: {
     height: 40,
@@ -105,15 +101,13 @@ export const styles = StyleSheet.create({
   },
   LandingPageText1: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight700,
   },
   LandingPageText2: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
   },
   line: {
     borderBottomColor: SEASHELL,

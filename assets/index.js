@@ -63,6 +63,11 @@ import POPULAR_PLAN from './Popular_Plan.png';
 import dropDown from './dropDown';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
+import FreeSample from './FreeSample';
+import Discount from './Discounts';
+import AccurateReport from './AccurateReport';
+import TrustedLab from './TrustedLab';
+import LocationOn from './LocationOn';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -129,9 +134,14 @@ const SVG = {
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
   Back: Back,
-  HRA_END_IMG:HRA_END_IMG,
-  dropDown:dropDown,
-  AddNewAdress:AddNewAdress,
+  HRA_END_IMG: HRA_END_IMG,
+  dropDown: dropDown,
+  AddNewAdress: AddNewAdress,
+  FreeSample: FreeSample,
+  Discount: Discount,
+  AccurateReport: AccurateReport,
+  TrustedLab: TrustedLab,
+  LocationOn: LocationOn,
 };
 
-export { PNG, SVG };
+export {PNG, SVG};
