@@ -9,7 +9,6 @@ import {
   resetMessage,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {getRelations} from '../../../../../store/reducers/ProfileSlice';
-
 export const useNew = () => {
   const [signupFlag, setSignupFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
@@ -73,8 +72,8 @@ export const useNew = () => {
     dispatch(getRelations());
   }, []);
   useEffect(() => {
-    if (relationId?.length >= 0) {
-      let newArray = relationId.map(item => {
+    if (relationId?.relativeResponseDto?.length >= 0) {
+      let newArray = relationId?.relativeResponseDto?.map(item => {
         return {
           key: item.id,
           value:
