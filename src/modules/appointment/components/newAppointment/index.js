@@ -13,12 +13,15 @@ import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
+  BOOK_APPOINTMENT,
   CONTACT_NUMBER,
   DATE,
   DESC,
+  MESSAGE,
   PATIENT_CONTACT_NUMBER,
   SELECT_DATE_TIME,
   SELECT_MEMBER,
+  SELECT_MEMBER_HERE,
   TIME,
 } from './constant';
 import {useRoute} from '@react-navigation/native';
@@ -105,7 +108,7 @@ const NewAppointments = () => {
             <Text style={styles.ContentHeading}>{SELECT_MEMBER}</Text>
             <SelectList
               boxStyles={styles.boxStyles}
-              defaultOption={{key: 'null', value: 'Select Member Here'}}
+              defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
               setSelected={setSelected}
               data={dataRelation}
             />
@@ -122,10 +125,10 @@ const NewAppointments = () => {
           </View>
         </View>
         <View>
-          <ActionButton onPress={newAppointment} name="Book Appointment" />
+          <ActionButton onPress={newAppointment} name={BOOK_APPOINTMENT} />
         </View>
         <MessageBox
-          head="Message"
+          head={MESSAGE}
           showDialog={signupFlag}
           hideDialog={closeMessageBox}
           message={signupMessage}

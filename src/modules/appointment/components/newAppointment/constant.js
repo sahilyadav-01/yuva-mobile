@@ -7,3 +7,6 @@ export const PATIENT_CONTACT_NUMBER = 'Patient Contact Number';
 export const CONTACT_NUMBER = 'Contact Number';
 export const BOOKING_FOR = 'Booking For';
 export const SELECT_MEMBER = 'Select Member';
+export const SELECT_MEMBER_HERE = 'Select Member Here';
+export const MESSAGE = 'Message';
+export const BOOK_APPOINTMENT = 'Book Appoinment';

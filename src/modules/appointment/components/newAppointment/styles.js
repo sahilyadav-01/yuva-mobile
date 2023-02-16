@@ -12,6 +12,7 @@ import {
   LIGHT_MERCURY,
   RED,
 } from '../../../../styles/colors';
+import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   theme: {colors: {text: BLACK}},
@@ -108,12 +109,12 @@ export const styles = StyleSheet.create({
   },
   theme: {colors: {text: DARK_GREY}},
   ImageStyle: {
-    flexDirection: 'row',
+    flexDirection: ROW,
     marginLeft: '5%',
   },
   Image: {
     height: 48,
     width: 48,
-    alignSelf: 'center',
+    alignSelf: CENTER,
   },
 });
