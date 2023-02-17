@@ -1,7 +1,7 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { resetHRA } from '../../../../../store/reducers/HRASlice';
+import { resetHRA, resetHRAData } from '../../../../../store/reducers/HRASlice';
 import {
   getRelations,
   profileThunk,
@@ -82,6 +82,7 @@ export const useHRASectionContainer = () => {
   }, [navigateToSection]);
 
   const openModal = () => {
+    dispatch(resetHRAData());
     dispatch(profileThunk());
     dispatch(getRelations());
     setStartHRA(true);

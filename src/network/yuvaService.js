@@ -13,6 +13,9 @@ class YuvaService {
   put = async (endpoint, params) => {
     return await axiosClient.put(`${baseUrl}${endpoint}`, params);
   };
+  delete = async (endpoint,params) => {
+    return await axiosClient.delete(`${baseUrl}${endpoint}`, params);
+  }
 }
 
 const yuvaService = new YuvaService();

@@ -6,17 +6,18 @@ import { section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, ZERO } from '../../constant';
-import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
+import { fetchSavedHRA, saveHRAData } from '../../../../store/reducers/HRASlice';
 
 export const useSection4 = () => {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [alcohol, setAlochol] = useState(false);
+    const [renderData, setRenderData] = useState(false);
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
     const { loggedIn, } = useSelector(state => state.auth);
-    const {continueHRA} = useSelector(state => state.hra);
+    const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const setQuestion1 = value => {
         {
             value == 1 ? setAlochol(true) : setAlochol(false);
@@ -38,12 +39,37 @@ export const useSection4 = () => {
     useEffect(() => {
         dispatch(section4QThunk());
     }, []);
+    
     useEffect(() => {
-        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 4}));
-      }, [continueHRA]);
+        if (continueHRA && questionData.length > 0) dispatch(fetchSavedHRA({sectionId: 4}));
+        else if(questionData.length > 0) setRenderData(true);
+      }, [continueHRA,questionData]);
+
+      useEffect(()=>{
+        if(!saveHRALoading && sectionData !== null && sectionId === 4 && questionData.length>0 && continueHRA){
+          dispatch( dispatch_option({key: questionData[0].questionId, value: sectionData.Q31.toString()}));
+          if(typeof sectionData?.Q32 === 'number' && typeof sectionData?.Q33 === 'number' && typeof sectionData?.Q34 === 'number'){
+          dispatch( dispatch_option({key: questionData[1].questionId, value: sectionData.Q32.toString()}));
+          dispatch( dispatch_option({key: questionData[2].questionId, value: sectionData.Q33.toString()}));
+          dispatch( dispatch_option({key: questionData[3].questionId, value: sectionData.Q34.toString()}));
+          setAlochol(true);
+          }
+          setRenderData(true);
+        }
+        else if(!saveHRALoading && saveHRAError) setRenderData(true)
+      },[saveHRALoading,questionData,sectionData])
+
     const next = () => {
 
         if (answers.Q31 == ZERO) {
+            dispatch(
+                saveHRAData({
+                  answers: {
+                    Q31: parseInt(answers.Q31)
+                  },
+                  sectionId: 4,
+                }),
+              );
             navigation.navigate(SECTION_5)
         }
         else {
@@ -51,6 +77,17 @@ export const useSection4 = () => {
                 Alert.alert(ALERT, ALL_QUESTION_CHECK)
             }
             else {
+                dispatch(
+                    saveHRAData({
+                      answers: {
+                        Q31: parseInt(answers.Q31),
+                        Q32: parseInt(answers.Q32),
+                        Q33: parseInt(answers.Q33),
+                        Q34: parseInt(answers.Q34),
+                      },
+                      sectionId: 4,
+                    }),
+                  );
                 navigation.navigate(SECTION_5)
             }
         }
@@ -74,5 +111,6 @@ export const useSection4 = () => {
         answers,
         alcohol,
         next,
+        renderData
     };
 };

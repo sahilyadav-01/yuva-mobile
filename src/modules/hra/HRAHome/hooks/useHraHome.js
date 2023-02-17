@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { reportStatusThunk } from "../../../../store/reducers/Section9Slice";
@@ -12,7 +12,22 @@ export const useHraHome = () => {
     const dispatch = useDispatch();
     let { reportStatus, reportDownload } = useSelector(state => state.section9,);
     const { loggedIn } = useSelector(state => state.auth);
-    const { continueHRA } = useSelector(state => state.hra);
+    const { continueHRA, continueHRAStatus, loading } = useSelector(state => state.hra);
+    const focused = useIsFocused();
+    const [renderData, setRenderData] = useState(false);
+    useEffect(()=>{
+        dispatch(continueHRAThunk())
+    },[focused]);
+
+    useEffect(()=>{
+        if(!loading && continueHRAStatus) setRenderData(true);
+    },[loading,continueHRAStatus])
+    useEffect(() => {
+        const timer = setInterval(() => {
+            fetchReport();
+        }, 2500);
+        return () => clearTimeout(timer);
+    }, []);
     const onDisplay = () => {
 
         if (reportStatus === null) {
@@ -45,13 +60,6 @@ export const useHraHome = () => {
     const fetchReport = () => {
         //dispatch(reportStatusThunk());
     };
-    useEffect(() => {
-        dispatch(continueHRAThunk())
-        const timer = setInterval(() => {
-            fetchReport();
-        }, 2500);
-        return () => clearTimeout(timer);
-    }, []);
 
     const onPressRightIcon = () => {
         if (loggedIn !== LOGGEDIN) {
@@ -67,6 +75,7 @@ export const useHraHome = () => {
         onDisplay,
         loggedIn,
         continueHRA,
-        goToSection1
+        goToSection1,
+        renderData
     };
 };

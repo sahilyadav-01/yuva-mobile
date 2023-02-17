@@ -6,7 +6,7 @@ import { section5QThunk } from '../../../../store/reducers/Section5Slice';
 import { dispatch_option } from '../../../../store/reducers/Section5Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, LOGGEDIN, LOGIN_SCREEN, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, ZERO } from '../../constant';
-import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
+import { fetchSavedHRA, saveHRAData } from '../../../../store/reducers/HRASlice';
 
 export const useSection5 = () => {
     const [smoke, setSmoke] = useState(false);
@@ -18,15 +18,33 @@ export const useSection5 = () => {
     const section1Answers = useSelector(state => state.section1.answers);
     const questionData = useSelector(state => state.section5.rawQuestions);
     const { loggedIn, } = useSelector(state => state.auth);
-    const {continueHRA} = useSelector(state => state.hra);
+    const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width;
+    const [renderData, setRenderData] = useState(false);
     useEffect(() => {
         dispatch(section5QThunk());
     }, []);
+    
     useEffect(() => {
-        if (continueHRA) dispatch(fetchSavedHRA({sectionId: 5}));
-      }, [continueHRA]);
+        if (continueHRA && questionData.length > 0) dispatch(fetchSavedHRA({sectionId: 5}));
+        else if(questionData.length > 0) setRenderData(true);
+      }, [continueHRA,questionData]);
+
+      useEffect(()=>{
+        if(!saveHRALoading && sectionData !== null && sectionId === 5 && questionData.length>0 && continueHRA){
+          dispatch( dispatch_option({key: questionData[0].questionId, value: sectionData.Q35.toString()}));
+          if(typeof sectionData?.Q36 === 'number' && typeof sectionData?.Q37 === 'number'){
+          dispatch( dispatch_option({key: questionData[1].questionId, value: sectionData.Q36.toString()}));
+          dispatch( dispatch_option({key: questionData[2].questionId, value: sectionData.Q37.toString()}));
+          setSmoke(true);
+          }
+          dispatch( dispatch_option({key: questionData[3].questionId, value: sectionData.Q38.toString()}));
+          setRenderData(true);
+        }
+        else if(!saveHRALoading && saveHRAError) setRenderData(true)
+      },[saveHRALoading,questionData,sectionData])
+
     const setQuestion1 = value => {
         {
             value == 1 ? setSmoke(true) : setSmoke(false);
@@ -69,9 +87,29 @@ export const useSection5 = () => {
 
     const next = () => {
         if ((answers.Q35 == ZERO) && (answers.Q38 == ZERO || answers.Q38 == ONE)) {
+            dispatch(
+                saveHRAData({
+                  answers: {
+                    Q35: parseInt(answers.Q35),
+                    Q38: parseInt(answers.Q38),
+                  },
+                  sectionId: 5,
+                }),
+              );
             navigation.navigate(SECTION_6);
         }
         else if ((answers.Q35 == ONE) && ((answers.Q36) && (requiredFieldQ2 == false)) && ((answers.Q37) && (requiredFieldQ3 == false)) && (answers.Q38 == ZERO || answers.Q38 == ONE)) {
+            dispatch(
+                saveHRAData({
+                  answers: {
+                    Q35: parseInt(answers.Q35),
+                    Q36: parseInt(answers.Q36),
+                    Q37: parseInt(answers.Q37),
+                    Q38: parseInt(answers.Q38),
+                  },
+                  sectionId: 5,
+                }),
+              );
             navigation.navigate(SECTION_6);
         }
         else {
@@ -99,5 +137,6 @@ export const useSection5 = () => {
         answers,
         smoke,
         next,
+        renderData,
     };
 };

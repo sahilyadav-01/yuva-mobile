@@ -30,7 +30,7 @@ const SectionPicker = ({
           borderColor: '#1D2334',
         }}
         //placeholder={(defaultAnswer === undefined ||  defaultAnswer === '') ? '' : data[defaultAnswer].value}
-        placeholder={defaultAnswer === undefined ? defaultAnswer === '' : ''}
+        placeholder={defaultAnswer ?? ''}
         setSelected={setSelected}
         data={data}
         search={false}
