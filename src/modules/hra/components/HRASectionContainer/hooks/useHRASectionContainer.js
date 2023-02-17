@@ -63,7 +63,7 @@ export const useHRASectionContainer = () => {
   useEffect(() => {
     if (checkBoxStatus === 'checked') {
       const {id, name, age, gender} = userDetails;
-      setUserData({id, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
+      setUserData({id:null, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
       setNavigateToSection(true);
     } else if (
       checkBoxFlag.length > 0 &&

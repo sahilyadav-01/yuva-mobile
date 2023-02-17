@@ -16,6 +16,7 @@ export const useHraHome = () => {
     const focused = useIsFocused();
     const [renderData, setRenderData] = useState(false);
     useEffect(()=>{
+        if(navigation.isFocused())
         dispatch(continueHRAThunk())
     },[focused]);
 

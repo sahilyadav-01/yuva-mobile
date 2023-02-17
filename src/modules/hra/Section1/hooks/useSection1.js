@@ -2,8 +2,7 @@ import {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useSelector, useDispatch} from 'react-redux';
-import {section1QThunk} from '../../../../store/reducers/Section1Slice';
-import {dispatch_option} from '../../../../store/reducers/Section1Slice';
+import {section1QThunk, dispatch_option} from '../../../../store/reducers/Section1Slice';
 import {
   ALERT,
   ALL_QUESTION_CHECK,
@@ -22,6 +21,7 @@ import {
 } from '../../constant';
 import {getDimensions} from '../../../../utils/utils';
 import {fetchSavedHRA, saveHRAData} from '../../../../store/reducers/HRASlice';
+import { genderData } from '../constants';
 
 export const useSection1 = userData => {
   const navigation = useNavigation();
@@ -42,8 +42,7 @@ export const useSection1 = userData => {
   const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
   const [enableData, setEnableData] = useState(false);
   const [renderData, setRenderData] = useState(false);
-  const data = ['Male','Female'];
-
+  
   useEffect(() => {
     dispatch(section1QThunk());
   }, []);
@@ -81,7 +80,7 @@ export const useSection1 = userData => {
 
   useEffect(() => {
     const {Q2, Q3, Q4, Q5, Q58} = answers;
-    if (Q2 && Q3 && Q4 && Q5 && Q58) {
+    if (Q2 && Q3 && Q4 && Q5 && Q58.toString()) {
       setEnableData(true);
     }
   }, [answers]);
@@ -196,7 +195,7 @@ export const useSection1 = userData => {
     answers,
     setQuestion5,
     next,
-    data,
+    data:genderData,
     renderData
   };
 };
