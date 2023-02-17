@@ -15,16 +15,21 @@ import {
   TRUSTED_LAB,
   TRUSTED_LAB_DESC,
 } from '../../constant';
+import {SVG} from '../../../../../assets';
 
 const Description = () => {
   return (
     <View>
+      <SVG.AccurateReport style={styles.ImageStyle} />
       <Text style={styles.subtitle}>{ACCURATE_REPORT}</Text>
       <Text style={styles.description}>{ACCURATE_REPORT_DESC}</Text>
+      <SVG.TrustedLab style={styles.ImageStyle} />
       <Text style={styles.subtitle}>{TRUSTED_LAB}</Text>
       <Text style={styles.description}>{TRUSTED_LAB_DESC}</Text>
+      <SVG.Discount style={styles.ImageStyle} />
       <Text style={styles.subtitle}>{DISCOUNT}</Text>
       <Text style={styles.description}>{DISCOUNT_DESC}</Text>
+      <SVG.FreeSample style={styles.ImageStyle} />
       <Text style={styles.subtitle}>{FREE_SAMPLE}</Text>
       <Text style={styles.description}>{FREE_SAMPLE_DESC}</Text>
       <Text style={styles.subtitle}>{BOOK_LAB_TEST}</Text>

@@ -29,6 +29,7 @@ import { getServicesThunk } from '../../store/reducers/AttributeSlice';
 import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlice';
 import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
+import OurPlan from '../../modules/ourPlan';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -116,6 +117,9 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
+        </View>
+        <View>
+          <OurPlan />
         </View>
       </ScrollView>
     </SafeAreaView>

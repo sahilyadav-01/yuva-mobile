@@ -1,19 +1,113 @@
-
-import { StyleSheet } from 'react-native';
-import { DARK_BLUE, WHITE, CYAN_BLUE, GREY, ORANGE, RED_SHADE, GREEN } from '../styles/colors';
-import { COLUMN, ROW, SPACE_BETWEEN, CENTER, FLEX_END, ABSOLUTE, FLEX_START } from '../styles/constants';
-import { fonts } from '../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  DARK_BLUE,
+  WHITE,
+  CYAN_BLUE,
+  GREY,
+  ORANGE,
+  RED_SHADE,
+  GREEN,
+  BLACK,
+} from '../styles/colors';
+import {
+  COLUMN,
+  ROW,
+  SPACE_BETWEEN,
+  CENTER,
+  FLEX_END,
+  ABSOLUTE,
+  FLEX_START,
+} from '../styles/constants';
+import {fonts} from '../styles/fonts';
 
 export const styles = StyleSheet.create({
+  Image: {
+    height: 48,
+    width: 48,
+    alignSelf: 'center',
+  },
+  ContentStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  NameStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  ImageStyle: {
+    flexDirection: ROW,
+    marginLeft: '5%',
+  },
+  Image: {
+    height: 48,
+    width: 48,
+    marginTop: '40%',
+    marginLeft: '10%',
+  },
+  CompleteView: {
+    backgroundColor: WHITE,
+    margin: '5%',
+    height: 139,
+    width: '85%',
+  },
+  Button: {
+    backgroundColor: CYAN_BLUE,
+    height: 31,
+  },
+  buttonView: {
+    marginTop: 18,
+  },
+  ButtonText: {
+    color: WHITE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize10,
+    alignSelf: CENTER,
+    marginTop: '3%',
+  },
+  Top: {
+    flexDirection: ROW,
+    margintop: '5%',
+  },
+  Add: {
+    flex: 1,
+  },
+  Location: {
+    flexDirection: ROW,
+    marginLeft: '15%',
+    color: BLACK,
+  },
 
-
+  Cont: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  Year: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize10,
+    marginRight: '5%',
+    marginTop: '5%',
+  },
+  Address: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+  },
   labTest: {
     flexDirection: COLUMN,
     marginLeft: 18,
     marginRight: 24,
     marginTop: 16,
     flex: 1,
-    justifyContent: SPACE_BETWEEN
+    justifyContent: SPACE_BETWEEN,
   },
 
   available: {
@@ -25,73 +119,61 @@ export const styles = StyleSheet.create({
     height: 137,
     backgroundColor: WHITE,
     marginLeft: 14,
-    marginRight: 15
-
+    marginRight: 15,
   },
-  customId: { 
-    flexDirection:ROW,
-    justifyContent:SPACE_BETWEEN,
+  customId: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
   },
-  custom:{
-    marginRight:13,
-    marginTop:6,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight400,
-    fontSize: fonts.size.fontSize8
+  custom: {
+    marginRight: 13,
+    marginTop: 6,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize8,
   },
   status: {
     marginTop: 11,
     marginLeft: 11,
     flexGrow: 1,
-
   },
   initiatedColor: {
     color: ORANGE,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500
+    fontFamily: fonts.family.rubik500,
   },
-  cancelledColor:{
+  cancelledColor: {
     color: RED_SHADE,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500
+    fontFamily: fonts.family.rubik500,
   },
-  confirmedColor:{
+  confirmedColor: {
     color: GREEN,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500
+    fontFamily: fonts.family.rubik500,
   },
   lab: {
-
     flexDirection: ROW,
-    justifyContent: SPACE_BETWEEN
+    justifyContent: SPACE_BETWEEN,
   },
   labs: {
     color: CYAN_BLUE,
     marginTop: 10,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500,
-    fontSize: fonts.size.fontSize14
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize14,
   },
   date: {
     marginRight: 13,
     marginTop: 10,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500,
-    fontSize: fonts.size.fontSize8
-
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize8,
   },
   description: {
     color: CYAN_BLUE,
     marginTop: 16,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500
+    fontFamily: fonts.family.rubik500,
   },
   reschedule: {
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginTop: 50,
-    fontFamily: fonts.family.fontFamilyRubix,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.rubik500,
     marginLeft: 17.3,
     marginRight: 34,
   },
@@ -101,40 +183,36 @@ export const styles = StyleSheet.create({
     marginTop: 19,
     marginLeft: 13,
     marginRight: 14,
-    borderRadius: 12
+    borderRadius: 12,
   },
   image: {
     height: 24,
-    width: 24
-
+    width: 24,
   },
   packageTest: {
     color: DARK_BLUE,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight500,
     justifyContent: CENTER,
     marginBottom: 10,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik500,
   },
   booking: {
-    flexDirection: ROW
+    flexDirection: ROW,
   },
   download: {
     marginLeft: 160,
     marginTop: 2,
     color: DARK_BLUE,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight500,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik500,
   },
   carouselText: {
     marginLeft: 17,
     marginTop: 11,
     color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight700,
+    fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
-    height: 21
-
+    height: 21,
   },
   line: {
     borderBottomColor: GREY,
@@ -147,8 +225,6 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
-
-
   },
   carouselMain: {
     justifyContent: CENTER,
@@ -156,7 +232,6 @@ export const styles = StyleSheet.create({
     marginLeft: 14,
     marginRight: 15,
     alignItems: CENTER,
-
   },
   flatlist: {
     flexDirection: ROW,
@@ -197,8 +272,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 6,
     paddingRight: 6,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   textStyle: {
     color: WHITE,
@@ -206,7 +280,7 @@ export const styles = StyleSheet.create({
   },
   sideBySide: {
     flexDirection: ROW,
-    marginTop: 15
+    marginTop: 15,
   },
   text1: {
     alignSelf: CENTER,
@@ -220,8 +294,7 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
   expiry: {
     alignSelf: FLEX_END,
@@ -230,9 +303,6 @@ export const styles = StyleSheet.create({
     marginTop: 11,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.rubik400,
   },
-
-})
-
+});

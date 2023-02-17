@@ -1,6 +1,7 @@
 import {PNG} from '../../../assets';
 
-export const HEALTH_CHECKUP = 'Health Checkups';
+export const FIND_HEALTH_CHECKUP =
+  'Find The Right Health Check Up Package For You';
 export const PACKAGE = 'POPULAR HEALTH CHECKUP PACAKGES';
 export const ADV_BODY_CHECKUP1 = 'YUVA ADVANCE WITH VITAMIN';
 export const ADV_BODY_CHECKUP2 = 'FULL BODY CHECKUP';
