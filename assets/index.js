@@ -69,6 +69,7 @@ import Discount from './Discounts';
 import AccurateReport from './AccurateReport';
 import TrustedLab from './TrustedLab';
 import LocationOn from './LocationOn';
+import ShoppingCart from './shoppingCart';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -144,6 +145,7 @@ const SVG = {
   AccurateReport: AccurateReport,
   TrustedLab: TrustedLab,
   LocationOn: LocationOn,
+  ShoppingCart: ShoppingCart,
 };
 
 export {PNG, SVG};
