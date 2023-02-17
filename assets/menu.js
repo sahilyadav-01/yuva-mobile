@@ -10,7 +10,7 @@ const MenuIcon = (props) => (
     {...props}
   >
     <G clipPath="url(#a)">
-      <Path d="M3 18h18v-2H3v2Zm0-5h18v-2H3v2Zm0-7v2h18V6H3Z" fill="#fff" />
+      <Path d="M3 18h18v-2H3v2Zm0-5h18v-2H3v2Zm0-7v2h18V6H3Z" fill="#44576A" />
     </G>
     <Defs>
       <ClipPath id="a">
