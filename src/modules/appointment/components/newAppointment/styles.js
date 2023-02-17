@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     color: BLACK,
     margin: '8%',
+    borderRadius: 6,
   },
   dateTimePicker: {
     backgroundColor: {FLASH_WHITE},

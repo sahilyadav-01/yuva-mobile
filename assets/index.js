@@ -58,12 +58,10 @@ import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png';
-import HRA_END_IMG from './HRA_END_IMG'
-import dateAndTime from './dateAndTime'
-import dropDown from './dropDown'
 import HRA_END_IMG from './HRA_END_IMG';
-import POPULAR_PLAN from './Popular_Plan.png';
+import dateAndTime from './dateAndTime';
 import dropDown from './dropDown';
+import POPULAR_PLAN from './Popular_Plan.png';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
 import FreeSample from './FreeSample';
@@ -137,10 +135,10 @@ const SVG = {
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
   Back: Back,
-  HRA_END_IMG:HRA_END_IMG,
-  dropDown:dropDown,
-  AddNewAdress:AddNewAdress,
-  dateAndTime:dateAndTime,
+  HRA_END_IMG: HRA_END_IMG,
+  dropDown: dropDown,
+  AddNewAdress: AddNewAdress,
+  dateAndTime: dateAndTime,
   FreeSample: FreeSample,
   Discount: Discount,
   AccurateReport: AccurateReport,

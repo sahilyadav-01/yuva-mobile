@@ -26,25 +26,27 @@ const Doctor = () => {
     );
   };
   return (
-    <View>
-      <Searchbar
-        style={styles.search}
-        placeholder={SEARCH}
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        theme={styles.theme}
-        placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
-        label={SearchLabel}
-      />
+    <ScrollView>
       <View>
-        <FlatList
-          renderItem={renderItem}
-          data={data}
-          keyExtractor={item => item.id}
-          showsHorizontalScrollIndicator={false}
+        <Searchbar
+          style={styles.search}
+          placeholder={SEARCH}
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          theme={styles.theme}
+          placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
+          label={SearchLabel}
         />
+        <View>
+          <FlatList
+            renderItem={renderItem}
+            data={data}
+            keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
