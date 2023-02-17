@@ -70,6 +70,7 @@ import AccurateReport from './AccurateReport';
 import TrustedLab from './TrustedLab';
 import LocationOn from './LocationOn';
 import Run from './run';
+import ShoppingCart from './shoppingCart';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -145,7 +146,8 @@ const SVG = {
   AccurateReport: AccurateReport,
   TrustedLab: TrustedLab,
   LocationOn: LocationOn,
-  Run: Run
+  Run: Run,
+  ShoppingCart: ShoppingCart,
 };
 
 export {PNG, SVG};

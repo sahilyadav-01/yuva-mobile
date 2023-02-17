@@ -7,6 +7,7 @@ import { initialLoad } from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
 import { getExistingUser, getProfileStatus } from '../store/LocalStore';
 import { updateProfileStatus } from '../store/reducers/ProfileSlice';
+import { cityIdThunk } from '../store/reducers/DiagnosticsSlice';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const IntroStackNav = () => {
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute))
     dispatch(initialLoad())
+    dispatch(cityIdThunk());
     getProfileStatus().then((status)=>
       dispatch(updateProfileStatus(status)))
   }, []);
