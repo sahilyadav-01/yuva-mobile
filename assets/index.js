@@ -58,9 +58,7 @@ import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
 import DATE from './date.png';
-import HRA_END_IMG from './HRA_END_IMG'
 import dateAndTime from './dateAndTime'
-import dropDown from './dropDown'
 import HRA_END_IMG from './HRA_END_IMG';
 import POPULAR_PLAN from './Popular_Plan.png';
 import dropDown from './dropDown';
