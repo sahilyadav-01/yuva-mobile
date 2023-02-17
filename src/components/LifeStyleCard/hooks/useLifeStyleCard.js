@@ -1,21 +1,16 @@
+import React from 'react';
+import { SVG } from '../../../../assets';
+export const useLifeStyleCard = () => {
 
-import { useNavigation } from '@react-navigation/native';
-import { PNG } from '../../../../assets';
-export const useLifeStyleCard = ({ screenName }) => {
-
-    const navigation = useNavigation();
     const imageData = {
-        OPD_Consultation: PNG.OPD_Consultation,
-        Health_Risk_Assessment: PNG.Health_Risk_Assessment,
-        Health_Checkup_Packages: PNG.Health_Checkup_Packages,
-        Talk_To_Doctor: PNG.Talk_To_Doctor,
-        My_Health_Checkup: PNG.MY_HEALTH_CHECKUP
+        OBESITY: <SVG.OBESITY/>,
+        THYROID: <SVG.THYROID/>,
+        WOMEN_HEALTH: <SVG.WOMEN_HEALTH/>,
+        SMOKING_AND_ALCOHOL: <SVG.SMOKING_AND_ALCOHOL/>,
+        DIABETES: <SVG.DIABETES/>,
+        HYPER_TENSION: <SVG.HYPER_TENSION/>,
       };
-    const onpress = () => {
-        navigation.navigate(`${screenName}`);
-    };
     return {
-        onpress,
         imageData
     };
 };

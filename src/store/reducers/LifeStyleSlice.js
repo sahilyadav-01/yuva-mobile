@@ -41,7 +41,7 @@ const lifeStyleSlice = createSlice({
         state.loading = true;
       },
       [lifeStyleSliceThunk.fulfilled]: (state, action) => {
-        state.lifestylePackage = action.payload?.data || [];
+        state.lifestylePackage = action?.payload?.data || [];
       },
       [lifeStyleSliceThunk.rejected]: (state, action) => {
         state.apiError = true;

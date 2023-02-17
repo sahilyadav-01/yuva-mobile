@@ -16,7 +16,7 @@ import talkToDoctor, {talkToDoctorInit} from './reducers/TalkToDoctorSlice';
 import profile, {profileInit} from './reducers/ProfileSlice';
 import programAndPlan, {programAndPlanInit} from './reducers/ProgramAndPlanSlice';
 import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
-import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice ';
+import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice';
 
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 
@@ -39,7 +39,7 @@ const storeInitialState = {
   programAndPlan: programAndPlanInit,
   popularTests:popularTestsInit,
   attribute: attributeInit,
-  lifestylePackage:lifestylePackageInit
+  lifestylePackage:lifestylePackageInit,
 };
 
 const appReducer = combineReducers({

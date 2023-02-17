@@ -28,6 +28,7 @@ import CarouselItem4 from '../../components/CarouselItem4';
 import { getServicesThunk } from '../../store/reducers/AttributeSlice';
 import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlice';
 import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice ';
+import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const HomeScreen = ({ navigation }) => {
   const { userAppointments } = useSelector(state => state?.appointment);
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
+  const { lifestylePackage } = useSelector(state => state.lifestylePackage);
   const onPressAdd = () => {
     //On add press logic to be added here
   };
@@ -50,6 +52,7 @@ const HomeScreen = ({ navigation }) => {
       dispatch(allAppointmentThunk({ isActive }));
       dispatch(popularPackageNameThunk({ isActive }));
       dispatch(popularTestsSliceThunk({ isActive }));
+      dispatch(lifeStyleSliceThunk({ isActive }));
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;
@@ -69,7 +72,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.line1} />
         </View>
         <View style={styles.serviceContainerWrapperStyle}>
-          <ServiceContainer serviceCard={true}/>
+          <ServiceContainer serviceCard={true} />
         </View>
         <View style={styles.bannerContainer}>
           <Image style={styles.bannerImage} source={PNG.BANNER}></Image>
@@ -112,7 +115,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.line2} />
         </View>
         <View style={styles.serviceContainerWrapperStyle}>
-          <ServiceContainer lifeStyleCard={true}/>
+          <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
         </View>
       </ScrollView>
     </SafeAreaView>

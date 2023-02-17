@@ -10,7 +10,6 @@ import { YuvaService } from '../../network/yuvaService';
       try {
         const endpoint = `/test/popular?pageNo=1&pageSize=4`;
         const response = await YuvaService.get(endpoint);
-          console.log("This is popular Test",response)
         return response.data;
       } catch (error) {
         //const errorOject =  JSON.stringify(error.response.data)
