@@ -17,7 +17,6 @@ import profile, {profileInit} from './reducers/ProfileSlice';
 import programAndPlan, {programAndPlanInit} from './reducers/ProgramAndPlanSlice';
 import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
 import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice';
-
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 
 const storeInitialState = {

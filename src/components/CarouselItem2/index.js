@@ -3,16 +3,20 @@ import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { BUTTONCONTENT, COST, TESTCOUNT } from './constant';
 import { styles } from './styles';
 
-const CarouselItem2 = props => {
+const getTestCount = (item) => {
+  return TESTCOUNT(item.parameterCount === 0 ? item.totalTest : item.parameterCount);
+};
 
+const CarouselItem2 = (props) => {
   const { imgPath, index, totalItem, onPressAdd, item } = props;
-
+  
   return (
     <View
       style={[
         styles.container,
         { marginRight: index !== totalItem - 1 ? 15 : undefined },
-      ]}>
+      ]}
+    >
       <View style={styles.iconContainer}>
         <Image
           resizeMode="contain"
@@ -24,7 +28,7 @@ const CarouselItem2 = props => {
         <Text style={styles.descriptionStyle}>{item.packageName}</Text>
       </View>
       <View style={styles.textContainer}>
-      <Text style={styles.textStyle}>{TESTCOUNT(item.parameterCount === 0 ? item.totalTest : item.parameterCount)}</Text>
+        <Text style={styles.textStyle}>{getTestCount(item)}</Text>
       </View>
       <View style={styles.costContainer}>
         <Text style={styles.costStyle}>{COST(item.cost)}</Text>
@@ -32,7 +36,8 @@ const CarouselItem2 = props => {
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
           onPress={onPressAdd}
-          style={styles.addButtonContainer}>
+          style={styles.addButtonContainer}
+        >
           <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>
         </TouchableOpacity>
       </View>

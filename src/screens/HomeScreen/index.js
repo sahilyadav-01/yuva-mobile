@@ -86,7 +86,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer data={popularPackageName.popularPackageResponseDtoList} isIndexed={false} includeMockData={true}>
+          <CarouselContainer data={popularPackageName.popularPackageResponseDtoList} isIndexed={false} >
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
               onPressAdd={() => onPressAdd()}
@@ -104,7 +104,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <CarouselContainer data={popularTest.popularTestResponseDtoList} isIndexed={false} includeMockData={true}>
+          <CarouselContainer data={popularTest.popularTestResponseDtoList} isIndexed={false} >
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
               onPressAdd={() => onPressAdd()}

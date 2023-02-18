@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
-import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
-import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
-import {fonts} from '../styles/fonts';
+import { StyleSheet } from 'react-native';
+import { CENTER, SPACE_BETWEEN, FLEX, ROW } from '../styles/constants';
+import { CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL } from '../styles/colors';
+import { fonts } from '../styles/fonts';
 
 export const styles = StyleSheet.create({
   homeScreenContainer: {
@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
     backgroundColor: FLASH_WHITE,
   },
   screenOptions: {
-    tabBarLabelStyle: {fontSize: 16, marginTop: 0},
-    tabBarStyle: {height: 40},
+    tabBarLabelStyle: { fontSize: 16, marginTop: 0 },
+    tabBarStyle: { height: 40 },
     swipeEnabled: true,
     lazy: false,
   },
@@ -52,12 +52,12 @@ export const styles = StyleSheet.create({
     marginLeft: 35,
     marginTop: 19,
   },
-  line1:{
+  line1: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: "70%",
   },
-  line2:{
+  line2: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: "45%",
