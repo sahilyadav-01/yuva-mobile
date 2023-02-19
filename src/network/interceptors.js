@@ -18,10 +18,10 @@ axiosClient.interceptors.request.use(
       '/generate-sms-otp',
       '/login',
       '/signup',
-      '/reset-password',
-      '/package/popular',
-      '/test/popular',
-      '/plan/popular',
+      '/reset-password'
+      // '/package/popular',
+      // '/test/popular',
+      // '/plan/popular',
     ];
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;

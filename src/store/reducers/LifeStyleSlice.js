@@ -7,7 +7,6 @@ export const lifeStyleSliceThunk = createAsyncThunk(
     try {
       const endpoint = `/lifestyle-package/view-all`;
       const response = await YuvaService.get(endpoint);
-      console.log("This is lifestle packages", response)
       return response.data;
     } catch (error) {
       //const errorOject =  JSON.stringify(error.response.data)
