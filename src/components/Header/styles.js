@@ -72,7 +72,6 @@ export const styles = StyleSheet.create({
   sectionBottom: {
     flexDirection: ROW,
     alignSelf: FLEX_START,
-    paddingBottom: 16,
 
   },
   titleText: {
