@@ -1,5 +1,5 @@
-import React, {useEffect, useCallback} from 'react';
-import {View, Text, TextInput, FlatList, ScrollView} from 'react-native';
+import React from 'react';
+import {View,FlatList, ScrollView} from 'react-native';
 import DoctorCard from '../../components/DoctorCard';
 import {Searchbar} from 'react-native-paper';
 import {useDoctor} from './hooks/useDoctor';
@@ -7,9 +7,12 @@ import SearchLabel from '../../components/SearchLabel';
 import {styles} from './styles';
 import {SEARCH} from './constant';
 import {PLACEHOLDER_TEXT_COLOR} from '../../styles/colors';
+import { useRoute } from '@react-navigation/native';
 
 const Doctor = () => {
-  const {onChangeSearch, searchQuery, data} = useDoctor();
+  const { params } = useRoute();
+  const { plan, userVersion, uuid, version } = params;
+  const { onChangeSearch, searchQuery, data } = useDoctor();
   const renderItem = ({item, index}) => {
     return (
       <DoctorCard
@@ -22,6 +25,10 @@ const Doctor = () => {
         exp={item.experience}
         img={item.img}
         qual={item.qual == undefined ? 'MBBS' : item.qual}
+        plan={plan}
+        userVersion={userVersion}
+        uuid={uuid}
+        version={version}
       />
     );
   };

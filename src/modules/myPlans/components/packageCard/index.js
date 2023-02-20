@@ -7,22 +7,28 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React, {useEffect} from 'react';
-import {styles} from './styles';
-import {PNG} from '../../../../../assets';
-import {AVAILABLE, BOOK_NOW, PARAMETERS, USED} from './constant';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {usePackageCard} from './hooks/usePackageCard';
+import React, { useEffect } from 'react';
+import { styles } from './styles';
+import { PNG } from '../../../../../assets';
+import { AVAILABLE, BOOK_NOW, PARAMETERS, USED } from './constant';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePackageCard } from './hooks/usePackageCard';
 const PackageCard = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const state = useSelector(state => state.attribute);
-  const bookNow = () => {
-    navigation.navigate('Doctor');
+  const bookNow = (plan, userVersion, uuid, version) => {
+    navigation.navigate('Doctor',{
+      plan: plan,
+      userVersion: userVersion,
+      uuid: uuid,
+      version: version,
+    });
+
   };
-  const {programAndPlan} = usePackageCard();
-  const renderItem = ({item, index}) => {
+  const { programAndPlan } = usePackageCard();
+  const renderItem = ({ item, index }) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
         <ScrollView>
@@ -40,7 +46,12 @@ const PackageCard = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={bookNow}>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() =>
+                bookNow(item.plan, item.userVersion, item.uuid, item.version)
+              }
+            >
               <Text style={styles.textStyle}>{BOOK_NOW}</Text>
             </TouchableOpacity>
           </View>
