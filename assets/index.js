@@ -68,6 +68,7 @@ import dropDown from './dropDown';
 import DATE from './date.png';
 import dateAndTime from './dateAndTime';
 import POPULAR_PLAN from './Popular_Plan.png';
+import ICON from './icon.png';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
 import FreeSample from './FreeSample';
@@ -93,6 +94,7 @@ const PNG = {
   SURGERY,
   CORONA,
   DOCTOR,
+  ICON,
   EARS_NOSE_AND_THROAT,
   EXERCISE_RUNNING,
   EXERCISE_WALK_SUPPORTED,
@@ -150,12 +152,12 @@ const SVG = {
   HRA_END_IMG: HRA_END_IMG,
   dropDown: dropDown,
   AddNewAdress: AddNewAdress,
-  OBESITY:OBESITY,
-  THYROID:THYROID,
-  WOMEN_HEALTH:WOMEN_HEALTH,
-  SMOKING_AND_ALCOHOL:SMOKING_AND_ALCOHOL,
-  DIABETES:DIABETES,
-  HYPER_TENSION:HYPER_TENSION,
+  OBESITY: OBESITY,
+  THYROID: THYROID,
+  WOMEN_HEALTH: WOMEN_HEALTH,
+  SMOKING_AND_ALCOHOL: SMOKING_AND_ALCOHOL,
+  DIABETES: DIABETES,
+  HYPER_TENSION: HYPER_TENSION,
   dateAndTime: dateAndTime,
   FreeSample: FreeSample,
   Discount: Discount,
@@ -164,7 +166,7 @@ const SVG = {
   LocationOn: LocationOn,
   Run: Run,
   ShoppingCart: ShoppingCart,
-  SearchIcon:SearchIcon,
+  SearchIcon: SearchIcon,
   landingPageBanner1:landingPageBanner1,
 };
 
