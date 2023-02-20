@@ -10,3 +10,4 @@ export const CANCEL="cancel";
 export const RESCHEDULE ="Reschedule";
 export const CHECK="Check In";
 export const WAITING="Waiting for Confirmation From Hospital...";
+export const OPD_CONSULTATION = 'OPD Consultations';
