@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
     elevation: 5,
     zIndex: 10,
+    marginTop: 4,
   },
   textInputStyles: {
     flex: 1,

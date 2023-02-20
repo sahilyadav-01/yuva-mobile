@@ -80,22 +80,6 @@ const Header = (props) => {
       </View>
     </View>
   );
- 
-  // return (
-  //     <View style={styles.sectionBottom}>
-  //       { canGoBack && 
-  //         <TouchableOpacity onPress={onBackPress}>
-  //           <SVG.Back />
-  //         </TouchableOpacity>
-  //       } 
-  //       {
-  //         title && 
-  //         <Text style={styles.titleText}>
-  //           {title}
-  //         </Text>
-  //       }     
-  //     </View>
-  // );
 };
 
 export default Header;

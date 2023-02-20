@@ -22,6 +22,7 @@ import {
   LANDING_PAGE_TEXT3,
   LANDING_PAGE_TEXT4,
   OUR_PLANS,
+  SEARCH_PLACEHOLDER,
 } from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
@@ -61,7 +62,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
-        isRightIcon={true}
+        showSearch={true}
+        searchPlaceholder={SEARCH_PLACEHOLDER}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
