@@ -20,6 +20,7 @@ axiosClient.interceptors.request.use(
       '/signup',
       '/reset-password',
       '/package/popular',
+      '/test/popular',
       '/plan/popular',
     ];
     const isLoginApi = loginUrls.filter(item => {
