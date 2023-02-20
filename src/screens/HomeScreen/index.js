@@ -122,7 +122,7 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
         </View>
         <View>
-          <View style={styles.PopularHealthCheckups}>
+          <View style={styles.OurPlansHeaderStyle}>
             <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
             <View style={styles.line} />
             <TouchableOpacity>

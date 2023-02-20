@@ -109,6 +109,14 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
   },
+  OurPlansHeaderStyle: {
+    alignItems: CENTER,
+    marginTop: 20,
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+    marginHorizontal: 16,
+    marginBottom:36,
+  },
   LandingPageText1: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik700,
