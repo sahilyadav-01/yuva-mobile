@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export const useHeader = (props) => {
-  const {showSearch} = props;
+  const {showSearch, searchPlaceholder, title} = props;
   const navigation = useNavigation();
   const route = useRoute();
   const [selectedCity, setSelectedCity] = useState('');
@@ -24,8 +24,7 @@ export const useHeader = (props) => {
     //toggle drawer
   }
 
-  // const canGoBack = navigation?.canGoBack();
-  // const {isRightIcon, isSeachVisible, title} = props;
+  const canGoBack = navigation?.canGoBack();
   const onBackPress = () => {
     navigation.goBack();
   }
@@ -41,15 +40,15 @@ export const useHeader = (props) => {
     isLoggedIn,
     onCartPress,
     onRightPress,
-    onBackPress,
     cityList,
     setSelected,
     selectedCity,
     query,
     onChangeSearch,
     showSearch,
-    // isSeachVisible,
-    // canGoBack,
-    // title,
+    searchPlaceholder,
+    canGoBack,
+    onBackPress,
+    title,
   };
 }
