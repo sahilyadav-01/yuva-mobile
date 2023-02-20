@@ -57,6 +57,7 @@ import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
+import DATE from './date.png';
 import HRA_END_IMG from './HRA_END_IMG';
 import OBESITY from './OBESITY';
 import THYROID from './THYROID';
@@ -65,7 +66,6 @@ import SMOKING_AND_ALCOHOL from './SMOKING_AND_ALCOHOL';
 import DIABETES from './DIABETES';
 import HYPER_TENSION from './HYPER_TENSION';
 import dropDown from './dropDown';
-import DATE from './date.png';
 import dateAndTime from './dateAndTime';
 import POPULAR_PLAN from './Popular_Plan.png';
 import EYE from './eye.png';
@@ -134,7 +134,6 @@ const PNG = {
   EYE,
   POPULAR_PLAN,
 };
-
 const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
