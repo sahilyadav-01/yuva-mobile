@@ -92,7 +92,7 @@ export const useBookingConfirm = () => {
     }, [testBooked, apiErrorMessage])
 
     const rescheduleBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ id: bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: getEpoch(date, time) }))
+        dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: getEpoch(date, time) }))
     }
     useEffect(() => {
         if (reschedule?.message && !apiErrorMessage) {
