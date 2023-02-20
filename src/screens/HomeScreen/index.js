@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
 import { styles } from '../styles';
 import Header from '../../components/Header';
-import { PNG } from '../../../assets';
+import { PNG, SVG } from '../../../assets';
 import {
   LANDING_PAGE_TEXT0,
   LANDING_PAGE_TEXT1,
@@ -79,7 +79,7 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer serviceCard={true} />
         </View>
         <View style={styles.bannerContainer}>
-          <Image style={styles.bannerImage} source={PNG.BANNER}></Image>
+          <SVG.landingPageBanner1/>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
@@ -96,8 +96,8 @@ const HomeScreen = ({ navigation }) => {
             />
           </CarouselContainer>
         </View>
-        <View style={styles.bannerContainer}>
-          <Image style={styles.bannerImage} source={PNG.BANNER2}></Image>
+        <View style={styles.bannerContainer1}>
+        <Image style={styles.bannerImage} source={PNG.LandingPageBanner2}></Image>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
