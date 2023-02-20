@@ -7,9 +7,9 @@ import AppointmentButton from '../../../../components/AppointmentButton';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { useSelector } from 'react-redux';
 import { useEdit } from './hooks/useEdit';
-import { DOCTOR, RESCHEDULE_APPOINTMENT } from '../../constant';
+import { DESCRIPTION, DOCTOR, RESCHEDULE_APPOINTMENT, SPECIALIZATION } from '../../constant';
 import { styles } from './styles';
-import { DARK_BLUE } from '../../../../styles/colors';
+import { DARK_BLUE, ORANGE } from '../../../../styles/colors';
 
 const EditAppointments = () => {
 
