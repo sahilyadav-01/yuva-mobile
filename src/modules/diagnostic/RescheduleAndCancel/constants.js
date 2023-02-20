@@ -8,3 +8,5 @@ export const PACKAGE="Packages";
 export const DETAILS="Details";
 export const TRUE="true";
 export const MYPLAN="MyPlan";
+export const BOKINGCONFIRM="BookingConfirm";
+export const CALENDER="calendar-blank-outline";

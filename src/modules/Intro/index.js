@@ -7,7 +7,6 @@ import IntroStaticSection3 from './components/IntroStaticSection3';
 import IntroStaticSection4 from './components/IntroStaticSection4';
 import { useIntro } from './hooks/useIntro';
 import { styles } from './styles';
-import Header from '../../components/Header';
 import SlideIndicator from '../../components/SlideIndicator';
 import { LETS_START, NEXT } from './constant';
 import CardButton from '../../components/CardButton';
@@ -31,7 +30,6 @@ const Intro = () => {
   
   return (
     <View style={styles.screenContainer}>
-      <Header />
       <SVG.BackgroundImage style={styles.imageBackground} />
       {
         renderStaticSection(index)

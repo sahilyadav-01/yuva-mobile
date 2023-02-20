@@ -12,12 +12,12 @@ const Back = (props) => (
     <G clipPath="url(#a)">
       <Path
         d="M13.333 7.334H5.22l3.727-3.727L8 2.667 2.667 8 8 13.334l.94-.94-3.72-3.727h8.113V7.334Z"
-        fill="#fff"
+        fill="#44576A"
       />
     </G>
     <Defs>
       <ClipPath id="a">
-        <Path fill="#fff" d="M0 0h16v16H0z" />
+        <Path fill="#44576A" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>

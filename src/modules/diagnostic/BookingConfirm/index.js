@@ -4,7 +4,7 @@ import { styles } from './styles';
 import { Checkbox } from 'react-native-paper';
 import SelectList from 'react-native-dropdown-select-list'
 import Header from '../../../components/Header'
-import { ADDRESS, ADD_MEMBER, ADD_NEW, BOOKING_FOR, BOOK_NOW, DATE, MYSELF, NULL, PHN, SCHEDULE_APPOINMENT, SELECT_ADRESS, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
+import { ADDRESS, ADD_MEMBER, ADD_NEW, BOOKING_FOR, BOOK_NOW, DATE, MYSELF, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_ADRESS, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { DARK_BLUE } from '../../../styles/colors';
@@ -23,15 +23,18 @@ const BookingConfirm = () => {
         setChecked,
         dataRelation,
         userAddress,
-        bookTestScreen } = useBookingConfirm();
+        bookTestScreen,
+        bookedDetails,
+        rescheduleBooking } = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
 
                 <View style={styles.border}>
 
-                    <View style={styles.checkboxAddress}>
+                    <View style={styles.checkboxAddress} >
                         <Checkbox
+                            disabled={bookedDetails}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -47,7 +50,6 @@ const BookingConfirm = () => {
         }
     }
     if (userAddress) {
-
 
         return (
 
@@ -98,28 +100,31 @@ const BookingConfirm = () => {
                                 {BOOKING_FOR}
                             </Text>
                         </View>
-                        <View style={styles.border}>
-                            <TouchableOpacity>
-                                <View >
-                                    <Text style={styles.AddMember}>
-                                        <SVG.AddNewAdress />
-                                        {ADD_MEMBER}</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
-                            <SelectList
-                                boxStyles={styles.boxStyles}
-                                defaultOption={{ key: NULL, value: MYSELF }}
-                                setSelected={setSelected}
-                                data={dataRelation}
-                            />
-                        </View>
+                        {!bookedDetails ?
+                            (<View style={styles.border}>
+                                <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
+                                <SelectList
+                                    boxStyles={styles.boxStyles}
+                                    defaultOption={{ key: NULL, value: MYSELF }}
+                                    setSelected={setSelected}
+                                    data={dataRelation}
+                                />
+                            </View>
+                            ) : (<View style={styles.border} pointerEvents="none">
+                                <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
+                                <SelectList
+                                    boxStyles={styles.boxStyles}
+                                    defaultOption={{ key: NULL, value: MYSELF }}
+                                    setSelected={setSelected}
+                                    data={dataRelation}
+                                />
+                            </View>)}
 
-                        <View style={styles.address}>
+                        <View style={styles.address} >
                             <Text style={styles.selectDate}>
                                 {SELECT_ADRESS}
                             </Text>
-                            <TouchableOpacity >
+                            <TouchableOpacity disabled={bookedDetails}>
                                 <View style={styles.Add}>
                                     <Text style={styles.addNew}>
                                         <SVG.AddNewAdress />
@@ -130,8 +135,8 @@ const BookingConfirm = () => {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        <View>
-                            {userAddress.length &&
+                        <View >
+                            {userAddress?.length &&
                                 <FlatList
                                     renderItem={renderAddress}
                                     data={userAddress}
@@ -140,13 +145,27 @@ const BookingConfirm = () => {
                                 />}
                         </View>
                     </View>
-                    <TouchableOpacity
-                        onPress={bookTestScreen}
-                        style={styles.touchableButton}>
-                        <Text style={styles.textBook}>
-                            {SCHEDULE_APPOINMENT}
-                        </Text>
-                    </TouchableOpacity>
+                    <View>
+                        {!bookedDetails ? (
+                            <TouchableOpacity
+                                onPress={bookTestScreen}
+                                style={styles.touchableButton}>
+                                <Text style={styles.textBook}>
+                                    {SCHEDULE_APPOINMENT}
+                                </Text>
+                            </TouchableOpacity>
+                        ) : (
+
+                            <TouchableOpacity
+                                onPress={rescheduleBooking}
+                                style={styles.touchableButton}>
+                                <Text style={styles.textBook}>
+                                    {RESCHEDULEAPPOINTMENT}
+                                </Text>
+                            </TouchableOpacity>
+
+                        )}
+                    </View>
                     <View>
                     </View>
                 </ScrollView >
