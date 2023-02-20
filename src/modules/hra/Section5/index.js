@@ -5,7 +5,7 @@ import PickerData from '../../../utils/PickerData';
 import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 import { useSection5 } from './hooks/useSection5';
-import { BUTTON_TEXT, KEYBOARD_TYPE_VALUE, LOGGEDIN, SECOND_QUESTION, SECTION_5_HEADING, PLACEHOLDER_COLOR, THIRD_QUESTION } from '../constant';
+import { BUTTON_TEXT, KEYBOARD_TYPE_VALUE, SECOND_QUESTION, SECTION_5_HEADING, PLACEHOLDER_COLOR, THIRD_QUESTION, HEALTH_RISK_ASSESSMENT } from '../constant';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
@@ -13,12 +13,12 @@ import Loader from '../../../components/Loader';
 
 const Section5 = () => {
 
-  const { loggedIn, inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, onPressRightIcon, progressWidth, questionData, answers, next, renderData } = useSection5();
+  const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData } = useSection5();
 
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.5} width={progressWidth} height={12} />
       </View>

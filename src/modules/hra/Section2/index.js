@@ -5,7 +5,7 @@ import SectionInput from '../../../components/SectionInput'
 import SectionPicker from '../../../components/SectionPicker';
 import PickerData from '../../../utils/PickerData';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADING, SECTION_2_SUB_HEADING } from "../constant";
+import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADING, SECTION_2_SUB_HEADING } from "../constant";
 import { useSection2 } from './hooks/useSection2';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
@@ -18,7 +18,7 @@ const Section2 = () => {
     if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
     return (
         <>
-            <Header isRightIcon={true} />
+            <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
             <View style={styles.progressBarContainer}>
                 <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.2} width={progressWidth} height={12} />
             </View>

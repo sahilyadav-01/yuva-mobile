@@ -6,7 +6,7 @@ import SectionPicker from '../../../components/SectionPicker';
 import PickerData from '../../../utils/PickerData';
 import { dispatch_option } from '../../../store/reducers/Section6Slice';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_6_HEADING } from '../constant';
+import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_6_HEADING } from '../constant';
 import { useSection6 } from './hooks/useSection6';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
@@ -15,12 +15,12 @@ import Loader from '../../../components/Loader';
 
 const Section6 = () => {
 
-    const { loggedIn, onPressRightIcon, progressWidth, questionData, answers, next, renderData } = useSection6();
+    const { progressWidth, questionData, answers, next, renderData } = useSection6();
 
     if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
     return (
         <>
-            <Header isRightIcon={true} />
+            <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
             <View style={styles.progressBarContainer}>
                 <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.6} width={progressWidth} height={12} />
             </View>

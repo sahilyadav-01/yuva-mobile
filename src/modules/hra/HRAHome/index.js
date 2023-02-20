@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import HRASectionContainer from '../components/HRASectionContainer';
 import Header from '../../../components/Header';
-import { HRA_BANNER_TEXT } from "../constant";
+import { HEALTH_RISK_ASSESSMENT, HRA_BANNER_TEXT } from "../constant";
 import { styles } from './styles';
 import { PNG, SVG } from '../../../../assets';
 import { useHraHome } from './hooks/useHraHome';
@@ -13,7 +13,7 @@ const HRAHome = () => {
   if(!renderData) return <Loader extraStyles={styles.loaderContainer}/>
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.mainContainer}>
         <View>
           <ScrollView contentContainerStyle={{ paddingBottom: 300, }}>

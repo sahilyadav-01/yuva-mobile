@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
 import { getDimensions } from '../../../../utils/utils';
-import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_5, ZERO } from '../../constant';
+import { ALERT, ALL_QUESTION_CHECK, SECTION_5, ZERO } from '../../constant';
 import { fetchSavedHRA, saveHRAData } from '../../../../store/reducers/HRASlice';
 
 export const useSection4 = () => {
@@ -16,7 +16,6 @@ export const useSection4 = () => {
     const [renderData, setRenderData] = useState(false);
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
-    const { loggedIn, } = useSelector(state => state.auth);
     const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const setQuestion1 = value => {
         {
@@ -92,16 +91,8 @@ export const useSection4 = () => {
             }
         }
     };
-    const onPressRightIcon = () => {
-        if (loggedIn !== LOGGEDIN) {
-            navigation.navigate(LOGIN_SCREEN);
-        } else {
-            //The logic for opening the drawer should be added here
-        }
-    };
+
     return {
-        loggedIn,
-        onPressRightIcon,
         progressWidth,
         questionData,
         setQuestion1,
