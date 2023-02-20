@@ -50,11 +50,11 @@ export const useNew = (plan, userVersion, uuid, version) => {
         description,
         doctorId,
         plan,
-        programOrPlanUuid:uuid,
+        programOrPlanUuid: uuid,
         selected,
         epoch: getEpoch(date, time),
-        userPlanVersion:userVersion,
-        version:version,
+        userPlanVersion: userVersion,
+        version: version,
       }),
     );
   };
@@ -94,7 +94,6 @@ export const useNew = (plan, userVersion, uuid, version) => {
       setDataRelation(newArray);
     }
   }, [relationId]);
-console.log("alternateContactNumber",selected)
   return {
     goBack,
     signupFlag,
