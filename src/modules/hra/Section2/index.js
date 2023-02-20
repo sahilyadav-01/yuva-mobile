@@ -9,11 +9,13 @@ import { BUTTON_TEXT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADI
 import { useSection2 } from './hooks/useSection2';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { styles as hraStyles } from '../HRAHome/styles';
+import Loader from '../../../components/Loader';
 
 const Section2 = () => {
 
-    const { progressWidth, dispatch_option, questionData, answers, next } = useSection2();
-
+    const { progressWidth, dispatch_option, questionData, answers, next, renderData } = useSection2();
+    if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
     return (
         <>
             <Header isRightIcon={true} />
@@ -40,7 +42,7 @@ const Section2 = () => {
                                                 key={item.questionId}
                                                 text={item.question}
                                                 data={PickerData[item.questionType]}
-                                                defaultAnswer={answers[item.questionId]}
+                                                defaultAnswer={PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}
                                             />
@@ -49,7 +51,7 @@ const Section2 = () => {
                                         return (
                                             <SectionInput
                                                 key={item.questionId}
-                                                defValue={answers[item.questionId]}
+                                                defValue={PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
                                                 text={item.question}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}

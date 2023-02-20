@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 
 const HRANavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='HRAHome'>
       <Stack.Screen
         name="HRAHome"
         component={HRAHome}

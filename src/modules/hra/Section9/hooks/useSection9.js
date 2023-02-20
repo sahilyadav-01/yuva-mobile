@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { section9QThunk, dispatch_option, finalSubmission } from '../../../../st
 import { transforSubData } from '../../../../utils/utils'
 import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_10 } from '../../constant';
 import { getDimensions } from '../../../../utils/utils';
+import { fetchSavedHRA } from '../../../../store/reducers/HRASlice';
 
 export const useSection9 = () => {
     const navigation = useNavigation()
@@ -25,12 +26,28 @@ export const useSection9 = () => {
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
     const { loggedIn, } = useSelector(state => state.auth);
+    const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width
+    const [renderData, setRenderData] = useState(false);
 
     useEffect(() => {
         dispatch(section9QThunk())
     }, [])
+
+    useEffect(() => {
+        if (continueHRA && questionData.length > 0) dispatch(fetchSavedHRA({sectionId: 9}));
+        else if(questionData.length > 0) setRenderData(true);
+      }, [continueHRA,questionData]);
+
+      useEffect(()=>{
+        if(!saveHRALoading && sectionData !== null && sectionId === 9 && questionData.length>0 && continueHRA){
+            typeof sectionData.Q57 === 'number' && dispatch( dispatch_option({key: questionData[0].questionId, value: sectionData.Q57.toString()}));
+          setRenderData(true);
+          }
+        else if(!saveHRALoading && saveHRAError) setRenderData(true)
+      },[saveHRALoading,questionData,sectionData])
+
     const computeResult = () => {
         if (Object.keys(answers).map((x) => { return answers[x] }).includes('')) {
             Alert.alert(ALERT, ALL_QUESTION_CHECK)
@@ -43,7 +60,8 @@ export const useSection9 = () => {
                 cancer: extra_questions_Q9A,
                 illness: extra_questions_Q10A
             }
-            dispatch(finalSubmission({final_data })).then(() => { navigation.navigate(SECTION_10) })
+            dispatch(finalSubmission({final_data })).then(() => { 
+                navigation.navigate(SECTION_10) })
         }
     }
     const onPressRightIcon = () => {
@@ -62,5 +80,6 @@ export const useSection9 = () => {
         questionData,
         computeResult,
         answers,
+        renderData
     };
 };

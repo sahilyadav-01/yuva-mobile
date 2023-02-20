@@ -57,11 +57,17 @@ import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
-import DATE from './date.png';
-import dateAndTime from './dateAndTime'
 import HRA_END_IMG from './HRA_END_IMG';
-import POPULAR_PLAN from './Popular_Plan.png';
+import OBESITY from './OBESITY';
+import THYROID from './THYROID';
+import WOMEN_HEALTH from './WOMEN_HEALTH';
+import SMOKING_AND_ALCOHOL from './SMOKING_AND_ALCOHOL';
+import DIABETES from './DIABETES';
+import HYPER_TENSION from './HYPER_TENSION';
 import dropDown from './dropDown';
+import DATE from './date.png';
+import dateAndTime from './dateAndTime';
+import POPULAR_PLAN from './Popular_Plan.png';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
 import FreeSample from './FreeSample';
@@ -69,6 +75,9 @@ import Discount from './Discounts';
 import AccurateReport from './AccurateReport';
 import TrustedLab from './TrustedLab';
 import LocationOn from './LocationOn';
+import Run from './run';
+import ShoppingCart from './shoppingCart';
+import SearchIcon from './SearchIcon';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -135,15 +144,24 @@ const SVG = {
   Edit: EditIcon,
   BackgroundImage: BackgroundImage,
   Back: Back,
-  HRA_END_IMG:HRA_END_IMG,
-  dropDown:dropDown,
-  AddNewAdress:AddNewAdress,
-  dateAndTime:dateAndTime,
+  HRA_END_IMG: HRA_END_IMG,
+  dropDown: dropDown,
+  AddNewAdress: AddNewAdress,
+  OBESITY:OBESITY,
+  THYROID:THYROID,
+  WOMEN_HEALTH:WOMEN_HEALTH,
+  SMOKING_AND_ALCOHOL:SMOKING_AND_ALCOHOL,
+  DIABETES:DIABETES,
+  HYPER_TENSION:HYPER_TENSION,
+  dateAndTime: dateAndTime,
   FreeSample: FreeSample,
   Discount: Discount,
   AccurateReport: AccurateReport,
   TrustedLab: TrustedLab,
   LocationOn: LocationOn,
+  Run: Run,
+  ShoppingCart: ShoppingCart,
+  SearchIcon:SearchIcon,
 };
 
 export {PNG, SVG};

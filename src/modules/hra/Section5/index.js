@@ -8,11 +8,14 @@ import { useSection5 } from './hooks/useSection5';
 import { BUTTON_TEXT, KEYBOARD_TYPE_VALUE, LOGGEDIN, SECOND_QUESTION, SECTION_5_HEADING, PLACEHOLDER_COLOR, THIRD_QUESTION } from '../constant';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { styles as hraStyles } from '../HRAHome/styles';
+import Loader from '../../../components/Loader';
 
 const Section5 = () => {
 
-  const { loggedIn, inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, onPressRightIcon, progressWidth, questionData, answers, next } = useSection5();
+  const { loggedIn, inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, onPressRightIcon, progressWidth, questionData, answers, next, renderData } = useSection5();
 
+  if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
       <Header isRightIcon={true} />
@@ -32,11 +35,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={
-                  answers[questionData[0]?.questionId] === undefined
-                    ? answers[questionData[0]?.questionId] === ''
-                    : ''
-                }
+                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
@@ -49,7 +48,7 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder=""
+                    placeholder={answers[questionData[1]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
                   />
                 </View>
@@ -58,7 +57,7 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder=""
+                    placeholder={answers[questionData[2]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
                   />
                 </View>
@@ -70,11 +69,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={
-                  answers[questionData[3]?.questionId] === undefined
-                    ? answers[questionData[3]?.questionId] === ''
-                    : ''
-                }
+                placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion4}
                 data={PickerData[questionData[3]?.questionType]}
                 search={false}

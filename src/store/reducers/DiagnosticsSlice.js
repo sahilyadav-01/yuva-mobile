@@ -127,7 +127,7 @@ const initialState = {
   testBooked: '',
   bookedDetailsById: '',
   cancelled: '',
-  cityId: '',
+  cityId: [],
 };
 
 const diagnosticSlice = createSlice({
