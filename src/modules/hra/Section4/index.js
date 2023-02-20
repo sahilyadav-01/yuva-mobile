@@ -6,19 +6,19 @@ import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 import { useSection4 } from './hooks/useSection4';
 import { styles } from './styles';
-import { BUTTON_TEXT, LOGGEDIN, SECTION_4_HEADING } from '../constant';
+import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, SECTION_4_HEADING } from '../constant';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
 const Section4 = () => {
 
-  const { loggedIn, onPressRightIcon, progressWidth, alcohol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next, renderData } = useSection4();
+  const { progressWidth, alcohol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next, renderData } = useSection4();
 
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.4} width={progressWidth} height={12} />
       </View>

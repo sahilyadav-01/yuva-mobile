@@ -5,7 +5,7 @@ import SectionInput from '../../../components/SectionInput';
 import SectionPicker from '../../../components/SectionPicker';
 import PickerData from '../../../utils/PickerData';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_8_HEADING } from '../constant';
+import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_8_HEADING } from '../constant';
 import { useSection8 } from './hooks/useSection8';
 import { styles } from './styles';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
@@ -14,12 +14,12 @@ import Loader from '../../../components/Loader';
 
 const Section8 = () => {
 
-  const { loggedIn, onPressRightIcon, progressWidth, dispatch_option, questionData, answers, next, renderData } = useSection8();
+  const { progressWidth, dispatch_option, questionData, answers, next, renderData } = useSection8();
 
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.8} width={progressWidth} height={12} />
       </View>

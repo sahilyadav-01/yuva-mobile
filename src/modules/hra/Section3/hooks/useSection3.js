@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core'
 import { useSelector, useDispatch } from 'react-redux';
 import { section3QThunk } from '../../../../store/reducers/Section3Slice';
 import { getDimensions } from '../../../../utils/utils';
-import { ALERT, ALL_QUESTION_CHECK, LOGGEDIN, LOGIN_SCREEN, SECTION_4 } from '../../constant';
+import { ALERT, ALL_QUESTION_CHECK, SECTION_4 } from '../../constant';
 import { fetchSavedHRA, saveHRAData } from '../../../../store/reducers/HRASlice';
 import { dispatch_option } from '../../../../store/reducers/Section3Slice';
 
@@ -13,7 +13,6 @@ export const useSection3 = () => {
     const dispatch = useDispatch()
     const answers = useSelector(state => state.section3.answers)
     const questionData = useSelector(state => state.section3.rawQuestions)
-    const { loggedIn, } = useSelector(state => state.auth)
     const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width
@@ -83,16 +82,7 @@ export const useSection3 = () => {
             navigation.navigate(SECTION_4)
         }
     }
-    const onPressRightIcon = () => {
-        if (loggedIn !== LOGGEDIN) {
-            navigation.navigate(LOGIN_SCREEN);
-        } else {
-            //The logic for opening the drawer should be added here
-        }
-    };
     return {
-        loggedIn,
-        onPressRightIcon,
         progressWidth,
         questionData,
         answers,

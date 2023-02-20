@@ -14,8 +14,8 @@ import {
   BUTTON_TEXT,
   FIRST_QUESTION,
   FOURTH_QUESTION,
+  HEALTH_RISK_ASSESSMENT,
   KEYBOARD_TYPE_VALUE,
-  LOGGEDIN,
   SECOND_QUESTION,
   SECTION_1_HEADING,
   SECTION_1_PLACEHOLDER_Q1,
@@ -32,8 +32,6 @@ import { styles as hraStyles } from '../HRAHome/styles';
 
 const Section1 = props => {
   const {
-    loggedIn,
-    onPressRightIcon,
     progressWidth,
     requiredFieldQ1,
     questionData,
@@ -53,7 +51,7 @@ const Section1 = props => {
   }
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.progressBarContainer}>
         <Progress.Bar
           color={GREEN}

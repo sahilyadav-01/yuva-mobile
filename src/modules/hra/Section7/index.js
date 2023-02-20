@@ -6,18 +6,18 @@ import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 import { useSection7 } from './hooks/useSection7';
 import { styles } from './styles';
-import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, KEYBOARD_TYPE_VALUE, KEYBOARD_TYPE_VALUE_TEXT, LOGGEDIN, PLACEHOLDER_COLOR, SECTION_7_HEADING, SECTION_7_QUESTION, SEVENTH_QUESTION } from '../constant';
+import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, HEALTH_RISK_ASSESSMENT, KEYBOARD_TYPE_VALUE, KEYBOARD_TYPE_VALUE_TEXT, LOGGEDIN, PLACEHOLDER_COLOR, SECTION_7_HEADING, SECTION_7_QUESTION, SEVENTH_QUESTION } from '../constant';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
 const Section7 = () => {
 
-  const { loggedIn, onPressRightIcon, requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next, renderData } = useSection7();
+  const { requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next, renderData } = useSection7();
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.7} width={progressWidth} height={12} />
       </View>

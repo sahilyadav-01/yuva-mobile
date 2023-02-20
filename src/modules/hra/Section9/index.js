@@ -7,19 +7,19 @@ import PickerData from '../../../utils/PickerData';
 import Header from '../../../components/Header';
 import { useSection9 } from './hooks/useSection9';
 import { styles } from './styles';
-import { LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_9_HEADING, SUBMIT_BUTTON_TEXT } from '../constant';
+import { HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_9_HEADING, SUBMIT_BUTTON_TEXT } from '../constant';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
 const Section9 = () => {
 
-    const { loggedIn, onPressRightIcon, progressWidth, dispatch_option, questionData, answers, computeResult, renderData } = useSection9();
+    const { progressWidth, dispatch_option, questionData, answers, computeResult, renderData } = useSection9();
 
     if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
     return (
         <>
-            <Header isRightIcon={true} />
+            <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
             <View style={styles.progressBarContainer}>
                 <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={1} width={progressWidth} height={12} />
             </View>
