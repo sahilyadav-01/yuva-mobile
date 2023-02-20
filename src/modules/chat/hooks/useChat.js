@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import {Freshchat, FreshchatUser} from 'react-native-freshchat-sdk';
@@ -7,11 +6,7 @@ import { ERROR_MESSAGE } from "../constant";
 
 export const useChat = () => {
   const [error, setError] = useState(false);
-  const navigation = useNavigation();
   const {profile} = useSelector(state => state.profile);
-  const goBack = () => {
-    navigation.goBack();
-  };
 
   useEffect(() => {
     onPressChat();
@@ -38,7 +33,6 @@ export const useChat = () => {
   };
 
   return {
-    goBack,
     onPressChat,
   };
 };

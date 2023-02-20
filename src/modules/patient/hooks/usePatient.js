@@ -12,9 +12,6 @@ export const usePatient = () => {
     dispatch(getAppointmentThunk());
   }, []);
   const navigation = useNavigation();
-  const goBack = () => {
-    navigation.goBack();
-  };
 
   const onPressNext = () => {
     navigation.navigate('HealthScreen');
@@ -29,7 +26,6 @@ export const usePatient = () => {
   }
 
   return {
-    goBack,
     onPressNext,
     consultationList,
     onDownload,

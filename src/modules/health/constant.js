@@ -45,3 +45,4 @@ export const HEALTH_LIST = [
 export const DESCRIPTION_HEADER = 'Tell us the symptom that’s bothering you most ?';
 export const DESCRIPTION_PLACEHOLDER = 'Please type your health issue in detail.';
 export const START_CONSULTATION = 'Start Consultation';
+export const TALK_TO_DOCTOR = 'Talk To Doctor';

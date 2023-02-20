@@ -7,9 +7,6 @@ import { HEALTH_LIST } from "../constant";
 export const useHealth = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const goBack = () => {
-    navigation.goBack();
-  };
 
   const {isRequested} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
@@ -35,7 +32,6 @@ export const useHealth = () => {
     };
   };
   return {
-    goBack,
     selected,
     setSelected,
     onChange,
