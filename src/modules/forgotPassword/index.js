@@ -1,6 +1,5 @@
 import React from 'react';
 import {TextInput, View, TouchableOpacity, Text} from 'react-native';
-import Header from '../../components/Header';
 import Heading from '../../components/Heading';
 import {SILVER_CHALICE} from '../../styles/colors';
 import LoginTextContainer from '../signup/components/loginTextContainer';
@@ -12,7 +11,6 @@ const ForgotPasswordScreen = props => {
   const forgotPassword = useForgotPassword();
   return (
     <>
-      <Header name="FORGOT PASSWORD" />
       <View style={style.cardContainer}>
         <View style={style.cardStyle}>
           <Heading heading="Forgot Password" />
