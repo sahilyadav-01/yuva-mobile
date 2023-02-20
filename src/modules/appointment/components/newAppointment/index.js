@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, Text, TextInput, ScrollView, Alert, Image} from 'react-native';
+import {View, Text, TextInput, ScrollView, Image} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
-import {BOOK_AN_APPOINTMENT, DESCRIPTION} from '../../constant';
+import {BOOK_AN_APPOINTMENT} from '../../constant';
 import {DARK_BLUE} from '../../../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import {
@@ -28,7 +28,7 @@ import {useRoute} from '@react-navigation/native';
 
 const NewAppointments = () => {
   const route = useRoute();
-  const {Doctor, Specialization} = route.params;
+  const {Doctor, Specialization , plan , userVersion ,uuid, version} = route.params;
   const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
@@ -39,6 +39,7 @@ const NewAppointments = () => {
     signupMessage,
     newAppointment,
     onChangeDescription,
+    onChaneNumber,
     closeMessageBox,
     handleDate,
     handleTime,
@@ -46,7 +47,7 @@ const NewAppointments = () => {
     time,
     setSelected,
     dataRelation,
-  } = useNew();
+  } = useNew(plan,userVersion,uuid,version);
 
   return (
     <View>
@@ -120,7 +121,8 @@ const NewAppointments = () => {
             <TextInput
               style={styles.textInputStyle}
               placeholder={CONTACT_NUMBER}
-              onChangeText={onChangeDescription}
+              keyboardType={'numeric'}
+              onChangeText={onChaneNumber}
             />
           </View>
         </View>

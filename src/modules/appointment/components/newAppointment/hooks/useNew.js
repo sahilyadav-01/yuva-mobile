@@ -9,10 +9,11 @@ import {
   resetMessage,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {getRelations} from '../../../../../store/reducers/ProfileSlice';
-export const useNew = () => {
+export const useNew = (plan, userVersion, uuid, version) => {
   const [signupFlag, setSignupFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
   const [description, setDesciption] = useState('');
+  const [alternateContactNumber, setAlternateContactNumber] = useState('');
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [selected, setSelected] = useState('');
@@ -45,15 +46,25 @@ export const useNew = () => {
   const newAppointment = () => {
     dispatch(
       newAppointmentThunk({
+        alternateContactNumber,
         description,
-        epoch: getEpoch(date, time),
         doctorId,
+        plan,
+        programOrPlanUuid: uuid,
         selected,
+        epoch: getEpoch(date, time),
+        userPlanVersion: userVersion,
+        version: version,
       }),
     );
   };
   const onChangeDescription = txt => {
     setDesciption(txt);
+  };
+  const onChaneNumber = num => {
+    if (num.length === 10) {
+      setAlternateContactNumber(num);
+    }
   };
   const closeMessageBox = () => {
     setSignupFlag(false);
@@ -83,13 +94,13 @@ export const useNew = () => {
       setDataRelation(newArray);
     }
   }, [relationId]);
-
   return {
     goBack,
     signupFlag,
     signupMessage,
     newAppointment,
     onChangeDescription,
+    onChaneNumber,
     description,
     closeMessageBox,
     handleDate,

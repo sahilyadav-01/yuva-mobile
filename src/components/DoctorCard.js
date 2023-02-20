@@ -16,6 +16,10 @@ const DoctorCard = ({
   exp,
   img,
   qual,
+  plan,
+  userVersion,
+  uuid,
+  version
 }) => {
   /**
    * Hooks
@@ -23,10 +27,13 @@ const DoctorCard = ({
   const params = {
     Doctor: name,
     Specialization: specialization,
+    plan:plan,
+    userVersion:userVersion,
+    uuid:uuid,
+    version:version
   };
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
   const bookAppointment = () => {
     dispatch(newAppointment({doctorId, name, specialization}));
     navigation.navigate('NewAppointment', params);

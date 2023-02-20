@@ -25,11 +25,12 @@ export const styles = StyleSheet.create({
     height: 48,
     width: 48,
     alignSelf: 'center',
+    marginLeft: 20,
   },
   ContentStyle: {
     marginTop: '5%',
     marginBottom: '5%',
-    marginLeft: '15%',
+    marginLeft: '10%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -37,7 +38,7 @@ export const styles = StyleSheet.create({
   NameStyle: {
     marginTop: '5%',
     marginBottom: '5%',
-    marginLeft: '15%',
+    marginLeft: '10%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
@@ -54,13 +55,18 @@ export const styles = StyleSheet.create({
   },
   CompleteView: {
     backgroundColor: WHITE,
-    margin: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginTop: '5%',
+    marginBottom: '5%',
     height: 139,
-    width: '85%',
+    width: '90%',
+    borderRadius: 10,
   },
   Button: {
     backgroundColor: CYAN_BLUE,
     height: 31,
+    borderRadius: 10,
   },
   buttonView: {
     marginTop: 18,
@@ -81,7 +87,7 @@ export const styles = StyleSheet.create({
   },
   Location: {
     flexDirection: ROW,
-    marginLeft: '15%',
+    marginLeft: '10%',
     color: BLACK,
   },
 
