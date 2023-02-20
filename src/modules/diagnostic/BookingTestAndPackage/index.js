@@ -5,6 +5,7 @@ import { ABOUT_PACKAGE, BOOK_NOW, INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
+import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
 const BookingTestAndPackage = () => {
@@ -74,7 +75,7 @@ const BookingTestAndPackage = () => {
     }
     return (
         <View>
-            <Header />
+            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

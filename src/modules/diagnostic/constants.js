@@ -1,0 +1,1 @@
+export const DIAGNOSTIC_HEALTH_PACKAGE = 'Diagnostic & Health Package';

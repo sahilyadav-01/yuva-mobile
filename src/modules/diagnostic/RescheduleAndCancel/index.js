@@ -9,6 +9,7 @@ import { RED_SHADE, AMBER } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getPlanDate } from '../../../utils/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
 const RescheduleAndCancel = () => {
@@ -40,7 +41,7 @@ const RescheduleAndCancel = () => {
     }
     return (
         <View >
-            <Header isRightIcon={true} />
+            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.Status}>
                     <Text style={styles.BookingStatus}>{reschedule?.bookingStatus}</Text>
