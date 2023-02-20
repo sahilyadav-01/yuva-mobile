@@ -30,7 +30,7 @@ const OurPlan = () => {
     );
   }
   return (
-    <View>
+    <View style={styles.parentView}>
       <View style={styles.container}>
         {sideView(LEFT)}
         {mainView()}

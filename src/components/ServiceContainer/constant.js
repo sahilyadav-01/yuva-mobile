@@ -1,4 +1,3 @@
-export const SERVICE_HEADING = 'Our Services ';
 export const OPD = 'OPD';
 export const HRA = 'HRA';
 export const DIAGNOSTICS = 'Diagnostics';
@@ -13,3 +12,9 @@ export const HEALTH_CHECKUP_PACKAGES_IMAGE = 'Health_Checkup_Packages';
 export const TALK_TO_DOCTOR_IMAGE = 'Talk_To_Doctor';
 export const MY_HEALTH_CHECKUP = 'My Health Check-up';
 export const MY_HEALTH_CHECKUP_IMAGE = 'My_Health_Checkup';
+export const OBESITY = 'OBESITY';
+export const THYROID = 'THYROID';
+export const WOMEN_HEALTH = 'WOMEN_HEALTH';
+export const SMOKING_AND_ALCOHOL = 'SMOKING_AND_ALCOHOL';
+export const DIABETES = 'DIABETES';
+export const HYPER_TENSION = 'HYPER_TENSION';
