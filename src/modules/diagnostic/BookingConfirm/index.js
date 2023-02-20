@@ -9,6 +9,7 @@ import { useBookingConfirm } from './hooks/useBookingConfirm';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { DARK_BLUE } from '../../../styles/colors';
 import { SVG } from '../../../../assets';
+import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
 
@@ -54,7 +55,7 @@ const BookingConfirm = () => {
         return (
 
             <View>
-                <Header />
+                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
                 <ScrollView
                     contentContainerStyle={styles.contentContainerStyle}>
                     <View style={styles.booksID}>
