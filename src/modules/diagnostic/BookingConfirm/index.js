@@ -26,7 +26,9 @@ const BookingConfirm = () => {
         userAddress,
         bookTestScreen,
         bookedDetails,
-        rescheduleBooking } = useBookingConfirm();
+        rescheduleBooking,
+        AddNewAddress,
+    userAttribute} = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
@@ -35,7 +37,7 @@ const BookingConfirm = () => {
 
                     <View style={styles.checkboxAddress} >
                         <Checkbox
-                            disabled={bookedDetails}
+                            disabled={bookedDetails || userAttribute?.address}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -125,8 +127,8 @@ const BookingConfirm = () => {
                             <Text style={styles.selectDate}>
                                 {SELECT_ADRESS}
                             </Text>
-                            <TouchableOpacity disabled={bookedDetails}>
-                                <View style={styles.Add}>
+                            <TouchableOpacity disabled={bookedDetails} onPress={AddNewAddress}>
+                                <View style={styles.Add} >
                                     <Text style={styles.addNew}>
                                         <SVG.AddNewAdress />
                                         {ADD_NEW}

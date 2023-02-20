@@ -25,3 +25,5 @@ export const FALSE= "false";
 export const RESCHEDULEAPPOINTMENT="Reschedule Appointment";
 export const UPDATEDBOOKED="Status updated successfully";
 export const BOOKING="Diagnostic";
+export const ADDNEWADDRESS="AddNewAddress";
+export const BOOKINGCONFIRM="BookingConfirm";

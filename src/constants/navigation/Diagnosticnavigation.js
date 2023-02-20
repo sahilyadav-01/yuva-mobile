@@ -6,6 +6,7 @@ import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
 import GuestOPD from '../../screens/yuvaservices/opd/guestOPD/staticOPD';
 import BookingConfirmScreen from '../../screens/yuvaservices/diagnostics/BookingConfirm';
+import AddAddressScreen from '../../screens/yuvaservices/diagnostics/AddAddressScreen';
 const Stack = createStackNavigator();
 
 const DiagnosticNav = () => {
@@ -30,6 +31,11 @@ const DiagnosticNav = () => {
       <Stack.Screen
         name="RescheduleTestAndPackage"
         component={RescheduleTestAndPackage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AddNewAddress"
+        component={AddAddressScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
