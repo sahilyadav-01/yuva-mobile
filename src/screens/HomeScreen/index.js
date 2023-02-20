@@ -95,7 +95,7 @@ const HomeScreen = ({ navigation }) => {
           </CarouselContainer>
         </View>
         <View style={styles.bannerContainer1}>
-        <SVG.landingPageBanner2/>
+        <Image style={styles.bannerImage} source={PNG.LandingPageBanner2}></Image>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>

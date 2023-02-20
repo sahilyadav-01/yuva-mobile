@@ -99,14 +99,6 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     marginHorizontal: 13,
   },
-  bannerContainer1: {
-    marginTop: 13,
-    // flex
-    // flexDirection: ROW,
-    // justifyContent: CENTER,
-    marginHorizontal: 13,
-    backgroundColor:'red'
-  },
   bannerImage: {
     width: '100%',
   },
