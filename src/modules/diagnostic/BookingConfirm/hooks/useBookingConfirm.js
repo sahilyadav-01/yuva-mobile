@@ -7,20 +7,26 @@ import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
 import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
-import { ALERT, BOOKED, BOOKING, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
+import { ADDNEWADDRESS, ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
 
 export const useBookingConfirm = () => {
     const route = useRoute();
-    const { Uuid, userVersion, version, plan, bookedDetails } = route.params;
+    const [userAttribute, setUserAttribute] = useState(null);
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
     const [dataRelation, setDataRelation] = useState();
-    const { packageDetails, testBooked, apiErrorMessage, cityId ,reschedule} = useSelector(state => state.diagnostic);
+    const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { relationId, userAddress } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
+
+    useEffect(() => {
+        if (route?.name === BOOKINGCONFIRM) {
+            setUserAttribute(route?.params)
+        }
+    }, [route])
     const handleDate = date => {
         setDate(date);
     };
@@ -45,32 +51,27 @@ export const useBookingConfirm = () => {
         }
     }, [relationId])
 
-
     const bookTestScreen = () => {
-        if (checked === null) {
-            Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
-        } else {
-            const address = userAddress[checked]?.address;
-            const pincode = userAddress[checked]?.pinCode;
-            const contact= userAddress[checked]?.contactNumber;
-            var data = {
-                address: address,
-                cityId: cityId[0]?.id,
-                contactNumber:contact,
-                packageUuid: [packageDetails?.packageUuid],
-                patientId: null,
-                pinCode: pincode,
-                plan: plan,
-                programOrPlanUuid: Uuid,
-                relationId: selected,
-                testId: [],
-                timeSlot: getEpoch(date, time),
-                userPlanVersion: userVersion,
-                version: version
-            };
-            if (packageDetails) {
-                dispatch(bookTestThunk({ data }))
-            }
+        const address = userAddress[checked]?.address || userAttribute?.address;
+        const pincode = userAddress[checked]?.pinCode || userAttribute?.pincode;
+        const contact = userAddress[checked]?.contactNumber || userAttribute?.contact;
+        var data = {
+            address: address,
+            cityId: cityId[0]?.id,
+            contactNumber: contact,
+            packageUuid: [packageDetails?.packageUuid],
+            patientId: null,
+            pinCode: pincode,
+            plan: userAttribute?.plan,
+            programOrPlanUuid: userAttribute?.Uuid,
+            relationId: selected,
+            testId: [],
+            timeSlot: getEpoch(date, time),
+            userPlanVersion: userAttribute?.userVersion,
+            version: userAttribute?.version
+        };
+        if (packageDetails) {
+            dispatch(bookTestThunk({ data }))
         }
     }
     useEffect(() => {
@@ -110,6 +111,9 @@ export const useBookingConfirm = () => {
         return () => dispatch(resetMesage())
     }, [reschedule, apiErrorMessage])
 
+    const AddNewAddress = () => {
+        navigation.navigate(ADDNEWADDRESS)
+    }
     return {
         packageDetails,
         handleDate,
@@ -123,6 +127,8 @@ export const useBookingConfirm = () => {
         userAddress,
         bookTestScreen,
         rescheduleBooking,
-        bookedDetails
+        bookedDetails: userAttribute?.bookedDetails,
+        AddNewAddress,
+        userAttribute
     }
 }
