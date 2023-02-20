@@ -134,6 +134,7 @@ const PNG = {
   EYE,
   POPULAR_PLAN,
 };
+
 const SVG = {
   HeaderLogo: HeaderLogo,
   MenuIcon: MenuIcon,
@@ -144,13 +145,13 @@ const SVG = {
   HRA_END_IMG: HRA_END_IMG,
   dropDown: dropDown,
   AddNewAdress: AddNewAdress,
-  dateAndTime: dateAndTime,
   OBESITY: OBESITY,
   THYROID: THYROID,
   WOMEN_HEALTH: WOMEN_HEALTH,
   SMOKING_AND_ALCOHOL: SMOKING_AND_ALCOHOL,
   DIABETES: DIABETES,
   HYPER_TENSION: HYPER_TENSION,
+  dateAndTime: dateAndTime,
   FreeSample: FreeSample,
   Discount: Discount,
   AccurateReport: AccurateReport,
