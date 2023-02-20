@@ -23,7 +23,7 @@ export const cancelAppointmentThunk = createAsyncThunk(
   async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const data = {};
-      const endpoint = `/appointment/${id}?cancelled=true`;
+      const endpoint = `/appointment/cancelled/${id}?cancelled=true`;
       const response = await YuvaService.put(endpoint, data);
       return response.data;
     } catch (error) {
@@ -37,7 +37,7 @@ export const rescheduleAppointmentThunk = createAsyncThunk(
   async ({id, timeSlot}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const data = {};
-      const endpoint = `/appointment/${id}?timeSlot=${timeSlot}`;
+      const endpoint = `/appointment/reschedule/${id}?timeSlot=${timeSlot}`;
       const response = await YuvaService.put(endpoint, data);
       return response.data;
     } catch (error) {
