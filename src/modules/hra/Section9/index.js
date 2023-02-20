@@ -9,11 +9,14 @@ import { useSection9 } from './hooks/useSection9';
 import { styles } from './styles';
 import { LOGGEDIN, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_9_HEADING, SUBMIT_BUTTON_TEXT } from '../constant';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { styles as hraStyles } from '../HRAHome/styles';
+import Loader from '../../../components/Loader';
 
 const Section9 = () => {
 
-    const { loggedIn, onPressRightIcon, progressWidth, dispatch_option, questionData, answers, computeResult } = useSection9();
+    const { loggedIn, onPressRightIcon, progressWidth, dispatch_option, questionData, answers, computeResult, renderData } = useSection9();
 
+    if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
     return (
         <>
             <Header isRightIcon={true} />
@@ -38,7 +41,7 @@ const Section9 = () => {
                                                 key={item.questionId}
                                                 text={item.question}
                                                 data={PickerData[item.questionType]}
-                                                defaultAnswer={answers[item.questionId]}
+                                                defaultAnswer={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}
                                             />
@@ -47,7 +50,7 @@ const Section9 = () => {
                                         return (
                                             <SectionInput
                                                 key={item.questionId}
-                                                defValue={answers[item.questionId]}
+                                                defValue={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
                                                 text={item.question}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}

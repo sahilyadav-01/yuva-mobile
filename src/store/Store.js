@@ -18,6 +18,7 @@ import programAndPlan, {programAndPlanInit} from './reducers/ProgramAndPlanSlice
 import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
 import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice';
 import attribute, {attributeInit} from './reducers/AttributeSlice';
+import hra, {hraInit} from './reducers/HRASlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -38,6 +39,7 @@ const storeInitialState = {
   programAndPlan: programAndPlanInit,
   popularTests:popularTestsInit,
   attribute: attributeInit,
+  hra: hraInit,
   lifestylePackage:lifestylePackageInit,
 };
 
@@ -59,6 +61,7 @@ const appReducer = combineReducers({
   profile,
   programAndPlan,
   attribute,
+  hra,
   popularTests,
   lifestylePackage,
 });

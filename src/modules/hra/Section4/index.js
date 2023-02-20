@@ -8,11 +8,14 @@ import { useSection4 } from './hooks/useSection4';
 import { styles } from './styles';
 import { BUTTON_TEXT, LOGGEDIN, SECTION_4_HEADING } from '../constant';
 import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { styles as hraStyles } from '../HRAHome/styles';
+import Loader from '../../../components/Loader';
 
 const Section4 = () => {
 
-  const { loggedIn, onPressRightIcon, progressWidth, alcohol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next } = useSection4();
+  const { loggedIn, onPressRightIcon, progressWidth, alcohol, questionData, answers, setQuestion1, setQuestion2, setQuestion3, setQuestion4, next, renderData } = useSection4();
 
+  if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
       <Header isRightIcon={true} />
@@ -32,11 +35,7 @@ const Section4 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={
-                  answers[questionData[0]?.questionId] === undefined
-                    ? answers[questionData[0]?.questionId] === ''
-                    : ''
-                }
+                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
@@ -48,11 +47,7 @@ const Section4 = () => {
                   <Text style={styles.questionViewContainerText}>{questionData[1]?.question}</Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={
-                      answers[questionData[1]?.questionId] === undefined
-                        ? answers[questionData[1]?.questionId] === ''
-                        : ''
-                    }
+                    placeholder={PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]].value ?? ''}
                     setSelected={setQuestion2}
                     data={PickerData[questionData[1]?.questionType]}
                     search={false}
@@ -63,11 +58,7 @@ const Section4 = () => {
                   <Text style={styles.questionViewContainerText}>{questionData[2]?.question}</Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={
-                      answers[questionData[2]?.questionId] === undefined
-                        ? answers[questionData[2]?.questionId] === ''
-                        : ''
-                    }
+                    placeholder={PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]].value ?? ''}
                     setSelected={setQuestion3}
                     data={PickerData[questionData[2]?.questionType]}
                     search={false}
@@ -79,11 +70,7 @@ const Section4 = () => {
                   </Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={
-                      answers[questionData[3]?.questionId] === undefined
-                        ? answers[questionData[3]?.questionId] === ''
-                        : ''
-                    }
+                    placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]].value ?? ''}
                     setSelected={setQuestion4}
                     data={PickerData[questionData[3]?.questionType]}
                     search={false}

@@ -75,6 +75,7 @@ import Discount from './Discounts';
 import AccurateReport from './AccurateReport';
 import TrustedLab from './TrustedLab';
 import LocationOn from './LocationOn';
+import Run from './run';
 import ShoppingCart from './shoppingCart';
 const PNG = {
   AMICO,
@@ -157,6 +158,7 @@ const SVG = {
   AccurateReport: AccurateReport,
   TrustedLab: TrustedLab,
   LocationOn: LocationOn,
+  Run: Run,
   ShoppingCart: ShoppingCart,
 };
 

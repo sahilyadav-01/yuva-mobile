@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import HRASectionContainer from '../components/HRASectionContainer';
 import Header from '../../../components/Header';
 import { HRA_BANNER_TEXT } from "../constant";
 import { styles } from './styles';
-import { PNG } from '../../../../assets';
+import { PNG, SVG } from '../../../../assets';
+import { useHraHome } from './hooks/useHraHome';
+import Loader from '../../../components/Loader';
 
 const HRAHome = () => {
-
+  const {continueHRA, goToSection1, renderData} = useHraHome();
+  if(!renderData) return <Loader extraStyles={styles.loaderContainer}/>
   return (
     <>
       <Header isRightIcon={true} />
@@ -29,6 +32,10 @@ const HRAHome = () => {
             {/* <View style={styles.bottomContainer}>
               <DownloadButton onPress={onDisplay} />
             </View> */}
+            {continueHRA && <TouchableOpacity onPress={goToSection1} style={styles.continueButtonContainer}>
+              <SVG.Run/>
+              <Text style={styles.continueText}>Continue</Text>
+            </TouchableOpacity>}
             <HRASectionContainer />
           </ScrollView>
         </View>
