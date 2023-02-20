@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export const useHeader = (props) => {
+  const {showSearch} = props;
   const navigation = useNavigation();
   const route = useRoute();
   const [selectedCity, setSelectedCity] = useState('');
+  const [query, setQuery] = useState('');
   const {loggedIn} = useSelector(state => state.auth);
   const {cityId} = useSelector(state => state.diagnostic);
   const isLoggedIn = loggedIn === 'loggedIn';
@@ -31,6 +33,10 @@ export const useHeader = (props) => {
     setSelectedCity(city);
   }
 
+  const onChangeSearch = (text) => {
+    setQuery(text);
+  }
+
   return {
     isLoggedIn,
     onCartPress,
@@ -39,6 +45,9 @@ export const useHeader = (props) => {
     cityList,
     setSelected,
     selectedCity,
+    query,
+    onChangeSearch,
+    showSearch,
     // isSeachVisible,
     // canGoBack,
     // title,

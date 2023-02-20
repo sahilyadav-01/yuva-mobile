@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { SVG } from '../../../assets';
-import { LOGIN_TEXT } from './constant';
+import { LOGIN_TEXT, PLACEHOLDER } from './constant';
 import { useHeader } from './hooks/useHeader';
 import { CYAN_BLUE } from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
+import Search from '../Search';
 
 const Header = (props) => {
   const {
@@ -15,6 +16,9 @@ const Header = (props) => {
     cityList,
     setSelected,
     selectedCity,
+    query,
+    onChangeSearch,
+    showSearch,
   } = useHeader(props);
 
   return (
@@ -47,6 +51,15 @@ const Header = (props) => {
             }
           </TouchableOpacity>
         </View>
+      </View>
+      <View>
+        {showSearch && 
+          <Search 
+            placeholder={PLACEHOLDER} 
+            onChangeText={onChangeSearch} 
+            value={query}
+          />
+        }
       </View>
     </View>
   );
