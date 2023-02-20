@@ -8,7 +8,7 @@ const {height} = getDimensions();
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    height: 0.12*height,
+    maxHeight: 0.12*height,
     width: '100%',
     backgroundColor: WHITE,
     paddingHorizontal: 16,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   topSection: {
     flexDirection: ROW,
     justifyContent: CENTER,
-    paddingVertical: 16,
+    paddingVertical: 4,
     paddingTop: 16,
   },
   pinView: {

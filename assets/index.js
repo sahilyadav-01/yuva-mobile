@@ -77,6 +77,7 @@ import TrustedLab from './TrustedLab';
 import LocationOn from './LocationOn';
 import Run from './run';
 import ShoppingCart from './shoppingCart';
+import SearchIcon from './SearchIcon';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -160,6 +161,7 @@ const SVG = {
   LocationOn: LocationOn,
   Run: Run,
   ShoppingCart: ShoppingCart,
+  SearchIcon:SearchIcon,
 };
 
 export {PNG, SVG};

@@ -1,0 +1,30 @@
+import { StyleSheet } from "react-native";
+import { BLACK, ORANGE_GREY, VERY_LIGHT_ORANGE } from "../../styles/colors";
+import { CENTER, ROW } from "../../styles/constants";
+import { fonts } from "../../styles/fonts";
+
+export const styles = StyleSheet.create({
+  conatiner: {
+    minHeight: 36,
+    backgroundColor: VERY_LIGHT_ORANGE,
+    borderColor: ORANGE_GREY,
+    borderWidth: 0.5,
+    borderRadius: 8,
+    flexDirection: ROW,
+    paddingHorizontal: 12,
+    alignItems: CENTER,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowColor: BLACK,
+    elevation: 5,
+  },
+  textInputStyles: {
+    flex: 1,
+    paddingLeft: 10,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+  }
+});
