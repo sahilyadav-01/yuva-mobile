@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import Header from '../../components/Header';
 import OtpInputs from 'react-native-otp-inputs';
 import Timer from '../../components/Timer';
 import styles from './style';
@@ -36,7 +35,6 @@ const OTP = props => {
   } = useOtp();
   return (
     <>
-      <Header name="VERIFY" />
       <ScrollView
         style={scrollViewContainer}
         showsVerticalScrollIndicator={false}

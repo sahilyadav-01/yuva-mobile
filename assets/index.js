@@ -79,6 +79,8 @@ import LocationOn from './LocationOn';
 import Run from './run';
 import ShoppingCart from './shoppingCart';
 import SearchIcon from './SearchIcon';
+import landingPageBanner1 from './landingPageBanner1';
+import LandingPageBanner2 from './LandingPageBanner2.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -137,6 +139,7 @@ const PNG = {
   DATE,
   EYE,
   POPULAR_PLAN,
+  LandingPageBanner2
 };
 
 const SVG = {
@@ -164,6 +167,7 @@ const SVG = {
   Run: Run,
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
+  landingPageBanner1:landingPageBanner1,
 };
 
 export {PNG, SVG};

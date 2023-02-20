@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { BLACK, ORANGE_GREY, VERY_LIGHT_ORANGE } from "../../styles/colors";
-import { CENTER, ROW } from "../../styles/constants";
+import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 
 export const styles = StyleSheet.create({
   conatiner: {
+    position: ABSOLUTE,
     minHeight: 36,
     backgroundColor: VERY_LIGHT_ORANGE,
     borderColor: ORANGE_GREY,
@@ -20,6 +21,8 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowColor: BLACK,
     elevation: 5,
+    zIndex: 10,
+    marginTop: 4,
   },
   textInputStyles: {
     flex: 1,

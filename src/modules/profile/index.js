@@ -8,6 +8,7 @@ import styles from './style';
 import UserDetailsCard from './components/userDetailsCard';
 import Header from '../../components/Header';
 import ErrorScreen from '../../components/ErrorScreen';
+import { USER_PROFILE } from './constant';
 
 const Profile = () => {
   const data = [
@@ -61,7 +62,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header isRightIcon={true} />
+      <Header title={USER_PROFILE} showBackButton={true}/>
       <ScrollView style={container}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}

@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
 import { styles } from '../styles';
 import Header from '../../components/Header';
-import { PNG } from '../../../assets';
+import { PNG, SVG } from '../../../assets';
 import {
   LANDING_PAGE_TEXT0,
   LANDING_PAGE_TEXT1,
@@ -22,6 +22,7 @@ import {
   LANDING_PAGE_TEXT3,
   LANDING_PAGE_TEXT4,
   OUR_PLANS,
+  SEARCH_PLACEHOLDER,
 } from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
@@ -61,7 +62,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header
-        isRightIcon={true}
+        showSearch={true}
+        searchPlaceholder={SEARCH_PLACEHOLDER}
       />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
@@ -77,7 +79,7 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer serviceCard={true} />
         </View>
         <View style={styles.bannerContainer}>
-          <Image style={styles.bannerImage} source={PNG.BANNER}></Image>
+          <SVG.landingPageBanner1/>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
@@ -94,8 +96,8 @@ const HomeScreen = ({ navigation }) => {
             />
           </CarouselContainer>
         </View>
-        <View style={styles.bannerContainer}>
-          <Image style={styles.bannerImage} source={PNG.BANNER2}></Image>
+        <View style={styles.bannerContainer1}>
+        <Image style={styles.bannerImage} source={PNG.LandingPageBanner2}></Image>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
@@ -120,7 +122,7 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
         </View>
         <View>
-          <View style={styles.PopularHealthCheckups}>
+          <View style={styles.OurPlansHeaderStyle}>
             <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
             <View style={styles.line} />
             <TouchableOpacity>

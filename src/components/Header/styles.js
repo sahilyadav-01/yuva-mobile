@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { BLACK, CYAN_BLUE, WHITE } from "../../styles/colors";
-import { CENTER, ROW } from "../../styles/constants";
+import { CENTER, FLEX_START, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 import { getDimensions } from "../../utils/utils";
 
@@ -8,7 +8,7 @@ const {height} = getDimensions();
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    maxHeight: 0.12*height,
+    minHeight: 0.12*height,
     width: '100%',
     backgroundColor: WHITE,
     paddingHorizontal: 16,
@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowColor: BLACK,
     elevation: 10,
+    paddingBottom: 24,
   },
   topSection: {
     flexDirection: ROW,
@@ -34,6 +35,7 @@ export const styles = StyleSheet.create({
   rightView: {
     right: 0,
     flexDirection: ROW,
+    alignItems: CENTER,
   },
   rightIcon: {
     paddingHorizontal: 4,
@@ -53,7 +55,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
     color: CYAN_BLUE,
-    textAlignVertical: CENTER,
   },
   dropdownStyles: {
     marginTop: 0,
@@ -68,16 +69,15 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
     elevation: 3,
   },
-  // sectionBottom: {
-  //   flexDirection: ROW,
-  //   alignSelf: FLEX_START,
-  //   marginHorizontal: 12,
-  //   bottom: 12,
-  // },
-  // titleText: {
-  //   fontFamily: fonts.family.fontFamilyRubix,
-  //   fontSize: fonts.size.fontSize16,
-  //   color: WHITE,
-  //   paddingHorizontal: 12,
-  // }
+  sectionBottom: {
+    flexDirection: ROW,
+    alignSelf: FLEX_START,
+
+  },
+  titleText: {
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize14,
+    color: CYAN_BLUE,
+    paddingHorizontal: 12,
+  }
 });

@@ -6,7 +6,6 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import Header from '../../components/Header';
 import Heading from '../../components/Heading';
 import InputPassword from '../changePassword/passwordField';
 import forgotPasswordStyles from '../forgotPassword/style';
@@ -34,7 +33,6 @@ const Login = props => {
   const login = useLogin();
   return (
     <>
-      <Header name="CHANGE PASSWORD" />
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
