@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
   },
   imageBackground: {
     position: ABSOLUTE,
-    top: '18%',
   },
   mainContainer: {
     flex: 1,
@@ -35,6 +34,7 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     marginHorizontal: 10,
+    backgroundColor: WHITE,
   },
   line: {
     borderBottomColor: ORANGE,
