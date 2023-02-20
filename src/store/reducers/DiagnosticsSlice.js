@@ -141,6 +141,7 @@ const diagnosticSlice = createSlice({
     resetMesage(state) {
       state.testBooked = null;
       state.apiErrorMessage =null;
+      state.reschedule=null;
     },
   },
   extraReducers: {
@@ -238,7 +239,7 @@ const diagnosticSlice = createSlice({
     },
     [rescheduleCancelBookingThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.reschedule = action.payload.data;
+      state.reschedule = action.payload;
       state.cancelled = action.payload.message;
     },
     [rescheduleCancelBookingThunk.rejected]: (state, action) => {
