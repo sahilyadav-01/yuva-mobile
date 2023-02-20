@@ -66,10 +66,7 @@ import DIABETES from './DIABETES';
 import HYPER_TENSION from './HYPER_TENSION';
 import dropDown from './dropDown';
 import DATE from './date.png';
-
 import dateAndTime from './dateAndTime';
-import dropDown from './dropDown';
-
 import POPULAR_PLAN from './Popular_Plan.png';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
@@ -149,14 +146,12 @@ const SVG = {
   dropDown: dropDown,
   AddNewAdress: AddNewAdress,
   dateAndTime: dateAndTime,
-
   OBESITY: OBESITY,
   THYROID: THYROID,
   WOMEN_HEALTH: WOMEN_HEALTH,
   SMOKING_AND_ALCOHOL: SMOKING_AND_ALCOHOL,
   DIABETES: DIABETES,
   HYPER_TENSION: HYPER_TENSION,
-
   FreeSample: FreeSample,
   Discount: Discount,
   AccurateReport: AccurateReport,
