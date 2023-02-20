@@ -48,3 +48,5 @@ export const PARAMETERS = [
     text: '25-OH Vitamin D3 Test',
   },
 ];
+
+export const HEALTH_CHECKUP_PACKAGE = 'Health Checkup Packages';

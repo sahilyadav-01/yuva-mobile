@@ -4,21 +4,12 @@ import {styles} from './styles';
 import OpdCard from './components/opdCard';
 import SpecialityCard from './components/specialityCard';
 import Header from '../../components/Header/index';
-import {useSelector} from 'react-redux';
+import { OPD_CONSULTATION_PROGRAM } from './constant';
 const CashlessOPD = ({navigation}) => {
-  const {
-    loggedIn,
-  } = useSelector(state => state.auth);
-  const onPressRightIcon = () => {
-    if (loggedIn !== 'loggedIn') {
-      navigation.navigate('LoginScreen');
-    } else {
-      //open drawer
-    }
-  };
+  
   return (
     <View>
-      <Header />
+      <Header showBackButton={true} title={OPD_CONSULTATION_PROGRAM}/>
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
