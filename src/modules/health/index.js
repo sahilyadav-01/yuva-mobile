@@ -1,26 +1,25 @@
 import React from 'react';
 import {View, Text, ScrollView, TextInput} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import Backbutton from '../../components/Backbutton';
 import CardButton from '../../components/CardButton';
 import Header from '../../components/Header';
 import { CYAN_BLUE_OPACITY } from '../../styles/colors';
 import SecureView from '../patient/components/secureView';
 import HealthCard from './components/healthCard';
-import { DESCRIPTION_HEADER, DESCRIPTION_PLACEHOLDER, HEALTH_LIST, SELECT_HEALTH_CONCERN, START_CONSULTATION } from './constant';
+import { DESCRIPTION_HEADER, DESCRIPTION_PLACEHOLDER, HEALTH_LIST, SELECT_HEALTH_CONCERN, START_CONSULTATION, TALK_TO_DOCTOR } from './constant';
 import {useHealth} from './hooks/useHealth';
 import { styles } from './styles';
 
 const Health = () => {
 
-  const {goBack, selected, setSelected, onChange, description, onPressConsultation} = useHealth();
+  const {selected, setSelected, onChange, description, onPressConsultation} = useHealth();
   const renderItem = (item) => {
     const onHealthCardPress = () => setSelected(item?.index);
     return <HealthCard item={item} selected={selected} onHealthCardPress={onHealthCardPress} />;
   }
   return (
     <View>
-      <Header isRightIcon={true} />
+      <Header title={TALK_TO_DOCTOR} showBackButton={true}/>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.headerView}>
           <Text style={styles.headerText}>{SELECT_HEALTH_CONCERN}</Text>
