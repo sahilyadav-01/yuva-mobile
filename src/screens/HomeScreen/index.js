@@ -21,6 +21,7 @@ import {
   LANDING_PAGE_TEXT2,
   LANDING_PAGE_TEXT3,
   LANDING_PAGE_TEXT4,
+  OUR_PLANS,
 } from '../constant';
 import CarouselItem from '../../components/CarouselItem';
 import CarouselItem2 from '../../components/CarouselItem2';
@@ -119,6 +120,13 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
         </View>
         <View>
+          <View style={styles.PopularHealthCheckups}>
+            <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
+            <View style={styles.line} />
+            <TouchableOpacity>
+              <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
+            </TouchableOpacity>
+          </View>
           <OurPlan />
         </View>
       </ScrollView>
