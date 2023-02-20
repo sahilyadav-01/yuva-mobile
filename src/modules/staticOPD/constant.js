@@ -25,3 +25,5 @@ export const SPECIALITY = [
     imageName: 'Neurology',
   },
 ];
+
+export const OPD_CONSULTATION_PROGRAM = 'OPD Consultation Program';
