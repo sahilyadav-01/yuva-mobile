@@ -11,6 +11,7 @@ import {CANCEL, CHECK, RESCHEDULE, WAITING} from '../../constant';
 import {ORANGE, RED_SHADE, WHITE} from '../../../../styles/colors';
 import {styles} from './styles';
 import {OPD_DESCRIPTION} from './constant';
+import {PNG} from '../../../../../assets';
 const ViewAppointments = () => {
   const {
     id,
@@ -74,10 +75,7 @@ const ViewAppointments = () => {
               </View>
             </View>
             <View style={styles.ImageStyle}>
-              <Image
-                source={require('../../../../../assets/icon.png')}
-                style={styles.Image}
-              />
+              <Image source={PNG.ICON} style={styles.Image} />
               <View>
                 <Text style={styles.NameStyle}>{doctorName}</Text>
                 <Text style={styles.ContentStyle}>{speciality}</Text>

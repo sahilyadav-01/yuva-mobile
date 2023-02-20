@@ -28,6 +28,8 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     marginBottom: 15,
     color: BLACK,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik400,
     marginTop: '5%',
     borderRadius: 6,
   },
