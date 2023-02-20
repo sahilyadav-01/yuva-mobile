@@ -4,12 +4,15 @@ import AppointmentNav from './AppointmentNav';
 import MyPlansNav from './MyPlansNav';
 import {useSelector} from 'react-redux';
 import {DARK_BLUE} from '../styles/colors';
+import Header from '../components/Header';
 const Tab = createMaterialTopTabNavigator();
 
 const OPDNavigation = () => {
   const {tabBarVisible} = useSelector(state => state.doctor);
-
+  const OPD_CONSULTATION = 'OPD Consultation';
   return (
+    <>
+    <Header title={OPD_CONSULTATION} showBackButton={true} />
     <Tab.Navigator
       className="flex mt-[15px]"
       screenOptions={{
@@ -25,6 +28,7 @@ const OPDNavigation = () => {
       <Tab.Screen name="My Plans" component={MyPlansNav} />
       <Tab.Screen name="Appointments" component={AppointmentNav} />
     </Tab.Navigator>
+    </>
   );
 };
 
