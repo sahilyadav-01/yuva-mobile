@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { MYPLAN, TRUE } from "../constants";
+import { BOKINGCONFIRM, MYPLAN, TRUE } from "../constants";
 import { rescheduleCancelBookingThunk } from "../../../../store/reducers/DiagnosticsSlice";
 import { useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
@@ -30,10 +30,15 @@ export const useRescheduleAndCancel = () => {
             navigation.navigate(MYPLAN)
         }
     }, [cancelled])
+
+    const rescheduleBooking = () => {
+        navigation.navigate(BOKINGCONFIRM, { bookedDetails: { data:reschedule, flag: true } })
+    }
     return {
         cancelBookingButton,
         cancelBooking,
         cancelFlag,
-        reschedule
+        reschedule,
+        rescheduleBooking
     }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, ScrollView, FlatList ,TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import AppointmentButton from '../../../components/AppointmentButton';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import Header from '../../../components/Header';
-import { ARE_YOU_SURE, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
+import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
 import { RED_SHADE, AMBER } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getPlanDate } from '../../../utils/utils';
-import { SVG } from '../../../../assets';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const RescheduleAndCancel = () => {
@@ -17,7 +17,8 @@ const RescheduleAndCancel = () => {
         cancelBookingButton,
         cancelBooking,
         cancelFlag,
-        reschedule
+        reschedule,
+        rescheduleBooking
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
@@ -44,7 +45,11 @@ const RescheduleAndCancel = () => {
                 <View style={styles.Status}>
                     <Text style={styles.BookingStatus}>{reschedule?.bookingStatus}</Text>
                     <Text style={styles.timeSlot}>
-                        {/* <SVG.dateAndTime style={styles.dateTime}/> */}
+                        <Icon
+                            name={CALENDER}
+                            size={24}
+
+                        />
                         {getPlanDate(reschedule?.timeSlot)}</Text>
                 </View>
                 <View >
@@ -85,7 +90,7 @@ const RescheduleAndCancel = () => {
                     <AppointmentButton
                         name={RESCHEDULE}
                         color={AMBER}
-                    // action={rescheduleBooking}
+                        action={rescheduleBooking}
                     />
                     <AppointmentButton
                         name={CANCEL}

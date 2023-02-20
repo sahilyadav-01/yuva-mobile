@@ -3,21 +3,20 @@ import { useRoute } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { bookTestThunk ,resetMesage} from '../../../../store/reducers/DiagnosticsSlice';
+import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../../../store/reducers/DiagnosticsSlice';
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
 import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
-import { ALERT, BOOKED, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL } from '../constants';
+import { ALERT, BOOKED, BOOKING, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
 
 export const useBookingConfirm = () => {
     const route = useRoute();
-    const { Uuid, userVersion, version, plan } = route.params;
+    const { Uuid, userVersion, version, plan, bookedDetails } = route.params;
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
-
     const [dataRelation, setDataRelation] = useState();
-    const { packageDetails, testBooked, apiErrorMessage ,cityId} = useSelector(state => state.diagnostic);
+    const { packageDetails, testBooked, apiErrorMessage, cityId ,reschedule} = useSelector(state => state.diagnostic);
     const { relationId, userAddress } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
@@ -73,25 +72,44 @@ export const useBookingConfirm = () => {
                 dispatch(bookTestThunk({ data }))
             }
         }
-       
     }
     useEffect(() => {
         if (testBooked?.message && !apiErrorMessage) {
             Alert.alert(ALERT, BOOKED, [{
                 text: OK,
-                onPress: () => { navigation.navigate(RESCHEDULEANDCANCEL ,testBooked) }
+                onPress: () => { navigation.navigate(RESCHEDULEANDCANCEL, testBooked) }
             }])
         }
         else if (apiErrorMessage && !testBooked) {
             Alert.alert(ALERT, apiErrorMessage, [{
                 text: OK,
-               
+
             }])
-          
+
         }
-    return ()=> dispatch(resetMesage())
-    }, [testBooked,apiErrorMessage])
-    
+        return () => dispatch(resetMesage())
+    }, [testBooked, apiErrorMessage])
+
+    const rescheduleBooking = () => {
+        dispatch(rescheduleCancelBookingThunk({ id: bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: getEpoch(date, time) }))
+    }
+    useEffect(() => {
+        if (reschedule?.message && !apiErrorMessage) {
+            Alert.alert(ALERT, UPDATEDBOOKED, [{
+                text: OK,
+                onPress: () => { navigation.navigate(BOOKING) }
+            }])
+        }
+        else if (apiErrorMessage && !reschedule) {
+            Alert.alert(ALERT, apiErrorMessage, [{
+                text: OK,
+
+            }])
+
+        }
+        return () => dispatch(resetMesage())
+    }, [reschedule, apiErrorMessage])
+
     return {
         packageDetails,
         handleDate,
@@ -103,6 +121,8 @@ export const useBookingConfirm = () => {
         setChecked,
         dataRelation,
         userAddress,
-        bookTestScreen
+        bookTestScreen,
+        rescheduleBooking,
+        bookedDetails
     }
 }
