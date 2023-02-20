@@ -4,6 +4,9 @@ import { getDimensions } from '../../utils/utils';
 
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
+  parentView: {
+    paddingTop: 30,
+  },
   container: {
     width: '100%',
     height: 0.60 * height,

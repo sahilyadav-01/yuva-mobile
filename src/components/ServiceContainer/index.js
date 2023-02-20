@@ -1,37 +1,43 @@
-import React from 'react'
-import { View, Text, FlatList } from 'react-native'
-import ServiceCard from '../ServiceCard'
-import { styles } from './styles';
-import { SERVICE_HEADING } from './constant';
+import React from 'react';
+import { View, FlatList } from 'react-native';
+import ServiceCard from '../ServiceCard';
+import LifeStyleCard from '../LifeStyleCard';
 import { useServiceContainer } from './hooks/useServiceContainer';
+import { styles } from './styles';
 
-const ServiceContainer = () => {
-    const { services} = useServiceContainer();
-    return (
-        <View style={styles.mainContainerStyle}>
-            <View style={styles.subContainerStyle1}>
-                <Text style={styles.serviceHeading}>{SERVICE_HEADING} </Text>
-                <View style={styles.line} />
-            </View>
-            <View style={styles.subContainerStyle2}>
-                <FlatList
-                    data={services}
-                    numColumns={3}
-                    renderItem={({ item, index }) => (
-                        <View key={index} style={styles.serviceCardContainerStyle}>
-                            <ServiceCard
-                                key={item.name}
-                                name={item.name}
-                                screenName={item.screenName}
-                                image={item.image}
-                            />
-                        </View>
-                    )}
-                    keyExtractor={(item, index) => index.toString()}
+const ServiceContainer = (props) => {
+  const { services, lifeStyle } = useServiceContainer(props);
+
+  return (
+    <View style={styles.mainContainerStyle}>
+      <View style={styles.subContainerStyle2}>
+        <FlatList
+          data={props.serviceCard ? services : lifeStyle}
+          numColumns={3}
+          renderItem={({ item, index }) => (
+            <View key={index} style={styles.serviceCardContainerStyle}>
+              {props.serviceCard ? (
+                <ServiceCard
+                  key={item.name}
+                  name={item.name}
+                  screenName={item.screenName}
+                  image={item.image}
                 />
+              ) : (
+                <LifeStyleCard
+                  key={item.name}
+                  name={item.name}
+                  // screenName={item.screenName}
+                  image={item.image}
+                />
+              )}
             </View>
-        </View>
-    );
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    </View>
+  );
 };
 
 export default ServiceContainer;

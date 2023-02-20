@@ -57,11 +57,17 @@ import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
+import HRA_END_IMG from './HRA_END_IMG';
+import OBESITY from './OBESITY';
+import THYROID from './THYROID';
+import WOMEN_HEALTH from './WOMEN_HEALTH';
+import SMOKING_AND_ALCOHOL from './SMOKING_AND_ALCOHOL';
+import DIABETES from './DIABETES';
+import HYPER_TENSION from './HYPER_TENSION';
+import dropDown from './dropDown';
 import DATE from './date.png';
 import dateAndTime from './dateAndTime'
-import HRA_END_IMG from './HRA_END_IMG';
 import POPULAR_PLAN from './Popular_Plan.png';
-import dropDown from './dropDown';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
 import FreeSample from './FreeSample';
@@ -140,6 +146,12 @@ const SVG = {
   HRA_END_IMG:HRA_END_IMG,
   dropDown:dropDown,
   AddNewAdress:AddNewAdress,
+  OBESITY:OBESITY,
+  THYROID:THYROID,
+  WOMEN_HEALTH:WOMEN_HEALTH,
+  SMOKING_AND_ALCOHOL:SMOKING_AND_ALCOHOL,
+  DIABETES:DIABETES,
+  HYPER_TENSION:HYPER_TENSION,
   dateAndTime:dateAndTime,
   FreeSample: FreeSample,
   Discount: Discount,

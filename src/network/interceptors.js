@@ -20,6 +20,7 @@ axiosClient.interceptors.request.use(
       '/signup',
       '/reset-password',
       '/package/popular',
+      '/test/popular',
       '/plan/popular',
     ];
     const isLoginApi = loginUrls.filter(item => {
@@ -41,8 +42,9 @@ axiosClient.interceptors.request.use(
 
 axiosClient.interceptors.response.use(
   resp => resp,
-  error => {
-    if (error.response.status && error.response.status === 403) {
+  async error => {
+    const jwt = await getJwt();
+    if (jwt && error.response.status && error.response.status === 403) {
       handleUserForbidden();
     }
     return Promise.reject(error);
