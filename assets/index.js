@@ -78,6 +78,8 @@ import LocationOn from './LocationOn';
 import Run from './run';
 import ShoppingCart from './shoppingCart';
 import SearchIcon from './SearchIcon';
+import landingPageBanner1 from './landingPageBanner1';
+import landingPageBanner2 from './landingPageBanner2';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -162,6 +164,8 @@ const SVG = {
   Run: Run,
   ShoppingCart: ShoppingCart,
   SearchIcon:SearchIcon,
+  landingPageBanner1:landingPageBanner1,
+  landingPageBanner2:landingPageBanner2,
 };
 
 export {PNG, SVG};
