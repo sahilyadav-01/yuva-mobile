@@ -35,7 +35,7 @@ const Section4 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
+                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
@@ -47,7 +47,7 @@ const Section4 = () => {
                   <Text style={styles.questionViewContainerText}>{questionData[1]?.question}</Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]].value ?? ''}
+                    placeholder={PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? ''}
                     setSelected={setQuestion2}
                     data={PickerData[questionData[1]?.questionType]}
                     search={false}
@@ -58,7 +58,7 @@ const Section4 = () => {
                   <Text style={styles.questionViewContainerText}>{questionData[2]?.question}</Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]].value ?? ''}
+                    placeholder={PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? ''}
                     setSelected={setQuestion3}
                     data={PickerData[questionData[2]?.questionType]}
                     search={false}
@@ -70,7 +70,7 @@ const Section4 = () => {
                   </Text>
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
-                    placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]].value ?? ''}
+                    placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
                     setSelected={setQuestion4}
                     data={PickerData[questionData[3]?.questionType]}
                     search={false}
