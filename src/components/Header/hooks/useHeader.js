@@ -1,15 +1,16 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 export const useHeader = (props) => {
-  const {showSearch, searchPlaceholder, title, showBackButton} = props;
+  const { showSearch, searchPlaceholder, title, showBackButton } = props;
   const navigation = useNavigation();
   const route = useRoute();
+  const dispatch = useDispatch();
   const [selectedCity, setSelectedCity] = useState('');
   const [query, setQuery] = useState('');
-  const {loggedIn} = useSelector(state => state.auth);
-  const {cityId} = useSelector(state => state.diagnostic);
+  const { loggedIn } = useSelector(state => state.auth);
+  const { cityId } = useSelector(state => state.diagnostic);
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
@@ -31,11 +32,16 @@ export const useHeader = (props) => {
   const setSelected = (city) => {
     setSelectedCity(city);
   }
+  useEffect(() => {
+    if (selectedCity) {
+      dispatch(setCityId(selectedCity))
+    }
+  }, [selectedCity])
+
 
   const onChangeSearch = (text) => {
     setQuery(text);
   }
-
   return {
     isLoggedIn,
     onCartPress,

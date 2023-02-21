@@ -128,12 +128,16 @@ const initialState = {
   bookedDetailsById: '',
   cancelled: '',
   cityId: [],
+  selectedCityId:'',
 };
 
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
   initialState,
   reducers: {
+    setCityId(state,{payload}){
+      state.selectedCityId=payload;
+    },
     hideErrorBox(state) {
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -249,6 +253,6 @@ const diagnosticSlice = createSlice({
     },
   },
 });
-export const {hideErrorBox,resetMesage} = diagnosticSlice.actions;
+export const {hideErrorBox,resetMesage,setCityId} = diagnosticSlice.actions;
 export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;
