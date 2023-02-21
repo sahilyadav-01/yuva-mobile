@@ -329,8 +329,9 @@ const authSlice = createSlice({
       state.apiErrorMessage = '';
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
+      if (payload.data) {
       setJwt(payload.data.jwt);
-      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
+      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.loading = false;
       state.signUpLoading = false;
       const userData = {
@@ -347,6 +348,11 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+    }
+    else if (payload.data === null) {
+      state.navigateToRegister = true;
+      state.user.status = true;
+    }
     },
     [signupThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -374,8 +380,9 @@ const authSlice = createSlice({
       state.signUpLoading = true;
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
+      if(payload.data){
       setJwt(payload.data.jwt);
-      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
+      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.signUpLoading = false;
       const userData = {
         name: payload.data.name,
@@ -391,6 +398,11 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+    }
+      else if (payload.data === null) {
+        state.navigateToRegister = true;
+        state.user.status = true;
+      }
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -445,6 +457,7 @@ const authSlice = createSlice({
       state.changePasswordSuccess = false;
     },
     [resetPassword.fulfilled]: (state, {payload}) => {
+      if(payload.data){
       state.changePasswordLoading = false;
       state.changePasswordApiError = false;
       state.changePasswordSuccess = true;
@@ -455,7 +468,7 @@ const authSlice = createSlice({
         id: payload.data.id,
       };
       setJwt(payload.data.jwt);
-      setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N');
+      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.user.jwt = payload.data.jwt;
       payload.jwt && setObject('user', userData);
       state.user.name = payload.data.name || 'User';
@@ -464,6 +477,11 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+    }
+    else if (payload.data === null) {
+      state.navigateToRegister = true;
+      state.user.status = true;
+    }
     },
     [resetPassword.rejected]: () => {
       state.changePasswordLoading = false;

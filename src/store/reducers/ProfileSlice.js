@@ -240,15 +240,19 @@ const profileSlice = createSlice({
       state.apiErrorMessage = payload.message;
     },
     [loginThunk.fulfilled]: (state, {payload}) => {
+      if(payload.data)
       state.profileUpdated = payload.data.profileUpdated;
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
+      if(payload.data)
       state.profileUpdated = payload.data.profileUpdated;
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
+      if(payload.data)
       state.profileUpdated = payload.data.profileUpdated;
     },
     [resetPassword.fulfilled]: (state, {payload}) => {
+      if(payload.data)
       state.profileUpdated = payload.data.profileUpdated;
     },
     [logoutThunk.fulfilled]: state => {
