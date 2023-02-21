@@ -43,7 +43,6 @@ axiosClient.interceptors.request.use(
 axiosClient.interceptors.response.use(
   resp => resp,
   async error => {
-    console.log('Err',error);
     const jwt = await getJwt();
     if (jwt && error.response.status && error.response.status === 403) {
       handleUserForbidden();
