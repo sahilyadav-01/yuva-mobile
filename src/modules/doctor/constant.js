@@ -1,1 +1,1 @@
-export const SEARCH="Search for Doctor or Specialization";
+export const SEARCH = 'Search Doctor by Name, Location or Speciality';

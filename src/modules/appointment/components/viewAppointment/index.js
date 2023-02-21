@@ -36,7 +36,7 @@ const ViewAppointments = () => {
   return (
     <View>
       <GoBackCross className="mt-4" onPress={goBack} />
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
         <View>
           <View style={styles.viewCont}>
             <View>

@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
     marginLeft: '4%',
     marginRight: '4%',
   },
+  ScrollViewContainerStyle: {
+    paddingBottom: '100%',
+  },
   Header: {
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
