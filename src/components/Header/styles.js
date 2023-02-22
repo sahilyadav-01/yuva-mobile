@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
     elevation: 10,
     paddingBottom: 24,
+    zIndex:1
   },
   topSection: {
     flexDirection: ROW,
