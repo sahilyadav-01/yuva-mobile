@@ -103,6 +103,7 @@ const ViewAppointments = () => {
                 color={AMBER}
                 action={checkIn}
                 extraStyles={styles.buttonStyleDetails}
+                textStyles={styles.buttonTextStyle}
               />
             ) : (
               <AppointmentButton
@@ -110,6 +111,7 @@ const ViewAppointments = () => {
                 color={AMBER}
                 action={editAppointment}
                 extraStyles={styles.buttonStyleDetails}
+                textStyles={styles.buttonTextStyle}
               />
             )}
             <AppointmentButton
@@ -117,6 +119,7 @@ const ViewAppointments = () => {
               color={RED_SHADE}
               action={cancelAppointment}
               extraStyles={styles.buttonStyleDetails}
+              textStyles={styles.buttonTextStyle}
             />
           </View>
           <View>

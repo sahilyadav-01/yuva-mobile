@@ -69,12 +69,12 @@ export const styles = StyleSheet.create({
     backgroundColor: PLATINUM,
     height: 92,
     width: 400,
+    justifyContent: SPACE_BETWEEN,
   },
   direction: {
     flexDirection: ROW,
     alignSelf: CENTER,
     marginTop: '10%',
-
     marginRight: '15%',
   },
   waitStyle: {
@@ -156,6 +156,8 @@ export const styles = StyleSheet.create({
     paddingLeft: 30,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+
+    alignItems: 'flex-end',
   },
   buttonStyle: {
     flexDirection: ROW,
@@ -169,5 +171,10 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     borderWidth: 1,
+  },
+  buttonTextStyle: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize16,
   },
 });
