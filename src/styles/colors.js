@@ -40,3 +40,7 @@ export const LIGHT_SKY_BLUE = '#C4DEDC';
 export const VERY_LIGHT_SKY_BLUE = '#F7F8F7';
 export const VERY_LIGHT_ORANGE = '#FFF9F3';
 export const PALE_ORANGE = '#B2A08F';
+export const WHITE_OPACITY = '#FFFFFF80';
+export const SUNSET_ORANGE = '#F94A4A';
+export const TUNDORA = '#434343';
+export const BIANCA = '#FBF6EF';
