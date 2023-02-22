@@ -49,7 +49,7 @@ const BookingConfirm = () => {
                     <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
                     <View style={styles.Images}>
                     <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
-                    {item?.away ===true ?
+                    {item?.away ?
                     (<SVG.HomeImage style={styles.Image}/>):(
                         <SVG.AwayImage style={styles.Image}/>
                     )}

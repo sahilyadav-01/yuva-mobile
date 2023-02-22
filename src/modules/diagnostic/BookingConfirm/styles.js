@@ -138,7 +138,8 @@ export const styles = StyleSheet.create({
         margin: 8,
     },
     checkboxAddress: {
-        marginLeft:"88%",
+        alignItems:FLEX_END,
+        marginRight:19,
         marginTop: 14,
     },
     adressName: {
@@ -190,13 +191,12 @@ export const styles = StyleSheet.create({
     },
     Image: {
         flex: 1,
-
         marginTop: 10,
-        marginRight: 19,
 
     },
     Images: {
         justifyContent: SPACE_BETWEEN,
-        flexDirection: ROW
+        flexDirection: ROW,
+        marginRight:25,
     }
 })
