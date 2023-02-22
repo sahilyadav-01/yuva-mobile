@@ -88,7 +88,15 @@ export const useNew = (plan, userVersion, uuid, version) => {
         return {
           key: item.id,
           value:
-            item.name + '   -  ' + item.relation + '   ' + '(' + item.age + ')',
+            item.name +
+            '   |   ' +
+            item.relation +
+            '   |   ' +
+            item.gender +
+            '   |   ' +
+            'Age - ' +
+            item.age +
+            '',
         };
       });
       setDataRelation(newArray);
