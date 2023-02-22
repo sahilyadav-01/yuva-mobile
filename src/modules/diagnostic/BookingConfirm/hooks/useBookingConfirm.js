@@ -81,8 +81,10 @@ export const useBookingConfirm = () => {
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
-        if (packageDetails) {
+        if (packageDetails && address &&  Object.keys(address).length !== 0) {
             dispatch(bookTestThunk({ data }))
+        }else {
+            Alert.alert(ALERT,PLEASE_CHECK_ADDRESS);
         }
     }
     useEffect(() => {

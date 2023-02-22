@@ -1,7 +1,7 @@
 
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { ADDEDSUCCESSFULLY, ALERT, BOOKINGCONFIRM, FIELD_MISSING } from '../constants';
+import { ADDEDSUCCESSFULLY, ALERT, BOOKINGCONFIRM, FIELD_MISSING, PINCODE_MUST_BE } from '../constants';
 import { useNavigation } from '@react-navigation/core';
 import { Alert } from 'react-native';
 
@@ -42,9 +42,7 @@ export const useAddNewAddress = () => {
         setLocation(text);
     };
     const onChangePincode = text => {
-        if (text?.length > 5) {
             setPincode(text);
-        }
     };
     const onChangeCity = text => {
         setCity(text)
@@ -53,7 +51,10 @@ export const useAddNewAddress = () => {
         setContact(number);
     }
     const addAddress = () => {
-        if (location?.length && pincode?.length && city?.length && data?.length) {
+        if(!(pincode?.length ===6 )){
+            Alert.alert(ALERT, PINCODE_MUST_BE)
+        }
+       else if (location?.length && pincode?.length && city?.length && data?.length) {
             navigation.navigate(BOOKINGCONFIRM, DATA);
             Alert.alert(ALERT, ADDEDSUCCESSFULLY)
         } else {
