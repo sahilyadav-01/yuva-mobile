@@ -45,6 +45,16 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     height: 118,
   },
+  familyView: {
+    height: 90,
+    marginLeft: '4%',
+    marginRight: '4%',
+    marginBottom: '5%',
+    shadowColor: WHITE,
+    shadowOpacity: '15%',
+    borderRadius: 10,
+    backgroundColor: WHITE,
+  },
   viewCont: {
     flexDirection: ROW,
     marginBottom: '8%',
@@ -103,6 +113,21 @@ export const styles = StyleSheet.create({
     marginLeft: '5%',
     marginBottom: '5%',
     marginTop: '5%',
+  },
+  FamilyName: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize14,
+    marginLeft: '5%',
+    marginBottom: '5%',
+    marginTop: '5%',
+  },
+  RelationStyle: {
+    color: ORANGE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+    marginLeft: '5%',
+    marginBottom: '5%',
   },
   ContentStyle: {
     marginTop: '5%',

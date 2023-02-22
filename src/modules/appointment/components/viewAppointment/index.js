@@ -10,7 +10,7 @@ import {useView} from './hooks/useView';
 import {CANCEL, CHECK, RESCHEDULE, WAITING} from '../../constant';
 import {ORANGE, RED_SHADE, WHITE} from '../../../../styles/colors';
 import {styles} from './styles';
-import {OPD_DESCRIPTION} from './constant';
+import {BOOKING_FOR, NAME, OPD_DESCRIPTION, RELATION} from './constant';
 import {PNG} from '../../../../../assets';
 const ViewAppointments = () => {
   const {
@@ -67,7 +67,13 @@ const ViewAppointments = () => {
               </View>
             </View>
           </View>
-
+          <View style={styles.description}>
+            <Text style={styles.Header}>{BOOKING_FOR}</Text>
+            <View style={styles.familyView}>
+              <Text style={styles.FamilyName}> {NAME}</Text>
+              <Text style={styles.RelationStyle}>{RELATION}</Text>
+            </View>
+          </View>
           <View style={styles.border}>
             <View>
               <View>

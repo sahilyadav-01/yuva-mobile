@@ -27,6 +27,18 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 20,
   },
+  buttonStyle: {
+    backgroundColor: ORANGE,
+    height: 48,
+    marginLeft: '3%',
+    marginRight: '3%',
+  },
+  text: {
+    color: WHITE,
+    alignSelf: CENTER,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize16,
+  },
   ContentStyle: {
     marginTop: '5%',
     marginBottom: '5%',

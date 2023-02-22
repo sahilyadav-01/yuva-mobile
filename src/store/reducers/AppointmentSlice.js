@@ -4,11 +4,31 @@ import {YuvaService} from '../../network/yuvaService';
 export const newAppointmentThunk = createAsyncThunk(
   'appointment/newAppointment',
   async (
-    {alternateContactNumber,description,doctorId ,plan,programOrPlanUuid,selected: relationId, epoch: timeSlot,userPlanVersion,version},
+    {
+      alternateContactNumber,
+      description,
+      doctorId,
+      plan,
+      programOrPlanUuid,
+      selected: relationId,
+      epoch: timeSlot,
+      userPlanVersion,
+      version,
+    },
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const data = {alternateContactNumber, description,doctorId, plan,programOrPlanUuid,relationId, timeSlot,userPlanVersion,version};
+      const data = {
+        alternateContactNumber,
+        description,
+        doctorId,
+        plan,
+        programOrPlanUuid,
+        relationId,
+        timeSlot,
+        userPlanVersion,
+        version,
+      };
       const endpoint = '/appointment?fromWeb=false';
       const response = await YuvaService.post(endpoint, data);
       return response.data;
@@ -92,6 +112,7 @@ const appointmentSlice = createSlice({
       state.appointment['doctorId'] = payload.doctorId;
     },
     currentAppointment(state, {payload}) {
+      console.log(payload, 'allu arjun');
       state.currentAppointment['id'] = payload.id;
       state.currentAppointment['doctorName'] = payload.doctorName;
       state.currentAppointment['address'] = payload.address;
@@ -104,8 +125,7 @@ const appointmentSlice = createSlice({
     },
     resetAppointments(state) {
       state.userAppointments = [];
-    }
-    
+    },
   },
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
