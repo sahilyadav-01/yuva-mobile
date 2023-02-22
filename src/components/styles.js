@@ -33,6 +33,9 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '3%',
   },
+  buttonStyleDetails: {
+    backgroundColor: RED,
+  },
   text: {
     color: WHITE,
     alignSelf: CENTER,

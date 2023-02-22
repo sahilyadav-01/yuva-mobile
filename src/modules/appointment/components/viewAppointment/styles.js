@@ -8,12 +8,18 @@ import {
   PLATINUM,
   WHITE,
 } from '../../../../styles/colors';
-import {CENTER, ROW} from '../../../../styles/constants';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   description: {
     marginTop: '5%',
+    marginLeft: '4%',
+    marginRight: '4%',
+  },
+  description1: {
+    marginTop: '5%',
+    marginBottom: '5%',
     marginLeft: '4%',
     marginRight: '4%',
   },
@@ -73,6 +79,7 @@ export const styles = StyleSheet.create({
   },
   waitStyle: {
     color: ORANGE,
+    marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
     fontFamily: fonts.family.rubik500,
@@ -80,6 +87,7 @@ export const styles = StyleSheet.create({
   },
   StatusStyle: {
     color: ORANGE,
+    marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
     fontFamily: fonts.family.rubik600,
@@ -148,5 +156,18 @@ export const styles = StyleSheet.create({
     paddingLeft: 30,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+  },
+  buttonStyle: {
+    flexDirection: ROW,
+    paddingHorizontal: 12,
+    justifyContent: SPACE_BETWEEN,
+  },
+  buttonStyleDetails: {
+    width: 170,
+    height: 48,
+    borderRadius: 8,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    borderWidth: 1,
   },
 });
