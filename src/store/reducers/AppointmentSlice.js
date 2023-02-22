@@ -122,6 +122,9 @@ const appointmentSlice = createSlice({
       state.currentAppointment['slot'] = payload.slot;
       state.currentAppointment['otp'] = payload.otp;
       state.currentAppointment['hospitalName'] = payload.hospitalName;
+      state.currentAppointment['memberName'] = payload.memberName;
+      state.currentAppointment['relation'] = payload.relation;
+      state.currentAppointment['customId'] = payload.customId;
     },
     resetAppointments(state) {
       state.userAppointments = [];

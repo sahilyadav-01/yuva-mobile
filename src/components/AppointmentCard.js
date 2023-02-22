@@ -19,6 +19,9 @@ const AppointmentCard = ({
   slot,
   otp,
   hospitalName,
+  relation,
+  memberName,
+  customId
 }) => {
   /**
    * Use navigation
@@ -41,6 +44,9 @@ const AppointmentCard = ({
         slot,
         otp,
         hospitalName,
+        relation,
+        memberName,
+        customId
       }),
     );
     navigation.navigate('ViewAppointment');
