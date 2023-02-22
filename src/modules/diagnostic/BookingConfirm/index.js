@@ -28,7 +28,7 @@ const BookingConfirm = () => {
         bookedDetails,
         rescheduleBooking,
         AddNewAddress,
-    userAttribute} = useBookingConfirm();
+        userAttribute } = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
@@ -48,11 +48,11 @@ const BookingConfirm = () => {
                     <Text style={styles.adressName}>{item?.address}</Text>
                     <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
                     <View style={styles.Images}>
-                    <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
-                    {item?.away ?
-                    (<SVG.HomeImage style={styles.Image}/>):(
-                        <SVG.AwayImage style={styles.Image}/>
-                    )}
+                        <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
+                        {item?.away ?
+                            (<SVG.AwayImage style={styles.Image} />) : (
+                                <SVG.HomeImage style={styles.Image} />
+                            )}
                     </View>
                 </View>
             )
@@ -63,7 +63,7 @@ const BookingConfirm = () => {
         return (
 
             <View>
-                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
+                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
                 <ScrollView
                     contentContainerStyle={styles.contentContainerStyle}>
                     <View style={styles.booksID}>
