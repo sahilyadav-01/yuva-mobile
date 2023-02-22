@@ -54,7 +54,7 @@ export const useAddNewAddress = () => {
         if(!(pincode?.length ===6 )){
             Alert.alert(ALERT, PINCODE_MUST_BE)
         }
-       else if (location?.length && pincode?.length && city?.length && data?.length) {
+       else if (location?.length  && city?.length && data?.length) {
             navigation.navigate(BOOKINGCONFIRM, DATA);
             Alert.alert(ALERT, ADDEDSUCCESSFULLY)
         } else {
