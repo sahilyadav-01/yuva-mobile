@@ -56,11 +56,9 @@ const AppointmentCard = ({
     <View>
       {status === 'CANCELLED' || status === 'COMPLETED' || status === 'FINISHED' ? (
         <TouchableOpacity
-          // onPress={viewAppointment}
+          onPress={viewAppointment}
           className="w-full h-[170px] mt-[20px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
-          {/* wrapper */}
           <View className="flex my-[10px] mx-[10px]">
-            {/* Doctor */}
             <View className="flex-row justify-between">
               <Text className="text-[#319B4B] text-base">
                 {appointmentStatus(status)}

@@ -1,20 +1,18 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   BLACK,
   CYAN_BLUE,
   DARK_BLUE,
+  GREEN,
   LIGHT_MERCURY,
   ORANGE,
   PLATINUM,
+  RED,
+  RED_SHADE,
   WHITE,
 } from '../../../../styles/colors';
-import {
-  CENTER,
-  FLEX_END,
-  ROW,
-  SPACE_BETWEEN,
-} from '../../../../styles/constants';
-import {fonts} from '../../../../styles/fonts';
+import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import { fonts } from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   description: {
@@ -144,16 +142,22 @@ export const styles = StyleSheet.create({
   },
   timeSlot: {
     backgroundColor: DARK_BLUE,
-    marginTop: 22,
     borderBottomLeftRadius: 24,
     borderTopLeftRadius: 24,
     minHeight: 48,
     marginBottom: 22,
     width: 141,
-    paddingLeft: 30,
+    paddinLeft: 30,
+    marginLeft: 160,
+    justifyContent:SPACE_BETWEEN,
+    marginTop: 22,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+  },
+  StatusBox: {
+    flexDirection: ROW,
     alignItems: FLEX_END,
+
   },
   buttonStyle: {
     flexDirection: ROW,
@@ -175,4 +179,52 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
     marginHorizontal: 10,
   },
+  statusBoxText: {
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize18,
+    color: RED_SHADE,
+    marginTop:13,
+    marginLeft:17
+  },
+
+  statusBoxInitiated: {
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize18,
+    marginTop:13,
+    marginLeft:17
+  },
+  AppointmentId: {
+    flexDirection: ROW
+  },
+  AppointmentIdText: {
+    marginTop: 17,
+    marginLeft: 36,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    color:DARK_BLUE
+  },
+  customId: {
+    marginTop: 5,
+    marginLeft: 36,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    color:CYAN_BLUE,
+  },
+  appoitmentid: {
+    marginTop: 8,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    marginLeft:17,
+    color:DARK_BLUE
+  },
+  appoitmentidNumber: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    marginTop: 5,
+    marginLeft:17,
+    color:CYAN_BLUE,
+
+  }
+
+
 });
