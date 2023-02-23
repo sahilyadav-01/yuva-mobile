@@ -1,17 +1,24 @@
 import React from 'react';
-import { View, Text, TextInput, Image, ScrollView } from 'react-native';
+import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import { getDate, getTime, appointmentStatus } from '../../../../utils/utils';
+import {getDate, getTime, appointmentStatus} from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
-import { useSelector } from 'react-redux';
-import { useView } from './hooks/useView';
-import { CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING } from '../../constant';
-import { AMBER, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
-import { styles } from './styles';
-import { BOOKING_FOR, NAME, OPD_DESCRIPTION, RELATION } from './constant';
-import { PNG } from '../../../../../assets';
+import {useSelector} from 'react-redux';
+import {useView} from './hooks/useView';
+import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
+import {
+  AMBER,
+  CYAN_BLUE,
+  ORANGE,
+  ORANGE_GREY,
+  RED_SHADE,
+  WHITE,
+} from '../../../../styles/colors';
+import {styles} from './styles';
+import {BOOKING_FOR, MYSELF, NAME, OPD_DESCRIPTION, RELATION} from './constant';
+import {PNG} from '../../../../../assets';
 const ViewAppointments = () => {
   const {
     id,
@@ -25,7 +32,7 @@ const ViewAppointments = () => {
     hospitalName,
     memberName,
     relation,
-    customId
+    customId,
   } = useSelector(state => state.appointment.currentAppointment);
   const cancelMessage = 'Are you sure you want to cancel ?';
   const {
@@ -70,8 +77,12 @@ const ViewAppointments = () => {
             <Text style={styles.Header}>{BOOKING_FOR}</Text>
           </View>
           <View style={styles.familyView}>
-            <Text style={[styles.FamilyName, { color: memberName ? null : '#E68D36' }]}>
-              {memberName || 'Myself'}
+            <Text
+              style={[
+                styles.FamilyName,
+                {color: memberName ? null : ORANGE_GREY},
+              ]}>
+              {memberName || MYSELF}
             </Text>
             {relation && <Text style={styles.RelationStyle}>{relation}</Text>}
           </View>
@@ -109,6 +120,7 @@ const ViewAppointments = () => {
                 action={checkIn}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
+                checkIn={true}
               />
             ) : (
               <AppointmentButton
@@ -117,6 +129,7 @@ const ViewAppointments = () => {
                 action={editAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
+                reschedule={true}
               />
             )}
             <AppointmentButton

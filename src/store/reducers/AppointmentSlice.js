@@ -112,7 +112,6 @@ const appointmentSlice = createSlice({
       state.appointment['doctorId'] = payload.doctorId;
     },
     currentAppointment(state, {payload}) {
-      console.log(payload, 'allu arjun');
       state.currentAppointment['id'] = payload.id;
       state.currentAppointment['doctorName'] = payload.doctorName;
       state.currentAppointment['address'] = payload.address;
