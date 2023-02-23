@@ -44,3 +44,5 @@ export const WHITE_OPACITY = '#FFFFFF80';
 export const SUNSET_ORANGE = '#F94A4A';
 export const TUNDORA = '#434343';
 export const BIANCA = '#FBF6EF';
+export const SPANISH_WHITE='#FEF2DD';
+export const GUARDSMAN_RED = '#D10000';

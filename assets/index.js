@@ -82,6 +82,7 @@ import SearchIcon from './SearchIcon';
 import landingPageBanner1 from './landingPageBanner1';
 import LandingPageBanner2 from './LandingPageBanner2.png';
 import tick from './tick';
+import minus from './minus';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -169,7 +170,8 @@ const SVG = {
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
   landingPageBanner1:landingPageBanner1,
-  tick
+  tick,
+  minus
 };
 
 export {PNG, SVG};
