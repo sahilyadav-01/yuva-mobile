@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     minHeight:92,
   },
   timeSlot:{
-    backgroundColor:DARK_BLUE,
+    backgroundColor:CYAN_BLUE,
     marginLeft:210,
     marginTop:22,
     borderBottomLeftRadius:24,
@@ -138,5 +138,13 @@ marginLeft:133,
 color: CYAN_BLUE,
 fontFamily: fonts.family.rubik400,
 fontSize: fonts.size.fontSize10,
-}
+},
+numberSytle: {
+  color: WHITE,
+  fontFamily: fonts.family.rubik400,
+  fontSize: fonts.size.fontSize10,
+},
+direction: {
+  flexDirection: ROW,
+},
 });

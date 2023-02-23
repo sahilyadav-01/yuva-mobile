@@ -5,9 +5,9 @@ import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import Header from '../../../components/Header';
 import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
-import { RED_SHADE, AMBER } from '../../../styles/colors';
+import { RED_SHADE, AMBER, WHITE } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
-import { getPlanDate } from '../../../utils/utils';
+import { getDate, getTime } from '../../../utils/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
@@ -45,13 +45,17 @@ const RescheduleAndCancel = () => {
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.Status}>
                     <Text style={styles.BookingStatus}>{reschedule?.bookingStatus}</Text>
-                    <Text style={styles.timeSlot}>
-                        <Icon
-                            name={CALENDER}
-                            size={24}
+                    <View style={styles.timeSlot}>
+                        <View style={styles.direction}>
+                            <Icon name={CALENDER} size={24} color={WHITE} />
+                            <View>
 
-                        />
-                        {getPlanDate(reschedule?.timeSlot)}</Text>
+                                <Text style={styles.numberSytle}>{getDate(reschedule?.timeSlot)}</Text>
+                                <Text style={styles.numberSytle}>{getTime(reschedule?.timeSlot)}</Text>
+                            </View>
+                        </View>
+                    </View>
+
                 </View>
                 <View >
                     <Text style={styles.selectDate}>
