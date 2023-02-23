@@ -140,6 +140,7 @@ fontFamily: fonts.family.rubik400,
 fontSize: fonts.size.fontSize10,
 },
 numberSytle: {
+  marginLeft:5,
   color: WHITE,
   fontFamily: fonts.family.rubik400,
   fontSize: fonts.size.fontSize10,
