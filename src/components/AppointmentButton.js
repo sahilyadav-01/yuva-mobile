@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import CheckIn from '../../assets/CheckIn';
-import Reschedule from '../../assets/Reschedule';
+import {SVG} from '../../assets';
 const AppointmentButton = ({
   color,
   name,
@@ -17,8 +16,8 @@ const AppointmentButton = ({
       onPress={action}
       disabled={disable === undefined ? false : disable}
       style={[{backgroundColor: color}, extraStyles]}>
-      {reschedule && <Reschedule />}
-      {checkIn && <CheckIn />}
+      {reschedule && <SVG.Reschedule />}
+      {checkIn && <SVG.CheckIn />}
       <Text style={textStyles}>{name}</Text>
     </TouchableOpacity>
   );
