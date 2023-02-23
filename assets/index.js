@@ -79,6 +79,8 @@ import LocationOn from './LocationOn';
 import Run from './run';
 import ShoppingCart from './shoppingCart';
 import SearchIcon from './SearchIcon';
+import Reschedule from './Reschedule';
+import CheckIn from './CheckIn';
 import landingPageBanner1 from './landingPageBanner1';
 import LandingPageBanner2 from './LandingPageBanner2.png';
 import AwayImage from './away';
@@ -141,7 +143,7 @@ const PNG = {
   DATE,
   EYE,
   POPULAR_PLAN,
-  LandingPageBanner2
+  LandingPageBanner2,
 };
 
 const SVG = {
@@ -169,10 +171,11 @@ const SVG = {
   Run: Run,
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
-  landingPageBanner1:landingPageBanner1,
-  AwayImage:AwayImage,
-  HomeImage:HomeImage
-  
+  landingPageBanner1: landingPageBanner1,
+  AwayImage: AwayImage,
+  HomeImage: HomeImage,
+  Reschedule: Reschedule,
+  CheckIn: CheckIn,
 };
 
 export {PNG, SVG};

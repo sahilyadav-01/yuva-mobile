@@ -10,3 +10,5 @@ export const INITIATED="INITIATED";
 export const PENDING="Pending";
 export const CONFIRMED="CONFIRMED";
 export const APPOINTMENT_ID="Appointment Id:";
+export const MYSELF = 'Myself';
+

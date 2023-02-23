@@ -17,17 +17,14 @@ import { fonts } from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   description: {
     marginTop: '5%',
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
   },
   description1: {
-    marginTop: '5%',
-    marginBottom: '5%',
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginVertical: '5%',
+    marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: '100%',
+    paddingBottom: '90%',
   },
   Header: {
     color: CYAN_BLUE,
@@ -46,8 +43,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
   },
   border: {
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
     borderRadius: 10,
@@ -56,8 +52,7 @@ export const styles = StyleSheet.create({
   },
   familyView: {
     height: 90,
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
     marginBottom: '5%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
@@ -122,16 +117,14 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
-    marginBottom: '5%',
-    marginTop: '5%',
+    marginVertical: '5%',
   },
   FamilyName: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
-    marginBottom: '5%',
-    marginTop: '5%',
+    marginVertical: '5%',
   },
   RelationStyle: {
     color: ORANGE,
@@ -141,8 +134,7 @@ export const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   ContentStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
+    marginVertical: '5%',
     marginLeft: '15%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -164,6 +156,8 @@ export const styles = StyleSheet.create({
   },
   StatusBox: {
     flexDirection: ROW,
+    alignItems: FLEX_END,
+
   },
   buttonStyle: {
     flexDirection: ROW,
@@ -177,11 +171,13 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     borderWidth: 1,
+    flexDirection: ROW,
   },
   buttonTextStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
   },
   statusBoxText: {
     fontFamily: fonts.family.rubik600,
