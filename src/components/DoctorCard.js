@@ -6,7 +6,7 @@ import {newAppointment} from '../store/reducers/AppointmentSlice';
 import {PNG, SVG} from '../../assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './styles';
-import {BOOK_APPOINTMENT} from './constants';
+import {BOOK_APPOINTMENT, YEARS_EXP} from './constants';
 const DoctorCard = ({
   doctorId,
   name,
@@ -19,7 +19,7 @@ const DoctorCard = ({
   plan,
   userVersion,
   uuid,
-  version
+  version,
 }) => {
   /**
    * Hooks
@@ -27,10 +27,10 @@ const DoctorCard = ({
   const params = {
     Doctor: name,
     Specialization: specialization,
-    plan:plan,
-    userVersion:userVersion,
-    uuid:uuid,
-    version:version
+    plan: plan,
+    userVersion: userVersion,
+    uuid: uuid,
+    version: version,
   };
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -54,7 +54,9 @@ const DoctorCard = ({
             <Text style={styles.NameStyle}>
               {name} - {qual}
             </Text>
-            <Text style={styles.Year}>{exp} Years</Text>
+            <Text style={styles.Year}>
+              {exp} {YEARS_EXP}
+            </Text>
           </View>
 
           <Text style={styles.ContentStyle}>{specialization}</Text>

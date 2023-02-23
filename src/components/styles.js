@@ -27,10 +27,22 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 20,
   },
+  buttonStyle: {
+    backgroundColor: ORANGE,
+    height: 48,
+    marginLeft: '3%',
+    marginRight: '3%',
+  },
+  text: {
+    color: WHITE,
+    alignSelf: CENTER,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize16,
+  },
   ContentStyle: {
     marginTop: '5%',
     marginBottom: '5%',
-    marginLeft: '10%',
+    marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -38,7 +50,7 @@ export const styles = StyleSheet.create({
   NameStyle: {
     marginTop: '5%',
     marginBottom: '5%',
-    marginLeft: '10%',
+    marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
@@ -66,7 +78,8 @@ export const styles = StyleSheet.create({
   Button: {
     backgroundColor: CYAN_BLUE,
     height: 31,
-    borderRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   buttonView: {
     marginTop: 18,
@@ -87,7 +100,7 @@ export const styles = StyleSheet.create({
   },
   Location: {
     flexDirection: ROW,
-    marginLeft: '10%',
+    marginLeft: '3%',
     color: BLACK,
   },
 

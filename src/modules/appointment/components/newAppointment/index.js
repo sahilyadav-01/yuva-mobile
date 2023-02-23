@@ -8,7 +8,7 @@ import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
-import {DARK_BLUE} from '../../../../styles/colors';
+import {DARK_BLUE, LIGHT_MERCURY} from '../../../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
@@ -28,7 +28,8 @@ import {useRoute} from '@react-navigation/native';
 
 const NewAppointments = () => {
   const route = useRoute();
-  const {Doctor, Specialization , plan , userVersion ,uuid, version} = route.params;
+  const {Doctor, Specialization, plan, userVersion, uuid, version} =
+    route.params;
   const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
@@ -47,7 +48,7 @@ const NewAppointments = () => {
     time,
     setSelected,
     dataRelation,
-  } = useNew(plan,userVersion,uuid,version);
+  } = useNew(plan, userVersion, uuid, version);
 
   return (
     <View>
@@ -86,7 +87,7 @@ const NewAppointments = () => {
               value={date}
               onChangeDate={handleDate}
               style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
+              selectionColor={LIGHT_MERCURY}
               theme={styles.theme}
               minimumDate={new Date()}
             />

@@ -8,7 +8,7 @@ import {
   PLATINUM,
   WHITE,
 } from '../../../../styles/colors';
-import {CENTER, ROW} from '../../../../styles/constants';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -16,6 +16,15 @@ export const styles = StyleSheet.create({
     marginTop: '5%',
     marginLeft: '4%',
     marginRight: '4%',
+  },
+  description1: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '4%',
+    marginRight: '4%',
+  },
+  ScrollViewContainerStyle: {
+    paddingBottom: '100%',
   },
   Header: {
     color: CYAN_BLUE,
@@ -42,6 +51,16 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     height: 118,
   },
+  familyView: {
+    height: 90,
+    marginLeft: '4%',
+    marginRight: '4%',
+    marginBottom: '5%',
+    shadowColor: WHITE,
+    shadowOpacity: '15%',
+    borderRadius: 10,
+    backgroundColor: WHITE,
+  },
   viewCont: {
     flexDirection: ROW,
     marginBottom: '8%',
@@ -50,16 +69,17 @@ export const styles = StyleSheet.create({
     backgroundColor: PLATINUM,
     height: 92,
     width: 400,
+    justifyContent: SPACE_BETWEEN,
   },
   direction: {
     flexDirection: ROW,
     alignSelf: CENTER,
     marginTop: '10%',
-
     marginRight: '15%',
   },
   waitStyle: {
     color: ORANGE,
+    marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
     fontFamily: fonts.family.rubik500,
@@ -67,6 +87,7 @@ export const styles = StyleSheet.create({
   },
   StatusStyle: {
     color: ORANGE,
+    marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
     fontFamily: fonts.family.rubik600,
@@ -101,6 +122,21 @@ export const styles = StyleSheet.create({
     marginBottom: '5%',
     marginTop: '5%',
   },
+  FamilyName: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize14,
+    marginLeft: '5%',
+    marginBottom: '5%',
+    marginTop: '5%',
+  },
+  RelationStyle: {
+    color: ORANGE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+    marginLeft: '5%',
+    marginBottom: '5%',
+  },
   ContentStyle: {
     marginTop: '5%',
     marginBottom: '5%',
@@ -120,5 +156,25 @@ export const styles = StyleSheet.create({
     paddingLeft: 30,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+
+    alignItems: 'flex-end',
+  },
+  buttonStyle: {
+    flexDirection: ROW,
+    paddingHorizontal: 12,
+    justifyContent: SPACE_BETWEEN,
+  },
+  buttonStyleDetails: {
+    width: 170,
+    height: 48,
+    borderRadius: 8,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    borderWidth: 1,
+  },
+  buttonTextStyle: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize16,
   },
 });

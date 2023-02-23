@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, AMBER, GAINSBORO} from '../../styles/colors';
+import {
+  ORANGE_GREY,
+  VERY_LIGHT_ORANGE,
+  DARK_MAROON,
+  ORANGE,
+} from '../../styles/colors';
 
 export const styles = StyleSheet.create({
   contentContainerStyle: {
@@ -7,13 +12,15 @@ export const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   search: {
-    backgroundColor: AMBER,
-    color: GAINSBORO,
+    backgroundColor: VERY_LIGHT_ORANGE,
+    color: ORANGE_GREY,
     marginTop: 10,
     marginLeft: '5%',
     marginRight: '5%',
     fontSize: 12,
     borderRadius: 12,
+    borderWidth: 1,
+    borderColor: ORANGE,
   },
-  theme: {colors: {text: BLACK}},
+  theme: {colors: {text: DARK_MAROON}},
 });
