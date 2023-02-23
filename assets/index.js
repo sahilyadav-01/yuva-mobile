@@ -172,8 +172,8 @@ const SVG = {
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
   landingPageBanner1: landingPageBanner1,
-  AwayImage:AwayImage,
-  HomeImage:HomeImage
+  AwayImage: AwayImage,
+  HomeImage: HomeImage,
   Reschedule: Reschedule,
   CheckIn: CheckIn,
 };
