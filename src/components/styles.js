@@ -324,4 +324,8 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
   },
+  StatusColor:{
+    color:RED_SHADE,
+    backgroundColor:RED_SHADE
+  }
 });

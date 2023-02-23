@@ -3,14 +3,14 @@ import { View, Text, TextInput, Image, ScrollView } from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import { getDate, getTime, appointmentStatus } from '../../../../utils/utils';
+import { getDate, getTime, appointmentStatus, splitCustomId } from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
 import { useSelector } from 'react-redux';
 import { useView } from './hooks/useView';
 import { CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING } from '../../constant';
-import { AMBER, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
+import { AMBER, GREEN, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
 import { styles } from './styles';
-import { BOOKING_FOR, NAME, OPD_DESCRIPTION, RELATION } from './constant';
+import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION } from './constant';
 import { PNG } from '../../../../../assets';
 const ViewAppointments = () => {
   const {
@@ -43,27 +43,44 @@ const ViewAppointments = () => {
         <View>
           <View style={styles.viewCont}>
             <View>
-              {status === 'CONFIRMED' ? (
-                <Text className="text-lg font-bold text-[#319B4B]">
-                  {appointmentStatus(status)}
-                </Text>
+              {status === CANCELLED || status === COMPLETED || status === FINISHED || status === CONFIRMED ? (
+                <View style={styles.StatusBox}>
+                  <View>
+                    <Text style={[styles.statusBoxInitiated, { color: status === CANCELLED ? RED_SHADE : GREEN }]}>
+                      {appointmentStatus(status)}
+                    </Text>
+                    <View >
+                      <Text style={styles.appoitmentid}>{APPOINTMENT_ID}</Text>
+                      <Text style={styles.appoitmentidNumber}>{splitCustomId(customId)}</Text>
+                    </View>
+                  </View>
+                  <View style={styles.timeSlot}>
+
+                    <View style={styles.direction}>
+                      <Icon name="calendar-blank-outline" size={24} color={WHITE} />
+                      <View>
+
+                        <Text style={styles.numberSytle}>{getDate(slot)}</Text>
+                        <Text style={styles.numberSytle}>{getTime(slot)}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
               ) : (
-                <View>
-                  <Text style={styles.StatusStyle}>
-                    {appointmentStatus(status)}
-                  </Text>
-                  <Text style={styles.waitStyle}>{WAITING}</Text>
+                <View style={styles.AppointmentId}>
+                  <View >
+                    <Text style={styles.StatusStyle}>
+                      {appointmentStatus(status)}
+                    </Text>
+                    <Text style={styles.waitStyle}>{WAITING}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.AppointmentIdText}>{APPOINTMENT_ID}</Text>
+                    <Text style={styles.customId}>{splitCustomId(customId)}</Text>
+                  </View>
                 </View>
+
               )}
-            </View>
-            <View style={styles.timeSlot}>
-              <View style={styles.direction}>
-                <Icon name="calendar-blank-outline" size={24} color={WHITE} />
-                <View>
-                  <Text style={styles.numberSytle}>{getDate(slot)}</Text>
-                  <Text style={styles.numberSytle}>{getTime(slot)}</Text>
-                </View>
-              </View>
             </View>
           </View>
           <View style={styles.description1}>
@@ -102,7 +119,7 @@ const ViewAppointments = () => {
           </View>
 
           <View style={styles.buttonStyle}>
-            {status === 'CONFIRMED' ? (
+            {status === CONFIRMED &&
               <AppointmentButton
                 name={CHECK}
                 color={AMBER}
@@ -110,7 +127,7 @@ const ViewAppointments = () => {
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
               />
-            ) : (
+            }{(status === INITIATED) &&
               <AppointmentButton
                 name={RESCHEDULE}
                 color={AMBER}
@@ -118,14 +135,15 @@ const ViewAppointments = () => {
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
               />
-            )}
-            <AppointmentButton
-              name={CANCEL}
-              color={RED_SHADE}
-              action={cancelAppointment}
-              extraStyles={styles.buttonStyleDetails}
-              textStyles={styles.buttonTextStyle}
-            />
+            }
+            {(status === CONFIRMED || status === INITIATED) &&
+              <AppointmentButton
+                name={CANCEL}
+                color={RED_SHADE}
+                action={cancelAppointment}
+                extraStyles={styles.buttonStyleDetails}
+                textStyles={styles.buttonTextStyle}
+              />}
           </View>
           <View>
             <MessageBox
