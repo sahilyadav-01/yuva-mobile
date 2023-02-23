@@ -13,3 +13,4 @@ export const BOOKINGCONFIRM="BookingConfirm";
 export const ALERT="ALERT";
 export const FIELD_MISSING="Field Missing";
 export const ADDEDSUCCESSFULLY="Address Added Successfully";
+export const PINCODE_MUST_BE="Pincode must be of 6 digit numeric";

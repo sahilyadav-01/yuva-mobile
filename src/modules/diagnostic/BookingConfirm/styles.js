@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         backgroundColor: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
-        marginBottom:23
+        marginBottom: 23
     },
     contentContainerStyle: {
         flexGrow: 1,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
         marginRight: 30,
         minHeight: 42,
         backgroundColor: LIGHT_GREYISH_RED,
-        borderRadius:6
+        borderRadius: 6
     },
     textBook: {
         textAlign: CENTER,
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     selectDate: {
         marginTop: 30,
         marginLeft: 16,
-        marginRight:140,
+        marginRight: 140,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
@@ -87,21 +87,21 @@ export const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         minHeight: 42,
-        marginBottom:15,
+        marginBottom: 15,
     },
     AddMember: {
         marginLeft: 278,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize10,
-        marginRight:18,
-        minHeight:28,
-        borderWidth:0.1,
+        marginRight: 18,
+        minHeight: 28,
+        borderWidth: 0.1,
         shadowColor: WHITE,
         shadowOpacity: "5%",
         borderRadius: 2,
-        backgroundColor:WHITE,
-        dropShadow:BOX_SHADOW,
+        backgroundColor: WHITE,
+        dropShadow: BOX_SHADOW,
     },
     SelectMember: {
         marginLeft: 28,
@@ -115,9 +115,9 @@ export const styles = StyleSheet.create({
     },
     addNew: {
         marginLeft: 18,
-        marginRight:18,
-        minHeight:28,
-        marginTop:9,
+        marginRight: 18,
+        minHeight: 28,
+        marginTop: 9,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
@@ -138,7 +138,8 @@ export const styles = StyleSheet.create({
         margin: 8,
     },
     checkboxAddress: {
-        marginLeft: 284,
+        alignItems:FLEX_END,
+        marginRight:19,
         marginTop: 14,
     },
     adressName: {
@@ -151,7 +152,7 @@ export const styles = StyleSheet.create({
     adressCheck: {
         marginTop: 11,
         marginLeft: 40,
-        marginBottom:15,
+        marginBottom: 15,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
@@ -164,28 +165,38 @@ export const styles = StyleSheet.create({
         shadowColor: WHITE,
         shadowOpacity: "5%",
         borderRadius: 6,
-        backgroundColor:WHITE,
-        dropShadow:BOX_SHADOW
+        backgroundColor: WHITE,
+        dropShadow: BOX_SHADOW
 
     },
-    Add:{
-        marginLeft:5,
-       borderWidth:0.1,
-       marginTop:18,
-       shadowColor: WHITE,
-       shadowOpacity: "5%",
-       borderRadius: 2,
-       backgroundColor:WHITE,
-       dropShadow:BOX_SHADOW
-    },
-    AddMem:{
-        marginLeft:5,
-        borderWidth:0.1,
+    Add: {
+        marginLeft: 5,
+        borderWidth: 0.1,
+        marginTop: 18,
         shadowColor: WHITE,
         shadowOpacity: "5%",
         borderRadius: 2,
-        backgroundColor:WHITE,
-        dropShadow:BOX_SHADOW,
+        backgroundColor: WHITE,
+        dropShadow: BOX_SHADOW
+    },
+    AddMem: {
+        marginLeft: 5,
+        borderWidth: 0.1,
+        shadowColor: WHITE,
+        shadowOpacity: "5%",
+        borderRadius: 2,
+        backgroundColor: WHITE,
+        dropShadow: BOX_SHADOW,
 
+    },
+    Image: {
+        flex: 1,
+        marginTop: 10,
+
+    },
+    Images: {
+        justifyContent: SPACE_BETWEEN,
+        flexDirection: ROW,
+        marginRight:25,
     }
 })

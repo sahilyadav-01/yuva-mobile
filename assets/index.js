@@ -83,6 +83,8 @@ import Reschedule from './Reschedule';
 import CheckIn from './CheckIn';
 import landingPageBanner1 from './landingPageBanner1';
 import LandingPageBanner2 from './LandingPageBanner2.png';
+import AwayImage from './away';
+import HomeImage from './home';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -170,6 +172,8 @@ const SVG = {
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
   landingPageBanner1: landingPageBanner1,
+  AwayImage:AwayImage,
+  HomeImage:HomeImage
   Reschedule: Reschedule,
   CheckIn: CheckIn,
 };
