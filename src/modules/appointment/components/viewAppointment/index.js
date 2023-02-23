@@ -10,6 +10,7 @@ import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
   AMBER,
+  CYAN_BLUE,
   ORANGE,
   ORANGE_GREY,
   RED_SHADE,
@@ -119,6 +120,7 @@ const ViewAppointments = () => {
                 action={checkIn}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
+                checkIn={true}
               />
             ) : (
               <AppointmentButton
@@ -127,6 +129,7 @@ const ViewAppointments = () => {
                 action={editAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
+                reschedule={true}
               />
             )}
             <AppointmentButton

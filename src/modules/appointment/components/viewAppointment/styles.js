@@ -167,10 +167,12 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     borderWidth: 1,
+    flexDirection: ROW,
   },
   buttonTextStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
   },
 });
