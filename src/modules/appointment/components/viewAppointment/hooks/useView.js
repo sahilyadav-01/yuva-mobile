@@ -2,11 +2,10 @@ import {useNavigation} from '@react-navigation/core';
 import {
   allAppointmentThunk,
   cancelAppointmentThunk,
-  getAppointmentThunk,
+  appointmentThunk,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-
 
 export const useView = () => {
   const [cancelFlag, setCancelFlag] = useState(false);
@@ -55,7 +54,7 @@ export const useView = () => {
       .then(() => navigation.navigate('AppointmentHome'));
   };
   useEffect(() => {
-    dispatch(getAppointmentThunk({id}));
+    dispatch(appointmentThunk({id}));
   }, []);
 
   return {

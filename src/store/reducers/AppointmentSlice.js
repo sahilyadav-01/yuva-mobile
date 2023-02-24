@@ -52,7 +52,7 @@ export const cancelAppointmentThunk = createAsyncThunk(
   },
 );
 
-export const getAppointmentThunk = createAsyncThunk(
+export const appointmentThunk = createAsyncThunk(
   'appointment',
   async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
@@ -184,14 +184,20 @@ const appointmentSlice = createSlice({
       state.errorAppointment = payload;
     },
 
-    [getAppointmentThunk.pending]: (state, {payload}) => {
-      state.loading = false;
+    [appointmentThunk.pending]: (state, {payload}) => {
+      state.loading = true;
     },
-    [getAppointmentThunk.fulfilled]: (state, {payload}) => {
+    [appointmentThunk.fulfilled]: (state, {payload}) => {
       state.getAppointment = payload.data;
+      state.loading = false;
+      state.apiError = false;
+      state.apiErrorMessage = '';
     },
-    [getAppointmentThunk.rejected]: (state, {payload}) => {
-      state.appointmentDescription = payload;
+    [appointmentThunk.rejected]: (state, {payload}) => {
+      state.getAppointment = payload;
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = payload.error;
     },
   },
 });

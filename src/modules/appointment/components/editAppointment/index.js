@@ -15,6 +15,7 @@ import {
   RESCHEDULE_APPOINTMENT,
   SPECIALIZATION,
 } from '../../constant';
+import {PNG} from '../../../../../assets';
 import {styles} from './styles';
 import {DARK_BLUE, ORANGE} from '../../../../styles/colors';
 import {
@@ -64,10 +65,7 @@ const EditAppointments = () => {
 
         <View style={styles.border}>
           <View style={styles.ImageStyle}>
-            <Image
-              source={require('../../../../../assets/icon.png')}
-              style={styles.Image}
-            />
+            <Image source={PNG.ICON} style={styles.Image} />
             <View>
               <Text style={styles.NameStyle}>{Doctor}</Text>
               <Text style={styles.ContentStyle}>{Specialization}</Text>
@@ -86,7 +84,7 @@ const EditAppointments = () => {
           <View style={styles.dateAndTime}>
             <Text style={styles.Date}>{DATE}</Text>
             <DateTimePicker
-              type={DATE}
+              type="date"
               value={date}
               onChangeDate={handleDate}
               style={styles.dateTimePicker}
@@ -99,7 +97,7 @@ const EditAppointments = () => {
           <View style={styles.dateAndTime}>
             <Text tyle={styles.Time}>{TIME}</Text>
             <DateTimePicker
-              type={TIME}
+              type="time"
               value={time}
               onChangeDate={handleTime}
               style={styles.dateTimePicker}
