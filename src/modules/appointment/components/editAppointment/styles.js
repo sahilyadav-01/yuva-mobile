@@ -77,6 +77,8 @@ export const styles = StyleSheet.create({
   },
   textInputStyle: {
     borderBottomWidth: 1,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
     borderColor: PLATINUM,
     backgroundColor: LIGHT_GREYISH_RED,
     marginBottom: 15,

@@ -194,7 +194,7 @@ const appointmentSlice = createSlice({
       state.apiErrorMessage = '';
     },
     [appointmentThunk.rejected]: (state, {payload}) => {
-      state.getAppointment = payload;
+      state.getAppointment = '';
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = payload.error;

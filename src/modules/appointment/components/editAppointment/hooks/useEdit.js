@@ -9,7 +9,7 @@ import {
 import {getEpoch} from '../../../../../utils/utils';
 import {Alert} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
+export const useEdit = (plan, userVersion, uuid, version) => {
   const {id} = useSelector(state => state.appointment.currentAppointment);
   const {rescheduleAppointment, errorAppointment} = useSelector(
     state => state.appointment,
@@ -23,6 +23,15 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
   const [alternateContactNumber, setAlternateContactNumber] =
     useState(patientNumber);
   const route = useRoute();
+  const {
+    Doctor,
+    Specialization,
+    hospital,
+    Description,
+    memberName,
+    patientNumber,
+  } = route?.params;
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -30,9 +39,9 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
     navigation.goBack();
   };
 
-  const {newMessage, appointmentDescription, getAppointment} = useSelector(
-    state => state.appointment,
-  );
+  const {newMessage, appointmentDescription, getAppointment, userAppointments} =
+    useSelector(state => state.appointment);
+  console.log(userAppointments, 'hiiiii');
   const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
@@ -55,9 +64,11 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
         {
           text: 'Ok',
           onPress: () => {
-            dispatch(allAppointmentThunk()).then(() =>
-              navigation.navigate('AppointmentHome'),
-            );
+            dispatch(allAppointmentThunk());
+            if (userAppointments?.length) {
+              navigation.navigate('AppointmentHome');
+            }
+            // );
           },
         },
       ]);
@@ -69,9 +80,10 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
 
   const closeSaveMessageBox = () => {
     setSaveFlag(false);
-    dispatch(allAppointmentThunk()).then(
-      navigation.navigate('AppointmentHome'),
-    );
+    dispatch(allAppointmentThunk());
+    if (userAppointments?.length) {
+      navigation.navigate('AppointmentHome');
+    }
   };
   const onChangeDescription = txt => {
     setDesciption(txt);
@@ -102,6 +114,6 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
     onChaneNumber,
     onChangeDescription,
     getAppointment,
-    route,
+    route: route?.params,
   };
 };
