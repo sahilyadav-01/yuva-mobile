@@ -14,8 +14,11 @@ export const useHeader = (props) => {
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
-    //Pending Screen
-    // navigation.navigate('Cart');
+    if(isLoggedIn){
+      navigation.navigate('CartScreen');
+    } else {
+      navigation.navigate('LoginScreen');
+    }
   };
   const onRightPress = () => {
     isLoggedIn ? onToggleDrawer() : navigation.navigate('LoginScreen');
