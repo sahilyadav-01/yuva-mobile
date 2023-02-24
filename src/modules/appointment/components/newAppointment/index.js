@@ -95,7 +95,7 @@ const NewAppointments = () => {
           <View style={styles.dateAndTime}>
             <Text style={styles.Time}>{TIME}</Text>
             <DateTimePicker
-              type="time"
+              type={TIME}
               value={time}
               onChangeDate={handleTime}
               style={styles.dateTimePicker}

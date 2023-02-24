@@ -52,6 +52,20 @@ export const cancelAppointmentThunk = createAsyncThunk(
   },
 );
 
+export const getAppointmentThunk = createAsyncThunk(
+  'appointment',
+  async ({id}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const data = {};
+      const endpoint = `/appointment/${id}`;
+      const response = await YuvaService.get(endpoint, data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const rescheduleAppointmentThunk = createAsyncThunk(
   'appointment/rescheduleAppointment',
   async ({id, timeSlot}, {fulfillWithValue, rejectWithValue}) => {
@@ -95,7 +109,9 @@ const initialState = {
   appointmentDescription: '',
   rescheduleAppointment: '',
   errorAppointment: '',
+  getAppointment: null,
 };
+
 const appointmentSlice = createSlice({
   name: 'appointment',
   initialState,
@@ -167,6 +183,16 @@ const appointmentSlice = createSlice({
     [rescheduleAppointmentThunk.rejected]: (state, {payload}) => {
       state.errorAppointment = payload;
     },
+
+    [getAppointmentThunk.pending]: (state, {payload}) => {
+      state.loading = false;
+    },
+    [getAppointmentThunk.fulfilled]: (state, {payload}) => {
+      state.getAppointment = payload.data;
+    },
+    [getAppointmentThunk.rejected]: (state, {payload}) => {
+      state.appointmentDescription = payload;
+    },
   },
 });
 
@@ -175,6 +201,7 @@ export const {
   currentAppointment,
   resetMessage,
   resetAppointments,
+  getAppointment,
 } = appointmentSlice.actions;
 export const appointmentInit = appointmentSlice.getInitialState();
 
