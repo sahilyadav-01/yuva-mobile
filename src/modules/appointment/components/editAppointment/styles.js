@@ -1,19 +1,128 @@
-
-import { StyleSheet } from "react-native";
-import {WHITE, BLACK} from '../../../../styles/colors';
-
+import {StyleSheet} from 'react-native';
+import {
+  WHITE,
+  BLACK,
+  CYAN_BLUE,
+  PLATINUM,
+  LIGHT_GREYISH_RED,
+  ORANGE,
+} from '../../../../styles/colors';
+import {CENTER, ROW} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  
-    dateTimePicker:{
-        backgroundColor:WHITE,
-        borderWidth: 1,
-        borderRadius: 8,
-        height: 45,
-      },
-    theme:{colors: { text: BLACK }
-    }
-})
-
-
-
+  dateTimePicker: {
+    backgroundColor: WHITE,
+    borderWidth: 1,
+    borderRadius: 8,
+    height: 45,
+  },
+  theme: {colors: {text: BLACK}},
+  dateAndTime: {
+    marginTop: 5,
+    marginLeft: '3%',
+    marginRight: '3%',
+    minHeight: 42,
+    marginBottom: 5,
+  },
+  Date: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  Time: {
+    marginTop: '5%',
+    marginBottom: '10%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  border: {
+    marginLeft: '3%',
+    marginRight: '3%',
+    shadowColor: WHITE,
+    shadowOpacity: '15%',
+    borderRadius: 10,
+    backgroundColor: WHITE,
+  },
+  TitleStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '3%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  ScrollViewContainerStyle: {
+    paddingBottom: '80%',
+  },
+  buttonStyles: {
+    marginVertical: '20%',
+    marginHorizontal: '6%',
+    width: 335,
+    height: 48,
+    borderRadius: 8,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    backgroundColor: ORANGE,
+  },
+  Description: {
+    marginTop: '10%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    marginLeft: '3%',
+  },
+  textInputStyle: {
+    borderBottomWidth: 1,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    borderColor: PLATINUM,
+    backgroundColor: LIGHT_GREYISH_RED,
+    marginBottom: 15,
+    color: BLACK,
+    margin: '3%',
+    borderRadius: 6,
+  },
+  ContentStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  NameStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  ContentHeading: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    marginLeft: '3%',
+  },
+  Image: {
+    height: 48,
+    width: 48,
+    alignSelf: CENTER,
+  },
+  ImageStyle: {
+    flexDirection: ROW,
+    marginLeft: '5%',
+  },
+  buttonTextStyle: {
+    color: WHITE,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
+  },
+});

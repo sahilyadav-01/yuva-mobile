@@ -3,16 +3,38 @@ import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import { getDate, getTime, appointmentStatus, splitCustomId } from '../../../../utils/utils';
+import {
+  getDate,
+  getTime,
+  appointmentStatus,
+  splitCustomId,
+} from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
-import { useSelector } from 'react-redux';
-import { useView } from './hooks/useView';
-import { CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING } from '../../constant';
-import { AMBER, GREEN, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
-import { styles } from './styles';
-import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION ,MYSELF} from './constant';
-import { PNG } from '../../../../../assets';
-
+import {useSelector} from 'react-redux';
+import {useView} from './hooks/useView';
+import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
+import {
+  AMBER,
+  GREEN,
+  ORANGE,
+  RED_SHADE,
+  WHITE,
+} from '../../../../styles/colors';
+import {styles} from './styles';
+import {
+  APPOINTMENT_ID,
+  BOOKING_FOR,
+  CANCELLED,
+  COMPLETED,
+  CONFIRMED,
+  FINISHED,
+  INITIATED,
+  NAME,
+  OPD_DESCRIPTION,
+  RELATION,
+  MYSELF,
+} from './constant';
+import {PNG} from '../../../../../assets';
 const ViewAppointments = () => {
   const {
     id,
@@ -27,6 +49,7 @@ const ViewAppointments = () => {
     memberName,
     relation,
     customId,
+    patientNumber,
   } = useSelector(state => state.appointment.currentAppointment);
   const cancelMessage = 'Are you sure you want to cancel ?';
   const {
@@ -44,23 +67,34 @@ const ViewAppointments = () => {
         <View>
           <View style={styles.viewCont}>
             <View>
-              {status === CANCELLED || status === COMPLETED || status === FINISHED || status === CONFIRMED ? (
+              {status === CANCELLED ||
+              status === COMPLETED ||
+              status === FINISHED ||
+              status === CONFIRMED ? (
                 <View style={styles.StatusBox}>
                   <View>
-                    <Text style={[styles.statusBoxInitiated, { color: status === CANCELLED ? RED_SHADE : GREEN }]}>
+                    <Text
+                      style={[
+                        styles.statusBoxInitiated,
+                        {color: status === CANCELLED ? RED_SHADE : GREEN},
+                      ]}>
                       {appointmentStatus(status)}
                     </Text>
-                    <View >
+                    <View>
                       <Text style={styles.appoitmentid}>{APPOINTMENT_ID}</Text>
-                      <Text style={styles.appoitmentidNumber}>{splitCustomId(customId)}</Text>
+                      <Text style={styles.appoitmentidNumber}>
+                        {splitCustomId(customId)}
+                      </Text>
                     </View>
                   </View>
                   <View style={styles.timeSlot}>
-
                     <View style={styles.direction}>
-                      <Icon name="calendar-blank-outline" size={24} color={WHITE} />
+                      <Icon
+                        name="calendar-blank-outline"
+                        size={24}
+                        color={WHITE}
+                      />
                       <View>
-
                         <Text style={styles.numberSytle}>{getDate(slot)}</Text>
                         <Text style={styles.numberSytle}>{getTime(slot)}</Text>
                       </View>
@@ -69,18 +103,21 @@ const ViewAppointments = () => {
                 </View>
               ) : (
                 <View style={styles.AppointmentId}>
-                  <View >
+                  <View>
                     <Text style={styles.StatusStyle}>
                       {appointmentStatus(status)}
                     </Text>
                     <Text style={styles.waitStyle}>{WAITING}</Text>
                   </View>
                   <View>
-                    <Text style={styles.AppointmentIdText}>{APPOINTMENT_ID}</Text>
-                    <Text style={styles.customId}>{splitCustomId(customId)}</Text>
+                    <Text style={styles.AppointmentIdText}>
+                      {APPOINTMENT_ID}
+                    </Text>
+                    <Text style={styles.customId}>
+                      {splitCustomId(customId)}
+                    </Text>
                   </View>
                 </View>
-
               )}
             </View>
           </View>
@@ -89,10 +126,7 @@ const ViewAppointments = () => {
           </View>
           <View style={styles.familyView}>
             <Text
-              style={[
-                styles.FamilyName,
-                {color: memberName ? null : ORANGE},
-              ]}>
+              style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
               {memberName || MYSELF}
             </Text>
             {relation && <Text style={styles.RelationStyle}>{relation}</Text>}
@@ -124,7 +158,7 @@ const ViewAppointments = () => {
           </View>
 
           <View style={styles.buttonStyle}>
-            {status === CONFIRMED &&
+            {status === CONFIRMED && (
               <AppointmentButton
                 name={CHECK}
                 color={AMBER}
@@ -133,7 +167,8 @@ const ViewAppointments = () => {
                 textStyles={styles.buttonTextStyle}
                 checkIn={true}
               />
-            }{(status === INITIATED) &&
+            )}
+            {status === INITIATED && (
               <AppointmentButton
                 name={RESCHEDULE}
                 color={AMBER}
@@ -142,15 +177,16 @@ const ViewAppointments = () => {
                 textStyles={styles.buttonTextStyle}
                 reschedule={true}
               />
-            }
-            {(status === CONFIRMED || status === INITIATED) &&
+            )}
+            {(status === CONFIRMED || status === INITIATED) && (
               <AppointmentButton
                 name={CANCEL}
                 color={RED_SHADE}
                 action={cancelAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
-              />}
+              />
+            )}
           </View>
           <View>
             <MessageBox

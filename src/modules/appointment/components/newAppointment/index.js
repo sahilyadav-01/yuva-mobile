@@ -83,7 +83,7 @@ const NewAppointments = () => {
           <View style={styles.dateAndTime}>
             <Text style={styles.Date}>{DATE}</Text>
             <DateTimePicker
-              type={DATE}
+              type="date"
               value={date}
               onChangeDate={handleDate}
               style={styles.dateTimePicker}
