@@ -12,6 +12,7 @@ import { AMBER, GREEN, ORANGE, RED_SHADE, WHITE } from '../../../../styles/color
 import { styles } from './styles';
 import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION ,MYSELF} from './constant';
 import { PNG } from '../../../../../assets';
+
 const ViewAppointments = () => {
   const {
     id,
