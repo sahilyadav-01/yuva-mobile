@@ -10,9 +10,9 @@ import { useView } from './hooks/useView';
 import { CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING } from '../../constant';
 import { AMBER, GREEN, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
 import { styles } from './styles';
-import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION } from './constant';
+import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION,MYSELF } from './constant';
 import { PNG } from '../../../../../assets';
-import {BOOKING_FOR, MYSELF, NAME, OPD_DESCRIPTION, RELATION} from './constant';
+
 const ViewAppointments = () => {
   const {
     id,
@@ -91,7 +91,7 @@ const ViewAppointments = () => {
             <Text
               style={[
                 styles.FamilyName,
-                {color: memberName ? null : ORANGE_GREY},
+                {color: memberName ? null : ORANGE},
               ]}>
               {memberName || MYSELF}
             </Text>
