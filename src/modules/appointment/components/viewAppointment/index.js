@@ -10,7 +10,7 @@ import { useView } from './hooks/useView';
 import { CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING } from '../../constant';
 import { AMBER, GREEN, ORANGE, RED_SHADE, WHITE } from '../../../../styles/colors';
 import { styles } from './styles';
-import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION,MYSELF } from './constant';
+import { APPOINTMENT_ID, BOOKING_FOR, CANCELLED, COMPLETED, CONFIRMED, FINISHED, INITIATED, NAME, OPD_DESCRIPTION, RELATION ,MYSELF} from './constant';
 import { PNG } from '../../../../../assets';
 
 const ViewAppointments = () => {
