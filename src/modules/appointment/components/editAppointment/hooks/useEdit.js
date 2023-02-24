@@ -8,7 +8,7 @@ import {
 } from '../../../../../store/reducers/AppointmentSlice';
 import {getEpoch} from '../../../../../utils/utils';
 import {Alert} from 'react-native';
-
+import {useRoute} from '@react-navigation/native';
 export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
   const {id} = useSelector(state => state.appointment.currentAppointment);
   const {rescheduleAppointment, errorAppointment} = useSelector(
@@ -22,6 +22,7 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
   const [description, setDesciption] = useState('');
   const [alternateContactNumber, setAlternateContactNumber] =
     useState(patientNumber);
+  const route = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -101,5 +102,6 @@ export const useEdit = (plan, userVersion, uuid, version, patientNumber) => {
     onChaneNumber,
     onChangeDescription,
     getAppointment,
+    route,
   };
 };

@@ -30,9 +30,8 @@ import {
   SELECT_MEMBER_HERE,
   TIME,
 } from './constant';
-import {useRoute} from '@react-navigation/native';
+
 const EditAppointments = () => {
-  const route = useRoute();
   const {
     Doctor,
     Specialization,
@@ -55,6 +54,7 @@ const EditAppointments = () => {
     onChaneNumber,
     time,
     getAppointment,
+    route,
   } = useEdit();
 
   return (
