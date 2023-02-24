@@ -63,6 +63,8 @@ const initialState = {
   saveHRALoading: false,
   saveHRAError: false,
   sectionId: null,
+  continueHRAName: null,
+  continueHRAId: '',
 };
 
 const hraSlice = createSlice({
@@ -79,11 +81,15 @@ const hraSlice = createSlice({
       state.apiError = false;
       state.continueHRA = false;
       state.continueHRAStatus = false;
+      state.continueHRAName = null;
+      state.continueHRAId = '';
     },
     [continueHRAThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      state.continueHRA = payload.data;
+      state.continueHRA = payload.data.continueHra;
       state.continueHRAStatus = true;
+      state.continueHRAName = payload.data.name;
+      state.continueHRAId = payload.data.id;
     },
     [continueHRAThunk.rejected]: (state, {payload}) => {
       state.loading = false;

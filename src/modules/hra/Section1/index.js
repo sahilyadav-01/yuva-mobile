@@ -71,6 +71,17 @@ const Section1 = props => {
             showsVerticalScrollIndicator={false}>
             <View style={styles.questionViewContainer}>
               <Text style={requiredFieldQ1 ? styles.text : styles.textError}>
+                Name
+              </Text>
+              <TextInput
+                style={styles.questionViewContainerTextInput}
+                keyboardType={KEYBOARD_TYPE_VALUE}
+                placeholder={props?.name}
+                editable={false}
+              />
+            </View>
+            <View style={styles.questionViewContainer}>
+              <Text style={requiredFieldQ1 ? styles.text : styles.textError}>
                 {questionData[0]?.question}
               </Text>
               <TextInput

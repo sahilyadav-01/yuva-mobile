@@ -63,7 +63,7 @@ export const useHRASectionContainer = () => {
   useEffect(() => {
     if (checkBoxStatus === 'checked') {
       const {id, name, age, gender} = userDetails;
-      setUserData({id:null, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
+      setUserData({id:id ?? null, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
       setNavigateToSection(true);
     } else if (
       checkBoxFlag.length > 0 &&
@@ -78,7 +78,7 @@ export const useHRASectionContainer = () => {
 
   useEffect(() => {
     if (navigateToSection && userData)
-      navigation.navigate(SECTION_1, {userData});
+      navigation.navigate(SECTION_1, {userData,name:userData?.name,id:parseFloat(userData?.id)});
   }, [navigateToSection]);
 
   const openModal = () => {

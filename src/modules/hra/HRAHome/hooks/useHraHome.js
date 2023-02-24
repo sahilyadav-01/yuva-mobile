@@ -10,7 +10,7 @@ export const useHraHome = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     let { reportStatus, reportDownload } = useSelector(state => state.section9,);
-    const { continueHRA, continueHRAStatus, loading } = useSelector(state => state.hra);
+    const { continueHRA, continueHRAStatus, loading, continueHRAName, continueHRAId } = useSelector(state => state.hra);
     const focused = useIsFocused();
     const [renderData, setRenderData] = useState(false);
     useEffect(()=>{
@@ -60,12 +60,12 @@ export const useHraHome = () => {
         //dispatch(reportStatusThunk());
     };
 
-    const goToSection1 = () => navigation.navigate(SECTION_1)
+    const goToSection1 = () => navigation.navigate(SECTION_1,{name:continueHRAName,id:parseFloat(continueHRAId)})
 
     return {
         onDisplay,
         continueHRA,
         goToSection1,
-        renderData
+        renderData,
     };
 };
