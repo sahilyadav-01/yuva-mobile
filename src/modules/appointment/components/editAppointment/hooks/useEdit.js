@@ -22,6 +22,7 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const [description, setDesciption] = useState('');
   const [alternateContactNumber, setAlternateContactNumber] =
     useState(patientNumber);
+  const [navAppointment, setNavAppoinment] = useState(false);
   const route = useRoute();
   const {
     Doctor,
@@ -39,12 +40,14 @@ export const useEdit = (plan, userVersion, uuid, version) => {
     navigation.goBack();
   };
 
-  const {newMessage, appointmentDescription, getAppointment, userAppointments} =
-    useSelector(state => state.appointment);
-  console.log(userAppointments, 'hiiiii');
-  const {doctorId, name, specialization} = useSelector(
-    state => state.appointment.appointment,
-  );
+  const {
+    newMessage,
+    appointmentDescription,
+    getAppointment,
+    userAppointments,
+    appointment,
+  } = useSelector(state => state.appointment);
+  const {doctorId, name, specialization} = appointment;
   const {relationId} = useSelector(state => state.profile);
   const saveAppointment = () => {
     dispatch(
@@ -65,10 +68,7 @@ export const useEdit = (plan, userVersion, uuid, version) => {
           text: 'Ok',
           onPress: () => {
             dispatch(allAppointmentThunk());
-            if (userAppointments?.length) {
-              navigation.navigate('AppointmentHome');
-            }
-            // );
+            setNavAppoinment(true);
           },
         },
       ]);
@@ -77,6 +77,11 @@ export const useEdit = (plan, userVersion, uuid, version) => {
     }
     return () => dispatch(resetMessage());
   }, [rescheduleAppointment, errorAppointment]);
+  useEffect(() => {
+    if (navAppointment && userAppointments?.length) {
+      navigation.navigate('AppointmentHome');
+    }
+  }, [navAppointment]);
 
   const closeSaveMessageBox = () => {
     setSaveFlag(false);
@@ -114,6 +119,9 @@ export const useEdit = (plan, userVersion, uuid, version) => {
     onChaneNumber,
     onChangeDescription,
     getAppointment,
-    route: route?.params,
+    memberName,
+    Doctor,
+    Specialization,
+    Description,
   };
 };

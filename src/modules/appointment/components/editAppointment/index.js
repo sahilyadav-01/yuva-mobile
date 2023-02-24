@@ -45,9 +45,11 @@ const EditAppointments = () => {
     onChaneNumber,
     time,
     getAppointment,
-    route,
+    memberName,
+    Doctor,
+    Specialization,
+    Description,
   } = useEdit();
-  console.log(route, 'aaaaa');
   return (
     <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
       <View className="flex mr-2 ml-2 h-[800px]">
@@ -58,8 +60,8 @@ const EditAppointments = () => {
           <View style={styles.ImageStyle}>
             <Image source={PNG.ICON} style={styles.Image} />
             <View>
-              <Text style={styles.NameStyle}>{route?.Doctor}</Text>
-              <Text style={styles.ContentStyle}>{route?.Specialization}</Text>
+              <Text style={styles.NameStyle}>{Doctor}</Text>
+              <Text style={styles.ContentStyle}>{Specialization}</Text>
             </View>
           </View>
         </View>
@@ -67,7 +69,7 @@ const EditAppointments = () => {
         <Text style={styles.TitleStyle}>{ADD_DESCRIPTION}</Text>
         <View style={styles.border}>
           <Text style={styles.Description}>{DESC}</Text>
-          <Text style={styles.textInputStyle}>{route?.Description}</Text>
+          <Text style={styles.textInputStyle}>{Description}</Text>
         </View>
 
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
@@ -104,7 +106,7 @@ const EditAppointments = () => {
             <Text style={styles.ContentHeading}>{SELECT_MEMBER}</Text>
             <SelectList
               boxStyles={styles.boxStyles}
-              defaultOption={{key: 'null', value: route?.memberName || null}}
+              defaultOption={{key: 'null', value: memberName || null}}
               setSelected={setSelected}
               data={dataRelation}
             />
