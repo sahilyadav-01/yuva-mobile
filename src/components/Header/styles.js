@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { BLACK, CYAN_BLUE, WHITE } from "../../styles/colors";
-import { CENTER, FLEX_START, ROW } from "../../styles/constants";
+import { ABSOLUTE,CENTER, FLEX_START, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 import { getDimensions } from "../../utils/utils";
 
@@ -61,6 +61,7 @@ export const styles = StyleSheet.create({
     marginTop: 0,
     borderWidth: 0,
     borderRadius: 4,
+    position: ABSOLUTE,
     backgroundColor: WHITE,
     shadowOffset: {
       width: 0,
@@ -73,12 +74,15 @@ export const styles = StyleSheet.create({
   sectionBottom: {
     flexDirection: ROW,
     alignSelf: FLEX_START,
-
+    zIndex: -1,
   },
   titleText: {
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     color: CYAN_BLUE,
     paddingHorizontal: 12,
+  },
+  search: {
+    zIndex: -1,
   }
 });
