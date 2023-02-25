@@ -1,56 +1,69 @@
-import { useNavigation } from '@react-navigation/core';
-import { allAppointmentThunk,cancelAppointmentThunk} from "../../../../../store/reducers/AppointmentSlice";
-import { useState } from "react";
-import {useSelector,useDispatch } from "react-redux";
+import {useNavigation} from '@react-navigation/core';
+import {
+  allAppointmentThunk,
+  cancelAppointmentThunk,
+  appointmentThunk,
+} from '../../../../../store/reducers/AppointmentSlice';
+import {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 
+export const useView = () => {
+  const [cancelFlag, setCancelFlag] = useState(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {
+    id,
+    doctorName,
+    address,
+    status,
+    speciality,
+    description,
+    slot,
+    otp,
+    hospitalName,
+    memberName,
+    relation,
+    patientNumber,
+  } = useSelector(state => state.appointment.currentAppointment);
+  const data = {
+    hospital: hospitalName,
+    Doctor: doctorName,
+    Specialization: speciality,
+    Description: description,
+    memberName: memberName + '   |   ' + relation,
+    patientNumber: patientNumber,
+  };
+  const goBack = () => {
+    navigation.goBack();
+  };
+  const editAppointment = () => {
+    navigation.navigate('EditAppointment', data);
+  };
 
-export const useView=()=>{
-    
-    const [cancelFlag, setCancelFlag] = useState(false);
-    const navigation = useNavigation();
-    const dispatch = useDispatch();
-    const {
-        id,
-        doctorName,
-        address,
-        status,
-        speciality,
-        description,
-        slot,
-        otp,
-        hospitalName,
-      } = useSelector(state => state.appointment.currentAppointment);
-        
-    const goBack = () => {
-        navigation.goBack();
-      };
-      const editAppointment = () => {
-        navigation.navigate('EditAppointment');
-      };
-    
-      const checkIn = () => {
-      navigation.navigate('CheckInAppointment',{otp:otp})
-      };
-      const cancelAppointment = () => {
-        setCancelFlag(true);
-      };
-    
-        
+  const checkIn = () => {
+    navigation.navigate('CheckInAppointment', {otp: otp});
+  };
+  const cancelAppointment = () => {
+    setCancelFlag(true);
+  };
+
   const cancelAppointmentMessagBox = () => {
     setCancelFlag(false);
     dispatch(cancelAppointmentThunk({id}))
       .then(() => dispatch(allAppointmentThunk()))
       .then(() => navigation.navigate('AppointmentHome'));
   };
+  useEffect(() => {
+    dispatch(appointmentThunk({id}));
+  }, []);
 
-    
-    return {
-cancelFlag,
-goBack,
-editAppointment,
-checkIn,
-cancelAppointment,
-cancelAppointmentMessagBox,
-otp
-
-}}
+  return {
+    cancelFlag,
+    goBack,
+    editAppointment,
+    checkIn,
+    cancelAppointment,
+    cancelAppointmentMessagBox,
+    otp,
+  };
+};

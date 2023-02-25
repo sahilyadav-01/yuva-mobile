@@ -69,7 +69,7 @@ const Header = (props) => {
           </Text>
         }     
       </View>
-      <View>
+      <View style={styles.search}>
         {showSearch && 
           <Search 
             placeholder={searchPlaceholder} 

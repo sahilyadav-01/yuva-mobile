@@ -133,7 +133,7 @@ const BookingConfirm = () => {
                             <Text style={styles.selectDate}>
                                 {SELECT_ADRESS}
                             </Text>
-                            <TouchableOpacity disabled={bookedDetails} onPress={AddNewAddress}>
+                            <TouchableOpacity disabled={bookedDetails || userAddress?.[checked]} onPress={AddNewAddress}>
                                 <View style={styles.Add} >
                                     <Text style={styles.addNew}>
                                         <SVG.AddNewAdress />

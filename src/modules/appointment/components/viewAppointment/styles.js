@@ -3,28 +3,33 @@ import {
   BLACK,
   CYAN_BLUE,
   DARK_BLUE,
+  GREEN,
   LIGHT_MERCURY,
   ORANGE,
   PLATINUM,
+  RED,
+  RED_SHADE,
   WHITE,
 } from '../../../../styles/colors';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import {
+  CENTER,
+  FLEX_END,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   description: {
     marginTop: '5%',
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
   },
   description1: {
-    marginTop: '5%',
-    marginBottom: '5%',
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginVertical: '5%',
+    marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: '100%',
+    paddingBottom: '90%',
   },
   Header: {
     color: CYAN_BLUE,
@@ -43,8 +48,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
   },
   border: {
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
     borderRadius: 10,
@@ -53,8 +57,7 @@ export const styles = StyleSheet.create({
   },
   familyView: {
     height: 90,
-    marginLeft: '4%',
-    marginRight: '4%',
+    marginHorizontal: '4%',
     marginBottom: '5%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
@@ -119,16 +122,14 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
-    marginBottom: '5%',
-    marginTop: '5%',
+    marginVertical: '5%',
   },
   FamilyName: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
-    marginBottom: '5%',
-    marginTop: '5%',
+    marginVertical: '5%',
   },
   RelationStyle: {
     color: ORANGE,
@@ -138,8 +139,7 @@ export const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   ContentStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
+    marginVertical: '5%',
     marginLeft: '15%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -147,17 +147,21 @@ export const styles = StyleSheet.create({
   },
   timeSlot: {
     backgroundColor: DARK_BLUE,
-    marginTop: 22,
     borderBottomLeftRadius: 24,
     borderTopLeftRadius: 24,
     minHeight: 48,
     marginBottom: 22,
     width: 141,
-    paddingLeft: 30,
+    paddinLeft: 30,
+    marginLeft: 160,
+    justifyContent: SPACE_BETWEEN,
+    marginTop: 22,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
-
-    alignItems: 'flex-end',
+  },
+  StatusBox: {
+    flexDirection: ROW,
+    alignItems: FLEX_END,
   },
   buttonStyle: {
     flexDirection: ROW,
@@ -171,10 +175,70 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     borderWidth: 1,
+    flexDirection: ROW,
   },
   buttonTextStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
+  },
+  statusBoxText: {
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize18,
+    color: RED_SHADE,
+    marginTop: 13,
+    marginLeft: 17,
+  },
+
+  statusBoxInitiated: {
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize18,
+    marginTop: 13,
+    marginLeft: 17,
+  },
+  AppointmentId: {
+    flexDirection: ROW,
+  },
+  AppointmentIdText: {
+    marginTop: 17,
+    marginLeft: 36,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    color: DARK_BLUE,
+  },
+  customId: {
+    marginTop: 5,
+    marginLeft: 36,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    color: CYAN_BLUE,
+  },
+  appoitmentid: {
+    marginTop: 8,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    marginLeft: 17,
+    color: DARK_BLUE,
+  },
+  appoitmentidNumber: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    marginTop: 5,
+    marginLeft: 17,
+    color: CYAN_BLUE,
+  },
+  NameStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  Image: {
+    height: 48,
+    width: 48,
+    alignSelf: CENTER,
   },
 });
