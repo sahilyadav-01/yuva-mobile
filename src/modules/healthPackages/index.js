@@ -1,13 +1,14 @@
-import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import Header from '../../components/Header';
-import {CONTINUE, SEARCH_PACKAGES} from './constants';
+import { CONTINUE, SEARCH_PACKAGES } from './constants';
 import SelectList from 'react-native-dropdown-select-list';
-import {styles} from './style';
+import { styles } from './style';
 import Packages from '../../components/PackagesList/packages';
-import {usePackage} from './hooks/usePackage';
+import { usePackage } from './hooks/usePackage';
 
 const HealthPackages = props => {
+
   const {
     screenContainer,
     dropdownContainerStyle,
@@ -16,30 +17,28 @@ const HealthPackages = props => {
     buttonText,
     packageContainerStyle,
   } = styles();
-  const mockData = [
-    {packageName: 'Yuva Prime', discount: '1500', price: '1000'},
-    {packageName: 'Yuva Advance', discount: '1500', price: '1000'},
-    {packageName: 'Basic Package'},
-  ];
-  const dropdownData = [
-    {key: '0', value: 'Health Checkup Packages'},
-    {key: '1', value: 'Diagnostic Tests'},
-  ];
-  const {data, onPackageSelect, onPackagePress} = usePackage(
-    mockData.map(item => {
-      return {...item, selected: false};
-    }),
-  );
-  if (data.length > 0) {
+  // const mockData = [
+  //   {packageName: 'Yuva Prime', discount: '1500', price: '1000'},
+  //   {packageName: 'Yuva Advance', discount: '1500', price: '1000'},
+  //   {packageName: 'Basic Package'},
+  // ];
+
+  const [selectedDropdownValue, setSelectedDropdownValue] = useState('Health Checkup Packages');
+  const { data, dropdownData, onPackageSelect, onPackagePress } = usePackage(selectedDropdownValue);
+
+  if (data && data.length > 0) {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
-        bounces={false}>
+        bounces={false}
+      >
+
         <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} />
         <View style={screenContainer}>
           <SelectList
-            setSelected={() => {}}
+            setSelected={setSelectedDropdownValue}
+            selected={selectedDropdownValue}
             search={false}
             data={dropdownData}
             placeholder={'Select'}

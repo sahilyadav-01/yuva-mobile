@@ -17,10 +17,10 @@ const ListItem = props => {
         {item.packageName}
       </Text>
       <View style={style.priceContainer}>
-        {item?.discount && item?.price && (
+        {item?.cost && item?.cost && (
           <>
-            <Text style={style.discountText}>{item?.discount}</Text>
-            <Text style={style.priceText}>{item?.price}</Text>
+            <Text style={style.discountText}>{item?.cost}</Text>
+            <Text style={style.priceText}>{item?.cost}</Text>
           </>
         )}
         <TouchableOpacity
