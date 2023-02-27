@@ -19,8 +19,6 @@ export const useProfile = () => {
     auth,
     diagnostic: {cityId},
   } = useSelector(state => state);
-  // const {profilelock} = useSelector(state => state.profile);
-  // console.log(profilelock, 'shdashf');
   const focused = useIsFocused();
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -122,7 +120,6 @@ export const useProfile = () => {
   };
 
   const setSelectedCity = (arg, data) => {
-    console.log(arg, data);
     const selectedCity = JSON.parse(
       data.find(item => arg.toString() === item.key).value,
     );
