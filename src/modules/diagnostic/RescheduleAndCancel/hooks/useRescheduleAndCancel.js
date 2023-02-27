@@ -8,14 +8,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 export const useRescheduleAndCancel = () => {
+    const { cancelled, bookedDetailsById } = useSelector(state => state.diagnostic)
     const route = useRoute();
-    const {data:reschedule } = route.params;
+    const {data:reschedule } = route?.params || bookedDetailsById;
     const dispatch = useDispatch();
     const navigation = useNavigation()
-    const { cancelled } = useSelector(state => state.diagnostic)
-
     const [cancelFlag, setCancelFlag] = useState(false);
-
     const cancelBooking = () => {
         //TRUE is string imported from constants file.
         const id=reschedule.id;

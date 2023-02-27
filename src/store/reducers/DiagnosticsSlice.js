@@ -226,14 +226,16 @@ const diagnosticSlice = createSlice({
     },
     [bookedDetailsByIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.bookedDetailsById ='';
     },
     [bookedDetailsByIdThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedDetailsById = action.payload.data;
+      state.bookedDetailsById = action.payload;
     },
     [bookedDetailsByIdThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
+      state.bookedDetailsById =null;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
 
