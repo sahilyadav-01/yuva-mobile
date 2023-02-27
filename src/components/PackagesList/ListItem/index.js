@@ -14,7 +14,7 @@ const ListItem = props => {
       }}
       style={style.itemContainer}>
       <Text numberOfLines={2} style={style.nameContainer}>
-        {item.packageName}
+        {item.packageName ||item.testName}
       </Text>
       <View style={style.priceContainer}>
         {item?.cost && item?.cost && (
