@@ -9,6 +9,7 @@ import {
   getActiveRelations,
   updateProfile,
   getRelations,
+  profileLock,
 } from '../../../store/reducers/ProfileSlice';
 
 export const useProfile = () => {
@@ -36,7 +37,7 @@ export const useProfile = () => {
   const [city, setCity] = useState('');
   const [pinCode, setPincode] = useState('');
   const [cityData, setCityData] = useState(null);
-  const [selectedCityId, setSelectedCityId] = useState(null); 
+  const [selectedCityId, setSelectedCityId] = useState(null);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -48,12 +49,12 @@ export const useProfile = () => {
   }, [focused, auth.loggedIn, reloadScreenCount]);
 
   useEffect(() => {
-    if(cityId){
-    setCityData(
-      cityId.map((item, index) => {
-        return {key: index.toString(), value: JSON.stringify(item)};
-      }),
-    );
+    if (cityId) {
+      setCityData(
+        cityId.map((item, index) => {
+          return {key: index.toString(), value: JSON.stringify(item)};
+        }),
+      );
     }
   }, [cityId]);
 
@@ -119,8 +120,9 @@ export const useProfile = () => {
   };
 
   const setSelectedCity = (arg, data) => {
-    console.log(arg,data)
-    const selectedCity = JSON.parse(data.find(item => arg.toString() === item.key).value);
+    const selectedCity = JSON.parse(
+      data.find(item => arg.toString() === item.key).value,
+    );
     setCity(selectedCity.name);
     setSelectedCityId(selectedCity.id);
   };
@@ -189,6 +191,17 @@ export const useProfile = () => {
 
   const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
+  const profileComplete = () => {
+    Alert.alert('Alert', 'Are you sure you want to lock your profile', [
+      {
+        text: 'Ok',
+        onPress: () => {
+          dispatch(profileLock({}));
+        },
+      },
+    ]);
+  };
+
   return {
     onAddMembersPress,
     onConfirmDate,
@@ -204,6 +217,7 @@ export const useProfile = () => {
     setSelectedRelation,
     onDependentAgeChange,
     onDependentNameChange,
+    profileComplete,
     picker,
     edit,
     gender,
