@@ -9,7 +9,7 @@ export const useChat = () => {
   const {profile} = useSelector(state => state.profile);
 
   useEffect(() => {
-    onPressChat();
+    onInitChat();
   }, []);
 
   useEffect(() => {
@@ -17,10 +17,10 @@ export const useChat = () => {
       Alert.alert(ERROR_MESSAGE);
       setError(!error);
     } else {
-      Freshchat.showConversations();
+      onPressChat();
     };
   }, [error]);
-  const onPressChat = () => {
+  const onInitChat = () => {
     var freshchatUser = new FreshchatUser();
     freshchatUser.firstName = profile?.name;
     freshchatUser.email = profile?.email;
@@ -30,6 +30,10 @@ export const useChat = () => {
     {
       setError(true);
     });
+  };
+
+  const onPressChat = () => {
+    Freshchat.showConversations();
   };
 
   return {
