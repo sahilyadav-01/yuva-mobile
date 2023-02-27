@@ -3,14 +3,14 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useLifeStyleCard } from './hooks/useLifeStyleCard';
 import { styles } from './styles';
 
-const LifeStyleCard = ({ name, image }) => {
+const LifeStyleCard = ({ name, image, enumName, onPackagePress }) => {
   const { imageData } = useLifeStyleCard();
 
   return (
     <TouchableOpacity
       style={styles.touchableOpacityContainerStyle}
       disable={true}
-      // onPress={onpress}
+      onPress={() => onPackagePress(enumName,name)}
       >
       <View style={styles.topContainerStyle}>
         <View style={styles.subTopContainerStyle}>

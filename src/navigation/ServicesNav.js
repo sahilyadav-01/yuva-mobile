@@ -17,6 +17,7 @@ import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
 import HealthCheckupsTests from '../screens/yuvaservices/HealthCheckupsTests/packagesAndTestList';
 import CartNavigation from './CartNavigation';
+import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="HealthCheckupsTests"
         component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthCheckupsTests}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LifestyleTestsAndPackages"
+        component={LifestyleTestsAndPackagesScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

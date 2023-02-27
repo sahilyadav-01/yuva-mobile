@@ -17,12 +17,11 @@ const ListItem = props => {
         {item.packageName}
       </Text>
       <View style={style.priceContainer}>
-        {item?.cost && item?.cost && (
-          <>
-            <Text style={style.discountText}>{item?.cost}</Text>
-            <Text style={style.priceText}>{item?.cost}</Text>
-          </>
+        {item?.discount && (
+          <Text style={style.discountText}>{item?.discount}</Text>
         )}
+        {item?.cost && <Text style={style.priceText}>{item?.cost}</Text>}
+
         <TouchableOpacity
           onPress={() => {
             props?.onPackageSelect({item, index});

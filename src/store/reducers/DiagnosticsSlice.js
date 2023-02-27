@@ -42,7 +42,7 @@ export const diagnosisTestDetailsThunk = createAsyncThunk(
   'services/attribute/test',
   async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/services/attribute/test/${id}`;
+      const endpoint = `/test/${id}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {

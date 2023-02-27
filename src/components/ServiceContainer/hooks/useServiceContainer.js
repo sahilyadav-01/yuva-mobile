@@ -34,7 +34,7 @@ export const useServiceContainer = (props) => {
       default:
         image = "";
     }
-    return { name: item.displayName, image: image };
+    return { name: item.displayName, image: image, enumName: item.enumName };
   }) : [];
   return {
     services,

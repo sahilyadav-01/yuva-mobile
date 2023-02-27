@@ -15,25 +15,43 @@ export const lifeStyleSliceThunk = createAsyncThunk(
   },
 );
 
+export const lifeStyleEnumData = createAsyncThunk(
+  'lifestyle-package/getData',
+  async ({enumName},{ fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/lifestyle-package/${enumName}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      //const errorOject =  JSON.stringify(error.response.data)
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
   lifestylePackage: [],
+  packageDataLoading:false,
+  packageData: [],
+  testData: [],
+  packageDataError: null,
 }
 
 const lifeStyleSlice = createSlice({
   name: 'lifestylePackage',
   initialState,
   reducers: {
-    lifestylePackage(state, action) {
+    lifestylePackage(state, {payload}) {
       state.lifestylePackage = payload?.data;
     },
   },
   extraReducers: {
     /**
      */
-    [lifeStyleSliceThunk.pending]: (state, { payload }) => {
+    [lifeStyleSliceThunk.pending]: (state) => {
       state.loading = true;
     },
     [lifeStyleSliceThunk.fulfilled]: (state, action) => {
@@ -41,6 +59,23 @@ const lifeStyleSlice = createSlice({
     },
     [lifeStyleSliceThunk.rejected]: (state, action) => {
       state.apiError = true;
+    },
+    [lifeStyleEnumData.pending]: (state) => {
+      state.packageDataLoading = true;
+      state.packageData = [];
+      state.testData = [];
+      state.packageDataError = null;
+    },
+    [lifeStyleEnumData.fulfilled]: (state,{payload}) => {
+      console.log('Payload',payload)
+      state.packageDataLoading = false;
+      state.packageData = payload.data.popularPackageResponseDtoList;
+      state.testData = payload.data.popularTestResponseDtoList;
+      state.packageDataError = null;
+    },
+    [lifeStyleEnumData.rejected]: (state,{payload}) => {
+      state.packageDataLoading = false;
+      state.packageDataError = payload;
     },
   },
 });
