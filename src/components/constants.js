@@ -17,3 +17,4 @@ export const VALID = 'Valid Till  ';
 export const BOKINGTESTANDPACKAGE = 'BookingTestAndPackage';
 export const BOOK_APPOINTMENT = 'Book Appointment';
 export const YEARS_EXP = 'Years Exp.';
+export const RESCHEDULEANDCANCEL="RescheduleTestAndPackage";

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Text, TouchableOpacity} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AddDependentCard from './components/addDependent';
 import Dependents from './components/dependents';
@@ -8,7 +8,9 @@ import styles from './style';
 import UserDetailsCard from './components/userDetailsCard';
 import Header from '../../components/Header';
 import ErrorScreen from '../../components/ErrorScreen';
-import { USER_PROFILE } from './constant';
+import {PROFILE_COMPLETE, USER_PROFILE} from './constant';
+import {SVG} from '../../../assets';
+import {WHITE} from '../../styles/colors';
 
 const Profile = () => {
   const data = [
@@ -27,6 +29,7 @@ const Profile = () => {
     changeName,
     updateUserData,
     onSelect,
+    profileComplete,
     picker,
     edit,
     gender,
@@ -48,10 +51,14 @@ const Profile = () => {
     changeAddress,
     changeCity,
     changePincode,
-    setSelectedCity
+    setSelectedCity,
+    profileLocked,
+    enableLockButton
   } = useProfile();
 
-  const {container} = styles({disabled: false});
+  const {container, addMembersButton, saveButtonText, addIconStyle} = styles({
+    disabled: !enableLockButton || profileLocked,
+  });
   if (showErrorMessage) {
     // return <ErrorScreen onRetryPress={onRetryPress} />;
   }
@@ -62,7 +69,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header title={USER_PROFILE} showBackButton={true}/>
+      <Header title={USER_PROFILE} showBackButton={true} />
       <ScrollView style={container}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}
@@ -86,6 +93,7 @@ const Profile = () => {
           changeCity={changeCity}
           changePincode={changePincode}
           setSelectedCity={setSelectedCity}
+          profileLocked={profileLocked}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard
@@ -106,6 +114,10 @@ const Profile = () => {
           onCancel={closePicker}
           onConfirm={onConfirmDate}
         />
+        <TouchableOpacity disabled={!enableLockButton || profileLocked} onPress={profileComplete} style={addMembersButton}>
+          <Text style={saveButtonText}>{PROFILE_COMPLETE}</Text>
+          <SVG.Arrow style={addIconStyle} color={WHITE} />
+        </TouchableOpacity>
       </ScrollView>
     </>
   );

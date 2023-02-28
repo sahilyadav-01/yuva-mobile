@@ -15,6 +15,7 @@ import {useSelector} from 'react-redux';
 import StaticHra from '../modules/staticHRA';
 import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
+import CartNavigation from './CartNavigation';
 
 const Stack = createStackNavigator();
 
@@ -59,6 +60,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="LoginScreen"
         component={Authentication}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartNavigation}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

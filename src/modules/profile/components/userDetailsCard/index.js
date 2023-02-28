@@ -25,7 +25,8 @@ const UserDetailsCard = ({
   changeCity,
   changePincode,
   setSelectedCity,
-  cityNames
+  cityNames,
+  profileLocked
 }) => {
   const {scrollViewContainer} = styles({disabled: false});
   return (
@@ -58,6 +59,7 @@ const UserDetailsCard = ({
         addMembers={addMembers}
         editDetails={editDetails}
         updateUserData={updateUserData}
+        profileLocked={profileLocked}
       />
     </View>
   );

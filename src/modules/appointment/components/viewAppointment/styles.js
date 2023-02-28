@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   BLACK,
   CYAN_BLUE,
@@ -11,8 +11,13 @@ import {
   RED_SHADE,
   WHITE,
 } from '../../../../styles/colors';
-import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import {
+  CENTER,
+  FLEX_END,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   description: {
@@ -149,7 +154,7 @@ export const styles = StyleSheet.create({
     width: 141,
     paddinLeft: 30,
     marginLeft: 160,
-    justifyContent:SPACE_BETWEEN,
+    justifyContent: SPACE_BETWEEN,
     marginTop: 22,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
@@ -157,7 +162,6 @@ export const styles = StyleSheet.create({
   StatusBox: {
     flexDirection: ROW,
     alignItems: FLEX_END,
-
   },
   buttonStyle: {
     flexDirection: ROW,
@@ -183,48 +187,58 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize18,
     color: RED_SHADE,
-    marginTop:13,
-    marginLeft:17
+    marginTop: 13,
+    marginLeft: 17,
   },
 
   statusBoxInitiated: {
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize18,
-    marginTop:13,
-    marginLeft:17
+    marginTop: 13,
+    marginLeft: 17,
   },
   AppointmentId: {
-    flexDirection: ROW
+    flexDirection: ROW,
   },
   AppointmentIdText: {
     marginTop: 17,
     marginLeft: 36,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
-    color:DARK_BLUE
+    color: DARK_BLUE,
   },
   customId: {
     marginTop: 5,
     marginLeft: 36,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
-    color:CYAN_BLUE,
+    color: CYAN_BLUE,
   },
   appoitmentid: {
     marginTop: 8,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
-    marginLeft:17,
-    color:DARK_BLUE
+    marginLeft: 17,
+    color: DARK_BLUE,
   },
   appoitmentidNumber: {
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
     marginTop: 5,
-    marginLeft:17,
-    color:CYAN_BLUE,
-
-  }
-
-
+    marginLeft: 17,
+    color: CYAN_BLUE,
+  },
+  NameStyle: {
+    marginTop: '5%',
+    marginBottom: '5%',
+    marginLeft: '15%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  Image: {
+    height: 48,
+    width: 48,
+    alignSelf: CENTER,
+  },
 });

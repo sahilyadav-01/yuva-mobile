@@ -7,13 +7,27 @@ import Header from '../../../components/Header';
 import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
 import { RED_SHADE, AMBER, WHITE } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
-import { getDate, getTime } from '../../../utils/utils';
+import { getDate, getTime, dignosticStatus } from '../../../utils/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
 const RescheduleAndCancel = () => {
     const cancelMessage = ARE_YOU_SURE;
+    const textStyle = (status) => {
+        switch (status) {
+            case 'CANCELLED': return styles.cancelledColor;
+            case 'INITIATED': return styles.initiatedColor;
+            default: return styles.confirmedColor
+        }
+    }
+    const backGroundStyle = (status) => {
+        switch (status) {
+            case 'CANCELLED': return styles.cancelledBgColor;
+            case 'INITIATED': return styles.initiatedBgColor;
+            default: return styles.confirmedBgColor
+        }
+    }
     const {
         cancelBookingButton,
         cancelBooking,
@@ -41,15 +55,14 @@ const RescheduleAndCancel = () => {
     }
     return (
         <View >
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
+            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                <View style={styles.Status}>
-                    <Text style={styles.BookingStatus}>{reschedule?.bookingStatus}</Text>
+                <View style={backGroundStyle(reschedule?.bookingStatus)}>
+                    <Text style={textStyle(reschedule?.bookingStatus)}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}..</Text>
                     <View style={styles.timeSlot}>
                         <View style={styles.direction}>
                             <Icon name={CALENDER} size={24} color={WHITE} />
                             <View>
-
                                 <Text style={styles.numberSytle}>{getDate(reschedule?.timeSlot)}</Text>
                                 <Text style={styles.numberSytle}>{getTime(reschedule?.timeSlot)}</Text>
                             </View>
