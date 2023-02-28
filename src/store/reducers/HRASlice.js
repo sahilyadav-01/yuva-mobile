@@ -63,6 +63,9 @@ const initialState = {
   saveHRALoading: false,
   saveHRAError: false,
   sectionId: null,
+  continueHRAName: null,
+  continueHRAId: '',
+  currentHRAId: '',
 };
 
 const hraSlice = createSlice({
@@ -72,6 +75,9 @@ const hraSlice = createSlice({
     resetHRA(state) {
       state.continueHRA = false;
     },
+    setCurrentHRAId(state,{payload}) {
+      state.currentHRAId = payload;
+    }
   },
   extraReducers: {
     [continueHRAThunk.pending]: (state, {payload}) => {
@@ -79,11 +85,15 @@ const hraSlice = createSlice({
       state.apiError = false;
       state.continueHRA = false;
       state.continueHRAStatus = false;
+      state.continueHRAName = null;
+      state.continueHRAId = '';
     },
     [continueHRAThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      state.continueHRA = payload.data;
+      state.continueHRA = payload.data.continueHra;
       state.continueHRAStatus = true;
+      state.continueHRAName = payload.data.name;
+      state.continueHRAId = payload.data.id;
     },
     [continueHRAThunk.rejected]: (state, {payload}) => {
       state.loading = false;
@@ -108,5 +118,5 @@ const hraSlice = createSlice({
 });
 
 export const hraInit = hraSlice.getInitialState();
-export const {resetHRA} = hraSlice.actions;
+export const {resetHRA, setCurrentHRAId} = hraSlice.actions;
 export default hraSlice.reducer;

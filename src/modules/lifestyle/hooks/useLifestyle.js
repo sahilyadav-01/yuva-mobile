@@ -107,15 +107,12 @@ export const useLifestyle = initialEnum => {
     );
   };
   const onPackagePress = arg => {
-        navigation.navigate('Diagnostics', {
-            screen: BOKINGTESTANDPACKAGE,
-            params: {
-              packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
-              uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
-              showCartButton: true,
-              isTest: arg?.item?.testId ? true : false, 
-            },
-          });
+        navigation.navigate('ProductDetails', {
+          packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
+          uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
+          showCartButton: true,
+          isTest: arg?.item?.testId ? true : false, 
+        });
   };
   const onPackageSelect = arg => {
     const id = arg?.item?.packageUuid ?? arg?.item?.testId;

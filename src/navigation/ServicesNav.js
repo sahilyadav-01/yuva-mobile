@@ -18,6 +18,7 @@ import TalkToDoctor from '../modules/staticDoctor';
 import CartNavigation from './CartNavigation';
 import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
 import HealthCheckupsStackNav from './HealthCheckupsStackNav';
+import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="Diagnostics"
         component={loggedIn !== 'loggedIn' ? ProfessionalServices : DiagnosticNav}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={BookingTestAndPackageScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

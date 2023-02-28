@@ -87,6 +87,7 @@ import AwayImage from './away';
 import HomeImage from './home';
 import tick from './tick';
 import minus from './minus';
+import Arrow from './arrow';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -180,6 +181,7 @@ const SVG = {
   minus,
   Reschedule: Reschedule,
   CheckIn: CheckIn,
+  Arrow: Arrow,
 };
 
 export {PNG, SVG};

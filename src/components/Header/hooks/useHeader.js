@@ -43,7 +43,7 @@ export const useHeader = (props) => {
 
 
   const onChangeSearch = (text) => {
-    onSearch(text);
+    onSearch && onSearch(text);
     setQuery(text);
   }
   return {
