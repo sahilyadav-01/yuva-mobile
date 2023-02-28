@@ -1,6 +1,7 @@
 import validator from 'is_js';
 import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import DeviceInfo from 'react-native-device-info';
 
 export const handleNetworkError = (status, message) => {
   if (!message) {
@@ -335,4 +336,9 @@ export const getDateText = date => {
     date &&
     `${date.getDate()} ${getMonthInText(date.getMonth())} ${date.getFullYear()}`
   );
+};
+
+export const getDeviceId = () => {
+  const deviceId = DeviceInfo.getDeviceId();
+  return deviceId || '';
 };
