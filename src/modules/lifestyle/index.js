@@ -1,23 +1,55 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {styles} from './style';
 import Header from '../../components/Header';
 import {useLifestyle} from './hooks/useLifestyle';
 import Packages from '../../components/PackagesList/packages';
+import {CONTINUE} from '../healthPackages/constants';
+import {
+  LIFESTYLE_PACKAGES,
+  PACKAGES,
+  SEARCH_PACKAGES_TESTS,
+  TESTS,
+} from './constants';
 
 const LifestyleTestsAndPackages = props => {
-  const {container, boxStyles, dropdownInputStyles, dropdownStyles} = styles();
-  const {packages, select, packageData, testData, renderData, onPackagePress, onPackageSelect} =
-    useLifestyle(props?.enumName);
+  const {
+    container,
+    boxStyles,
+    dropdownInputStyles,
+    dropdownStyles,
+    buttonContainer,
+    buttonText,
+    testsContainer,
+    packagesContainer,
+    scrollContainer,
+  } = styles();
+  const {
+    packages,
+    select,
+    packageData,
+    testData,
+    renderData,
+    onPackagePress,
+    onPackageSelect,
+    onContinuePress,
+    onSearch,
+    searchQuery
+  } = useLifestyle(props?.enumName);
   if (renderData) {
     return (
-      <View style={{flex: 1}}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        style={scrollContainer}>
         <Header
           canGoBack={true}
-          title="LifeStyle Packages"
+          title={LIFESTYLE_PACKAGES}
           showSearch={true}
-          searchPlaceholder="Search for Packages/Tests"
+          searchPlaceholder={SEARCH_PACKAGES_TESTS}
+          onSearch={onSearch}
         />
         <View style={container}>
           <SelectList
@@ -29,24 +61,27 @@ const LifestyleTestsAndPackages = props => {
             inputStyles={dropdownInputStyles}
             dropdownStyles={dropdownStyles}
           />
-          <Packages
-            extraStyles={{marginTop: 48}}
+          {packageData.length > 0 && <Packages
+            extraStyles={packagesContainer}
             showHeading={true}
-            heading={'Packages'}
+            heading={PACKAGES}
             data={packageData}
             onPackagePress={onPackagePress}
             onPackageSelect={onPackageSelect}
-          />
-          <Packages
-            extraStyles={{marginTop: 36}}
+          />}
+          {testData.length > 0 && <Packages
+            extraStyles={testsContainer}
             showHeading={true}
-            heading={'Tests'}
+            heading={TESTS}
             data={testData}
             onPackagePress={onPackagePress}
             onPackageSelect={onPackageSelect}
-          />
+          />}
+          <TouchableOpacity onPress={onContinuePress} style={buttonContainer}>
+            <Text style={buttonText}>{CONTINUE}</Text>
+          </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 };

@@ -17,9 +17,9 @@ export const lifeStyleSliceThunk = createAsyncThunk(
 
 export const lifeStyleEnumData = createAsyncThunk(
   'lifestyle-package/getData',
-  async ({enumName},{ fulfillWithValue, rejectWithValue }) => {
+  async ({enumName,search},{ fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/lifestyle-package/${enumName}`;
+      const endpoint = `/lifestyle-package/${enumName}${search ? `?search=${search}` : ''}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -67,7 +67,6 @@ const lifeStyleSlice = createSlice({
       state.packageDataError = null;
     },
     [lifeStyleEnumData.fulfilled]: (state,{payload}) => {
-      console.log('Payload',payload)
       state.packageDataLoading = false;
       state.packageData = payload.data.popularPackageResponseDtoList;
       state.testData = payload.data.popularTestResponseDtoList;

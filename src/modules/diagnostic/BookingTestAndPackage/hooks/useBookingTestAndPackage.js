@@ -1,34 +1,58 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    diagnosisPackageDetailsThunk
+    diagnosisPackageDetailsThunk, diagnosisTestDetailsThunk
 } from '../../../../store/reducers/DiagnosticsSlice';
-import { useNavigation } from '@react-navigation/core'
+import { useIsFocused, useNavigation } from '@react-navigation/core'
 import { useRoute } from '@react-navigation/native';
 import { BOOKINGCONFIRM } from '../constants';
 
 export const useBookingTestAndPackage = () => {
     const route = useRoute();
-    const { packageName ,uuid,userVersion,version,plan} = route.params;
+    const { packageName ,uuid,userVersion,version,plan,showCartButton, isTest} = route.params;
     const dispatch = useDispatch();
-    const navigation = useNavigation()
-    const { packageDetails } = useSelector(state => state.diagnostic);
- 
-    const list = packageDetails?.attributeResponseDtoList?.map((item) => {
-        return {
-            ...item,
-            isExpanded: false
-        }
+    const navigation = useNavigation();
+    const focused = useIsFocused();
+    const { packageDetails, testDetails } = useSelector(state => state.diagnostic);
+   const [details,setDetails] = useState('');
+   const [packageList, setPackageList] = useState('');
+   const [renderData, setRenderData] = useState(false);
 
-    }
-    )
+    useEffect(() => {
+        if(isTest) dispatch(diagnosisTestDetailsThunk({ id:uuid }));
+        else
+        dispatch(diagnosisPackageDetailsThunk({ packageName }));
+    }, []);
+
+    useEffect(()=>{
+        if(focused && packageDetails && testDetails === '') setDetails(packageDetails)
+        else if(focused && packageDetails === '' && testDetails) setDetails(testDetails)
+    },[focused,packageDetails,testDetails])
+
+    useEffect(()=>{
+        if(details!=='') {
+            let list;
+            if(!isTest){
+            list = details?.attributeResponseDtoList?.map((item) => {
+                return {
+                    ...item,
+                    isExpanded: false
+                }})
+            }
+            else{
+                list = [{...details,isExpanded:false}];
+            }
+            setPackageList(list);
+            setRenderData(true);
+        }
+    },[details])
+ 
     const PLAN={
         Uuid:uuid,userVersion:userVersion,version:version,plan:plan
     }
     const bookPackageScreen=()=>{
         navigation.navigate(BOOKINGCONFIRM, PLAN)
     }
-    const [packageList, setPackageList] = useState(list)
    
     const onUpdate = (index) => {
         const newList = packageList.map((item, itemIndex) => {
@@ -39,14 +63,17 @@ export const useBookingTestAndPackage = () => {
         });
         setPackageList(newList)
     }
-    useEffect(() => {
-        dispatch(diagnosisPackageDetailsThunk({ packageName }));
-    }, []);
+    const onAddToCartPress = () => {}
 
     return {
-        packageDetails,
+        packageDetails:details,
         packageList,
         onUpdate,
-        bookPackageScreen
+        bookPackageScreen,
+        showCartButton,
+        onAddToCartPress,
+        testDetails,
+        renderData,
+        isTest
     }
 }

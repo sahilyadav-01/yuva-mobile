@@ -23,6 +23,7 @@ export const SELECT="Select City";
 export const LAB="Lab Tests in this package";
 export const INSTRUCTIONS="Instructions";
 export const ABOUT_PACKAGE="About This Package";
+export const ABOUT_TEST="About This Test";
 export const DIAGNOSTIC="Diagnostic";
 export const DOWNLOAD_REPORT="Get Report";
 export const CANCELLED="CANCELLED";

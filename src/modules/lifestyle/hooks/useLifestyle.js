@@ -1,10 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  diagnosisPackageDetailsThunk,
-  diagnosisTestDetailsThunk,
-} from '../../../store/reducers/DiagnosticsSlice';
 import {lifeStyleEnumData} from '../../../store/reducers/LifeStyleSlice';
 import {BOKINGTESTANDPACKAGE} from '../../diagnostic/BookingTestAndPackage/constants';
 
@@ -16,7 +12,6 @@ export const useLifestyle = initialEnum => {
     testData: lifestyleTests,
     packageDataError,
   } = useSelector(state => state.lifestylePackage);
-  const {packageDetails, testDetails, loading} = useSelector(state => state.diagnostic);
   const focused = useIsFocused();
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -27,6 +22,7 @@ export const useLifestyle = initialEnum => {
   const [testData, setTestData] = useState([]);
   const [renderData, setRenderData] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [searchText, setSearchText] = useState('');
   useEffect(() => {
     if (focused && lifestylePackage.length > 0) {
       setEnumMapping(
@@ -44,8 +40,8 @@ export const useLifestyle = initialEnum => {
   }, [lifestylePackage, focused]);
 
   useEffect(() => {
-    if (selectedEnum) dispatch(lifeStyleEnumData({enumName: selectedEnum}));
-  }, [selectedEnum]);
+    if (selectedEnum && searchText.length === 0) dispatch(lifeStyleEnumData({enumName: selectedEnum}));
+  }, [selectedEnum,searchText]);
 
   useEffect(() => {
     if (
@@ -66,28 +62,42 @@ export const useLifestyle = initialEnum => {
       );
       setRenderData(true);
     }
+    else if (
+      !packageDataLoading &&
+      !packageDataError &&
+      lifestylePackages.length === 0 && 
+      lifestyleTests.length > 0 
+    ){
+      setPackageData([]);
+      setTestData(
+        lifestyleTests.map(item => {
+          return {...item, selected: false, packageName: item.testName};
+        }),
+      );
+    }
+    else if (
+      !packageDataLoading &&
+      !packageDataError &&
+      lifestylePackages.length > 0 &&
+      lifestyleTests.length === 0 
+    ){
+      setTestData([]);
+      setPackageData(
+        lifestylePackages.map(item => {
+          return {...item, selected: false};
+        }),
+      );
+    }
   }, [packageDataLoading]);
 
-//   useEffect(() => {
-//     if (packageDetails!=='' && testDetails === '' && selectedPackage && !loading) {
-//       navigation.navigate('Diagnostics', {
-//         screen: BOKINGTESTANDPACKAGE,
-//         params: {
-//           packageName: selectedPackage.name,
-//           uuid: selectedPackage.id,
-//         },
-//       });
-//     }
-//     else if (packageDetails==='' && testDetails !== '' && selectedPackage && !loading) {
-//         navigation.navigate('Diagnostics', {
-//           screen: BOKINGTESTANDPACKAGE,
-//           params: {
-//             packageName: selectedPackage.name,
-//             uuid: selectedPackage.id,
-//           },
-//         });
-//       }
-//   }, [packageDetails, testDetails, selectedPackage]);
+  const onContinuePress = () => {}
+
+  const onSearch = (arg) => {
+    setSearchText(arg.trim());
+    if(arg.trim().length > 3){
+      dispatch(lifeStyleEnumData({enumName: selectedEnum, search:arg}));
+    }
+  }
 
   const select = arg => {
     setSelectedEnum(
@@ -102,6 +112,8 @@ export const useLifestyle = initialEnum => {
             params: {
               packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
               uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
+              showCartButton: true,
+              isTest: arg?.item?.testId ? true : false, 
             },
           });
   };
@@ -132,5 +144,7 @@ export const useLifestyle = initialEnum => {
     renderData,
     onPackagePress,
     onPackageSelect,
+    onContinuePress,
+    onSearch,
   };
 };
