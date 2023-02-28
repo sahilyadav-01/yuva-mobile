@@ -8,62 +8,43 @@ import { popularPackageNameThunk } from '../../../store/reducers/ProgramAndPlanS
 export const usePackage = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [packageData, setPackageData] = useState([]);
-  const [selectedPakageData, setSelectedPakageData] = useState('');
-
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
-  console.log("popularPackageName", popularPackageName);
-
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(popularPackageNameThunk({ isActive, pageSize: 10 }));
-      dispatch(popularTestsSliceThunk({ isActive }));
-      setSelectedDropdownValue(0);
+      dispatch(popularTestsSliceThunk({ isActive, pageSize: 10 }));
     }
   }, []);
 
   useEffect(() => {
-    if(selectedPakageData){
-      switch (selectedPakageData) {
-      case 'Health Checkup Packages':
-        setPackageData(popularPackageName.popularPackageResponseDtoList.map(item => ({ ...item, selected: false })))
-        break;
-      case 'Diagnostic Tests':
-        setPackageData(popularTest.popularTestResponseDtoList.map(item => ({ ...item, selected: false })))
 
-        break;
-    
-    }}
-    // console.log("selectedPakageData",selectedPakageData)
-  }, [selectedPakageData]);
-  
-  // const [packageData, setPackageData] = useState(popularPackageName.popularPackageResponseDtoList.map(item => ({ ...item, selected: false })));
+    if (popularPackageName && popularPackageName.popularPackageResponseDtoList.length > 0 && popularTest && popularTest.popularTestResponseDtoList.length > 0) {
+      setPackageData(popularPackageName.popularPackageResponseDtoList.map(item => ({ ...item, selected: false })));
+      setPackageData(popularTest.popularTestResponseDtoList.map(item => ({ ...item, selected: false })));
+    }
+  }, [popularPackageName, popularTest]);
+
+  const [packageData, setPackageData] = useState([]);
   const dropdownData = [
     { key: '0', value: 'Health Checkup Packages' },
     { key: '1', value: 'Diagnostic Tests' },
   ];
   const setSelectedDropdownValue = (a) => {
-    console.log("bbbbbb",a)
     let dropDownValue = dropdownData.find((item, index) => {
       if (item.key === a.toString()) {
         return item
       }
-    }).value;
-    console.log("dropdown",dropDownValue)
-    setSelectedPakageData(dropDownValue);
-    console.log("selectedPakageData",selectedPakageData)
-
-    // switch (dropDownValue) {
-    //   case 'Health Checkup Packages':
-    //     setPackageData(popularPackageName.popularPackageResponseDtoList.map(item => ({ ...item, selected: false })))
-    //     break;
-    //   case 'Diagnostic Tests':
-    //     setPackageData(popularTest.popularTestResponseDtoList.map(item => ({ ...item, selected: false })))
-
-    //     break;
-    // }
+    }).value
+    switch (dropDownValue) {
+      case 'Health Checkup Packages':
+        setPackageData(popularPackageName.popularPackageResponseDtoList.map(item => ({ ...item, selected: false })))
+        break;
+      case 'Diagnostic Tests':
+        setPackageData(popularTest.popularTestResponseDtoList.map(item => ({ ...item, selected: false })))
+        break;
+    }
   }
 
 
@@ -85,7 +66,7 @@ export const usePackage = () => {
       packageUuid: obj.item.packageUuid,
     }
     console.log("Package pressed: ", obj.item.packageUuid);
-    navigation.navigate('packagesAndTestDetails' );
+    navigation.navigate('packagesAndTestDetails');
   };
 
 

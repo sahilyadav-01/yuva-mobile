@@ -1,8 +1,10 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { PNG } from '../../../../assets';
+import { useDispatch,  } from 'react-redux';
+import { resetPackages } from '../../../store/reducers/ProgramAndPlanSlice';
 export const useServiceCard = ({ screenName }) => {
-
+    const dispatch = useDispatch();
     const navigation = useNavigation();
     const imageData = {
         OPD_Consultation: PNG.OPD_Consultation,
@@ -12,6 +14,9 @@ export const useServiceCard = ({ screenName }) => {
         My_Health_Checkup: PNG.MY_HEALTH_CHECKUP
       };
     const onpress = () => {
+      if(screenName==='HealthCheckupsTests'){
+        dispatch(resetPackages());
+      }
         navigation.navigate(`${screenName}`);
     };
     return {

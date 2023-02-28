@@ -3,9 +3,10 @@ import { YuvaService } from '../../network/yuvaService';
 
 export const popularTestsSliceThunk = createAsyncThunk(
   'test/popular',
-  async ({ fulfillWithValue, rejectWithValue }) => {
+    async ({ pageSize }, { fulfillWithValue, rejectWithValue }) => {
+
     try {
-      const endpoint = `/test/popular?pageNo=1&pageSize=4`;
+      const endpoint = `/test/popular?pageNo=1&pageSize=${pageSize}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -19,7 +20,7 @@ const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
-  popularTest: [],
+  popularTest: null,
 }
 
 const popularTestsSlice = createSlice({
@@ -27,7 +28,7 @@ const popularTestsSlice = createSlice({
   initialState,
   reducers: {
     popularTest(state, action) {
-      state.popularTest = payload?.data;
+      state.popularTest = action?.payload?.data;
     },
   },
   extraReducers: {
