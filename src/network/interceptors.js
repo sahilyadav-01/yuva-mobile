@@ -22,6 +22,7 @@ axiosClient.interceptors.request.use(
       '/package/popular',
       '/test/popular',
       '/plan/popular',
+      '/cart/guest',
     ];
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;

@@ -19,6 +19,7 @@ import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
 import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice';
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 import hra, {hraInit} from './reducers/HRASlice';
+import cart, { cartInit } from './reducers/CartSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -41,6 +42,7 @@ const storeInitialState = {
   attribute: attributeInit,
   hra: hraInit,
   lifestylePackage:lifestylePackageInit,
+  cart: cartInit,
 };
 
 const appReducer = combineReducers({
@@ -64,6 +66,7 @@ const appReducer = combineReducers({
   hra,
   popularTests,
   lifestylePackage,
+  cart,
 });
 
 const rootReducer = (state, action) => {
