@@ -86,6 +86,9 @@ import LandingPageBanner2 from './LandingPageBanner2.png';
 import AwayImage from './away';
 import HomeImage from './home';
 import Arrow from './arrow';
+import Scientist from './scientist';
+import TestTube from './testtube';
+import HealthCheck from './healthCheck';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -178,6 +181,9 @@ const SVG = {
   Reschedule: Reschedule,
   CheckIn: CheckIn,
   Arrow: Arrow,
+  Scientist: Scientist,
+  TestTube: TestTube,
+  HealthCheck: HealthCheck,
 };
 
 export {PNG, SVG};

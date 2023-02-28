@@ -2,7 +2,9 @@ import {PNG} from '../../../assets';
 
 export const FIND_HEALTH_CHECKUP =
   'Find The Right Health Check Up Package For You';
-export const PACKAGE = 'POPULAR HEALTH CHECKUP PACAKGES';
+export const PACKAGE = 'Popular Health Checkup Packages';
+export const POPULAR_TEST = 'Popular Tests';
+
 export const ADV_BODY_CHECKUP1 = 'YUVA ADVANCE WITH VITAMIN';
 export const ADV_BODY_CHECKUP2 = 'FULL BODY CHECKUP';
 export const PARAMETER = 'Parameter: 85';
@@ -50,3 +52,4 @@ export const PARAMETERS = [
 ];
 
 export const HEALTH_CHECKUP_PACKAGE = 'Health Checkup Packages';
+export const SEARCH_PLACEHOLDER = 'Find your Tests, Health Checkups';
