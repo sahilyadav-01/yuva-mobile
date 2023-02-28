@@ -65,6 +65,7 @@ const initialState = {
   sectionId: null,
   continueHRAName: null,
   continueHRAId: '',
+  currentHRAId: '',
 };
 
 const hraSlice = createSlice({
@@ -74,6 +75,9 @@ const hraSlice = createSlice({
     resetHRA(state) {
       state.continueHRA = false;
     },
+    setCurrentHRAId(state,{payload}) {
+      state.currentHRAId = payload;
+    }
   },
   extraReducers: {
     [continueHRAThunk.pending]: (state, {payload}) => {
@@ -114,5 +118,5 @@ const hraSlice = createSlice({
 });
 
 export const hraInit = hraSlice.getInitialState();
-export const {resetHRA} = hraSlice.actions;
+export const {resetHRA, setCurrentHRAId} = hraSlice.actions;
 export default hraSlice.reducer;

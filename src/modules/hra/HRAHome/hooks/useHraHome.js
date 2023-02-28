@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { checkPermission } from "../../../../utils/utils";
 import { ALERT, REPORT_STATUS1, ALERT_TEXT1, REPORT_STATUS2, REPORT_STATUS3, FILE_NAME, LOGGEDIN, LOGIN_SCREEN, SECTION_1 } from "../../constant";
-import { continueHRAThunk } from "../../../../store/reducers/HRASlice";
+import { continueHRAThunk, setCurrentHRAId } from "../../../../store/reducers/HRASlice";
 
 export const useHraHome = () => {
     const navigation = useNavigation();
@@ -60,7 +60,9 @@ export const useHraHome = () => {
         //dispatch(reportStatusThunk());
     };
 
-    const goToSection1 = () => navigation.navigate(SECTION_1,{name:continueHRAName,id:parseFloat(continueHRAId)})
+    const goToSection1 = () => {
+        dispatch(setCurrentHRAId(continueHRAId !== null ? parseFloat(continueHRAId) : null))
+        navigation.navigate(SECTION_1,{name:continueHRAName,id:continueHRAId !== null ? parseFloat(continueHRAId) : null})}
 
     return {
         onDisplay,
