@@ -52,10 +52,12 @@ const Profile = () => {
     changeCity,
     changePincode,
     setSelectedCity,
+    profileLocked,
+    enableLockButton
   } = useProfile();
 
   const {container, addMembersButton, saveButtonText, addIconStyle} = styles({
-    disabled: false,
+    disabled: !enableLockButton || profileLocked,
   });
   if (showErrorMessage) {
     // return <ErrorScreen onRetryPress={onRetryPress} />;
@@ -91,6 +93,7 @@ const Profile = () => {
           changeCity={changeCity}
           changePincode={changePincode}
           setSelectedCity={setSelectedCity}
+          profileLocked={profileLocked}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard
@@ -111,7 +114,7 @@ const Profile = () => {
           onCancel={closePicker}
           onConfirm={onConfirmDate}
         />
-        <TouchableOpacity onPress={profileComplete} style={addMembersButton}>
+        <TouchableOpacity disabled={!enableLockButton || profileLocked} onPress={profileComplete} style={addMembersButton}>
           <Text style={saveButtonText}>{PROFILE_COMPLETE}</Text>
           <SVG.Arrow style={addIconStyle} color={WHITE} />
         </TouchableOpacity>

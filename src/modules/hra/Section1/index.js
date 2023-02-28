@@ -71,6 +71,17 @@ const Section1 = props => {
             showsVerticalScrollIndicator={false}>
             <View style={styles.questionViewContainer}>
               <Text style={requiredFieldQ1 ? styles.text : styles.textError}>
+                Name
+              </Text>
+              <TextInput
+                style={styles.questionViewContainerTextInput}
+                keyboardType={KEYBOARD_TYPE_VALUE}
+                placeholder={props?.name}
+                editable={false}
+              />
+            </View>
+            <View style={styles.questionViewContainer}>
+              <Text style={requiredFieldQ1 ? styles.text : styles.textError}>
                 {questionData[0]?.question}
               </Text>
               <TextInput
@@ -126,16 +137,13 @@ const Section1 = props => {
               <Text style={styles.questionViewContainerText}>
                 {questionData[4]?.question}
               </Text>
-              <SelectList
-                boxStyles={styles.boxStylesContainer}
-                placeholder={
-                  answers[questionData[4]?.questionId] === undefined
-                    ? answers[questionData[4]?.questionId] === ''
-                    : data[answers?.Q58] ?? props?.userData?.gender ?? ''
-                }
-                setSelected={setQuestion5}
-                data={PickerData[questionData[4]?.questionType]}
-                search={false}
+              <TextInput
+                style={styles.questionViewContainerTextInput}
+                keyboardType={KEYBOARD_TYPE_VALUE}
+                placeholder={answers[questionData[4]?.questionId] === undefined
+                  ? answers[questionData[4]?.questionId] === ''
+                  : data[answers?.Q58] ?? props?.userData?.gender ?? ''}
+                editable={false}
               />
             </View>
             <View style={styles.touchableOpacityViewContainer}>

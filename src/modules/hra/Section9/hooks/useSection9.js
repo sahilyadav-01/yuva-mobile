@@ -25,7 +25,7 @@ export const useSection9 = () => {
     const extra_questions_Q9A = useSelector(state => state.section7.extra_questions_Q9A);
     const extra_questions_Q10A = useSelector(state => state.section7.extra_questions_Q10A);
     const questionData = useSelector(state => state.section9.rawQuestions)
-    const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
+    const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError, currentHRAId} = useSelector(state => state.hra);
     const { width } = getDimensions();
     const progressWidth = width
     const [renderData, setRenderData] = useState(false);
@@ -57,7 +57,8 @@ export const useSection9 = () => {
             let final_data = {
                 answers: data,
                 cancer: extra_questions_Q9A,
-                illness: extra_questions_Q10A
+                illness: extra_questions_Q10A,
+                relationId: parseFloat(currentHRAId)
             }
             dispatch(finalSubmission({final_data })).then(() => { 
                 navigation.navigate(SECTION_10) })

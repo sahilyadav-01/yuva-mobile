@@ -38,6 +38,7 @@ export const useProfile = () => {
   const [pinCode, setPincode] = useState('');
   const [cityData, setCityData] = useState(null);
   const [selectedCityId, setSelectedCityId] = useState(null);
+  const [enableLockButton, setEnableLockButton] = useState(false);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -47,6 +48,11 @@ export const useProfile = () => {
       dispatch(cityIdThunk());
     }
   }, [focused, auth.loggedIn, reloadScreenCount]);
+
+  useEffect(()=>{
+    if(date && gender && addressLine1 && city && pinCode && focused)
+    setEnableLockButton(true);
+  },[date,gender,addressLine1,city,pinCode,focused])
 
   useEffect(() => {
     if (cityId) {
@@ -196,7 +202,7 @@ export const useProfile = () => {
       {
         text: 'Ok',
         onPress: () => {
-          dispatch(profileLock({}));
+          dispatch(profileLock());
         },
       },
     ]);
@@ -243,5 +249,7 @@ export const useProfile = () => {
       profile.userDetailsErrorMessage ||
       profile.relationsErrorMessage ||
       profile.activeRelationsErrorMessage,
+    profileLocked: profile.profileUpdated,
+    enableLockButton
   };
 };

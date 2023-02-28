@@ -67,9 +67,10 @@ export const updateProfile = createAsyncThunk(
 
 export const profileLock = createAsyncThunk(
   'profile/profileLock',
-  async ({fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      await YuvaService.put('/profile/lock');
+      const response = await YuvaService.put('/profile/lock');
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -170,7 +171,8 @@ const profileSlice = createSlice({
     },
     [profileLock.fulfilled]: (state, {payload}) => {
       state.loading = false;
-      state.profilelock = payload;
+      state.profileUpdated = true;
+      setProfileStatus('Y');
     },
     [profileLock.rejected]: (state, {payload}) => {
       state.apiError = true;
@@ -220,8 +222,6 @@ const profileSlice = createSlice({
       state.profileUpdated = false;
     },
     [updateProfile.fulfilled]: state => {
-      state.profileUpdated = true;
-      setProfileStatus('Y');
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
