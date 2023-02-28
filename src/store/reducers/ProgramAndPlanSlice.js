@@ -17,9 +17,9 @@ export const programAndPlanThunk = createAsyncThunk(
 
 export const popularPackageNameThunk = createAsyncThunk(
   'package/popular',
-  async ({ fulfillWithValue, rejectWithValue }) => {
+  async ({ pageSize }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/package/popular?pageNo=1&pageSize=4`;
+      const endpoint = `/package/popular?pageNo=1&pageSize=${pageSize}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -93,7 +93,7 @@ const programAndPlanSlice = createSlice({
     },
     [planPopularThunk.rejected]: (state, {payload}) => {
       state.loading = false;
-    } 
+    }
   },
 });
 

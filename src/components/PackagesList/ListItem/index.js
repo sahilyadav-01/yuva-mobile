@@ -1,20 +1,21 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {SVG} from '../../../../assets';
-import {TUNDORA} from '../../../styles/colors';
-import {styles} from './style';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { SVG } from '../../../../assets';
+import { TUNDORA } from '../../../styles/colors';
+import { styles } from './style';
 
 const ListItem = props => {
-  const {item, index} = props;
-  const style = styles({selected: item?.selected});
+  const { item, index } = props;
+  const style = styles({ selected: item?.selected });
   return (
     <TouchableOpacity
       onPress={() => {
-        props?.onPackagePress({item, index});
+        props?.onPackagePress({ item, index });
+        
       }}
       style={style.itemContainer}>
       <Text numberOfLines={2} style={style.nameContainer}>
-        {item.packageName ||item.testName}
+        {item.packageName || item.testName}
       </Text>
       <View style={style.priceContainer}>
         {item?.cost && item?.cost && (
@@ -25,7 +26,7 @@ const ListItem = props => {
         )}
         <TouchableOpacity
           onPress={() => {
-            props?.onPackageSelect({item, index});
+            props?.onPackageSelect({ item, index });
           }}>
           {item.selected ? <SVG.tick /> : <SVG.PlusIcon color={TUNDORA} />}
         </TouchableOpacity>

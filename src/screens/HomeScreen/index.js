@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({ isActive }));
+      dispatch(popularPackageNameThunk({ isActive, pageSize: 4 }));
       dispatch(popularTestsSliceThunk({ isActive }));
       dispatch(lifeStyleSliceThunk({ isActive }));
     }
