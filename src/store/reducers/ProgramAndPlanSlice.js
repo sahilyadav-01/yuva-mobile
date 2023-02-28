@@ -58,6 +58,9 @@ const programAndPlanSlice = createSlice({
     popularPackageName(state, action) {
       state.popularPackageName = payload?.data;
     },
+    setIndex(state,{payload}){
+      state.mainItem=payload;
+    },
   },
   extraReducers: {
     /**
@@ -98,5 +101,5 @@ const programAndPlanSlice = createSlice({
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName } = programAndPlanSlice.actions;
+export const { popularPackageName ,setIndex} = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

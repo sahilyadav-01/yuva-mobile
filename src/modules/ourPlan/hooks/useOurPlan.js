@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { planPopularThunk } from "../../../store/reducers/ProgramAndPlanSlice"
-import { LEFT, RIGHT } from "../constant";
+import { planPopularThunk, setIndex } from "../../../store/reducers/ProgramAndPlanSlice"
+import { LEFT, OURPLAN, RIGHT } from "../constant";
+
 
 export const useOurPlan = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,9 @@ export const useOurPlan = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(setIndex(mainItem))
+  }, [mainItem])
   return {
     onContainerPress,
     leftItem,

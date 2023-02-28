@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { PNG } from '../../../../../assets';
 import { BUY_NOW, MORE } from '../../constant';
+import { usePlanCard } from './hooks/usePlanCard';
 import { styles } from './styles';
 
 const PlanCard = (props) => {
-  const { onContainerPress, direction, item } = props;
+  const { onContainerPress, direction, item, activeIndex } = props;
+  const { onDetailsScreen } = usePlanCard(activeIndex);
   const isActiveIndex = (direction === undefined || direction === null);
   if (!item) {
     return null;
@@ -41,7 +43,7 @@ const PlanCard = (props) => {
   };
 
   return (
-    <TouchableOpacity style={[styles.container, isActiveIndex && styles.activeContainer]} disabled={isActiveIndex} onPress={onContainerPress}>
+    <TouchableOpacity style={[styles.container, isActiveIndex && styles.activeContainer]} onPress={isActiveIndex ? onDetailsScreen : onContainerPress}>
       <View style={styles.headingView}>
         <View style={styles.line} />
         <View style={styles.headingTextView}>

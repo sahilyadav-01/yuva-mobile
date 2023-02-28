@@ -16,6 +16,7 @@ import StaticHra from '../modules/staticHRA';
 import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
 import CartNavigation from './CartNavigation';
+import OurPlanNav from './OurPlanNav';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="CartScreen"
         component={CartNavigation}
+        options={{headerShown: false}}
+      />
+       <Stack.Screen
+        name="OurPlan"
+        component={OurPlanNav}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
