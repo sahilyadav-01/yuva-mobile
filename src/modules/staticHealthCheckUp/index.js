@@ -24,6 +24,24 @@ const HealthCheckUP = ({navigation}) => {
       value: 'hhvm',
     },
   ];
+  const PARAMS = [
+    {
+      DIABETES_SCREENING: 'Diabetes Screening',
+      CBC: 'CBC',
+      OLD_PRICE: '₹2000/-',
+      NEW_PRICE: '₹1400/-',
+      DISCOUNT: '40%',
+    },
+  ];
+
+  const TEST_PARAMS = [
+    {
+      LIPID_PROFILE: 'Lipid Profile',
+      OLD_PRICE: '₹2000/-',
+      NEW_PRICE: '₹1400/-',
+      DISCOUNT: '40%',
+    },
+  ];
   return (
     <View>
       <Header showBackButton={true} title={HEALTH_CHECKUP_PACKAGE} />
@@ -43,9 +61,9 @@ const HealthCheckUP = ({navigation}) => {
           <Search placeholder={SEARCH_PLACEHOLDER} />
         </View>
         <Text style={styles.title}>{PACKAGE}</Text>
-        <PopularPackages />
+        <PopularPackages from="Packages" item={PARAMS} />
         <Text style={styles.title}>{POPULAR_TEST}</Text>
-        <PopularTests />
+        <PopularPackages from="Tests" item={TEST_PARAMS} />
         <Description />
       </ScrollView>
     </View>

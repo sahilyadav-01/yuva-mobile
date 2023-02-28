@@ -6,7 +6,12 @@ import {
   INDIGO_LIGHT,
   SKY_BLUE,
 } from '../../../../styles/colors';
-import {ABSOLUTE, CENTER, ROW} from '../../../../styles/constants';
+import {
+  ABSOLUTE,
+  CENTER,
+  LINE_THROUGH,
+  ROW,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   viewContainer: {
@@ -77,7 +82,7 @@ export const styles = StyleSheet.create({
   },
   oldPrice: {
     color: RED_SHADE,
-    textDecorationLine: 'line-through',
+    textDecorationLine: LINE_THROUGH,
     fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik500,
     marginVertical: 15,

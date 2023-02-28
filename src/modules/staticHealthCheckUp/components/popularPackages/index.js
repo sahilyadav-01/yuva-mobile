@@ -4,7 +4,9 @@ import {SVG} from '../../../../../assets';
 import {styles} from './styles';
 import {ADD, OFFER, PARAMS, VIEW_DETAILS} from './constant';
 
-const PopularPackages = () => {
+const PopularPackages = props => {
+  const {from, item} = props;
+  console.log(from);
   const renderItem = ({item}) => {
     return (
       <View style={styles.viewContainer}>
@@ -14,12 +16,24 @@ const PopularPackages = () => {
         </View>
 
         <View style={styles.imageContainer}>
-          <SVG.Scientist />
-          <Text style={styles.textContainer}>{item.DIABETES_SCREENING}</Text>
-          <View style={styles.tubeContainer}>
-            <SVG.TestTube />
-            <Text style={styles.cbcContainer}>{item.CBC}</Text>
-          </View>
+          {from == 'Packages' ? (
+            <>
+              <SVG.Scientist />
+              <Text style={styles.textContainer}>
+                {item.DIABETES_SCREENING}
+              </Text>
+              <View style={styles.tubeContainer}>
+                <SVG.TestTube />
+                <Text style={styles.cbcContainer}>{item.CBC}</Text>
+              </View>
+            </>
+          ) : (
+            <>
+              <SVG.HealthCheck />
+              <Text style={styles.textContainer}>{item.LIPID_PROFILE}</Text>
+            </>
+          )}
+
           <View style={styles.priceContainer}>
             <Text style={styles.oldPrice}>{item.OLD_PRICE}</Text>
             <Text style={styles.newPrice}>{item.NEW_PRICE}</Text>
@@ -40,7 +54,7 @@ const PopularPackages = () => {
   return (
     <View>
       <FlatList
-        data={PARAMS}
+        data={item}
         keyExtractor={index => `${index}`}
         renderItem={renderItem}
       />
