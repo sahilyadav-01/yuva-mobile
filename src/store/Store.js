@@ -14,9 +14,13 @@ import appointment, {appointmentInit} from './reducers/AppointmentSlice';
 import diagnostic, {diagnosticInit} from './reducers/DiagnosticsSlice';
 import talkToDoctor, {talkToDoctorInit} from './reducers/TalkToDoctorSlice';
 import profile, {profileInit} from './reducers/ProfileSlice';
-import programAndPlan, {programAndPlanInit} from './reducers/ProgramAndPlanSlice';
+import programAndPlan, {
+  programAndPlanInit,
+} from './reducers/ProgramAndPlanSlice';
 import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
-import lifestylePackage, {lifestylePackageInit} from './reducers/LifeStyleSlice';
+import lifestylePackage, {
+  lifestylePackageInit,
+} from './reducers/LifeStyleSlice';
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 import hra, {hraInit} from './reducers/HRASlice';
 import cart, { cartInit } from './reducers/CartSlice';
@@ -38,7 +42,7 @@ const storeInitialState = {
   talkToDoctor: talkToDoctorInit,
   profile: profileInit,
   programAndPlan: programAndPlanInit,
-  popularTests:popularTestsInit,
+  popularTests: popularTestsInit,
   attribute: attributeInit,
   hra: hraInit,
   lifestylePackage:lifestylePackageInit,
@@ -78,7 +82,8 @@ const rootReducer = (state, action) => {
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({serializableCheck: false}),
 });
 
 export default store;

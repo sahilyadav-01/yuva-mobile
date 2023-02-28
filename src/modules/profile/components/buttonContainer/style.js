@@ -10,7 +10,7 @@ const styles = ({disabled}) => {
       flexDirection: ROW,
       paddingVertical: 16,
       marginBottom: 20,
-      backgroundColor: ORANGE,
+      backgroundColor: disabled ? ORANGE_GREY : ORANGE,
       borderRadius: 8,
       alignItems: CENTER,
       justifyContent: CENTER,

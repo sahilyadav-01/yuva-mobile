@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
-import { setProfileStatus } from '../LocalStore';
+import {setProfileStatus} from '../LocalStore';
 import {
   loginThunk,
   signupThunk,
@@ -59,6 +59,18 @@ export const updateProfile = createAsyncThunk(
         cityId,
         pinCode,
       });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const profileLock = createAsyncThunk(
+  'profile/profileLock',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const response = await YuvaService.put('/profile/lock');
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -151,6 +163,22 @@ const profileSlice = createSlice({
       state.status = false;
       state.userDetailsErrorMessage = payload.message;
     },
+
+    [profileLock.pending]: state => {
+      state.loading = true;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+    },
+    [profileLock.fulfilled]: (state, {payload}) => {
+      state.loading = false;
+      state.profileUpdated = true;
+      setProfileStatus('Y');
+    },
+    [profileLock.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.loading = false;
+    },
+
     [getRelations.pending]: state => {
       state.loading = true;
     },
@@ -194,8 +222,6 @@ const profileSlice = createSlice({
       state.profileUpdated = false;
     },
     [updateProfile.fulfilled]: state => {
-      state.profileUpdated = true;
-      setProfileStatus('Y');
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -240,20 +266,16 @@ const profileSlice = createSlice({
       state.apiErrorMessage = payload.message;
     },
     [loginThunk.fulfilled]: (state, {payload}) => {
-      if(payload.data)
-      state.profileUpdated = payload.data.profileUpdated;
+      if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
-      if(payload.data)
-      state.profileUpdated = payload.data.profileUpdated;
+      if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
-      if(payload.data)
-      state.profileUpdated = payload.data.profileUpdated;
+      if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
     [resetPassword.fulfilled]: (state, {payload}) => {
-      if(payload.data)
-      state.profileUpdated = payload.data.profileUpdated;
+      if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
     [logoutThunk.fulfilled]: state => {
       state.profileUpdated = false;

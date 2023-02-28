@@ -85,6 +85,7 @@ import landingPageBanner1 from './landingPageBanner1';
 import LandingPageBanner2 from './LandingPageBanner2.png';
 import AwayImage from './away';
 import HomeImage from './home';
+import Arrow from './arrow';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -176,6 +177,7 @@ const SVG = {
   HomeImage: HomeImage,
   Reschedule: Reschedule,
   CheckIn: CheckIn,
+  Arrow: Arrow,
 };
 
 export {PNG, SVG};
