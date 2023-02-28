@@ -15,9 +15,9 @@ import { useSelector } from 'react-redux';
 import StaticHra from '../modules/staticHRA';
 import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
-import HealthCheckupsTests from '../screens/yuvaservices/HealthCheckupsTests/packagesAndTestList';
 import CartNavigation from './CartNavigation';
 import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
+import HealthCheckupsStackNav from './HealthCheckupsStackNav';
 
 const Stack = createStackNavigator();
 
@@ -61,7 +61,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="HealthCheckupsTests"
-        component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthCheckupsTests}
+        component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthCheckupsStackNav}
         options={{ headerShown: false }}
       />
       <Stack.Screen

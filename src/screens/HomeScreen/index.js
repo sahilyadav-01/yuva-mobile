@@ -53,10 +53,10 @@ const HomeScreen = ({navigation}) => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
-      dispatch(allAppointmentThunk({isActive}));
-      dispatch(popularPackageNameThunk({isActive}));
-      dispatch(popularTestsSliceThunk({isActive}));
-      dispatch(lifeStyleSliceThunk({isActive}));
+      dispatch(allAppointmentThunk({ isActive }));
+      dispatch(popularPackageNameThunk({ isActive, pageSize: 4 }));
+      dispatch(popularTestsSliceThunk({ isActive }));
+      dispatch(lifeStyleSliceThunk({ isActive }));
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import Header from '../../components/Header';
-import { CONTINUE, SEARCH_PACKAGES } from './constants';
+import { CONTINUE, PLACEHOLDER_TEXT, SEARCH_PACKAGES, TITLE } from './constants';
 import SelectList from 'react-native-dropdown-select-list';
 import { styles } from './style';
 import Packages from '../../components/PackagesList/packages';
@@ -17,16 +17,10 @@ const HealthPackages = props => {
     buttonText,
     packageContainerStyle,
   } = styles();
-  // const mockData = [
-  //   {packageName: 'Yuva Prime', discount: '1500', price: '1000'},
-  //   {packageName: 'Yuva Advance', discount: '1500', price: '1000'},
-  //   {packageName: 'Basic Package'},
-  // ];
 
-  const [selectedDropdownValue, setSelectedDropdownValue] = useState('Health Checkup Packages');
-  const { data, dropdownData, onPackageSelect, onPackagePress } = usePackage(selectedDropdownValue);
-
-  if (data && data.length > 0) {
+  const { data, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress } = usePackage();
+// console.log(data,'kkkkkkkkkkkk')
+  if (data && data.length>0) {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -34,14 +28,13 @@ const HealthPackages = props => {
         bounces={false}
       >
 
-        <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} />
+        <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} showBackButton={true} title={TITLE}/>
         <View style={screenContainer}>
           <SelectList
             setSelected={setSelectedDropdownValue}
-            selected={selectedDropdownValue}
             search={false}
             data={dropdownData}
-            placeholder={'Select'}
+            placeholder={PLACEHOLDER_TEXT}
             boxStyles={dropdownContainerStyle}
             inputStyles={dropdownTextStyle}
           />
