@@ -32,6 +32,7 @@ import {popularPackageNameThunk} from '../../store/reducers/ProgramAndPlanSlice'
 import {popularTestsSliceThunk} from '../../store/reducers/PopularTestsSlice ';
 import {lifeStyleSliceThunk} from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
+import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -57,6 +58,12 @@ const HomeScreen = ({navigation}) => {
       dispatch(popularPackageNameThunk({ isActive, pageSize: 4 }));
       dispatch(popularTestsSliceThunk({ isActive }));
       dispatch(lifeStyleSliceThunk({ isActive }));
+      if(loggedIn === 'loggedIn'){
+        dispatch(getCartUserThunk());
+      } else {
+        dispatch(getCartGuestThunk());
+      }
+
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;

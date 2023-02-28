@@ -45,7 +45,7 @@ const LifestyleTestsAndPackages = props => {
         bounces={false}
         style={scrollContainer}>
         <Header
-          canGoBack={true}
+         showBackButton={true}
           title={LIFESTYLE_PACKAGES}
           showSearch={true}
           searchPlaceholder={SEARCH_PACKAGES_TESTS}

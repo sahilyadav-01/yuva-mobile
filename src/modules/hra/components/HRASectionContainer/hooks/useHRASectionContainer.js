@@ -1,7 +1,7 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { resetHRA, resetHRAData } from '../../../../../store/reducers/HRASlice';
+import { resetHRA, resetHRAData, setCurrentHRAId } from '../../../../../store/reducers/HRASlice';
 import {
   getRelations,
   profileThunk,
@@ -77,8 +77,10 @@ export const useHRASectionContainer = () => {
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
-    if (navigateToSection && userData)
-      navigation.navigate(SECTION_1, {userData});
+    if (navigateToSection && userData){
+      dispatch(setCurrentHRAId(userData.id ? parseFloat(userData?.id): null))
+      navigation.navigate(SECTION_1, {userData,name:userData?.name,id:userData.id ? parseFloat(userData?.id): null});
+    }
   }, [navigateToSection]);
 
   const openModal = () => {
