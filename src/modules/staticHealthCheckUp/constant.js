@@ -53,3 +53,7 @@ export const PARAMETERS = [
 
 export const HEALTH_CHECKUP_PACKAGE = 'Health Checkup Packages';
 export const SEARCH_PLACEHOLDER = 'Find your Tests, Health Checkups';
+export const PACKAGES = 'Packages';
+export const TESTS = 'Tests';
+export const SELECT = 'Select';
+

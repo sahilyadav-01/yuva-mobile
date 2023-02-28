@@ -2,11 +2,10 @@ import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import React from 'react';
 import {SVG} from '../../../../../assets';
 import {styles} from './styles';
-import {ADD, OFFER, PARAMS, VIEW_DETAILS} from './constant';
+import {ADD, OFFER, PACKAGES, PARAMS, VIEW_DETAILS} from './constant';
 
 const PopularPackages = props => {
   const {from, item} = props;
-  console.log(from);
   const renderItem = ({item}) => {
     return (
       <View style={styles.viewContainer}>
@@ -16,7 +15,7 @@ const PopularPackages = props => {
         </View>
 
         <View style={styles.imageContainer}>
-          {from == 'Packages' ? (
+          {from == PACKAGES ? (
             <>
               <SVG.Scientist />
               <Text style={styles.textContainer}>

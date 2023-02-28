@@ -7,13 +7,14 @@ import {
   HEALTH_CHECKUP_PACKAGE,
   POPULAR_TEST,
   SEARCH_PLACEHOLDER,
+  PACKAGES,
+  TESTS,
+  SELECT,
 } from './constant';
 import SelectList from 'react-native-dropdown-select-list';
 import {styles} from './styles';
 import Description from './components/description';
-import {SVG} from '../../../assets';
 import PopularPackages from './components/popularPackages';
-import PopularTests from './components/popularTests';
 import Search from '../../components/Search/index';
 const HealthCheckUP = ({navigation}) => {
   const mockData = [
@@ -53,7 +54,7 @@ const HealthCheckUP = ({navigation}) => {
         <SelectList
           search={false}
           data={mockData}
-          placeholder={'Select'}
+          placeholder={SELECT}
           boxStyles={styles.dropdownContainerStyle}
           inputStyles={styles.dropdownTextStyle}
         />
@@ -61,9 +62,9 @@ const HealthCheckUP = ({navigation}) => {
           <Search placeholder={SEARCH_PLACEHOLDER} />
         </View>
         <Text style={styles.title}>{PACKAGE}</Text>
-        <PopularPackages from="Packages" item={PARAMS} />
+        <PopularPackages from={PACKAGES} item={PARAMS} />
         <Text style={styles.title}>{POPULAR_TEST}</Text>
-        <PopularPackages from="Tests" item={TEST_PARAMS} />
+        <PopularPackages from={TESTS} item={TEST_PARAMS} />
         <Description />
       </ScrollView>
     </View>
