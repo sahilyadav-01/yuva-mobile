@@ -17,7 +17,7 @@ export const useServiceCard = ({screenName}) => {
   };
   const onpress = () => {
     if (
-      (screenName !== 'ProfessionalServices' || screenName !== 'Diagnostics') &&
+      screenName !== 'Diagnostics' &&
       !profileUpdated &&
       loggedIn === 'loggedIn'
     )
