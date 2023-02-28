@@ -12,3 +12,4 @@ export const FLEX_END = 'flex-end';
 export const FLEX_START = 'flex-start';
 export const BOLD = 'bold';
 export const RELATIVE = 'relative';
+export const LINE_THROUGH = 'line-through';

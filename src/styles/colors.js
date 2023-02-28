@@ -41,4 +41,5 @@ export const VERY_LIGHT_SKY_BLUE = '#F7F8F7';
 export const VERY_LIGHT_ORANGE = '#FFF9F3';
 export const PALE_ORANGE = '#B2A08F';
 export const DARK_MAROON = '#80450C';
-export const VERY_LIGHT_YELLOW='#FFFBEE'
+export const VERY_LIGHT_YELLOW = '#FFFBEE';
+export const SKY_BLUE = '#4CA3A5';
