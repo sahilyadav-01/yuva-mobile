@@ -24,6 +24,7 @@ const Header = (props) => {
     onBackPress,
     title,
     showCount,
+    count,
   } = useHeader(props);
 
   return (
@@ -46,7 +47,7 @@ const Header = (props) => {
           <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
             { showCount && 
               <View style={styles.badgeView}>
-                <Text style={styles.badgeText}>01</Text>
+                <Text style={styles.badgeText}>{count}</Text>
               </View>
             }
             <SVG.ShoppingCart />

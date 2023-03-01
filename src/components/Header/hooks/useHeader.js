@@ -62,5 +62,6 @@ export const useHeader = (props) => {
     onBackPress,
     title,
     showCount,
+    count,
   };
 }
