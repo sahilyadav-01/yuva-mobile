@@ -9,8 +9,11 @@ export const useHeader = (props) => {
   const dispatch = useDispatch();
   const [selectedCity, setSelectedCity] = useState('');
   const [query, setQuery] = useState('');
+  const [showCount, setShowCount] = useState(false);
   const { loggedIn } = useSelector(state => state.auth);
   const { cityId } = useSelector(state => state.diagnostic);
+  const { cart } = useSelector(state => state.cart);
+  const count = cart.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
@@ -36,7 +39,9 @@ export const useHeader = (props) => {
       dispatch(setCityId(selectedCity))
     }
   }, [selectedCity])
-
+  useEffect(() => {
+    setShowCount(count>0);
+  }, [count]);
 
   const onChangeSearch = (text) => {
     onSearch && onSearch(text);
@@ -56,5 +61,7 @@ export const useHeader = (props) => {
     canGoBack,
     onBackPress,
     title,
+    showCount,
+    count,
   };
 }
