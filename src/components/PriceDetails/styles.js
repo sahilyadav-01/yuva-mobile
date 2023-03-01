@@ -10,7 +10,7 @@ export const styles = () => {
       zIndex: 1,
       backgroundColor: WHITE,
       elevation: 1,
-      marginVertical: 12,
+      marginVertical: 16,
       paddingVertical: 12,
     },
     headingText: {
