@@ -18,9 +18,8 @@ const HealthPackages = props => {
     packageContainerStyle,
   } = styles();
 
-  const { data, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress } = usePackage();
-// console.log(data,'kkkkkkkkkkkk')
-  if (data && data.length>0) {
+  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData } = usePackage();
+  if (renderData) {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -28,7 +27,7 @@ const HealthPackages = props => {
         bounces={false}
       >
 
-        <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} showBackButton={true} title={TITLE}/>
+        <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} showBackButton={true} title={TITLE} onSearch={onSearch}/>
         <View style={screenContainer}>
           <SelectList
             setSelected={setSelectedDropdownValue}
@@ -42,7 +41,9 @@ const HealthPackages = props => {
             extraStyles={packageContainerStyle}
             onPackageSelect={arg => onPackageSelect(arg)}
             onPackagePress={obj => onPackagePress(obj)}
-            data={data}
+            data={index === 0 ? data : testData}
+            onEndReached={onEndReached}
+            isMoreData={isMoreData}
           />
           <TouchableOpacity style={buttonContainer}>
             <Text style={buttonText}>{CONTINUE}</Text>
