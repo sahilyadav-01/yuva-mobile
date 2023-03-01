@@ -6,7 +6,7 @@ import { styles } from './styles';
 const CartScreen = (props) => {
     return (
         <SafeAreaView style={styles.homeScreenContainer}>
-        <Cart/>
+            <Cart/>
         </SafeAreaView>
     );
 }

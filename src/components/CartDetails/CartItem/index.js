@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {SVG} from '../../../../assets';
+import { REMOVE } from '../constants';
 import {styles} from './style';
 
 const CartItem = props => {
@@ -15,7 +16,7 @@ const CartItem = props => {
     removeText,
     priceContainer,
   } = styles();
-  const {item: {packageName:text, discount, price, tests}} = props;
+  const {item: {name:text, discount, cost: price, tests}, onPressRemove} = props;
   return (
     <>
       <View style={packageContainer}>
@@ -29,9 +30,9 @@ const CartItem = props => {
       </View>
       <View style={detailsContainer}>
         <Text style={testText}>{tests}</Text>
-        <TouchableOpacity style={buttonContainer}>
+        <TouchableOpacity style={buttonContainer} onPress={onPressRemove}>
           <SVG.minus />
-          <Text style={removeText}>Remove</Text>
+          <Text style={removeText}>{REMOVE}</Text>
         </TouchableOpacity>
       </View>
     </>

@@ -14,11 +14,7 @@ export const useHeader = (props) => {
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
-    if(isLoggedIn){
-      navigation.navigate('CartScreen');
-    } else {
-      navigation.navigate('LoginScreen');
-    }
+    navigation.navigate('CartScreen');
   };
   const onRightPress = () => {
     isLoggedIn ? onToggleDrawer() : navigation.navigate('LoginScreen');
