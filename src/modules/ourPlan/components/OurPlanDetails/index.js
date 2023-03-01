@@ -1,14 +1,26 @@
-import { useRoute } from "@react-navigation/native";
+
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import OurPlan from "../..";
 import Header from "../../../../components/Header";
-import { OURPLAN_DETAILS, OUR_PLANS } from "./constants";
+import { OURPLAN_DETAILS, OUR_PLANS, PLAN_DETAILS, TERMS_AND_CONDITION ,termsAndCondition, BUY_NOW} from "./constants";
 import { useOurPlanDetails } from "./hooks/useOurPlanDetails";
 import { styles } from "./styles";
+import { SVG } from "../../../../../assets";
 
 const OurPlanDetails = () => {
-const {popularPlan}=useOurPlanDetails();
+    const { planDetails } = useOurPlanDetails();
+    const renderItem = ({ item, index }) => {
+        return (
+            <View>
+                <View style={styles.starIcon}>
+                    <SVG.StarIcon />
+                    <Text style={styles.details}> {item}</Text>
+                </View>
+            </View>
+        )
+    }
+
     return (
         <View>
             <Header showBackButton={true} title={OURPLAN_DETAILS} />
@@ -18,7 +30,31 @@ const {popularPlan}=useOurPlanDetails();
                         {OUR_PLANS}
                     </Text>
                 </View>
-                <OurPlan />
+                <OurPlan isHomeScreen={false} />
+                <View style={styles.planDetailsCard}>
+                    <Text style={styles.planDetails}>{PLAN_DETAILS}</Text>
+                    {planDetails &&
+                        <FlatList
+                            renderItem={renderItem}
+                            data={planDetails}
+                            keyExtractor={(item) => item.id}
+                            showsHorizontalScrollIndicator={false}
+                        />}
+                    <Text style={styles.termsCondition}>{TERMS_AND_CONDITION}</Text>
+                    <FlatList
+                        renderItem={renderItem}
+                        data={termsAndCondition}
+                        keyExtractor={(item) => item.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <TouchableOpacity
+                                // onPress={bookOurPlan}
+                                style={styles.touchableButton}>
+                                <Text style={styles.buyNow}>
+                                    {BUY_NOW}
+                                </Text>
+                            </TouchableOpacity>
             </ScrollView>
         </View>
     )
