@@ -47,4 +47,5 @@ export const TUNDORA = '#434343';
 export const BIANCA = '#FBF6EF';
 export const SPANISH_WHITE='#FEF2DD';
 export const GUARDSMAN_RED = '#D10000';
-export const VERY_LIGHT_YELLOW='#FFFBEE'
+export const VERY_LIGHT_YELLOW='#FFFBEE';
+export const PINK_ORANGE = '#FF6F6F';
