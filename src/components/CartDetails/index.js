@@ -7,7 +7,10 @@ const CartDetails = props => {
   const {heading,data} = props;
   const {detailsContainer, headingText} = styles();
   const RenderItem = ({item, index}) => {
-    return <CartItem item={item} index={index} />;
+    const onPressRemove = () => {
+      //remove api
+    }
+    return <CartItem item={item} index={index} onPressRemove={onPressRemove}/>;
   };
   return (
     <View style={detailsContainer}>
