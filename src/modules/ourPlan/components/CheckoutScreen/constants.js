@@ -1,0 +1,10 @@
+export const CHECKOUT="Checkout";
+export const PRICEDETAILS="Price Details";
+export const ORDERAMOUNT="Order Amount";
+export const RUPEE="₹";
+export const COUPON="Coupon Code";
+export const APPLY="Apply";
+export const DISCOUNT="Discount";
+export const AMOUNTPAYABLE="Amount Payable";
+export const TOBEPAID="To Be Paid";
+export const TERMSANDCONDTION="By clicking on the below button, you agree to our Terms and Conditions & Privacy Policy.";

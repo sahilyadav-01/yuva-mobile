@@ -9,7 +9,7 @@ import { styles } from "./styles";
 import { SVG } from "../../../../../assets";
 
 const OurPlanDetails = () => {
-    const { planDetails } = useOurPlanDetails();
+    const { planDetails,bookOurPlan } = useOurPlanDetails();
     const renderItem = ({ item, index }) => {
         return (
             <View>
@@ -49,7 +49,7 @@ const OurPlanDetails = () => {
                     />
                 </View>
                 <TouchableOpacity
-                                // onPress={bookOurPlan}
+                                onPress={bookOurPlan}
                                 style={styles.touchableButton}>
                                 <Text style={styles.buyNow}>
                                     {BUY_NOW}

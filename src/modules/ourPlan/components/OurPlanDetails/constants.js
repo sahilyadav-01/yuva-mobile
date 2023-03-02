@@ -3,6 +3,7 @@ export const OUR_PLANS = "Our Plans";
 export const PLAN_DETAILS = "Plan Details";
 export const TERMS_AND_CONDITION = "Terms & Conditions";
 export const BUY_NOW="Buy Now";
+export const ADDRESS="OurPlanAddress"
 export const termsAndCondition = ["Any plan can be cancelled within 7 days subject to a cancellation fee. The plan can only be cancelled if none of the service has been utilised by the customer.",
     "The plan is valid for family members ( Self, spouse, and children ).",
     "OPD consultation means treatment and examination from a network clinic and hospital. which do not require hospitalisation.",
