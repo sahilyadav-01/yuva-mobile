@@ -2,9 +2,10 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {lifeStyleEnumData} from '../../../store/reducers/LifeStyleSlice';
+import { useCart } from '../../cart/hooks/useCart';
 import {BOKINGTESTANDPACKAGE} from '../../diagnostic/BookingTestAndPackage/constants';
 
-export const useLifestyle = initialEnum => {
+export const useLifestyle = (initialEnum,initialName) => {
   const {
     lifestylePackage,
     packageDataLoading,
@@ -12,9 +13,11 @@ export const useLifestyle = initialEnum => {
     testData: lifestyleTests,
     packageDataError,
   } = useSelector(state => state.lifestylePackage);
+  const {existingIds, addToCartLoad} = useSelector(state => state.cart);
   const focused = useIsFocused();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const {addToCart} = useCart();
   const [packages, setPackages] = useState([]);
   const [enumMapping, setEnumMapping] = useState([]);
   const [selectedEnum, setSelectedEnum] = useState(initialEnum ?? '');
@@ -22,6 +25,7 @@ export const useLifestyle = initialEnum => {
   const [testData, setTestData] = useState([]);
   const [renderData, setRenderData] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [placeholder,setPlaceholder] = useState(initialName);
   const [searchText, setSearchText] = useState('');
   useEffect(() => {
     if (focused && lifestylePackage.length > 0) {
@@ -52,12 +56,14 @@ export const useLifestyle = initialEnum => {
     ) {
       setPackageData(
         lifestylePackages.map(item => {
-          return {...item, selected: false};
+          return {...item, selected: existingIds.length > 0 &&
+            existingIds.includes(item.packageUuid.toString())};
         }),
       );
       setTestData(
         lifestyleTests.map(item => {
-          return {...item, selected: false, packageName: item.testName};
+          return {...item, selected: existingIds.length > 0 &&
+            existingIds.includes(item.testId.toString()), packageName: item.testName};
         }),
       );
       setRenderData(true);
@@ -71,7 +77,8 @@ export const useLifestyle = initialEnum => {
       setPackageData([]);
       setTestData(
         lifestyleTests.map(item => {
-          return {...item, selected: false, packageName: item.testName};
+          return {...item, selected: existingIds.length > 0 &&
+            existingIds.includes(item.testId.toString()), packageName: item.testName};
         }),
       );
     }
@@ -84,11 +91,33 @@ export const useLifestyle = initialEnum => {
       setTestData([]);
       setPackageData(
         lifestylePackages.map(item => {
-          return {...item, selected: false};
+          return {...item, selected: existingIds.length > 0 &&
+            existingIds.includes(item.packageUuid.toString())};
         }),
       );
     }
   }, [packageDataLoading]);
+
+  useEffect(()=>{
+    if(packageData.length > 0) {
+      setPackageData(
+        packageData.map(item => {
+          if (existingIds.includes(item.packageUuid.toString()))
+            return {...item, selected: true};
+          else return {...item, selected: false};
+        }),
+      );
+    }
+    if(testData.length > 0) {
+      setTestData(
+        testData.map(item => {
+          if (existingIds.includes(item.testId.toString()))
+            return {...item, selected: true};
+          else return {...item, selected: false};
+        }),
+      );
+    }
+  },[existingIds])
 
   const onContinuePress = () => {}
 
@@ -105,6 +134,9 @@ export const useLifestyle = initialEnum => {
         if (item.key.toString() === arg.toString()) return item;
       }).enumName,
     );
+    setPlaceholder(packages.find(item => {
+      if (item.key.toString() === arg.toString()) return item;
+    }).value)
   };
   const onPackagePress = arg => {
         navigation.navigate('ProductDetails', {
@@ -117,21 +149,30 @@ export const useLifestyle = initialEnum => {
   const onPackageSelect = arg => {
     const id = arg?.item?.packageUuid ?? arg?.item?.testId;
     const objData = arg?.item?.packageUuid ? packageData : testData;
-    const setObjData = arg?.item?.packageUuid ? setPackageData : setTestData;
-    let data = objData.map(item => {
-      if (item?.packageUuid && item?.packageUuid.toString() === id.toString())
-        return {...item, selected: !item.selected};
-      else if (
-        item?.packageUuid &&
-        item?.packageUuid.toString() !== id.toString()
-      )
-        return item;
-      else if (item?.testId && item?.testId.toString() === id.toString())
-        return {...item, selected: !item.selected};
-      else if (item?.testId && item?.testId.toString() !== id.toString())
-        return item;
+    objData.forEach(item => {
+      if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === false){
+        addToCart({
+          name: item?.packageName,
+          cost: item?.cost,
+          productId: item?.packageUuid.toString()
+        },
+        'PACKAGE')
+      }
+      if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === true){
+        console.log('Package remove',item)
+      }
+      else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === false){
+        addToCart({
+          name: item?.testName,
+          cost: item?.cost,
+          productId: item?.testId.toString()
+        },
+        'TEST')
+      }
+      else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === true){
+        console.log('Test remove',item)
+      }
     });
-    setObjData(data);
   };
   return {
     packages,
@@ -139,9 +180,11 @@ export const useLifestyle = initialEnum => {
     packageData,
     testData,
     renderData,
+    addToCartLoad,
     onPackagePress,
     onPackageSelect,
     onContinuePress,
     onSearch,
+    placeholder
   };
 };

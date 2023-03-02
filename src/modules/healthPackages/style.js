@@ -9,7 +9,7 @@ import {
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
-export const styles = () => {
+export const styles = addToCartLoad => {
   return StyleSheet.create({
     screenContainer: {paddingHorizontal: 14, paddingVertical: 24},
     dropdownContainerStyle: {
@@ -37,5 +37,8 @@ export const styles = () => {
     packageContainerStyle: {
       marginVertical: 36,
     },
+    screenStyle: {height: addToCartLoad ? '100%' : undefined},
+    childContainerStyle: {flex:addToCartLoad?1:undefined},
+    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER}
   });
 };

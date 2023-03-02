@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
 import Header from '../../components/Header';
 import { CONTINUE, PLACEHOLDER_TEXT, SEARCH_PACKAGES, TITLE } from './constants';
 import SelectList from 'react-native-dropdown-select-list';
@@ -8,7 +8,7 @@ import Packages from '../../components/PackagesList/packages';
 import { usePackage } from './hooks/usePackage';
 
 const HealthPackages = props => {
-
+  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData, addToCartLoad } = usePackage();
   const {
     screenContainer,
     dropdownContainerStyle,
@@ -16,24 +16,28 @@ const HealthPackages = props => {
     buttonContainer,
     buttonText,
     packageContainerStyle,
-  } = styles();
-
-  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData } = usePackage();
+    screenStyle,
+    addToCartLoader,
+    childContainerStyle
+  } = styles(addToCartLoad);
   if (renderData) {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
         bounces={false}
+        contentContainerStyle={screenStyle}
       >
 
         <Header showSearch={true} searchPlaceholder={SEARCH_PACKAGES} showBackButton={true} title={TITLE} onSearch={onSearch}/>
-        <View style={screenContainer}>
+        <View style={[screenContainer,childContainerStyle]}>
+        {addToCartLoad ? <View style={[childContainerStyle,addToCartLoader]}><ActivityIndicator size={'small'}/></View> :
+          <>
           <SelectList
             setSelected={setSelectedDropdownValue}
             search={false}
             data={dropdownData}
-            placeholder={PLACEHOLDER_TEXT}
+            placeholder={index === 0 ? PLACEHOLDER_TEXT : 'Diagnostic Tests'}
             boxStyles={dropdownContainerStyle}
             inputStyles={dropdownTextStyle}
           />
@@ -47,7 +51,7 @@ const HealthPackages = props => {
           />
           <TouchableOpacity style={buttonContainer}>
             <Text style={buttonText}>{CONTINUE}</Text>
-          </TouchableOpacity>
+          </TouchableOpacity></>}
         </View>
       </ScrollView>
     );

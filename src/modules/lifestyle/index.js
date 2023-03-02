@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {styles} from './style';
 import Header from '../../components/Header';
@@ -15,6 +15,19 @@ import {
 
 const LifestyleTestsAndPackages = props => {
   const {
+    packages,
+    select,
+    packageData,
+    testData,
+    renderData,
+    addToCartLoad,
+    onPackagePress,
+    onPackageSelect,
+    onContinuePress,
+    onSearch,
+    placeholder
+  } = useLifestyle(props?.enumName,props?.name);
+  const {
     container,
     boxStyles,
     dropdownInputStyles,
@@ -24,26 +37,19 @@ const LifestyleTestsAndPackages = props => {
     testsContainer,
     packagesContainer,
     scrollContainer,
-  } = styles();
-  const {
-    packages,
-    select,
-    packageData,
-    testData,
-    renderData,
-    onPackagePress,
-    onPackageSelect,
-    onContinuePress,
-    onSearch,
-    searchQuery
-  } = useLifestyle(props?.enumName);
+    childContainerStyle,
+    addToCartLoader,
+    screenStyle
+  } = styles(addToCartLoad);
   if (renderData) {
     return (
       <ScrollView
         nestedScrollEnabled={true}
         showsVerticalScrollIndicator={false}
         bounces={false}
-        style={scrollContainer}>
+        style={scrollContainer}
+        contentContainerStyle={screenStyle}
+        >
         <Header
          showBackButton={true}
           title={LIFESTYLE_PACKAGES}
@@ -51,12 +57,13 @@ const LifestyleTestsAndPackages = props => {
           searchPlaceholder={SEARCH_PACKAGES_TESTS}
           onSearch={onSearch}
         />
-        <View style={container}>
+        <View style={[container,childContainerStyle]}>
+          {addToCartLoad ? <View style={[childContainerStyle,addToCartLoader]}><ActivityIndicator size={'small'}/></View> : <>
           <SelectList
             setSelected={select}
             search={false}
             data={packages}
-            placeholder={props?.name}
+            placeholder={placeholder}
             boxStyles={boxStyles}
             inputStyles={dropdownInputStyles}
             dropdownStyles={dropdownStyles}
@@ -80,6 +87,7 @@ const LifestyleTestsAndPackages = props => {
           <TouchableOpacity onPress={onContinuePress} style={buttonContainer}>
             <Text style={buttonText}>{CONTINUE}</Text>
           </TouchableOpacity>
+          </>}
         </View>
       </ScrollView>
     );

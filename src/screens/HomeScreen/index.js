@@ -55,8 +55,8 @@ const HomeScreen = ({ navigation }) => {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({ isActive, pageSize: 4 }));
-      dispatch(popularTestsSliceThunk({ isActive, pageSize: 4 }));
+      dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search:'' }));
+      dispatch(popularTestsSliceThunk({ pageNo:1, pageSize: 4, search:'' }));
       dispatch(lifeStyleSliceThunk({ isActive }));
       if(loggedIn === 'loggedIn'){
         dispatch(getCartUserThunk());

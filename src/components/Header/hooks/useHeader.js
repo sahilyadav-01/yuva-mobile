@@ -13,7 +13,7 @@ export const useHeader = (props) => {
   const { loggedIn } = useSelector(state => state.auth);
   const { cityId } = useSelector(state => state.diagnostic);
   const { cart } = useSelector(state => state.cart);
-  const count = cart.itemDtoList?.length || 0;
+  const count = cart?.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
