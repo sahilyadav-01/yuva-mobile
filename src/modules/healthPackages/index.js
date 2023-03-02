@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native';
 import Header from '../../components/Header';
-import { CONTINUE, PLACEHOLDER_TEXT, SEARCH_PACKAGES, TITLE } from './constants';
+import { CONTINUE, DIAGNOSTIC_TESTS, PLACEHOLDER_TEXT, SEARCH_PACKAGES, TITLE } from './constants';
 import SelectList from 'react-native-dropdown-select-list';
 import { styles } from './style';
 import Packages from '../../components/PackagesList/packages';
@@ -37,7 +37,7 @@ const HealthPackages = props => {
             setSelected={setSelectedDropdownValue}
             search={false}
             data={dropdownData}
-            placeholder={index === 0 ? PLACEHOLDER_TEXT : 'Diagnostic Tests'}
+            placeholder={index === 0 ? PLACEHOLDER_TEXT : DIAGNOSTIC_TESTS}
             boxStyles={dropdownContainerStyle}
             inputStyles={dropdownTextStyle}
           />
