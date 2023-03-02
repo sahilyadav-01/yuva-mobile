@@ -201,18 +201,21 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.cart.isRemoved = false;
+      state.addToCartLoad = true;
     },
     [deleteCartThunk.fulfilled]: (state, {payload}) => {
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
       state.cart.isRemoved = true;
+      state.addToCartLoad = false;
     },
     [deleteCartThunk.rejected]: (state, {payload}) => {
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
       state.loading= false;
       state.cart.isRemoved = false;
+      state.addToCartLoad = false;
     },    
   },
 });

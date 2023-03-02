@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {lifeStyleEnumData} from '../../../store/reducers/LifeStyleSlice';
 import { useCart } from '../../cart/hooks/useCart';
-import {BOKINGTESTANDPACKAGE} from '../../diagnostic/BookingTestAndPackage/constants';
 
 export const useLifestyle = (initialEnum,initialName) => {
   const {
@@ -17,7 +16,7 @@ export const useLifestyle = (initialEnum,initialName) => {
   const focused = useIsFocused();
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {addToCart} = useCart();
+  const {addToCart, onRemove} = useCart();
   const [packages, setPackages] = useState([]);
   const [enumMapping, setEnumMapping] = useState([]);
   const [selectedEnum, setSelectedEnum] = useState(initialEnum ?? '');
@@ -161,7 +160,7 @@ export const useLifestyle = (initialEnum,initialName) => {
         'PACKAGE')
       }
       if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === true){
-        console.log('Package remove',item)
+        onRemove({productId:item?.packageUuid.toString()});
       }
       else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === false){
         addToCart({
@@ -172,7 +171,7 @@ export const useLifestyle = (initialEnum,initialName) => {
         'TEST')
       }
       else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === true){
-        console.log('Test remove',item)
+        onRemove({productId:item?.testId.toString()});
       }
     });
   };
