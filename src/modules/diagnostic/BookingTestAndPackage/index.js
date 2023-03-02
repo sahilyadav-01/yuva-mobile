@@ -17,7 +17,8 @@ const BookingTestAndPackage = () => {
         showCartButton,
         onAddToCartPress,
         renderData,
-        isTest
+        isTest,
+        isDisabled
     } = useBookingTestAndPackage();
 
 
@@ -77,7 +78,7 @@ const BookingTestAndPackage = () => {
     if (!renderData) return null;
     return (
         <View>
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
+            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>
@@ -95,9 +96,9 @@ const BookingTestAndPackage = () => {
                             <Text style={styles.color}>{packageDetails?.description}</Text>
                             {packageDetails?.prerequisites && <>
                                 <Text style={styles.instructDetails}>
-                                {INSTRUCTIONS}
-                            </Text>
-                            <Text style={styles.color}>{packageDetails?.prerequisites}</Text></>}
+                                    {INSTRUCTIONS}
+                                </Text>
+                                <Text style={styles.color}>{packageDetails?.prerequisites}</Text></>}
                             {packageDetails?.parameterCount && <Text style={styles.totalLabDetails}>
                                 {packageDetails?.parameterCount} {LAB}
                             </Text>}
@@ -114,13 +115,15 @@ const BookingTestAndPackage = () => {
                     </View>
                 </View>
                 {showCartButton ? <TouchableOpacity
-                     onPress={onAddToCartPress}                        
-                    style={styles.touchable}>
+                    onPress={() => onAddToCartPress()}
+                    disabled={isDisabled}
+                    style={styles.touchable(isDisabled)}
+                >
                     <Text style={styles.textBook}>
-                      Add To Cart
+                        Add To Cart
                     </Text>
                 </TouchableOpacity> : <TouchableOpacity
-                     onPress={bookPackageScreen}                        
+                    onPress={bookPackageScreen}
                     style={styles.touchable}>
                     <Text style={styles.textBook}>
                         {BOOK_NOW}
