@@ -26,7 +26,7 @@ export const useServiceCard = ({screenName}) => {
     else if (profileUpdated && screenName === 'HealthCheckupsTests' && loggedIn === 'loggedIn') {
       dispatch(resetPackages());
       dispatch(resetTests());
-      navigation.navigate(`${screenName}`);
+      navigation.navigate(`${screenName}`,{index:0});
     }
     else navigation.navigate(`${screenName}`);
   };

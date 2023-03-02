@@ -8,7 +8,7 @@ import Packages from '../../components/PackagesList/packages';
 import { usePackage } from './hooks/usePackage';
 
 const HealthPackages = props => {
-  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData, addToCartLoad, onContinuePress } = usePackage();
+  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData, addToCartLoad, onContinuePress } = usePackage(props?.index);
   const {
     screenContainer,
     dropdownContainerStyle,

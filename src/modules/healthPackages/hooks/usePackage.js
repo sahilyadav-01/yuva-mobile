@@ -7,7 +7,7 @@ import {popularTestsSliceThunk} from '../../../store/reducers/PopularTestsSlice 
 import {popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import {useCart} from '../../cart/hooks/useCart';
 
-export const usePackage = () => {
+export const usePackage = (initialIndex) => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const usePackage = () => {
   const {popularPackageName} = useSelector(state => state.programAndPlan);
   const {popularTest} = useSelector(state => state.popularTests);
   const {existingIds, addToCartLoad} = useSelector(state => state.cart);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(initialIndex);
   const [packageData, setPackageData] = useState([]);
   const [testData, setTestData] = useState([]);
   const [currentPageNo, setCurrentPageNo] = useState(1);

@@ -50,6 +50,8 @@ const HomeScreen = ({ navigation }) => {
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
   };
+
+  const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests',{index})
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
@@ -92,7 +94,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(0)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
@@ -114,7 +116,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(1)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
