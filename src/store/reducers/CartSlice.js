@@ -66,13 +66,8 @@ export const deleteCartThunk = createAsyncThunk(
   'cart/deleteCart',
   async ({itemId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = '/cart/item';
-      const params = {
-        fromWeb: false,
-        itemId,
-        sessionId,
-      };
-      const response = await YuvaService.delete(endpoint, params);
+      const endpoint = `/cart/item?fromWeb=false&itemId=${itemId}&sessionId=${sessionId}`;
+      const response = await YuvaService.delete(endpoint);
       return fulfillWithValue(response);
     } catch (error) {
       return rejectWithValue(error);
