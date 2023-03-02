@@ -33,10 +33,12 @@ import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice '
 import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
+import { useCart } from '../../modules/cart/hooks/useCart';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
+  const {addToCart} = useCart()
   const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
@@ -44,8 +46,8 @@ const HomeScreen = ({ navigation }) => {
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { lifestylePackage } = useSelector(state => state.lifestylePackage);
-  const onPressAdd = () => {
-    //On add press logic to be added here
+  const onPressAdd = (arg) => {
+    addToCart({name:arg.name,cost:arg.cost,productId:arg.productId},arg.productType)
   };
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
@@ -104,7 +106,7 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}
@@ -126,7 +128,7 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}
