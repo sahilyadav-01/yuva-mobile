@@ -13,7 +13,7 @@ const Cart = (props) => {
     const {itemDtoList, totalCost } = cart || {};
     return (
         <ScrollView style={styles.container}>
-         <Header title={MY_CART} showSearch={false}/>
+         <Header title={MY_CART} showSearch={false} showBackButton={true}/>
          <View style={styles.bodyContainer}>
             <CartDetails data={itemDtoList} heading={CART_DETAILS} onRemove={onRemove}/>
             <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost}/>
