@@ -3,7 +3,7 @@ import { FLASH_WHITE, ORANGE, WHITE } from '../../styles/colors';
 import { CENTER } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
-export const styles = () => {
+export const styles = (addToCartLoad) => {
   return StyleSheet.create({
     scrollContainer: {flex: 1},
     container: {flex:1,paddingHorizontal: 14,backgroundColor:FLASH_WHITE},
@@ -25,6 +25,9 @@ export const styles = () => {
       color: WHITE,
     },
     testsContainer: {marginTop: 36},
-    packagesContainer: {marginTop: 48}
+    packagesContainer: {marginTop: 48},
+    screenStyle: {height: addToCartLoad ? '100%' : undefined},
+    childContainerStyle: {flex:addToCartLoad?1:undefined},
+    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER}
   });
 };

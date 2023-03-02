@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import ListItem from './ListItem';
 import {styles} from './style';
 
@@ -7,6 +7,15 @@ const Packages = props => {
   const style = styles();
   const ItemSeparator = () => {
     return <View style={style.separatorStyle} />;
+  };
+
+  const RenderListFooter = () => {
+    if(!props?.isMoreData) return null;
+    return (
+      <View style={{alignItems: 'center'}}>
+        <ActivityIndicator size={'small'} />
+      </View>
+    );
   };
   const RenderItem = ({item, index}) => {
     return (
@@ -38,6 +47,8 @@ const Packages = props => {
         keyExtractor={(item, index) => index}
         renderItem={RenderItem}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={props?.onEndReached}
+        ListFooterComponent={RenderListFooter}
       />
     </View>
   );

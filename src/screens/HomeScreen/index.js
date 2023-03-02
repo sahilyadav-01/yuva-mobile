@@ -33,10 +33,12 @@ import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice '
 import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
+import { useCart } from '../../modules/cart/hooks/useCart';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
+  const {addToCart} = useCart()
   const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
@@ -44,19 +46,21 @@ const HomeScreen = ({ navigation }) => {
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { lifestylePackage } = useSelector(state => state.lifestylePackage);
-  const onPressAdd = () => {
-    //On add press logic to be added here
+  const onPressAdd = (arg) => {
+    addToCart({name:arg.name,cost:arg.cost,productId:arg.productId},arg.productType)
   };
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
   };
+
+  const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests',{index})
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({ isActive, pageSize: 4 }));
-      dispatch(popularTestsSliceThunk({ isActive, pageSize: 4 }));
+      dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search:'' }));
+      dispatch(popularTestsSliceThunk({ pageNo:1, pageSize: 4, search:'' }));
       dispatch(lifeStyleSliceThunk({ isActive }));
       if(loggedIn === 'loggedIn'){
         dispatch(getCartUserThunk());
@@ -92,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(0)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
@@ -102,7 +106,7 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}
@@ -114,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(1)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
@@ -124,7 +128,7 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}

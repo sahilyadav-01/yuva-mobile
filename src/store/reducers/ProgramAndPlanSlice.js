@@ -17,9 +17,9 @@ export const programAndPlanThunk = createAsyncThunk(
 
 export const popularPackageNameThunk = createAsyncThunk(
   'package/popular',
-  async ({ pageSize }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo,pageSize,search }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/package/popular?pageNo=1&pageSize=${pageSize}`;
+      const endpoint = `/package/popular?pageNo=${pageNo}&pageSize=${pageSize}${search ? `&search=${search}` : ''}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
