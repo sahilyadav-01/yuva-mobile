@@ -144,6 +144,8 @@ export const useLifestyle = (initialEnum,initialName) => {
           uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
           showCartButton: true,
           isTest: arg?.item?.testId ? true : false, 
+          name:arg?.item?.packageName ?? null,
+          cost: arg?.item?.cost ?? null
         });
   };
   const onPackageSelect = arg => {

@@ -197,6 +197,8 @@ export const usePackage = () => {
       uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
       showCartButton: true,
       isTest: arg?.item?.testId ? true : false,
+      name:arg?.item.packageName ?? arg?.item.testName ?? null,
+      cost: arg?.item?.cost ?? null
     });
   };
 
