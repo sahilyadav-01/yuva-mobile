@@ -4,11 +4,11 @@ import CartItem from './CartItem';
 import {styles} from './style';
 
 const CartDetails = props => {
-  const {heading,data} = props;
+  const {heading,data, onRemove} = props;
   const {detailsContainer, headingText} = styles();
   const RenderItem = ({item, index}) => {
     const onPressRemove = () => {
-      //remove api
+      onRemove(item);
     }
     return <CartItem item={item} index={index} onPressRemove={onPressRemove}/>;
   };
