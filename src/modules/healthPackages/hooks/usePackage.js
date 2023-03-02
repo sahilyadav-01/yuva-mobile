@@ -182,7 +182,9 @@ export const usePackage = () => {
             index === 0 ? 'PACKAGE' : 'TEST',
           );
         } else if (item.selected === true) {
-          console.log('Remove item');
+          onRemove({productId:item?.packageUuid
+            ? item?.packageUuid.toString()
+            : item?.testId.toString()})
         }
         return item;
       }
