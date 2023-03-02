@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './styles';
-import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, INSTRUCTIONS, LAB } from './constants';
+import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT, INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
@@ -115,12 +115,12 @@ const BookingTestAndPackage = () => {
                     </View>
                 </View>
                 {showCartButton ? <TouchableOpacity
-                    onPress={() => onAddToCartPress()}
+                    onPress={onAddToCartPress} 
                     disabled={isDisabled}
                     style={styles.touchable(isDisabled)}
                 >
                     <Text style={styles.textBook}>
-                        Add To Cart
+                        {BUTTON_TEXT}
                     </Text>
                 </TouchableOpacity> : <TouchableOpacity
                     onPress={bookPackageScreen}
