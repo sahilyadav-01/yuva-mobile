@@ -66,12 +66,13 @@ export const deleteCartThunk = createAsyncThunk(
   'cart/deleteCart',
   async ({itemId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = 'cart/item';
-      const response = await YuvaService.delete(endpoint, {
+      const endpoint = '/cart/item';
+      const params = {
         fromWeb: false,
         itemId,
         sessionId,
-      });
+      };
+      const response = await YuvaService.delete(endpoint, params);
       return fulfillWithValue(response);
     } catch (error) {
       return rejectWithValue(error);
@@ -80,7 +81,11 @@ export const deleteCartThunk = createAsyncThunk(
 );
 
 const initialState = {
-  cart: {},
+  cart: {
+    itemDtoList: [],
+    totalCost: 0,
+    isRemoved: false,
+  },
   loading: false,
   apiError: false,
   apiErrorMessage: '',
@@ -96,11 +101,15 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
       state.existingIds = [];
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
+      state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -109,7 +118,11 @@ const cartSlice = createSlice({
       state.loading= false;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
       state.existingIds = [];
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
@@ -119,11 +132,15 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+};
       state.existingIds = [];
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
+      state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -132,7 +149,11 @@ const cartSlice = createSlice({
       state.loading= false;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
       state.existingIds = [];
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
@@ -184,19 +205,19 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart.isRemoved = false;
     },
     [deleteCartThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.isRemoved = true;
     },
     [deleteCartThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
       state.loading= false;
+      state.cart.isRemoved = false;
     },    
   },
 });

@@ -8,7 +8,7 @@ import Packages from '../../components/PackagesList/packages';
 import { usePackage } from './hooks/usePackage';
 
 const HealthPackages = props => {
-  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData, addToCartLoad } = usePackage();
+  const { data, index, isMoreData, onEndReached, testData, dropdownData, setSelectedDropdownValue, onPackageSelect, onPackagePress, onSearch, renderData, addToCartLoad, onContinuePress } = usePackage();
   const {
     screenContainer,
     dropdownContainerStyle,
@@ -49,7 +49,7 @@ const HealthPackages = props => {
             onEndReached={onEndReached}
             isMoreData={isMoreData}
           />
-          <TouchableOpacity style={buttonContainer}>
+          <TouchableOpacity onPress={onContinuePress} style={buttonContainer}>
             <Text style={buttonText}>{CONTINUE}</Text>
           </TouchableOpacity></>}
         </View>

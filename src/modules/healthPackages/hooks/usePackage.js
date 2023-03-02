@@ -11,7 +11,7 @@ export const usePackage = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
-  const {addToCart} = useCart();
+  const {addToCart,onRemove} = useCart();
   const {popularPackageName} = useSelector(state => state.programAndPlan);
   const {popularTest} = useSelector(state => state.popularTests);
   const {existingIds, addToCartLoad} = useSelector(state => state.cart);
@@ -234,6 +234,8 @@ export const usePackage = () => {
     else if (text.trim().length > 3) setSearch(text);
   };
 
+  const onContinuePress = () => navigation.navigate('CartScreen')
+
   return {
     onSearch,
     data: packageData,
@@ -246,6 +248,7 @@ export const usePackage = () => {
     dropdownData,
     setSelectedDropdownValue,
     renderData,
-    addToCartLoad
+    addToCartLoad,
+    onContinuePress
   };
 };

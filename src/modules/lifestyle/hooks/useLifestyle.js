@@ -119,7 +119,7 @@ export const useLifestyle = (initialEnum,initialName) => {
     }
   },[existingIds])
 
-  const onContinuePress = () => {}
+  const onContinuePress = () => navigation.navigate('CartScreen')
 
   const onSearch = (arg) => {
     setSearchText(arg.trim());
