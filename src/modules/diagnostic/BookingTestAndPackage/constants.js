@@ -40,3 +40,4 @@ export const MESSAGE="Message";
 export const CANCEL="Cancel";
 export const BOKINGTESTANDPACKAGE="BookingTestAndPackage";
 export const BOOKINGCONFIRM="BookingConfirm";
+export const BUTTON_TEXT="Add To Cart";

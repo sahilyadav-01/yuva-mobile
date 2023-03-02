@@ -17,6 +17,7 @@ export const useBookingTestAndPackage = () => {
    const [details,setDetails] = useState('');
    const [packageList, setPackageList] = useState('');
    const [renderData, setRenderData] = useState(false);
+   const [isDisabled, setIsdisabled] = useState(false);
 
     useEffect(() => {
         if(isTest) dispatch(diagnosisTestDetailsThunk({ id:uuid }));
@@ -63,7 +64,9 @@ export const useBookingTestAndPackage = () => {
         });
         setPackageList(newList)
     }
-    const onAddToCartPress = () => {}
+    const onAddToCartPress = () => {
+        setIsdisabled(true);
+    }
 
     return {
         packageDetails:details,
@@ -74,6 +77,7 @@ export const useBookingTestAndPackage = () => {
         onAddToCartPress,
         testDetails,
         renderData,
-        isTest
+        isTest,
+        isDisabled
     }
 }
