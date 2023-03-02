@@ -313,6 +313,11 @@ export const getDimensions = () => {
   return {width, height};
 };
 
+export const getWindowDimensions = () => {
+  const {width, height} = Dimensions.get('window');
+  return {width, height};
+};
+
 export const getMonthInText = arg => {
   const obj = [
     {month: '0', text: 'January'},

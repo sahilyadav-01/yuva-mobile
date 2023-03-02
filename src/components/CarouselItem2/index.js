@@ -1,5 +1,7 @@
 import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
+import { ORANGE, ORANGE_GREY } from '../../styles/colors';
 import { BUTTONCONTENT, COST, TESTCOUNT } from './constant';
 import { styles } from './styles';
 
@@ -9,7 +11,7 @@ const getTestCount = (item) => {
 
 const CarouselItem2 = (props) => {
   const { imgPath, index, totalItem, onPressAdd, item } = props;
-  
+  const {existingIds} = useSelector(state=>state.cart)
   return (
     <View
       style={[
@@ -35,8 +37,9 @@ const CarouselItem2 = (props) => {
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
-          onPress={onPressAdd}
-          style={styles.addButtonContainer}
+          disabled={existingIds.length > 0 && existingIds.includes(item.packageUuid)}
+          onPress={() => onPressAdd({name:item.packageName,cost:item.cost,productType:'PACKAGE',productId:item.packageUuid})}
+          style={{...styles.addButtonContainer,backgroundColor:existingIds.length > 0 && existingIds.includes(item.packageUuid) ? ORANGE_GREY: ORANGE}}
         >
           <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>
         </TouchableOpacity>

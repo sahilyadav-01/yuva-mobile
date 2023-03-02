@@ -29,6 +29,8 @@ const ServiceContainer = (props) => {
                   name={item.name}
                   // screenName={item.screenName}
                   image={item.image}
+                  enumName={item.enumName}
+                  onPackagePress={(enumName,name) => props?.onPackagePress(enumName,name)}
                 />
               )}
             </View>

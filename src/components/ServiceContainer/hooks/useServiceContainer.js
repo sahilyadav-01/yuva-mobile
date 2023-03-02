@@ -1,4 +1,4 @@
-import { OPD, HRA, DIAGNOSTICS, Talk_TO_DOCTOR, OPD_CONSULTATION, HEALTH_RISK_ASSESSMENT, HEALTH_CHECKUP_PACKAGES, TALK_TO_DOCTOR_NAME, OPD_CONSULTATION_IMAGE, HEALTH_RISK_ASSESSMENT_IMAGE, HEALTH_CHECKUP_PACKAGES_IMAGE, TALK_TO_DOCTOR_IMAGE, MY_TESTS, MY_HEALTH_CHECKUP_IMAGE, OBESITY, THYROID, WOMEN_HEALTH, SMOKING_AND_ALCOHOL, DIABETES, HYPER_TENSION } from '../constant';
+import { OPD, HRA, DIAGNOSTICS, Talk_TO_DOCTOR, OPD_CONSULTATION, HEALTH_RISK_ASSESSMENT, HEALTH_CHECKUP_PACKAGES, TALK_TO_DOCTOR_NAME, OPD_CONSULTATION_IMAGE, HEALTH_RISK_ASSESSMENT_IMAGE, HEALTH_CHECKUP_PACKAGES_IMAGE, TALK_TO_DOCTOR_IMAGE, MY_TESTS, MY_HEALTH_CHECKUP_IMAGE, OBESITY, THYROID, WOMEN_HEALTH, SMOKING_AND_ALCOHOL, DIABETES, HYPER_TENSION, HEALTH_CHECKUP } from '../constant';
 
 export const useServiceContainer = (props) => {
   const LifeStyleCardData = props?.data;
@@ -7,7 +7,7 @@ export const useServiceContainer = (props) => {
     { name: HEALTH_RISK_ASSESSMENT, screenName: HRA, image: HEALTH_RISK_ASSESSMENT_IMAGE },
     { name: MY_TESTS, screenName: DIAGNOSTICS, image: MY_HEALTH_CHECKUP_IMAGE },
     { name: TALK_TO_DOCTOR_NAME, screenName: Talk_TO_DOCTOR, image: TALK_TO_DOCTOR_IMAGE },
-    { name: HEALTH_CHECKUP_PACKAGES, screenName: 'ProfessionalServices', image: HEALTH_CHECKUP_PACKAGES_IMAGE },
+    { name: HEALTH_CHECKUP_PACKAGES, screenName: HEALTH_CHECKUP, image: HEALTH_CHECKUP_PACKAGES_IMAGE },
   ];
 
   const lifeStyle = LifeStyleCardData && LifeStyleCardData.length ? LifeStyleCardData.map(item => {
@@ -34,7 +34,7 @@ export const useServiceContainer = (props) => {
       default:
         image = "";
     }
-    return { name: item.displayName, image: image };
+    return { name: item.displayName, image: image, enumName: item.enumName };
   }) : [];
   return {
     services,
