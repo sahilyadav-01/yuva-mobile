@@ -62,12 +62,13 @@ export const deleteCartThunk = createAsyncThunk(
   'cart/deleteCart',
   async ({itemId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = 'cart/item';
-      const response = await YuvaService.delete(endpoint, {
+      const endpoint = '/cart/item';
+      const params = {
         fromWeb: false,
         itemId,
         sessionId,
-      });
+      };
+      const response = await YuvaService.delete(endpoint, {params});
       return fulfillWithValue(response);
     } catch (error) {
       return rejectWithValue(error);
@@ -76,7 +77,11 @@ export const deleteCartThunk = createAsyncThunk(
 );
 
 const initialState = {
-  cart: {},
+  cart: {
+    itemDtoList: [],
+    totalCost: 0,
+    isRemoved: false,
+  },
   loading: false,
   apiError: false,
   apiErrorMessage: '',
@@ -90,16 +95,24 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
+      state.cart= {...payload.data.data, isRemoved: false};
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
       state.loading= false;
@@ -108,16 +121,24 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
+      state.cart= {...payload.data.data, isRemoved: false};
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
+      state.cart= {
+        itemDtoList: [],
+        totalCost: 0,
+        isRemoved: false,
+      };
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
       state.loading= false;
@@ -162,19 +183,19 @@ const cartSlice = createSlice({
       state.loading = true;
       state.apiError= false;
       state.apiErrorMessage= '';
-      state.cart= {};
+      state.cart.isRemoved = false;
     },
     [deleteCartThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.isRemoved = true;
     },
     [deleteCartThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
       state.apiError= true;
       state.apiErrorMessage= payload.data.message;
       state.loading= false;
+      state.cart.isRemoved = false;
     },    
   },
 });
