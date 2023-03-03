@@ -21,7 +21,7 @@ export const forgotPassword = createAsyncThunk(
       const endpoint = `/forgot-password?emailOrNumber=${emailOrNumber}`;
       const response = await YuvaService.post(endpoint, {});
       if (response.data.status) {
-        inputType !== 'number' && Alert.alert('Alert',resp.data.message);
+        inputType !== 'number' && Alert.alert('Alert',response.data.message);
         return response.data;
       } else {
         return rejectWithValue(response.data);
