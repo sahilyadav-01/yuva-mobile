@@ -28,7 +28,7 @@ const CheckoutOurPlan = () => {
                         </View>
                         <View style={styles.Line}></View>
 
-                        <View style={styles.circles}></View>
+                        <View style={styles.PaymentCircle}></View>
                     </View>
                 </View>
                 <View style={styles.progress}>

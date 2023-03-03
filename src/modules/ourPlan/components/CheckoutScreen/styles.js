@@ -19,13 +19,20 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         flexDirection: ROW,
     },
-    circles: {
+    PaymentCircle: {
         minWidth: 12,
         minHeight: 12,
         borderRadius: 15,
         borderWidth: 1,
         color: V_LIGHT_GREY,
 
+    },
+    circles:{
+        minWidth: 12,
+        minHeight: 12,
+        borderRadius: 15,
+        borderWidth: 1.2,
+        borderColor:GREEN,
     },
     tickMark: {
         color: GREEN,
