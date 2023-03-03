@@ -27,7 +27,7 @@ const CarouselItem4 = (props) => {
         />
       </View>
       <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>{item.testName}</Text>
+        <Text numberOfLines={1} style={styles.descriptionStyle}>{item.testName}</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{getTestCount(item)}</Text>
