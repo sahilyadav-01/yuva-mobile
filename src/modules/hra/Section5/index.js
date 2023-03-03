@@ -35,7 +35,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
@@ -48,7 +48,7 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={q2Placeholder ?? answers[questionData[1]?.questionId]}
+                    placeholder={q2Placeholder ?? answers[questionData[1]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
                     onBlur={()=>onBlur('Q2')}
                   />
@@ -58,7 +58,7 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={q3Placeholder ?? answers[questionData[2]?.questionId]}
+                    placeholder={q3Placeholder ?? answers[questionData[2]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
                     onBlur={()=>onBlur('Q2')}
                   />
@@ -71,7 +71,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[3]?.questionId] === undefined ? '' : PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion4}
                 data={PickerData[questionData[3]?.questionType]}
                 search={false}

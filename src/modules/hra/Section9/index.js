@@ -41,7 +41,7 @@ const Section9 = () => {
                                                 key={item.questionId}
                                                 text={item.question}
                                                 data={PickerData[item.questionType]}
-                                                defaultAnswer={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                                                defaultAnswer={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}
                                             />
@@ -50,7 +50,7 @@ const Section9 = () => {
                                         return (
                                             <SectionInput
                                                 key={item.questionId}
-                                                defValue={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
+                                                defValue={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
                                                 text={item.question}
                                                 dispatcher={dispatch_option}
                                                 questionId={item.questionId}
