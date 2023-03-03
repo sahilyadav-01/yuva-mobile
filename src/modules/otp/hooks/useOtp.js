@@ -81,7 +81,7 @@ export const useOtp = () => {
     if (type === 'number') return 'Verify Phone Number';
     else return 'Verify Email';
   };
-  const onEnableResend = () => setEnableResendOtp(true);
+  const onEnableResend = (reset) => reset && setEnableResendOtp(reset);
 
   return {
     getHeaderText,

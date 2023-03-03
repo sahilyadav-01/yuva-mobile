@@ -20,6 +20,7 @@ export const useForgotPassword = () => {
         from,
         resetPassword: true,
         number: text,
+        verificationType: 'number'
       });
     }
   }, [forgotPasswordLoading, enableNavigation, from]);
