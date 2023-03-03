@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, LIGHT_SKY_BLUE, ORANGE, RED, VERY_LIGHT_SKY_BLUE, V_LIGHT_GREY, WHITE } from '../../../../styles/colors';
+import { BLACK, BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, GREY70, LIGHT_SKY_BLUE, ORANGE, RED, VERY_LIGHT_SKY_BLUE, V_LIGHT_GREY, WHITE } from '../../../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, LEFT, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { getDimensions } from '../../../../utils/utils';
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         marginLeft: 41,
         width: "80%",
         flexDirection: ROW,
-        justifyContent: "space-between",
+        justifyContent: SPACE_BETWEEN,
     },
     progressBar: {
         marginTop: 30,
@@ -35,13 +35,12 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
         borderWidth: 1,
         color: V_LIGHT_GREY,
-
     },
     Line: {
         marginTop: 5,
         width: 1,
         height: 1,
-        backgroundColor: GREEN,
+        backgroundColor: GREY70,
         flex: 1,
     },
     touchableButton: {
@@ -142,6 +141,22 @@ export const styles = StyleSheet.create({
         justifyContent: SPACE_BETWEEN,
         flexDirection: ROW,
         marginRight:25,
+    },
+    AddText: {
+        marginLeft: '6%',
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize10,
+    },
+    check:{
+        marginRight: '6%',
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize10,
+    },
+    progress: {
+       justifyContent:SPACE_BETWEEN,
+       flexDirection:ROW,
     }
 
 

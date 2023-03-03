@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import Header from "../../../../components/Header";
-import { ADD_NEW, CHECKOUT, CONFIRMDETAILS, SELECT_ADRESS } from "./constants";
+import { ADDRES, ADD_NEW, CHECKOUT, CONFIRMDETAILS, PAYMENT, SELECT_ADRESS } from "./constants";
 import { styles } from "./styles";
 import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../../../../assets";
@@ -47,10 +47,14 @@ const OurPlanAddress = () => {
                         <View style={styles.circle}>
                             <View style={styles.circles}></View>
                             <View style={styles.Line}></View>
-
                             <View style={styles.circles}></View>
                         </View>
                     </View>
+                    <View style={styles.progress}>
+                    <Text style={styles.AddText}>{ADDRES}</Text>
+                    <Text style={styles.check}>{PAYMENT}</Text>
+                    </View>
+                 
                     <View style={styles.address} >
                         <Text style={styles.selectDate}>
                             {SELECT_ADRESS}

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BOX_SHADOW, CYAN_BLUE, DARK_BLUE, GREEN, GREY70, ORANGE, RED, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
-import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import { ABSOLUTE, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { CENTER } from './constants';
 
@@ -13,19 +13,32 @@ export const styles = StyleSheet.create({
         marginLeft: 41,
         width: "80%",
         flexDirection: ROW,
-        justifyContent: "space-between",
+        justifyContent: SPACE_BETWEEN,
     },
     progressBar: {
         marginTop: 30,
         flexDirection: ROW,
     },
     circles: {
-        width: 10,
-        height: 10,
+        minWidth: 12,
+        minHeight: 12,
         borderRadius: 15,
         borderWidth: 1,
         color: V_LIGHT_GREY,
 
+    },
+    tickMark: {
+        color: GREEN,
+        width: "25%",
+        height: "60%",
+        marginLeft: "30%",
+        marginTop: "11%",
+        borderBottomWidth: 2,
+        borderRightWidth: 2,
+        borderRightColor: GREEN,
+        borderBottomColor: GREEN,
+        position: ABSOLUTE,
+        transform: [{ rotateX: '45deg' }, { rotateZ: '45deg' }],
     },
     Line: {
         marginTop: 5,
@@ -128,19 +141,19 @@ export const styles = StyleSheet.create({
         backgroundColor: ORANGE,
         borderColor: GREY70,
     },
-    Amountpyable:{
+    Amountpyable: {
         marginLeft: 26,
         marginTop: 21,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize16,
     },
-    payableAmount:{
+    payableAmount: {
         marginLeft: 151,
         marginTop: 15,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
-        fontSize: fonts.size.fontSize16,  
+        fontSize: fonts.size.fontSize16,
     },
     touchableButton: {
         backgroundColor: ORANGE,
@@ -148,13 +161,13 @@ export const styles = StyleSheet.create({
         marginLeft: 13,
         marginRight: 14,
         borderRadius: 8,
-        minHeight:48,
-        alignItems:CENTER,
+        minHeight: 48,
+        alignItems: CENTER,
     },
     tobePaid: {
-        marginLeft:110,
-        marginRight:5,
-        textAlign:CENTER,
+        marginLeft: 110,
+        marginRight: 5,
+        textAlign: CENTER,
         paddingTop: 15,
         paddingBottom: 15,
         color: WHITE,
@@ -162,21 +175,38 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize16,
 
     },
-    termsAndCondtion:{
+    termsAndCondtion: {
         marginTop: 20,
         marginLeft: 12,
         marginRight: 56,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize10,   
+        fontSize: fonts.size.fontSize10,
     },
     checkBoxContainer: {
         marginLeft: 24,
         width: 13,
-        height: 13,
+        minHeight: 13,
         marginTop: 20,
         borderWidth: 1,
         borderColor: CYAN_BLUE,
         marginRight: 12,
-      },
+    },
+    AddText: {
+        marginLeft: '6%',
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize10,
+        color: GREEN,
+    },
+    check: {
+        marginRight: '6%',
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize10,
+    },
+    progress: {
+        justifyContent: SPACE_BETWEEN,
+        flexDirection: ROW,
+    }
 })

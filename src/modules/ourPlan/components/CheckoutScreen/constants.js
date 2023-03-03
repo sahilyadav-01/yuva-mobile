@@ -7,4 +7,6 @@ export const APPLY="Apply";
 export const DISCOUNT="Discount";
 export const AMOUNTPAYABLE="Amount Payable";
 export const TOBEPAID="To Be Paid";
+export const PAYMENT="Payment";
+export const ADDRES="Address";
 export const TERMSANDCONDTION="By clicking on the below button, you agree to our Terms and Conditions & Privacy Policy.";

@@ -23,10 +23,10 @@ export const useOurAddress = () => {
             setUserAttribute(route?.params)
         }
     }, [route])
-    const address = userAddress[checked]?.address || userAttribute?.address;
-    const pincode = userAddress[checked]?.pinCode || userAttribute?.pincode;
-    const contact = userAddress[checked]?.contactNumber || userAttribute?.contact;
-    const cityName = userAddress[checked]?.cityName || userAttribute?.cityName;
+    const address = userAddress?.[checked]?.address || userAttribute?.address;
+    const pincode = userAddress?.[checked]?.pinCode || userAttribute?.pincode;
+    const contact = userAddress?.[checked]?.contactNumber || userAttribute?.contact;
+    const cityName = userAddress?.[checked]?.cityName || userAttribute?.cityName;
 
     const checkoutData = {
         address: address,

@@ -3,7 +3,7 @@ import { ScrollView, Text, TextInput, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Header from '../../../../components/Header'
 import { BALI } from '../../../../styles/colors'
-import { AMOUNTPAYABLE, APPLY, CHECKOUT, COUPON, DISCOUNT, ORDERAMOUNT, PRICEDETAILS, RUPEE, TERMSANDCONDTION, TOBEPAID } from './constants'
+import { ADDRES, AMOUNTPAYABLE, APPLY, CHECKOUT, COUPON, DISCOUNT, ORDERAMOUNT, PAYMENT, PRICEDETAILS, RUPEE, TERMSANDCONDTION, TOBEPAID } from './constants'
 import { useCheckout } from './hooks/useCheckout'
 import { styles } from './styles'
 
@@ -23,11 +23,17 @@ const CheckoutOurPlan = () => {
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.progressBar}>
                     <View style={styles.circle}>
-                        <View style={styles.circles}></View>
+                        <View style={styles.circles}>
+                            <View style={styles.tickMark}></View>
+                        </View>
                         <View style={styles.Line}></View>
 
                         <View style={styles.circles}></View>
                     </View>
+                </View>
+                <View style={styles.progress}>
+                    <Text style={styles.AddText}>{ADDRES}</Text>
+                    <Text style={styles.check}>{PAYMENT}</Text>
                 </View>
                 <View style={styles.border}>
                     <View style={styles.checkboxAddress} >
