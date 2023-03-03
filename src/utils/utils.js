@@ -345,6 +345,5 @@ export const getDateText = date => {
 
 export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();
-  console.log(deviceId)
   return deviceId || '';
 };
