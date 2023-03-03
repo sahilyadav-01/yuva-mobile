@@ -10,7 +10,6 @@ import Authentication from './Authentication';
 import CashlessOPD from '../../modules/staticOPD';
 import {useSelector} from 'react-redux';
 import StaticHra from '../../modules/staticHRA';
-import HealthCheckUP from '../../modules/staticHealthCheckUp';
 import TalkToDoctor from '../../modules/staticDoctor';
 
 const Stack = createStackNavigator();
@@ -38,7 +37,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="Diagnostics"
-        component={loggedIn !== 'loggedIn' ? HealthCheckUP : DiagnosticNav}
+        component={loggedIn !== 'loggedIn' ? ProfessionalServices : DiagnosticNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
