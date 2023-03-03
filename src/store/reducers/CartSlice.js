@@ -50,8 +50,8 @@ export const createCartGuestThunk = createAsyncThunk(
   'cart/createCartGuest',
   async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = '/cart/guest';
-      const response = await YuvaService.post(endpoint, {cartDto, sessionId});
+      const endpoint = `/cart/guest?sessionId=${sessionId}`;
+      const response = await YuvaService.post(endpoint, cartDto);
       if(response?.data?.status){
         store.dispatch(getCartGuestThunk());
       }
