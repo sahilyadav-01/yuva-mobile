@@ -37,9 +37,9 @@ const CarouselItem4 = (props) => {
       </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
-        disabled={existingIds.length > 0 && existingIds.includes(item.testId)}
+        disabled={existingIds.length > 0 && existingIds.includes(item.testId.toString())}
         onPress={() => onPressAdd({name:item.testName,cost:item.cost,productType:'TEST',productId:item.testId.toString()})}
-          style={{...styles.addButtonContainer,backgroundColor:existingIds.length > 0 && existingIds.includes(item.testId) ? ORANGE_GREY : ORANGE}}
+          style={{...styles.addButtonContainer,backgroundColor:existingIds.length > 0 && existingIds.includes(item.testId.toString()) ? ORANGE_GREY : ORANGE}}
         >
           <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>
         </TouchableOpacity>

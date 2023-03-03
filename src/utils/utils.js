@@ -343,7 +343,8 @@ export const getDateText = date => {
   );
 };
 
-export const getDeviceId = () => {
-  const deviceId = DeviceInfo.getDeviceId();
+export const getDeviceId = async () => {
+  const deviceId = await DeviceInfo.getUniqueId();
+  console.log(deviceId)
   return deviceId || '';
 };
