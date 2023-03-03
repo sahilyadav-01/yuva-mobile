@@ -3,11 +3,11 @@ import {YuvaService} from '../../network/yuvaService';
 import { getDeviceId } from '../../utils/utils';
 import store from '../Store';
 
-const sessionId = getDeviceId();
 export const getCartUserThunk = createAsyncThunk(
   'cart/getCartUser',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
+      const sessionId = await getDeviceId();
       const endpoint = `/cart?fromWeb=false&sessionId=${sessionId}`;
       const response = await YuvaService.get(endpoint);
       return fulfillWithValue(response);
@@ -21,6 +21,7 @@ export const getCartGuestThunk = createAsyncThunk(
   'cart/getCartGuest',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
+      const sessionId = await getDeviceId();
       const endpoint = `/cart/guest?sessionId=${sessionId}`;
       const response = await YuvaService.get(endpoint);
       return fulfillWithValue(response);
@@ -50,6 +51,7 @@ export const createCartGuestThunk = createAsyncThunk(
   'cart/createCartGuest',
   async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
     try {
+      const sessionId = await getDeviceId();
       const endpoint = `/cart/guest?sessionId=${sessionId}`;
       const response = await YuvaService.post(endpoint, cartDto);
       if(response?.data?.status){
@@ -66,6 +68,7 @@ export const deleteCartThunk = createAsyncThunk(
   'cart/deleteCart',
   async ({itemId}, {fulfillWithValue, rejectWithValue}) => {
     try {
+      const sessionId = await getDeviceId();
       const endpoint = `/cart/item?fromWeb=false&itemId=${itemId}&sessionId=${sessionId}`;
       const response = await YuvaService.delete(endpoint);
       return fulfillWithValue(response);

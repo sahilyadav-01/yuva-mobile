@@ -124,7 +124,7 @@ const BookingTestAndPackage = () => {
                     </Text>
                 </TouchableOpacity> : <TouchableOpacity
                     onPress={bookPackageScreen}
-                    style={styles.touchable}>
+                    style={styles.touchable()}>
                     <Text style={styles.textBook}>
                         {BOOK_NOW}
                     </Text>
