@@ -6,7 +6,7 @@ import {useHRASectionContainer} from './hooks/useHRASectionContainer';
 import {BUTTON_TEXT} from './constant';
 import DependentsModal from '../../../../components/Modal/DependentsModal';
 const HRASectionContainer = () => {
-  const {openModal, modalVisible, onModalCrossPress, data, onPressCheckBox, checkBoxStatus, userData} =
+  const {openModal, modalVisible, onModalCrossPress, data, onPressCheckBox, checkBoxStatus} =
     useHRASectionContainer();
   return (
     <View style={styles.mainContainer}>
