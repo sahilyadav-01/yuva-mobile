@@ -1,12 +1,11 @@
 
-import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { ADDED_SUCCESSFULLY, ALERT, ADDRESS, FIELD_MISSING, PINCODE_MUST_BE } from '../constants';
+import { ADDED_SUCCESSFULLY, ALERT, BOOKING_CONFIRM, FIELD_MISSING, PINCODE_MUST_BE } from '../constants'
 import { useNavigation } from '@react-navigation/core';
 import { Alert } from 'react-native';
 
-export const useAddNewAddress = () => {
-
+export const useAddNewAddress = (isScreen) => {
+    const navScreen = isScreen?.isScreen;
     const [selected, setSelected] = useState("");
     const [data, setData] = useState();
     const [location, setLocation] = useState('');
@@ -41,7 +40,7 @@ export const useAddNewAddress = () => {
         setLocation(text);
     };
     const onChangePincode = text => {
-            setPincode(text);
+        setPincode(text);
     };
     const onChangeCity = text => {
         setCity(text)
@@ -50,11 +49,11 @@ export const useAddNewAddress = () => {
         setContact(number);
     }
     const addAddress = () => {
-        if(!(pincode?.length ===6 )){
+        if (!(pincode?.length === 6)) {
             Alert.alert(ALERT, PINCODE_MUST_BE)
         }
-       else if (location?.length  && city?.length && data?.length) {
-            navigation.navigate(ADDRESS, DATA);
+        else if (location?.length && city?.length && data?.length) {
+            navigation.navigate(navScreen, DATA);
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } else {
             Alert.alert(ALERT, FIELD_MISSING)
@@ -76,4 +75,4 @@ export const useAddNewAddress = () => {
     }
 
 
-}
+};

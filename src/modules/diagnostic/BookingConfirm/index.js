@@ -135,8 +135,8 @@ const BookingConfirm = () => {
                             </Text>
                             <TouchableOpacity disabled={bookedDetails || userAddress?.[checked]} onPress={AddNewAddress}>
                                 <View style={styles.Add} >
-                                    <Text style={styles.addNew}>
-                                        <SVG.AddNewAdress />
+                                <SVG.AddNewAdress style={styles.svg}/>
+                                    <Text style={styles.addNew}>         
                                         {ADD_NEW}
 
                                     </Text>
