@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {ORANGE, CYAN_BLUE, WHITE, RED_SHADE, BLACK} from '../../styles/colors';
+import {CYAN_BLUE, WHITE, BLACK, KASHMIR_BLUE} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     paddingBottom: '40%',
   },
   title: {
+    marginTop: '5%',
     marginBottom: '5%',
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize20,
@@ -36,5 +37,19 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
     fontFamily: fonts.family.rubik400,
+  },
+
+  dropdownContainerStyle: {
+    backgroundColor: WHITE,
+    marginTop: 12,
+    borderRadius: 12,
+    borderWwidth: 0.1,
+    borderColor: BLACK,
+    alignItems: CENTER,
+  },
+  dropdownTextStyle: {color: KASHMIR_BLUE, fontFamily: fonts.family.rubik500},
+  searchContainer: {
+    marginBottom: 75,
+    marginTop: 27,
   },
 });

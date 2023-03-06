@@ -44,3 +44,13 @@ export const DARK_MAROON = '#80450C';
 export const VERY_LIGHT_YELLOW='#FFFBEE';
 export const GREY70="#B3B3B3";
 export const BALI="#86939F";
+export const WHITE_OPACITY = '#FFFFFF80';
+export const SUNSET_ORANGE = '#F94A4A';
+export const TUNDORA = '#434343';
+export const BIANCA = '#FBF6EF';
+export const SPANISH_WHITE='#FEF2DD';
+export const GUARDSMAN_RED = '#D10000';
+export const VERY_LIGHT_YELLOW='#FFFBEE';
+export const PINK_ORANGE = '#FF6F6F';
+export const SKY_BLUE = '#4CA3A5';
+

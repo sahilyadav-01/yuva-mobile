@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, WHITE } from "../../styles/colors";
+import { BLACK, CYAN_BLUE, PINK_ORANGE, WHITE } from "../../styles/colors";
 import { ABSOLUTE,CENTER, FLEX_START, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 import { getDimensions } from "../../utils/utils";
@@ -84,5 +84,16 @@ export const styles = StyleSheet.create({
   },
   search: {
     zIndex: -1,
+  },
+  badgeView: {
+    backgroundColor: PINK_ORANGE,
+    borderRadius: 16,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+  },
+  badgeText: {
+    color: WHITE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize8,
   }
 });

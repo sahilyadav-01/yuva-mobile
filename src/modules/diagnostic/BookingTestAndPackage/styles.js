@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY } from '../../../styles/colors';
+import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, ORANGE_GREY } from '../../../styles/colors';
 import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
@@ -32,13 +32,13 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         fontFamily: fonts.family.fontFamilyRubix,
     },
-    touchable: {
-        backgroundColor: ORANGE,
+    touchable: (disabled) => ({
+        backgroundColor: disabled ? ORANGE_GREY : ORANGE,
         marginTop: 40,
         marginLeft: 13,
         marginRight: 14,
         borderRadius: 8
-    },
+    }),
     theme: { colors: { text: BLACK } },
     search: {
         backgroundColor: AMBER,
