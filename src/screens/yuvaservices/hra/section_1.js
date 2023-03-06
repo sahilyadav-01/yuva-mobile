@@ -5,7 +5,7 @@ import Section1 from '../../../modules/hra/Section1';
 const section_1 = (props) => {
   return (
     <SafeAreaView >
-      <Section1 userData={props?.route?.params?.userData ?? null} />
+      <Section1 userData={props?.route?.params?.userData ?? null} name={props?.route?.params?.name} id={props?.route?.params?.id}/>
     </SafeAreaView>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { View, Text } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import ServiceContainer from '../components/ServiceContainer';
 import DiagnosticNav from './Diagnosticnavigation';
 
@@ -11,54 +11,78 @@ import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
 import Authentication from './Authentication';
 import CashlessOPD from '../modules/staticOPD';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import StaticHra from '../modules/staticHRA';
 import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
+import CartNavigation from './CartNavigation';
+import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
+import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
+import HealthPackagesScreen from '../screens/HealthPackages';
 
 const Stack = createStackNavigator();
 
 const ServicesNav = () => {
   const {
-    auth: {loggedIn},
+    auth: { loggedIn },
   } = useSelector(state => state);
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="HomeService"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="OPD"
         component={loggedIn !== 'loggedIn' ? CashlessOPD : OPDNavigation}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="HRA"
         component={loggedIn !== 'loggedIn' ? StaticHra : HRANavigation}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Diagnostics"
-        component={loggedIn !== 'loggedIn' ? HealthCheckUP : DiagnosticNav}
-        options={{headerShown: false}}
+        component={loggedIn !== 'loggedIn' ? ProfessionalServices : DiagnosticNav}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={BookingTestAndPackageScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="TalkToDoctor"
         component={
           loggedIn !== 'loggedIn' ? TalkToDoctor : TalkToDoctorNavigation
         }
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ProfessionalServices"
         component={ProfessionalServices}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HealthCheckupsTests"
+        component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthPackagesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LifestyleTestsAndPackages"
+        component={LifestyleTestsAndPackagesScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="LoginScreen"
         component={Authentication}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartNavigation}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

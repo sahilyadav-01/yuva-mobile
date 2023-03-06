@@ -6,6 +6,7 @@ import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
   container: {
     marginHorizontal: 12,
+    marginBottom: 182,
   },
   headerView: {
     marginVertical: 18,

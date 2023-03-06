@@ -23,6 +23,8 @@ const Header = (props) => {
     canGoBack,
     onBackPress,
     title,
+    showCount,
+    count,
   } = useHeader(props);
 
   return (
@@ -43,6 +45,11 @@ const Header = (props) => {
         </View>
         <View style={styles.rightView}>
           <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
+            { showCount && 
+              <View style={styles.badgeView}>
+                <Text style={styles.badgeText}>{count}</Text>
+              </View>
+            }
             <SVG.ShoppingCart />
           </TouchableOpacity>
           <TouchableOpacity style={styles.rightIcon} onPress={onRightPress}>
@@ -69,7 +76,7 @@ const Header = (props) => {
           </Text>
         }     
       </View>
-      <View>
+      <View style={styles.search}>
         {showSearch && 
           <Search 
             placeholder={searchPlaceholder} 

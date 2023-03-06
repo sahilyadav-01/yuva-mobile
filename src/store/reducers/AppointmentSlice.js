@@ -4,11 +4,31 @@ import {YuvaService} from '../../network/yuvaService';
 export const newAppointmentThunk = createAsyncThunk(
   'appointment/newAppointment',
   async (
-    {alternateContactNumber,description,doctorId ,plan,programOrPlanUuid,selected: relationId, epoch: timeSlot,userPlanVersion,version},
+    {
+      alternateContactNumber,
+      description,
+      doctorId,
+      plan,
+      programOrPlanUuid,
+      selected: relationId,
+      epoch: timeSlot,
+      userPlanVersion,
+      version,
+    },
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const data = {alternateContactNumber, description,doctorId, plan,programOrPlanUuid,relationId, timeSlot,userPlanVersion,version};
+      const data = {
+        alternateContactNumber,
+        description,
+        doctorId,
+        plan,
+        programOrPlanUuid,
+        relationId,
+        timeSlot,
+        userPlanVersion,
+        version,
+      };
       const endpoint = '/appointment?fromWeb=false';
       const response = await YuvaService.post(endpoint, data);
       return response.data;
@@ -25,6 +45,20 @@ export const cancelAppointmentThunk = createAsyncThunk(
       const data = {};
       const endpoint = `/appointment/cancel/${id}`;
       const response = await YuvaService.put(endpoint, data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const appointmentThunk = createAsyncThunk(
+  'appointment',
+  async ({id}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const data = {};
+      const endpoint = `/appointment/${id}`;
+      const response = await YuvaService.get(endpoint, data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -75,7 +109,9 @@ const initialState = {
   appointmentDescription: '',
   rescheduleAppointment: '',
   errorAppointment: '',
+  getAppointment: null,
 };
+
 const appointmentSlice = createSlice({
   name: 'appointment',
   initialState,
@@ -101,11 +137,13 @@ const appointmentSlice = createSlice({
       state.currentAppointment['slot'] = payload.slot;
       state.currentAppointment['otp'] = payload.otp;
       state.currentAppointment['hospitalName'] = payload.hospitalName;
+      state.currentAppointment['memberName'] = payload.memberName;
+      state.currentAppointment['relation'] = payload.relation;
+      state.currentAppointment['customId'] = payload.customId;
     },
     resetAppointments(state) {
       state.userAppointments = [];
-    }
-    
+    },
   },
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
@@ -145,6 +183,22 @@ const appointmentSlice = createSlice({
     [rescheduleAppointmentThunk.rejected]: (state, {payload}) => {
       state.errorAppointment = payload;
     },
+
+    [appointmentThunk.pending]: (state, {payload}) => {
+      state.loading = true;
+    },
+    [appointmentThunk.fulfilled]: (state, {payload}) => {
+      state.getAppointment = payload.data;
+      state.loading = false;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+    },
+    [appointmentThunk.rejected]: (state, {payload}) => {
+      state.getAppointment = '';
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = payload.error;
+    },
   },
 });
 
@@ -153,6 +207,7 @@ export const {
   currentAppointment,
   resetMessage,
   resetAppointments,
+  getAppointment,
 } = appointmentSlice.actions;
 export const appointmentInit = appointmentSlice.getInitialState();
 

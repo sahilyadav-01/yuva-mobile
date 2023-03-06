@@ -42,7 +42,7 @@ export const diagnosisTestDetailsThunk = createAsyncThunk(
   'services/attribute/test',
   async ({id}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/services/attribute/test/${id}`;
+      const endpoint = `/test/${id}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -226,14 +226,16 @@ const diagnosticSlice = createSlice({
     },
     [bookedDetailsByIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.bookedDetailsById ='';
     },
     [bookedDetailsByIdThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedDetailsById = action.payload.data;
+      state.bookedDetailsById = action.payload;
     },
     [bookedDetailsByIdThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
+      state.bookedDetailsById =null;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
 

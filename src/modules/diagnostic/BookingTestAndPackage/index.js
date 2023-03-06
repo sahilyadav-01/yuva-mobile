@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './styles';
-import { ABOUT_PACKAGE, BOOK_NOW, INSTRUCTIONS, LAB } from './constants';
+import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT, INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
@@ -13,7 +13,12 @@ const BookingTestAndPackage = () => {
         packageDetails,
         packageList,
         onUpdate,
-        bookPackageScreen
+        bookPackageScreen,
+        showCartButton,
+        onAddToCartPress,
+        renderData,
+        isTest,
+        isDisabled
     } = useBookingTestAndPackage();
 
 
@@ -38,21 +43,21 @@ const BookingTestAndPackage = () => {
                     {!item.isExpanded ?
                         <View style={styles.itemView}>
                             <Text style={styles.itemText}>
-                                {item.attributeName}
+                                {item?.attributeName ?? item?.name}
                             </Text>
                             <Text style={styles.itemCount}>
 
-                                <Text>-{item.parameterCount}</Text>
+                                <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
                             </Text>
                             <View style={styles.drop} >
 
-                                < SVG.dropDown />
+                                <SVG.dropDown />
                             </View>
                         </View>
                         : <View style={styles.dropDown}>
                             <Text style={styles.itemHead}>
-                                {item.attributeName}
-                                <Text>-{item.parameterCount}</Text>
+                                {item?.attributeName ?? item?.name}
+                                <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
                             </Text>
                             <View style={styles.dropDownDetails}>
                                 {item &&
@@ -70,12 +75,10 @@ const BookingTestAndPackage = () => {
 
         );
     }
-    if (!packageDetails) {
-        return null;
-    }
+    if (!renderData) return null;
     return (
         <View>
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
+            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>
@@ -88,16 +91,17 @@ const BookingTestAndPackage = () => {
                         </View>
                         <View>
                             <Text style={styles.bookingDetails}>
-                                {ABOUT_PACKAGE}
+                                {isTest ? ABOUT_TEST : ABOUT_PACKAGE}
                             </Text>
                             <Text style={styles.color}>{packageDetails?.description}</Text>
-                            <Text style={styles.instructDetails}>
-                                {INSTRUCTIONS}
-                            </Text>
-                            <Text style={styles.color}>{packageDetails?.prerequisites}</Text>
-                            <Text style={styles.totalLabDetails}>
-                                {packageDetails?.totalTest} {LAB}
-                            </Text>
+                            {packageDetails?.prerequisites && <>
+                                <Text style={styles.instructDetails}>
+                                    {INSTRUCTIONS}
+                                </Text>
+                                <Text style={styles.color}>{packageDetails?.prerequisites}</Text></>}
+                            {packageDetails?.parameterCount && <Text style={styles.totalLabDetails}>
+                                {packageDetails?.parameterCount} {LAB}
+                            </Text>}
                             {packageList &&
                                 <FlatList
                                     renderItem={renderItem}
@@ -110,13 +114,21 @@ const BookingTestAndPackage = () => {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity
-                     onPress={bookPackageScreen}                        
-                    style={styles.touchable}>
+                {showCartButton ? <TouchableOpacity
+                    onPress={onAddToCartPress} 
+                    disabled={isDisabled}
+                    style={styles.touchable(isDisabled)}
+                >
+                    <Text style={styles.textBook}>
+                        {BUTTON_TEXT}
+                    </Text>
+                </TouchableOpacity> : <TouchableOpacity
+                    onPress={bookPackageScreen}
+                    style={styles.touchable()}>
                     <Text style={styles.textBook}>
                         {BOOK_NOW}
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
                 <View>
                 </View>
             </ScrollView >

@@ -17,9 +17,9 @@ export const programAndPlanThunk = createAsyncThunk(
 
 export const popularPackageNameThunk = createAsyncThunk(
   'package/popular',
-  async ({ fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo,pageSize,search }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/package/popular?pageNo=1&pageSize=4`;
+      const endpoint = `/package/popular?pageNo=${pageNo}&pageSize=${pageSize}${search ? `&search=${search}` : ''}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -47,7 +47,7 @@ const initialState = {
   apiError: false,
   apiErrorMessage: '',
   programAndPlan: [],
-  popularPackageName: [],
+  popularPackageName: null,
   popularPlan: [],
 }
 
@@ -56,7 +56,10 @@ const programAndPlanSlice = createSlice({
   initialState,
   reducers: {
     popularPackageName(state, action) {
-      state.popularPackageName = payload?.data;
+      state.popularPackageName = action?.payload?.data;
+    },
+    resetPackages(state) {
+      state.popularPackageName = null
     },
   },
   extraReducers: {
@@ -84,19 +87,19 @@ const programAndPlanSlice = createSlice({
     [popularPackageNameThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
-    [planPopularThunk.pending] : (state, {payload}) => {
+    [planPopularThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
-    [planPopularThunk.fulfilled]: (state, {payload}) => {
+    [planPopularThunk.fulfilled]: (state, { payload }) => {
       state.popularPlan = payload?.data;
       state.loading = false;
     },
-    [planPopularThunk.rejected]: (state, {payload}) => {
+    [planPopularThunk.rejected]: (state, { payload }) => {
       state.loading = false;
-    } 
+    }
   },
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName } = programAndPlanSlice.actions;
+export const { popularPackageName, resetPackages } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

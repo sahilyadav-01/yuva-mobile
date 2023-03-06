@@ -39,7 +39,7 @@ export const useSection1 = userData => {
   const answers = useSelector(state => state.section1.answers);
   const questionData = useSelector(state => state.section1.rawQuestions);
   const {loggedIn} = useSelector(state => state.auth);
-  const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
+  const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError, continueHRAId} = useSelector(state => state.hra);
   const [enableData, setEnableData] = useState(false);
   const [renderData, setRenderData] = useState(false);
   
@@ -167,6 +167,7 @@ export const useSection1 = userData => {
               Q4: parseInt(answers.Q4),
               Q5: parseInt(answers.Q5),
               Q58: parseInt(answers.Q58),
+              relationId: userData?.id,
             },
             sectionId: 1,
           }),

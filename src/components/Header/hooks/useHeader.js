@@ -3,19 +3,21 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton } = props;
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch } = props;
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const [selectedCity, setSelectedCity] = useState('');
   const [query, setQuery] = useState('');
+  const [showCount, setShowCount] = useState(false);
   const { loggedIn } = useSelector(state => state.auth);
   const { cityId } = useSelector(state => state.diagnostic);
+  const { cart } = useSelector(state => state.cart);
+  const count = cart?.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
   const onCartPress = () => {
-    //Pending Screen
-    // navigation.navigate('Cart');
+    navigation.navigate('CartScreen');
   };
   const onRightPress = () => {
     isLoggedIn ? onToggleDrawer() : navigation.navigate('LoginScreen');
@@ -37,9 +39,12 @@ export const useHeader = (props) => {
       dispatch(setCityId(selectedCity))
     }
   }, [selectedCity])
-
+  useEffect(() => {
+    setShowCount(count>0);
+  }, [count]);
 
   const onChangeSearch = (text) => {
+    onSearch && onSearch(text);
     setQuery(text);
   }
   return {
@@ -56,5 +61,7 @@ export const useHeader = (props) => {
     canGoBack,
     onBackPress,
     title,
+    showCount,
+    count,
   };
 }

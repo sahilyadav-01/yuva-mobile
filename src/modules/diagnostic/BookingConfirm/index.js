@@ -28,7 +28,7 @@ const BookingConfirm = () => {
         bookedDetails,
         rescheduleBooking,
         AddNewAddress,
-    userAttribute} = useBookingConfirm();
+        userAttribute } = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
@@ -47,7 +47,13 @@ const BookingConfirm = () => {
                     </View>
                     <Text style={styles.adressName}>{item?.address}</Text>
                     <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
-                    <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
+                    <View style={styles.Images}>
+                        <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
+                        {item?.away ?
+                            (<SVG.AwayImage style={styles.Image} />) : (
+                                <SVG.HomeImage style={styles.Image} />
+                            )}
+                    </View>
                 </View>
             )
         }
@@ -57,7 +63,7 @@ const BookingConfirm = () => {
         return (
 
             <View>
-                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE}/>
+                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
                 <ScrollView
                     contentContainerStyle={styles.contentContainerStyle}>
                     <View style={styles.booksID}>
@@ -127,7 +133,7 @@ const BookingConfirm = () => {
                             <Text style={styles.selectDate}>
                                 {SELECT_ADRESS}
                             </Text>
-                            <TouchableOpacity disabled={bookedDetails} onPress={AddNewAddress}>
+                            <TouchableOpacity disabled={bookedDetails || userAddress?.[checked]} onPress={AddNewAddress}>
                                 <View style={styles.Add} >
                                     <Text style={styles.addNew}>
                                         <SVG.AddNewAdress />
