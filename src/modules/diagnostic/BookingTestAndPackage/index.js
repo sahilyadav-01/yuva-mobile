@@ -22,7 +22,6 @@ const BookingTestAndPackage = () => {
         testDetails,
     } = useBookingTestAndPackage();
 
-console.log("testDetails",testDetails)
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
             onUpdate(index)
