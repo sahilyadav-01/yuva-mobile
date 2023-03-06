@@ -9,6 +9,17 @@ import {useOtp} from './hooks/useOtp';
 const OTP = props => {
   const {otpProps} = props;
   const {
+    getHeaderText,
+    setOTP,
+    onResend,
+    onVerify,
+    key,
+    from,
+    otpRef,
+    enableResendOtp,
+    onEnableResend,
+  } = useOtp();
+  const {
     signUpCard,
     scrollViewContainer,
     otpInputContainer,
@@ -21,18 +32,7 @@ const OTP = props => {
     resendOtpText,
     headingText,
     otpTextStyle,
-  } = styles();
-  const {
-    getHeaderText,
-    setOTP,
-    onResend,
-    onVerify,
-    key,
-    from,
-    otpRef,
-    enableResendOtp,
-    onEnableResend,
-  } = useOtp();
+  } = styles(enableResendOtp);
   return (
     <>
       <ScrollView
@@ -67,8 +67,7 @@ const OTP = props => {
             <Timer
               interval={60}
               key={key}
-              resetEnable={() => {}}
-              resetCallBack={() => onEnableResend()}
+              resetEnable={onEnableResend}
             />
           </View>
           <TouchableOpacity

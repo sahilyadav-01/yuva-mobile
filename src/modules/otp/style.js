@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, FLASH_WHITE, LIGHT_MERCURY, ORANGE, WHITE} from '../../styles/colors';
+import {CYAN_BLUE, CYAN_BLUE_OPACITY, FLASH_WHITE, LIGHT_MERCURY, ORANGE, WHITE} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
-const styles = () => {
+const styles = (enableResendOtp) => {
   return StyleSheet.create({
     scrollViewContainer: {paddingHorizontal: 13, marginTop: 1},
     signUpCard: {
@@ -54,7 +54,7 @@ const styles = () => {
     resendOtpText: {
       fontFamily: fonts.family.rubik500,
       fontSize: 14,
-      color: CYAN_BLUE,
+      color: enableResendOtp ? CYAN_BLUE : CYAN_BLUE_OPACITY,
       lineHeight: 21,
     },
     headingText: {

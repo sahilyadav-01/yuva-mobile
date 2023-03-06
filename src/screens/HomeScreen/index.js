@@ -32,43 +32,55 @@ import { popularPackageNameThunk } from '../../store/reducers/ProgramAndPlanSlic
 import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
+import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
+import { useCart } from '../../modules/cart/hooks/useCart';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const {
-    loggedIn,
-  } = useSelector(state => state.auth);
+  const {addToCart} = useCart()
+  const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
   const { userAppointments } = useSelector(state => state?.appointment);
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { lifestylePackage } = useSelector(state => state.lifestylePackage);
-  const onPressAdd = () => {
-    //On add press logic to be added here
+  const onPressAdd = (arg) => {
+    addToCart({name:arg.name,cost:arg.cost,productId:arg.productId},arg.productType)
   };
+  const onPackagePress = (enumName, name) => {
+    navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
+  };
+
+  const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests',{index})
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({ isActive }));
-      dispatch(popularTestsSliceThunk({ isActive }));
+      dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search:'' }));
+      dispatch(popularTestsSliceThunk({ pageNo:1, pageSize: 4, search:'' }));
       dispatch(lifeStyleSliceThunk({ isActive }));
+      if(loggedIn === 'loggedIn'){
+        dispatch(getCartUserThunk());
+      } else {
+        dispatch(getCartGuestThunk());
+      }
+
     }
   }, [focused]);
   if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
-      <Header
-        showSearch={true}
-        searchPlaceholder={SEARCH_PLACEHOLDER}
-      />
+      <Header showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER} />
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <CarouselContainer data={userAppointments} isIndexed={true} includeMockData={false}>
+        <CarouselContainer
+          data={userAppointments}
+          isIndexed={true}
+          includeMockData={false}>
           <CarouselItem />
         </CarouselContainer>
         <View style={styles.PopularHealthCheckups}>
@@ -79,47 +91,57 @@ const HomeScreen = ({ navigation }) => {
           <ServiceContainer serviceCard={true} />
         </View>
         <View style={styles.bannerContainer}>
-          <SVG.landingPageBanner1/>
+          <SVG.landingPageBanner1 />
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(0)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <CarouselContainer data={popularPackageName.popularPackageResponseDtoList} isIndexed={false} >
+        {popularPackageName && <View>
+          <CarouselContainer
+            data={popularPackageName.popularPackageResponseDtoList}
+            isIndexed={false}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
-        </View>
+        </View>}
         <View style={styles.bannerContainer1}>
-        <Image style={styles.bannerImage} source={PNG.LandingPageBanner2}></Image>
+          <Image
+            style={styles.bannerImage}
+            source={PNG.LandingPageBanner2}></Image>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
           <View style={styles.line} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>onHealthPackagePress(1)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <CarouselContainer data={popularTest.popularTestResponseDtoList} isIndexed={false} >
+        {popularTest && <View>
+          <CarouselContainer
+            data={popularTest.popularTestResponseDtoList}
+            isIndexed={false}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
-              onPressAdd={() => onPressAdd()}
+              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
-        </View>
+        </View>}
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line2} />
         </View>
         <View style={styles.serviceContainerWrapperStyle}>
-          <ServiceContainer lifeStyleCard={true} data={lifestylePackage} />
+          <ServiceContainer
+            lifeStyleCard={true}
+            data={lifestylePackage}
+            onPackagePress={onPackagePress}
+          />
         </View>
         <View>
           <View style={styles.OurPlansHeaderStyle}>

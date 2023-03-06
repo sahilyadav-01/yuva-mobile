@@ -1,13 +1,14 @@
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {PNG} from '../../../../assets';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { resetPackages } from '../../../store/reducers/ProgramAndPlanSlice';
+import { resetTests } from '../../../store/reducers/PopularTestsSlice ';
 export const useServiceCard = ({screenName}) => {
   const {profileUpdated} = useSelector(state => state.profile);
-  const {
-    user: {loggedIn},
-  } = useSelector(state => state.auth);
+  const {loggedIn} = useSelector(state => state.auth);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const imageData = {
     OPD_Consultation: PNG.OPD_Consultation,
     Health_Risk_Assessment: PNG.Health_Risk_Assessment,
@@ -22,6 +23,11 @@ export const useServiceCard = ({screenName}) => {
       loggedIn === 'loggedIn'
     )
       Alert.alert('Alert', 'Please update your details in the Profile');
+    else if (profileUpdated && screenName === 'HealthCheckupsTests' && loggedIn === 'loggedIn') {
+      dispatch(resetPackages());
+      dispatch(resetTests());
+      navigation.navigate(`${screenName}`,{index:0});
+    }
     else navigation.navigate(`${screenName}`);
   };
   return {

@@ -1,6 +1,7 @@
 import validator from 'is_js';
 import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import DeviceInfo from 'react-native-device-info';
 
 export const handleNetworkError = (status, message) => {
   if (!message) {
@@ -312,6 +313,11 @@ export const getDimensions = () => {
   return {width, height};
 };
 
+export const getWindowDimensions = () => {
+  const {width, height} = Dimensions.get('window');
+  return {width, height};
+};
+
 export const getMonthInText = arg => {
   const obj = [
     {month: '0', text: 'January'},
@@ -335,4 +341,9 @@ export const getDateText = date => {
     date &&
     `${date.getDate()} ${getMonthInText(date.getMonth())} ${date.getFullYear()}`
   );
+};
+
+export const getDeviceId = async () => {
+  const deviceId = await DeviceInfo.getUniqueId();
+  return deviceId || '';
 };
