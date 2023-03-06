@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import Header from '../../../../components/Header';
 import { CHECK_OUT, ADDRESS } from './constants';
 import { styles } from './styles';
-import AddNewAddres from '../../../../components/AddNewAddres';
+import AddNewAddressContainer from '../../../../components/AddNewAddressContainer';
 
 const NewAddress = () => {
 
@@ -13,7 +13,7 @@ const NewAddress = () => {
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View>
-                    <AddNewAddres isScreen={ADDRESS} />
+                    <AddNewAddressContainer isScreen={ADDRESS} />
                 </View>
             </ScrollView >
         </View >

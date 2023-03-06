@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import Header from '../../../components/Header';
 import { useAddNewAddress } from './hooks/useAddNewAddress';
 import { styles } from './styles';
-import AddNewAddres from '../../../components/AddNewAddres';
+import AddNewAddressContainer from '../../../components/AddNewAddressContainer';
 import { BOOKING_CONFIRM, MY_TESTS } from './constants';
 
 const AddNewAddress = () => {
@@ -20,7 +20,7 @@ const AddNewAddress = () => {
                     </Text>
                 </View>
                 <View>
-                    <AddNewAddres isScreen={BOOKING_CONFIRM} />
+                    <AddNewAddressContainer isScreen={BOOKING_CONFIRM} />
                 </View>
             </ScrollView >
         </View >

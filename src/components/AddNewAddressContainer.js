@@ -5,7 +5,7 @@ import { useAddNewAddress } from './hooks/useAddNewAddress';
 import SelectList from 'react-native-dropdown-select-list'
 import { styles } from './styles';
 
-const AddNewAddres = (isScreen) => {
+const AddNewAddressContainer = (isScreen) => {
     const { 
         setSelected, data, addAddress, onChangePincode,
         onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2 } = useAddNewAddress(isScreen);
@@ -73,4 +73,4 @@ const AddNewAddres = (isScreen) => {
         </View >
     )
 }
-export default AddNewAddres;
+export default AddNewAddressContainer;
