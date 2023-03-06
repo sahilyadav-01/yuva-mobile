@@ -1,7 +1,7 @@
 
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { ADDEDSUCCESSFULLY, ALERT, ADDRESS, FIELD_MISSING, PINCODE_MUST_BE } from '../constants';
+import { ADDED_SUCCESSFULLY, ALERT, ADDRESS, FIELD_MISSING, PINCODE_MUST_BE } from '../constants';
 import { useNavigation } from '@react-navigation/core';
 import { Alert } from 'react-native';
 
@@ -16,7 +16,6 @@ export const useAddNewAddress = () => {
     const [contact, setContact] = useState('');
 
     const navigation = useNavigation();
-    const { packageDetails } = useSelector(state => state.diagnostic);
     const DATA = {
         address: location,
         pincode: pincode,
@@ -56,7 +55,7 @@ export const useAddNewAddress = () => {
         }
        else if (location?.length  && city?.length && data?.length) {
             navigation.navigate(ADDRESS, DATA);
-            Alert.alert(ALERT, ADDEDSUCCESSFULLY)
+            Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } else {
             Alert.alert(ALERT, FIELD_MISSING)
         }
@@ -64,7 +63,6 @@ export const useAddNewAddress = () => {
 
     return {
 
-        packageDetails,
         selected,
         setSelected,
         data,

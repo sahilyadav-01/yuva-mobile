@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserAddress } from "../../../../../store/reducers/ProfileSlice";
-import { ADDNEWADDRESS, ADDRESS, ALERT, CHECKOUTSCREEN, PLEASE_CHECK_ADDRESS } from "../constants";
+import { ADD_NEW_ADDRESS, ADDRESS, ALERT, CHECK_OUT_SCREEN, PLEASE_CHECK_ADDRESS } from "../constants";
 
 
 export const useOurAddress = () => {
     const route = useRoute();
-    const { quarterlyPrice, halfYearlyPrice, yearlyPrice } = route?.params
+    const { quarterlyPrice, halfYearlyPrice, yearlyPrice } = route?.params || {};
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const [currentStep, UpdateCurrentStep] = useState(1);
     const [userAttribute, setUserAttribute] = useState(null);
     const [checked, setChecked] = useState(null);
     const { userAddress } = useSelector(state => state?.profile);
@@ -38,17 +37,16 @@ export const useOurAddress = () => {
         halfYearlyPrice: halfYearlyPrice,
     }
     const AddNewAddress = () => {
-        navigation.navigate(ADDNEWADDRESS)
+        navigation.navigate(ADD_NEW_ADDRESS)
     }
     const AddressAdded = () => {
         if (address) {
-            navigation.navigate(CHECKOUTSCREEN, checkoutData)
+            navigation.navigate(CHECK_OUT_SCREEN, checkoutData)
         } else {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }
     }
     return {
-        currentStep,
         userAddress,
         setChecked,
         checked,

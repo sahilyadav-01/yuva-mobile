@@ -1,9 +1,8 @@
 import React from 'react'
-import { ScrollView, Text, TextInput, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, Text, TextInput, View,TouchableOpacity } from 'react-native'
 import Header from '../../../../components/Header'
 import { BALI } from '../../../../styles/colors'
-import { ADDRES, AMOUNTPAYABLE, APPLY, CHECKOUT, COUPON, DISCOUNT, ORDERAMOUNT, PAYMENT, PRICEDETAILS, RUPEE, TERMSANDCONDTION, TOBEPAID } from './constants'
+import { ADDRES, AMOUNT_PAYABLE, APPLY, CHECKOUT, COUPON, DISCOUNT, ORDER_AMOUNT, PAYMENT, PRICE_DETAILS, RUPEE, TERMS_AND_CONDTION, TO_BE_PAID } from './constants'
 import { useCheckout } from './hooks/useCheckout'
 import { styles } from './styles'
 
@@ -45,11 +44,11 @@ const CheckoutOurPlan = () => {
                     </View>
                 </View>
                 <View>
-                    <Text style={styles.TextPrice}>{PRICEDETAILS}</Text>
+                    <Text style={styles.TextPrice}>{PRICE_DETAILS}</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.OrderAmountDirection}>
-                    <Text style={styles.orderPrice}>{ORDERAMOUNT}</Text>
+                    <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
                     <Text style={styles.orderAmount}>{RUPEE}{yearlyPrice}/-</Text>
                 </View>
                 <View style={styles.OrderAmountDirection}>
@@ -75,21 +74,21 @@ const CheckoutOurPlan = () => {
                 </View>
                 <View style={styles.line} />
                 <View style={styles.OrderAmountDirection}>
-                    <Text style={styles.Amountpyable}>{AMOUNTPAYABLE}</Text>
+                    <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
                     <Text style={styles.payableAmount}>{RUPEE}{yearlyPrice}/-</Text>
                 </View>
                 <View style={styles.OrderAmountDirection}>
                     <TouchableOpacity
                         style={styles.checkBoxContainer}
                     />
-                    <Text style={styles.termsAndCondtion}>{TERMSANDCONDTION}</Text>
+                    <Text style={styles.termsAndCondtion}>{TERMS_AND_CONDTION}</Text>
                 </View>
                 <View>
                     <TouchableOpacity
                         // onPress={}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TOBEPAID} {RUPEE} {yearlyPrice}
+                            {TO_BE_PAID} {RUPEE} {yearlyPrice}
                         </Text>
                     </TouchableOpacity>
                 </View>

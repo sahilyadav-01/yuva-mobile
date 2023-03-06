@@ -1,10 +1,10 @@
 export const CHECKOUT="Checkout";
-export const CONFIRMDETAILS="Confirm Details";
+export const CONFIRM_DETAILS="Confirm Details";
 export const SELECT_ADRESS="Select Address";
 export const ADD_NEW="Add New";
-export const ADDNEWADDRESS="NewAddress";
+export const ADD_NEW_ADDRESS="NewAddress";
 export const ADDRESS="OurPlanAddress";
-export const CHECKOUTSCREEN="CheckoutScreen";
+export const CHECK_OUT_SCREEN="CheckoutScreen";
 export const ALERT="ALERT";
 export const PLEASE_CHECK_ADDRESS="Please check address Box";
 export const PAYMENT="Payment";

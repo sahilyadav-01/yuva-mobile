@@ -8,7 +8,7 @@ import { styles } from './styles';
 
 const NewAddress = () => {
 
-    const { packageDetails,
+    const {
         setSelected, data, addAddress, onChangePincode,
         onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2 } = useAddNewAddress();
     return (
@@ -16,11 +16,6 @@ const NewAddress = () => {
              <Header showBackButton={true} title={CHECKOUT} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
-                <View>
-                    <Text style={styles.booked}>
-                        {packageDetails?.packageName}
-                    </Text>
-                </View>
                 <View>
                     <Text style={styles.AddNewAddress}>
                         {ADD_NEW_ADDRESS}

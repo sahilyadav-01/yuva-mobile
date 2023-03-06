@@ -1,5 +1,4 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import { useRoute } from "@react-navigation/native";
 
 
 export const useCheckout = () => {
@@ -10,7 +9,7 @@ export const useCheckout = () => {
         cityName,
         yearlyPrice,
         quarterlyPrice,
-        halfYearlyPrice, } = route?.params
+        halfYearlyPrice, } = route?.params || {};
     return {
         address,
         pincode,

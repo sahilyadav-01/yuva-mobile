@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import Header from "../../../../components/Header";
-import { ADDRES, ADD_NEW, CHECKOUT, CONFIRMDETAILS, PAYMENT, SELECT_ADRESS } from "./constants";
+import { ADDRES, ADD_NEW, CHECKOUT, CONFIRM_DETAILS, PAYMENT, SELECT_ADRESS } from "./constants";
 import { styles } from "./styles";
 import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../../../../assets";
@@ -11,7 +11,9 @@ import { Checkbox } from 'react-native-paper';
 const OurPlanAddress = () => {
     const { userAddress, checked, setChecked, AddNewAddress, userAttribute, AddressAdded } = useOurAddress();
     const renderAddress = ({ item, index }) => {
-        if (item) {
+        if (!item) {
+            return null;
+        }
             return (
                 <View style={styles.border}>
 
@@ -36,9 +38,10 @@ const OurPlanAddress = () => {
                     </View>
                 </View>
             )
-        }
     }
-    if (userAddress) {
+    if (!userAddress) {
+    return null;
+    }
         return (
             <View>
                 <Header showBackButton={true} title={CHECKOUT} />
@@ -70,24 +73,22 @@ const OurPlanAddress = () => {
                         </TouchableOpacity>
                     </View>
                     <View >
-                        {userAddress?.length &&
                             <FlatList
                                 renderItem={renderAddress}
                                 data={userAddress}
                                 keyExtractor={(item) => item?.id}
                                 showsHorizontalScrollIndicator={false}
-                            />}
+                            />
                     </View>
                     <TouchableOpacity
                         onPress={AddressAdded}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {CONFIRMDETAILS}
+                            {CONFIRM_DETAILS}
                         </Text>
                     </TouchableOpacity>
                 </ScrollView>
             </View>
         )
-    }
 };
 export default OurPlanAddress;
