@@ -23,7 +23,7 @@ export const useServiceCard = ({screenName}) => {
       loggedIn === 'loggedIn'
     )
       Alert.alert('Alert', 'Please update your details in the Profile');
-    else if (profileUpdated && screenName === 'HealthCheckupsTests' && loggedIn === 'loggedIn') {
+    else if ( screenName === 'HealthCheckupsTests' ) {
       dispatch(resetPackages());
       dispatch(resetTests());
       navigation.navigate(`${screenName}`,{index:0});

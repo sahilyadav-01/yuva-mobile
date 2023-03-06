@@ -13,7 +13,6 @@ import Authentication from './Authentication';
 import CashlessOPD from '../modules/staticOPD';
 import { useSelector } from 'react-redux';
 import StaticHra from '../modules/staticHRA';
-import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
 import CartNavigation from './CartNavigation';
 import OurPlanNav from './OurPlanNav';
@@ -68,7 +67,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="HealthCheckupsTests"
-        component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthPackagesScreen}
+        component={HealthPackagesScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
