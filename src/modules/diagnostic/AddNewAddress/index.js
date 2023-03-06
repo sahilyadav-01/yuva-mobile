@@ -11,7 +11,7 @@ const AddNewAddress = () => {
     const { packageDetails } = useAddNewAddress();
     return (
         <View>
-            <Header title={MY_TESTS} showBackButton={true} />
+            <Header showBackButton={true} title={MY_TESTS} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View>
