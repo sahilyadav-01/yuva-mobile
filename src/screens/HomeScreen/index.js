@@ -151,7 +151,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
             </TouchableOpacity>
           </View>
-          <OurPlan />
+          <OurPlan isHomeScreen={true}/>
         </View>
       </ScrollView>
     </SafeAreaView>

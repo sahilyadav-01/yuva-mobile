@@ -1,0 +1,17 @@
+export const ADD_NEW_ADDRESS="Add New Address";
+export const ADDRESSLINE="Address Line 1";
+export const LOCATION="House/Flat/Block Number";
+export const ADDRESSLINE2="Address Line 2";
+export const CITY="City";
+export const CITYNAME="City Name";
+export const PINCODE="Pin Code";
+export const CONTACT="Contact Number";
+export const SAVE_AS="Save As";
+export const HOME="Home";
+export const ADD_ADDRESS="Add Address";
+export const ADDRESS="OurPlanAddress";
+export const ALERT="ALERT";
+export const FIELD_MISSING="Field Missing";
+export const ADDED_SUCCESSFULLY="Address Added Successfully";
+export const PINCODE_MUST_BE="Pincode must be of 6 digit numeric";
+export const CHECK_OUT="Checkout";

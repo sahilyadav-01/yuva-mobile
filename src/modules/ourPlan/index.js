@@ -1,11 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View,Text} from 'react-native';
 import PlanCard from './components/PlanCard';
 import { LEFT, RIGHT } from './constant';
 import { useOurPlan } from './hooks/useOurPlan';
 import { styles } from './styles';
 
-const OurPlan = () => {
+const OurPlan = (props) => {
   const {
     onContainerPress,
     leftItem,
@@ -25,7 +25,7 @@ const OurPlan = () => {
     const item = direction === LEFT ? leftItem: rightItem;
     return (
         <View style={[styles.sideViewContainer, direction === LEFT? styles.leftCard: styles.rightCard]}>
-          <PlanCard item={item} direction={direction} onContainerPress={onPress}/>
+          <PlanCard item={item} direction={direction} isHomeScreen={props} onContainerPress={onPress}/>
         </View>
     );
   }
@@ -33,7 +33,7 @@ const OurPlan = () => {
     <View style={styles.parentView}>
       <View style={styles.container}>
         {sideView(LEFT)}
-        {mainView()}
+        {mainView() }
         {sideView(RIGHT)}
       </View>
     </View>

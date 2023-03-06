@@ -16,6 +16,7 @@ import StaticHra from '../modules/staticHRA';
 import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
 import CartNavigation from './CartNavigation';
+import OurPlanNav from './OurPlanNav';
 import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
 import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import HealthPackagesScreen from '../screens/HealthPackages';
@@ -83,6 +84,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="CartScreen"
         component={CartNavigation}
+        options={{headerShown: false}}
+      />
+       <Stack.Screen
+        name="OurPlan"
+        component={OurPlanNav}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

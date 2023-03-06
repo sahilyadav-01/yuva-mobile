@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { planPopularThunk } from "../../../store/reducers/ProgramAndPlanSlice"
-import { LEFT, RIGHT } from "../constant";
+import { planPopularThunk, setIndex } from "../../../store/reducers/ProgramAndPlanSlice"
+import { LEFT, OURPLAN, RIGHT } from "../constant";
+
 
 export const useOurPlan = () => {
   const dispatch = useDispatch();
@@ -12,14 +13,14 @@ export const useOurPlan = () => {
   const [length, setLength] = useState(0);
   const [priceText, setPriceText] = useState('');
 
-  const {popularPlan} = useSelector(state => state.programAndPlan);
+  const { popularPlan } = useSelector(state => state.programAndPlan);
   useEffect(() => {
     dispatch(planPopularThunk())
   }, []);
   useEffect(() => {
     const len = popularPlan.length;
     setLength(len);
-    if(length > 0) {
+    if (length > 0) {
       setActiveIndex(0);
       setMainItem(popularPlan[0]);
       (length > 1) && setRightItem(popularPlan[1]);
@@ -34,7 +35,7 @@ export const useOurPlan = () => {
     } else {
       setLeftItem(null);
     }
-    if(rightIndex < length) {
+    if (rightIndex < length) {
       setRightItem(popularPlan[rightIndex]);
     } else {
       setRightItem(null);
@@ -44,8 +45,8 @@ export const useOurPlan = () => {
   }, [activeIndex]);
 
   const updatePrice = () => {
-    if(mainItem){
-      const {quarterlyPrice, halfYearlyPrice, yearlyPrice} = mainItem;
+    if (mainItem) {
+      const { quarterlyPrice, halfYearlyPrice, yearlyPrice } = mainItem;
       const comPrice = [];
       (quarterlyPrice > 0) && comPrice.push(quarterlyPrice);
       (halfYearlyPrice > 0) && comPrice.push(halfYearlyPrice);
@@ -54,7 +55,7 @@ export const useOurPlan = () => {
     }
   }
   const onContainerPress = (direction) => {
-    if(direction === LEFT && leftItem) {
+    if (direction === LEFT && leftItem) {
       const newIndex = activeIndex - 1;
       (newIndex >= 0) && setActiveIndex(newIndex)
     } else if (direction === RIGHT && rightItem) {
@@ -62,7 +63,9 @@ export const useOurPlan = () => {
       (newIndex < length) && setActiveIndex(newIndex);
     }
   };
-
+  useEffect(() => {
+    dispatch(setIndex(mainItem))
+  }, [mainItem])
   return {
     onContainerPress,
     leftItem,
