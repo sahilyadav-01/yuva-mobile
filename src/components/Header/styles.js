@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, PINK_ORANGE, WHITE } from "../../styles/colors";
-import { ABSOLUTE,CENTER, FLEX_START, ROW } from "../../styles/constants";
-import { fonts } from "../../styles/fonts";
-import { getDimensions } from "../../utils/utils";
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE, PINK_ORANGE, WHITE} from '../../styles/colors';
+import {ABSOLUTE, CENTER, FLEX_START, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
+import {getDimensions} from '../../utils/utils';
 
 const {height} = getDimensions();
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    minHeight: 0.12*height,
+    minHeight: 0.12 * height,
     width: '100%',
     backgroundColor: WHITE,
     paddingHorizontal: 16,
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
     elevation: 10,
     paddingBottom: 24,
-    zIndex:1
+    zIndex: 1,
   },
   topSection: {
     flexDirection: ROW,
@@ -88,6 +88,12 @@ export const styles = StyleSheet.create({
   badgeView: {
     backgroundColor: PINK_ORANGE,
     borderRadius: 16,
+    height: 15,
+    width: 15,
+    position: ABSOLUTE,
+    left: 15,
+    bottom: 14,
+    zIndex: 1,
     justifyContent: CENTER,
     alignItems: CENTER,
   },
@@ -95,5 +101,5 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize8,
-  }
+  },
 });
