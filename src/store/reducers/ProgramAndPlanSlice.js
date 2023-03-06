@@ -123,7 +123,6 @@ const programAndPlanSlice = createSlice({
     [planDetailsThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
-    }
   },
 });
 
