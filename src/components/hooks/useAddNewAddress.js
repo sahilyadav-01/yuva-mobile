@@ -15,14 +15,14 @@ export const useAddNewAddress = (isScreen) => {
     const [contact, setContact] = useState('');
 
     const navigation = useNavigation();
-    const DATA = {
+    const DATA = [{
         address: location,
-        pincode: pincode,
-        city: city,
-        contact: contact,
+        pinCode: pincode,
+        cityName: city,
+        contactNumber: contact,
         location2: location2,
         saveAs: selected
-    }
+    }]
     useEffect(() => {
 
         let newArray = [

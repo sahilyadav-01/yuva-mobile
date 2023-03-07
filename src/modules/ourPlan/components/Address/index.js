@@ -19,7 +19,7 @@ const OurPlanAddress = () => {
 
                     <View style={styles.checkboxAddress} >
                         <Checkbox
-                            disabled={userAttribute?.address}
+                            disabled={userAttribute?.[0]?.address}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -75,20 +75,26 @@ const OurPlanAddress = () => {
                     <View >
                             <FlatList
                                 renderItem={renderAddress}
-                                data={userAddress}
-                                keyExtractor={(item) => item?.id}
-                                showsHorizontalScrollIndicator={false}
-                            />
-                    </View>
-                    <TouchableOpacity
-                        onPress={AddressAdded}
-                        style={styles.touchableButton}>
-                        <Text style={styles.tobePaid}>
-                            {CONFIRM_DETAILS}
-                        </Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </View>
-        )
+                        data={userAttribute}
+                        keyExtractor={(item) => item?.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                    <FlatList
+                        renderItem={renderAddress}
+                        data={userAddress}
+                        keyExtractor={(item) => item?.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <TouchableOpacity
+                    onPress={AddressAdded}
+                    style={styles.touchableButton}>
+                    <Text style={styles.tobePaid}>
+                        {CONFIRM_DETAILS}
+                    </Text>
+                </TouchableOpacity>
+            </ScrollView>
+        </View>
+    )
 };
 export default OurPlanAddress;
