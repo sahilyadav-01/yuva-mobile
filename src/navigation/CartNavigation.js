@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
-import CartScreen from '../screens/CartScreen';
+import CartScreen from '../screens/Cart/CartScreen';
+import CheckoutAddressList from '../screens/Cart/CheckoutAddressList';
+
 
 const Stack = createStackNavigator();
 
@@ -8,7 +10,7 @@ const CartNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={"Cart"} component={CartScreen} options={{headerShown: false}} />
-      <Stack.Screen name={"CheckoutAddressList"} component={() => <></>} options={{headerShown: false}} />
+      <Stack.Screen name={"CheckoutAddressList"} component={CheckoutAddressList} options={{headerShown: false}} />
       <Stack.Screen name={"CheckoutNewAddress"} component={() => <></>} options={{headerShown: false}} />
       <Stack.Screen name={"CheckoutSchedule"} component={() => <></>} options={{headerShown: false}} />
       <Stack.Screen name={"PaymentReconfirm"} component={() => <></>} options={{headerShown: false}} />
