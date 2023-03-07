@@ -28,7 +28,9 @@ const BookingConfirm = () => {
         bookedDetails,
         rescheduleBooking,
         AddNewAddress,
-        userAttribute } = useBookingConfirm();
+        userAttribute,
+        userAddressListing
+    } = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
@@ -37,7 +39,7 @@ const BookingConfirm = () => {
 
                     <View style={styles.checkboxAddress} >
                         <Checkbox
-                            disabled={bookedDetails || userAttribute?.address}
+                            disabled={bookedDetails || userAttribute?.[0]?.address}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -145,13 +147,13 @@ const BookingConfirm = () => {
                             </TouchableOpacity>
                         </View>
                         <View >
-                            {userAddress?.length &&
-                                <FlatList
-                                    renderItem={renderAddress}
-                                    data={userAddress}
-                                    keyExtractor={(item) => item.id}
-                                    showsHorizontalScrollIndicator={false}
-                                />}
+                            <FlatList
+                                renderItem={renderAddress}
+                                data={userAddressListing}
+                                keyExtractor={(item) => item.id}
+                                showsHorizontalScrollIndicator={false}
+                            />
+
                         </View>
                     </View>
                     <View>

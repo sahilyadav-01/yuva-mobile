@@ -9,7 +9,7 @@ import { SVG } from "../../../../../assets";
 import { Checkbox } from 'react-native-paper';
 
 const OurPlanAddress = () => {
-    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, AddressAdded } = useOurAddress();
+    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, AddressAdded, userAddressListing } = useOurAddress();
     const renderAddress = ({ item, index }) => {
         if (!item) {
             return null;
@@ -19,7 +19,7 @@ const OurPlanAddress = () => {
 
                     <View style={styles.checkboxAddress} >
                         <Checkbox
-                            disabled={userAttribute?.address}
+                            disabled={userAttribute?.[0]?.address}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -75,20 +75,20 @@ const OurPlanAddress = () => {
                     <View >
                             <FlatList
                                 renderItem={renderAddress}
-                                data={userAddress}
-                                keyExtractor={(item) => item?.id}
-                                showsHorizontalScrollIndicator={false}
-                            />
-                    </View>
-                    <TouchableOpacity
-                        onPress={AddressAdded}
-                        style={styles.touchableButton}>
-                        <Text style={styles.tobePaid}>
-                            {CONFIRM_DETAILS}
-                        </Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </View>
-        )
+                        data={userAddressListing}
+                        keyExtractor={(item) => item?.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                <TouchableOpacity
+                    onPress={AddressAdded}
+                    style={styles.touchableButton}>
+                    <Text style={styles.tobePaid}>
+                        {CONFIRM_DETAILS}
+                    </Text>
+                </TouchableOpacity>
+            </ScrollView>
+        </View>
+    )
 };
 export default OurPlanAddress;
