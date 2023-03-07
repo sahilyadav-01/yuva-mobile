@@ -37,7 +37,7 @@ const BookingConfirm = () => {
 
                     <View style={styles.checkboxAddress} >
                         <Checkbox
-                            disabled={bookedDetails || userAttribute?.address}
+                            disabled={bookedDetails || userAttribute?.[0]?.address}
                             status={checked === index ? 'checked' : 'unchecked'}
                             onPress={() => {
                                 checked !== index ? setChecked(index) : setChecked(null);
@@ -145,13 +145,19 @@ const BookingConfirm = () => {
                             </TouchableOpacity>
                         </View>
                         <View >
-                            {userAddress?.length &&
-                                <FlatList
-                                    renderItem={renderAddress}
-                                    data={userAddress}
-                                    keyExtractor={(item) => item.id}
-                                    showsHorizontalScrollIndicator={false}
-                                />}
+                            <FlatList
+                                renderItem={renderAddress}
+                                data={userAttribute}
+                                keyExtractor={(item) => item.id}
+                                showsHorizontalScrollIndicator={false}
+                            />
+                            <FlatList
+                                renderItem={renderAddress}
+                                data={userAddress}
+                                keyExtractor={(item) => item.id}
+                                showsHorizontalScrollIndicator={false}
+                            />
+
                         </View>
                     </View>
                     <View>
