@@ -1,9 +1,16 @@
-import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { createCartGuestThunk, createCartUserThunk } from "../../../store/reducers/CartSlice";
-import { CHECKOUT, LOGIN_SIGNUP } from "../constants";
-import {deleteCartThunk, getCartGuestThunk, getCartUserThunk} from '../../../store/reducers/CartSlice';
-import { useEffect } from "react";
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  createCartGuestThunk,
+  createCartUserThunk,
+} from '../../../store/reducers/CartSlice';
+import {LOGIN_SIGNUP, SELECT_ADD_MEMBER} from '../constants';
+import {
+  deleteCartThunk,
+  getCartGuestThunk,
+  getCartUserThunk,
+} from '../../../store/reducers/CartSlice';
+import {useEffect} from 'react';
 
 export const useCart = () => {
   const navigation = useNavigation();
@@ -13,34 +20,33 @@ export const useCart = () => {
   const {loggedIn} = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const onPress = () => {
-    if(isLoggedIn) {
-
+    if (isLoggedIn) {
     } else {
       navigation.navigate('LoginScreen');
     }
-  }
+  };
 
-  const addToCart = ({name,cost,productId},productType) => {
-    const dToObj = {name,count:1,cost,productId,productType}
-    const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk
+  const addToCart = ({name, cost, productId}, productType) => {
+    const dToObj = {name, count: 1, cost, productId, productType};
+    const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
     const cartDto = {
       ...cart,
-      itemDtoList: [...cart.itemDtoList,dToObj],
-    }
-    dispatch(dispatcher({cartDto}))
-  }
-  const buttonText = isLoggedIn? CHECKOUT: LOGIN_SIGNUP;
-  const onRemove = (item) => {
-    const {productId: itemId} = item || {}
+      itemDtoList: [...cart.itemDtoList, dToObj],
+    };
+    dispatch(dispatcher({cartDto}));
+  };
+  const buttonText = isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
+  const onRemove = item => {
+    const {productId: itemId} = item || {};
     itemId && dispatch(deleteCartThunk({itemId}));
   };
   useEffect(() => {
-    if(isLoggedIn){
+    if (isLoggedIn) {
       dispatch(getCartUserThunk());
     } else {
       dispatch(getCartGuestThunk());
     }
-  }, [isRemoved])
+  }, [isRemoved]);
   return {
     cart,
     onPress,

@@ -1,12 +1,18 @@
-import { StyleSheet } from "react-native";
-import { FLASH_WHITE, ORANGE, WHITE } from "../../styles/colors";
-import { CENTER } from "../../styles/constants";
-import { fonts } from "../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {
+  FLASH_WHITE,
+  GREEN,
+  LIGHT_GREEN,
+  ORANGE,
+  WHITE,
+} from '../../styles/colors';
+import {ABSOLUTE, CENTER, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor:FLASH_WHITE,
-    flex:1,
+    backgroundColor: FLASH_WHITE,
+    flex: 1,
   },
   containerStyle: {
     backgroundColor: ORANGE,
@@ -16,13 +22,35 @@ export const styles = StyleSheet.create({
     alignContent: CENTER,
   },
   bodyContainer: {
-    paddingTop:12,
-    paddingBottom:6,
-    paddingHorizontal:24
+    paddingTop: 12,
+    paddingBottom: 6,
+    paddingHorizontal: 24,
   },
   textStyle: {
     color: WHITE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
+  },
+  crossStyle: {
+    color: GREEN,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize16,
+  },
+  appliedStyle: {
+    color: GREEN,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize16,
+    marginLeft: 21,
+  },
+  descStyle: {
+    backgroundColor: LIGHT_GREEN,
+    height: 57,
+    width: '100%',
+    justifyContent: CENTER,
+  },
+  buttonStyle: {
+    position: ABSOLUTE,
+    right: 23,
+    top: 20,
   },
 });
