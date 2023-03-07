@@ -114,9 +114,10 @@ export const styles = StyleSheet.create({
         flexDirection: ROW,
     },
     addNew: {
-        marginLeft: 18,
-        marginRight: 18,
-        minHeight: 28,
+        alignItems:CENTER,
+        marginRight:15,
+        marginLeft: 7.33,
+        minHeight: 25,
         marginTop: 9,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
@@ -170,14 +171,15 @@ export const styles = StyleSheet.create({
 
     },
     Add: {
-        marginLeft: 5,
+        marginLeft: 38,
         borderWidth: 0.1,
         marginTop: 18,
         shadowColor: WHITE,
         shadowOpacity: "5%",
-        borderRadius: 2,
+        borderRadius: 3,
         backgroundColor: WHITE,
-        dropShadow: BOX_SHADOW
+        dropShadow: BOX_SHADOW,
+        flexDirection:ROW,
     },
     AddMem: {
         marginLeft: 5,
@@ -198,5 +200,9 @@ export const styles = StyleSheet.create({
         justifyContent: SPACE_BETWEEN,
         flexDirection: ROW,
         marginRight:25,
-    }
+    },
+    svg:{
+        marginTop:9,
+        marginLeft:7.33,
+    },
 })
