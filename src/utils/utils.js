@@ -186,7 +186,8 @@ export const dignosticStatus = status => {
     case 'FINISHED':
       retStatus = 'Access your report from Download Section';
       break;
-      default:retStatus='Awaiting For Confirmation';
+    default:
+      retStatus = 'Awaiting For Confirmation';
   }
   return retStatus;
 };
@@ -202,12 +203,18 @@ export const getPlanDate = timestamp => {
   return new Date(timestamp).toLocaleDateString('en-US', {
     day: '2-digit',
     month: '2-digit',
-    year:'numeric'
+    year: 'numeric',
   });
 };
-export const splitCustomId=customId=>{
-  return customId.substr(0, 4)+'-'+customId.substr(4, 4)+'-'+customId.substr(8, 4);
-}
+export const splitCustomId = customId => {
+  return (
+    customId.substr(0, 4) +
+    '-' +
+    customId.substr(4, 4) +
+    '-' +
+    customId.substr(8, 4)
+  );
+};
 
 export const getTime = timestamp => {
   // let time = Date.parse(timestamp?.split(".")[0])

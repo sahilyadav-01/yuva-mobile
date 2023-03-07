@@ -12,4 +12,4 @@ export const ADDRESS_1 = 'Address Line 1';
 export const CITY = 'City';
 export const PINCODE = 'Pin Code';
 export const USER_PROFILE = 'User Profile';
-export const PROFILE_COMPLETE = 'Mark Your Porfile as Complete';
+export const PROFILE_COMPLETE = 'Mark Your Profile as Complete';

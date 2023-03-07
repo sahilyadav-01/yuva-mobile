@@ -41,6 +41,18 @@ export const planPopularThunk = createAsyncThunk(
     }
   }
 )
+export const planDetailsThunk = createAsyncThunk(
+  'plan/details',
+  async (Uuid, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/details?planUuid=${Uuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
 
 const initialState = {
   loading: false,
@@ -49,6 +61,7 @@ const initialState = {
   programAndPlan: [],
   popularPackageName: null,
   popularPlan: [],
+  planDetails:'',
 }
 
 const programAndPlanSlice = createSlice({
@@ -60,6 +73,9 @@ const programAndPlanSlice = createSlice({
     },
     resetPackages(state) {
       state.popularPackageName = null
+    },
+    setIndex(state,{payload}){
+      state.mainItem=payload;
     },
   },
   extraReducers: {
@@ -96,10 +112,20 @@ const programAndPlanSlice = createSlice({
     },
     [planPopularThunk.rejected]: (state, { payload }) => {
       state.loading = false;
-    }
+    },
+    [planDetailsThunk.pending] : (state, {payload}) => {
+      state.loading = true;
+    },
+    [planDetailsThunk.fulfilled]: (state, {payload}) => {
+      state.planDetails = payload?.data;
+      state.loading = false;
+    },
+    [planDetailsThunk.rejected]: (state, {payload}) => {
+      state.loading = false;
+    },
   },
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName, resetPackages } = programAndPlanSlice.actions;
+export const { popularPackageName ,setIndex,setPlanDetails,resetPackages} = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

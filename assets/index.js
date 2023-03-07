@@ -88,6 +88,7 @@ import HomeImage from './home';
 import tick from './tick';
 import minus from './minus';
 import Arrow from './arrow';
+import StarIcon from './starIcon';
 import Scientist from './scientist';
 import TestTube from './testtube';
 import HealthCheck from './healthCheck';
@@ -185,6 +186,7 @@ const SVG = {
   Reschedule: Reschedule,
   CheckIn: CheckIn,
   Arrow: Arrow,
+  StarIcon:StarIcon,
   Scientist: Scientist,
   TestTube: TestTube,
   HealthCheck: HealthCheck,
