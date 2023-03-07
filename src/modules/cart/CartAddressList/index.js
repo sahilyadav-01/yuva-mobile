@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
  import ProgressBar from '../../../components/ProgressBar';
 // import CartDetails from '../../components/CartDetails';
@@ -11,11 +11,15 @@ import { styles } from './styles';
 const CartAddressList = (props) => {
     // const {cart, onPress, buttonText, onRemove} = useCart();
     // const {itemDtoList, totalCost } = cart || {};
+    const [progress ,setProgress]=useState('')
+   console.log("progress",progress)
+
     return (
         <ScrollView style={styles.container}>
          <Header title={"Checkout"} showSearch={false} showBackButton={true}/>
          <View style={styles.bodyContainer}>
             <ProgressBar
+            progress='0.33'
             // address="123 Main Street"
             // milestone1="Milestone 1"
             // date1="2022-03-01"

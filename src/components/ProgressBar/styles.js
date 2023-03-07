@@ -1,31 +1,36 @@
-import {StyleSheet} from 'react-native';
-
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // flexDirection:'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   progressBar: {
     width: '80%',
     height: 10,
-    borderRadius: 5,
-    backgroundColor: '#e0e0e0',
+    // borderRadius: 5,
+    // backgroundColor: 'red',
   },
   progress: {
-    height: 10,
+    height: 1,
     borderRadius: 5,
-    backgroundColor: '#ff5722',
+    backgroundColor: '#39A252',
+    alignSelf:"center",
+    marginLeft:'1',
   },
   statusContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%',
+    // width: '80%',
     marginTop: 10,
+    // backgroundColor:"yellow"
   },
   status: {
     alignItems: 'center',
+    flexDirection: 'column',
+    // backgroundColor:'red'
   },
   statusDot: {
     width: 10,
@@ -35,7 +40,7 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   statusDotActive: {
-    backgroundColor: '#ff5722',
+    backgroundColor: '#39A252',
   },
   statusLabel: {
     maxWidth: 70,
@@ -48,4 +53,4 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     color: '#555',
   },
-  });
+});
