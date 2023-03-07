@@ -12,6 +12,7 @@ export const useOurAddress = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [userAttribute, setUserAttribute] = useState(null);
+    const [userNewAddress, setUserNewAddress] = useState();
     const [checked, setChecked] = useState(null);
     const { userAddress } = useSelector(state => state?.profile);
     useEffect(() => {
@@ -46,12 +47,26 @@ export const useOurAddress = () => {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }
     }
+    useEffect(() => {
+        if (userAttribute?.[0]?.address) {
+            setUserNewAddress(userAttribute)
+        }
+    }, [userAttribute])
+
+
+    if (userNewAddress?.[0]?.address) {
+        var userAddressListing = userAddress.concat(userNewAddress)
+    }
+    else {
+        var userAddressListing = userAddress;
+    }
     return {
         userAddress,
         setChecked,
         checked,
         AddNewAddress,
         userAttribute,
-        AddressAdded
+        AddressAdded,
+        userAddressListing
     }
 }

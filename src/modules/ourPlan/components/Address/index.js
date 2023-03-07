@@ -9,7 +9,7 @@ import { SVG } from "../../../../../assets";
 import { Checkbox } from 'react-native-paper';
 
 const OurPlanAddress = () => {
-    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, AddressAdded } = useOurAddress();
+    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, AddressAdded, userAddressListing } = useOurAddress();
     const renderAddress = ({ item, index }) => {
         if (!item) {
             return null;
@@ -75,13 +75,7 @@ const OurPlanAddress = () => {
                     <View >
                             <FlatList
                                 renderItem={renderAddress}
-                        data={userAttribute}
-                        keyExtractor={(item) => item?.id}
-                        showsHorizontalScrollIndicator={false}
-                    />
-                    <FlatList
-                        renderItem={renderAddress}
-                        data={userAddress}
+                        data={userAddressListing}
                         keyExtractor={(item) => item?.id}
                         showsHorizontalScrollIndicator={false}
                     />

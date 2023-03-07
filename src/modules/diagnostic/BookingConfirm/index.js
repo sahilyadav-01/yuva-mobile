@@ -28,7 +28,9 @@ const BookingConfirm = () => {
         bookedDetails,
         rescheduleBooking,
         AddNewAddress,
-        userAttribute } = useBookingConfirm();
+        userAttribute,
+        userAddressListing
+    } = useBookingConfirm();
     const renderAddress = ({ item, index }) => {
         if (item) {
             return (
@@ -147,13 +149,7 @@ const BookingConfirm = () => {
                         <View >
                             <FlatList
                                 renderItem={renderAddress}
-                                data={userAttribute}
-                                keyExtractor={(item) => item.id}
-                                showsHorizontalScrollIndicator={false}
-                            />
-                            <FlatList
-                                renderItem={renderAddress}
-                                data={userAddress}
+                                data={userAddressListing}
                                 keyExtractor={(item) => item.id}
                                 showsHorizontalScrollIndicator={false}
                             />
