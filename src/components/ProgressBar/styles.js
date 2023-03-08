@@ -1,56 +1,62 @@
 import { StyleSheet } from 'react-native';
+import { CHARCOAL_GREY, GREEN, PEARL_GREY } from '../../styles/colors';
+import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // flexDirection:'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: COLUMN,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
   progressBar: {
-    width: '80%',
-    height: 10,
-    // borderRadius: 5,
-    // backgroundColor: 'red',
+    height: 8,
+    width: '100%',
+    backgroundColor: PEARL_GREY,
+    borderRadius: 4,
+    overflow: 'hidden',
   },
   progress: {
-    height: 1,
-    borderRadius: 5,
-    backgroundColor: '#39A252',
-    alignSelf:"center",
-    marginLeft:'1',
+    height: '10%',
+    backgroundColor: GREEN,
   },
   statusContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    // width: '80%',
-    marginTop: 10,
-    // backgroundColor:"yellow"
+    flexDirection: ROW,
+    alignItems: CENTER,
+    justifyContent: SPACE_BETWEEN,
+    marginTop: 8,
+    width: '100%',
   },
   status: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    // backgroundColor:'red'
+    flexDirection: COLUMN,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    width: 30,
   },
   statusDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#e0e0e0',
-    marginBottom: 5,
-  },
-  statusDotActive: {
-    backgroundColor: '#39A252',
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: PEARL_GREY,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    marginBottom: 4,
   },
   statusLabel: {
-    maxWidth: 70,
-    alignItems: 'center',
+    height: 24,
+    width: 80,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    
   },
   statusLabelActive: {
-    opacity: 1,
+    fontWeight: fonts.weight.fontWeight700,
   },
   statusText: {
-    fontSize: 10,
-    color: '#555',
+    fontSize: 12,
+    color: CHARCOAL_GREY,
   },
 });
+
+export { styles };
