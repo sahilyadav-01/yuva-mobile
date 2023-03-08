@@ -12,6 +12,7 @@ export const useOurAddress = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [userAttribute, setUserAttribute] = useState(null);
+    const [userNewAddress, setUserNewAddress] = useState();
     const [checked, setChecked] = useState(null);
     const { userAddress } = useSelector(state => state?.profile);
     useEffect(() => {
@@ -23,8 +24,8 @@ export const useOurAddress = () => {
         }
     }, [route])
     const address = userAddress?.[checked]?.address || userAttribute?.address;
-    const pincode = userAddress?.[checked]?.pinCode || userAttribute?.pincode;
-    const contact = userAddress?.[checked]?.contactNumber || userAttribute?.contact;
+    const pincode = userAddress?.[checked]?.pinCode || userAttribute?.pinCode;
+    const contact = userAddress?.[checked]?.contactNumber || userAttribute?.contactNumber;
     const cityName = userAddress?.[checked]?.cityName || userAttribute?.cityName;
 
     const checkoutData = {
@@ -46,12 +47,26 @@ export const useOurAddress = () => {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }
     }
+    useEffect(() => {
+        if (userAttribute?.[0]?.address) {
+            setUserNewAddress(userAttribute)
+        }
+    }, [userAttribute])
+
+
+    if (userNewAddress?.[0]?.address) {
+        var userAddressListing = userAddress.concat(userNewAddress)
+    }
+    else {
+        var userAddressListing = userAddress;
+    }
     return {
         userAddress,
         setChecked,
         checked,
         AddNewAddress,
         userAttribute,
-        AddressAdded
+        AddressAdded,
+        userAddressListing
     }
 }

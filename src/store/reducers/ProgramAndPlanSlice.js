@@ -127,5 +127,5 @@ const programAndPlanSlice = createSlice({
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName ,setIndex,setPlanDetails} = programAndPlanSlice.actions;
+export const { popularPackageName ,setIndex,setPlanDetails,resetPackages} = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

@@ -11,6 +11,7 @@ import { ADDNEWADDRESS, ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEAS
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
+    const [userNewAddress, setUserNewAddress] = useState();
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
@@ -127,6 +128,21 @@ export const useBookingConfirm = () => {
     const AddNewAddress = () => {
         navigation.navigate(ADDNEWADDRESS)
     }
+    useEffect(() => {
+        if (userAttribute?.[0]?.address) {
+            setUserNewAddress(userAttribute)
+        }
+    }, [userAttribute])
+
+
+    if (userNewAddress?.[0]?.address) {
+        var userAddressListing = userAddress.concat(userNewAddress)
+    }
+    else {
+        var userAddressListing = userAddress;
+    }
+
+
     return {
         packageDetails,
         handleDate,
@@ -142,6 +158,7 @@ export const useBookingConfirm = () => {
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
         AddNewAddress,
-        userAttribute
+        userAttribute,
+        userAddressListing
     }
 }

@@ -20,7 +20,9 @@ export const useCart = () => {
   const {loggedIn} = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const onPress = () => {
-    if (isLoggedIn) {
+    if(isLoggedIn) {
+      navigation.navigate('CheckoutAddressList');
+
     } else {
       navigation.navigate('LoginScreen');
     }
