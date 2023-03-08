@@ -1,15 +1,23 @@
 import {View, Text, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {APPLY, APPLY_COUPON, COUPON, COUPON_CODE, USE_COUPON} from './constant';
+import {
+  APPLY,
+  APPLY_COUPON,
+  COUPON,
+  COUPON_APPLIED,
+  COUPON_CODE,
+  USE_COUPON,
+} from './constant';
 import BackgroundImage from '../../../assets/background';
 import {CYAN_BLUE, GREEN, RED} from '../../styles/colors';
 
 const CouponCard = () => {
-  const [ssss, setsss] = useState(false);
+  const [couponName, setCouponName] = useState('');
+
   const renderItem = ({item}) => {
     const Success = () => {
-      setsss(true);
+      setCouponName(item.name);
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={Success}>
@@ -21,9 +29,13 @@ const CouponCard = () => {
           <View
             style={[
               styles.useCouponStyle,
-              {backgroundColor: ssss ? GREEN : CYAN_BLUE},
+              {backgroundColor: item.name == couponName ? GREEN : CYAN_BLUE},
             ]}>
-            <Text style={styles.useCouponTextStyle}>{USE_COUPON}</Text>
+            {item.name == couponName ? (
+              <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
+            ) : (
+              <Text style={styles.useCouponTextStyle}>{USE_COUPON}</Text>
+            )}
           </View>
         </View>
       </TouchableOpacity>
@@ -33,7 +45,11 @@ const CouponCard = () => {
     <View style={styles.viewContainer}>
       <Text style={styles.textStyle}>{APPLY_COUPON}</Text>
       <View style={styles.viewCoupon}>
-        <TextInput style={styles.textInputStyles} placeholder={COUPON_CODE} />
+        <TextInput
+          style={styles.textInputStyles}
+          value={couponName}
+          placeholder={COUPON_CODE}
+        />
         <TouchableOpacity style={styles.applyStyles}>
           <Text style={styles.applyButtonStyles}>{APPLY}</Text>
         </TouchableOpacity>
