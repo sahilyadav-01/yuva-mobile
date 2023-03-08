@@ -1,16 +1,14 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import { SVG } from '../../../../assets';
-import { CYAN_BLUE } from '../../../styles/colors';
 import Modal from '../index';
 import Dependent from './Dependent';
 import {styles} from './style';
-import BackCross from '../../GoBackCross'
+import BackCross from '../../GoBackCross';
 
 function DependentsModal(props) {
-  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress} = props;
-  const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText, headingContainer} =
+  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress, showAddMembersButton, onAddMembersPress} = props;
+  const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText, headingContainer, addMemberContainer, addMemberText} =
     styles();
   const listData = [0, ...data, 0];
   const renderDependent = ({item, index}) => (
@@ -32,8 +30,11 @@ function DependentsModal(props) {
         renderItem={renderDependent}
         ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
         style={listStyle}
+        bounces={false}
       />
-      
+       {showAddMembersButton && <TouchableOpacity onPress={onAddMembersPress} style={addMemberContainer}>
+        <Text style={addMemberText}>Add New Member</Text>
+      </TouchableOpacity>}
     </Modal>
   );
 }
