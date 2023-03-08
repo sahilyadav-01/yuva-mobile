@@ -15,11 +15,11 @@ const ProgressBar = ({ progress, showDateTimeSection }) => {
         <View style={styles.status}>
           {progress >= 0.33 ? (
             <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: GREEN }]}>
-              <Icon name="check" size={12} color="#319B4B" />
+              <Icon name="check" size={12} color={GREEN} />
             </View>
           ) : (
             <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: BLACK }]}>
-              <Icon name="circle" size={12} color="#000000" />
+              <View style={{ width: 6, height: 6, borderRadius: 12, backgroundColor: BLACK, borderColor: BLACK }} />
             </View>
           )}
           <View
@@ -42,12 +42,12 @@ const ProgressBar = ({ progress, showDateTimeSection }) => {
             <View style={styles.status}>
               {progress >= 0.66 && (
                 <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: GREEN }]}>
-                  <Icon name="check" size={12} color="#319B4B" />
+                  <Icon name="check" size={12} color={GREEN} />
                 </View>
               )}
               {progress < 0.66 && (
                 <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: BLACK }]}>
-                  <Icon name="circle" size={12} color="#000000" />
+                  <View style={{ width: 6, height: 6, borderRadius: 12, backgroundColor: BLACK, borderColor: BLACK }} />
                 </View>
               )}
               <View
@@ -78,12 +78,12 @@ const ProgressBar = ({ progress, showDateTimeSection }) => {
         <View style={styles.status}>
           {progress >= 1 && (
             <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: GREEN }]}>
-              <Icon name="check" size={12} color="#319B4B" />
+              <Icon name="check" size={12} color={GREEN} />
             </View>
           )}
           {progress < 1 && (
             <View style={[styles.statusDot, { backgroundColor: WHITE, borderColor: BLACK }]}>
-              <Icon name="circle" size={12} color="#000000" />
+              <View style={{ width: 6, height: 6, borderRadius: 12, backgroundColor: BLACK, borderColor: BLACK }} />
             </View>
           )}
           <View
