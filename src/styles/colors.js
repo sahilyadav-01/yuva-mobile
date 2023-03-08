@@ -52,4 +52,5 @@ export const SPANISH_WHITE='#FEF2DD';
 export const GUARDSMAN_RED = '#D10000';
 export const PINK_ORANGE = '#FF6F6F';
 export const SKY_BLUE = '#4CA3A5';
+export const PEARL_GREY = '#E6E6E6';
 
