@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CHARCOAL_GREY, GREEN, PEARL_GREY } from '../../styles/colors';
+import { BLACK, GREEN, PEARL_GREY } from '../../styles/colors';
 import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     width: 30,
   },
   statusDot: {
-    height: 24,
-    width: 24,
+    height: 20,
+    width: 20,
     borderRadius: 12,
     borderWidth: 2,
     borderColor: PEARL_GREY,
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight700,
   },
   statusText: {
-    fontSize: 12,
-    color: CHARCOAL_GREY,
+    fontSize: 10,
+    color: BLACK,
+    fontFamily: fonts.family.rubik600
   },
 });
 

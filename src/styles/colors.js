@@ -53,5 +53,4 @@ export const GUARDSMAN_RED = '#D10000';
 export const PINK_ORANGE = '#FF6F6F';
 export const SKY_BLUE = '#4CA3A5';
 export const PEARL_GREY = '#E6E6E6';
-export const CHARCOAL_GREY = '#4F4F4F';
 
