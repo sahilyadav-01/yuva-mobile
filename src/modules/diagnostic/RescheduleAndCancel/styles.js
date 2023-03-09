@@ -9,10 +9,24 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     paddingBottom: 300,
   },
-  button: {
+  buttonView: {
+    flexDirection:ROW,
     marginTop: 47,
-    marginLeft: 13,
-    marginRight: 14,
+  },
+  buttonTextStyle: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
+  },
+  button:{
+    width: "50%",
+    height: 48,
+    borderRadius: 1,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    borderWidth: 0,
+    flexDirection: ROW,
   },
   details: {
     flexDirection: ROW,
