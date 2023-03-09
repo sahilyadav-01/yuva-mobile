@@ -8,6 +8,7 @@ import { updateProfileStatus } from '../store/reducers/ProfileSlice';
 import { cityIdThunk } from '../store/reducers/DiagnosticsSlice';
 import CartNavigation from './CartNavigation';
 import DrawerNav from './DrawerNav';
+import ReportNav from './ReportNav';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,11 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="CartScreen"
         component={CartNavigation}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ReportsScreen"
+        component={ReportNav}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
