@@ -2,12 +2,12 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import { SVG } from '../../../assets';
 import Header from '../../components/Header';
-import { LOGOUT, MY_ORDERS, MY_REPORTS, MY_SUBSCRIPTIONS } from './constants';
+import { LOGOUT, MY_BOOKINGS, MY_PRESCRIPTIONS, MY_REPORTS, MY_SUBSCRIPTIONS } from './constants';
 import { useDrawer } from './hooks/useDrawer';
 import {styles} from './style';
 
 const Drawer = () => {
-  const {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress} = useDrawer();
+  const {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress, onPrescriptionsPress} = useDrawer();
   const {
     container,
     drawerContentContainer,
@@ -31,8 +31,14 @@ const Drawer = () => {
           <Text style={textStyle}>{MY_REPORTS}</Text>
         </TouchableOpacity>
         <View style={separator} />
-        <TouchableOpacity onPress={onOrdersPress}>
-          <Text style={textStyle}>{MY_ORDERS}</Text>
+        <TouchableOpacity style={rowContainer} onPress={onPrescriptionsPress}>
+        <SVG.Prescriptions/>
+          <Text style={textStyle}>{MY_PRESCRIPTIONS}</Text>
+        </TouchableOpacity>
+        <View style={separator} />
+        <TouchableOpacity style={rowContainer} onPress={onOrdersPress}>
+        <SVG.Bookings/>
+          <Text style={textStyle}>{MY_BOOKINGS}</Text>
         </TouchableOpacity>
       </View>
       <View style={secondarySeparator} />
