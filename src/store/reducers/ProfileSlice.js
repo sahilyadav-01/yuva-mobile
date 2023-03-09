@@ -128,6 +128,7 @@ const initialState = {
   relationsErrorMessage: '',
   enableAddMember: null,
   profileUpdated: false,
+  selectedAddress:null,
 };
 
 const profileSlice = createSlice({
@@ -138,6 +139,12 @@ const profileSlice = createSlice({
       let profileStatus = payload === 'Y' ? true : false;
       state.profileUpdated = profileStatus;
     },
+    saveCheckedAddress(state,{payload}){
+      state.selectedAddress=payload;
+    },
+    resetAddress(state){
+      state.selectedAddress=null;
+    }
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -283,6 +290,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const {updateProfileStatus} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;
