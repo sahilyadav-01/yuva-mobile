@@ -18,9 +18,9 @@ const BookingTestAndPackage = () => {
         onAddToCartPress,
         renderData,
         isTest,
-        isDisabled
+        isDisabled,
+        testDetails,
     } = useBookingTestAndPackage();
-
 
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
@@ -86,7 +86,7 @@ const BookingTestAndPackage = () => {
                     <View>
                         <View>
                             <Text style={styles.booked}>
-                                {packageDetails?.packageName}
+                                {packageDetails?.packageName || testDetails?.name}
                             </Text>
                         </View>
                         <View>

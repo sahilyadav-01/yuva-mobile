@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { ORANGE, ORANGE_GREY } from '../../styles/colors';
@@ -10,9 +11,20 @@ const getTestCount = (item) => {
 };
 
 const CarouselItem4 = (props) => {
+  const navigation = useNavigation();
   const { imgPath, index, totalItem, onPressAdd, item } = props;
   const {existingIds} = useSelector(state=>state.cart)
+   const onTestPress = (item) => navigation.navigate('ProductDetails', {
+    packageName: item.testId ,
+    uuid: item.testId ?? null,
+    showCartButton: true,
+    isTest: item.testId ? true : false,
+    name:item.testName ?? null,
+    cost: item.cost ?? null
+  });
   return (
+    <TouchableOpacity onPress={() => onTestPress(item)}>
+
     <View
       style={[
         styles.container,
@@ -45,6 +57,8 @@ const CarouselItem4 = (props) => {
         </TouchableOpacity>
       </View>
     </View>
+    </TouchableOpacity>
+
   );
 };
 

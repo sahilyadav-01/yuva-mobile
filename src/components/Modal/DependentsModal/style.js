@@ -2,8 +2,10 @@ import {StyleSheet} from 'react-native';
 import {CYAN_BLUE, ORANGE, SHADOW, WHITE} from '../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
+import { getWindowDimensions } from '../../../utils/utils';
 
 export const styles = () => {
+  const {height:windowHeight} = getWindowDimensions();
   return StyleSheet.create({
     selectText: {
       marginTop: 8,
@@ -27,7 +29,7 @@ export const styles = () => {
       shadowColor: 'rgba(0,0,0,0.3)',
       marginHorizontal: 6,
     },
-    listStyle: {zIndex: 10, elevation: 10},
+    listStyle: {zIndex: 10, elevation: 10, height:windowHeight * 0.45},
     dependentItemContainer: {
       paddingLeft: 12,
       paddingRight: 16,
@@ -49,6 +51,8 @@ export const styles = () => {
     primaryText: {fontFamily: fonts.family.rubik500, color:CYAN_BLUE,lineHeight:18},
     secondaryText: {fontFamily: fonts.family.rubik600, color:ORANGE,lineHeight:21},
     emptyDependentContainer: {height:1,paddingVertical:0},
-    headingContainer: {marginTop:8,marginHorizontal:6,flexDirection:ROW,justifyContent:SPACE_BETWEEN}
+    headingContainer: {marginTop:8,marginHorizontal:6,flexDirection:ROW,justifyContent:SPACE_BETWEEN},
+    addMemberContainer: {marginTop:24,justifyContent:CENTER,alignSelf:CENTER,backgroundColor:WHITE},
+    addMemberText: {fontFamily:fonts.family.rubik500,lineHeight:21,fontSize:fonts.size.fontSize14,color:CYAN_BLUE}
   });
 };
