@@ -12,6 +12,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
       color: CYAN_BLUE,
+      marginLeft: 15,
     },
     secondarySeparator: {
       marginBottom: 20,
@@ -19,7 +20,8 @@ export const styles = () => {
       borderBottomColor: '#D5D9DF',
       marginHorizontal: 16,
     },
-    logoutContainer: {marginHorizontal: 16},
+    logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
     separator: {height: 32},
+    rowContainer: {flexDirection:ROW}
   });
 };

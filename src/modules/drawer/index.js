@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import { SVG } from '../../../assets';
 import Header from '../../components/Header';
+import { LOGOUT, MY_ORDERS, MY_REPORTS, MY_SUBSCRIPTIONS } from './constants';
 import { useDrawer } from './hooks/useDrawer';
 import {styles} from './style';
 
-const Drawer = props => {
+const Drawer = () => {
   const {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress} = useDrawer();
   const {
     container,
@@ -13,26 +15,30 @@ const Drawer = props => {
     secondarySeparator,
     logoutContainer,
     separator,
+    rowContainer
   } = styles();
   return (<>
    <Header showSearch={false} title='Menu'/>
     <View style={container}>
       <View style={drawerContentContainer}>
-        <TouchableOpacity onPress={onSubscriptionPress}>
-          <Text style={textStyle}>My Subscriptions</Text>
+        <TouchableOpacity style={rowContainer} onPress={onSubscriptionPress}>
+          <SVG.Subscriptions/>
+          <Text style={textStyle}>{MY_SUBSCRIPTIONS}</Text>
         </TouchableOpacity>
         <View style={separator} />
-        <TouchableOpacity onPress={onReportsPress}>
-          <Text style={textStyle}>My Reports</Text>
+        <TouchableOpacity style={rowContainer} onPress={onReportsPress}>
+        <SVG.Reports/>
+          <Text style={textStyle}>{MY_REPORTS}</Text>
         </TouchableOpacity>
         <View style={separator} />
         <TouchableOpacity onPress={onOrdersPress}>
-          <Text style={textStyle}>My Orders</Text>
+          <Text style={textStyle}>{MY_ORDERS}</Text>
         </TouchableOpacity>
       </View>
       <View style={secondarySeparator} />
       <TouchableOpacity onPress={onLogoutPress} style={logoutContainer}>
-        <Text style={textStyle}>Logout</Text>
+        <SVG.Logout/>
+        <Text style={textStyle}>{LOGOUT}</Text>
       </TouchableOpacity>
     </View>
     </>

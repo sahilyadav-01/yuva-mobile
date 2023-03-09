@@ -6,11 +6,11 @@ import BottomTabs from './BottomTabs';
 
 const DrawerNav = props => {
   const Drawer = createDrawerNavigator();
-  
+  const width = getWindowDimensions()?.width
   return (
-      <Drawer.Navigator drawerContent={DrawerContent} defaultStatus='open' initialRouteName="Initial" screenOptions={{drawerStyle:{width:getWindowDimensions().width},headerShown:false,drawerPosition:'right'}}>
+      <Drawer.Navigator drawerContent={DrawerContent} initialRouteName="HomeDrawer" screenOptions={{drawerStyle:{width},headerShown:false,drawerPosition:'right'}}>
         <Drawer.Screen
-          name="Initial"
+          name="HomeDrawer"
           component={BottomTabs}
         />
       </Drawer.Navigator>
