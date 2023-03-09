@@ -1,6 +1,9 @@
 export const HOME = 'Home';
 export const HEALTH_PLANS = 'Health Plans';
 export const OUR_OFFERS = 'Our Offers';
-export const PROFILE = 'Profile'
+export const PROFILE = 'Profile';
 export const CHAT = 'Chat';
 export const SETTINGS = 'Settings';
+export const HRA_REPORTS = 'HRA Reports';
+export const DIAGNOSTIC_REPORTS = 'Diagnostic Reports';
+export const MY_REPORTS = 'My Reports';
