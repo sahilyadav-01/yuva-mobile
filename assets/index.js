@@ -92,6 +92,8 @@ import StarIcon from './starIcon';
 import Scientist from './scientist';
 import TestTube from './testtube';
 import HealthCheck from './healthCheck';
+import Check from './check';
+import Cross from './cross';
 import Subscriptions from './Subscriptions';
 import Reports from './Reports';
 import Logout from './Logout';
@@ -197,6 +199,8 @@ const SVG = {
   Scientist: Scientist,
   TestTube: TestTube,
   HealthCheck: HealthCheck,
+  Check: Check,
+  Cross: Cross,
   Subscriptions,
   Reports,
   Logout,

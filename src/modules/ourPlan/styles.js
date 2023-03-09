@@ -1,36 +1,38 @@
 import {StyleSheet} from 'react-native';
-import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW } from '../../styles/constants';
+import { CYAN_BLUE, SEASHELL } from '../../styles/colors';
+import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW, SPACE_BETWEEN } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 import { getDimensions } from '../../utils/utils';
 
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
-  parentView: {
-    paddingTop: 30,
+  container:{
+    paddingVertical: 4,
   },
-  container: {
-    width: '100%',
-    height: 0.60 * height,
-    justifyContent:CENTER,
+  OurPlansHeaderStyle: {
     alignItems: CENTER,
+    marginTop: 20,
     flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+    marginHorizontal: 16,
+    marginBottom:36,
   },
-  mainViewContainer: {
-    zIndex: 10,
+  LandingPageText1: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize14,
   },
-  sideViewContainer: {
-    height: '100%',
-    marginHorizontal: 12,
-    alignSelf: FLEX_START,
-    position: ABSOLUTE,
+  LandingPageText2: {
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
   },
-  leftCard: {
-    left: 0,
-    justifyContent: FLEX_START,
-    zIndex: 2,
+  line: {
+    borderBottomColor: SEASHELL,
+    borderBottomWidth: 1,
+    width: 208,
   },
-  rightCard: {
-    right: 0,
-    justifyContent: FLEX_END,
-    zIndex: 3,
-  },
+  cardView: {
+    paddingBottom: 10,
+  }
 });
