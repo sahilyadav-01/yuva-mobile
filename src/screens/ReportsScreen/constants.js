@@ -1,5 +1,6 @@
 export const REPORTS_TITLE = [
   {
+    bookingId: '1445-5555-66789',
     reportTitle: 'Swift Health Checkups',
     data: [
       {
@@ -21,6 +22,7 @@ export const REPORTS_TITLE = [
     ],
   },
   {
+    bookingId: '1445-5555-66790',
     reportTitle: 'Full Body Health Checkups',
     data: [
       {
@@ -34,6 +36,7 @@ export const REPORTS_TITLE = [
     ],
   },
   {
+    bookingId: '1445-5555-66791',
     reportTitle: 'Diabetic Screening',
     data: [
       {

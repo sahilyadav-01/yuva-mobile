@@ -6,7 +6,13 @@ import MyReports from '../../components/myReports';
 
 const Reports = () => {
   const renderItem = ({item}) => {
-    return <MyReports title={item.reportTitle} data={item.data} />;
+    return (
+      <MyReports
+        bookingId={item.bookingId}
+        title={item.reportTitle}
+        data={item.data}
+      />
+    );
   };
   return (
     <View>

@@ -15,9 +15,16 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     height: 86,
   },
-  textStyle: {
+  bookingIdStyle: {
     color: CYAN_BLUE,
     marginLeft: 15,
+    marginBottom: 5,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
+  },
+  textStyle: {
+    color: CYAN_BLUE,
+    marginLeft: 13,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
   },
