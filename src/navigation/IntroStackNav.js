@@ -49,11 +49,6 @@ const IntroStackNav = () => {
         component={CartNavigation}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Drawer"
-        component={DrawerNav}
-        options={{headerShown: false}}
-      />
     </Stack.Navigator>
   );
 };
