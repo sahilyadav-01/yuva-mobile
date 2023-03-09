@@ -21,6 +21,8 @@ export const useSection5 = () => {
     const { width } = getDimensions();
     const progressWidth = width;
     const [renderData, setRenderData] = useState(false);
+    const [q2Placeholder, setQ2Placeholder] = useState('');
+    const [q3Placeholder, setQ3Placeholder] = useState('');
     useEffect(() => {
         dispatch(section5QThunk());
     }, []);
@@ -116,6 +118,11 @@ export const useSection5 = () => {
         }
     };
 
+    const onBlur = (q) => {
+        if(q === 'Q2') setQ2Placeholder('');
+        if(q === 'Q3') setQ3Placeholder('');
+    }
+
     return {
         inputCheck,
         progressWidth,
@@ -128,5 +135,8 @@ export const useSection5 = () => {
         smoke,
         next,
         renderData,
+        onBlur,
+        q2Placeholder,
+        q3Placeholder
     };
 };
