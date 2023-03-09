@@ -1,7 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from '../screens/Settings';
-import Intro from '../screens/Intro/IntroScreen';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
@@ -11,6 +10,7 @@ import {fonts} from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
+import ReportNav from './ReportNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -68,7 +68,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={Settings}
+        component={ReportNav}
         options={{
           tabBarIcon: ({focused}) => {
             return (
