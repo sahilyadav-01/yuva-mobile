@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {CYAN_BLUE, WHITE} from '../../styles/colors';
-import {FLEX_START, ROW} from '../../styles/constants';
+import {CENTER, FLEX_START, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
@@ -22,6 +22,6 @@ export const styles = () => {
     },
     logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
     separator: {height: 32},
-    rowContainer: {flexDirection:ROW}
+    rowContainer: {flexDirection:ROW,alignItems:CENTER}
   });
 };
