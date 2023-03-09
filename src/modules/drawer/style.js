@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, WHITE} from '../../styles/colors';
-import {CENTER, FLEX_START, ROW} from '../../styles/constants';
+import {CYAN_BLUE, MISCHKA, WHITE} from '../../styles/colors';
+import {CENTER, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
@@ -17,7 +17,7 @@ export const styles = () => {
     secondarySeparator: {
       marginBottom: 20,
       borderBottomWidth: 1,
-      borderBottomColor: '#D5D9DF',
+      borderBottomColor: MISCHKA,
       marginHorizontal: 16,
     },
     logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
