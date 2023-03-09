@@ -5,20 +5,23 @@ import {useState} from 'react';
 import {FlatList} from 'react-native-gesture-handler';
 import {MY_REPORTS} from './constant';
 import {SVG} from '../../../assets';
+import ReportCard from '../../ReportCard';
 
 const MyReports = props => {
   const {title, data} = props;
   const [isReportVisible, setIsReportVisible] = useState(false);
   const renderItem = ({item}) => {
     return (
-      <View style={styles.renderItemStyle}>
-        <SVG.Pdf />
-        <Text style={styles.reportTextStyle}>{item.reportName}</Text>
-        <TouchableOpacity>
-          <SVG.Download />
-        </TouchableOpacity>
-        <Text style={styles.dateStyle}>{item.date}</Text>
-      </View>
+      // <View style={styles.renderItemStyle}>
+      //   <SVG.Pdf />
+      //   <Text style={styles.reportTextStyle}>{item.reportName}</Text>
+      //   <TouchableOpacity>
+      //     <SVG.Download />
+      //   </TouchableOpacity>
+      //   <Text style={styles.dateStyle}>{item.date}</Text>
+      // </View>
+
+      <ReportCard name={item.reportName} date={item.date} />
     );
   };
   return (

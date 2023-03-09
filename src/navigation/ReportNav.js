@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Reports from '../screens/ReportsScreen';
 import {DARK_BLUE} from '../styles/colors';
 import {DIAGNOSTIC_REPORTS, HRA_REPORTS, MY_REPORTS} from './constants';
+import HraReport from '../screens/HraReportScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -23,7 +24,7 @@ const ReportNav = () => {
           swipeEnabled: true,
           lazy: false,
         }}>
-        <Tab.Screen name={HRA_REPORTS} component={Reports} />
+        <Tab.Screen name={HRA_REPORTS} component={HraReport} />
         <Tab.Screen name={DIAGNOSTIC_REPORTS} component={Reports} />
       </Tab.Navigator>
     </>
