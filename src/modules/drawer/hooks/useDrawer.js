@@ -9,10 +9,11 @@ export const useDrawer = () => {
   const onSubscriptionPress = () => {};
   const onReportsPress = () => navigation.navigate('ReportsScreen');
   const onOrdersPress = () => {};
+  const onPrescriptionsPress = () => {};
   const onLogoutPress = () => {
     dispatch(logoutThunk());
     dispatch(resetAppointments());
     navigation.dispatch(DrawerActions.closeDrawer())
   };
-  return {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress};
+  return {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress, onPrescriptionsPress};
 };
