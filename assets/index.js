@@ -94,6 +94,13 @@ import TestTube from './testtube';
 import HealthCheck from './healthCheck';
 import Check from './check';
 import Cross from './cross';
+import Subscriptions from './Subscriptions';
+import Reports from './Reports';
+import Logout from './Logout';
+import Pdf from './pdf';
+import Download from './download';
+import Prescriptions from './Prescriptions';
+import Bookings from './Bookings';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -180,20 +187,27 @@ const SVG = {
   Run: Run,
   ShoppingCart: ShoppingCart,
   SearchIcon: SearchIcon,
-  landingPageBanner1:landingPageBanner1,
-  AwayImage:AwayImage,
-  HomeImage:HomeImage,
+  landingPageBanner1: landingPageBanner1,
+  AwayImage: AwayImage,
+  HomeImage: HomeImage,
   tick,
   minus,
   Reschedule: Reschedule,
   CheckIn: CheckIn,
   Arrow: Arrow,
-  StarIcon:StarIcon,
+  StarIcon: StarIcon,
   Scientist: Scientist,
   TestTube: TestTube,
   HealthCheck: HealthCheck,
   Check: Check,
   Cross: Cross,
+  Subscriptions,
+  Reports,
+  Logout,
+  Pdf: Pdf,
+  Download: Download,
+  Prescriptions,
+  Bookings
 };
 
 export {PNG, SVG};
