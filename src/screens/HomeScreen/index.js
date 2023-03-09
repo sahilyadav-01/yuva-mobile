@@ -21,7 +21,6 @@ import {
   LANDING_PAGE_TEXT2,
   LANDING_PAGE_TEXT3,
   LANDING_PAGE_TEXT4,
-  OUR_PLANS,
   SEARCH_PLACEHOLDER,
 } from '../constant';
 import CarouselItem from '../../components/CarouselItem';
@@ -160,13 +159,6 @@ const HomeScreen = ({ navigation }) => {
           />
         </View>
         <View>
-          <View style={styles.OurPlansHeaderStyle}>
-            <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
-            <View style={styles.line} />
-            <TouchableOpacity>
-              <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-            </TouchableOpacity>
-          </View>
           <OurPlan isHomeScreen={true}/>
         </View>
       </ScrollView>

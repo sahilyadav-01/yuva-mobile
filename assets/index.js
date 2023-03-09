@@ -92,6 +92,8 @@ import StarIcon from './starIcon';
 import Scientist from './scientist';
 import TestTube from './testtube';
 import HealthCheck from './healthCheck';
+import Check from './check';
+import Cross from './cross';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -190,6 +192,8 @@ const SVG = {
   Scientist: Scientist,
   TestTube: TestTube,
   HealthCheck: HealthCheck,
+  Check: Check,
+  Cross: Cross,
 };
 
 export {PNG, SVG};
