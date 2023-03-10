@@ -6,6 +6,7 @@ import { ADDRES, CHECKOUT, CONFIRM_DETAILS, PAYMENT } from "./constants";
 import { styles } from "./styles";
 import { useOurPlanAddress } from "./hooks/useAddress";
 import AddressList from "../../../../components/Address";
+import ProgressBar from "../../../../components/ProgressBar";
 
 const OurPlanAddress = () => {
     const { AddressAdded } = useOurPlanAddress();
@@ -15,15 +16,7 @@ const OurPlanAddress = () => {
             <Header showBackButton={true} title={CHECKOUT} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.progressBar}>
-                    <View style={styles.circle}>
-                        <View style={styles.circles}></View>
-                        <View style={styles.Line}></View>
-                        <View style={styles.circles}></View>
-                    </View>
-                </View>
-                <View style={styles.progress}>
-                    <Text style={styles.AddText}>{ADDRES}</Text>
-                    <Text style={styles.check}>{PAYMENT}</Text>
+                    <ProgressBar progress={0} />
                 </View>
                 <AddressList />
                 <TouchableOpacity

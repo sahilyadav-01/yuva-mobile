@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { planPopularThunk } from "../../../store/reducers/ProgramAndPlanSlice"
+import { planPopularThunk, setIndex } from "../../../store/reducers/ProgramAndPlanSlice"
 import { OUR_PLANS } from "../constant";
 
 
@@ -11,16 +11,15 @@ export const useOurPlan = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   
   const onViewableItemsChanged = ({ viewableItems }) => {
-    if (viewableItems?.length === 1) {
       setActiveIndex(viewableItems[0]?.index);
-    }
   };
 
   const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
 
   const viewabilityConfig = {
     waitForInteraction: true,
-    itemVisiblePercentThreshold: 100,
+    itemVisiblePercentThreshold: 80,
+    viewAreaCoveragePercentThreshold: 60,
   };
 
   const onPressAll = () => {
@@ -31,6 +30,12 @@ export const useOurPlan = () => {
   useEffect(() => {
     dispatch(planPopularThunk())
   }, []);
+
+  useEffect(() => {
+    console.log('activeIndex', activeIndex);
+    const mainItem = popularPlan[activeIndex];
+    dispatch(setIndex(mainItem));
+  }, [activeIndex])
 
   return {
     viewabilityConfigCallbackPairs,

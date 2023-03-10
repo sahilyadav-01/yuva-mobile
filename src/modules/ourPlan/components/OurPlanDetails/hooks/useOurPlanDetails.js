@@ -2,10 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { planDetailsThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
-import { ADDRESS } from "../constants";
+import { ADDRESS, LOGIN_SCREEN } from "../constants";
 
 export const useOurPlanDetails = () => {
     const { mainItem, planDetails } = useSelector(state => state.programAndPlan);
+    const {loggedIn} = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigation = useNavigation();
     useEffect(() => {
@@ -14,7 +15,11 @@ export const useOurPlanDetails = () => {
 
     }, [mainItem])
     const bookOurPlan = () => {
-        navigation.navigate(ADDRESS,mainItem);
+        if(loggedIn === 'loggedIn') {
+            navigation.navigate(ADDRESS,mainItem);
+        } else {
+            navigation.navigate(LOGIN_SCREEN);
+        }
     }
     return {
         planDetails,

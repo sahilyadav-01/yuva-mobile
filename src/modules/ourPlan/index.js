@@ -31,9 +31,11 @@ const OurPlan = (props) => {
       <View style={styles.OurPlansHeaderStyle}>
         <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
         <View style={styles.line} />
-        <TouchableOpacity onPress={onPressAll}>
-          <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
-        </TouchableOpacity>
+        {isHomeScreen &&
+          <TouchableOpacity onPress={onPressAll}>
+            <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
+          </TouchableOpacity>
+        }
       </View>
       <FlatList 
         data={popularPlan}
