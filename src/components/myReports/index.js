@@ -1,22 +1,31 @@
-import {View, Text, TouchableOpacity,FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import ReportCard from '../../ReportCard';
-import { BOOKING, VIEW_REPORTS } from './constant';
-import { useMyReport } from './hooks/useMyreports';
+import {BOOKING, VIEW_REPORTS} from './constant';
+import {useMyReport} from './hooks/useMyreports';
 
 const MyReports = props => {
   const {bookingId, title, data} = props;
-  
+
   const renderItem = ({item}) => {
-    return <ReportCard name={item?.fileName} date={item?.generatedAt} filePath={item?.filePath} />;
+    return (
+      <ReportCard
+        name={item?.fileName}
+        date={item?.generatedAt}
+        filePath={item?.filePath}
+      />
+    );
   };
-  const {isReportVisible,setIsReportVisible}=useMyReport();
+  const {isReportVisible, setIsReportVisible} = useMyReport();
   return (
     <View style={styles.containerStyle}>
       <View style={styles.headerStyle}>
         <View>
-          <Text style={styles.bookingIdStyle}>{BOOKING}{bookingId}</Text>
+          <Text style={styles.bookingIdStyle}>
+            {BOOKING}
+            {bookingId}
+          </Text>
           <Text style={styles.textStyle}> {title}</Text>
         </View>
         <TouchableOpacity
