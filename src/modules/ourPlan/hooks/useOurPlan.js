@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { planPopularThunk, setIndex } from "../../../store/reducers/ProgramAndPlanSlice"
-import { OUR_PLANS } from "../constant";
+import { OURPLAN } from "../constant";
 
 
 export const useOurPlan = () => {
@@ -23,7 +23,7 @@ export const useOurPlan = () => {
   };
 
   const onPressAll = () => {
-    navigation.navigate(OUR_PLANS);
+    navigation.navigate(OURPLAN);
   };
 
   const { popularPlan } = useSelector(state => state.programAndPlan);
@@ -32,7 +32,6 @@ export const useOurPlan = () => {
   }, []);
 
   useEffect(() => {
-    console.log('activeIndex', activeIndex);
     const mainItem = popularPlan[activeIndex];
     dispatch(setIndex(mainItem));
   }, [activeIndex])
