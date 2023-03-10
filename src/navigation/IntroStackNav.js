@@ -9,6 +9,7 @@ import { cityIdThunk } from '../store/reducers/DiagnosticsSlice';
 import CartNavigation from './CartNavigation';
 import DrawerNav from './DrawerNav';
 import ReportNav from './ReportNav';
+import MyPrescription from '../screens/MyPrescriptionScreen';
 
 const Stack = createStackNavigator();
 
@@ -53,6 +54,11 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="ReportsScreen"
         component={ReportNav}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="MyPrescription"
+        component={MyPrescription}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
