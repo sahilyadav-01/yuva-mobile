@@ -11,8 +11,7 @@ import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
   containerStyle: {
     backgroundColor: SPANISH_WHITE,
-    height: 51,
-    justifyContent: CENTER,
+    height: 162,
   },
   ScrollViewContainerStyle: {},
   orderDetailsContainer: {
@@ -22,7 +21,7 @@ export const styles = StyleSheet.create({
   headerStyle: {
     flexDirection: ROW,
     alignItems: CENTER,
-    height: 86,
+    height: 56,
   },
   textStyle: {
     color: CYAN_BLUE,
