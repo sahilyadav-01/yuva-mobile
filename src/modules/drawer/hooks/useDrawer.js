@@ -9,7 +9,7 @@ export const useDrawer = () => {
   const onSubscriptionPress = () => {};
   const onReportsPress = () => navigation.navigate('ReportsScreen');
   const onOrdersPress = () => {};
-  const onPrescriptionsPress = () => {};
+  const onPrescriptionsPress = () => navigation.navigate('MyPrescription');
   const onLogoutPress = () => {
     dispatch(logoutThunk());
     dispatch(resetAppointments());

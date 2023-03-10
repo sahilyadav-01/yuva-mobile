@@ -25,6 +25,18 @@ export const downloadDiagnosticReportThunk = createAsyncThunk(
     }
   },
 );
+export const MyPrescriptionReportThunk = createAsyncThunk(
+  'talkToDr/user',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = '/talkToDr/user';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 
 const initialState = {
@@ -55,6 +67,16 @@ const downlodReportSlice = createSlice({
 
     },
     [downloadDiagnosticReportThunk.rejected]: (state, action) => {
+      state.apiError = true;
+    },
+    [MyPrescriptionReportThunk.pending]: (state, {payload}) => {
+      state.loading = true;
+    },
+    [MyPrescriptionReportThunk.fulfilled]: (state, action) => {
+      state.myPrescriptionReport = action.payload?.data || [];
+
+    },
+    [MyPrescriptionReportThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
   },
