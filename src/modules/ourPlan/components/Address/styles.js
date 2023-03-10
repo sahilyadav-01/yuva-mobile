@@ -26,8 +26,10 @@ export const styles = StyleSheet.create({
         justifyContent: SPACE_BETWEEN,
     },
     progressBar: {
-        marginTop: 30,
-        flexDirection: ROW,
+        width: '90%',
+        justifyContent: CENTER,
+        alignSelf: CENTER,
+        marginTop: 20,
     },
     circles: {
         width: 10,

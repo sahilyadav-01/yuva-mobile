@@ -419,12 +419,13 @@ tobePaid: {
 
 },
 address: {
+    width: '96%',
     flexDirection: ROW,
 },
 selectDate: {
     marginTop: 30,
     marginLeft: 16,
-    marginRight: 140,
+    flex: 1,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
