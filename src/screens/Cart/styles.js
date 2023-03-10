@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
-import {CENTER} from '../../../styles/constants';
-import {fonts} from '../../../styles/fonts';
+import {FLASH_WHITE, ORANGE, WHITE} from '../../styles/colors';
+import {CENTER} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -22,12 +22,13 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     color: WHITE,
+
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
   },
   touchableButton: {
     backgroundColor: ORANGE,
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: 13,
     marginRight: 14,
     borderRadius: 8,

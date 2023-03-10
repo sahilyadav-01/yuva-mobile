@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import ProgressBar from '../../../components/ProgressBar';
 import Header from '../../../components/Header';
 
 import {styles} from './styles';
 import AddressList from '../../../components/Address';
 import OrderDetails from '../../../components/OrderDetails';
+import {CONFIRM_ADDRESS} from './constant';
+import {useCartAddressList} from './hook/useCartAddressList';
 
 const CartAddressList = props => {
-  const [progress, setProgress] = useState('');
+  const {ConfirmAddress} = useCartAddressList();
 
   return (
     <ScrollView style={styles.container} nestedScrollEnabled>
@@ -18,6 +20,9 @@ const CartAddressList = props => {
         <ProgressBar progress="0" showDateTimeSection={true} />
       </View>
       <AddressList />
+      <TouchableOpacity onPress={ConfirmAddress} style={styles.touchableButton}>
+        <Text style={styles.textBook}>{CONFIRM_ADDRESS}</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
