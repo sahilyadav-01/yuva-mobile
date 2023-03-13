@@ -34,7 +34,7 @@ const PlanCard = (props) => {
   };
 
   return (
-    <TouchableOpacity onPress={onDetailsScreen} style={styles.container}>
+    <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
       <View style={styles.headingView}>
         <Text style={styles.headingText}>{name?.toUpperCase() || ''}</Text>
       </View>
