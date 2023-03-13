@@ -171,6 +171,9 @@ export const styles = StyleSheet.create({
         minHeight: 48,
         alignItems: CENTER,
     },
+    SVGArrow: {
+    //  alignSelf:FLEX_END,
+    },
     tobePaid: {
         marginLeft: 110,
         marginRight: 5,

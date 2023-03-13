@@ -1,0 +1,181 @@
+import { StyleSheet } from 'react-native';
+import { CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
+import { ABSOLUTE, COLUMN, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
+import { CENTER } from './constants';
+
+export const styles = StyleSheet.create({
+    TextPrice: {
+        marginLeft: "7%",
+        marginTop: "4%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik500,
+        fontSize: fonts.size.fontSize14,
+    },
+    QuantityView: {
+        flexDirection: ROW,
+    },
+    QuantityNumber: {
+        textAlign: RIGHT,
+        flex: 1,
+        marginRight: "11%",
+        marginTop: "5%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+    },
+    QuantityViewNumber: {
+        backgroundColor: ORANGE,
+        alignSelf: FLEX_END
+    },
+    Quantity: {
+        marginLeft: "7%",
+        marginTop: "5.12%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+    },
+    line: {
+        marginTop: "2.63%",
+        borderWidth: 0.2,
+        marginLeft: "7%",
+        width: "85%",
+        borderColor: GREY70,
+    },
+    orderPrice: {
+        marginLeft: "7%",
+        marginTop: "1.97%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+    },
+    OrderAmountDirection: {
+        flexDirection: ROW,
+    },
+
+    orderAmount: {
+        textAlign: RIGHT,
+        flex: 1,
+        marginRight: "22%",
+        marginTop: "2%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+    },
+    Input: {
+        borderColor: GREY70,
+        borderWidth: 1,
+        borderRadius: 12,
+        marginLeft: "7%",
+        marginTop: 35,
+        minHeight: 40,
+        width: "86%",
+    },
+    Apply: {
+        textAlign: RIGHT,
+        flex: 1,
+        marginLeft: 27,
+        color: WHITE,
+        marginTop: 10,
+
+    },
+    ApplyCoupon: {
+        alignItems: CENTER,
+        borderWidth: 0.5,
+        borderRadius: 12,
+        minHeight: 40,
+        width: 100,
+        marginTop: 35,
+        alignSelf: CENTER,
+        backgroundColor: ORANGE,
+        borderColor: GREY70,
+    },
+    Amountpyable: {
+        marginLeft: 26,
+        marginTop: "2.76%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize16,
+    },
+    payableAmount: {
+        textAlign: RIGHT,
+        flex: 1,
+        marginRight: "22%",
+        marginTop: "2%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize16,
+    },
+    touchableButton: {
+        backgroundColor: ORANGE,
+        marginTop: 40,
+        marginLeft: 13,
+        marginRight: 14,
+        borderRadius: 8,
+        minHeight: 48,
+        alignItems: CENTER,
+    },
+    termsAndCondtion: {
+        marginTop: "4.55%",
+        marginLeft: "3.25%",
+        marginRight: 56,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize10,
+    },
+    checkBoxContainer: {
+        marginTop: "2.5%",
+        marginLeft: "3.80%",
+        borderColor: CYAN_BLUE,
+    },
+    viewCoupon: {
+        width: "83.8%",
+        marginTop: "4.61%",
+        flexDirection: ROW,
+        justifyContent: SPACE_BETWEEN,
+        borderWidth: 0.5,
+        borderRadius: 12,
+        height: 40,
+        marginLeft: "7%",
+        marginHorizontal: 15,
+        borderRightColor: ORANGE,
+    },
+    textInputStyles: {
+        marginBottom: 11,
+        height: 40,
+        width: 206,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+    },
+    applyStyles: {
+        borderRadius: 12,
+        width: "26%",
+        backgroundColor: ORANGE,
+        height: 40,
+        justifyContent: CENTER,
+        alignItems: CENTER,
+    },
+    applyButtonStyles: {
+        color: WHITE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+        marginTop: "8%",
+        marginLeft: "25.33%",
+    },
+    TextPriceDiscount: {
+        marginLeft: "7%",
+        marginTop: "2.76%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik500,
+        fontSize: fonts.size.fontSize14,
+    },
+    payableAmountDiscount: {
+        textAlign: RIGHT,
+        flex: 1,
+        marginRight: "22%",
+        marginTop: "2%",
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+    }
+})
