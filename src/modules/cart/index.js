@@ -10,10 +10,8 @@ import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
 import PriceDetails from '../../components/PriceDetails';
-import { LIGHT_GREEN, RED } from '../../styles/colors';
 import {
   CART_DETAILS,
-  CROSS_BUTTON,
   MY_CART,
   PRICE_DETAILS,
 } from './constants';
