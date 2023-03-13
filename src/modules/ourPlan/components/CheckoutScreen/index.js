@@ -15,7 +15,9 @@ const CheckoutOurPlan = () => {
         cityName,
         yearlyPrice,
         quarterlyPrice,
-        halfYearlyPrice, } = useCheckout();
+        halfYearlyPrice,
+        TermsAndCondtionChecked,
+        onCheckout } = useCheckout();
 
     return (
         <View>
@@ -37,10 +39,10 @@ const CheckoutOurPlan = () => {
                 <CheckoutPriceDetails isPrice={{ yearlyPrice, quarterlyPrice, halfYearlyPrice }} />
                 <View>
                     <TouchableOpacity
-                        // onPress={}
+                         onPress={onCheckout}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {yearlyPrice}/-<SVG.Arrow style={styles.SVGArrow}/>
+                            {TO_BE_PAID} {RUPEE} {yearlyPrice}/-<SVG.Arrow style={styles.SVGArrow} />
                         </Text>
                     </TouchableOpacity>
                 </View>

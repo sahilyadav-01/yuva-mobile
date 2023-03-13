@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTermsAndCondtionChecked } from "../../../store/reducers/CartSlice";
 
 
 export const useCheckoutPriceDetails=(isPrice)=>{
-
+    const dispatch = useDispatch();
 const {yearlyPrice,quarterlyPrice,halfYearlyPrice}=isPrice?.isPrice;
 const [checked, setChecked] = useState(false);
-if(checked ===true){
 
-    alert("hello")
-}
+useEffect(()=>{
+dispatch(setTermsAndCondtionChecked(checked))
+},[checked])
 return {
-
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,

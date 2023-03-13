@@ -94,6 +94,10 @@ const initialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  reducers: {
+    setTermsAndCondtionChecked(state,{payload}){
+      state.TermsAndCondtionChecked=payload;
+    },},
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -222,6 +226,6 @@ const cartSlice = createSlice({
     },    
   },
 });
-
+export const {setTermsAndCondtionChecked}=cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export default cartSlice.reducer;
