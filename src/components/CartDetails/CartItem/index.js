@@ -17,16 +17,23 @@ const CartItem = props => {
     priceContainer,
   } = styles();
   const {item: {name:text, discountedCost:discount, cost: price, tests}, onPressRemove} = props;
+
+  const priceComponent = discount === price ? (
+    <Text style={priceText}>{`₹ ${price}/-`}</Text>
+  ) : (
+    <View style={priceContainer}>
+      <Text style={discountText}>{`₹ ${price}/-`}</Text>
+      <Text style={priceText}>{`₹ ${discount}/-`}</Text>
+    </View>
+  );
+
   return (
     <>
       <View style={packageContainer}>
         <Text numberOfLines={2} style={packageName}>
           {text}
         </Text>
-        <View style={priceContainer}>
-          <Text style={discountText}>{`₹ ${price}/-`}</Text>
-          <Text style={priceText}>{`₹ ${discount}/-`}</Text>
-        </View>
+        {priceComponent}
       </View>
       <View style={detailsContainer}>
         <Text style={testText}>{tests}</Text>

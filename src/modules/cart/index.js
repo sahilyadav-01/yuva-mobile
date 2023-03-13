@@ -1,13 +1,10 @@
 import React from 'react';
 import {
   ScrollView,
-  Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
-import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
 import PriceDetails from '../../components/PriceDetails';
 import {
@@ -39,7 +36,6 @@ const Cart = props => {
           textStyle={styles.textStyle}
         />
       </View>
-      <CouponCard />
     </ScrollView>
   );
 };
