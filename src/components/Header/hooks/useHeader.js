@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { DrawerActions, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
@@ -25,6 +25,7 @@ export const useHeader = (props) => {
 
   const onToggleDrawer = () => {
     //toggle drawer
+    navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
   const canGoBack = showBackButton && navigation?.canGoBack();

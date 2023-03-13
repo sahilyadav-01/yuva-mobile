@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import BottomTabs from './BottomTabs';
-import Authentication from './Authentication';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialLoad } from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
 import { getExistingUser, getProfileStatus } from '../store/LocalStore';
 import { updateProfileStatus } from '../store/reducers/ProfileSlice';
 import { cityIdThunk } from '../store/reducers/DiagnosticsSlice';
+import CartNavigation from './CartNavigation';
+import DrawerNav from './DrawerNav';
+import ReportNav from './ReportNav';
+import MyPrescription from '../screens/MyPrescriptionScreen';
 
 const Stack = createStackNavigator();
 
@@ -36,12 +38,27 @@ const IntroStackNav = () => {
     <Stack.Navigator initialRouteName={initialRouteName}>
     <Stack.Screen
         name="HomeScreen"
-        component={BottomTabs}
+        component={DrawerNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="IntroScreen"
         component={IntroScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartNavigation}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ReportsScreen"
+        component={ReportNav}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="MyPrescription"
+        component={MyPrescription}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

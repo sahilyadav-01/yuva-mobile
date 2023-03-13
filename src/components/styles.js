@@ -8,6 +8,9 @@ import {
   RED_SHADE,
   GREEN,
   BLACK,
+  BOX_SHADOW,
+  LIGHT_MERCURY,
+  LIGHT_GREYISH_RED,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -327,5 +330,194 @@ export const styles = StyleSheet.create({
   StatusColor:{
     color:RED_SHADE,
     backgroundColor:RED_SHADE
-  }
+  },
+  booked: {
+    marginTop: 22,
+    marginLeft: 16,
+    color: ORANGE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  AddNewAddress: {
+    marginTop: 30,
+    marginLeft: 16,
+    marginRight: 140,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+  },
+  border: {
+    borderWidth: 0.2,
+    marginTop: 14,
+    marginLeft: 16,
+    marginRight: 16,
+    shadowColor: WHITE,
+    shadowOpacity: "5%",
+    borderRadius: 6,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+
+  },
+  AddAddressLine: {
+    marginTop: 16,
+    marginLeft: 12,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  textInputStyle: {
+    borderWidth: 1,
+    borderColor: LIGHT_MERCURY,
+    backgroundColor: LIGHT_GREYISH_RED,
+    borderRadius: 6,
+    marginBottom: 11,
+    color: DARK_BLUE,
+    minHeight: 42,
+    marginLeft: 12,
+    marginRight: 26,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
+  },
+  boxStyles: {
+    marginLeft: 12,
+    marginRight: 26,
+    borderWidth: 0.1,
+    backgroundColor: LIGHT_GREYISH_RED,
+    borderColor: LIGHT_MERCURY,
+    minHeight: 42,
+    borderRadius: 2,
+    marginBottom: 31
+  },
+  touchableButton: {
+    backgroundColor: ORANGE,
+    marginTop: 34,
+    marginLeft: 16,
+    marginRight: 16,
+    borderRadius: 8,
+    minHeight: 48
+  },
+  textBook: {
+    textAlign: CENTER,
+    color: WHITE,
+    fontFamily: fonts.family.rubik600,
+    marginLeft:"6%",
+    marginTop: 12,
+    fontSize: fonts.size.fontSize16,
+
+  },
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingBottom: 10,
+},
+tobePaid: {
+    textAlign: CENTER,
+    paddingTop: 15,
+    paddingBottom: 15,
+    color: WHITE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize16,
+
+},
+address: {
+    width: '96%',
+    flexDirection: ROW,
+},
+selectDate: {
+    marginTop: 30,
+    marginLeft: 16,
+    flex: 1,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize14,
+},
+Add: {
+    marginLeft: 38,
+    borderWidth: 0.1,
+    marginTop: 18,
+    shadowColor: WHITE,
+    shadowOpacity: "5%",
+    borderRadius: 3,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+    flexDirection:ROW,
+},
+addNew: {
+    alignItems:CENTER,
+    marginRight:15,
+    marginLeft: 7.33,
+    minHeight: 25,
+    marginTop: 9,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize12,
+},
+svg:{
+    marginTop:9,
+    marginLeft:7.33,
+},
+border: {
+    borderWidth: 0.2,
+    marginTop: 14,
+    marginLeft: 16,
+    marginRight: 16,
+    shadowColor: WHITE,
+    shadowOpacity: "5%",
+    borderRadius: 6,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW
+
+},
+checkboxAddress: {
+    alignItems:FLEX_END,
+    marginRight:19,
+    marginTop: 14,
+},
+adressName: {
+    marginLeft: 40,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+
+},
+Images: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    marginRight:25,
+},
+adressCheck: {
+    marginTop: 11,
+    marginLeft: 40,
+    marginBottom: 15,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
+},
+Image: {
+    flex: 1,
+    marginTop: 10,
+
+},
+Images: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    marginRight:25,
+},
+AddText: {
+    marginLeft: '6%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize10,
+},
+check:{
+    marginRight: '6%',
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize10,
+},
+progress: {
+   justifyContent:SPACE_BETWEEN,
+   flexDirection:ROW,
+}
+
+
 });

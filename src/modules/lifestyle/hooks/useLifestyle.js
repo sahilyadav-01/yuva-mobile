@@ -80,6 +80,7 @@ export const useLifestyle = (initialEnum,initialName) => {
             existingIds.includes(item.testId.toString()), packageName: item.testName};
         }),
       );
+      setRenderData(true);
     }
     else if (
       !packageDataLoading &&
@@ -94,6 +95,7 @@ export const useLifestyle = (initialEnum,initialName) => {
             existingIds.includes(item.packageUuid.toString())};
         }),
       );
+      setRenderData(true);
     }
   }, [packageDataLoading]);
 

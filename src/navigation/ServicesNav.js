@@ -1,9 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ServiceContainer from '../components/ServiceContainer';
 import DiagnosticNav from './Diagnosticnavigation';
-
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
 import HomeScreen from '../screens/HomeScreen/index';
 import OPDNavigation from './OPDNavigation';
@@ -13,9 +10,8 @@ import Authentication from './Authentication';
 import CashlessOPD from '../modules/staticOPD';
 import { useSelector } from 'react-redux';
 import StaticHra from '../modules/staticHRA';
-import HealthCheckUP from '../modules/staticHealthCheckUp';
 import TalkToDoctor from '../modules/staticDoctor';
-import CartNavigation from './CartNavigation';
+import OurPlanNav from './OurPlanNav';
 import LifestyleTestsAndPackagesScreen from '../screens/LifestyleTestsAndPackages';
 import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import HealthPackagesScreen from '../screens/HealthPackages';
@@ -67,7 +63,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="HealthCheckupsTests"
-        component={loggedIn !== 'loggedIn' ? HealthCheckUP : HealthPackagesScreen}
+        component={HealthPackagesScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -80,9 +76,9 @@ const ServicesNav = () => {
         component={Authentication}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="CartScreen"
-        component={CartNavigation}
+       <Stack.Screen
+        name="OurPlan"
+        component={OurPlanNav}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
