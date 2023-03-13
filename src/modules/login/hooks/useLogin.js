@@ -21,6 +21,7 @@ export const useLogin = () => {
   const {
     user: {status},
     navigateToRegister,
+    type
   } = useSelector(state => state.auth);
 
   const onLoginPress = from => {
@@ -33,7 +34,7 @@ export const useLogin = () => {
       Alert.alert('Alert', PASSWORD_VALIDATION);
     } else {
       setFrom(from);
-      dispatch(loginThunk({email, password}));
+      dispatch(loginThunk({email, password, type: reg.test(email.toString()) && email.toString().length === 10 ? 'number' : 'email'}));
     }
   };
 
@@ -61,8 +62,9 @@ export const useLogin = () => {
       navigation.navigate('EnterOTP', {
         email,
         password,
-        verificationType: 'email',
+        verificationType: type,
         from,
+        signUp:false
       });
     } else {
       if (loggedIn == 'loggedIn' && status) {
