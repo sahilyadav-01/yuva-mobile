@@ -18,7 +18,7 @@ const AddressList = () => {
 
                 <View style={styles.checkboxAddress} >
                     <Checkbox
-                        disabled={userAttribute?.[0]?.address}
+                        disabled={userAttribute?.[0]?.AddressCheck}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
@@ -26,13 +26,13 @@ const AddressList = () => {
 
                     />
                 </View>
-                <Text style={styles.adressName}>{item?.address}</Text>
+                <Text style={styles.adressName}>{item?.AddressCheck}</Text>
                 <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
-                <View style={styles.Images}>
-                    <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
+                <View style={styles.AddressImages}>
+                    <Text style={styles.AdressCheckBox}>{item?.contactNumber}</Text>
                     {item?.away ?
-                        (<SVG.AwayImage style={styles.Image} />) : (
-                            <SVG.HomeImage style={styles.Image} />
+                        (<SVG.AwayImage style={styles.SvgImage} />) : (
+                            <SVG.HomeImage style={styles.SvgImage} />
                         )}
                 </View>
             </View>
@@ -43,12 +43,12 @@ const AddressList = () => {
     }
     return (
         <View>
-            <View style={styles.address} >
+            <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
                 <TouchableOpacity disabled={userAddress?.[checked]} onPress={AddNewAddress} >
-                    <View style={styles.Add} >
+                    <View style={styles.AddNewAdd} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
                             {ADD_NEW}

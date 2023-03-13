@@ -418,7 +418,7 @@ tobePaid: {
     fontSize: fonts.size.fontSize16,
 
 },
-address: {
+AddressCheck: {
     width: '96%',
     flexDirection: ROW,
 },
@@ -430,7 +430,7 @@ selectDate: {
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
 },
-Add: {
+AddNewAdd: {
     marginLeft: 38,
     borderWidth: 0.1,
     marginTop: 18,
@@ -479,12 +479,12 @@ adressName: {
     fontSize: fonts.size.fontSize12,
 
 },
-Images: {
+AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
     marginRight:25,
 },
-adressCheck: {
+AdressCheckBox: {
     marginTop: 11,
     marginLeft: 40,
     marginBottom: 15,
@@ -492,12 +492,12 @@ adressCheck: {
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
 },
-Image: {
+SvgImage: {
     flex: 1,
     marginTop: 10,
 
 },
-Images: {
+AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
     marginRight:25,
