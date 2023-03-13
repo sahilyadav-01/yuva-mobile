@@ -1,41 +1,54 @@
-import {View, Text, TextInput, TouchableOpacity, FlatList} from 'react-native';
-import React, {useState} from 'react';
-import {styles} from './styles';
+import React from 'react';
+import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { styles } from './styles';
+import { useCouponCard } from './hooks/useCouponCard';
 import {
   APPLY,
   APPLY_COUPON,
-  COUPON,
+  CAPITALIZE_TEXT,
   COUPON_APPLIED,
   COUPON_CODE,
+  COUPON_INVALID,
   USE_COUPON,
 } from './constant';
-import BackgroundImage from '../../../assets/background';
-import {CYAN_BLUE, GREEN, RED} from '../../styles/colors';
+import { CYAN_BLUE, GREEN } from '../../styles/colors';
+import { redeemCouponsSliceThunk } from '../../store/reducers/CouponSlice';
+import { useDispatch } from 'react-redux';
 
 const CouponCard = () => {
-  const [couponName, setCouponName] = useState('');
-
-  const renderItem = ({item}) => {
+  const {
+    couponName, setCouponName, coupon, couponView, onApply, couponValue
+  } = useCouponCard();
+  const dispatch = useDispatch();
+  const renderItem = ({ item }) => {
     const Success = () => {
-      setCouponName(item.name);
+      let couponCode = item.couponCode
+      setCouponName(item.couponName);
+      dispatch(redeemCouponsSliceThunk({ couponCode }));
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={Success}>
         <View style={styles.couponContainer}>
           <View style={styles.viewStyles}>
-            <Text style={styles.textStyle}>{item.name}</Text>
-            <Text style={styles.textStyle1}>{item.data}</Text>
+            <Text style={styles.textStyle}>{item.couponCode}</Text>
+            <Text style={styles.textStyle1}>{item.description}</Text>
           </View>
           <View
             style={[
               styles.useCouponStyle,
-              {backgroundColor: item.name == couponName ? GREEN : CYAN_BLUE},
+              { backgroundColor: couponView && item.couponName == couponName ? GREEN : CYAN_BLUE },
             ]}>
-            {item.name == couponName ? (
-              <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
-            ) : (
-              <Text style={styles.useCouponTextStyle}>{USE_COUPON}</Text>
-            )}
+            {
+              item.couponName === couponName ? (
+                couponView ? (
+                  <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
+                ) : (
+                  <Text style={styles.useCouponTextStyle}>{COUPON_INVALID}</Text>
+                )
+              ) : (
+                <Text style={styles.useCouponTextStyle}>{USE_COUPON}</Text>
+              )
+            }
           </View>
         </View>
       </TouchableOpacity>
@@ -47,15 +60,16 @@ const CouponCard = () => {
       <View style={styles.viewCoupon}>
         <TextInput
           style={styles.textInputStyles}
-          value={couponName}
           placeholder={COUPON_CODE}
+          onChangeText={couponValue}
+          autoCapitalize={CAPITALIZE_TEXT}
         />
-        <TouchableOpacity style={styles.applyStyles}>
+        <TouchableOpacity style={styles.applyStyles} onPress={onApply}>
           <Text style={styles.applyButtonStyles}>{APPLY}</Text>
         </TouchableOpacity>
       </View>
       <FlatList
-        data={COUPON}
+        data={coupon}
         keyExtractor={index => `${index}`}
         renderItem={renderItem}
       />

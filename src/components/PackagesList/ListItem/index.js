@@ -18,10 +18,10 @@ const ListItem = props => {
         {item.packageName || item.testName}
       </Text>
       <View style={style.priceContainer}>
-        {item?.discount && (
-          <Text style={style.discountText}>{item?.discount}</Text>
+         {item?.cost>-1 &&  (
+          <Text style={style.discountText}>{`₹ ${item?.cost}/-`}</Text>
         )}
-        {item?.cost && <Text style={style.priceText}>{item?.cost}</Text>}
+        {item?.finalCost>-1 && <Text style={style.priceText}>{`₹ ${item?.finalCost}/-`}</Text>}
 
         <TouchableOpacity
           onPress={() => {
