@@ -48,7 +48,7 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={q2Placeholder ?? answers[questionData[1]?.questionId] ?? ''}
+                    placeholder={answers[questionData[1]?.questionId] ?? q2Placeholder ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
                     onBlur={()=>onBlur('Q2')}
                   />
@@ -58,9 +58,9 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={q3Placeholder ?? answers[questionData[2]?.questionId] ?? ''}
+                    placeholder={answers[questionData[2]?.questionId] ?? q3Placeholder ?? ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
-                    onBlur={()=>onBlur('Q2')}
+                    onBlur={()=>onBlur('Q3')}
                   />
                 </View>
               </View>

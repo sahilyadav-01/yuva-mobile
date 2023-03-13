@@ -350,6 +350,12 @@ export const getDateText = date => {
   );
 };
 
+export const getAge = date => {
+  return (
+    date && `${parseInt(new Date().getFullYear()) - parseInt(date.getFullYear())}`
+  )
+}
+
 export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();
   return deviceId || '';

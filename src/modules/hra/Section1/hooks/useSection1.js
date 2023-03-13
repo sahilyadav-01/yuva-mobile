@@ -80,7 +80,7 @@ export const useSection1 = userData => {
 
   useEffect(() => {
     const {Q2, Q3, Q4, Q5, Q58} = answers;
-    if (Q2 && Q3 && Q4 && Q5 && Q58.toString()) {
+    if (Q2.toString() && Q3 && Q4 && Q5 && Q58.toString()) {
       setEnableData(true);
     }
   }, [answers]);

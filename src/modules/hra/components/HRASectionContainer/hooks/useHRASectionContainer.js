@@ -10,6 +10,7 @@ import {
   getRelations,
   profileThunk,
 } from '../../../../../store/reducers/ProfileSlice';
+import { getAge } from '../../../../../utils/utils';
 import {SECTION_1} from '../constant';
 
 export const useHRASectionContainer = () => {
@@ -39,7 +40,6 @@ export const useHRASectionContainer = () => {
     }
   }, [focused]);
   useEffect(() => {
-    console.log('Start', startHRA, userDetails, relations, modalVisible);
     if (startHRA && userDetails && relations.length > 0) {
       setData(
         relations.map((item, index) => {
@@ -78,11 +78,11 @@ export const useHRASectionContainer = () => {
 
   useEffect(() => {
     if (checkBoxStatus === 'checked') {
-      const {id, name, age, gender} = userDetails;
+      const {name, dob, gender} = userDetails;
       setUserData({
         id: null,
         name,
-        age,
+        age:getAge(new Date(dob)),
         gender,
         genderId: gender === 'Male' ? 0 : 1,
       });
