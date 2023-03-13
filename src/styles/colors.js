@@ -55,4 +55,5 @@ export const SKY_BLUE = '#4CA3A5';
 export const HALF_WHITE = '#F5F5F580';
 export const LIGHT_GREEN = '#E6FDF9';
 export const PEARL_GREY = '#E6E6E6';
+export const MISCHKA = '#D5D9DF';
 

@@ -3,15 +3,14 @@ import { useRoute } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage, setCityId } from '../../../../store/reducers/DiagnosticsSlice';
+import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../../../store/reducers/DiagnosticsSlice';
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
 import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
-import { ADDNEWADDRESS, ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
+import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
-    const [userNewAddress, setUserNewAddress] = useState();
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
@@ -19,7 +18,7 @@ export const useBookingConfirm = () => {
     const [city, setCity] = useState(null);
     const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { selectedCityId } = useSelector(state => state.diagnostic);
-    const { relationId, userAddress } = useSelector(state => state.profile);
+    const { relationId, userAddress, selectedAddress } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
@@ -39,7 +38,6 @@ export const useBookingConfirm = () => {
     useEffect(() => {
         dispatch(getRelations())
         dispatch(getUserAddress())
-
     }, [])
     useEffect(() => {
         if (relationId?.relativeResponseDto?.length > 0) {
@@ -62,11 +60,10 @@ export const useBookingConfirm = () => {
             })
         }
     }, [selectedCityId])
-
+    const address = selectedAddress?.address;
+    const pincode = selectedAddress?.pincode;
+    const contact = selectedAddress?.contact;
     const bookTestScreen = () => {
-        const address = userAddress[checked]?.address || userAttribute?.address;
-        const pincode = userAddress[checked]?.pinCode || userAttribute?.pincode;
-        const contact = userAddress[checked]?.contactNumber || userAttribute?.contact;
         var data = {
             address: address,
             cityId: city,
@@ -82,10 +79,10 @@ export const useBookingConfirm = () => {
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
-        if (packageDetails && address &&  Object.keys(address).length !== 0) {
+        if (packageDetails && address && Object.keys(address).length !== 0) {
             dispatch(bookTestThunk({ data }))
-        }else {
-            Alert.alert(ALERT,PLEASE_CHECK_ADDRESS);
+        } else {
+            Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }
     }
     useEffect(() => {
@@ -125,24 +122,6 @@ export const useBookingConfirm = () => {
         return () => dispatch(resetMesage())
     }, [reschedule, apiErrorMessage])
 
-    const AddNewAddress = () => {
-        navigation.navigate(ADDNEWADDRESS)
-    }
-    useEffect(() => {
-        if (userAttribute?.[0]?.address) {
-            setUserNewAddress(userAttribute)
-        }
-    }, [userAttribute])
-
-
-    if (userNewAddress?.[0]?.address) {
-        var userAddressListing = userAddress.concat(userNewAddress)
-    }
-    else {
-        var userAddressListing = userAddress;
-    }
-
-
     return {
         packageDetails,
         handleDate,
@@ -157,8 +136,5 @@ export const useBookingConfirm = () => {
         bookTestScreen,
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
-        AddNewAddress,
-        userAttribute,
-        userAddressListing
     }
 }

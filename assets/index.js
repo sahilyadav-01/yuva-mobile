@@ -93,6 +93,15 @@ import Scientist from './scientist';
 import TestTube from './testtube';
 import HealthCheck from './healthCheck';
 import AddButton from './AddButton';
+import Check from './check';
+import Cross from './cross';
+import Subscriptions from './Subscriptions';
+import Reports from './Reports';
+import Logout from './Logout';
+import Pdf from './pdf';
+import Download from './download';
+import Prescriptions from './Prescriptions';
+import Bookings from './Bookings';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -192,6 +201,15 @@ const SVG = {
   TestTube: TestTube,
   HealthCheck: HealthCheck,
   AddButton: AddButton,
+  Check: Check,
+  Cross: Cross,
+  Subscriptions,
+  Reports,
+  Logout,
+  Pdf: Pdf,
+  Download: Download,
+  Prescriptions,
+  Bookings
 };
 
 export {PNG, SVG};

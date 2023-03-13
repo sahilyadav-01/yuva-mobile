@@ -104,13 +104,17 @@ const RescheduleAndCancel = () => {
                             showsHorizontalScrollIndicator={false}
                         />}
                 </View>
-                <View style={styles.button}>
+                <View style={styles.buttonView}>
                     <AppointmentButton
+                     extraStyles={styles.button}
+                     textStyles={styles.buttonTextStyle}
                         name={RESCHEDULE}
                         color={AMBER}
                         action={rescheduleBooking}
                     />
                     <AppointmentButton
+                    extraStyles={styles.button}
+                    textStyles={styles.buttonTextStyle}
                         name={CANCEL}
                         color={RED_SHADE}
                         action={cancelBookingButton}

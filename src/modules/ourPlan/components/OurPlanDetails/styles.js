@@ -20,20 +20,18 @@ export const styles = StyleSheet.create({
     paddingBottom: 300,
   },
   planDetails:{
-    marginTop:22,
-    marginLeft:141,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
-    color:CYAN_BLUE
+    color:WHITE
   },
   planDetailsCard:{
-    marginTop:115,
+    marginTop:'5%',
     borderWidth:3,
     borderColor:FLASH_WHITE,
     paddingBottom:22,
   },
   details:{
-    marginLeft:24,
+    marginLeft:16,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
     color:CYAN_BLUE
@@ -41,8 +39,9 @@ export const styles = StyleSheet.create({
   },
   starIcon:{
     flexDirection:ROW,
-    marginTop:15,
-    marginLeft:24,
+    width: '94%',
+    paddingTop:15,
+    paddingLeft:15,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
     color:CYAN_BLUE
@@ -71,6 +70,12 @@ touchableButton: {
   marginRight: 14,
   borderRadius: 8
 },
- 
+headerView: {
+  width: '100%',
+  height: '5%',
+  backgroundColor: ORANGE,
+  justifyContent: CENTER,
+  paddingHorizontal: 15,
+},
   
 });

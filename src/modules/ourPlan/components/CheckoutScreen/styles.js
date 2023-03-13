@@ -215,5 +215,12 @@ export const styles = StyleSheet.create({
     progress: {
         justifyContent: SPACE_BETWEEN,
         flexDirection: ROW,
-    }
+    },
+    progressView: {
+        width: '90%',
+        justifyContent: CENTER,
+        alignSelf: CENTER,
+        marginTop: 20,
+        marginLeft: 10,
+    },
 })

@@ -25,14 +25,11 @@ const OurPlanDetails = () => {
         <View>
             <Header showBackButton={true} title={OURPLAN_DETAILS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                <View>
-                    <Text style={styles.textHeader}>
-                        {OUR_PLANS}
-                    </Text>
-                </View>
                 <OurPlan isHomeScreen={false} />
                 <View style={styles.planDetailsCard}>
-                    <Text style={styles.planDetails}>{PLAN_DETAILS}</Text>
+                    <View style={styles.headerView}>
+                        <Text style={styles.planDetails}>{PLAN_DETAILS}</Text>
+                    </View>
                     {planDetails &&
                         <FlatList
                             renderItem={renderItem}
