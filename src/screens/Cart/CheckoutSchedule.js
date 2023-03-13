@@ -17,7 +17,7 @@ const CheckoutSchedule = () => {
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
       <OrderDetails />
       <View style={styles.bodyContainer}>
-        <ProgressBar progress="0" showDateTimeSection={true} />
+        <ProgressBar progress="0.65" showDateTimeSection={true} />
       </View>
       <DateAndTime />
       <FinalAddress />

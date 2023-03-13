@@ -327,9 +327,9 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
   },
-  StatusColor:{
-    color:RED_SHADE,
-    backgroundColor:RED_SHADE
+  StatusColor: {
+    color: RED_SHADE,
+    backgroundColor: RED_SHADE,
   },
   booked: {
     marginTop: 22,
@@ -345,18 +345,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
-  },
-  border: {
-    borderWidth: 0.2,
-    marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
-    shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 6,
-    backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
-
   },
   AddAddressLine: {
     marginTop: 16,
@@ -386,7 +374,7 @@ export const styles = StyleSheet.create({
     borderColor: LIGHT_MERCURY,
     minHeight: 42,
     borderRadius: 2,
-    marginBottom: 31
+    marginBottom: 31,
   },
   touchableButton: {
     backgroundColor: ORANGE,
@@ -394,130 +382,120 @@ export const styles = StyleSheet.create({
     marginLeft: 16,
     marginRight: 16,
     borderRadius: 8,
-    minHeight: 48
+    minHeight: 48,
   },
   textBook: {
     textAlign: CENTER,
     color: WHITE,
     fontFamily: fonts.family.rubik600,
-    marginLeft:"6%",
+    marginLeft: '6%',
     marginTop: 12,
     fontSize: fonts.size.fontSize16,
-
   },
   contentContainerStyle: {
     flexGrow: 1,
     paddingBottom: 10,
-},
-tobePaid: {
+  },
+  tobePaid: {
     textAlign: CENTER,
     paddingTop: 15,
     paddingBottom: 15,
     color: WHITE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-
-},
-AddressCheck: {
+  },
+  AddressCheck: {
     width: '96%',
     flexDirection: ROW,
-},
-selectDate: {
+  },
+  selectDate: {
     marginTop: 30,
     marginLeft: 16,
     flex: 1,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
-},
-AddNewAdd: {
+  },
+  AddNewAdd: {
     marginLeft: 38,
-    borderWidth: 0.1,
     marginTop: 18,
     shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 3,
+    shadowOpacity: '5%',
+    borderRadius: 8,
     backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
-    flexDirection:ROW,
-},
-addNew: {
-    alignItems:CENTER,
-    marginRight:15,
+    flexDirection: ROW,
+  },
+  addNew: {
+    alignItems: CENTER,
+    marginRight: 15,
     marginLeft: 7.33,
     minHeight: 25,
     marginTop: 9,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
-},
-svg:{
-    marginTop:9,
-    marginLeft:7.33,
-},
-border: {
-    borderWidth: 0.2,
+  },
+  svg: {
+    marginTop: 9,
+    marginLeft: 7.33,
+  },
+  border: {
     marginTop: 14,
     marginLeft: 16,
     marginRight: 16,
     shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 6,
+    shadowOpacity: '5%',
+    borderRadius: 12,
     backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW
-
-},
-checkboxAddress: {
-    alignItems:FLEX_END,
-    marginRight:19,
+    dropShadow: BOX_SHADOW,
+  },
+  checkboxAddress: {
+    alignItems: FLEX_END,
+    marginRight: 19,
     marginTop: 14,
-},
-adressName: {
+  },
+  adressName: {
     marginLeft: 40,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-
-},
-AddressImages: {
+  },
+  AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginRight:25,
-},
-AdressCheckBox: {
+    marginRight: 25,
+  },
+  AdressCheckBox: {
     marginTop: 11,
     marginLeft: 40,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
-},
-SvgImage: {
+  },
+  SvgImage: {
     flex: 1,
     marginTop: 10,
-
-},
-AddressImages: {
+  },
+  AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginRight:25,
-},
-AddText: {
+    marginRight: 25,
+  },
+  AddText: {
     marginLeft: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-},
-check:{
+  },
+  check: {
     marginRight: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-},
-progress: {
-   justifyContent:SPACE_BETWEEN,
-   flexDirection:ROW,
-}
-
-
+  },
+  progress: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+  },
 });

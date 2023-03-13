@@ -9,19 +9,19 @@ import {TO_BE_PAID} from './constant';
 import ProgressBar from '../../components/ProgressBar';
 
 const PaymentReconfirm = () => {
-  // const {PaymentReconfirm} = useCartAddressList();
   return (
     <ScrollView>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
       <OrderDetails />
       <View style={styles.bodyContainer}>
-        <ProgressBar progress="0" showDateTimeSection={true} />
+        <ProgressBar progress="1" showDateTimeSection={true} />
       </View>
       <DateAndTime />
       <FinalAddress />
-      <TouchableOpacity
-        //onPress={PaymentReconfirm}
-        style={styles.touchableButton}>
+
+      {/*  to do ranjit component */}
+
+      <TouchableOpacity style={styles.touchableButton}>
         <Text style={styles.textBook}>{TO_BE_PAID}</Text>
       </TouchableOpacity>
     </ScrollView>
