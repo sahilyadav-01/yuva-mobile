@@ -14,7 +14,8 @@ const CheckoutOurPlan = () => {
         cityName,
         yearlyPrice,
         quarterlyPrice,
-        halfYearlyPrice, } = useCheckout();
+        halfYearlyPrice,
+    onPayPress } = useCheckout();
 
     return (
         <View>
@@ -39,7 +40,7 @@ const CheckoutOurPlan = () => {
                 <View style={styles.line} />
                 <View style={styles.OrderAmountDirection}>
                     <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                    <Text style={styles.orderAmount}>{RUPEE}{yearlyPrice}/-</Text>
+                    <Text style={styles.orderAmount}>{RUPEE}{quarterlyPrice}/-</Text>
                 </View>
                 <View style={styles.OrderAmountDirection}>
                     <TextInput
@@ -60,12 +61,12 @@ const CheckoutOurPlan = () => {
                 </View>
                 <View style={styles.OrderAmountDirection}>
                     <Text style={styles.TextPrice}>{DISCOUNT}</Text>
-                    <Text style={styles.payableAmount}>{RUPEE}{yearlyPrice}/-</Text>
+                    <Text style={styles.payableAmount}>{RUPEE}{quarterlyPrice}/-</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.OrderAmountDirection}>
                     <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                    <Text style={styles.payableAmount}>{RUPEE}{yearlyPrice}/-</Text>
+                    <Text style={styles.payableAmount}>{RUPEE}{quarterlyPrice}/-</Text>
                 </View>
                 <View style={styles.OrderAmountDirection}>
                     <TouchableOpacity
@@ -75,10 +76,10 @@ const CheckoutOurPlan = () => {
                 </View>
                 <View>
                     <TouchableOpacity
-                        // onPress={}
+                        onPress={onPayPress}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {yearlyPrice}
+                            {TO_BE_PAID} {RUPEE} {quarterlyPrice}
                         </Text>
                     </TouchableOpacity>
                 </View>

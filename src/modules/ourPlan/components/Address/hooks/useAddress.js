@@ -7,7 +7,7 @@ import { ALERT, CHECK_OUT_SCREEN, PLEASE_CHECK_ADDRESS } from "../constants";
 
 export const useOurPlanAddress = () => {
     const route = useRoute();
-    const { quarterlyPrice, halfYearlyPrice, yearlyPrice } = route?.params || {};
+    const { quarterlyPrice, halfYearlyPrice, yearlyPrice, plan } = route?.params || {};
     const navigation = useNavigation();
     const [checked, setChecked] = useState(null);
     const { userAddress, selectedAddress } = useSelector(state => state?.profile);
@@ -19,7 +19,7 @@ export const useOurPlanAddress = () => {
     }
     const AddressAdded = () => {
         if (selectedAddress?.address) {
-            navigation.navigate(CHECK_OUT_SCREEN, checkoutData)
+            navigation.navigate(CHECK_OUT_SCREEN, {...checkoutData,plan:plan ?? null})
         } else {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }

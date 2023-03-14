@@ -26,12 +26,14 @@ export const useOurAddress = () => {
     const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
     const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
     const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
+    const cityId = userAddress?.[checked]?.cityId || userAttribute?.[0]?.cityId;
 
     const checkoutData = {
         address: address,
         pincode: pincode,
         contact: contact,
         cityName: cityName,
+        cityId
     }
     const AddNewAddress = () => {
         navigation.navigate(NEW_ADDRESS)
