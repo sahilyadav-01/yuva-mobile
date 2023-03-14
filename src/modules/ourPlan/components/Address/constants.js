@@ -9,3 +9,4 @@ export const ALERT="ALERT";
 export const PLEASE_CHECK_ADDRESS="Please check address Box";
 export const PAYMENT="Payment";
 export const ADDRES="Address";
+export const OUR_PLAN_ADDRESS="OurPlanAddress";

@@ -7,8 +7,8 @@ import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../assets";
 import { Checkbox } from 'react-native-paper';
 
-const AddressList = () => {
-    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress();
+const AddressList = (isNavScreen) => {
+    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress(isNavScreen);
     const renderAddress = ({ item, index }) => {
         if (!item) {
             return null;
@@ -18,7 +18,7 @@ const AddressList = () => {
 
                 <View style={styles.checkboxAddress} >
                     <Checkbox
-                        disabled={userAttribute?.[0]?.AddressCheck}
+                        disabled={userAttribute?.[0]?.address}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
@@ -26,7 +26,7 @@ const AddressList = () => {
 
                     />
                 </View>
-                <Text style={styles.adressName}>{item?.AddressCheck}</Text>
+                <Text style={styles.adressName}>{item?.address}</Text>
                 <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
                 <View style={styles.AddressImages}>
                     <Text style={styles.AdressCheckBox}>{item?.contactNumber}</Text>
