@@ -52,7 +52,7 @@ export const useSection7 = () => {
           typeof sectionData.Q50 === 'number' && dispatch( dispatch_option({key: questionData[9].questionId, value: sectionData.Q50.toString()}));
           setRenderData(true);
           }
-        else if(!saveHRALoading && saveHRAError) setRenderData(true)
+        else if(!saveHRALoading && saveHRAError && questionData.length > 0) setRenderData(true)
       },[saveHRALoading,questionData,sectionData])
 
     const setQuestion1 = value => {
