@@ -28,7 +28,6 @@ const CheckoutPriceDetails = (isPrice) => {
             <View style={styles.viewCoupon}>
                 <TextInput
                     style={styles.textInputStyles}
-                    keyboardType='numeric'
                     placeholderTextColor={BALI}
                     placeholder={COUPON}
                     //    onChangeText={setSelected}

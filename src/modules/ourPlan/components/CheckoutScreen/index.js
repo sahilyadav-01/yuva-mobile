@@ -42,7 +42,7 @@ const CheckoutOurPlan = () => {
                          onPress={onCheckout}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {yearlyPrice}/-<SVG.Arrow style={styles.SVGArrow} />
+                            {TO_BE_PAID} {RUPEE} {yearlyPrice}/-
                         </Text>
                     </TouchableOpacity>
                 </View>

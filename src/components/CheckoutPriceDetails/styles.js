@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
+import { COUPON_DARK_GREY, CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
 import { ABSOLUTE, COLUMN, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 import { CENTER } from './constants';
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     orderAmount: {
         textAlign: RIGHT,
         flex: 1,
-        marginRight: "22%",
+        marginRight: "8%",
         marginTop: "2%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
@@ -91,7 +91,7 @@ export const styles = StyleSheet.create({
         borderColor: GREY70,
     },
     Amountpyable: {
-        marginLeft: 26,
+        marginLeft: "7.1%",
         marginTop: "2.76%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
@@ -100,7 +100,7 @@ export const styles = StyleSheet.create({
     payableAmount: {
         textAlign: RIGHT,
         flex: 1,
-        marginRight: "22%",
+        marginRight: "8%",
         marginTop: "2%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik600,
@@ -116,8 +116,9 @@ export const styles = StyleSheet.create({
         alignItems: CENTER,
     },
     termsAndCondtion: {
+        width: "60%",
         marginTop: "4.55%",
-        marginLeft: "3.25%",
+        marginLeft: "1.5%",
         marginRight: 56,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
@@ -125,11 +126,11 @@ export const styles = StyleSheet.create({
     },
     checkBoxContainer: {
         marginTop: "2.5%",
-        marginLeft: "3.80%",
+        marginLeft: "4.90%",
         borderColor: CYAN_BLUE,
     },
     viewCoupon: {
-        width: "83.8%",
+        width: "85%",
         marginTop: "4.61%",
         flexDirection: ROW,
         justifyContent: SPACE_BETWEEN,
@@ -139,8 +140,10 @@ export const styles = StyleSheet.create({
         marginLeft: "7%",
         marginHorizontal: 15,
         borderRightColor: ORANGE,
+        borderColor:COUPON_DARK_GREY,
     },
     textInputStyles: {
+        marginLeft: "3.25%",
         marginBottom: 11,
         height: 40,
         width: 206,
@@ -172,7 +175,7 @@ export const styles = StyleSheet.create({
     payableAmountDiscount: {
         textAlign: RIGHT,
         flex: 1,
-        marginRight: "22%",
+        marginRight: "8%",
         marginTop: "2%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
