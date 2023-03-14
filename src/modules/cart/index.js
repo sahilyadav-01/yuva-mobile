@@ -20,8 +20,9 @@ const Cart = props => {
   const { itemDtoList, totalCost, amountToBePaid, totalDiscount } = cart || {};
 
   return (
-    <ScrollView style={styles.container}>
+    <>
       <Header title={MY_CART} showSearch={false} showBackButton={true} />
+      <ScrollView style={styles.container}>
       <View style={styles.bodyContainer}>
         <CartDetails
           data={itemDtoList}
@@ -37,6 +38,7 @@ const Cart = props => {
         />
       </View>
     </ScrollView>
+    </>
   );
 };
 
