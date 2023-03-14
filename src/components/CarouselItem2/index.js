@@ -48,8 +48,8 @@ const CarouselItem2 = (props) => {
             <Text style={styles.costStyle}>{COST(item.cost)}</Text>
           ) : (
             <>
-              <Text style={styles.costStyle}>{COST(item.cost)}</Text>
-              <Text style={styles.discountStyle}>{COST(item.finalCost)}</Text>
+              <Text style={styles.costStyle}>{COST(item.finalCost)}</Text>
+              <Text style={styles.discountStyle}>{COST(item.cost)}</Text>
             </>
           )}
         </View>
