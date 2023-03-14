@@ -17,8 +17,8 @@ export const useOtp = () => {
     signUpLoading,
     apiError,
     verifyLinkLoading,
-    verifyLinkApiError,
-    verifyLinkApiErrorMessage,
+    loggedIn,
+    status,
     verifyLinkSuccessOtp,
   } = useSelector(state => state.auth);
   const navigation = useNavigation();
@@ -31,6 +31,10 @@ export const useOtp = () => {
 
   useEffect(() => {
     if (!signUpLoading && !apiError && otp) {
+      if (from === 'Profile') navigation.navigate('Home');
+      else navigation.navigate('HomeService');
+    }
+    else if(!signUpLoading && loggedIn==='loggedIn' && status) {
       if (from === 'Profile') navigation.navigate('Home');
       else navigation.navigate('HomeService');
     }
@@ -53,10 +57,10 @@ export const useOtp = () => {
       dispatch(verifyOtp({emailOrNumber: params?.number, otp}));
       setEnableNavigation(true);
       setNumber(params?.number.toString());
-    } else if (params?.verificationType === 'number') {
+    } else if (params?.verificationType === 'number' && params?.signUp) {
       const {number, email, name, password} = params;
       dispatch(signupThunk({email, name, number, numberOtp: otp, password}));
-    } else if (params?.verificationType === 'email') {
+    } else if ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email') {
       dispatch(verifyThunk({emailOrNumber: params?.email, otp}));
     }
   };

@@ -117,11 +117,11 @@ export const verifySmsThunk = createAsyncThunk(
 );
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
-  async ({email, password}, {fulfillWithValue, rejectWithValue}) => {
+  async ({email, password,type}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/login?emailOrNumber=${email}&password=${password}`;
       const response = await YuvaService.post(endpoint, {});
-      return response.data;
+      return {...response.data,type};
     } catch (error) {
       handleNetworkError(
         error.response.status,
@@ -242,6 +242,7 @@ const authSlice = createSlice({
     changePasswordApiError: false,
     changePasswordApiErrorMessage: '',
     changePasswordSuccess: false,
+    type:''
   },
   reducers: {
     hideErrorBox(state) {
@@ -261,6 +262,7 @@ const authSlice = createSlice({
       state.loggedIn = 'notLoggedIn';
       state.user.status = false;
       state.apiError = false;
+      state.type = ''
     },
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
@@ -281,9 +283,11 @@ const authSlice = createSlice({
         state.user.status = true;
         state.user.id = action.payload.data.id;
         state.navigateToRegister = false;
+        state.type = action.payload.type;
       } else if (action.payload.data === null) {
         state.navigateToRegister = true;
         state.user.status = true;
+        state.type = action.payload.type;
       }
     },
     [loginThunk.rejected]: (state, action) => {
@@ -378,6 +382,7 @@ const authSlice = createSlice({
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
       state.signUpLoading = true;
+      state.user.status = false;
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
       if(payload.data){
@@ -444,8 +449,13 @@ const authSlice = createSlice({
       state.verifyLinkApiErrorMessage = '';
     },
     [verifyOtp.fulfilled]: (state, action) => {
+      if(action?.payload?.response?.data?.data){
       state.verifyLinkLoading = false;
       state.verifyLinkSuccessOtp = action.payload.hash;
+      }
+      else{
+        Alert.alert('Alert','OTP is Incorrect/Expired')
+      }
     },
     [verifyOtp.rejected]: (state, action) => {
       state.verifyLinkLoading = false;

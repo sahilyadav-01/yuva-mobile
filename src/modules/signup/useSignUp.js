@@ -103,6 +103,7 @@ export const useSignUp = () => {
       password,
       verificationType: 'number',
       from,
+      signUp:true,
     });
   };
 
