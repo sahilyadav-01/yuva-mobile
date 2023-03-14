@@ -7,22 +7,31 @@ import { styles } from './style';
 const ListItem = props => {
   const { item, index } = props;
   const style = styles({ selected: item?.selected });
+
+  const priceComponent = () => {
+    if (item?.finalCost === item?.cost) {
+      return <Text style={style.priceText}>{`₹ ${item?.cost}/-`}</Text>;
+    } else {
+      return (
+        <>
+          {item?.cost > -1 && <Text style={style.discountText}>{`₹ ${item?.cost}/-`}</Text>}
+          {item?.finalCost > -1 && <Text style={style.priceText}>{`₹ ${item?.finalCost}/-`}</Text>}
+        </>
+      );
+    }
+  };
+
   return (
     <TouchableOpacity
       onPress={() => {
         props?.onPackagePress({ item, index });
-        
       }}
       style={style.itemContainer}>
       <Text numberOfLines={2} style={style.nameContainer}>
         {item.packageName || item.testName}
       </Text>
       <View style={style.priceContainer}>
-        {item?.discount && (
-          <Text style={style.discountText}>{item?.discount}</Text>
-        )}
-        {item?.cost && <Text style={style.priceText}>{item?.cost}</Text>}
-
+        {priceComponent()}
         <TouchableOpacity
           onPress={() => {
             props?.onPackageSelect({ item, index });
