@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { COUPON_DARK_GREY, CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
-import { ABSOLUTE, COLUMN, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../styles/constants';
+import {FLEX_END, RIGHT, ROW, SPACE_BETWEEN,CENTER } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
-import { CENTER } from './constants';
 
 export const styles = StyleSheet.create({
     TextPrice: {
