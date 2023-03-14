@@ -18,13 +18,14 @@ import programAndPlan, {
   programAndPlanInit,
 } from './reducers/ProgramAndPlanSlice';
 import popularTests, {popularTestsInit} from './reducers/PopularTestsSlice ';
+import coupon, {couponInit} from './reducers/CouponSlice';
 import lifestylePackage, {
   lifestylePackageInit,
 } from './reducers/LifeStyleSlice';
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 import hra, {hraInit} from './reducers/HRASlice';
 import cart, { cartInit } from './reducers/CartSlice';
-
+import downloadReport,{downloadInit} from './reducers/DownloadReportSlice';
 const storeInitialState = {
   auth: authInit,
   section1: section1Init,
@@ -43,10 +44,12 @@ const storeInitialState = {
   profile: profileInit,
   programAndPlan: programAndPlanInit,
   popularTests: popularTestsInit,
+  coupon:couponInit,
   attribute: attributeInit,
   hra: hraInit,
   lifestylePackage:lifestylePackageInit,
   cart: cartInit,
+  downloadReport:downloadInit,
 };
 
 const appReducer = combineReducers({
@@ -69,8 +72,10 @@ const appReducer = combineReducers({
   attribute,
   hra,
   popularTests,
+  coupon,
   lifestylePackage,
   cart,
+  downloadReport,
 });
 
 const rootReducer = (state, action) => {

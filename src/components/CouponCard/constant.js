@@ -3,13 +3,6 @@ export const APPLY = 'Apply';
 export const USE_COUPON = 'Use Coupon';
 export const COUPON_CODE = 'Coupon Code';
 export const COUPON_APPLIED = 'Coupon Applied';
-export const COUPON = [
-  {
-    name: 'YUVAGIRI',
-    data: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
-    name: 'arjun',
-    data: 'dsad',
-  },
-];
+export const COUPON_INVALID = 'Coupon Invalid';
+export const ALERT = 'ALERT';
+export const CAPITALIZE_TEXT = 'characters';
