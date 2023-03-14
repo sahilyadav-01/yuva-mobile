@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { BOX_SHADOW, CYAN_BLUE, DARK_BLUE, GREEN, GREY70, ORANGE, RED, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
-import { ABSOLUTE, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
-import { CENTER } from './constants';
+import { BOX_SHADOW, CYAN_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
+import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import { fonts } from '../../../../styles/fonts'
 
 export const styles = StyleSheet.create({
     contentContainerStyle: {
@@ -167,23 +166,18 @@ export const styles = StyleSheet.create({
     },
     touchableButton: {
         backgroundColor: ORANGE,
-        marginTop: 40,
-        marginLeft: 13,
-        marginRight: 14,
+        marginTop: 20,
+        marginHorizontal: 13,
+        paddingHorizontal: 15,
         borderRadius: 8,
-        minHeight: 48,
         alignItems: CENTER,
     },
     tobePaid: {
-        marginLeft: 110,
-        marginRight: 5,
-        textAlign: CENTER,
-        paddingTop: 15,
-        paddingBottom: 15,
+        justifyContent: CENTER,
+        paddingVertical: 15,
         color: WHITE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
-
     },
     termsAndCondtion: {
         marginTop: 20,
