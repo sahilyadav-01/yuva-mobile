@@ -3,11 +3,10 @@ import React from 'react';
 import {styles} from './styles';
 import {DATE, SELECT_DATE_TIME, TIME} from './constant';
 import {DARK_BLUE} from '../../styles/colors';
-import {useDateAndTime} from './hooks/useDateAndTime';
 import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 
-const DateAndTime = () => {
-  const {handleDate, handleTime, date, time} = useDateAndTime();
+const DateAndTime = props => {
+  const {handleDate, handleTime, date, time} = props;
   return (
     <View>
       <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
@@ -17,7 +16,7 @@ const DateAndTime = () => {
           <DateTimePicker
             type="date"
             value={date}
-            onChangeDate={handleDate}
+            onChangeDate={date => handleDate(date)}
             style={styles.dateTimePicker}
             selectionColor={DARK_BLUE}
             theme={styles.theme}
@@ -30,7 +29,7 @@ const DateAndTime = () => {
           <DateTimePicker
             type="time"
             value={time}
-            onChangeDate={handleTime}
+            onChangeDate={date => handleTime(date)}
             style={styles.dateTimePicker}
             selectionColor={DARK_BLUE}
             theme={styles.theme}

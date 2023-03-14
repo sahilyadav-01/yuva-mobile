@@ -5,7 +5,7 @@ import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
   containView: {
     marginHorizontal: 16,
-    marginVertical: 48,
+    marginTop: 48,
     backgroundColor: WHITE,
     borderRadius: 12,
     height: 123,

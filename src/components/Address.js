@@ -7,8 +7,8 @@ import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../assets";
 import { Checkbox } from 'react-native-paper';
 
-const AddressList = () => {
-    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress();
+const AddressList = (isNavScreen) => {
+    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress(isNavScreen);
     const renderAddress = ({ item, index }) => {
         if (!item) {
             return null;

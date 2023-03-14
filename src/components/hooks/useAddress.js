@@ -14,7 +14,7 @@ import {
   PLEASE_CHECK_ADDRESS,
 } from '../constants';
 
-export const useOurAddress = () => {
+export const useOurAddress = (isNavScreen) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -26,7 +26,7 @@ export const useOurAddress = () => {
     dispatch(getUserAddress());
   }, []);
   useEffect(() => {
-    if (route?.name === ADDRESS) {
+    if (route?.name === isNavScreen?.isNavScreen) {
       setUserAttribute(route?.params);
     }
   }, [route]);
@@ -46,7 +46,7 @@ export const useOurAddress = () => {
     cityName: cityName,
   };
   const AddNewAddress = () => {
-    navigation.navigate('CheckoutNewAddress');
+    navigation.navigate(NEW_ADDRESS);
   };
   useEffect(() => {
     dispatch(saveCheckedAddress(checkoutData));

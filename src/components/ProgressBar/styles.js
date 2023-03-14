@@ -1,7 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, GREEN, PEARL_GREY } from '../../styles/colors';
-import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK, GREEN, PEARL_GREY} from '../../styles/colors';
+import {
+  CENTER,
+  COLUMN,
+  FLEX_START,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,15 +16,16 @@ const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   progressBar: {
-    height: 8,
     width: '100%',
     backgroundColor: PEARL_GREY,
     borderRadius: 4,
     overflow: 'hidden',
   },
   progress: {
-    height: '10%',
+    height: '3%',
     backgroundColor: GREEN,
+    alignSelf: FLEX_START,
+    marginTop: 9,
   },
   statusContainer: {
     flexDirection: ROW,
@@ -48,7 +55,6 @@ const styles = StyleSheet.create({
     width: 80,
     alignItems: CENTER,
     justifyContent: CENTER,
-    
   },
   statusLabelActive: {
     fontWeight: fonts.weight.fontWeight700,
@@ -56,8 +62,8 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 10,
     color: BLACK,
-    fontFamily: fonts.family.rubik600
+    fontFamily: fonts.family.rubik600,
   },
 });
 
-export { styles };
+export {styles};

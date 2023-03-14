@@ -1,30 +1,13 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import React from 'react';
-import DateAndTime from '../../components/DateAndTime';
-import FinalAddress from '../../components/FinalAddress';
-import Header from '../../components/Header';
-import OrderDetails from '../../components/OrderDetails';
+import {SafeAreaView} from 'react-native';
+import PaymentReconfirmList from '../../modules/cart/PaymentReconfirmList';
 import {styles} from './styles';
-import {TO_BE_PAID} from './constant';
-import ProgressBar from '../../components/ProgressBar';
 
-const PaymentReconfirm = () => {
+const PaymentReconfirm = props => {
   return (
-    <ScrollView>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} />
-      <OrderDetails />
-      <View style={styles.bodyContainer}>
-        <ProgressBar progress="1" showDateTimeSection={true} />
-      </View>
-      <DateAndTime />
-      <FinalAddress />
-
-      {/*  to do ranjit component */}
-
-      <TouchableOpacity style={styles.touchableButton}>
-        <Text style={styles.textBook}>{TO_BE_PAID}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+    <SafeAreaView style={styles.homeScreenContainer}>
+      <PaymentReconfirmList />
+    </SafeAreaView>
   );
 };
 

@@ -22,7 +22,7 @@ const CartNavigation = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name={'CheckoutNewAddress'}
+        name={'NewAddress'}
         component={CheckoutAddAddress}
         options={{headerShown: false}}
       />
