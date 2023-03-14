@@ -22,7 +22,7 @@ export const encReqThunk = createAsyncThunk(
   'payment/encReq',
   async ({plan,orderId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/paymentGateway/redirect?plan=${plan}&orderId=${orderId}`;
+      const endpoint = `/paymentGateway/redirect?plan=${plan}&orderId=${orderId}&redirectURL=abc&cancelURL=abc`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
