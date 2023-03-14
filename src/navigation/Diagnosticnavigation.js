@@ -36,7 +36,7 @@ const DiagnosticNav = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="AddNewAddress"
+        name="NewAddress"
         component={AddAddressScreen}
         options={{ headerShown: false }}
       />

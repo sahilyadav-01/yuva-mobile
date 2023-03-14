@@ -34,41 +34,41 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
               />
             </View>
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[1]?.questionId] !== undefined) || (PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[1]?.question}
                 </Text>
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
-                  placeholder={PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? ''}
+                  placeholder={answers[questionData[1]?.questionId] === undefined ? '' : PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? ''}
                   setSelected={setQuestion2}
                   data={PickerData[questionData[1]?.questionType]}
                   search={false}
                 />
               </View>
             )}
-            {(medicalConditionDiabetes || (PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDiabetes && answers[questionData[2]?.questionId] !== undefined) || (PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[2]?.question}
                 </Text>
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
-                  placeholder={PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? ''}
+                  placeholder={answers[questionData[2]?.questionId] === undefined ? '' : PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? ''}
                   setSelected={setQuestion3}
                   data={PickerData[questionData[2]?.questionType]}
                   search={false}
                 />
               </View>
             )}
-            {(medicalCondition || (answers[questionData[3]?.questionId] ?? false)) && (
+            {((medicalCondition) || (answers[questionData[3]?.questionId] ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={requiredFieldQ4 ? styles.textError : styles.text}>{questionData[3]?.question}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -79,35 +79,35 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[4]?.questionId] !== undefined) || (PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[4]?.question}
                 </Text>
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
-                  placeholder={PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? ''}
+                  placeholder={answers[questionData[4]?.questionId] === undefined ? '' : PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? ''}
                   setSelected={setQuestion5}
                   data={PickerData[questionData[4]?.questionType]}
                   search={false}
                 />
               </View>
             )}
-            {(medicalConditionHypertension || (PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionHypertension && answers[questionData[5]?.questionId] !== undefined) || (PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[5]?.question}
                 </Text>
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
-                  placeholder={PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? ''}
+                  placeholder={answers[questionData[5]?.questionId] === undefined ? '' : PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? ''}
                   setSelected={setQuestion6}
                   data={PickerData[questionData[5]?.questionType]}
                   search={false}
                 />
               </View>
             )}
-            {(medicalCondition1 || ((answers[questionData[6]?.questionId] ?? false) && (answers[questionData[7]?.questionId] ?? false))) && (
+            {((medicalCondition1) || ((answers[questionData[6]?.questionId] ?? false) && (answers[questionData[7]?.questionId] ?? false))) && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={requiredFieldQ7 ? styles.textError : styles.text} >{questionData[6]?.question}</Text>
@@ -130,21 +130,21 @@ const Section7 = () => {
                 </View>
               </View>
             )}
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[8]?.questionId] !== undefined) || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[8]?.question}
                 </Text>
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
-                  placeholder={PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? ''}
+                  placeholder={answers[questionData[8]?.questionId] === undefined ? '' : PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? ''}
                   setSelected={setQuestion9}
                   data={PickerData[questionData[8]?.questionType]}
                   search={false}
                 />
               </View>
             )}
-            {(medicalConditionAnyCancer || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
+            {((medicalConditionAnyCancer && answers[questionData[9]?.questionId] !== undefined) || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -161,13 +161,13 @@ const Section7 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[9]?.questionId] === undefined ? '' : PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion10}
                 data={PickerData[questionData[9]?.questionType]}
                 search={false}
               />
             </View>
-            {(medicalConditionChronicIllness || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
+            {((medicalConditionChronicIllness) || (answers[questionData[9]?.questionId] !==undefined && PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}

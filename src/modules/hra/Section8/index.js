@@ -41,7 +41,7 @@ const Section8 = () => {
                         key={item.questionId}
                         text={item.question}
                         data={PickerData[item.questionType]}
-                        defaultAnswer={PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
+                        defaultAnswer={answers[item.questionId] === undefined ? '' : PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
                         dispatcher={dispatch_option}
                         questionId={item.questionId}
                       />
@@ -50,7 +50,7 @@ const Section8 = () => {
                     return (
                       <SectionInput
                         key={item.questionId}
-                        defValue={PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
+                        defValue={answers[item.questionId] === undefined ? '' : PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
                         text={item.question}
                         dispatcher={dispatch_option}
                         questionId={item.questionId}

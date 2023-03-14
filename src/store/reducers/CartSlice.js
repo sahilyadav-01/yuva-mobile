@@ -83,6 +83,8 @@ const initialState = {
     itemDtoList: [],
     totalCost: 0,
     isRemoved: false,
+    amountToBePaid:0,
+    totalDiscount:0,
   },
   loading: false,
   apiError: false,
@@ -108,6 +110,9 @@ const cartSlice = createSlice({
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -139,6 +144,9 @@ const cartSlice = createSlice({
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }

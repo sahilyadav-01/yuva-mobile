@@ -13,7 +13,7 @@ import Loader from '../../../components/Loader';
 
 const Section5 = () => {
 
-  const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData } = useSection5();
+  const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData, q2Placeholder, q3Placeholder, onBlur } = useSection5();
 
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
@@ -35,7 +35,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
@@ -48,8 +48,9 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[1]?.questionId] ?? ''}
+                    placeholder={answers[questionData[1]?.questionId] ?? q2Placeholder ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
+                    onBlur={()=>onBlur('Q2')}
                   />
                 </View>
                 <View style={styles.questionViewContainer}>
@@ -57,8 +58,9 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[2]?.questionId] ?? ''}
+                    placeholder={answers[questionData[2]?.questionId] ?? q3Placeholder ?? ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
+                    onBlur={()=>onBlur('Q3')}
                   />
                 </View>
               </View>
@@ -69,7 +71,7 @@ const Section5 = () => {
               </Text>
               <SelectList
                 boxStyles={styles.boxStylesContainer}
-                placeholder={PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
+                placeholder={answers[questionData[3]?.questionId] === undefined ? '' : PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
                 setSelected={setQuestion4}
                 data={PickerData[questionData[3]?.questionType]}
                 search={false}

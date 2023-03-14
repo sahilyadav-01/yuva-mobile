@@ -1,6 +1,7 @@
 import React from 'react'
 import { ScrollView, Text, TextInput, View,TouchableOpacity } from 'react-native'
 import Header from '../../../../components/Header'
+import ProgressBar from '../../../../components/ProgressBar'
 import { BALI } from '../../../../styles/colors'
 import { ADDRES, AMOUNT_PAYABLE, APPLY, CHECKOUT, COUPON, DISCOUNT, ORDER_AMOUNT, PAYMENT, PRICE_DETAILS, RUPEE, TERMS_AND_CONDTION, TO_BE_PAID } from './constants'
 import { useCheckout } from './hooks/useCheckout'
@@ -20,19 +21,8 @@ const CheckoutOurPlan = () => {
             <Header showBackButton={true} title={CHECKOUT} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
-                <View style={styles.progressBar}>
-                    <View style={styles.circle}>
-                        <View style={styles.circles}>
-                            <View style={styles.tickMark}></View>
-                        </View>
-                        <View style={styles.Line}></View>
-
-                        <View style={styles.PaymentCircle}></View>
-                    </View>
-                </View>
-                <View style={styles.progress}>
-                    <Text style={styles.AddText}>{ADDRES}</Text>
-                    <Text style={styles.check}>{PAYMENT}</Text>
+                <View style={styles.progressView}>
+                    <ProgressBar progress={0.99}/>
                 </View>
                 <View style={styles.border}>
                     <View style={styles.checkboxAddress} >

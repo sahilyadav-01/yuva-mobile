@@ -2,11 +2,10 @@ import {StyleSheet} from 'react-native';
 import {
   FLASH_WHITE,
   GREEN,
-  LIGHT_GREEN,
   ORANGE,
   WHITE,
 } from '../../styles/colors';
-import {ABSOLUTE, CENTER, ROW} from '../../styles/constants';
+import {ABSOLUTE, CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -43,7 +42,6 @@ export const styles = StyleSheet.create({
     marginLeft: 21,
   },
   descStyle: {
-    backgroundColor: LIGHT_GREEN,
     height: 57,
     width: '100%',
     justifyContent: CENTER,

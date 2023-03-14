@@ -17,7 +17,7 @@ const ChangePasswordScreen = props => {
     <>
       <View style={cardContainer}>
         <View style={cardStyle}>
-          <Heading heading="Forgot Password" />
+          <Heading heading="Change Password" />
           <View style={inputsContainer}>
             <InputPassword
               placeholderText="Password"
@@ -50,13 +50,6 @@ const ChangePasswordScreen = props => {
             onPress={()=> changePassword?.onLoginPress(props?.from,props?.number,props?.hash)}>
             <Text style={buttonText}>Login</Text>
           </TouchableOpacity>
-          <LoginTextContainer
-            onButtonPress={() =>
-              changePassword?.onForgotPasswordPress(props?.from)
-            }
-            primaryText="Forgot Password"
-            pressableText="Click Here"
-          />
           <LoginTextContainer
             onButtonPress={() => changePassword?.onSignUpPress(props?.from)}
             primaryText="New to Yuva Health, "
