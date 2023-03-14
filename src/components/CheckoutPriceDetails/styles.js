@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize14,
     },
     line: {
-        marginTop: "2.63%",
+        marginTop: "3.43%",
         borderWidth: 0.2,
         marginLeft: "7%",
         width: "85%",
@@ -167,7 +167,7 @@ export const styles = StyleSheet.create({
     },
     TextPriceDiscount: {
         marginLeft: "7%",
-        marginTop: "2.76%",
+        marginTop: "3.76%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize14,
@@ -176,7 +176,7 @@ export const styles = StyleSheet.create({
         textAlign: RIGHT,
         flex: 1,
         marginRight: "8%",
-        marginTop: "2%",
+        marginTop: "3.76%",
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
