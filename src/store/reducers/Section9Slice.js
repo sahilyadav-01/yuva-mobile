@@ -117,6 +117,7 @@ const initialState = {
   result: false,
   reportStatus: false,
   reportDownload: false,
+  hraComplete: false,
 };
 
 const section9Slice = createSlice({
@@ -129,6 +130,9 @@ const section9Slice = createSlice({
     },
     dispatch_reset_result(state, {payload}) {
       state.result = false;
+    },
+    reset_complete(state) {
+      state.hraComplete = false;
     },
   },
 
@@ -168,6 +172,7 @@ const section9Slice = createSlice({
     [finalSubmission.pending]: (state, {payload}) => {
       state.loading = true;
       state.reportStatus = false;
+      state.hraComplete = false;
     },
     [finalSubmission.fulfilled]: (state, {payload}) => {
       state.loading = false;
@@ -191,6 +196,7 @@ const section9Slice = createSlice({
       }
       state.metrics['Score'] = {label: 'Score', value: score};
       state.result = true;
+      state.hraComplete = true;
     },
     [finalSubmission.rejected]: (state, {payload}) => {
       state.loading = false;
@@ -198,7 +204,7 @@ const section9Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option, dispatch_reset_result} =
+export const {init, dispatch_option, dispatch_reset_result,reset_complete} =
   section9Slice.actions;
 export const section9Init = section9Slice.getInitialState();
 export default section9Slice.reducer;
