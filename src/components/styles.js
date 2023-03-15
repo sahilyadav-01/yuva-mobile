@@ -12,6 +12,7 @@ import {
   LIGHT_MERCURY,
   LIGHT_GREYISH_RED,
   RED,
+  VERY_LIGHT_GREY,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -407,7 +408,7 @@ export const styles = StyleSheet.create({
 
   },
   AddressCheck: {
-    width: '96%',
+    width: '95%',
     flexDirection: ROW,
   },
   selectDate: {
@@ -419,12 +420,12 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   AddNewAdd: {
+    borderWidth:1,
+    borderColor:VERY_LIGHT_GREY,
     marginLeft: 38,
-    borderWidth: 0.1,
+    elevation:2,  
     marginTop: 18,
-    shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 3,
+    borderRadius: 8,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
     flexDirection: ROW,
@@ -444,6 +445,20 @@ export const styles = StyleSheet.create({
     marginLeft: 7.33,
   },
   border: {
+    borderWidth:1,
+    borderColor:VERY_LIGHT_GREY,
+    marginTop: 14,
+    minHeight:125,
+    marginBottom:5,
+    marginHorizontal:21,
+    shadowOpacity: "50%",
+    borderRadius: 12,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+    elevation: 2,
+
+  },
+  borderAddNewAddress:{
     marginTop: 14,
     marginLeft: 16,
     marginRight: 16,
@@ -454,15 +469,15 @@ export const styles = StyleSheet.create({
     dropShadow: BOX_SHADOW,
     elevation: 5,
     shadowColor: WHITE,
-
   },
   checkboxAddress: {
     alignItems: FLEX_END,
-    marginRight: 19,
+    marginRight: "3%",
     marginTop: 14,
   },
   adressName: {
-    marginLeft: 40,
+    width:"70%",
+    marginLeft: 30,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -471,11 +486,11 @@ export const styles = StyleSheet.create({
   AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginRight: 25,
+    marginRight:"5%",
   },
   AdressCheckBox: {
     marginTop: 11,
-    marginLeft: 40,
+    marginLeft: 30,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
