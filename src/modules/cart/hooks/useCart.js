@@ -18,9 +18,9 @@ export const useCart = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
-  const { cart } = useSelector(state => state.cart);
+  const { cart ,existingIds} = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved } = cart || {};
+  const { isRemoved,couponViewCart } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
@@ -48,11 +48,23 @@ export const useCart = () => {
   };
   const crossAction = () => {
 
-       dispatch(redeemCouponsSliceThunk({}));
+     dispatch(redeemCouponsSliceThunk({isLoggedIn}));
      dispatch(removeCoupon());
      dispatch(removeCouponCart());
 
   }
+
+  useEffect(() => {
+
+    if ((existingIds.length===0)&&(couponViewCart)) {
+      crossAction();
+    }
+    else if ((existingIds.length===0)&&(couponView))
+    {
+      crossAction();
+
+    }
+  }, [existingIds]);
 
   useEffect(() => {
     if (isLoggedIn) {

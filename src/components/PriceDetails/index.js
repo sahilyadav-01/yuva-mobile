@@ -10,13 +10,21 @@ const PriceDetails = props => {
   const { couponViewCart } = cart || {};
   const { detailsContainer, headingText, priceContainer, priceText, titleView, priceView } = styles();
   const { couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount } = coupon;
-  // console.log("couponView",couponView);
+  console.log("couponView", couponView);
   console.log("couponViewCart", couponViewCart);
+
+  console.log("appliedTotalCost", appliedTotalCost);
+  console.log("totalCost", totalCost);
+
+  console.log("appliedTotalDiscount", appliedTotalDiscount);
+  console.log("totalDiscount", totalDiscount);
+
   console.log("appliedAmountToBePaid", appliedAmountToBePaid);
   console.log("amountToBePaid", amountToBePaid);
 
+  const { loggedIn } = useSelector(state => state.auth);
 
-
+console.log("loggedIn",loggedIn)
   return (
     <View style={detailsContainer}>
       <Text style={headingText}>{heading}</Text>
@@ -25,10 +33,26 @@ const PriceDetails = props => {
           <Text style={priceText}>{PRICE}</Text>
         </View>
         <View style={priceView}>
-          {couponViewCart === false ? (
-            <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalCost}</Text>
+          {loggedIn === 'loggedIn' ? (
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalCost}</Text>
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {totalCost}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalCost : totalCost}</Text>
+              )
+            )
           ) : (
-            <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalCost : totalCost}</Text>
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalCost}</Text>
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {totalCost}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalCost : totalCost  }</Text>
+              )
+            )
           )}
         </View>
       </View>
@@ -37,10 +61,27 @@ const PriceDetails = props => {
           <Text style={priceText}>{DISCOUNT}</Text>
         </View>
         <View style={priceView}>
-          {couponViewCart === false ? (
-            <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalDiscount}</Text>
+          {loggedIn === 'loggedIn' ? (
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalDiscount}</Text>
+
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {totalDiscount}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalDiscount : totalDiscount}</Text>
+              )
+            )
           ) : (
-            <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalDiscount : totalDiscount}</Text>
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalDiscount}</Text>
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {totalDiscount}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedTotalDiscount : totalDiscount }</Text>
+              )
+            )
           )}
         </View>
       </View>
@@ -49,10 +90,27 @@ const PriceDetails = props => {
           <Text style={priceText}>{AMOUNT_TO_BE_PAID}</Text>
         </View>
         <View style={priceView}>
-          {couponViewCart === false ? (
-            <Text style={priceText}>{RUPEE_SYMOL} {appliedAmountToBePaid}</Text>
+          {loggedIn === 'loggedIn' ? (
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedAmountToBePaid}</Text>
+
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {amountToBePaid}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedAmountToBePaid : amountToBePaid}</Text>
+              )
+            )
           ) : (
-            <Text style={priceText}>{RUPEE_SYMOL} {couponView ? appliedAmountToBePaid : amountToBePaid}</Text>
+            couponViewCart === false ? (
+              <Text style={priceText}>{RUPEE_SYMOL} {appliedAmountToBePaid}</Text>
+            ) : (
+              couponViewCart && couponView ? (
+                <Text style={priceText}>{RUPEE_SYMOL} {amountToBePaid}</Text>
+              ) : (
+                <Text style={priceText}>{RUPEE_SYMOL} {couponView ?appliedAmountToBePaid  : amountToBePaid }</Text>
+              )
+            )
           )}
         </View>
       </View>

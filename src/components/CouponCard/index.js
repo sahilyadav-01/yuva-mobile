@@ -13,20 +13,20 @@ import {
 } from './constant';
 import { CYAN_BLUE, GREEN } from '../../styles/colors';
 import { redeemCouponsSliceThunk } from '../../store/reducers/CouponSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CouponCard = () => {
   const {
     couponName, setCouponName, coupon, couponView, onApply, couponValue 
   } = useCouponCard();
-  // const { couponViewCart:couponViewCart } = coupon || {};
-
+  const { loggedIn } = useSelector(state => state.auth);
+  const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
   const renderItem = ({ item }) => {
     const Success = () => {
       let couponCode = item.couponCode
       setCouponName(item.couponName);
-      dispatch(redeemCouponsSliceThunk({ couponCode }));
+      dispatch(redeemCouponsSliceThunk({ isLoggedIn,couponCode }));
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={Success}>

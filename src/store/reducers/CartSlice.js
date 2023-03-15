@@ -115,6 +115,7 @@ const cartSlice = createSlice({
       state.existingIds = [];
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
+      console.log("aaaaaaaaaaaaaaaaaaaaaa");
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
@@ -125,7 +126,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
-      state.cart.couponViewCart= payload?.data?.data?.couponCode || null
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -160,7 +161,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
-      state.cart.couponViewCart= payload?.data?.data?.couponCode || null
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart= {

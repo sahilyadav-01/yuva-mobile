@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getDeviceId } from 'react-native-device-info';
 import { YuvaService } from '../../network/yuvaService';
 
 export const couponSliceThunk = createAsyncThunk(
@@ -17,14 +18,22 @@ export const couponSliceThunk = createAsyncThunk(
 
 export const redeemCouponsSliceThunk = createAsyncThunk(
   '/coupon/redeem',
-  async ({ couponCode }, { fulfillWithValue, rejectWithValue }) => {
-
+  async ({ isLoggedIn, couponCode }, { fulfillWithValue, rejectWithValue }) => {
+    console.log("login", isLoggedIn)
     let endpoint;
-    if (couponCode) {
-      endpoint = `/cart?couponCode=${couponCode}&fromWeb=false`;
-    }
-    else {
-      endpoint = `/cart?clearCoupon=true&fromWeb=false`;
+    const sessionId =  getDeviceId();
+    if (isLoggedIn) {
+      if (couponCode) {
+        endpoint = `/cart?couponCode=${couponCode}&fromWeb=false`;
+      } else {
+        endpoint = `/cart?clearCoupon=true&fromWeb=false`;
+      }
+    } else {
+      if (couponCode) {
+        endpoint = `/cart/guest?sessionId=${sessionId}&couponCode=${couponCode}&fromWeb=false`;
+      } else {
+        endpoint = `/cart/guest?sessionId=${sessionId}&clearCoupon=true&fromWeb=false`;
+      }
     }
 
     try {
@@ -109,5 +118,5 @@ const couponSlice = createSlice({
 });
 
 export const { couponInit } = couponSlice.getInitialState();
-export const { coupon,redeemCoupons, couponView, removeCoupon } = couponSlice.actions;
+export const { coupon, redeemCoupons, couponView, removeCoupon } = couponSlice.actions;
 export default couponSlice.reducer;

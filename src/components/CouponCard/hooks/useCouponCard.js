@@ -11,6 +11,9 @@ export const useCouponCard = (props) => {
         searchKey: ""
     }
     const dispatch = useDispatch();
+    const { loggedIn } = useSelector(state => state.auth);
+    const isLoggedIn = loggedIn === 'loggedIn';
+
     const { coupon, couponView, redeemCoupons,couponMessage } = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
     const couponValue = (value) => {
@@ -19,7 +22,8 @@ export const useCouponCard = (props) => {
     }
     const [couponName, setCouponName] = useState('');
     const onApply = () => {
-        dispatch(redeemCouponsSliceThunk({ couponCode }));
+        console.log("commming")
+        dispatch(redeemCouponsSliceThunk({ isLoggedIn,couponCode }));
     }
     useEffect(() => {
 
