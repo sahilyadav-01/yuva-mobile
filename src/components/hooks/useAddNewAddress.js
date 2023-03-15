@@ -63,7 +63,7 @@ export const useAddNewAddress = (isScreen) => {
         if (!(pincode?.length === 6)) {
             Alert.alert(ALERT, PINCODE_MUST_BE)
         }
-        else if (location?.length && city?.length && data?.length) {
+        else if (location?.length && city?.length ) {
             navigation.navigate(navScreen, DATA);
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } else {

@@ -18,7 +18,7 @@ const AddNewAddressContainer = (isScreen) => {
                     <Text style={styles.AddNewAddress}>
                         {ADD_NEW_ADDRESS}
                     </Text>
-                    <View style={styles.border}>
+                    <View style={styles.borderAddNewAddress}>
                         <Text style={styles.AddAddressLine}>{ADDRESSLINE}</Text>
                         <TextInput
                             multiline={true}
@@ -72,6 +72,7 @@ const AddNewAddressContainer = (isScreen) => {
                         <View>
                         <Picker
                             selectedValue={selected}
+                            mode={'dropdown'}
                             style={styles.boxStyles}
                             onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
                         >
