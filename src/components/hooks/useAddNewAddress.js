@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 
 export const useAddNewAddress = (isScreen) => {
     const navScreen = isScreen?.isScreen;
-    const [selected, setSelected] = useState("");
+    const [selected, setSelected] = useState(false);
     const [location, setLocation] = useState('');
     const [location2, setLocation2] = useState('');
     const [pincode, setPincode] = useState('');
