@@ -75,7 +75,7 @@ export const useBookingConfirm = () => {
             programOrPlanUuid: userAttribute?.Uuid,
             relationId: selected,
             testId: [],
-            timeSlot: getEpoch(date, time),
+            timeSlot: getEpoch(date, time)+ 5.5 * 60 * 60 * 1000,
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
