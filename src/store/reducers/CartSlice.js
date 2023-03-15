@@ -85,6 +85,7 @@ const initialState = {
     isRemoved: false,
     amountToBePaid:0,
     totalDiscount:0,
+    couponViewCart:null,
   },
   loading: false,
   apiError: false,
@@ -96,6 +97,11 @@ const initialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  reducers: {
+    removeCouponCart(state) {
+      state.cart.couponViewCart=false;
+    },
+  },
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -119,6 +125,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -153,6 +160,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -232,4 +240,5 @@ const cartSlice = createSlice({
 });
 
 export const cartInit = cartSlice.getInitialState();
+export const {removeCouponCart } = cartSlice.actions;
 export default cartSlice.reducer;

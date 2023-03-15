@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
   createCartUserThunk,
+  removeCouponCart,
 } from '../../../store/reducers/CartSlice';
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER } from '../constants';
 import {
@@ -11,14 +12,18 @@ import {
   getCartUserThunk,
 } from '../../../store/reducers/CartSlice';
 import { useEffect } from 'react';
+import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/CouponSlice';
 
 export const useCart = () => {
   const navigation = useNavigation();
+  const focused = useIsFocused();
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
+  const { coupon } = useSelector(state => state);
   const { isRemoved } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
+  const { redeemCoupons, couponView } = useSelector(state => state.coupon);
   const onPress = () => {
     if (isLoggedIn) {
 
@@ -41,6 +46,13 @@ export const useCart = () => {
     const { productId: itemId } = item || {};
     itemId && dispatch(deleteCartThunk({ itemId }));
   };
+  const crossAction = () => {
+
+       dispatch(redeemCouponsSliceThunk({}));
+     dispatch(removeCoupon());
+     dispatch(removeCouponCart());
+
+  }
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -55,5 +67,9 @@ export const useCart = () => {
     buttonText,
     addToCart,
     onRemove,
+    redeemCoupons,
+    couponView,
+    crossAction,
+    coupon,
   };
 };

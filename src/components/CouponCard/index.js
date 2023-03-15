@@ -17,8 +17,10 @@ import { useDispatch } from 'react-redux';
 
 const CouponCard = () => {
   const {
-    couponName, setCouponName, coupon, couponView, onApply, couponValue
+    couponName, setCouponName, coupon, couponView, onApply, couponValue 
   } = useCouponCard();
+  // const { couponViewCart:couponViewCart } = coupon || {};
+
   const dispatch = useDispatch();
   const renderItem = ({ item }) => {
     const Success = () => {
@@ -40,7 +42,7 @@ const CouponCard = () => {
             ]}>
             {
               item.couponName === couponName ? (
-                couponView ? (
+                couponView  ? (
                   <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
                 ) : (
                   <Text style={styles.useCouponTextStyle}>{COUPON_INVALID}</Text>

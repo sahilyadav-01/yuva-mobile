@@ -18,8 +18,16 @@ export const couponSliceThunk = createAsyncThunk(
 export const redeemCouponsSliceThunk = createAsyncThunk(
   '/coupon/redeem',
   async ({ couponCode }, { fulfillWithValue, rejectWithValue }) => {
+
+    let endpoint;
+    if (couponCode) {
+      endpoint = `/cart?couponCode=${couponCode}&fromWeb=false`;
+    }
+    else {
+      endpoint = `/cart?clearCoupon=true&fromWeb=false`;
+    }
+
     try {
-      const endpoint = `/coupon/redeem?couponCode=${couponCode}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -34,11 +42,12 @@ const initialState = {
   apiErrorMessage: '',
   coupon: [],
   redeemCoupons: '',
-  couponView: false,
+  couponView: null,
   totalCost: 0,
   amountToBePaid: 0,
   totalDiscount: 0,
   couponMessage: false,
+
 }
 
 const couponSlice = createSlice({
@@ -49,13 +58,7 @@ const couponSlice = createSlice({
       state.coupon = action.payload?.data?.userCouponResponseDtoList || [];
     },
     removeCoupon(state) {
-      state.couponView = false;
-      state.totalCost = 0;
-      state.amountToBePaid = 0;
-      state.totalDiscount = 0;
-    },
-    showCouponMessage(state) {
-      state.couponMessage = false;
+      state.couponView = null;
     },
   },
   extraReducers: {
@@ -64,12 +67,12 @@ const couponSlice = createSlice({
     /** getAllCoupons */
     [couponSliceThunk.pending]: (state, { payload }) => {
       state.loading = true;
-      state.couponView = false;
-      state.totalCost = 0;
-      state.amountToBePaid = 0;
-      state.totalDiscount = 0;
-      state.redeemCoupons = '';
-      state.couponMessage = false;
+      // state.couponView = null;
+      // state.totalCost = 0;
+      // state.amountToBePaid = 0;
+      // state.totalDiscount = 0;
+      // state.redeemCoupons = '';
+      // state.couponMessage = false;
     },
     [couponSliceThunk.fulfilled]: (state, action) => {
       state.coupon = action.payload?.data?.userCouponResponseDtoList || [];
@@ -81,7 +84,7 @@ const couponSlice = createSlice({
     /** redeemCoupons */
     [redeemCouponsSliceThunk.pending]: (state, { payload }) => {
       state.loading = true;
-      state.couponView = false;
+      state.couponView = null;
       state.totalCost = 0;
       state.amountToBePaid = 0;
       state.totalDiscount = 0;
@@ -92,20 +95,19 @@ const couponSlice = createSlice({
       state.totalCost = action?.payload?.data?.totalCost || 0;
       state.amountToBePaid = action?.payload?.data?.amountToBePaid || 0;
       state.totalDiscount = action?.payload?.data?.totalDiscount || 0;
-      state.couponView = true;
       state.couponMessage = true;
-
+      state.couponView = action?.payload?.data?.couponCode || null;
     },
     [redeemCouponsSliceThunk.rejected]: (state, action) => {
       state.redeemCoupons = action.payload?.errorMessage || '';
-      state.couponView = false;
       state.apiError = true;
       state.couponMessage = true;
+      state.couponView = null;
     },
 
   },
 });
 
 export const { couponInit } = couponSlice.getInitialState();
-export const { coupon, redeemCoupons, couponView, removeCoupon ,showCouponMessage} = couponSlice.actions;
+export const { coupon,redeemCoupons, couponView, removeCoupon } = couponSlice.actions;
 export default couponSlice.reducer;

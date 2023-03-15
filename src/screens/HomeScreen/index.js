@@ -159,7 +159,7 @@ const HomeScreen = ({ navigation }) => {
           />
         </View>
         <View>
-          <OurPlan isHomeScreen={true}/>
+          <OurPlan isHomeScreen={true} />
         </View>
       </ScrollView>
     </SafeAreaView>
