@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, FlatList, TextInput } from 'react-native';
-import { ADDRESSLINE, ADDRESSLINE2, ADD_ADDRESS, ADD_NEW_ADDRESS, CITY, CITYNAME, CONTACT, HOME, LOCATION, PINCODE, SAVE_AS } from './constants';
+import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { ADDRESSLINE, ADDRESSLINE2, ADD_ADDRESS, ADD_NEW_ADDRESS, CITY, CITYNAME, CONTACT, ERROR_TEXT_CONTACT_NUMBER, ERROR_TEXT_LOCATION, ERROR_TEXT_PINCODE, HOME, LOCATION, PINCODE, SAVE_AS } from './constants';
 import { useAddNewAddress } from './hooks/useAddNewAddress';
-import SelectList from 'react-native-dropdown-select-list'
 import { styles } from './styles';
+import {Picker} from '@react-native-picker/picker';
 
 const AddNewAddressContainer = (isScreen) => {
-    const { 
-        setSelected, data, addAddress, onChangePincode,
-        onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2 } = useAddNewAddress(isScreen);
-    return (
+    const {selected,
+        setSelected, addAddress, onChangePincode,
+        onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2, errorState, errorPincode, errorAddress } = useAddNewAddress(isScreen);
+      
+        return (
         <View>
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
@@ -25,6 +26,9 @@ const AddNewAddressContainer = (isScreen) => {
                             placeholder={LOCATION}
                             onChangeText={onChangeLocation}
                         />
+                        {errorAddress && (
+                            <Text style={styles.errorContact}>{ERROR_TEXT_LOCATION}</Text>
+                        )}
                         <Text style={styles.AddAddressLine}>{ADDRESSLINE2}</Text>
                         <TextInput
                             multiline={true}
@@ -41,25 +45,40 @@ const AddNewAddressContainer = (isScreen) => {
                         />
                         <Text style={styles.AddAddressLine}>{PINCODE}</Text>
                         <TextInput
-                            multiline={true}
+                            keyboardType='numeric'
+                            multiline={false}
+                            maxLength={6}
                             style={styles.textInputStyle}
                             placeholder={PINCODE}
                             onChangeText={onChangePincode}
                         />
+                        {errorPincode && (
+                            <Text style={styles.errorContact}>{ERROR_TEXT_PINCODE}</Text>
+                        )}
                         <Text style={styles.AddAddressLine}>{CONTACT}</Text>
                         <TextInput
-                            multiline={true}
+                            keyboardType='phone-pad'
+                            multiline={false}
+                            maxLength={10}
                             style={styles.textInputStyle}
                             placeholder={CONTACT}
                             onChangeText={onChangeContact}
+
                         />
+                        {errorState && (
+                            <Text style={styles.errorContact}>{ERROR_TEXT_CONTACT_NUMBER}</Text>
+                        )}
                         <Text style={styles.AddAddressLine}>{SAVE_AS}</Text>
-                        <SelectList
-                            boxStyles={styles.boxStyles}
-                            defaultOption={{ key: null, value: HOME }}
-                            setSelected={setSelected}
-                            data={data}
-                        />
+                        <View>
+                        <Picker
+                            selectedValue={selected}
+                            style={styles.boxStyles}
+                            onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
+                        >
+                            <Picker.Item label="Home" value="0" />
+                            <Picker.Item label="Away" value="1" />
+                        </Picker>
+                        </View>
                     </View>
                     <TouchableOpacity
                         onPress={addAddress}

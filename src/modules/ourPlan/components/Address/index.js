@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import Header from "../../../../components/Header";
-import { ADDRES, CHECKOUT, CONFIRM_DETAILS, PAYMENT } from "./constants";
+import { ADDRES, CHECKOUT, CONFIRM_DETAILS, OUR_PLAN_ADDRESS, PAYMENT } from "./constants";
 import { styles } from "./styles";
 import { useOurPlanAddress } from "./hooks/useAddress";
 import AddressList from "../../../../components/Address";
@@ -18,7 +18,7 @@ const OurPlanAddress = () => {
                 <View style={styles.progressBar}>
                     <ProgressBar progress={0} />
                 </View>
-                <AddressList />
+                <AddressList isNavScreen={OUR_PLAN_ADDRESS}/>
                 <TouchableOpacity
                     onPress={AddressAdded}
                     style={styles.touchableButton}>
