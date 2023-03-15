@@ -2,7 +2,7 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import Header from "../../../../components/Header";
-import { ADDRES, CHECKOUT, CONFIRM_DETAILS, OUR_PLAN_ADDRESS, PAYMENT } from "./constants";
+import { CHECKOUT, CONFIRM_DETAILS, OUR_PLAN_ADDRESS } from "./constants";
 import { styles } from "./styles";
 import { useOurPlanAddress } from "./hooks/useAddress";
 import AddressList from "../../../../components/Address";

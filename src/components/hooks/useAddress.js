@@ -25,12 +25,13 @@ export const useOurAddress = (isNavScreen) => {
     const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
     const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
     const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
-
+    const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
     const checkoutData = {
         address: address,
         pincode: pincode,
         contact: contact,
         cityName: cityName,
+        away:away,
     }
     const AddNewAddress = () => {
         navigation.navigate(NEW_ADDRESS)
