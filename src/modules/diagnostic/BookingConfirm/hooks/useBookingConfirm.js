@@ -63,7 +63,7 @@ export const useBookingConfirm = () => {
     const address = selectedAddress?.address;
     const pincode = selectedAddress?.pincode;
     const contact = selectedAddress?.contact;
-    const away    = selectedAddress?.away
+    const away    = selectedAddress?.away;
     const bookTestScreen = () => {
         var data = {
             address: address,
