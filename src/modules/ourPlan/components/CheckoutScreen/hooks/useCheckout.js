@@ -1,7 +1,10 @@
 import { useRoute } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
+    const {TermsAndCondtionChecked}=useSelector(state=>state.cart);
     const route = useRoute();
     const { address,
         pincode,
@@ -10,6 +13,11 @@ export const useCheckout = () => {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice, } = route?.params || {};
+        const onCheckout=()=>{
+            if(!TermsAndCondtionChecked){
+                alert(TERMS_CONDITION)
+            }
+        }
     return {
         address,
         pincode,
@@ -18,5 +26,7 @@ export const useCheckout = () => {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,
+        TermsAndCondtionChecked,
+        onCheckout
     }
 }

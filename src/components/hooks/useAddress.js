@@ -1,12 +1,11 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserAddress, saveCheckedAddress } from "../../store/reducers/ProfileSlice";
-import { NEW_ADDRESS, ADDRESS, ALERT, CHECK_OUT_SCREEN, PLEASE_CHECK_ADDRESS } from "../constants";
+import { NEW_ADDRESS } from "../constants";
 
 
-export const useOurAddress = () => {
+export const useOurAddress = (isNavScreen) => {
     const route = useRoute();
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -18,7 +17,7 @@ export const useOurAddress = () => {
         dispatch(getUserAddress())
     }, [])
     useEffect(() => {
-        if (route?.name === ADDRESS) {
+        if (route?.name === isNavScreen?.isNavScreen) {
             setUserAttribute(route?.params)
         }
     }, [route])
@@ -26,12 +25,13 @@ export const useOurAddress = () => {
     const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
     const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
     const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
-
+    const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
     const checkoutData = {
         address: address,
         pincode: pincode,
         contact: contact,
         cityName: cityName,
+        away:away,
     }
     const AddNewAddress = () => {
         navigation.navigate(NEW_ADDRESS)

@@ -102,6 +102,9 @@ const cartSlice = createSlice({
       state.cart.couponViewCart=false;
     },
   },
+    setTermsAndCondtionChecked(state,{payload}){
+      state.TermsAndCondtionChecked=payload;
+    },
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -236,7 +239,7 @@ const cartSlice = createSlice({
     },    
   },
 });
-
+export const {setTermsAndCondtionChecked}=cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export const {removeCouponCart } = cartSlice.actions;
 export default cartSlice.reducer;
