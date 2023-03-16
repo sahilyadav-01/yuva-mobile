@@ -91,6 +91,7 @@ const initialState = {
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
+  TermsAndCondtionChecked:false,
 };
 
 const cartSlice = createSlice({
