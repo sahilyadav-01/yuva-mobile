@@ -87,7 +87,7 @@ const couponSlice = createSlice({
     [couponSliceThunk.rejected]: (state, action) => {
       state.apiError = true;
       state.loading = false; 
-      state.apiErrorMessage= payload.data.message;
+      state.apiErrorMessage= action?.payload?.message;
     },
 
     /** redeemCoupons */
@@ -99,6 +99,7 @@ const couponSlice = createSlice({
       state.totalDiscount = 0;
       state.couponMessage = false;
       state.apiErrorMessage= '';
+      state.apiError = false;
     },
     [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
       state.loading = false; 
@@ -116,7 +117,7 @@ const couponSlice = createSlice({
       state.apiError = true;
       state.couponMessage = true;
       state.couponView = null;
-      state.apiErrorMessage= payload.data.message;
+      state.apiErrorMessage= action?.payload?.message;
     },
 
   },
