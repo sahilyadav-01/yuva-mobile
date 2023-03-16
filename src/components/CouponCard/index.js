@@ -17,19 +17,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CouponCard = () => {
   const {
-    couponName, setCouponName, coupon, couponView, onApply, couponValue
+    couponName, setCouponName, coupon, couponView, onApply, onCouponValue
   } = useCouponCard();
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
   const renderItem = ({ item }) => {
-    const Success = () => {
+    const onSuccess = () => {
       let couponCode = item.couponCode
       setCouponName(item.couponName);
       dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
     };
     return (
-      <TouchableOpacity style={styles.buttonStyles} onPress={Success}>
+      <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess}>
         <View style={styles.couponContainer}>
           <View style={styles.viewStyles}>
             <Text style={styles.textStyle}>{item.couponCode}</Text>
@@ -63,7 +63,7 @@ const CouponCard = () => {
         <TextInput
           style={styles.textInputStyles}
           placeholder={COUPON_CODE}
-          onChangeText={couponValue}
+          onChangeText={onCouponValue}
           autoCapitalize={CAPITALIZE_TEXT}
         />
         <TouchableOpacity style={styles.applyStyles} onPress={onApply}>

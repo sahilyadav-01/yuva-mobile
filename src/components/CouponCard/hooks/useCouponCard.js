@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { couponSliceThunk, redeemCouponsSliceThunk } from '../../../store/reducers/CouponSlice';
 
 export const useCouponCard = (props) => {
-    const [couponCode, setcouponCode] = useState('');
+    const [couponCode, setCouponCode] = useState('');
     const couponFilterDto = {
         productType: "",
         searchKey: ""
@@ -14,9 +14,9 @@ export const useCouponCard = (props) => {
 
     const { coupon, couponView } = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
-    const couponValue = (value) => {
+    const onCouponValue = (value) => {
 
-        setcouponCode(value)
+        setCouponCode(value)
     }
     const [couponName, setCouponName] = useState('');
     const onApply = () => {
@@ -34,7 +34,7 @@ export const useCouponCard = (props) => {
         coupon,
         couponView,
         onApply,
-        couponValue,
+        onCouponValue,
         cart,
     };
 }
