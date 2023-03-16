@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-import { Checkbox } from 'react-native-paper';
 import SelectList from 'react-native-dropdown-select-list'
 import Header from '../../../components/Header'
-import { BOOKING_FOR, DATE, MYSELF, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
+import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { DARK_BLUE } from '../../../styles/colors';
@@ -97,7 +96,7 @@ const BookingConfirm = () => {
                                     data={dataRelation}
                                 />
                             </View>)}
-                        <AddressList />
+                        <AddressList isNavScreen={BOOKINGCONFIRM}/>
                     </View>
                     <View>
                         {!bookedDetails ? (

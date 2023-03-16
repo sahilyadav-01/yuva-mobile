@@ -13,6 +13,7 @@ export const useOurAddress = (isNavScreen) => {
     const [userNewAddress, setUserNewAddress] = useState();
     const [checked, setChecked] = useState(null);
     const { userAddress } = useSelector(state => state?.profile);
+    const [userAddressListing, setUserAddressListing] = useState([]);
     useEffect(() => {
         dispatch(getUserAddress())
     }, [])
@@ -25,12 +26,13 @@ export const useOurAddress = (isNavScreen) => {
     const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
     const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
     const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
-
+    const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
     const checkoutData = {
         address: address,
         pincode: pincode,
         contact: contact,
         cityName: cityName,
+        away:away,
     }
     const AddNewAddress = () => {
         navigation.navigate(NEW_ADDRESS)
@@ -39,25 +41,27 @@ export const useOurAddress = (isNavScreen) => {
         dispatch(saveCheckedAddress(checkoutData))
     }, [address])
 
-    useEffect(() => {
-        if (userAttribute?.[0]?.address) {
-            setUserNewAddress(userAttribute)
-        }
-    }, [userAttribute])
-
-
+  useEffect(() => {
+    if (userAttribute?.[0]?.address) {
+      setUserNewAddress(userAttribute);
+    }
+  }, [userAttribute]);
+  useEffect(() => {
     if (userNewAddress?.[0]?.address) {
-        var userAddressListing = userAddress.concat(userNewAddress)
-    }
-    else {
-        var userAddressListing = userAddress;
-    }
-    return {
-        userAddress,
-        setChecked,
-        checked,
-        AddNewAddress,
-        userAttribute,
-        userAddressListing
-    }
-}
+        let list = userAddress.concat(userNewAddress);
+        setUserAddressListing(list);
+        setChecked(list.length -1);
+      } else {
+        setUserAddressListing(userAddress);
+      }
+  }, [userAddress, userNewAddress]);
+
+  return {
+    userAddress,
+    setChecked,
+    checked,
+    AddNewAddress,
+    userAttribute,
+    userAddressListing,
+  };
+};

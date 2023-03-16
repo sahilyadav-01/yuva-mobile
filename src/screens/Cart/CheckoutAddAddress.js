@@ -1,14 +1,15 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import Cart from '../../modules/cart';
+
+import CheckoutAddAddressList from '../../modules/cart/CheckoutAddAddress';
 import {styles} from './styles';
 
-const CartScreen = props => {
+const CheckoutAddAddress = props => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
-      <Cart />
+      <CheckoutAddAddressList />
     </SafeAreaView>
   );
 };
 
-export default CartScreen;
+export default CheckoutAddAddress;

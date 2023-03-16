@@ -1,14 +1,14 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import Cart from '../../modules/cart';
+import PaymentReconfirmList from '../../modules/cart/PaymentReconfirmList';
 import {styles} from './styles';
 
-const CartScreen = props => {
+const PaymentReconfirm = props => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
-      <Cart />
+      <PaymentReconfirmList />
     </SafeAreaView>
   );
 };
 
-export default CartScreen;
+export default PaymentReconfirm;

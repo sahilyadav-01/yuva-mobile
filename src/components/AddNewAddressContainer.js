@@ -76,8 +76,8 @@ const AddNewAddressContainer = (isScreen) => {
                             style={styles.boxStyles}
                             onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
                         >
-                            <Picker.Item label="Home" value="0" />
-                            <Picker.Item label="Away" value="1" />
+                            <Picker.Item label="Home" value="false" />
+                            <Picker.Item label="Away" value="true" />
                         </Picker>
                         </View>
                     </View>

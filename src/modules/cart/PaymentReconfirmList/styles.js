@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
+import {CYAN_BLUE, FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
 import {CENTER} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
@@ -22,12 +22,13 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     color: WHITE,
+
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
   },
   touchableButton: {
     backgroundColor: ORANGE,
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: 13,
     marginRight: 14,
     borderRadius: 8,
@@ -40,5 +41,20 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
+  },
+  dateContainer: {
+    borderRadius: 12,
+    justifyContent: CENTER,
+    paddingLeft: 21,
+    marginHorizontal: 16,
+    backgroundColor: WHITE,
+    marginTop: 23,
+    height: 66,
+  },
+  timeSlotStyle: {
+    color: CYAN_BLUE,
+    marginVertical: 3,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize12,
   },
 });
