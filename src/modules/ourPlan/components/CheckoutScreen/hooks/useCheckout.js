@@ -4,7 +4,7 @@ import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
-    const {TermsAndCondtionChecked}=useSelector(state=>state.cart);
+    const {termsAndCondtionChecked}=useSelector(state=>state.cart);
     const route = useRoute();
     const { address,
         pincode,
@@ -14,7 +14,7 @@ export const useCheckout = () => {
         quarterlyPrice,
         halfYearlyPrice, } = route?.params || {};
         const onCheckout=()=>{
-            if(!TermsAndCondtionChecked){
+            if(!termsAndCondtionChecked){
                 alert(TERMS_CONDITION)
             }
         }
@@ -26,7 +26,7 @@ export const useCheckout = () => {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,
-        TermsAndCondtionChecked,
+        termsAndCondtionChecked,
         onCheckout
     }
 }

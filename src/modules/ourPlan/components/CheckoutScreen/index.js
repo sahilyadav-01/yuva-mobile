@@ -16,7 +16,7 @@ const CheckoutOurPlan = () => {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,
-        TermsAndCondtionChecked,
+        termsAndCondtionChecked,
         onCheckout } = useCheckout();
 
     return (
