@@ -91,6 +91,7 @@ const initialState = {
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
+  termsAndCondtionChecked:false,
 };
 
 const cartSlice = createSlice({
@@ -98,7 +99,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setTermsAndCondtionChecked(state,{payload}){
-      state.TermsAndCondtionChecked=payload;
+      state.termsAndCondtionChecked=payload;
     },},
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
