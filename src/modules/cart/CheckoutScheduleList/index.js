@@ -13,25 +13,27 @@ const CheckoutScheduleList = () => {
     useCartAddressList();
 
   return (
-    <ScrollView>
+    <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
-      <OrderDetails />
-      <View style={styles.bodyContainer}>
-        <ProgressBar progress="0.65" showDateTimeSection={true} />
-      </View>
-      <DateAndTime
-        handleDate={handleDate}
-        handleTime={handleTime}
-        date={date}
-        time={time}
-      />
-      <FinalAddress />
-      <TouchableOpacity
-        onPress={ConfirmDateAndTime}
-        style={styles.touchableButton}>
-        <Text style={styles.textBook}>{CONFIRM_DATE_TIME}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <ScrollView>
+        <OrderDetails />
+        <View style={styles.bodyContainer}>
+          <ProgressBar progress="0.65" showDateTimeSection={true} />
+        </View>
+        <DateAndTime
+          handleDate={handleDate}
+          handleTime={handleTime}
+          date={date}
+          time={time}
+        />
+        <FinalAddress />
+        <TouchableOpacity
+          onPress={ConfirmDateAndTime}
+          style={styles.touchableButton}>
+          <Text style={styles.textBook}>{CONFIRM_DATE_TIME}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </>
   );
 };
 

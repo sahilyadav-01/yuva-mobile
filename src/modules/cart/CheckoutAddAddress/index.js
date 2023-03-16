@@ -8,14 +8,16 @@ import ProgressBar from '../../../components/ProgressBar';
 import AddNewAddressContainer from '../../../components/AddNewAddressContainer';
 const CheckoutAddAddressList = () => {
   return (
-    <ScrollView>
+    <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
-      <OrderDetails />
-      <View style={styles.bodyContainer}>
-        <ProgressBar progress="0" showDateTimeSection={true} />
-      </View>
-      <AddNewAddressContainer isScreen={'CheckoutAddressList'} />
-    </ScrollView>
+      <ScrollView>
+        <OrderDetails />
+        <View style={styles.bodyContainer}>
+          <ProgressBar progress="0" showDateTimeSection={true} />
+        </View>
+        <AddNewAddressContainer isScreen={'CheckoutAddressList'} />
+      </ScrollView>
+    </>
   );
 };
 

@@ -15,25 +15,27 @@ const PaymentReconfirmList = props => {
   const renderDate = getDateInFormat(new Date(date), 'dd/mm/yyyy');
   const renderTime = getTimeInFormat(new Date(time), 'hh:mm:ss');
   return (
-    <ScrollView>
+    <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
-      <OrderDetails />
-      <View style={styles.bodyContainer}>
-        <ProgressBar progress="0.99" showDateTimeSection={true} />
-      </View>
+      <ScrollView>
+        <OrderDetails />
+        <View style={styles.bodyContainer}>
+          <ProgressBar progress="0.99" showDateTimeSection={true} />
+        </View>
 
-      <FinalAddress />
+        <FinalAddress />
 
-      <View style={styles.dateContainer}>
-        <Text style={styles.timeSlotStyle}>{renderDate}</Text>
-        <Text style={styles.timeSlotStyle}>{renderTime}</Text>
-      </View>
-      {/*  to do ranjit component */}
+        <View style={styles.dateContainer}>
+          <Text style={styles.timeSlotStyle}>{renderDate}</Text>
+          <Text style={styles.timeSlotStyle}>{renderTime}</Text>
+        </View>
+        {/*  to do ranjit component */}
 
-      <TouchableOpacity style={styles.touchableButton}>
-        <Text style={styles.textBook}>{TO_BE_PAID}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <TouchableOpacity style={styles.touchableButton}>
+          <Text style={styles.textBook}>{TO_BE_PAID}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </>
   );
 };
 

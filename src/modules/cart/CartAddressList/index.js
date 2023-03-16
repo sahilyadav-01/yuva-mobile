@@ -13,17 +13,19 @@ const CartAddressList = props => {
   const {ConfirmAddress} = useCartAddressList();
 
   return (
-    <ScrollView style={styles.container} nestedScrollEnabled>
+    <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
-      <OrderDetails />
-      <View style={styles.bodyContainer}>
-        <ProgressBar progress="0" showDateTimeSection={true} />
-      </View>
-      <AddressList isNavScreen={'CheckoutAddressList'}/>
-      <TouchableOpacity onPress={ConfirmAddress} style={styles.touchableButton}>
-        <Text style={styles.textBook}>{CONFIRM_ADDRESS}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <ScrollView style={styles.container} nestedScrollEnabled>
+        <OrderDetails />
+        <View style={styles.bodyContainer}>
+          <ProgressBar progress="0" showDateTimeSection={true} />
+        </View>
+        <AddressList isNavScreen={'CheckoutAddressList'}/>
+        <TouchableOpacity onPress={ConfirmAddress} style={styles.touchableButton}>
+          <Text style={styles.textBook}>{CONFIRM_ADDRESS}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </>
   );
 };
 
