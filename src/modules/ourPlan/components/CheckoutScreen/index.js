@@ -19,6 +19,8 @@ const CheckoutOurPlan = () => {
         TermsAndCondtionChecked,
         onCheckout } = useCheckout();
 
+        const price = Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice)
+
     return (
         <View>
             <Header showBackButton={true} title={CHECKOUT} />
@@ -36,13 +38,13 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
-                <CheckoutPriceDetails isPrice={{ yearlyPrice, quarterlyPrice, halfYearlyPrice }} />
+                <CheckoutPriceDetails price={price} isPrice={{ yearlyPrice, quarterlyPrice, halfYearlyPrice }} />
                 <View>
                     <TouchableOpacity
                          onPress={onCheckout}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {yearlyPrice}/-
+                            {TO_BE_PAID} {RUPEE} {price}/-
                         </Text>
                     </TouchableOpacity>
                 </View>

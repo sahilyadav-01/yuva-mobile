@@ -16,7 +16,8 @@ return {
         quarterlyPrice,
         halfYearlyPrice,
         checked,
-        setChecked
+        setChecked,
+        price:isPrice?.price
 
     }
 }
