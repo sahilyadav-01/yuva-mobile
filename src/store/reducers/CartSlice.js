@@ -112,10 +112,8 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
       };
-      state.existingIds = [];
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
-      console.log("aaaaaaaaaaaaaaaaaaaaaa");
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
@@ -148,7 +146,6 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
 };
-      state.existingIds = [];
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []

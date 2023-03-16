@@ -1,4 +1,4 @@
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
@@ -16,11 +16,10 @@ import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/C
 
 export const useCart = () => {
   const navigation = useNavigation();
-  const focused = useIsFocused();
   const dispatch = useDispatch();
   const { cart ,existingIds} = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved,couponViewCart } = cart || {};
+  const { isRemoved } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
@@ -56,13 +55,8 @@ export const useCart = () => {
 
   useEffect(() => {
 
-    if ((existingIds.length===0)&&(couponViewCart)) {
+    if ((existingIds.length===0)) {
       crossAction();
-    }
-    else if ((existingIds.length===0)&&(couponView))
-    {
-      crossAction();
-
     }
   }, [existingIds]);
 

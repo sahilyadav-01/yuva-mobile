@@ -11,11 +11,9 @@ import { useCart } from './hooks/useCart';
 import { styles } from './styles';
 
 const Cart = props => {
-  const { cart, coupon, redeemCoupons,couponView, onPress, crossAction, buttonText, onRemove } = useCart();
+  const { cart, coupon,couponView, onPress, crossAction, buttonText, onRemove } = useCart();
   const { itemDtoList, totalCost, amountToBePaid, totalDiscount, couponViewCart } = cart || {};
   const { totalCost: appliedTotalCost, amountToBePaid: appliedAmountToBePaid, totalDiscount: appliedTotalDiscount } = coupon || {};
-  console.log("couponView",couponView);
-  console.log("couponViewCart",couponViewCart);
 
   return (
     <>

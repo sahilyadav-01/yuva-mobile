@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CouponCard = () => {
   const {
-    couponName, setCouponName, coupon, couponView, onApply, couponValue 
+    couponName, setCouponName, coupon, couponView, onApply, couponValue
   } = useCouponCard();
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
@@ -26,7 +26,7 @@ const CouponCard = () => {
     const Success = () => {
       let couponCode = item.couponCode
       setCouponName(item.couponName);
-      dispatch(redeemCouponsSliceThunk({ isLoggedIn,couponCode }));
+      dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={Success}>
@@ -42,7 +42,7 @@ const CouponCard = () => {
             ]}>
             {
               item.couponName === couponName ? (
-                couponView  ? (
+                couponView ? (
                   <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
                 ) : (
                   <Text style={styles.useCouponTextStyle}>{COUPON_INVALID}</Text>
