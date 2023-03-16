@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   DARK_BLUE,
   WHITE,
@@ -11,6 +11,8 @@ import {
   BOX_SHADOW,
   LIGHT_MERCURY,
   LIGHT_GREYISH_RED,
+  RED,
+  VERY_LIGHT_GREY,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -348,12 +350,15 @@ export const styles = StyleSheet.create({
   },
   AddAddressLine: {
     marginTop: 16,
-    marginLeft: 12,
+    marginBottom: 8,
+    marginLeft: 14,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
   textInputStyle: {
+    paddingLeft: 12,
+    marginHorizontal: 13,
     borderWidth: 1,
     borderColor: LIGHT_MERCURY,
     backgroundColor: LIGHT_GREYISH_RED,
@@ -361,22 +366,20 @@ export const styles = StyleSheet.create({
     marginBottom: 11,
     color: DARK_BLUE,
     minHeight: 42,
-    marginLeft: 12,
-    marginRight: 26,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },
   boxStyles: {
-    marginLeft: 12,
-    marginRight: 26,
+    marginHorizontal: 13,
     borderWidth: 0.1,
     backgroundColor: LIGHT_GREYISH_RED,
     borderColor: LIGHT_MERCURY,
     minHeight: 42,
-    borderRadius: 2,
+    borderRadius: 8,
     marginBottom: 31,
   },
   touchableButton: {
+    justifyContent: CENTER,
     backgroundColor: ORANGE,
     marginTop: 34,
     marginLeft: 16,
@@ -419,8 +422,6 @@ export const styles = StyleSheet.create({
   AddNewAdd: {
     marginLeft: 38,
     marginTop: 18,
-    shadowColor: WHITE,
-    shadowOpacity: '5%',
     borderRadius: 8,
     backgroundColor: WHITE,
     flexDirection: ROW,
@@ -467,7 +468,7 @@ export const styles = StyleSheet.create({
   },
   AdressCheckBox: {
     marginTop: 11,
-    marginLeft: 40,
+    marginLeft: 30,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -476,19 +477,15 @@ export const styles = StyleSheet.create({
   SvgImage: {
     flex: 1,
     marginTop: 10,
-  },
-  AddressImages: {
-    justifyContent: SPACE_BETWEEN,
-    flexDirection: ROW,
-    marginRight: 25,
+
   },
   AddText: {
     marginLeft: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-  },
-  check: {
+    },
+    check:  {
     marginRight: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
@@ -498,4 +495,10 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
   },
+  errorContact: {
+    color: RED,
+    marginHorizontal: 14,
+  },
+
+
 });
