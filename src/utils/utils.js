@@ -365,8 +365,7 @@ export const getTimeInFormat = (date, format) => {
   switch (format) {
     case 'hh:mm:ss':
       return (
-        date &&
-        `${date.getHours()}:${date.getMinutes() + 1}:${date.getSeconds()}`
+        date && `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
       );
   }
 };
