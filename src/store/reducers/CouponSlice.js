@@ -75,13 +75,19 @@ const couponSlice = createSlice({
      */
     /** getAllCoupons */
     [couponSliceThunk.pending]: (state, { payload }) => {
-      state.loading = true;    
+      state.loading = true;  
+      state.apiError = false;
+      state.apiErrorMessage= '';
     },
     [couponSliceThunk.fulfilled]: (state, action) => {
+      state.loading = false; 
       state.coupon = action.payload?.data?.userCouponResponseDtoList || [];
+      state.apiErrorMessage= '';
     },
     [couponSliceThunk.rejected]: (state, action) => {
       state.apiError = true;
+      state.loading = false; 
+      state.apiErrorMessage= payload.data.message;
     },
 
     /** redeemCoupons */
@@ -92,8 +98,11 @@ const couponSlice = createSlice({
       state.amountToBePaid = 0;
       state.totalDiscount = 0;
       state.couponMessage = false;
+      state.apiErrorMessage= '';
     },
     [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
+      state.loading = false; 
+      state.apiErrorMessage= '';
       state.redeemCoupons = action?.payload?.message || '';
       state.totalCost = action?.payload?.data?.totalCost || 0;
       state.amountToBePaid = action?.payload?.data?.amountToBePaid || 0;
@@ -102,10 +111,12 @@ const couponSlice = createSlice({
       state.couponView = action?.payload?.data?.couponCode || null;
     },
     [redeemCouponsSliceThunk.rejected]: (state, action) => {
+      state.loading = false; 
       state.redeemCoupons = action.payload?.errorMessage || '';
       state.apiError = true;
       state.couponMessage = true;
       state.couponView = null;
+      state.apiErrorMessage= payload.data.message;
     },
 
   },
