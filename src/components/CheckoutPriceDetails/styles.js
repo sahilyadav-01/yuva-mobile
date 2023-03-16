@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COUPON_DARK_GREY, CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
-import {FLEX_END, RIGHT, ROW, SPACE_BETWEEN,CENTER } from '../../styles/constants';
+import { FLEX_END, RIGHT, ROW, SPACE_BETWEEN, CENTER } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
         marginLeft: "7%",
         marginHorizontal: 15,
         borderRightColor: ORANGE,
-        borderColor:COUPON_DARK_GREY,
+        borderColor: COUPON_DARK_GREY,
     },
     textInputStyles: {
         marginLeft: "3.25%",
@@ -161,8 +161,7 @@ export const styles = StyleSheet.create({
         color: WHITE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize16,
-        marginTop: "8%",
-        marginLeft: "25.33%",
+        textAlign: CENTER,
     },
     TextPriceDiscount: {
         marginLeft: "7%",
