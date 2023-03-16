@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {SVG} from '../../../../assets';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { SVG } from '../../../../assets';
 import { REMOVE } from '../constants';
-import {styles} from './style';
+import { styles } from './style';
 
 const CartItem = props => {
   const {
@@ -16,17 +16,28 @@ const CartItem = props => {
     removeText,
     priceContainer,
   } = styles();
-  const {item: {name:text, discount, cost: price, tests}, onPressRemove} = props;
+  const { item: { name: text, discountedCost: discount, cost: price, tests }, onPressRemove } = props;
+
+  const priceComponent = () => {
+    if (discount === price) {
+      return <Text style={priceText}>{`₹ ${price}/-`}</Text>;
+    } else {
+      return (
+        <View style={priceContainer}>
+          <Text style={discountText}>{`₹ ${price}/-`}</Text>
+          <Text style={priceText}>{`₹ ${discount}/-`}</Text>
+        </View>
+      );
+    }
+  };
+
   return (
     <>
       <View style={packageContainer}>
         <Text numberOfLines={2} style={packageName}>
           {text}
         </Text>
-        <View style={priceContainer}>
-          <Text style={discountText}>{discount}</Text>
-          <Text style={priceText}>{price}</Text>
-        </View>
+        {priceComponent()}
       </View>
       <View style={detailsContainer}>
         <Text style={testText}>{tests}</Text>

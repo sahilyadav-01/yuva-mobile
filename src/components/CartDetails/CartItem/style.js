@@ -5,7 +5,7 @@ import {
   RED_SHADE,
   SPANISH_WHITE,
 } from '../../../styles/colors';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {CENTER, LINE_THROUGH, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
 export const styles = () => {
@@ -30,7 +30,8 @@ export const styles = () => {
       lineHeight: 18,
       color: RED_SHADE,
       fontFamily: fonts.family.rubik400,
-      marginRight:4
+      marginRight:4,
+      textDecorationLine:LINE_THROUGH
     },
     priceText: {
       fontSize: 12,

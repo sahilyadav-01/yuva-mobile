@@ -1,8 +1,10 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
+    const {TermsAndCondtionChecked}=useSelector(state=>state.cart);
     const route = useRoute();
     const navigation = useNavigation();
     const {mainItem} = useSelector(state=>state.programAndPlan);
@@ -38,6 +40,13 @@ export const useCheckout = () => {
         const paymentProps = {plan,bookingRequestDto,subscriptionRequestDto}
         navigation.navigate('PaymentScreen',{paymentProps})
     }
+
+    const onCheckout=()=>{
+        if(!TermsAndCondtionChecked){
+            alert(TERMS_CONDITION)
+        }
+        else onPayPress();
+    }
     return {
         address,
         pincode,
@@ -47,6 +56,7 @@ export const useCheckout = () => {
         quarterlyPrice,
         halfYearlyPrice,
         cityId,
-        onPayPress
+        TermsAndCondtionChecked,
+        onCheckout
     }
 }

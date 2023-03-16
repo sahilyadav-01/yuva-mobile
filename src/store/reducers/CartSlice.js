@@ -83,6 +83,8 @@ const initialState = {
     itemDtoList: [],
     totalCost: 0,
     isRemoved: false,
+    amountToBePaid:0,
+    totalDiscount:0,
   },
   loading: false,
   apiError: false,
@@ -94,6 +96,10 @@ const initialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  reducers: {
+    setTermsAndCondtionChecked(state,{payload}){
+      state.TermsAndCondtionChecked=payload;
+    },},
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -108,6 +114,9 @@ const cartSlice = createSlice({
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -139,6 +148,9 @@ const cartSlice = createSlice({
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -222,6 +234,6 @@ const cartSlice = createSlice({
     },    
   },
 });
-
+export const {setTermsAndCondtionChecked}=cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export default cartSlice.reducer;
