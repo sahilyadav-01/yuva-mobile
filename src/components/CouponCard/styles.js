@@ -1,15 +1,15 @@
-import {StyleSheet} from 'react-native';
-import {WHITE, CYAN_BLUE, ORANGE, HALF_WHITE} from '../../styles/colors';
-import {CENTER, FLEX_START, ROW} from '../../styles/constants';
-import {fonts} from '../../styles/fonts';
+import { StyleSheet } from 'react-native';
+import { WHITE, CYAN_BLUE, ORANGE, HALF_WHITE, BLACK } from '../../styles/colors';
+import { CENTER, FLEX_START, ROW, SPACE_BETWEEN, FLEX_END, COLUMN, FLEX } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   viewContainer: {
-    width: 330,
     backgroundColor: HALF_WHITE,
     marginHorizontal: 30,
     marginBottom: 12,
     borderRadius: 12,
+    alignItems: SPACE_BETWEEN,
   },
   textStyle: {
     justifyContent: FLEX_START,
@@ -17,9 +17,18 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
     margin: 12,
+    alignSelf: FLEX_START,
+  },
+  textStyling: {
+    justifyContent: FLEX_START,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize16,
+    margin: 12,
+    paddingLeft: 10,
+    alignSelf: FLEX_START,
   },
   viewCoupon: {
-    width: 296,
     flexDirection: ROW,
     borderWidth: 0.5,
     borderRadius: 12,
@@ -28,6 +37,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   textInputStyles: {
+    color: BLACK,
     marginBottom: 11,
     height: 40,
     width: 206,
@@ -36,15 +46,17 @@ export const styles = StyleSheet.create({
   },
   applyStyles: {
     borderRadius: 12,
-    width: 90,
     backgroundColor: ORANGE,
-    height: 38,
+    marginHorizontal: 20,
     justifyContent: CENTER,
     alignItems: CENTER,
+    paddingLeft: 20,
+
+    // justifyContent: FLEX_END,
+
   },
   couponContainer: {
     height: 115,
-    width: 296,
     borderWidth: 1,
     borderRadius: 12,
     flexDirection: ROW,

@@ -4,9 +4,10 @@ import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
+import Icon from 'react-native-vector-icons/Feather';
 import PriceDetails from '../../components/PriceDetails';
 import { LIGHT_GREEN } from '../../styles/colors';
-import { CART_DETAILS, MY_CART, PRICE_DETAILS , CROSS_BUTTON, COUPON_APPLIED_SUCCESS} from './constants';
+import { CART_DETAILS, MY_CART, PRICE_DETAILS , COUPON_APPLIED_SUCCESS} from './constants';
 import { useCart } from './hooks/useCart';
 import { styles } from './styles';
 
@@ -25,7 +26,7 @@ const Cart = props => {
         </View>
         <View style={styles.buttonStyle}>
           <TouchableOpacity onPress={crossAction}>
-            <Text style={styles.crossStyle}>{CROSS_BUTTON}</Text>
+            <Icon name="x" style={styles.crossStyle} />
           </TouchableOpacity>
         </View>
       </View>

@@ -33,7 +33,7 @@ const CouponCard = () => {
         <View style={styles.couponContainer}>
           <View style={styles.viewStyles}>
             <Text style={styles.textStyle}>{item.couponCode}</Text>
-            <Text style={styles.textStyle1}>{item.description}</Text>
+            <Text style={styles.textStyle}>{item.description}</Text>
           </View>
           <View
             style={[
@@ -58,7 +58,7 @@ const CouponCard = () => {
   };
   return (
     <View style={styles.viewContainer}>
-      <Text style={styles.textStyle}>{APPLY_COUPON}</Text>
+      <Text style={styles.textStyling}>{APPLY_COUPON}</Text>
       <View style={styles.viewCoupon}>
         <TextInput
           style={styles.textInputStyles}
