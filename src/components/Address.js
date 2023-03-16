@@ -19,7 +19,6 @@ const AddressList = (isNavScreen) => {
 
                 <View style={styles.checkboxAddress} >
                     <Checkbox
-                        disabled={userAttribute?.[0]?.address}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
