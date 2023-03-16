@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BOX_SHADOW, CYAN_BLUE, DARK_BLUE, GREEN, LIGHT_GREY, ORANGE, RED, RED_SHADE, VERY_LIGHT_GREY, VERY_LIGHT_YELLOW, VERY_PALE_WHITE, V_LIGHT_GREY, WHITE } from '../../../styles/colors';
+import { BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, LIGHT_GREY, ORANGE, RED, RED_SHADE, VERY_LIGHT_GREY, VERY_LIGHT_YELLOW, VERY_PALE_WHITE, V_LIGHT_GREY, WHITE } from '../../../styles/colors';
 import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -67,16 +67,16 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   border: {
-    borderWidth: 0.2,
+    borderColor:FLASH_WHITE,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal:16,
     shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 6,
-    backgroundColor: VERY_LIGHT_GREY,
-    dropShadow: BOX_SHADOW
-
+    shadowOpacity: "50%",
+    borderRadius: 12,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+    elevation:5,
+    borderWidth:1,
   },
   adressName: {
     marginTop: 11,
