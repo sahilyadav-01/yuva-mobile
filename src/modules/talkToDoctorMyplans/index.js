@@ -13,7 +13,7 @@ import {SVG} from '../../../assets';
 import {usePatient} from './hooks/usePatient';
 import {getPlanDate} from '../../utils/utils';
 
-const Patient = () => {
+const MyPlans = () => {
   const {programAndPlan} = usePatient();
 
   const renderItem = ({item, index}) => {
@@ -55,4 +55,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default MyPlans;

@@ -4,12 +4,11 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import Header from '../components/Header';
 import {DARK_BLUE} from '../styles/colors';
 import {CONSULTATIONS, MY_PLANS, TALK_TO_DOCTOR} from './constants';
-
-import Patient from '../modules/talkToDoctorMyplans';
 import Consultations from '../modules/talkToDoctorConsultations';
 import {styles} from '../screens/styles';
 import {Text} from 'react-native';
 import {CENTER} from '../styles/constants';
+import MyPlans from '../modules/talkToDoctorMyplans';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -32,7 +31,7 @@ const TalkToDoctorNav = () => {
         }}>
         <Tab.Screen
           name={MY_PLANS}
-          component={Patient}
+          component={MyPlans}
           options={{
             tabBarLabel: () => <Text style={styles.textColor}>My Plans</Text>,
           }}

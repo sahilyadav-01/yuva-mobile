@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import PatientScreen from '../screens/yuvaservices/talkToDoctor/PatientScreen';
 import HealthScreen from '../screens/yuvaservices/talkToDoctor/HealthScreen';
 import ChatScreen from '../screens/yuvaservices/talkToDoctor/ChatScreen';
 import TalkToDoctorNav from './TalkToDoctorNav';
