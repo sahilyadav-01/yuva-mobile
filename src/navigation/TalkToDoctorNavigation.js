@@ -3,22 +3,22 @@ import {createStackNavigator} from '@react-navigation/stack';
 import PatientScreen from '../screens/yuvaservices/talkToDoctor/PatientScreen';
 import HealthScreen from '../screens/yuvaservices/talkToDoctor/HealthScreen';
 import ChatScreen from '../screens/yuvaservices/talkToDoctor/ChatScreen';
-
+import TalkToDoctorNav from './TalkToDoctorNav';
 const Stack = createStackNavigator();
 
 const TalkToDoctorNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="PatientScreen"
-        component={PatientScreen}
+        name="TalkToDoctor"
+        component={TalkToDoctorNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
-          name="HealthScreen"
-          component={HealthScreen}
-          options={{headerShown: false}}
-        />
+        name="HealthScreen"
+        component={HealthScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="ChatScreen"
         component={ChatScreen}

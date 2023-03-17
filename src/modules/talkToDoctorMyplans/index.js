@@ -10,37 +10,45 @@ import {
   VALIDITY,
 } from './constant';
 import {SVG} from '../../../assets';
+import {usePatient} from './hooks/usePatient';
+import {getPlanDate} from '../../utils/utils';
 
 const Patient = () => {
+  const {programAndPlan} = usePatient();
+
   const renderItem = ({item, index}) => {
-    return (
-      <ScrollView>
-        <View style={styles.viewContainer}>
-          <Text style={styles.head}>{item.title}</Text>
-
-          <Text style={styles.expiry}>
-            {VALIDITY} {item.validity}
-          </Text>
-
-          <View style={styles.sideBySide}>
-            <SVG.Stethoscope />
-            <View style={styles.text1}>
-              <Text style={styles.doctorText}>{TALK_TO_DOCTOR}</Text>
-              <Text style={styles.text2}>
-                {USED} {item.used} {AVAILABLE} {item.available}
-              </Text>
+    return item.assignedAttributeResponseDto.map(i => {
+      return (
+        <ScrollView>
+          <View style={styles.viewContainer}>
+            <View style={styles.headView}>
+              <Text style={styles.head}>{item.name}</Text>
             </View>
+
+            <Text style={styles.expiry}>
+              {VALIDITY} {getPlanDate(item.endDate)}
+            </Text>
+
+            <View style={styles.sideBySide}>
+              <SVG.Stethoscope />
+              <View style={styles.text1}>
+                <Text style={styles.doctorText}>{i.name}</Text>
+                <Text style={styles.text2}>
+                  {USED} {i.used} {AVAILABLE} {i.available}
+                </Text>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.buttonStyle}>
+              <Text style={styles.textStyle}>{CHAT_NOW}</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.buttonStyle}>
-            <Text style={styles.textStyle}>{CHAT_NOW}</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    );
+        </ScrollView>
+      );
+    });
   };
   return (
     <FlatList
-      data={PLANS}
+      data={programAndPlan}
       renderItem={renderItem}
       keyExtractor={index => `${index}`}
     />
