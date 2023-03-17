@@ -10,8 +10,10 @@ import {
   VALIDITY,
 } from './constant';
 import {SVG} from '../../../assets';
+import { usePatient } from './hooks/usePatient';
 
 const Patient = () => {
+  const {onSelectMember}=usePatient();
   const renderItem = ({item, index}) => {
     return (
       <ScrollView>
@@ -31,7 +33,7 @@ const Patient = () => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity style={styles.buttonStyle} onPress={onSelectMember}>
             <Text style={styles.textStyle}>{CHAT_NOW}</Text>
           </TouchableOpacity>
         </View>

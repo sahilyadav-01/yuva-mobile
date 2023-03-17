@@ -24,11 +24,15 @@ export const usePatient = () => {
   const onDownload = (path) => {
     checkPermission(path, PRESCRIPTION);
   }
+  const onSelectMember=()=>{
+    navigation.navigate("MemberSelectScreen");
+  }
 
   return {
     onPressNext,
     consultationList,
     onDownload,
     onConsult,
+    onSelectMember,
   };
 };
