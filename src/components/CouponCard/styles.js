@@ -51,9 +51,6 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     paddingLeft: 20,
-
-    // justifyContent: FLEX_END,
-
   },
   couponContainer: {
     height: 115,
