@@ -487,7 +487,7 @@ export const styles = StyleSheet.create({
     marginRight: 25,
   },
   AdressCheckBox: {
-    marginTop: 11,
+    marginTop: 17,
     marginHorizontal:19,
     marginBottom: 15,
     color: CYAN_BLUE,
