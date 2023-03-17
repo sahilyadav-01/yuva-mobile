@@ -1,15 +1,14 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-
-import Patient from '../../../modules/talkToDoctorMyplans';
+import Consultations from '../../../modules/talkToDoctorConsultations';
 import {styles} from '../../styles';
 
-const PatientScreen = () => {
+const ConsultationScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Patient />
+      <Consultations />
     </SafeAreaView>
   );
 };
 
-export default PatientScreen;
+export default ConsultationScreen;
