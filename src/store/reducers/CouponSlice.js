@@ -124,5 +124,5 @@ const couponSlice = createSlice({
 });
 
 export const { couponInit } = couponSlice.getInitialState();
-export const { coupon, redeemCoupons, couponView, removeCoupon } = couponSlice.actions;
+export const { coupon, removeCoupon } = couponSlice.actions;
 export default couponSlice.reducer;

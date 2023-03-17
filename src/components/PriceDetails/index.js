@@ -11,7 +11,7 @@ const PriceDetails = props => {
   const { detailsContainer, headingText, priceContainer, priceText, titleView, priceView } = styles();
   const { couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount } = coupon;
   const { loggedIn } = useSelector(state => state.auth);
-  
+
   return (
     <View style={detailsContainer}>
       <Text style={headingText}>{heading}</Text>
@@ -21,7 +21,7 @@ const PriceDetails = props => {
         </View>
         <View style={priceView}>
           {loggedIn === 'loggedIn' ? (
-            couponViewCart === false ? (
+            couponViewCart === false && (couponView || !couponView) ? (
               <Text style={priceText}>{RUPEE_SYMOL} {appliedTotalCost}</Text>
             ) : (
               couponViewCart && couponView ? (

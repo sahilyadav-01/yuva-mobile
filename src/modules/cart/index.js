@@ -20,7 +20,7 @@ const Cart = props => {
     <>
       <Header title={MY_CART} showSearch={false} showBackButton={true} />
       <ScrollView style={styles.container}>
-      {(couponViewCart ||couponView) && <View style={[styles.descStyle, { backgroundColor: LIGHT_GREEN }]}>
+      {(couponViewCart ||couponView) && itemDtoList.length>0 && <View style={[styles.descStyle, { backgroundColor: LIGHT_GREEN }]}>
         <View>
           <Text style={styles.appliedStyle}>{COUPON_APPLIED_SUCCESS}</Text>
         </View>

@@ -100,7 +100,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     removeCouponCart(state) {
-      state.cart.couponViewCart=false;
+      state.cart.couponViewCart=null;
     },
   },
     setTermsAndCondtionChecked(state,{payload}){

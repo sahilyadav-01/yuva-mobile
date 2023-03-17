@@ -5,10 +5,9 @@ import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   viewContainer: {
-    marginHorizontal: 30,
+    marginHorizontal: 24,
     marginBottom: 12,
     borderRadius: 12,
-    backgroundColor:HALF_WHITE,
   },
   textStyle: {
     justifyContent: FLEX_START,
@@ -33,13 +32,14 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     height: 40,
     marginHorizontal: 16,
-    justifyContent: SPACE_BETWEEN,
     marginBottom: 25,
   },
   textInputStyles: {
+    flex:1,
     color: BLACK,
     marginBottom: 11,
     height: 40,
+    paddingLeft:8,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },

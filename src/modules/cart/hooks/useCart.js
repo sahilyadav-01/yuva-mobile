@@ -54,13 +54,6 @@ export const useCart = () => {
   }
 
   useEffect(() => {
-
-    if ((existingIds.length===0)) {
-      crossAction();
-    }
-  }, [existingIds]);
-
-  useEffect(() => {
     if (isLoggedIn) {
       dispatch(getCartUserThunk());
     } else {
