@@ -277,12 +277,11 @@ export const styles = StyleSheet.create({
     borderColor: WHITE,
     marginTop: 28,
   },
-  buttonStyle: {
-    height: 32,
+  buttonStyleMyTest: {
+    minHeight:48,
     backgroundColor: ORANGE,
-    borderRadius: 8,
+    borderRadius: 6,
     marginTop: 17,
-    margin: 11,
     justifyContent: CENTER,
   },
   head: {
@@ -301,6 +300,8 @@ export const styles = StyleSheet.create({
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik500,
   },
   sideBySide: {
     flexDirection: ROW,

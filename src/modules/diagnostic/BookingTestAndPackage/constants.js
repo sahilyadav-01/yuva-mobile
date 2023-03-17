@@ -41,3 +41,4 @@ export const CANCEL="Cancel";
 export const BOKINGTESTANDPACKAGE="BookingTestAndPackage";
 export const BOOKINGCONFIRM="BookingConfirm";
 export const BUTTON_TEXT="Add To Cart";
+export const MY_TESTS = 'My Tests';
