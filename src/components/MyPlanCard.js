@@ -52,7 +52,7 @@ const MyPlanCard = ({ item }) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.buttonStyle}  onPress={onBookingTestandPackage}>
+                    <TouchableOpacity style={styles.buttonStyleMyTest}  onPress={onBookingTestandPackage}>
                         <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>
