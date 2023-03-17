@@ -7,6 +7,9 @@ import {CONSULTATIONS, MY_PLANS, TALK_TO_DOCTOR} from './constants';
 
 import Patient from '../modules/talkToDoctorMyplans';
 import Consultations from '../modules/talkToDoctorConsultations';
+import {styles} from '../screens/styles';
+import {Text} from 'react-native';
+import {CENTER} from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -16,8 +19,10 @@ const TalkToDoctorNav = () => {
       <Header title={TALK_TO_DOCTOR} showBackButton={true} />
       <Tab.Navigator
         screenOptions={{
-          tabBarLabelStyle: {fontSize: 16, marginTop: 15},
+          tabBarItemStyle: styles.verticalLine,
+          tabBarLabelStyle: {fontSize: 16},
           tabBarStyle: {
+            justifyContent: CENTER,
             color: DARK_BLUE,
             height: 70,
             display: undefined,
@@ -25,8 +30,22 @@ const TalkToDoctorNav = () => {
           swipeEnabled: true,
           lazy: false,
         }}>
-        <Tab.Screen name={MY_PLANS} component={Patient} />
-        <Tab.Screen name={CONSULTATIONS} component={Consultations} />
+        <Tab.Screen
+          name={MY_PLANS}
+          component={Patient}
+          options={{
+            tabBarLabel: () => <Text style={styles.textColor}>My Plans</Text>,
+          }}
+        />
+        <Tab.Screen
+          name={CONSULTATIONS}
+          component={Consultations}
+          options={{
+            tabBarLabel: () => (
+              <Text style={styles.textColor}>Consultations</Text>
+            ),
+          }}
+        />
       </Tab.Navigator>
     </>
   );
