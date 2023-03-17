@@ -23,7 +23,7 @@ export const useMemberSelect = () => {
 
   useEffect(() => {
     if (focused) {
-      setModalVisible(false);
+      // setModalVisible(false);
       setCheckBoxStatus('unchecked');
       setCheckBoxFlag([]);
       setStartConsultation(false);
@@ -87,13 +87,16 @@ export const useMemberSelect = () => {
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
-
+useEffect(()=>{
+  dispatch(profileThunk());
+  dispatch(getRelations());
+  setStartConsultation(true);
+},[])
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
     setStartConsultation(true);
   };
-
   const onPressCheckBox = () => {
     setCheckBoxStatus('checked');
     setCheckBoxFlag([]);
@@ -101,7 +104,7 @@ export const useMemberSelect = () => {
   };
 
   const onModalCrossPress = () => {
-    setModalVisible(false);
+    // setModalVisible(false);
     setStartConsultation(false);
   };
   return {
