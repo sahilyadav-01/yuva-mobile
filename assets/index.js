@@ -101,6 +101,7 @@ import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
+import Stethoscope from './Stethoscope';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -190,6 +191,7 @@ const SVG = {
   landingPageBanner1: landingPageBanner1,
   AwayImage: AwayImage,
   HomeImage: HomeImage,
+  Stethoscope: Stethoscope,
   tick,
   minus,
   Reschedule: Reschedule,
@@ -207,7 +209,7 @@ const SVG = {
   Pdf: Pdf,
   Download: Download,
   Prescriptions,
-  Bookings
+  Bookings,
 };
 
 export {PNG, SVG};
