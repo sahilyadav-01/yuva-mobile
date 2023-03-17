@@ -33,7 +33,7 @@ const CouponCard = () => {
         <View style={styles.couponContainer}>
           <View style={styles.viewStyles}>
             <Text style={styles.textStyle}>{item.couponCode}</Text>
-            <Text style={styles.textStyle}>{item.description}</Text>
+            <Text style={styles.textStyle1}>{item.description}</Text>
           </View>
           <View
             style={[
