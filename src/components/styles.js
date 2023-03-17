@@ -443,8 +443,7 @@ export const styles = StyleSheet.create({
   border: {
     elevation:5,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal:16,
     shadowColor: GREY,
     borderRadius: 12,
     backgroundColor: WHITE,
@@ -453,12 +452,13 @@ export const styles = StyleSheet.create({
   borderAddNewAddress:{
     elevation:5,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal:16,
     shadowColor: GREY,
-    borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
+    shadowColor: WHITE,
+    shadowOpacity: "5%",
+    borderRadius: 6,
   },
   checkboxAddress: {
     justifyContent: SPACE_BETWEEN,
