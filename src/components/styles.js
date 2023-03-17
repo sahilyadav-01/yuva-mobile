@@ -464,11 +464,11 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
     marginRight: 19,
-    marginTop: 14,
+    marginTop: 8,
   },
   adressName: {
     width:"80%",
-    marginTop: 12,
+    marginTop: 10,
     marginHorizontal:19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -484,10 +484,11 @@ export const styles = StyleSheet.create({
   AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
+    marginTop:20,
     marginRight: 25,
   },
   AdressCheckBox: {
-    marginTop: 17,
+    marginTop:5,
     marginHorizontal:19,
     marginBottom: 15,
     color: CYAN_BLUE,
@@ -496,8 +497,6 @@ export const styles = StyleSheet.create({
   },
   SvgImage: {
     flex: 1,
-    marginTop: 10,
-
   },
   AddText: {
     marginLeft: '6%',
