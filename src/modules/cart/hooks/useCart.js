@@ -1,11 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   createCartGuestThunk,
   createCartUserThunk,
   removeCouponCart,
 } from '../../../store/reducers/CartSlice';
-import { LOGIN_SIGNUP, SELECT_ADD_MEMBER } from '../constants';
+import {LOGIN_SIGNUP, SELECT_ADD_MEMBER} from '../constants';
 import {
   deleteCartThunk,
   getCartGuestThunk,
@@ -25,25 +25,25 @@ export const useCart = () => {
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
   const onPress = () => {
     if (isLoggedIn) {
-
+      navigation.navigate('CheckoutAddressList');
     } else {
       navigation.navigate('LoginScreen');
     }
   };
 
-  const addToCart = ({ name, cost, productId }, productType) => {
-    const dToObj = { name, count: 1, cost, productId, productType };
+  const addToCart = ({name, cost, productId}, productType) => {
+    const dToObj = {name, count: 1, cost, productId, productType};
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
     const cartDto = {
       ...cart,
       itemDtoList: [...cart.itemDtoList, dToObj],
     };
-    dispatch(dispatcher({ cartDto }));
+    dispatch(dispatcher({cartDto}));
   };
   const buttonText = isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   const onRemove = item => {
-    const { productId: itemId } = item || {};
-    itemId && dispatch(deleteCartThunk({ itemId }));
+    const {productId: itemId} = item || {};
+    itemId && dispatch(deleteCartThunk({itemId}));
   };
   const crossAction = () => {
 

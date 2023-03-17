@@ -13,6 +13,7 @@ export const useOurAddress = (isNavScreen) => {
     const [userNewAddress, setUserNewAddress] = useState();
     const [checked, setChecked] = useState(null);
     const { userAddress } = useSelector(state => state?.profile);
+    const [userAddressListing, setUserAddressListing] = useState([]);
     useEffect(() => {
         dispatch(getUserAddress())
     }, [])
@@ -40,25 +41,27 @@ export const useOurAddress = (isNavScreen) => {
         dispatch(saveCheckedAddress(checkoutData))
     }, [address])
 
-    useEffect(() => {
-        if (userAttribute?.[0]?.address) {
-            setUserNewAddress(userAttribute)
-        }
-    }, [userAttribute])
-
-
+  useEffect(() => {
+    if (userAttribute?.[0]?.address) {
+      setUserNewAddress(userAttribute);
+    }
+  }, [userAttribute]);
+  useEffect(() => {
     if (userNewAddress?.[0]?.address) {
-        var userAddressListing = userAddress.concat(userNewAddress)
-    }
-    else {
-        var userAddressListing = userAddress;
-    }
-    return {
-        userAddress,
-        setChecked,
-        checked,
-        AddNewAddress,
-        userAttribute,
-        userAddressListing
-    }
-}
+        let list = userAddress.concat(userNewAddress);
+        setUserAddressListing(list);
+        setChecked(list.length -1);
+      } else {
+        setUserAddressListing(userAddress);
+      }
+  }, [userAddress, userNewAddress]);
+
+  return {
+    userAddress,
+    setChecked,
+    checked,
+    AddNewAddress,
+    userAttribute,
+    userAddressListing,
+  };
+};

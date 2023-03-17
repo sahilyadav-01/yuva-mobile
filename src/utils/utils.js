@@ -350,11 +350,32 @@ export const getDateText = date => {
   );
 };
 
+export const getDateInFormat = (date, format) => {
+  switch (format) {
+    case 'dd/mm/yyyy':
+      return (
+        date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+      );
+    default:
+      getDateText(date);
+  }
+};
+
+export const getTimeInFormat = (date, format) => {
+  switch (format) {
+    case 'hh:mm:ss':
+      return (
+        date && `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+      );
+  }
+};
+
 export const getAge = date => {
   return (
-    date && `${parseInt(new Date().getFullYear()) - parseInt(date.getFullYear())}`
-  )
-}
+    date &&
+    `${parseInt(new Date().getFullYear()) - parseInt(date.getFullYear())}`
+  );
+};
 
 export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();

@@ -1,20 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
+import {ORANGE, WHITE} from '../../../styles/colors';
 import {CENTER} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: FLASH_WHITE,
-    flex: 1,
-  },
-  containerStyle: {
-    backgroundColor: ORANGE,
-    height: 48,
-    borderRadius: 8,
-    justifyContent: CENTER,
-    alignContent: CENTER,
-  },
   bodyContainer: {
     paddingTop: 12,
     paddingBottom: 6,
@@ -27,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   touchableButton: {
     backgroundColor: ORANGE,
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: 13,
     marginRight: 14,
     borderRadius: 8,
