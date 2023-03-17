@@ -391,8 +391,6 @@ export const styles = StyleSheet.create({
     textAlign: CENTER,
     color: WHITE,
     fontFamily: fonts.family.rubik600,
-    marginLeft: '6%',
-    marginTop: 12,
     fontSize: fonts.size.fontSize16,
   },
   contentContainerStyle: {
@@ -443,6 +441,16 @@ export const styles = StyleSheet.create({
     marginLeft: 7.33,
   },
   border: {
+    elevation:5,
+    marginTop: 14,
+    marginLeft: 16,
+    marginRight: 16,
+    shadowColor: GREY,
+    borderRadius: 12,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+  },
+  borderAddNewAddress:{
     elevation:5,
     marginTop: 14,
     marginLeft: 16,
