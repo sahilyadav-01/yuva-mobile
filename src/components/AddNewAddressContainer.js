@@ -14,7 +14,7 @@ const AddNewAddressContainer = (isScreen) => {
         <View>
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
-                <View>
+                <View >
                     <Text style={styles.AddNewAddress}>
                         {ADD_NEW_ADDRESS}
                     </Text>
