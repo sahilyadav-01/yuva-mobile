@@ -11,7 +11,7 @@ import {
   COUPON_INVALID,
   USE_COUPON,
 } from './constant';
-import { CYAN_BLUE, GREEN } from '../../styles/colors';
+import { CYAN_BLUE, GREEN, RED } from '../../styles/colors';
 import { redeemCouponsSliceThunk } from '../../store/reducers/CouponSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,7 +30,11 @@ const CouponCard = () => {
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess}>
-        <View style={styles.couponContainer}>
+        <View style={[styles.couponContainer, {
+          borderColor:
+            (item.couponName === couponName && couponView) ? GREEN :
+              (item.couponName === couponName && !couponView) ? RED : CYAN_BLUE
+        }]}>
           <View style={styles.viewStyles}>
             <Text style={styles.textStyle}>{item.couponCode}</Text>
             <Text style={styles.textStyle1}>{item.description}</Text>
@@ -39,7 +43,8 @@ const CouponCard = () => {
             style={[
               styles.useCouponStyle,
               { backgroundColor: couponView && item.couponName == couponName ? GREEN : CYAN_BLUE },
-            ]}>
+            ]}
+          >
             {
               item.couponName === couponName ? (
                 couponView ? (
