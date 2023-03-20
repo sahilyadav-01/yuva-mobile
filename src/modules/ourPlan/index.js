@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import { getDimensions } from '../../utils/utils';
 import PlanCard from './components/PlanCard';
-import { OUR_PLANS, VIEW_ALL } from './constant';
+import { OUR_PLANS, SUB_HEADING, VIEW_ALL } from './constant';
 import { useOurPlan } from './hooks/useOurPlan';
 import { styles } from './styles';
 
@@ -36,6 +36,9 @@ const OurPlan = (props) => {
             <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
           </TouchableOpacity>
         }
+      </View>
+      <View style={styles.subHeadingView}>
+        <Text style={styles.subHeadingText}>{SUB_HEADING}</Text>
       </View>
       <FlatList 
         data={popularPlan}

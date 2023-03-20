@@ -102,6 +102,7 @@ import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
 import Stethoscope from './Stethoscope';
+import OurPlanBackground from './OurPlanBackground.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -161,6 +162,7 @@ const PNG = {
   EYE,
   POPULAR_PLAN,
   LandingPageBanner2,
+  OurPlanBackground,
 };
 
 const SVG = {
