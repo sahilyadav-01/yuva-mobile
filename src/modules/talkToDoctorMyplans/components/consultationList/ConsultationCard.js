@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {COMPLETED} from '../../constant';
+import {CANCELLED, COMPLETED} from '../../constant';
 import CalenderContainer from './CalenderContainer';
 import Footer from './Footer';
 import {styles} from './styles';
@@ -24,7 +24,7 @@ const ConsultationCard = props => {
                 ? styles.topHeaderLeft
                 : [styles.topHeaderLeft, styles.cancelledText]
             }>
-            {COMPLETED}
+            {item?.chatStatus === 'FINISHED' ? COMPLETED : CANCELLED}
           </Text>
         </View>
         <View style={styles.view1}>
