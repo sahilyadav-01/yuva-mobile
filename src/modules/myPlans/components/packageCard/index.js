@@ -33,8 +33,9 @@ const PackageCard = () => {
       return (
         <ScrollView>
           <View style={styles.viewContainer} key={index}>
-            <Text style={styles.head}>{item.name}</Text>
-
+            <View style={styles.headView}>
+              <Text style={styles.head}>{item.name}</Text>
+            </View>
             <Text style={styles.expiry}>{getPlanDate(item.endDate)}</Text>
 
             <View style={styles.sideBySide}>
