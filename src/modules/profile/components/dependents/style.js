@@ -1,16 +1,16 @@
-import {StyleSheet} from 'react-native';
-import {fonts} from '../../../../styles/fonts';
-import {WHITE, ORANGE, SHADOW, CYAN_BLUE} from '../../../../styles/colors';
-import {ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import { StyleSheet } from 'react-native';
+import { fonts } from '../../../../styles/fonts';
+import { WHITE, ORANGE, SHADOW, CYAN_BLUE } from '../../../../styles/colors';
+import { ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 
-const styles = ({disabled}) => {
+const styles = ({ disabled, hideShadow }) => {
   return StyleSheet.create({
     dependentsContainer: {
       marginTop: 12,
       backgroundColor: WHITE,
-      elevation: 10,
-      zIndex: 10,
-      shadowColor: SHADOW,
+      elevation: hideShadow ? undefined : 10,
+      zIndex: hideShadow ? undefined : 10,
+      shadowColor: hideShadow ? undefined : SHADOW,
       borderRadius: 12,
       paddingHorizontal: 13,
       paddingTop: 20,
