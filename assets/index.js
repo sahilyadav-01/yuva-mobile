@@ -102,6 +102,7 @@ import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
 import Stethoscope from './Stethoscope';
+import EditPen from './EditPen';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -210,6 +211,7 @@ const SVG = {
   Download: Download,
   Prescriptions,
   Bookings,
+  EditPen:EditPen,
 };
 
 export {PNG, SVG};
