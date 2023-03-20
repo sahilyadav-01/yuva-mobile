@@ -92,6 +92,9 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
+        <View>
+          <OurPlan isHomeScreen={true}/>
+        </View>
         <CarouselContainer
           data={userAppointments}
           isIndexed={true}
@@ -158,9 +161,7 @@ const HomeScreen = ({ navigation }) => {
             onPackagePress={onPackagePress}
           />
         </View>
-        <View>
-          <OurPlan isHomeScreen={true}/>
-        </View>
+        
       </ScrollView>
     </SafeAreaView>
   );
