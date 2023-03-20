@@ -26,7 +26,7 @@ const Payment = props => {
             console.log('Message', msg);
           }}
           source={{
-            uri: `http://localhost:8081/paymentpoc.html?encRequest=${encRequest}`,
+            uri: `http://ec2-15-207-19-131.ap-south-1.compute.amazonaws.com:8081/PaymentRedirect?encRequest=${encRequest}`,
           }}
           onNavigationStateChange={state => {
             console.log('State', state);
