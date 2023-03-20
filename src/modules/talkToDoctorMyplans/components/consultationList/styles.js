@@ -1,7 +1,14 @@
-import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, GREEN, WHITE } from "../../../../styles/colors";
-import { CENTER, LEFT, RIGHT, ROW, SPACE_BETWEEN } from "../../../../styles/constants";
-import { fonts } from "../../../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE, GREEN, WHITE} from '../../../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  LEFT,
+  RIGHT,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,17 +23,31 @@ export const styles = StyleSheet.create({
   consultationView: {
     minHeight: 143,
     marginVertical: 10,
+    marginHorizontal: 14,
     paddingHorizontal: 8,
     borderRadius: 6,
     backgroundColor: WHITE,
     shadowRadius: 6,
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.01,
     shadowColor: BLACK,
     elevation: 5,
+  },
+  cancelledView: {
+    backgroundColor: '#E9E9E9',
+  },
+  cancelledText: {
+    fontSize: fonts.size.fontSize14,
+    color: CYAN_BLUE,
+    fontWeight: fonts.weight.fontWeight500,
+  },
+  cancelledDegree: {
+    fontSize: fonts.size.fontSize10,
+    color: CYAN_BLUE,
+    fontWeight: fonts.weight.fontWeight400,
   },
   topSection: {
     flexDirection: ROW,
@@ -37,32 +58,37 @@ export const styles = StyleSheet.create({
   },
   view2: {
     width: '20%',
+    right: 0,
+    position: ABSOLUTE,
+    marginTop: 15,
   },
   topHeaderLeft: {
     color: GREEN,
     textAlign: LEFT,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
-    marginVertical: 2,
+    marginTop: 9,
+    marginHorizontal: 12,
   },
   topHeaderRight: {
     color: GREEN,
     textAlign: RIGHT,
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight500,
-    marginVertical: 2,
+    marginTop: 9,
+    marginHorizontal: 12,
   },
   bottomHeader: {
     color: GREEN,
     textAlign: RIGHT,
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
-    marginVertical: 2,
+
+    marginHorizontal: 12,
   },
   descriptionContainer: {
-    flex:1,
+    flex: 1,
     flexDirection: ROW,
-    marginVertical: 8,
   },
   calenderContainer: {
     flexDirection: ROW,
@@ -85,6 +111,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
+    marginHorizontal: 12,
   },
   footerView: {
     flexDirection: ROW,
@@ -110,6 +137,7 @@ export const styles = StyleSheet.create({
   },
   consultView: {
     flexDirection: ROW,
-    alignItems:CENTER,
+    alignItems: CENTER,
+    marginHorizontal: 12,
   },
 });

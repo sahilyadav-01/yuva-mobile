@@ -14,7 +14,6 @@ const ConsultationList = props => {
         key={index}
         item={item}
         onConsult={onConsult}
-        onDownload={onDownload}
       />
     );
   };
@@ -23,7 +22,6 @@ const ConsultationList = props => {
   }
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.headerText}>{COMPLETED}</Text> */}
       <FlatList
         data={data}
         keyExtractor={(item, index) => index + ''}
