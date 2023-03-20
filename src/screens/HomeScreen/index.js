@@ -161,7 +161,6 @@ const HomeScreen = ({ navigation }) => {
             onPackagePress={onPackagePress}
           />
         </View>
-        
       </ScrollView>
     </SafeAreaView>
   );
