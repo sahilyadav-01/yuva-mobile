@@ -46,3 +46,4 @@ export const DESCRIPTION_HEADER = 'Tell us the symptom that’s bothering you mo
 export const DESCRIPTION_PLACEHOLDER = 'Please type your health issue in detail.';
 export const START_CONSULTATION = 'Start Consultation';
 export const TALK_TO_DOCTOR = 'Talk To Doctor';
+export const CHAT_SCREEN='ChatScreen';
