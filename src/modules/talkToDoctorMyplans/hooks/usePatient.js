@@ -25,9 +25,16 @@ export const usePatient = () => {
     navigation.navigate('HealthScreen');
   };
 
+  const onDownload = (path) => {
+    checkPermission(path, PRESCRIPTION);
+  }
+  const onSelectMember=()=>{
+    navigation.navigate("MemberSelectScreen");
+  }
   return {
     consultationList,
     onConsult,
+    onSelectMember,
     programAndPlan,
   };
 };

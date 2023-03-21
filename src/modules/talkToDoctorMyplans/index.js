@@ -14,8 +14,7 @@ import {usePatient} from './hooks/usePatient';
 import {getPlanDate} from '../../utils/utils';
 
 const MyPlans = () => {
-  const {programAndPlan} = usePatient();
-
+  const {programAndPlan,onSelectMember} = usePatient();
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
@@ -42,9 +41,12 @@ const MyPlans = () => {
               <Text style={styles.textStyle}>{CHAT_NOW}</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
-      );
-    });
+          <TouchableOpacity style={styles.buttonStyle} onPress={onSelectMember}>
+            <Text style={styles.textStyle}>{CHAT_NOW}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    );
   };
   return (
     <FlatList
