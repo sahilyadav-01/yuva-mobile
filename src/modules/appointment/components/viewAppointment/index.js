@@ -35,21 +35,18 @@ import {
   MYSELF,
 } from './constant';
 import {PNG} from '../../../../../assets';
+import {useRoute} from '@react-navigation/native';
 const ViewAppointments = () => {
   const {
-    id,
     doctorName,
-    address,
     status,
     speciality,
     description,
     slot,
-    otp,
     hospitalName,
     memberName,
     relation,
     customId,
-    patientNumber,
   } = useSelector(state => state.appointment.currentAppointment);
   const cancelMessage = 'Are you sure you want to cancel ?';
   const {
