@@ -2,19 +2,19 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequestThunk, clearRequest } from "../../../store/reducers/TalkToDoctorSlice";
-import { HEALTH_LIST } from "../constant";
+import { CHAT_SCREEN, HEALTH_LIST } from "../constant";
 
-export const useHealth = () => {
+export const useHealth = (route) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const {isRequested} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
   const [description, setDescription] = useState('');
-
+const {relationId,userId}=route?.params;
   useEffect(() => {
     if(isRequested) {
-      navigation.navigate('ChatScreen');
+      navigation.navigate(CHAT_SCREEN);
     }
     return () => dispatch(clearRequest());
   }, [isRequested]);
@@ -27,6 +27,8 @@ export const useHealth = () => {
       const data = {
         description: description,
         healthConcern: HEALTH_LIST[selected]?.name || '',
+        id:userId,
+        relationId:relationId,
       };
       dispatch(addRequestThunk({data}));
     };

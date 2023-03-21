@@ -68,14 +68,15 @@ export const useMemberSelect = () => {
 
   useEffect(() => {
     if (checkBoxStatus === CHECKED) {
-      const { name, dob, gender } = userDetails;
+      const { name, dob, gender,id } = userDetails;
       setUserData({
-        id: null,
+        userId:id,
         name,
         age: getAge(new Date(dob)),
         gender,
         genderId: gender === MALE ? 0 : 1,
         relation: MYSELF,
+        relationId:null
       });
     } else if (
       checkBoxFlag.length > 0 &&
@@ -83,7 +84,7 @@ export const useMemberSelect = () => {
     ) {
       const { id, name, age, gender, relation } =
         relations[checkBoxFlag.find(item => item.status === CHECKED).index];
-      setUserData({ id, name, age, gender, genderId: gender === MALE ? 0 : 1, relation });
+      setUserData({ relationId:id, name, age, gender, genderId: gender === MALE ? 0 : 1, relation ,userId:userDetails?.id});
     }
   }, [checkBoxStatus, checkBoxFlag]);
 

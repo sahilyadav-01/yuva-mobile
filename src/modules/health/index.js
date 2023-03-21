@@ -1,3 +1,4 @@
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import {View, Text, ScrollView, TextInput} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
@@ -19,8 +20,9 @@ import {useHealth} from './hooks/useHealth';
 import {styles} from './styles';
 
 const Health = () => {
+  const route=useRoute();
   const {selected, setSelected, onChange, description, onPressConsultation} =
-    useHealth();
+    useHealth(route);
   const renderItem = item => {
     const onHealthCardPress = () => setSelected(item?.index);
     return (
