@@ -18,6 +18,7 @@ import HealthPackagesScreen from '../screens/HealthPackages';
 import ViewAppointment from '../screens/yuvaservices/opd/appointments/ViewAppointment';
 import CheckInAppointment from '../screens/yuvaservices/opd/appointments/CheckInAppointment';
 import EditAppointment from '../screens/yuvaservices/opd/appointments/EditAppointment';
+import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
 
 const Stack = createStackNavigator();
 
@@ -99,6 +100,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="EditAppointment"
         component={EditAppointment}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AppointmentHome"
+        component={AppointmentHome}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
