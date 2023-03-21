@@ -1,12 +1,27 @@
 
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { OURPLAN } from "../../../constant";
+import { HRA, MY_TEST, OPD, OURPLAN, services, TALK_TO_DOCTOR } from "../../../constant";
 
 export const usePlanCard = (item) => {
   const navigation = useNavigation();
   const [priceObj, setPriceObj] = useState({value: 0, duration: ''});
-
+  const {planServiceNameList} = item || {};
+  const planService = planServiceNameList.map(list => {
+    const {serviceName, shortDescription} = list || {};
+    let value = {};
+    switch(serviceName) {
+      case OPD: value = {...services[0], shortDescription};
+      break;
+      case HRA: value = {...services[1], shortDescription};
+      break;
+      case MY_TEST: value = {...services[2], shortDescription};
+      break;
+      case TALK_TO_DOCTOR: value = {...services[3], shortDescription};
+      break;
+    }
+    return value;
+  });
   const onDetailsScreen = () => {
     navigation.navigate(OURPLAN);
   };
@@ -28,5 +43,6 @@ export const usePlanCard = (item) => {
   return {
     onDetailsScreen,
     priceObj,
+    planService,
   };
 }

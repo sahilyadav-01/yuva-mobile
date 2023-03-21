@@ -85,6 +85,7 @@ const initialState = {
     isRemoved: false,
     amountToBePaid:0,
     totalDiscount:0,
+    couponViewCart:null,
   },
   loading: false,
   apiError: false,
@@ -98,9 +99,13 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    removeCouponCart(state) {
+      state.cart.couponViewCart=null;
+    },
+  },
     setTermsAndCondtionChecked(state,{payload}){
       state.termsAndCondtionChecked=payload;
-    },},
+    },
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -111,7 +116,6 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
       };
-      state.existingIds = [];
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
@@ -124,6 +128,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -145,7 +150,6 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
 };
-      state.existingIds = [];
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
@@ -158,6 +162,7 @@ const cartSlice = createSlice({
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -237,4 +242,5 @@ const cartSlice = createSlice({
 });
 export const {setTermsAndCondtionChecked}=cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
+export const {removeCouponCart } = cartSlice.actions;
 export default cartSlice.reducer;

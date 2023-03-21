@@ -392,8 +392,6 @@ export const styles = StyleSheet.create({
     textAlign: CENTER,
     color: WHITE,
     fontFamily: fonts.family.rubik600,
-    marginLeft: '6%',
-    marginTop: 12,
     fontSize: fonts.size.fontSize16,
   },
   contentContainerStyle: {
@@ -426,6 +424,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: WHITE,
     flexDirection: ROW,
+    shadowColor: GREY,
+    elevation:10,
   },
   addNew: {
     alignItems: CENTER,
@@ -442,22 +442,42 @@ export const styles = StyleSheet.create({
     marginLeft: 7.33,
   },
   border: {
+    elevation:5,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
-    shadowColor: WHITE,
-    shadowOpacity: '5%',
+    marginHorizontal:16,
+    shadowColor: GREY,
     borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
   },
-  checkboxAddress: {
-    alignItems: FLEX_END,
-    marginRight: 19,
+  borderAddNewAddress:{
+    elevation:5,
     marginTop: 14,
+    marginHorizontal:16,
+    shadowColor: GREY,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+    shadowColor: WHITE,
+    shadowOpacity: "5%",
+    borderRadius: 6,
+  },
+  checkboxAddress: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    marginRight: 19,
+    marginTop: 8,
   },
   adressName: {
-    marginLeft: 40,
+    width:"80%",
+    marginTop: 10,
+    marginHorizontal:19,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  CityName:{
+    marginTop: 5,
+    marginHorizontal:19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -465,11 +485,12 @@ export const styles = StyleSheet.create({
   AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
+    marginTop:20,
     marginRight: 25,
   },
   AdressCheckBox: {
-    marginTop: 11,
-    marginLeft: 30,
+    marginTop:5,
+    marginHorizontal:19,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -477,8 +498,6 @@ export const styles = StyleSheet.create({
   },
   SvgImage: {
     flex: 1,
-    marginTop: 10,
-
   },
   AddText: {
     marginLeft: '6%',

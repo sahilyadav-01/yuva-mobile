@@ -32,11 +32,17 @@ export const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
-  head: {
+  headView: {
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    marginLeft: 19,
+    bottom: 9,
+    width: '44%',
+    height: 20,
+    borderRadius: 6,
     backgroundColor: BIANCA,
-    alignSelf: FLEX_START,
-    marginLeft: '5%',
-    top: -9,
+  },
+  head: {
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
     color: CYAN_BLUE,

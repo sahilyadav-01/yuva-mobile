@@ -45,6 +45,8 @@ export const styles = StyleSheet.create({
     height: 57,
     width: '100%',
     justifyContent: CENTER,
+    borderBottomLeftRadius:12,
+    marginBottom:12,
   },
   buttonStyle: {
     position: ABSOLUTE,
