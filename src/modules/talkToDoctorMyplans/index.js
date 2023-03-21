@@ -37,13 +37,11 @@ const MyPlans = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.buttonStyle}>
-              <Text style={styles.textStyle}>{CHAT_NOW}</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity style={styles.buttonStyle} onPress={onSelectMember}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={onSelectMember}>
             <Text style={styles.textStyle}>{CHAT_NOW}</Text>
           </TouchableOpacity>
+          </View>
+  
         </ScrollView>
       );
     });
