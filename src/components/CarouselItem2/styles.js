@@ -6,8 +6,9 @@ import {
   ECHO_BLUE,
   ORANGE,
   CYAN_BLUE,
+  SUNSET_ORANGE,
 } from '../../styles/colors';
-import {CENTER} from '../../styles/constants';
+import {CENTER, LINE_THROUGH, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {marginLeft: 20, width: 36, height: 36},
   descriptionContainer: {marginTop: 14, marginLeft: 14},
-  costContainer: {marginTop: 9, marginLeft: 14,marginBottom:9},
+  costContainer: {flexDirection: ROW ,marginTop: 9, marginLeft: 14,marginBottom:9},
   textContainer: {marginLeft: 14, marginVertical: 8},
   addButtonViewContainer: {paddingLeft: 14, paddingRight: 90},
   addButtonContainer: {
@@ -48,6 +49,17 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     maxWidth: 144,
   },
+  discountStyle: {
+    fontFamily: fonts.family.rubik500,
+    fontWeight: fonts.weight.fontWeight500,
+    color: SUNSET_ORANGE,
+    fontSize: fonts.size.fontSize14,
+    lineHeight: 21,
+    maxWidth: 144,
+    textDecorationLine: LINE_THROUGH,
+    marginLeft: 14
+  },
+
   textStyle: {
     fontFamily: fonts.family.rubik400,
     fontWeight: fonts.weight.fontWeight300,

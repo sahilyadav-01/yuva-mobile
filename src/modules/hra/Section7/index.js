@@ -40,7 +40,7 @@ const Section7 = () => {
                 search={false}
               />
             </View>
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[1]?.questionId] !== undefined) || (PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[1]?.question}
@@ -54,7 +54,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalConditionDiabetes || (PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDiabetes && answers[questionData[2]?.questionId] !== undefined) || (PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[2]?.question}
@@ -68,7 +68,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalCondition || (answers[questionData[3]?.questionId] ?? false)) && (
+            {((medicalCondition) || (answers[questionData[3]?.questionId] ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={requiredFieldQ4 ? styles.textError : styles.text}>{questionData[3]?.question}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -79,7 +79,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[4]?.questionId] !== undefined) || (PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[4]?.question}
@@ -93,7 +93,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalConditionHypertension || (PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionHypertension && answers[questionData[5]?.questionId] !== undefined) || (PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[5]?.question}
@@ -107,7 +107,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalCondition1 || ((answers[questionData[6]?.questionId] ?? false) && (answers[questionData[7]?.questionId] ?? false))) && (
+            {((medicalCondition1) || ((answers[questionData[6]?.questionId] ?? false) && (answers[questionData[7]?.questionId] ?? false))) && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={requiredFieldQ7 ? styles.textError : styles.text} >{questionData[6]?.question}</Text>
@@ -130,7 +130,7 @@ const Section7 = () => {
                 </View>
               </View>
             )}
-            {(medicalConditionDoYouSufferFromAnyIllness || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[8]?.questionId] !== undefined) || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? false)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[8]?.question}
@@ -144,7 +144,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {(medicalConditionAnyCancer || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
+            {((medicalConditionAnyCancer && answers[questionData[9]?.questionId] !== undefined) || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
@@ -167,7 +167,7 @@ const Section7 = () => {
                 search={false}
               />
             </View>
-            {(medicalConditionChronicIllness || (answers[questionData[9]?.questionId] !==undefined && PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
+            {((medicalConditionChronicIllness) || (answers[questionData[9]?.questionId] !==undefined && PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}

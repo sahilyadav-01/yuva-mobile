@@ -63,10 +63,12 @@ export const useBookingConfirm = () => {
     const address = selectedAddress?.address;
     const pincode = selectedAddress?.pincode;
     const contact = selectedAddress?.contact;
+    const away    = selectedAddress?.away;
     const bookTestScreen = () => {
         var data = {
             address: address,
             cityId: city,
+            away:away,
             contactNumber: contact,
             packageUuid: [packageDetails?.packageUuid],
             patientId: null,
@@ -75,7 +77,7 @@ export const useBookingConfirm = () => {
             programOrPlanUuid: userAttribute?.Uuid,
             relationId: selected,
             testId: [],
-            timeSlot: getEpoch(date, time),
+            timeSlot: getEpoch(date, time) + 5.5 * 60 * 60 * 1000,
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };

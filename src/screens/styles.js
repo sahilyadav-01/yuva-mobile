@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { CENTER, SPACE_BETWEEN, FLEX, ROW } from '../styles/constants';
-import { CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL } from '../styles/colors';
-import { fonts } from '../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
+import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
+import {fonts} from '../styles/fonts';
 
 export const styles = StyleSheet.create({
   homeScreenContainer: {
@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
     backgroundColor: FLASH_WHITE,
   },
   screenOptions: {
-    tabBarLabelStyle: { fontSize: 16, marginTop: 0 },
-    tabBarStyle: { height: 40 },
+    tabBarLabelStyle: {fontSize: 16, marginTop: 0},
+    tabBarStyle: {height: 40},
     swipeEnabled: true,
     lazy: false,
   },
@@ -55,12 +55,12 @@ export const styles = StyleSheet.create({
   line1: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
-    width: "70%",
+    width: '70%',
   },
   line2: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
-    width: "45%",
+    width: '45%',
   },
   lineJustify: {
     alignItems: CENTER,
@@ -81,7 +81,6 @@ export const styles = StyleSheet.create({
   },
   verticalLine: {
     borderRightWidth: 2,
-    marginTop: 10,
     height: 40,
     borderRightColor: CYAN_BLUE,
   },
@@ -115,7 +114,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
-    marginBottom:36,
+    marginBottom: 36,
   },
   LandingPageText1: {
     color: CYAN_BLUE,

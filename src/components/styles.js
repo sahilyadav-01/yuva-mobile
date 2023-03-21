@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   DARK_BLUE,
   WHITE,
@@ -11,6 +11,8 @@ import {
   BOX_SHADOW,
   LIGHT_MERCURY,
   LIGHT_GREYISH_RED,
+  RED,
+  VERY_LIGHT_GREY,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -275,12 +277,11 @@ export const styles = StyleSheet.create({
     borderColor: WHITE,
     marginTop: 28,
   },
-  buttonStyle: {
-    height: 32,
+  buttonStyleMyTest: {
+    minHeight:48,
     backgroundColor: ORANGE,
-    borderRadius: 8,
+    borderRadius: 6,
     marginTop: 17,
-    margin: 11,
     justifyContent: CENTER,
   },
   head: {
@@ -299,6 +300,8 @@ export const styles = StyleSheet.create({
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik500,
   },
   sideBySide: {
     flexDirection: ROW,
@@ -327,9 +330,9 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
   },
-  StatusColor:{
-    color:RED_SHADE,
-    backgroundColor:RED_SHADE
+  StatusColor: {
+    color: RED_SHADE,
+    backgroundColor: RED_SHADE,
   },
   booked: {
     marginTop: 22,
@@ -346,26 +349,17 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
   },
-  border: {
-    borderWidth: 0.2,
-    marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
-    shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 6,
-    backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
-
-  },
   AddAddressLine: {
     marginTop: 16,
-    marginLeft: 12,
+    marginBottom: 8,
+    marginLeft: 14,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
   textInputStyle: {
+    paddingLeft: 12,
+    marginHorizontal: 13,
     borderWidth: 1,
     borderColor: LIGHT_MERCURY,
     backgroundColor: LIGHT_GREYISH_RED,
@@ -373,151 +367,158 @@ export const styles = StyleSheet.create({
     marginBottom: 11,
     color: DARK_BLUE,
     minHeight: 42,
-    marginLeft: 12,
-    marginRight: 26,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },
   boxStyles: {
-    marginLeft: 12,
-    marginRight: 26,
+    marginHorizontal: 13,
     borderWidth: 0.1,
     backgroundColor: LIGHT_GREYISH_RED,
     borderColor: LIGHT_MERCURY,
     minHeight: 42,
-    borderRadius: 2,
-    marginBottom: 31
+    borderRadius: 8,
+    marginBottom: 31,
   },
   touchableButton: {
+    justifyContent: CENTER,
     backgroundColor: ORANGE,
     marginTop: 34,
     marginLeft: 16,
     marginRight: 16,
     borderRadius: 8,
-    minHeight: 48
+    minHeight: 48,
   },
   textBook: {
     textAlign: CENTER,
     color: WHITE,
     fontFamily: fonts.family.rubik600,
-    marginLeft:"6%",
-    marginTop: 12,
     fontSize: fonts.size.fontSize16,
-
   },
   contentContainerStyle: {
     flexGrow: 1,
     paddingBottom: 10,
-},
-tobePaid: {
+  },
+  tobePaid: {
     textAlign: CENTER,
     paddingTop: 15,
     paddingBottom: 15,
     color: WHITE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-
-},
-address: {
+  },
+  AddressCheck: {
     width: '96%',
     flexDirection: ROW,
-},
-selectDate: {
+  },
+  selectDate: {
     marginTop: 30,
     marginLeft: 16,
     flex: 1,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
-},
-Add: {
+  },
+  AddNewAdd: {
     marginLeft: 38,
-    borderWidth: 0.1,
     marginTop: 18,
-    shadowColor: WHITE,
-    shadowOpacity: "5%",
-    borderRadius: 3,
+    borderRadius: 8,
     backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
-    flexDirection:ROW,
-},
-addNew: {
-    alignItems:CENTER,
-    marginRight:15,
+    flexDirection: ROW,
+    shadowColor: GREY,
+    elevation:10,
+  },
+  addNew: {
+    alignItems: CENTER,
+    marginRight: 15,
     marginLeft: 7.33,
     minHeight: 25,
     marginTop: 9,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
-},
-svg:{
-    marginTop:9,
-    marginLeft:7.33,
-},
-border: {
-    borderWidth: 0.2,
+  },
+  svg: {
+    marginTop: 9,
+    marginLeft: 7.33,
+  },
+  border: {
+    elevation:5,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal:16,
+    shadowColor: GREY,
+    borderRadius: 12,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
+  },
+  borderAddNewAddress:{
+    elevation:5,
+    marginTop: 14,
+    marginHorizontal:16,
+    shadowColor: GREY,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
     shadowColor: WHITE,
     shadowOpacity: "5%",
     borderRadius: 6,
-    backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW
-
-},
-checkboxAddress: {
-    alignItems:FLEX_END,
-    marginRight:19,
-    marginTop: 14,
-},
-adressName: {
-    marginLeft: 40,
+  },
+  checkboxAddress: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    marginRight: 19,
+    marginTop: 8,
+  },
+  adressName: {
+    width:"80%",
+    marginTop: 10,
+    marginHorizontal:19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-
-},
-Images: {
+  },
+  CityName:{
+    marginTop: 5,
+    marginHorizontal:19,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginRight:25,
-},
-adressCheck: {
-    marginTop: 11,
-    marginLeft: 40,
+    marginTop:20,
+    marginRight: 25,
+  },
+  AdressCheckBox: {
+    marginTop:5,
+    marginHorizontal:19,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
-},
-Image: {
+  },
+  SvgImage: {
     flex: 1,
-    marginTop: 10,
-
-},
-Images: {
-    justifyContent: SPACE_BETWEEN,
-    flexDirection: ROW,
-    marginRight:25,
-},
-AddText: {
+  },
+  AddText: {
     marginLeft: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-},
-check:{
+    },
+    check:  {
     marginRight: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-},
-progress: {
-   justifyContent:SPACE_BETWEEN,
-   flexDirection:ROW,
-}
+  },
+  progress: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+  },
+  errorContact: {
+    color: RED,
+    marginHorizontal: 14,
+  },
 
 
 });

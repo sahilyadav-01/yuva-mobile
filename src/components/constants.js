@@ -44,3 +44,6 @@ export const CHECK_OUT_SCREEN="CheckoutScreen";
 export const PLEASE_CHECK_ADDRESS="Please check address Box";
 export const PAYMENT="Payment";
 export const ADDRES="Address";
+export const ERROR_TEXT_CONTACT_NUMBER="Please Enter Valid Phone Number";
+export const ERROR_TEXT_PINCODE="Please Enter Valid Pincode";
+export const ERROR_TEXT_LOCATION="Enter Address";

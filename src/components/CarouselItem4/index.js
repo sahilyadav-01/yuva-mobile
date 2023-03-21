@@ -44,9 +44,16 @@ const CarouselItem4 = (props) => {
       <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{getTestCount(item)}</Text>
       </View>
-      <View style={styles.costContainer}>
-        <Text style={styles.costStyle}>{COST(item.cost)}</Text>
-      </View>
+        <View style={styles.costContainer}>
+          {item.cost === item.finalCost ? (
+            <Text style={styles.costStyle}>{COST(item.cost)}</Text>
+          ) : (
+            <>
+              <Text style={styles.costStyle}>{COST(item.finalCost)}</Text>
+              <Text style={styles.discountStyle}>{COST(item.cost)}</Text>
+            </>
+          )}
+        </View>
       <View style={styles.addButtonViewContainer}>
         <TouchableOpacity
         disabled={existingIds.length > 0 && existingIds.includes(item.testId.toString())}

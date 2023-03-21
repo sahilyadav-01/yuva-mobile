@@ -15,14 +15,13 @@ const CarouselItem2 = (props) => {
   const { imgPath, index, totalItem, onPressAdd, item } = props;
   const { existingIds } = useSelector(state => state.cart)
   const onPackagePress = (item) => navigation.navigate('ProductDetails', {
-    packageName: item.packageUuid ,
+    packageName: item.packageUuid,
     uuid: item.packageUuid ?? null,
     showCartButton: true,
     isTest: item.testId ? true : false,
-    name:item.packageName ?? null,
+    name: item.packageName ?? null,
     cost: item.cost ?? null
   });
-
   return (
     <TouchableOpacity onPress={() => onPackagePress(item)}>
       <View
@@ -45,7 +44,14 @@ const CarouselItem2 = (props) => {
           <Text style={styles.textStyle}>{getTestCount(item)}</Text>
         </View>
         <View style={styles.costContainer}>
-          <Text style={styles.costStyle}>{COST(item.cost)}</Text>
+          {item.cost === item.finalCost ? (
+            <Text style={styles.costStyle}>{COST(item.cost)}</Text>
+          ) : (
+            <>
+              <Text style={styles.costStyle}>{COST(item.finalCost)}</Text>
+              <Text style={styles.discountStyle}>{COST(item.cost)}</Text>
+            </>
+          )}
         </View>
         <View style={styles.addButtonViewContainer}>
           <TouchableOpacity

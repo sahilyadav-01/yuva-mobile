@@ -13,6 +13,7 @@ export const fonts = {
     fontSize12: 12,
     fontSize10: 10,
     fontSize8: 8,
+    fontSize6: 6,
     fontSize4: 4,
   },
   weight: {

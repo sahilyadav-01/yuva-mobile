@@ -6,33 +6,34 @@ import { styles } from "./styles";
 import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../assets";
 import { Checkbox } from 'react-native-paper';
+import { VERY_LIGHT_GREY, WHITE } from "../styles/colors";
 
-const AddressList = () => {
-    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress();
+const AddressList = (isNavScreen) => {
+    const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress(isNavScreen);
     const renderAddress = ({ item, index }) => {
         if (!item) {
             return null;
         }
         return (
-            <View style={styles.border}>
+            <View style={[styles.border, { backgroundColor: checked === index ? VERY_LIGHT_GREY : WHITE }]}>
 
                 <View style={styles.checkboxAddress} >
+                    <View>
+                        <Text style={styles.adressName}>{item?.address}</Text>
+                        <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
+                    </View>
                     <Checkbox
-                        disabled={userAttribute?.[0]?.address}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
                         }}
-
                     />
                 </View>
-                <Text style={styles.adressName}>{item?.address}</Text>
-                <Text style={styles.adressName}>{item?.cityName}-{item?.pinCode}</Text>
-                <View style={styles.Images}>
-                    <Text style={styles.adressCheck}>{item?.contactNumber}</Text>
+                <View style={styles.AddressImages}>
+                    <Text style={styles.AdressCheckBox}>{item?.contactNumber}</Text>
                     {item?.away ?
-                        (<SVG.AwayImage style={styles.Image} />) : (
-                            <SVG.HomeImage style={styles.Image} />
+                        (<SVG.AwayImage style={styles.SvgImage} />) : (
+                            <SVG.HomeImage style={styles.SvgImage} />
                         )}
                 </View>
             </View>
@@ -43,12 +44,12 @@ const AddressList = () => {
     }
     return (
         <View>
-            <View style={styles.address} >
+            <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
                 <TouchableOpacity disabled={userAddress?.[checked]} onPress={AddNewAddress} >
-                    <View style={styles.Add} >
+                    <View style={[styles.AddNewAdd, { opacity: userAddress?.[checked] && 0.5 }]} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
                             {ADD_NEW}

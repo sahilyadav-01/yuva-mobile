@@ -83,17 +83,29 @@ const initialState = {
     itemDtoList: [],
     totalCost: 0,
     isRemoved: false,
+    amountToBePaid:0,
+    totalDiscount:0,
+    couponViewCart:null,
   },
   loading: false,
   apiError: false,
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
+  termsAndCondtionChecked:false,
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  reducers: {
+    removeCouponCart(state) {
+      state.cart.couponViewCart=null;
+    },
+  },
+    setTermsAndCondtionChecked(state,{payload}){
+      state.termsAndCondtionChecked=payload;
+    },
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;
@@ -104,16 +116,19 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
       };
-      state.existingIds = [];
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -135,16 +150,19 @@ const cartSlice = createSlice({
         totalCost: 0,
         isRemoved: false,
 };
-      state.existingIds = [];
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
+      state.cart.totalCost= payload?.data?.data?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
       if(payload?.data?.data?.itemDtoList && payload?.data?.data?.itemDtoList.length > 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart= {
@@ -222,6 +240,7 @@ const cartSlice = createSlice({
     },    
   },
 });
-
+export const {setTermsAndCondtionChecked}=cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
+export const {removeCouponCart } = cartSlice.actions;
 export default cartSlice.reducer;
