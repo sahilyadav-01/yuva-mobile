@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
-import {fonts} from '../../styles/fonts';
-import {WHITE, ORANGE, SHADOW, CYAN_BLUE, RED} from '../../styles/colors';
-import { ABSOLUTE, FLEX_END, ROW,SPACE_BETWEEN } from '../../styles/constants';
+import { StyleSheet } from 'react-native';
+import { fonts } from '../../styles/fonts';
+import { WHITE, ORANGE, SHADOW, CYAN_BLUE, RED } from '../../styles/colors';
+import { ABSOLUTE, FLEX_END, ROW, SPACE_BETWEEN } from '../../styles/constants';
 
-const styles = ({disabled}) => {
+const styles = ({ disabled }) => {
   return StyleSheet.create({
     dependentsContainer: {
       marginTop: 12,
@@ -12,9 +12,8 @@ const styles = ({disabled}) => {
       zIndex: 10,
       shadowColor: SHADOW,
       borderRadius: 12,
-      marginHorizontal:13,
-      paddingHorizontal: 17,
-      marginHorizontalL:43,
+      marginHorizontal: 12,
+      paddingHorizontal: 18,
       paddingTop: 20,
       marginBottom: 12,
     },
@@ -24,32 +23,47 @@ const styles = ({disabled}) => {
       justifyContent: SPACE_BETWEEN,
     },
     relationText: {
-      fontFamily: fonts.family.nunitoSemiBold,
+      fontFamily: fonts.family.rubik400,
       color: ORANGE,
       fontSize: fonts.size.fontSize16,
-      height: 24,
+      minHeight: 24,
     },
     dependentName: {
-      fontFamily: fonts.family.rubikMedium,
+      paddingTop:1,
+      fontFamily: fonts.family.rubik500,
       color: CYAN_BLUE,
       fontSize: fonts.size.fontSize14,
-      height: 21,
+      minHeight: 22,
     },
     dependentGender: {
-      fontFamily: fonts.family.fontFamilyRubix,
+      paddingTop:2,
+      fontFamily: fonts.family.rubik500,
       color: CYAN_BLUE,
       fontSize: fonts.size.fontSize14,
-      height: 21,
+      minHeight: 22,
     },
-    EditIcon:{
-        position:ABSOLUTE,
-        right:15,
+    EditIcon: {
+      position: ABSOLUTE,
+      right: 15,
     },
-    containerView:{
-       flexDirection:ROW,
+    containerView: {
+      flexDirection: ROW,
     },
-    textSpaceLine:{
-        marginHorizontal:14,
+    textSpaceLine: {
+      marginHorizontal: 14,
+    },
+    dependenView: {
+      flexDirection: ROW,
+      flex: 1
+    },
+    textSpacing: {
+      marginHorizontal: 14
+    },
+    relationView: {
+      minHeight: 14
+    },
+    relationBottomView: {
+      minHeight: 20
     }
   });
 };

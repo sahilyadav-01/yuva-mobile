@@ -1,13 +1,10 @@
 
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
-import { Alert } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  getRelations, profileThunk,
-} from '../../../../../store/reducers/ProfileSlice';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRelations, profileThunk} from '../../../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../../../utils/utils';
-import { ALERT, HEALTH_SCREEN, MYSELF, PLEASE_SELECT_MEMBER } from '../constants';
+import { CHECKED, HEALTH_SCREEN, MALE, MYSELF, UNCHECKED } from '../constants';
 
 export const useMemberSelect = () => {
   const navigation = useNavigation();
@@ -17,16 +14,16 @@ export const useMemberSelect = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [checkBoxFlag, setCheckBoxFlag] = useState([]);
   const [checkBoxPress, setCheckBoxPress] = useState(0);
-  const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
+  const [checkBoxStatus, setCheckBoxStatus] = useState(UNCHECKED);
   const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const {userDetails, relations} = useSelector(state => state.profile);
+  const { userDetails, relations } = useSelector(state => state.profile);
 
   useEffect(() => {
     if (focused) {
       setModalVisible(false);
-      setCheckBoxStatus('unchecked');
+      setCheckBoxStatus(UNCHECKED);
       setCheckBoxFlag([]);
       setStartConsultation(false);
       setCheckBoxPress(0);
@@ -44,13 +41,13 @@ export const useMemberSelect = () => {
               setActiveIndex(index);
               setCheckBoxPress(checkBoxPress + 1);
             },
-            checkBoxStatus: checkBoxFlag[index]?.status ?? 'unchecked',
+            checkBoxStatus: checkBoxFlag[index]?.status ?? UNCHECKED,
           };
         }),
       );
       setModalVisible(true);
     }
-  }, [userDetails, relations,startConsultation, checkBoxFlag]);
+  }, [userDetails, relations, startConsultation, checkBoxFlag]);
 
   useEffect(() => {
     if (activeIndex !== null) {
@@ -58,59 +55,59 @@ export const useMemberSelect = () => {
         if (activeIndex === index) {
           let status =
             !checkBoxFlag[index]?.status ||
-            checkBoxFlag[index].status === 'unchecked'
-              ? 'checked'
-              : 'unchecked';
-          return {index, status};
-        } else return {index, status: 'unchecked'};
+              checkBoxFlag[index].status === UNCHECKED
+              ? CHECKED
+              : UNCHECKED;
+          return { index, status };
+        } else return { index, status: UNCHECKED };
       });
       setCheckBoxFlag(status);
-      setCheckBoxStatus('unchecked');
+      setCheckBoxStatus(UNCHECKED);
     }
   }, [checkBoxPress]);
 
   useEffect(() => {
-    if (checkBoxStatus === 'checked') {
-      const {name, dob, gender} = userDetails;
+    if (checkBoxStatus === CHECKED) {
+      const { name, dob, gender } = userDetails;
       setUserData({
         id: null,
         name,
-        age:getAge(new Date(dob)),
+        age: getAge(new Date(dob)),
         gender,
-        genderId: gender === 'Male' ? 0 : 1,
-        relation:MYSELF,
+        genderId: gender === MALE ? 0 : 1,
+        relation: MYSELF,
       });
     } else if (
       checkBoxFlag.length > 0 &&
-      checkBoxFlag.filter(item => item.status === 'checked').length > 0
+      checkBoxFlag.filter(item => item.status === CHECKED).length > 0
     ) {
-      const {id, name, age, gender,relation} =
-        relations[checkBoxFlag.find(item => item.status === 'checked').index];
-      setUserData({id, name, age, gender, genderId: gender === 'Male' ? 0 : 1,relation});
+      const { id, name, age, gender, relation } =
+        relations[checkBoxFlag.find(item => item.status === CHECKED).index];
+      setUserData({ id, name, age, gender, genderId: gender === MALE ? 0 : 1, relation });
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
-useEffect(()=>{
-  dispatch(profileThunk());
-  dispatch(getRelations());
-  setStartConsultation(true);
-},[])
+  useEffect(() => {
+    dispatch(profileThunk());
+    dispatch(getRelations());
+    setStartConsultation(true);
+  }, [])
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
     setStartConsultation(true);
   };
   const onPressCheckBox = () => {
-    setCheckBoxStatus('checked');
+    setCheckBoxStatus(CHECKED);
     setCheckBoxFlag([]);
-    
+
   };
-   const onModalCrossPress = () => {
-      setModalVisible(false);
-       setStartConsultation(false);
+  const onModalCrossPress = () => {
+    setModalVisible(false);
+    setStartConsultation(false);
   };
-  const onPress=()=>{
-    navigation.navigate(HEALTH_SCREEN,userData);
+  const onPress = () => {
+    navigation.navigate(HEALTH_SCREEN, userData);
   }
   return {
     modalVisible,

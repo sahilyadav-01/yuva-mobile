@@ -1,1 +1,1 @@
-export const AGE_ = 'Age - ';
+export const AGE = 'Age - ';
