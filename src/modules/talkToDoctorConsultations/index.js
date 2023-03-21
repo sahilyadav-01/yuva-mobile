@@ -6,12 +6,9 @@ import {usePatient} from '../../modules/talkToDoctorMyplans/hooks/usePatient';
 const Consultations = () => {
   const {onPressNext, consultationList, onDownload, onConsult} = usePatient();
   return (
-    <ScrollView>
-      <ConsultationList
-        data={consultationList}
-        onConsult={onConsult}
-      />
-    </ScrollView>
+    <View>
+      <ConsultationList data={consultationList} onConsult={onConsult} />
+    </View>
   );
 };
 

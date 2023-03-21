@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, CYAN_BLUE, GREEN, WHITE} from '../../../../styles/colors';
+import {BLACK, CYAN_BLUE, GREEN, LIGHT_BLACK, WHITE} from '../../../../styles/colors';
 import {
   ABSOLUTE,
   CENTER,
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   cancelledView: {
-    backgroundColor: '#E9E9E9',
+    backgroundColor: LIGHT_BLACK,
   },
   cancelledText: {
     fontSize: fonts.size.fontSize14,
