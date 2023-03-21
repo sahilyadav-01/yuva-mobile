@@ -10,7 +10,7 @@ export const useOurPlanAddress = () => {
     const { quarterlyPrice, halfYearlyPrice, yearlyPrice, plan } = route?.params || {};
     const navigation = useNavigation();
     const [checked, setChecked] = useState(null);
-    const { userAddress, selectedAddress } = useSelector(state => state?.profile);
+    const { userAddress, selectedAddress, profile } = useSelector(state => state?.profile);
     const checkoutData = {
         ...selectedAddress,
         quarterlyPrice,
@@ -19,7 +19,7 @@ export const useOurPlanAddress = () => {
     }
     const AddressAdded = () => {
         if (selectedAddress?.address) {
-            navigation.navigate(CHECK_OUT_SCREEN, {...checkoutData,plan:plan ?? null})
+            navigation.navigate(CHECK_OUT_SCREEN, {...checkoutData,plan:plan ?? null, number: profile?.data?.number ?? ''})
         } else {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
         }

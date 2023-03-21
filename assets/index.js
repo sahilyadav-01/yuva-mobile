@@ -101,6 +101,8 @@ import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
+import PaymentSuccess from './PaymentSuccess';
+import PaymentFailure from './PaymentFailure';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -207,7 +209,9 @@ const SVG = {
   Pdf: Pdf,
   Download: Download,
   Prescriptions,
-  Bookings
+  Bookings,
+  PaymentSuccess,
+  PaymentFailure
 };
 
 export {PNG, SVG};

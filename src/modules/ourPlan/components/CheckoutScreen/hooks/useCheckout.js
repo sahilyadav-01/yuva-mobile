@@ -16,7 +16,8 @@ export const useCheckout = () => {
         quarterlyPrice,
         halfYearlyPrice,
         cityId,
-        plan } = route?.params || {};
+        plan,
+        number} = route?.params || {};
         const plans = [{planTypeEnum:'QUARTERLY',cost:quarterlyPrice ?? 0},{planTypeEnum:'HALF_YEARLY',cost:halfYearlyPrice ?? 0},{planTypeEnum:'ANNUALLY',cost:yearlyPrice ?? 0}]
     const onPayPress = () => {
         const planTypeEnum = plans.find((item)=>item.cost === Math.max(quarterlyPrice,halfYearlyPrice,yearlyPrice))?.planTypeEnum ?? null;
@@ -36,6 +37,10 @@ export const useCheckout = () => {
             version: 0
           };
         const subscriptionRequestDto = {
+            address,
+            cityId,
+            pinCode: pincode,
+            number,
             planTypeEnum,
             planUuid: mainItem?.planUuid
           }
