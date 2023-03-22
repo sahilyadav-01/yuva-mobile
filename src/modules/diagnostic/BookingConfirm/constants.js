@@ -28,3 +28,4 @@ export const BOOKING="Diagnostic";
 export const ADDNEWADDRESS="AddNewAddress";
 export const BOOKINGCONFIRM="BookingConfirm";
 export const FLEX_END="flex-end";
+export const MY_TESTS = 'My Tests';

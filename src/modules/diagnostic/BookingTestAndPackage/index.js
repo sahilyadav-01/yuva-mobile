@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './styles';
-import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT, INSTRUCTIONS, LAB, MY_TESTS } from './constants';
+import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT,  INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
+import { useRoute } from '@react-navigation/native';
 
 
 const BookingTestAndPackage = () => {
@@ -19,8 +20,8 @@ const BookingTestAndPackage = () => {
         isTest,
         isDisabled,
         testDetails,
+        headerTitle
     } = useBookingTestAndPackage();
-
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
             onUpdate(index)
@@ -81,7 +82,7 @@ const BookingTestAndPackage = () => {
     if (!renderData) return null;
     return (
         <View>
-            <Header showBackButton={true} title={MY_TESTS} />
+            <Header showBackButton={true} title={headerTitle()} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

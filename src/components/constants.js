@@ -47,3 +47,4 @@ export const ADDRES="Address";
 export const ERROR_TEXT_CONTACT_NUMBER="Please Enter Valid Phone Number";
 export const ERROR_TEXT_PINCODE="Please Enter Valid Pincode";
 export const ERROR_TEXT_LOCATION="Enter Address";
+export const MY_TEST ="myTest";
