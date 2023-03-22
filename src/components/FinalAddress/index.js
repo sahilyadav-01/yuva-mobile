@@ -1,14 +1,15 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import {ADDRESS, NAME, PHONE_NUMBER} from './constant';
 import {styles} from './styles';
+import { useSelector } from 'react-redux';
 
 const FinalAddress = () => {
+  const { relationData,addressData } = useSelector(state => state.checkOut);
   return (
     <View style={styles.containView}>
-      <Text style={styles.nameStyle}>{NAME}</Text>
-      <Text style={styles.addressStyle}>{ADDRESS}</Text>
-      <Text style={styles.numberStyle}>{PHONE_NUMBER}</Text>
+      <Text style={styles.nameStyle}>{relationData.name}</Text>
+      <Text style={styles.addressStyle}>{addressData.address}</Text>
+      <Text style={styles.numberStyle}>{addressData.contact}</Text>
     </View>
   );
 };

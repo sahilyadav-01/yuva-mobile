@@ -6,14 +6,15 @@ import OrderDetails from '../../../components/OrderDetails';
 import ProgressBar from '../../../components/ProgressBar';
 import FinalAddress from '../../../components/FinalAddress';
 import {TO_BE_PAID} from './constant';
-import {useRoute} from '@react-navigation/native';
 import {styles} from './styles';
+import { useSelector } from 'react-redux';
 
 const PaymentReconfirmList = props => {
-  const route = useRoute();
-  const {date, time} = route?.params;
-  const renderDate = getDateInFormat(new Date(date), 'dd/mm/yyyy');
-  const renderTime = getTimeInFormat(new Date(time), 'hh:mm:ss');
+  const { scheduleDate } = useSelector(state => state.checkOut);
+  const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
+  const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
+  const { cart } = useSelector(state => state.cart);
+  const { amountToBePaid } = cart || {};
   return (
     <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
@@ -32,7 +33,7 @@ const PaymentReconfirmList = props => {
         {/*  to do ranjit component */}
 
         <TouchableOpacity style={styles.touchableButton}>
-          <Text style={styles.textBook}>{TO_BE_PAID}</Text>
+          <Text style={styles.textBook}>{TO_BE_PAID(amountToBePaid)}</Text>
         </TouchableOpacity>
       </ScrollView>
     </>

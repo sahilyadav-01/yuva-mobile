@@ -26,6 +26,7 @@ import attribute, {attributeInit} from './reducers/AttributeSlice';
 import hra, {hraInit} from './reducers/HRASlice';
 import cart, { cartInit } from './reducers/CartSlice';
 import downloadReport,{downloadInit} from './reducers/DownloadReportSlice';
+import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
 const storeInitialState = {
   auth: authInit,
   section1: section1Init,
@@ -50,6 +51,7 @@ const storeInitialState = {
   lifestylePackage:lifestylePackageInit,
   cart: cartInit,
   downloadReport:downloadInit,
+  checkOut:checkOutInit ,
 };
 
 const appReducer = combineReducers({
@@ -76,6 +78,7 @@ const appReducer = combineReducers({
   lifestylePackage,
   cart,
   downloadReport,
+  checkOut,
 });
 
 const rootReducer = (state, action) => {

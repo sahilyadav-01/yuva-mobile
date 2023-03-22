@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/CouponSlice';
 import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
+import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
 export const useCart = () => {
   const navigation = useNavigation();
@@ -44,6 +45,7 @@ export const useCart = () => {
     if (isLoggedIn) {
 
       if(userData !== null){
+        dispatch(dispatch_relationData({userData}));
         navigation.navigate('CheckoutAddressList');
       }
       openModal();
