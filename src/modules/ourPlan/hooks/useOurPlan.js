@@ -18,8 +18,8 @@ export const useOurPlan = () => {
 
   const viewabilityConfig = {
     waitForInteraction: true,
-    itemVisiblePercentThreshold: 80,
-    viewAreaCoveragePercentThreshold: 60,
+    itemVisiblePercentThreshold: 30,
+    viewAreaCoveragePercentThreshold: 30,
   };
 
   const onPressAll = () => {

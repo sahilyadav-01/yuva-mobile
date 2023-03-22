@@ -60,3 +60,4 @@ export const DEEP_RED = '#A93C3C';
 export const LIGHT_GREEN = '#E6FDF9';
 export const OFF_WHITE = '#E7EAED';
 export const LIGHT_BLACK = '#E9E9E9';
+export const PINK_RED = '#F36161';
