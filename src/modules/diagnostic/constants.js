@@ -1,1 +1,1 @@
-export const DIAGNOSTIC_HEALTH_PACKAGE = 'Diagnostic & Health Package';
+export const MY_TESTS = 'My Tests';

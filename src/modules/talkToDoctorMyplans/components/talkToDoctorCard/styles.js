@@ -5,11 +5,11 @@ import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '98%',
     height: 100,
     justifyContent: CENTER,
     alignSelf: CENTER,
     marginVertical: 16,
+    marginHorizontal:15,
     borderRadius: 12,
     shadowRadius: 12,
     shadowOffset: {

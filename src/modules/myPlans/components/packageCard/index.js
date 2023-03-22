@@ -10,7 +10,7 @@ import {
 import React, {useEffect} from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
-import {AVAILABLE, BOOK_NOW, PARAMETERS, USED} from './constant';
+import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, PARAMETERS, USED} from './constant';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {usePackageCard} from './hooks/usePackageCard';
@@ -33,9 +33,13 @@ const PackageCard = () => {
       return (
         <ScrollView>
           <View style={styles.viewContainer} key={index}>
-            <Text style={styles.head}>{item.name}</Text>
-
-            <Text style={styles.expiry}>{getPlanDate(item.endDate)}</Text>
+            <View style={styles.headView}>
+              <Text style={styles.head}>{item.name}</Text>
+            </View>
+            <Text style={styles.expiry}>
+              {EXPIRY_DATE}
+              {getPlanDate(item.endDate)}
+            </Text>
 
             <View style={styles.sideBySide}>
               <Image source={PNG.DOCTOR} style={styles.imageStyle} />

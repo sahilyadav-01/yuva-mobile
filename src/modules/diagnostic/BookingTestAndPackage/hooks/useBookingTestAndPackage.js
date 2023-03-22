@@ -5,12 +5,12 @@ import {
 } from '../../../../store/reducers/DiagnosticsSlice';
 import { useIsFocused, useNavigation } from '@react-navigation/core'
 import { useRoute } from '@react-navigation/native';
-import { BOOKINGCONFIRM } from '../constants';
+import { BOOKINGCONFIRM, HEALTH_CHECKUP_DIAGNOSTIC, LIFE_STYLE, MY_TESTS } from '../constants';
 import { useCart } from '../../../cart/hooks/useCart';
 
 export const useBookingTestAndPackage = () => {
     const route = useRoute();
-    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest } = route.params;
+    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest,headerName } = route.params;
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const focused = useIsFocused();
@@ -85,7 +85,14 @@ export const useBookingTestAndPackage = () => {
             isTest ? 'TEST' : 'PACKAGE'
         );
     }
-
+    const headerTitle = () => {
+        switch (headerName) {
+            case "health": return HEALTH_CHECKUP_DIAGNOSTIC;
+            case "myTest":return MY_TESTS;
+            case "lifestyle": return LIFE_STYLE;
+            default: return ""
+        }
+    }
     return {
         packageDetails: details,
         packageList,
@@ -96,6 +103,8 @@ export const useBookingTestAndPackage = () => {
         testDetails,
         renderData,
         isTest,
-        isDisabled
+        isDisabled,
+        headerName,
+        headerTitle
     }
 }

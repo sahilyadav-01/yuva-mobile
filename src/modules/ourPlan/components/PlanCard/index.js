@@ -19,9 +19,9 @@ const PlanCard = (props) => {
     const { serviceName, shortDescription, image } = serviceItem || {};
     const isNotAvailable = shortDescription === NOT_AVAILABLE;
     return (
-      <View style={styles.itemContainer}>
+      <View style={styles.itemContainer} key={index}>
         <View>
-          <Image source={image}/>
+          <Image source={image} />
         </View>
         <View style={styles.detailsView}>
           <Text style={[styles.serviceNameText, isNotAvailable && styles.notAvailable]}>{serviceName}</Text>
@@ -49,7 +49,10 @@ const PlanCard = (props) => {
           <View style={styles.bottomView}>
             <View style={styles.priceView}>
               <View style={styles.priceContainer}>
-                <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
+                <View style={styles.valueContainer}>
+                  <Text style={styles.discountpriceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
+                  <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
+                </View>
                 <Text style={styles.durationText}>{priceObj?.duration}</Text>
               </View>
               { isHomeScreen &&

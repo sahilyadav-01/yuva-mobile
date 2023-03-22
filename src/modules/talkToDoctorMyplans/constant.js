@@ -118,6 +118,7 @@ export const GENDER_BRACKET = ['Male', 'Female'];
 export const NEXT = 'Next';
 export const SECURE_TEXT = '100% Private & Secure';
 export const COMPLETED = 'Completed';
+export const CANCELLED = 'Cancelled';
 export const DOWNLOAD_PRESCRIPTION = 'Download Prescription';
 export const CONSULT_AGAIN = 'Consult Again';
 export const PRESCRIPTION = 'Prescription';
