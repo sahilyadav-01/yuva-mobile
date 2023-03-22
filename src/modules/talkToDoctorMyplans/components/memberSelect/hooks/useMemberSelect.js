@@ -31,7 +31,7 @@ export const useMemberSelect = () => {
     }
   }, [focused]);
   useEffect(() => {
-    if (startConsultation && userDetails && relations?.length > 0) {
+    if ((startConsultation && userDetails) || relations?.length > 0) {
       setData(
         relations?.map((item, index) => {
           return {
