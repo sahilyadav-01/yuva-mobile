@@ -30,6 +30,9 @@ const doctorSlice = createSlice({
     setTabBarVisible(state, action) {
       state.tabBarVisible = action.payload;
     },
+    resetTabBarVisible(state, {payload}) {
+      state.tabBarVisible = payload;
+    },
   },
   extraReducers: {
     [searchDoctorThunk.pending]: (state, {payload}) => {},
@@ -41,5 +44,5 @@ const doctorSlice = createSlice({
   },
 });
 export const doctorInit = doctorSlice.getInitialState();
-export const {setTabBarVisible} = doctorSlice.actions;
+export const {setTabBarVisible, resetTabBarVisible} = doctorSlice.actions;
 export default doctorSlice.reducer;

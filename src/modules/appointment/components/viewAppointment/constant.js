@@ -12,3 +12,4 @@ export const CONFIRMED = 'CONFIRMED';
 export const APPOINTMENT_ID = 'Appointment Id:';
 export const MYSELF = 'Myself';
 export const CANCEL_MESSAGE = 'Are you sure you want to cancel ?';
+export const OPD_CONSULTATION = 'OPD Consultations';

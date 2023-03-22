@@ -8,6 +8,8 @@ import {styles} from './styles';
 import {SEARCH} from './constant';
 import {PLACEHOLDER_TEXT_COLOR} from '../../styles/colors';
 import {useRoute} from '@react-navigation/native';
+import {OPD_CONSULTATION} from '../appointment/constant';
+import Header from '../../components/Header';
 
 const Doctor = () => {
   const {params} = useRoute();
@@ -33,28 +35,36 @@ const Doctor = () => {
     );
   };
   return (
-    <ScrollView>
-      <View>
-        <Searchbar
-          multiline={false}
-          style={styles.search}
-          placeholder={SEARCH}
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          theme={styles.theme}
-          placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
-          label={SearchLabel}
-        />
+    <>
+      {/* <Header
+        title={OPD_CONSULTATION}
+        showSearch={false}
+        showBackButton={true}
+      /> */}
+
+      <ScrollView>
         <View>
-          <FlatList
-            renderItem={renderItem}
-            data={data}
-            keyExtractor={item => item.id}
-            showsHorizontalScrollIndicator={false}
+          <Searchbar
+            multiline={false}
+            style={styles.search}
+            placeholder={SEARCH}
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            theme={styles.theme}
+            placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
+            label={SearchLabel}
           />
+          <View>
+            <FlatList
+              renderItem={renderItem}
+              data={data}
+              keyExtractor={item => item.id}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 

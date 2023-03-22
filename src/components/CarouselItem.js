@@ -34,7 +34,9 @@ const CarouselItem = props => {
         customId: item?.customId,
       }),
     );
-    navigation.navigate('ViewAppointment');
+    navigation.navigate('ViewAppointment', {
+      headerShown: true,
+    });
   };
 
   const {width} = getDimensions();
