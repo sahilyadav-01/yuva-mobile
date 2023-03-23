@@ -50,6 +50,7 @@ export const styles = StyleSheet.create({
     },
     OrderAmountDirection: {
         flexDirection: ROW,
+        marginTop:'2.5%',
     },
 
     orderAmount: {

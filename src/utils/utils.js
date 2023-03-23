@@ -245,7 +245,7 @@ const processTime = time => {
     }
     return i;
   }
-  return addZero(time.getHours()) + ':' + addZero(time.getMinutes()) + ':00';
+  return addZero(time?.getHours()) + ':' + addZero(time?.getMinutes()) + ':00';
   //  return `${time.getHours()}:${time.getMinutes()}:00`
 };
 
