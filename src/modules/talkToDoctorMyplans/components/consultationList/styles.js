@@ -140,4 +140,6 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     marginHorizontal: 12,
   },
+  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
+  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
 });

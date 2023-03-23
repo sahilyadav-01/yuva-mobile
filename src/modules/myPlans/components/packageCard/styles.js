@@ -86,4 +86,6 @@ export const styles = StyleSheet.create({
   textColor: {
     color: CYAN_BLUE,
   },
+  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
+  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
 });

@@ -34,7 +34,7 @@ const {bookedData}=useBooking();
                             />
                         }
                     </ScrollView>
-                ) : <Text style={styles.textColor}>{NO_BOOKING}</Text>}
+                ) : <View style={styles.emptyContainer}><Text style={styles.textColor}>{NO_BOOKING}</Text></View>}
 
             </View>
         </View>
