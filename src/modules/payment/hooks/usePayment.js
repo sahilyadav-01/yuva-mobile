@@ -8,6 +8,9 @@ import {
 
 export const usePayment = paymentProps => {
   const {plan, bookingRequestDto, subscriptionRequestDto} = paymentProps;
+  const redirectUrl = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+  const cancelUrl = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+  //const redirectUrl = 'http://6230-106-51-81-179.ngrok.io/api/v1/yuva/paymentGateway/response'
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const navigation = useNavigation();
@@ -28,7 +31,7 @@ export const usePayment = paymentProps => {
 
   useEffect(() => {
     if (createOrder && !createOrderLoading && orderId) {
-      dispatch(encReqThunk({plan, orderId}));
+      dispatch(encReqThunk({plan, orderId, redirectUrl, cancelUrl}));
     }
   }, [createOrderLoading, orderId, createOrder]);
 

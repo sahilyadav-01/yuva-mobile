@@ -45,7 +45,7 @@ export const useCheckout = () => {
             planUuid: mainItem?.planUuid
           }
         const paymentProps = {plan,bookingRequestDto,subscriptionRequestDto}
-        navigation.navigate('PaymentScreen',{paymentProps})
+        navigation.navigate('Payment',{screen:'PaymentScreen',params:{paymentProps}})
     }
 
     const onCheckout=()=>{

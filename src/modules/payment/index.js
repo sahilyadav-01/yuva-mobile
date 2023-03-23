@@ -22,11 +22,8 @@ const Payment = props => {
       <View style={container}>
         <WebView
           style={container}
-          onMessage={msg => {
-            console.log('Message', msg);
-          }}
           source={{
-            uri: `http://localhost:8081/paymentpoc.html?encRequest=${encRequest}`,
+            uri: `http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/PaymentRedirect?encRequest=${encRequest}`,
           }}
           onNavigationStateChange={state => {
             console.log('State', state);
