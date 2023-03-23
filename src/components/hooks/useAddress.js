@@ -1,7 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { dispatch_addressData } from "../../store/reducers/CheckOutSlice";
 import { getUserAddress, saveCheckedAddress } from "../../store/reducers/ProfileSlice";
 import { NEW_ADDRESS } from "../constants";
 
@@ -40,9 +39,6 @@ export const useOurAddress = (isNavScreen) => {
   }
   useEffect(() => {
     dispatch(saveCheckedAddress(checkoutData));
-    if (isNavScreen?.isNavScreen === 'CheckoutAddressList' && checked !== null) {
-      dispatch(dispatch_addressData({checkoutData}));
-    }
   }, [address])
 
   useEffect(() => {

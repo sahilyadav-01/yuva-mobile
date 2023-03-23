@@ -18,7 +18,7 @@ const checkOutSlice = createSlice({
       state.relationData = payload?.payload?.userData;
     },
     dispatch_addressData(state, payload) {
-      state.addressData = payload?.payload?.checkoutData;
+      state.addressData = payload?.payload?.selectedAddress;
     },
     dispatch_scheduleData(state, payload) {
        state.scheduleDate= payload?.payload;

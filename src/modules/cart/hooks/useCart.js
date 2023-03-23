@@ -5,7 +5,7 @@ import {
   createCartUserThunk,
   removeCouponCart,
 } from '../../../store/reducers/CartSlice';
-import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, CHECKOUT } from '../constants';
+import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, CHECKOUT, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
 import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/CouponSlice';
@@ -16,7 +16,7 @@ import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 export const useCart = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { cart, existingIds } = useSelector(state => state.cart);
+  const { cart } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
@@ -37,21 +37,21 @@ export const useCart = () => {
 
   const buttonText = userData !== null ? CHECKOUT : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   const relationsData = [
-    { key: '1', value: 'Male' },
-    { key: '2', value: 'Female' },
+    { key: KEY_VALUE1, value: MALE },
+    { key: KEY_VALUE2, value: FEMALE },
   ]
   /** */
   const onPress = () => {
     if (isLoggedIn) {
-
-      if(userData !== null){
-        dispatch(dispatch_relationData({userData}));
-        navigation.navigate('CheckoutAddressList');
+      if (isLoggedIn && userData == null) {
+        openModal();
       }
-      openModal();
-
+      else if (userData !== null) {
+        dispatch(dispatch_relationData({ userData }));
+        navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
+      }
     } else {
-      navigation.navigate('LoginScreen');
+      navigation.navigate(LOGIN_SCREEN_NAVIGATION);
     }
   };
 
@@ -60,9 +60,8 @@ export const useCart = () => {
       name: arg.name,
       age: arg.age,
       gender: arg.selectedRelation,
-      relation: 'Other'
+      relation: OTHER_RELATION
     })
-    console.log('gender', arg)
     setAddModalVisible(false);
   }
   const addToCart = ({ name, cost, productId }, productType) => {
@@ -154,7 +153,7 @@ export const useCart = () => {
         age: getAge(new Date(dob)),
         gender,
         genderId: gender === 'Male' ? 0 : 1,
-        relation: 'Myself'
+        relation: MYSELF
       });
     } else if (
       checkBoxFlag.length > 0 &&
