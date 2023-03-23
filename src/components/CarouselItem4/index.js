@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { ORANGE, ORANGE_GREY } from '../../styles/colors';
-import { BUTTONCONTENT, COST, TESTCOUNT } from './constant';
+import { BUTTONCONTENT, COST, HEALTH, TESTCOUNT } from './constant';
 import { styles } from './styles';
 
 const getTestCount = (item) => {
@@ -15,6 +15,7 @@ const CarouselItem4 = (props) => {
   const { imgPath, index, totalItem, onPressAdd, item } = props;
   const {existingIds} = useSelector(state=>state.cart)
    const onTestPress = (item) => navigation.navigate('ProductDetails', {
+    headerName:HEALTH,
     packageName: item.testId ,
     uuid: item.testId ?? null,
     showCartButton: true,

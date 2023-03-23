@@ -106,10 +106,10 @@ const cartSlice = createSlice({
     removeCouponCart(state) {
       state.cart.couponViewCart=null;
     },
-  },
     setTermsAndCondtionChecked(state,{payload}){
       state.termsAndCondtionChecked=payload;
     },
+  },
   extraReducers: {
     [getCartUserThunk.pending]: (state) => {
       state.loading = true;

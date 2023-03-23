@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import { BLACK, CYAN_BLUE, DEEP_RED, LIGHT_SKY_BLUE, ORANGE, VERY_LIGHT_SKY_BLUE, WHITE } from '../../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, RIGHT, ROW } from '../../../../styles/constants';
+import { BLACK, CYAN_BLUE, DEEP_RED, LIGHT_SKY_BLUE, ORANGE, PINK_RED, VERY_LIGHT_SKY_BLUE, WHITE } from '../../../../styles/colors';
+import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, LINE_THROUGH, RIGHT, ROW } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { getDimensions } from '../../../../utils/utils';
 
@@ -9,7 +9,7 @@ const {width, height} = getDimensions();
 export const styles = StyleSheet.create({
   container: {
     width: 0.70 * width,
-    height: 0.30 * height,
+    height: 0.32 * height,
     borderRadius: 12,
     shadowOffset: {
       width: 0,
@@ -23,11 +23,13 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   containerView: {
-    paddingHorizontal: 12,
-    paddingVertical: 16,
+    width: '100%',
+    height: '100%',
+    paddingHorizontal: 8,
+    paddingVertical: 8,
   },
   headingView: {
-
+    paddingTop: 4,
   }, 
   headingText: {
     fontSize: fonts.size.fontSize12,
@@ -44,8 +46,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   serviceContainer: {
-    paddingVertical: 4,
-    paddingHorizontal: 4,
+    flex:1,
   },
   detailsView: {
     paddingHorizontal: 4,
@@ -68,13 +69,15 @@ export const styles = StyleSheet.create({
   },
   bottomView: {
     width: '100%',
-    paddingHorizontal: 12,
+    flex: 1,
     flexDirection: ROW,
-    justifyContent: CENTER,
-    alignItems: CENTER,
   },
-   priceContainer: {
-    justifyContent: CENTER,
+  priceView: {
+    width: '40%',
+    marginHorizontal: 4,
+  },
+  priceContainer: {
+    paddingBottom: 12,
     alignItems: CENTER,
   },
   priceText: {
@@ -82,11 +85,22 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize10,
     color: CYAN_BLUE,
     lineHeight: 15,
+    paddingHorizontal: 4,
+  },
+  discountpriceText: {
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize10,
+    color: PINK_RED,
+    lineHeight: 15,
+    textDecorationLine: LINE_THROUGH,
+    paddingHorizontal: 4,
   },
   durationText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize6,
     color: CYAN_BLUE,
+    lineHeight: 8,
+    paddingLeft: 40,
   },
   footerView: {
     justifyContent: CENTER,
@@ -99,6 +113,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize6,
     color: CYAN_BLUE,
+    lineHeight: 9,
   },
   buyNowView: {
     backgroundColor: CYAN_BLUE,
@@ -106,14 +121,21 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
   },
   buyNowText: {
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
     color: WHITE,
+    lineHeight: 15,
   },
   imageView: {
+    width: '50%',
     bottom: 10,
+    right: 10,
   },
+  valueContainer: {
+    flexDirection: ROW,
+    paddingHorizontal: 4,
+  }
 });
