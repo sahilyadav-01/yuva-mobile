@@ -62,5 +62,5 @@ export const OFF_WHITE = '#E7EAED';
 export const LIGHT_BLACK = '#E9E9E9';
 export const LIGHT_ORANGE = '#FFF5EE';
 export const LIGHT_RED = '#FFE0D6';
-
+export const DULL_BLACK = '#F1F0EF';
 export const PINK_RED = '#F36161';

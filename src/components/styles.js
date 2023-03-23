@@ -526,4 +526,91 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik500,
   },
+  containerView: {
+    width: '100%',
+    backgroundColor: WHITE,
+    elevation: 2,
+    shadowOpacity: 0.2,
+    shadowColor: BLACK,
+    marginVertical: '3%',
+    borderRadius: 6,
+  },
+  StatusAndDoctorStyle: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  statusText: {
+    color: ORANGE,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+  },
+  leftView: {
+    width: '70%',
+  },
+  rightView: {
+    alignItems: FLEX_END,
+    width: '30%',
+  },
+  doctorNameText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+  },
+  doctorSpecialityText: {
+    marginTop: '8%',
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+  },
+  HospView: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    width: '100%',
+    marginTop: 20,
+  },
+  HospitalViewStyle: {
+    marginTop: '4%',
+  },
+  HospNameStyle: {
+    flexDirection: ROW,
+  },
+  HospNameText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik500,
+  },
+  LocationStyle: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+  },
+  DescriptionText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+    marginTop: '10%',
+  },
+  CalView: {
+    marginTop: '20%',
+    flexDirection: ROW,
+    alignItems: CENTER,
+  },
+  CalenderStyle: {
+    color: BLACK,
+    fontSize: fonts.size.fontSize24,
+  },
+  ButtonStyle: {
+    marginVertical: '3%',
+    marginHorizontal: '3%',
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  totalView: {
+    flexDirection: ROW,
+    flex: 1,
+    marginVertical: '3%',
+    marginHorizontal: '3%',
+  },
+  rightSubView: {
+    alignItems: FLEX_END,
+  },
 });

@@ -52,3 +52,5 @@ export const RESCHEDULE = 'Reschedule';
 export const CANCEL_APPOINTMENT = 'Cancel Appointment';
 export const CLOCK_OUTLINE = 'clock-outline';
 export const CLOSE = 'close';
+export const MAP_POINTER = 'map-marker-outline';
+export const CALENDAR = 'calendar-blank-outline';
