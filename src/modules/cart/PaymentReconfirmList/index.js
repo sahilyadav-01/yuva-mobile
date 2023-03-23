@@ -1,20 +1,21 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
-import {getDateInFormat, getTimeInFormat} from '../../../utils/utils';
+import { getDateInFormat, getTimeInFormat } from '../../../utils/utils';
 import Header from '../../../components/Header';
 import OrderDetails from '../../../components/OrderDetails';
 import ProgressBar from '../../../components/ProgressBar';
 import FinalAddress from '../../../components/FinalAddress';
-import {TO_BE_PAID} from './constant';
-import {styles} from './styles';
+import { TO_BE_PAID } from './constant';
+import { styles } from './styles';
 import { useSelector } from 'react-redux';
+import CheckoutPriceDetails from '../../../components/CheckoutPriceDetails'
 
 const PaymentReconfirmList = props => {
   const { scheduleDate } = useSelector(state => state.checkOut);
   const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
   const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
   const { cart } = useSelector(state => state.cart);
-  const { amountToBePaid } = cart || {};
+  const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
   return (
     <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
@@ -31,6 +32,9 @@ const PaymentReconfirmList = props => {
           <Text style={styles.timeSlotStyle}>{renderTime}</Text>
         </View>
         {/*  to do ranjit component */}
+        <View style={styles.PriceDetails}>
+        <CheckoutPriceDetails isPrice={{ amountToBePaid, isCoupon: false, Quantity: itemDtoList.length ,totalCost,totalDiscount}} />
+        </View>
 
         <TouchableOpacity style={styles.touchableButton}>
           <Text style={styles.textBook}>{TO_BE_PAID(amountToBePaid)}</Text>
