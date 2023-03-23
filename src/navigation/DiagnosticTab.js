@@ -23,7 +23,7 @@ const DiagnosticsNavigation = () => {
             backgroundColor:ORANGE,
             width:40,
             height:3,
-            left:(Dimensions.get('window').width/2-40)/2,          
+            left:(Dimensions.get('window').width/2-50)/2,          
            
       }}}
       style={styles.tabNavigation}
