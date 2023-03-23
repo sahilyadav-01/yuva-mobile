@@ -13,14 +13,21 @@ const OurPlan = (props) => {
     viewabilityConfig,
     onPressAll,
     popularPlan,
+    activeIndex,
   } = useOurPlan();
   const { width } = getDimensions();
 
   const renderItem = ({item, index}) => {
     return(
-      <PlanCard item={item} isHomeScreen={isHomeScreen}/>
+      <PlanCard item={item} isHomeScreen={isHomeScreen} key={index}/>
     );
-  }
+  };
+
+  const renderItemIndex = ({item, index}) => {
+    return (
+      <View key={index} style={[styles.indexView,(index === activeIndex) && styles.activeIndexView ]} />
+    );
+  };
 
   if(!popularPlan) {
     return null;
@@ -44,12 +51,19 @@ const OurPlan = (props) => {
         data={popularPlan}
         renderItem={renderItem}
         contentContainerStyle={styles.cardView}
-        snapToAlignment={'start'}
-        snapToInterval={width - 20}
+        snapToAlignment={'center'}
+        snapToInterval={0.7* width}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
+      />
+      <FlatList
+        data={new Array(popularPlan.length)}
+        renderItem={renderItemIndex}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.indexContainer}
       />
     </View>
   );

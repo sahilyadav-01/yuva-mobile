@@ -4,7 +4,7 @@ import AppointmentButton from '../../../components/AppointmentButton';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import Header from '../../../components/Header';
-import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
+import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, MY_TESTS, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
 import { RED_SHADE, AMBER, WHITE } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getDate, getTime, dignosticStatus } from '../../../utils/utils';
@@ -55,7 +55,7 @@ const RescheduleAndCancel = () => {
     }
     return (
         <View >
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
+            <Header showBackButton={true} title={MY_TESTS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
                     <Text style={textStyle(reschedule?.bookingStatus)}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}..</Text>

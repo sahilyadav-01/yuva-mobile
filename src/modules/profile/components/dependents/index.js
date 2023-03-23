@@ -3,9 +3,9 @@ import {View, Text} from 'react-native';
 import {AGE_} from '../../constant';
 import styles from './style';
 
-const Dependents = ({dependents}) => {
+const Dependents = ({dependents,hideShadow}) => {
   const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender} = styles({
-    disabled: false,
+    disabled: false,hideShadow,
   });
   return dependents.map(item => {
     return (

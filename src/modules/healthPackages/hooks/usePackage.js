@@ -6,6 +6,7 @@ import {useState} from 'react';
 import {popularTestsSliceThunk} from '../../../store/reducers/PopularTestsSlice ';
 import {popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import {useCart} from '../../cart/hooks/useCart';
+import { HEALTH } from '../constants';
 
 export const usePackage = (initialIndex) => {
   const navigation = useNavigation();
@@ -195,6 +196,7 @@ export const usePackage = (initialIndex) => {
 
   const onPackagePress = arg => {
     navigation.navigate('ProductDetails', {
+      headerName:HEALTH,
       packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
       uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
       showCartButton: true,
