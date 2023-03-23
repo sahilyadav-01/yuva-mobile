@@ -13,6 +13,7 @@ import {
   LIGHT_GREYISH_RED,
   RED,
   VERY_LIGHT_GREY,
+  BIANCA,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -136,6 +137,9 @@ export const styles = StyleSheet.create({
 
   available: {
     flexDirection: ROW,
+  },
+  textSpacing: {
+    marginHorizontal: 5,
   },
   BookingCard: {
     marginTop: 28,
@@ -286,14 +290,12 @@ export const styles = StyleSheet.create({
   },
   head: {
     alignSelf: FLEX_START,
-    marginLeft: 9,
+    marginHorizontal:19,
     shadowColor: WHITE,
     position: ABSOLUTE,
-    top: -11,
     fontSize: 14,
     color: CYAN_BLUE,
-    paddingLeft: 6,
-    paddingRight: 6,
+    paddingHorizontal:6,
     fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik400,
   },
@@ -323,9 +325,8 @@ export const styles = StyleSheet.create({
   },
   expiry: {
     alignSelf: FLEX_END,
-    marginTop: 18,
     marginRight: 11,
-    marginTop: 11,
+    bottom: 9,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
@@ -519,6 +520,14 @@ export const styles = StyleSheet.create({
     color: RED,
     marginHorizontal: 14,
   },
-
-
+  headView: {
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    marginLeft: 19,
+    bottom: 9,
+    width: '44%',
+    minHeight: 20,
+    borderRadius: 6,
+    backgroundColor: BIANCA,
+  },
 });
