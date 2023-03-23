@@ -82,4 +82,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },
+  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
+  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
 });

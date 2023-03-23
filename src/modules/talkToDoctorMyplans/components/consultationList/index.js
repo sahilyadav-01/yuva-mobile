@@ -18,7 +18,9 @@ const ConsultationList = props => {
     );
   };
   if (!data || data?.length === 0) {
-    return null;
+    return <View style={styles.emptyContainer}>
+      <Text style={styles.emptyText}>No Consultations</Text>
+    </View>
   }
   return (
     <View style={styles.container}>
