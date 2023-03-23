@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { CYAN_BLUE, SEASHELL } from '../../styles/colors';
+import { CYAN_BLUE, ORANGE, SEASHELL, V_LIGHT_GREY, WHITE } from '../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 import { getDimensions } from '../../utils/utils';
@@ -11,11 +11,10 @@ export const styles = StyleSheet.create({
   },
   OurPlansHeaderStyle: {
     alignItems: CENTER,
-    marginTop: 20,
+    marginVertical: 8,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
-    marginBottom:36,
   },
   LandingPageText1: {
     color: CYAN_BLUE,
@@ -33,6 +32,29 @@ export const styles = StyleSheet.create({
     width: 208,
   },
   cardView: {
-    paddingBottom: 10,
+    backgroundColor: WHITE,
+  },
+  subHeadingView: {
+    marginVertical: 12,
+    marginHorizontal: 16,
+  },
+  subHeadingText: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    color: ORANGE,
+  },
+  indexContainer:{
+    marginHorizontal: 15,
+    marginVertical: 10,
+  },
+  indexView: {
+    backgroundColor: V_LIGHT_GREY,
+    height: 10,
+    width: 10,
+    marginHorizontal: 5,
+    borderRadius: 10,
+  },
+  activeIndexView: {
+    backgroundColor: ORANGE
   }
 });

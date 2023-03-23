@@ -55,7 +55,7 @@ export const styles = () => {
       justifyContent: CENTER,
       backgroundColor: ORANGE,
     },
-    buttonText: {
+    buttonTextStyle: {
       fontFamily: fonts.family.rubik600,
       fontSize: fonts.size.fontSize16,
       lineHeight: 24,

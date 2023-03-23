@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './styles';
-import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT, INSTRUCTIONS, LAB } from './constants';
+import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT,  INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
-import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
+import { useRoute } from '@react-navigation/native';
 
 
 const BookingTestAndPackage = () => {
@@ -20,8 +20,8 @@ const BookingTestAndPackage = () => {
         isTest,
         isDisabled,
         testDetails,
+        headerTitle
     } = useBookingTestAndPackage();
-
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
             onUpdate(index)
@@ -42,13 +42,17 @@ const BookingTestAndPackage = () => {
                 <TouchableOpacity onPress={onToggle}>
                     {!item.isExpanded ?
                         <View style={styles.itemView}>
-                            <Text style={styles.itemText}>
-                                {item?.attributeName ?? item?.name}
-                            </Text>
-                            <Text style={styles.itemCount}>
+                            <View >
+                                <Text style={styles.itemText}>
+                                    {item?.attributeName ?? item?.name}
+                                </Text>
+                            </View>
+                            <View >
+                                <Text style={styles.itemCount}>
 
-                                <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
-                            </Text>
+                                    <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
+                                </Text>
+                            </View>
                             <View style={styles.drop} >
 
                                 <SVG.dropDown />
@@ -78,7 +82,7 @@ const BookingTestAndPackage = () => {
     if (!renderData) return null;
     return (
         <View>
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
+            <Header showBackButton={true} title={headerTitle()} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>

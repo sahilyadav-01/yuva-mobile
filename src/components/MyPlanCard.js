@@ -3,7 +3,7 @@ import React  from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
-import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
+import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,7 +13,7 @@ const MyPlanCard = ({ item }) => {
         const onBookingTestandPackage = () => {
           
             const params={
-    
+                headerName:MY_TEST,
                 packageName: plan?.item?.id ,
                 uuid:item?.uuid,
                 userVersion:item?.userVersion,
@@ -52,7 +52,7 @@ const MyPlanCard = ({ item }) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.buttonStyle}  onPress={onBookingTestandPackage}>
+                    <TouchableOpacity style={styles.buttonStyleMyTest}  onPress={onBookingTestandPackage}>
                         <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>

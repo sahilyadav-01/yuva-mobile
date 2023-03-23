@@ -4,7 +4,7 @@ import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
-    const {TermsAndCondtionChecked}=useSelector(state=>state.cart);
+    const {termsAndCondtionChecked}=useSelector(state=>state.cart);
     const route = useRoute();
     const navigation = useNavigation();
     const {mainItem} = useSelector(state=>state.programAndPlan);
@@ -49,7 +49,7 @@ export const useCheckout = () => {
     }
 
     const onCheckout=()=>{
-        if(!TermsAndCondtionChecked){
+        if(!termsAndCondtionChecked){
             alert(TERMS_CONDITION)
         }
         else onPayPress();
@@ -63,7 +63,7 @@ export const useCheckout = () => {
         quarterlyPrice,
         halfYearlyPrice,
         cityId,
-        TermsAndCondtionChecked,
+        termsAndCondtionChecked,
         onCheckout
     }
 }

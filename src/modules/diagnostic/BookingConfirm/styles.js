@@ -7,8 +7,8 @@ import { CENTER } from './constants';
 export const styles = StyleSheet.create({
 
     boxStyles: {
-        marginLeft: 28,
-        marginRight: 30,
+        marginHorizontal:12,
+        marginTop:5,
         borderWidth: 0.1,
         backgroundColor: LIGHT_GREYISH_RED,
         minHeight: 42,
@@ -28,15 +28,13 @@ export const styles = StyleSheet.create({
     touchableButton: {
         backgroundColor: ORANGE,
         marginTop: 40,
-        marginLeft: 13,
-        marginRight: 14,
+        marginHorizontal:13,
         borderRadius: 8
     },
     theme: { colors: { text: DARK_GREY } },
 
     dateTimePicker: {
-        marginLeft: 28,
-        marginRight: 30,
+        marginHorizontal:25,
         minHeight: 42,
         backgroundColor: LIGHT_GREYISH_RED,
         borderRadius: 6
@@ -47,7 +45,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 15,
         color: WHITE,
         fontFamily: fonts.family.rubik500,
-        marginLeft: 97,
+        marginLeft: "25%",
         fontSize: fonts.size.fontSize16,
 
     },
@@ -71,7 +69,7 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize14,
     },
     Date: {
-        marginTop: 30,
+        marginTop: 16,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
@@ -84,8 +82,7 @@ export const styles = StyleSheet.create({
     },
     dateAndTime: {
         marginTop: 10,
-        marginLeft: 30,
-        marginRight: 30,
+        marginHorizontal:10,
         minHeight: 42,
         marginBottom: 15,
     },
@@ -104,8 +101,8 @@ export const styles = StyleSheet.create({
         dropShadow: BOX_SHADOW,
     },
     SelectMember: {
-        marginLeft: 28,
-        marginTop: 16,
+        marginHorizontal:12,
+        marginTop: 26,
         color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
@@ -159,10 +156,9 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize14,
     },
     border: {
-        borderWidth: 0.2,
+        borderColor:WHITE,
         marginTop: 14,
-        marginLeft: 16,
-        marginRight: 16,
+        marginHorizontal:16,
         shadowColor: WHITE,
         shadowOpacity: "5%",
         borderRadius: 6,

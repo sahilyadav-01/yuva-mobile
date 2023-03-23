@@ -10,3 +10,4 @@ export const TRUE="true";
 export const MYPLAN="MyPlan";
 export const BOKINGCONFIRM="BookingConfirm";
 export const CALENDER="calendar-blank-outline";
+export const MY_TESTS = 'My Tests';

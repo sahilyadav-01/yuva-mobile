@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CARNATION, CYAN_BLUE, ORANGE} from '../../../styles/colors';
+import {PINK_RED, CYAN_BLUE, ORANGE} from '../../../styles/colors';
 import {CENTER} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
@@ -11,7 +11,7 @@ export const styles = paymentSuccess => {
       lineHeight: 30,
       alignSelf: CENTER,
       textAlign: CENTER,
-      color: paymentSuccess ? ORANGE : CARNATION,
+      color: paymentSuccess ? ORANGE : PINK_RED,
     },
     paymentText: {
       marginHorizontal: 40,

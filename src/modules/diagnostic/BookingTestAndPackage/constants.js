@@ -41,3 +41,6 @@ export const CANCEL="Cancel";
 export const BOKINGTESTANDPACKAGE="BookingTestAndPackage";
 export const BOOKINGCONFIRM="BookingConfirm";
 export const BUTTON_TEXT="Add To Cart";
+export const MY_TESTS = 'My Tests';
+export const HEALTH_CHECKUP_DIAGNOSTIC="Health Checkup & Diagnostics";
+export const LIFE_STYLE="Lifestyle Packages";

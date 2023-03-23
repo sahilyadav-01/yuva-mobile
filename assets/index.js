@@ -103,6 +103,10 @@ import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
 import PaymentSuccess from './PaymentSuccess';
 import PaymentFailure from './PaymentFailure';
+import Stethoscope from './Stethoscope';
+import EditPen from './EditPen';
+import OurPlanBackground from './OurPlanBackground.png';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -162,6 +166,7 @@ const PNG = {
   EYE,
   POPULAR_PLAN,
   LandingPageBanner2,
+  OurPlanBackground,
 };
 
 const SVG = {
@@ -192,6 +197,7 @@ const SVG = {
   landingPageBanner1: landingPageBanner1,
   AwayImage: AwayImage,
   HomeImage: HomeImage,
+  Stethoscope: Stethoscope,
   tick,
   minus,
   Reschedule: Reschedule,
@@ -211,7 +217,8 @@ const SVG = {
   Prescriptions,
   Bookings,
   PaymentSuccess,
-  PaymentFailure
+  PaymentFailure,
+  EditPen:EditPen,
 };
 
 export {PNG, SVG};

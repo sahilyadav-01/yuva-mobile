@@ -277,12 +277,11 @@ export const styles = StyleSheet.create({
     borderColor: WHITE,
     marginTop: 28,
   },
-  buttonStyle: {
-    height: 32,
+  buttonStyleMyTest: {
+    minHeight:48,
     backgroundColor: ORANGE,
-    borderRadius: 8,
+    borderRadius: 6,
     marginTop: 17,
-    margin: 11,
     justifyContent: CENTER,
   },
   head: {
@@ -301,6 +300,8 @@ export const styles = StyleSheet.create({
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik500,
   },
   sideBySide: {
     flexDirection: ROW,
@@ -329,9 +330,9 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
   },
-  StatusColor:{
-    color:RED_SHADE,
-    backgroundColor:RED_SHADE
+  StatusColor: {
+    color: RED_SHADE,
+    backgroundColor: RED_SHADE,
   },
   booked: {
     marginTop: 22,
@@ -385,14 +386,13 @@ export const styles = StyleSheet.create({
     marginLeft: 16,
     marginRight: 16,
     borderRadius: 8,
-    minHeight: 48
+    minHeight: 48,
   },
   textBook: {
     textAlign: CENTER,
     color: WHITE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
-
   },
   contentContainerStyle: {
     flexGrow: 1,
@@ -405,10 +405,9 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-
   },
   AddressCheck: {
-    width: '95%',
+    width: '96%',
     flexDirection: ROW,
   },
   selectDate: {
@@ -420,15 +419,13 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   AddNewAdd: {
-    borderWidth:1,
-    borderColor:VERY_LIGHT_GREY,
     marginLeft: 38,
-    elevation:2,  
     marginTop: 18,
     borderRadius: 8,
     backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
     flexDirection: ROW,
+    shadowColor: GREY,
+    elevation:10,
   },
   addNew: {
     alignItems: CENTER,
@@ -445,52 +442,55 @@ export const styles = StyleSheet.create({
     marginLeft: 7.33,
   },
   border: {
-    borderWidth:1,
-    borderColor:VERY_LIGHT_GREY,
+    elevation:5,
     marginTop: 14,
-    minHeight:125,
-    marginBottom:5,
-    marginHorizontal:21,
-    shadowOpacity: "50%",
+    marginHorizontal:16,
+    shadowColor: GREY,
     borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
-    elevation: 2,
-
   },
   borderAddNewAddress:{
+    elevation:5,
     marginTop: 14,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal:16,
+    shadowColor: GREY,
+    backgroundColor: WHITE,
+    dropShadow: BOX_SHADOW,
     shadowColor: WHITE,
     shadowOpacity: "5%",
     borderRadius: 6,
-    backgroundColor: WHITE,
-    dropShadow: BOX_SHADOW,
-    elevation: 5,
-    shadowColor: WHITE,
   },
   checkboxAddress: {
-    alignItems: FLEX_END,
-    marginRight: "3%",
-    marginTop: 14,
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    marginRight: 19,
+    marginTop: 8,
   },
   adressName: {
-    width:"70%",
-    marginLeft: 30,
+    width:"80%",
+    marginTop: 10,
+    marginHorizontal:19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-
+  },
+  CityName:{
+    marginTop: 5,
+    marginHorizontal:19,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
   },
   AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginRight:"5%",
+    marginTop:20,
+    marginRight: 25,
   },
   AdressCheckBox: {
-    marginTop: 11,
-    marginLeft: 30,
+    marginTop:5,
+    marginHorizontal:19,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -498,16 +498,14 @@ export const styles = StyleSheet.create({
   },
   SvgImage: {
     flex: 1,
-    marginTop: 10,
-
   },
   AddText: {
     marginLeft: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-  },
-  check: {
+    },
+    check:  {
     marginRight: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,

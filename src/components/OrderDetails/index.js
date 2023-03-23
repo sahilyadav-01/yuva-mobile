@@ -1,14 +1,15 @@
-import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, FlatList} from 'react-native';
+import React from 'react';
 import {styles} from './styles';
-import {ORDER_DETAILS, PACKAGE_NAME, TESTS} from './constant';
+import {ORDER_DETAILS} from './constant';
+import { useOrderDetails } from './hook/useOrderDetails';
 
 const OrderDetails = () => {
+  const { itemDtoList} = useOrderDetails();
   const renderItem = ({item}) => {
     return (
       <View>
-        <Text style={styles.textTestStyle}>{item.TEST_TYPE}</Text>
-        <Text style={styles.textTestStyle}>{item.TEST_NAME}</Text>
+        <Text style={styles.textTestStyle}>{item.name}</Text>
       </View>
     );
   };
@@ -16,14 +17,11 @@ const OrderDetails = () => {
     <>
       <View style={styles.containerStyle}>
         <View style={styles.headerStyle}>
-          <View>
-            <Text style={styles.textStyle}>{PACKAGE_NAME}</Text>
-          </View>
           <Text style={styles.textStyle1}>{ORDER_DETAILS}</Text>
         </View>
         <FlatList
           nestedScrollEnabled
-          data={TESTS}
+          data={itemDtoList}
           keyExtractor={index => `${index}`}
           renderItem={renderItem}
         />

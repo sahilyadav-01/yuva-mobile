@@ -35,9 +35,9 @@ export const styles = StyleSheet.create({
     touchable: (disabled) => ({
         backgroundColor: disabled ? ORANGE_GREY : ORANGE,
         marginTop: 40,
-        marginLeft: 13,
-        marginRight: 14,
-        borderRadius: 8
+        marginHorizontal:16,
+        borderRadius: 8,
+        minHeight:48,
     }),
     theme: { colors: { text: BLACK } },
     search: {
@@ -124,11 +124,10 @@ export const styles = StyleSheet.create({
     },
     textBook: {
         textAlign: CENTER,
-        fontWeight: fonts.weight.fontWeight500,
         paddingTop: 15,
         paddingBottom: 15,
         color: WHITE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
 
     },
     view: {
@@ -138,27 +137,24 @@ export const styles = StyleSheet.create({
         marginTop: 20,
     },
     bookingDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 27,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
     itemText: {
-        marginLeft: 14,
+        width:"93%",
+        marginLeft:"5%",
         color: WHITE,
-        marginTop: 21,
-        fontFamily: fonts.family.fontFamilyRubix,
-        fontWeight: fonts.weight.fontWeight400,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
+        marginVertical:28,
     },
     itemCount: {
-        marginLeft: 6,
         color: WHITE,
-        marginTop: 21,
-        fontFamily: fonts.family.fontFamilyRubix,
-        fontWeight: fonts.weight.fontWeight400,
+        marginVertical:28,
+        fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     itemHead: {
@@ -175,13 +171,13 @@ export const styles = StyleSheet.create({
         flexDirection: ROW,
         minHeight: 77,
         borderRadius: 12,
-        marginLeft: 13,
-        marginRight: 14,
+        marginHorizontal:13,
+        justifyContent:SPACE_BETWEEN
 
     },
     drop: {
-        marginTop: 35,
-        marginLeft: 152,
+        marginVertical:30,
+        marginRight:"5%"
     },
     dropDown: {
         backgroundColor: WHITE,
@@ -225,8 +221,7 @@ export const styles = StyleSheet.create({
     color: {
         color: CYAN_BLUE,
         fontSize: fonts.size.fontSize10,
-        fontWeight: fonts.weight.fontWeight400,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik400,
         marginLeft: 16,
         marginTop: 10,
     },
@@ -250,19 +245,17 @@ export const styles = StyleSheet.create({
 
     },
     instructDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 11,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
     totalLabDetails: {
-        fontWeight: fonts.weight.fontWeight500,
         marginTop: 20,
         marginLeft: 16,
         color: CYAN_BLUE,
-        fontFamily: fonts.family.fontFamilyRubix,
+        fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
     },
 })
