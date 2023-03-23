@@ -17,24 +17,24 @@ function DependentsModal(props) {
   return (
     <Modal visible={visible} transparent={true}>
       <View style={headingContainer}>
-      <Text style={selectText}>{heading}</Text>
+        <Text style={selectText}>{heading}</Text>
       <BackCross size={20} onPress={onCrossPress}/>
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
         <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
       </View>
-      <FlatList
+      {data.length > 0 && <FlatList
         data={listData}
         keyExtractor={(item, index) => index}
         renderItem={renderDependent}
         ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
         style={listStyle}
         bounces={false}
-      />
-       {showAddMembersButton && <TouchableOpacity onPress={onAddMembersPress} style={addMemberContainer}>
-        <Text style={addMemberText}>{buttonText}</Text>
-      </TouchableOpacity>}
+      />}
+      {showAddMembersButton && <TouchableOpacity onPress={onAddMembersPress} style={addMemberContainer}>
+          <Text style={addMemberText}>{buttonText}</Text>
+        </TouchableOpacity>}
     </Modal>
   );
 }

@@ -13,8 +13,9 @@ const AddMembersModal = props => {
     modalVisible,
     onSaveDetailsPress,
     relationsData,
+    buttonText,
   } = props;
-  const {data, onTextChange, getTextInputValue, onItemSelect, onSaveDetails} =
+  const {data, onTextChange, getTextInputValue, onItemSelect, onSaveDetails, selectedRelation, name, age} =
     useAddMemberModal(relationsData, onSaveDetailsPress);
   const {
     headingContainer,
@@ -22,7 +23,7 @@ const AddMembersModal = props => {
     listStyle,
     itemSeparatorStyle,
     buttonContainer,
-    buttonText,
+    buttonTextStyle,
   } = styles();
   const RenderItem = ({item}) => {
     const value = getTextInputValue(item.heading)?.value;
@@ -55,7 +56,7 @@ const AddMembersModal = props => {
         keyboardShouldPersistTaps="handled"
       />
       <TouchableOpacity onPress={onSaveDetails} style={buttonContainer}>
-        <Text style={buttonText}>Save Details</Text>
+        <Text style={buttonTextStyle}>{buttonText}</Text>
       </TouchableOpacity>
     </Modal>
   );

@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   CYAN_BLUE,
   CYAN_BLUE_OPACITY,
   ORANGE,
   SPANISH_WHITE,
 } from '../../styles/colors';
-import {ABSOLUTE, CENTER, ROW} from '../../styles/constants';
-import {fonts} from '../../styles/fonts';
+import { ABSOLUTE, CENTER, ROW, FLEX_START } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   containerStyle: {
@@ -19,9 +19,10 @@ export const styles = StyleSheet.create({
     height: 162,
   },
   headerStyle: {
-    flexDirection: ROW,
-    alignItems: CENTER,
-    height: 56,
+    alignItems: FLEX_START,
+    marginHorizontal: '3%',
+    marginVertical: '3%',
+    height: 20,
   },
   textStyle: {
     color: CYAN_BLUE,
@@ -40,8 +41,8 @@ export const styles = StyleSheet.create({
   },
   textStyle1: {
     color: ORANGE,
-    fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik700,
+    fontSize: fonts.size.fontSize18,
   },
   buttonStyle: {
     right: 15,

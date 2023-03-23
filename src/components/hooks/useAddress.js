@@ -6,40 +6,40 @@ import { NEW_ADDRESS } from "../constants";
 
 
 export const useOurAddress = (isNavScreen) => {
-    const route = useRoute();
-    const dispatch = useDispatch();
-    const navigation = useNavigation();
-    const [userAttribute, setUserAttribute] = useState(null);
-    const [userNewAddress, setUserNewAddress] = useState();
-    const [checked, setChecked] = useState(null);
-    const { userAddress } = useSelector(state => state?.profile);
-    const [userAddressListing, setUserAddressListing] = useState([]);
-    useEffect(() => {
-        dispatch(getUserAddress())
-    }, [])
-    useEffect(() => {
-        if (route?.name === isNavScreen?.isNavScreen) {
-            setUserAttribute(route?.params)
-        }
-    }, [route])
-    const address = userAddress?.[checked]?.address || userAttribute?.[0]?.address;
-    const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
-    const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
-    const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
-    const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
-    const checkoutData = {
-        address: address,
-        pincode: pincode,
-        contact: contact,
-        cityName: cityName,
+  const route = useRoute();
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const [userAttribute, setUserAttribute] = useState(null);
+  const [userNewAddress, setUserNewAddress] = useState();
+  const [checked, setChecked] = useState(null);
+  const { userAddress } = useSelector(state => state?.profile);
+  const [userAddressListing, setUserAddressListing] = useState([]);
+  useEffect(() => {
+    dispatch(getUserAddress())
+  }, [])
+  useEffect(() => {
+    if (route?.name === isNavScreen?.isNavScreen) {
+      setUserAttribute(route?.params)
+    }
+  }, [route])
+  const address = userAddress?.[checked]?.address || userAttribute?.[0]?.address;
+  const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
+  const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
+  const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
+  const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
+  const checkoutData = {
+    address: address,
+    pincode: pincode,
+    contact: contact,
+    cityName: cityName,
         away:away,
-    }
-    const AddNewAddress = () => {
-        navigation.navigate(NEW_ADDRESS)
-    }
-    useEffect(() => {
-        dispatch(saveCheckedAddress(checkoutData))
-    }, [address])
+  }
+  const AddNewAddress = () => {
+    navigation.navigate(NEW_ADDRESS)
+  }
+  useEffect(() => {
+    dispatch(saveCheckedAddress(checkoutData));
+  }, [address])
 
   useEffect(() => {
     if (userAttribute?.[0]?.address) {
@@ -48,12 +48,12 @@ export const useOurAddress = (isNavScreen) => {
   }, [userAttribute]);
   useEffect(() => {
     if (userNewAddress?.[0]?.address) {
-        let list = userAddress.concat(userNewAddress);
-        setUserAddressListing(list);
+      let list = userAddress.concat(userNewAddress);
+      setUserAddressListing(list);
         setChecked(list.length -1);
-      } else {
-        setUserAddressListing(userAddress);
-      }
+    } else {
+      setUserAddressListing(userAddress);
+    }
   }, [userAddress, userNewAddress]);
 
   return {
