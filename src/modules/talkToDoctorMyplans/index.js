@@ -46,6 +46,13 @@ const MyPlans = () => {
       );
     });
   };
+  if(programAndPlan?.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No Active Plans left</Text>
+        </View>
+    );
+  }
   return (
     <FlatList
       data={programAndPlan}

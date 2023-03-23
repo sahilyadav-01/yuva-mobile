@@ -8,8 +8,8 @@ const {width, height} = getDimensions();
 
 export const styles = StyleSheet.create({
   container: {
-    width: 0.70 * width,
-    height: 0.32 * height,
+    width: 0.84 * width,
+    height: 0.38 * height,
     borderRadius: 12,
     shadowOffset: {
       width: 0,
@@ -19,14 +19,15 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
   },
   imgBackground: {
-    width: '100%',
-    height: '100%',
+    width: 0.84 * width,
+    height: 0.38 * height,
+    position: ABSOLUTE,
   },
   containerView: {
     width: '100%',
     height: '100%',
-    paddingHorizontal: 8,
-    paddingVertical: 8,
+    paddingHorizontal: '3%',
+    paddingVertical: '5%',
   },
   headingView: {
     paddingTop: 4,
@@ -41,16 +42,22 @@ export const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: ROW,
     paddingHorizontal: 6,
-    paddingVertical: 4,
+    paddingVertical: 6,
     width: '40%',
-    marginHorizontal: 8,
+    marginHorizontal: 12,
+  },
+  iconStyle: {
+    width: 0.08 * width,
+    height: 0.08 * width
   },
   serviceContainer: {
     flex:1,
+    paddingTop: 4,
   },
   detailsView: {
     paddingHorizontal: 4,
     justifyContent: CENTER,
+    width: '80%'
   },
   serviceNameText: {
     fontFamily: fonts.family.rubik400,
@@ -75,6 +82,8 @@ export const styles = StyleSheet.create({
   priceView: {
     width: '40%',
     marginHorizontal: 4,
+    justifyContent: CENTER,
+    alignItems: CENTER,
   },
   priceContainer: {
     paddingBottom: 12,
@@ -131,11 +140,12 @@ export const styles = StyleSheet.create({
   },
   imageView: {
     width: '50%',
-    bottom: 10,
-    right: 10,
   },
   valueContainer: {
     flexDirection: ROW,
     paddingHorizontal: 4,
-  }
+  },
+  imageDetails: {
+    width: 0.45 * width,
+  },
 });

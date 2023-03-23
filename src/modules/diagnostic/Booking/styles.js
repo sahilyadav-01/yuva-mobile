@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { CYAN_BLUE } from '../../../styles/colors';
-import { BOLD } from '../../../styles/constants';
+import { BOLD, CENTER } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
 
@@ -16,4 +16,5 @@ export const styles = StyleSheet.create({
         fontWeight: BOLD,
         marginLeft: 17,
     },
+    emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER}
 })

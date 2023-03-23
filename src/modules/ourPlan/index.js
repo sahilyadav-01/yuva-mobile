@@ -52,7 +52,7 @@ const OurPlan = (props) => {
         renderItem={renderItem}
         contentContainerStyle={styles.cardView}
         snapToAlignment={'center'}
-        snapToInterval={0.7* width}
+        snapToInterval={0.84* width}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}

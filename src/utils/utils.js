@@ -175,7 +175,7 @@ export const dignosticStatus = status => {
       retStatus = 'Awaiting For Confirmation';
       break;
     case 'CONFIRMED':
-      retStatus = 'Confirmed';
+      retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
       retStatus = 'Awaiting For Confirmation';
@@ -245,7 +245,7 @@ const processTime = time => {
     }
     return i;
   }
-  return addZero(time.getHours()) + ':' + addZero(time.getMinutes()) + ':00';
+  return addZero(time?.getHours()) + ':' + addZero(time?.getMinutes()) + ':00';
   //  return `${time.getHours()}:${time.getMinutes()}:00`
 };
 

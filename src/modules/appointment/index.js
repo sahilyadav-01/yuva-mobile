@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import AppointmentCard from '../../components/AppointmentCard';
 import { styles } from './styles';
 import { useAppointment } from './hooks/useAppointment';
@@ -25,6 +25,11 @@ const Appointment = () => {
         customId={item.customId}
       />
     );
+  }
+  if(appointments?.length ===0) {
+    return <View style={styles.emptyContainer}>
+      <Text style={styles.emptyText}>No Appointments</Text>
+    </View>
   }
   return (
     <View style={styles.contentContainerStyle}>

@@ -44,14 +44,12 @@ const BookingTestAndPackage = () => {
                         <View style={styles.itemView}>
                             <View >
                                 <Text style={styles.itemText}>
-                                    {item?.attributeName ?? item?.name}
+                                    {item?.attributeName ?? item?.name}{" "}
+                                    <Text style={styles.itemCount}>-{item?.parameterCount ?? item?.parameters?.length} Test</Text>
                                 </Text>
                             </View>
                             <View >
-                                <Text style={styles.itemCount}>
 
-                                    <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
-                                </Text>
                             </View>
                             <View style={styles.drop} >
 
