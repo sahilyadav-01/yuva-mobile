@@ -17,18 +17,20 @@ export const useServiceCard = ({screenName}) => {
     My_Health_Checkup: PNG.MY_HEALTH_CHECKUP,
   };
   const onpress = () => {
-    if (
-      screenName !== 'Diagnostics' &&
-      !profileUpdated &&
-      loggedIn === 'loggedIn'
-    )
-      Alert.alert('Alert', 'Please update your details in the Profile');
-    else if ( screenName === 'HealthCheckupsTests' ) {
+    if(screenName === 'HealthCheckupsTests'){
       dispatch(resetPackages());
       dispatch(resetTests());
       navigation.navigate(`${screenName}`,{index:0});
     }
-    else navigation.navigate(`${screenName}`);
+    else if(loggedIn !== 'loggedIn' && screenName !== 'HealthCheckupsTests'){
+      navigation.navigate(`${screenName}`);
+    }
+    else if(loggedIn === 'loggedIn' && !profileUpdated){
+      Alert.alert('Alert', 'Please update your details in the Profile');
+    }
+    else if(loggedIn === 'loggedIn' && profileUpdated){
+      navigation.navigate(`${screenName}`);
+    }
   };
   return {
     onpress,

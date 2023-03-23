@@ -197,17 +197,6 @@ export const useProfile = () => {
 
   const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
-  const profileComplete = () => {
-    Alert.alert('Alert', 'Are you sure you want to lock your profile', [
-      {
-        text: 'Ok',
-        onPress: () => {
-          dispatch(profileLock());
-        },
-      },
-    ]);
-  };
-
   return {
     onAddMembersPress,
     onConfirmDate,
@@ -223,7 +212,6 @@ export const useProfile = () => {
     setSelectedRelation,
     onDependentAgeChange,
     onDependentNameChange,
-    profileComplete,
     picker,
     edit,
     gender,
