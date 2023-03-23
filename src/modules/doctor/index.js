@@ -35,36 +35,28 @@ const Doctor = () => {
     );
   };
   return (
-    <>
-      {/* <Header
-        title={OPD_CONSULTATION}
-        showSearch={false}
-        showBackButton={true}
-      /> */}
-
-      <ScrollView>
+    <ScrollView>
+      <View>
+        <Searchbar
+          multiline={false}
+          style={styles.search}
+          placeholder={SEARCH}
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          theme={styles.theme}
+          placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
+          label={SearchLabel}
+        />
         <View>
-          <Searchbar
-            multiline={false}
-            style={styles.search}
-            placeholder={SEARCH}
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            theme={styles.theme}
-            placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
-            label={SearchLabel}
+          <FlatList
+            renderItem={renderItem}
+            data={data}
+            keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
           />
-          <View>
-            <FlatList
-              renderItem={renderItem}
-              data={data}
-              keyExtractor={item => item.id}
-              showsHorizontalScrollIndicator={false}
-            />
-          </View>
         </View>
-      </ScrollView>
-    </>
+      </View>
+    </ScrollView>
   );
 };
 

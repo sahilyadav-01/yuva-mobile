@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
 import {getDimensions} from '../utils/utils';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   appointmentThunk,
   currentAppointment,
 } from '../store/reducers/AppointmentSlice';
+import {
+  CANCEL_APPOINTMENT,
+  CLOCK_OUTLINE,
+  CLOSE,
+  LAB_ASSIGN_PENDING,
+  RESCHEDULE,
+} from './constants';
+import {GREEN, RED_SHADE} from '../styles/colors';
 
 const CarouselItem = props => {
   const {item, index, totalItem, diagnosticItem} = props;
@@ -88,7 +95,7 @@ const CarouselItem = props => {
               <View className="flex-row items-center">
                 <Text className="mr-2 text-[#1D2334] text-base  font-bold">
                   {(diagnosticItem.labName && diagnosticItem.labName) ||
-                    'Lab Assign Pending'}
+                    LAB_ASSIGN_PENDING}
                 </Text>
                 <Icon name="map-marker-outline" size={14} color="black" />
               </View>
@@ -103,15 +110,15 @@ const CarouselItem = props => {
         )}
         <View className="flex-row justify-between mt-[19px] mr-[5px] ml-[17.3px] mb-[9px]">
           <CardButton
-            text="Reschedule"
-            iconName="clock-outline"
-            iconColor="#319B4B"
+            text={RESCHEDULE}
+            iconName={CLOCK_OUTLINE}
+            iconColor={GREEN}
             onPress={onReschedule}
           />
           <CardButton
-            text="Cancel Appointment"
-            iconName="close"
-            iconColor="#A53F2B"
+            text={CANCEL_APPOINTMENT}
+            iconName={CLOSE}
+            iconColor={RED_SHADE}
             onPress={onCancelAppointment}
           />
         </View>

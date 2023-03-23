@@ -522,4 +522,8 @@ export const styles = StyleSheet.create({
     color: RED,
     marginHorizontal: 14,
   },
+  dateAndTimeStyle: {
+    fontSize: fonts.size.fontSize8,
+    fontFamily: fonts.family.rubik500,
+  },
 });

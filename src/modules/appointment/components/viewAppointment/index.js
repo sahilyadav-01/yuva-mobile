@@ -63,7 +63,6 @@ const ViewAppointments = () => {
   const route = useRoute();
 
   const {headerShown} = route.params;
-
   return (
     <View>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
@@ -140,7 +139,10 @@ const ViewAppointments = () => {
           <View style={styles.description1}>
             <Text style={styles.Header}>{BOOKING_FOR}</Text>
           </View>
-          <View style={styles.familyView}>
+          <View
+            style={
+              relation ? styles.familyView : [styles.familyView, {height: 46}]
+            }>
             <Text
               style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
               {memberName || MYSELF}
@@ -155,7 +157,7 @@ const ViewAppointments = () => {
               </View>
             </View>
             <View style={styles.ImageStyle}>
-              <Image source={PNG.ICON} style={styles.Image} />
+              <Image source={PNG.ICON} style={styles.image} />
               <View>
                 <Text style={styles.NameStyle}>{doctorName}</Text>
                 <Text style={styles.ContentStyle}>{speciality}</Text>

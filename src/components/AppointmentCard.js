@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
 import {currentAppointment} from '../store/reducers/AppointmentSlice';
-import {appointmentStatus} from '../utils/utils';
-import {getDate, getTime} from '../utils/utils';
+import {getDate, getTime, appointmentStatus} from '../utils/utils';
 import {resetTabBarVisible} from '../store/reducers/DoctorSlice';
+import {styles} from './styles';
+import {BLACK, GREEN, RED_SHADE} from '../styles/colors';
 
 const AppointmentCard = ({
   id,
@@ -87,10 +87,8 @@ const AppointmentCard = ({
               <View className="flex-row items-center">
                 <Icon name="calendar-blank-outline" size={24} color="black" />
                 <View className="ml-[2px]">
-                  <Text style={{fontSize: 12}} className="">
-                    {getDate(slot)}
-                  </Text>
-                  <Text style={{fontSize: 10}}>{getTime(slot)}</Text>
+                  <Text style={styles.dateAndTimeStyle}>{getDate(slot)}</Text>
+                  <Text style={styles.dateAndTimeStyle}>{getTime(slot)}</Text>
                 </View>
               </View>
             </View>
@@ -135,10 +133,12 @@ const AppointmentCard = ({
                       color="black"
                     />
                     <View className="ml-[2px]">
-                      <Text style={{fontSize: 12}} className="">
+                      <Text style={styles.dateAndTimeStyle}>
                         {getDate(slot)}
                       </Text>
-                      <Text style={{fontSize: 10}}>{getTime(slot)}</Text>
+                      <Text style={styles.dateAndTimeStyle}>
+                        {getTime(slot)}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -148,12 +148,12 @@ const AppointmentCard = ({
                   <CardButton
                     text="Reschedule"
                     iconName="clock-outline"
-                    iconColor="#319B4B"
+                    iconColor={GREEN}
                   />
                   <CardButton
                     text="Cancel Appointment"
                     iconName="close"
-                    iconColor="#A53F2B"
+                    iconColor={RED_SHADE}
                   />
                 </View>
               </View>
@@ -192,7 +192,7 @@ const AppointmentCard = ({
                     <Icon
                       name="calendar-blank-outline"
                       size={24}
-                      color="black"
+                      color={BLACK}
                     />
                     <View className="ml-[2px]">
                       <Text style={{fontSize: 12}} className="">
@@ -204,18 +204,7 @@ const AppointmentCard = ({
                 </View>
 
                 {/* actions */}
-                <View className="flex-row justify-between mt-[30px]">
-                  {/* <CardButton
-                    text="Check-in"
-                    iconName="clock-outline"
-                    iconColor="#319B4B"
-                  /> */}
-                  {/* <CardButton
-                    text="Cancel Appointment"
-                    iconName="close"
-                    iconColor="#A53F2B"
-                  /> */}
-                </View>
+                <View className="flex-row justify-between mt-[30px]"></View>
               </View>
             </TouchableOpacity>
           )}
