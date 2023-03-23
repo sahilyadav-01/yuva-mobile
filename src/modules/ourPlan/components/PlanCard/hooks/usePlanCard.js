@@ -8,16 +8,16 @@ export const usePlanCard = (item) => {
   const [priceObj, setPriceObj] = useState({value: 0, duration: '', finalPrice: 0});
   const {planServiceNameList} = item || {};
   const planService = planServiceNameList.map(list => {
-    const {serviceName, shortDescription} = list || {};
+    const {serviceName, shortDescription, serviceUuid, available, position} = list || {};
     let value = {};
-    switch(serviceName) {
-      case OPD: value = {...services[0], shortDescription};
+    switch(serviceUuid) {
+      case OPD: value = {...services[0], serviceName,shortDescription, available};
       break;
-      case HRA: value = {...services[1], shortDescription};
+      case HRA: value = {...services[1], serviceName, shortDescription, available};
       break;
-      case MY_TEST: value = {...services[2], shortDescription};
+      case MY_TEST: value = {...services[2], serviceName, shortDescription, available};
       break;
-      case TALK_TO_DOCTOR: value = {...services[3], shortDescription};
+      case TALK_TO_DOCTOR: value = {...services[3], serviceName, shortDescription, available};
       break;
     }
     return value;
@@ -34,7 +34,6 @@ export const usePlanCard = (item) => {
       const min = Math.min(...comPrice);
       let duration = '';
       let finalPrice = 0;
-      // min === quarterlyPrice ? 'Quaterly' : min === halfYearlyPrice? 'Half-Yearly': 'Yearly';
       if(min === quarterlyPrice) {
         duration = 'Quaterly';
         finalPrice = item?.quarterlyFinalCost || 0;

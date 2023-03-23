@@ -42,9 +42,9 @@ export const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: ROW,
     paddingHorizontal: 6,
-    paddingVertical: 4,
+    paddingVertical: 6,
     width: '40%',
-    marginHorizontal: 8,
+    marginHorizontal: 12,
   },
   iconStyle: {
     width: 0.08 * width,
@@ -52,10 +52,12 @@ export const styles = StyleSheet.create({
   },
   serviceContainer: {
     flex:1,
+    paddingTop: 4,
   },
   detailsView: {
     paddingHorizontal: 4,
     justifyContent: CENTER,
+    width: '80%'
   },
   serviceNameText: {
     fontFamily: fonts.family.rubik400,
@@ -80,6 +82,8 @@ export const styles = StyleSheet.create({
   priceView: {
     width: '40%',
     marginHorizontal: 4,
+    justifyContent: CENTER,
+    alignItems: CENTER,
   },
   priceContainer: {
     paddingBottom: 12,

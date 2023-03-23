@@ -1,31 +1,29 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { PNG, SVG } from '../../../../../assets';
-import { CYAN_BLUE, RED_SHADE } from '../../../../styles/colors';
-import { BUY_NOW, FOR_MORE, MORE, MOST_POPULAR, NOT_AVAILABLE, RUPEE_SYMOL } from '../../constant';
+import { PNG } from '../../../../../assets';
+import { BUY_NOW, FOR_MORE, RUPEE_SYMOL } from '../../constant';
 import { usePlanCard } from './hooks/usePlanCard';
 import { styles } from './styles';
 
 const PlanCard = (props) => {
   const {item, isHomeScreen} = props;
   const { onDetailsScreen, priceObj, planService } = usePlanCard(item);
-  const {name, featured} = item || {};
+  const {name} = item || {};
   if(!item) {
     return null;
   }
 
   const renderItem = ({item: serviceItem, index}) => {
-    const { serviceName, shortDescription, image } = serviceItem || {};
-    const isNotAvailable = shortDescription === NOT_AVAILABLE;
+    const { serviceName, shortDescription, image, available } = serviceItem || {};
     return (
       <View style={styles.itemContainer} key={index}>
         <View>
           <Image source={image} style={styles.iconStyle}/>
         </View>
         <View style={styles.detailsView}>
-          <Text style={[styles.serviceNameText, isNotAvailable && styles.notAvailable]}>{serviceName}</Text>
-          <Text style={[styles.serviceDetailsText, isNotAvailable && styles.notAvailable]}>{shortDescription}</Text>
+          <Text style={[styles.serviceNameText, !available && styles.notAvailable]}>{serviceName}</Text>
+          <Text style={[styles.serviceDetailsText, !available && styles.notAvailable]}>{shortDescription}</Text>
         </View>
       </View>
     );
