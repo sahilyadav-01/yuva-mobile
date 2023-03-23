@@ -184,15 +184,18 @@ export const styles = StyleSheet.create({
     backgroundColor: VERY_LIGHT_YELLOW,
     flexDirection: ROW,
     minHeight: 92,
+    justifyContent:SPACE_BETWEEN,
   },
   cancelledBgColor: {
     backgroundColor: RED_SHADE,
     flexDirection: ROW,
     minHeight: 92,
+    justifyContent:SPACE_BETWEEN,
   },
   confirmedBgColor: {
     backgroundColor: VERY_PALE_WHITE,
     flexDirection: ROW,
     minHeight: 92,
+    justifyContent:SPACE_BETWEEN,
   },
 });
