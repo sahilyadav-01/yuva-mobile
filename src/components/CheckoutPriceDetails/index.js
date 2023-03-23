@@ -9,12 +9,12 @@ import { styles } from './styles'
 
 const CheckoutPriceDetails = (isPrice) => {
 
-    const { yearlyPrice, checked, setChecked } = useCheckoutPriceDetails(isPrice);
+    const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity,isCoupon} = useCheckoutPriceDetails(isPrice);
     return (
         <View>
             <View style={styles.QuantityView}>
                 <Text style={styles.Quantity}>{QUANTITY}</Text>
-                <Text style={styles.QuantityNumber}>1</Text>
+                <Text style={styles.QuantityNumber}>{Quantity ?? 1}</Text>
 
             </View>
             <View>
@@ -23,9 +23,9 @@ const CheckoutPriceDetails = (isPrice) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                <Text style={styles.orderAmount}>{RUPEE}{yearlyPrice}/-</Text>
+                <Text style={styles.orderAmount}>{RUPEE}{totalCost}/-</Text>
             </View>
-            <View style={styles.viewCoupon}>
+            {isCoupon === undefined && <View style={styles.viewCoupon}>
                 <TextInput
                     style={styles.textInputStyles}
                     placeholderTextColor={BALI}
@@ -36,15 +36,15 @@ const CheckoutPriceDetails = (isPrice) => {
                 <TouchableOpacity style={styles.applyStyles}>
                     <Text style={styles.applyButtonStyles}>{APPLY}</Text>
                 </TouchableOpacity>
-            </View>
+            </View>}
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>
-                <Text style={styles.payableAmountDiscount}>{RUPEE}{yearlyPrice}/-</Text>
+                <Text style={styles.payableAmountDiscount}>{RUPEE}{totalDiscount}/-</Text>
             </View>
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{yearlyPrice}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{amountToBePaid}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>
