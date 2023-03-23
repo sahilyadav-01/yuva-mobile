@@ -5,7 +5,7 @@ import { HRA, MY_TEST, OPD, OURPLAN, services, TALK_TO_DOCTOR } from "../../../c
 
 export const usePlanCard = (item) => {
   const navigation = useNavigation();
-  const [priceObj, setPriceObj] = useState({value: 0, duration: ''});
+  const [priceObj, setPriceObj] = useState({value: 0, duration: '', finalPrice: 0});
   const {planServiceNameList} = item || {};
   const planService = planServiceNameList.map(list => {
     const {serviceName, shortDescription} = list || {};
@@ -32,10 +32,23 @@ export const usePlanCard = (item) => {
       (halfYearlyPrice > 0) && comPrice.push(halfYearlyPrice);
       (yearlyPrice > 0) && comPrice.push(yearlyPrice);
       const min = Math.min(...comPrice);
-      const duration = min === quarterlyPrice ? 'Quaterly' : min === halfYearlyPrice? 'Half-Yearly': 'Yearly';
+      let duration = '';
+      let finalPrice = 0;
+      // min === quarterlyPrice ? 'Quaterly' : min === halfYearlyPrice? 'Half-Yearly': 'Yearly';
+      if(min === quarterlyPrice) {
+        duration = 'Quaterly';
+        finalPrice = item?.quarterlyFinalCost || 0;
+      } else if(min === halfYearlyPrice) {
+        duration = 'Half-Yearly';
+        finalPrice = item?.halfYearlyFinalCost || 0;
+      } else {
+        duration = 'Yearly';
+        finalPrice = item?.yearlyFinalCost || 0;
+      }
       const price = {
         value: min,
         duration: duration,
+        finalPrice: finalPrice,
       };
       setPriceObj(price);
     }, []);

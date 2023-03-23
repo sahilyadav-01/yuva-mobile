@@ -21,7 +21,7 @@ const PlanCard = (props) => {
     return (
       <View style={styles.itemContainer} key={index}>
         <View>
-          <Image source={image} />
+          <Image source={image} style={styles.iconStyle}/>
         </View>
         <View style={styles.detailsView}>
           <Text style={[styles.serviceNameText, isNotAvailable && styles.notAvailable]}>{serviceName}</Text>
@@ -33,7 +33,7 @@ const PlanCard = (props) => {
 
   return (
     <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
-      <ImageBackground source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'contain'}>
+      <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'contain'}/>
         <View style={styles.containerView}>
           <View style={styles.headingView}>
             <Text style={styles.headingText}>{name || ''}</Text>
@@ -51,7 +51,7 @@ const PlanCard = (props) => {
               <View style={styles.priceContainer}>
                 <View style={styles.valueContainer}>
                   <Text style={styles.discountpriceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
-                  <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
+                  <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.finalPrice} {'/-'}</Text>
                 </View>
                 <Text style={styles.durationText}>{priceObj?.duration}</Text>
               </View>
@@ -69,11 +69,10 @@ const PlanCard = (props) => {
               }
             </View>
             <View style={styles.imageView}>
-              <Image source={PNG.POPULAR_PLAN} />
+              <Image source={PNG.POPULAR_PLAN} style={styles.imageDetails}/>
             </View>
           </View>
         </View>
-      </ImageBackground>
     </TouchableOpacity>
   );
 };
