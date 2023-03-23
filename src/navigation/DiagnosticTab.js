@@ -2,13 +2,14 @@
 
 
 import React from 'react';
-import {  Text } from 'react-native';
+import {  Dimensions, Text } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import BookingScreen from '../screens/yuvaservices/diagnostics/Booking';
 
 import MyPlanScreen from '../screens/yuvaservices/diagnostics/MyplanScreen';
 import { styles } from '../screens/styles';
+import { ORANGE } from '../styles/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -17,6 +18,14 @@ const DiagnosticsNavigation = () => {
 
   return (
     <Tab.Navigator
+    tabBarOptions= {{   
+      indicatorStyle :{
+            backgroundColor:ORANGE,
+            width:40,
+            height:3,
+            left:(Dimensions.get('window').width/2-40)/2,          
+           
+      }}}
       style={styles.tabNavigation}
       screenOptions={{
         tabBarItemStyle:styles.verticalLine,
@@ -24,8 +33,11 @@ const DiagnosticsNavigation = () => {
         swipeEnabled: true,
         lazy: false, 
         tabBarStyle: {
-          style:styles.barColor
-    }
+          elevation: 0,
+          backgroundColor: "transparent",
+          
+    }, 
+ 
       }}>
       <Tab.Screen
         name='MyPlan'

@@ -80,8 +80,9 @@ export const styles = StyleSheet.create({
     marginTop: 100,
   },
   verticalLine: {
-    borderRightWidth: 2,
-    height: 40,
+    borderRightWidth: 1,
+    height: 20,
+    marginVertical:20,
     borderRightColor: CYAN_BLUE,
   },
   height: {
