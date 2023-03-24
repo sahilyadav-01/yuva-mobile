@@ -57,6 +57,7 @@ const OurPlan = (props) => {
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
+        ItemSeparatorComponent={() => <View style={styles.separatorStyle}/>}
       />
       <FlatList
         data={new Array(popularPlan.length)}
