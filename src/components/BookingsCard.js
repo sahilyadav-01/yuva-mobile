@@ -2,13 +2,15 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles } from './styles';
-import { CANCELLED, RESCHEDULEANDCANCEL, RESCHEDULED } from './constants';
+import { CALENDER, CANCELLED, RESCHEDULEANDCANCEL, RESCHEDULED } from './constants';
 import CardButton from './CardButton'
-import { GREEN, RED_SHADE } from '../styles/colors';
-import { dignosticStatus, getPlanDate, splitCustomId, textStyle } from '../utils/utils';
+import { CYAN_BLUE, GREEN, RED_SHADE } from '../styles/colors';
+import { dignosticStatus, getDate, getPlanDate, getTime, splitCustomId, textStyle } from '../utils/utils';
 import { useDispatch, useSelector } from "react-redux";
 import { bookedDetailsByIdThunk } from '../store/reducers/DiagnosticsSlice';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const BookingsCard = ({ item }) => {
     const dispatch = useDispatch();
@@ -44,8 +46,13 @@ const BookingsCard = ({ item }) => {
                                     <Text style={styles.labs}>
                                         {item?.labName === null && <Text>-</Text> || item?.labName}
                                     </Text>
-                                    <Text style={styles.date}>{getPlanDate(item?.collectionTime)}</Text>
-
+                                    <View style={styles.direction}>
+                                        <Icon name={CALENDER} size={24} color={CYAN_BLUE} />
+                                        <View>
+                                            <Text style={styles.dateStyle}>{getDate(item?.collectionTime)}</Text>
+                                            <Text style={styles.timeStyle}>{getTime(item?.collectionTime)}</Text>
+                                        </View>
+                                    </View>
                                 </View>
                             </View>
                         </View>
