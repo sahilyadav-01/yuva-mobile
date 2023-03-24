@@ -530,10 +530,11 @@ export const styles = StyleSheet.create({
     backgroundColor: BIANCA,
   },
   direction: {
-    marginTop:"2%",
-    flexDirection: ROW,
-    alignSelf: FLEX_END,
-   marginRight:"3%",
+  paddingHorizontal: 15,
+  marginTop:"2%",
+  flexDirection: ROW,
+  alignSelf: FLEX_END,
+
   },
   dateStyle: {
     marginTop:"5%",
