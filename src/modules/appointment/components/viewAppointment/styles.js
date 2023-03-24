@@ -204,8 +204,8 @@ export const styles = StyleSheet.create({
     shadowColor: BLACK,
   },
   buttonTextStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik700,
+    color: WHITE,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     marginHorizontal: '4%',
   },

@@ -23,4 +23,9 @@ export const styles = StyleSheet.create({
     borderColor: ORANGE,
   },
   theme: {colors: {text: DARK_MAROON}},
+  search: {
+    marginHorizontal: '5%',
+    marginBottom: '8%',
+    marginTop: '4%',
+  },
 });

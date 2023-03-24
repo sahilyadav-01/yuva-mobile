@@ -20,6 +20,7 @@ const DoctorCard = ({
   userVersion,
   uuid,
   version,
+  hospital,
 }) => {
   /**
    * Hooks
@@ -43,10 +44,7 @@ const DoctorCard = ({
     <View style={styles.CompleteView}>
       <View style={styles.Top}>
         <View>
-          <Image
-            source={require('../../assets/icon.png')}
-            style={styles.Image}
-          />
+          <Image source={PNG.ICON} style={styles.Image} />
         </View>
 
         <View style={styles.Add}>
@@ -69,6 +67,7 @@ const DoctorCard = ({
           </View>
         </View>
       </View>
+      <Text style={styles.HospitalStyle}>{hospital}</Text>
 
       <View style={styles.buttonView}>
         <TouchableOpacity style={styles.Button} onPress={bookAppointment}>

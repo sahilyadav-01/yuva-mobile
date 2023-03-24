@@ -17,6 +17,7 @@ import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
   AMBER,
   GREEN,
+  LIGHT_PINK,
   ORANGE,
   RED_SHADE,
   WHITE,
@@ -179,7 +180,7 @@ const ViewAppointments = () => {
             {status === CONFIRMED && (
               <AppointmentButton
                 name={CHECK}
-                color={AMBER}
+                color={GREEN}
                 action={checkIn}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
@@ -189,7 +190,7 @@ const ViewAppointments = () => {
             {status === INITIATED && (
               <AppointmentButton
                 name={RESCHEDULE}
-                color={AMBER}
+                color={GREEN}
                 action={editAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
@@ -199,7 +200,7 @@ const ViewAppointments = () => {
             {(status === CONFIRMED || status === INITIATED) && (
               <AppointmentButton
                 name={CANCEL}
-                color={RED_SHADE}
+                color={LIGHT_PINK}
                 action={cancelAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={[styles.buttonTextStyle, {color: WHITE}]}

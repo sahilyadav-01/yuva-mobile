@@ -131,11 +131,13 @@ const AppointmentCard = ({
               text={RESCHEDULE}
               iconName={CLOCK_OUTLINE}
               iconColor={NAVY_BLUE}
+              containerStyle={styles.RescCancel}
             />
             <CardButton
               text={CANCEL_APPOINTMENT}
               iconName={CLOSE}
               iconColor={RED_SHADE}
+              containerStyle={styles.RescCancel}
             />
           </View>
         )}

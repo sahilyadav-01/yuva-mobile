@@ -25,14 +25,9 @@ import {
   FLEX_START,
 } from '../styles/constants';
 import {fonts} from '../styles/fonts';
-
+import {getDimensions} from '../utils/utils';
+const {width} = getDimensions();
 export const styles = StyleSheet.create({
-  Image: {
-    height: 48,
-    width: 48,
-    alignSelf: 'center',
-    marginLeft: 20,
-  },
   buttonStyle: {
     backgroundColor: ORANGE,
     height: 48,
@@ -71,18 +66,21 @@ export const styles = StyleSheet.create({
   Image: {
     height: 48,
     width: 48,
-    marginTop: '40%',
-    marginLeft: '10%',
+    marginTop: '16%',
+    marginLeft: '12%',
+    // paddingLeft: '12%',
+    borderRadius: 24,
   },
   CompleteView: {
     backgroundColor: WHITE,
     marginLeft: '5%',
     marginRight: '5%',
-    marginTop: '5%',
+    marginTop: '10%',
     marginBottom: '5%',
-    height: 139,
+    height: 109,
     width: '90%',
-    borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   Button: {
     backgroundColor: CYAN_BLUE,
@@ -91,7 +89,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   buttonView: {
-    marginTop: 18,
+    marginTop: 4,
   },
   ButtonText: {
     color: WHITE,
@@ -600,8 +598,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize24,
   },
   ButtonStyle: {
-    marginVertical: '3%',
-    marginHorizontal: '3%',
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
   },
@@ -623,5 +619,48 @@ export const styles = StyleSheet.create({
     minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
+  },
+  carView: {
+    backgroundColor: WHITE,
+    shadowOpacity: 1,
+    shadowColor: BLACK,
+    minHeight: 117,
+    width: width - 30,
+    borderRadius: 6,
+  },
+  carDoctorNameText: {
+    color: ORANGE,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik400,
+    marginRight: '3%',
+  },
+  overallView: {
+    flex: 1,
+    marginTop: 15,
+    marginHorizontal: '4%',
+  },
+  HospitalName: {
+    color: DARK_BLUE,
+    fontSize: fonts.size.fontSize16,
+    fontFamily: fonts.family.rubik400,
+    marginTop: 12,
+  },
+  CancelReschedule: {
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
+  },
+  RescCancel: {
+    marginHorizontal: '3%',
+    marginBottom: '3%',
+  },
+  RescheduleCancel: {
+    marginTop: '5%',
+  },
+  HospitalStyle: {
+    position: ABSOLUTE,
+    right: '5%',
+    top: '65%',
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
   },
 });
