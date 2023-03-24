@@ -4,12 +4,15 @@ import {YuvaService} from '../../network/yuvaService';
 export const createOrderThunk = createAsyncThunk(
   'payment/createOrder',
   async (
-    {plan, bookingRequestDto, subscriptionRequestDto},
+    {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender},
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
       const endpoint = `/order?plan=${plan}`;
-      const reqBody = {bookingRequestDto, subscriptionRequestDto};
+      const reqBody =
+        name === -1
+          ? {bookingRequestDto, subscriptionRequestDto}
+          : {bookingRequestDto, subscriptionRequestDto, name, age, gender};
       const response = await YuvaService.post(endpoint, reqBody);
       return response.data;
     } catch (error) {
@@ -20,7 +23,10 @@ export const createOrderThunk = createAsyncThunk(
 
 export const encReqThunk = createAsyncThunk(
   'payment/encReq',
-  async ({plan,orderId,redirectUrl,cancelUrl}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {plan, orderId, redirectUrl, cancelUrl},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
       const endpoint = `/paymentGateway/redirect?plan=${plan}&orderId=${orderId}&redirectURL=${redirectUrl}&cancelURL=${cancelUrl}`;
       const response = await YuvaService.get(endpoint);
@@ -44,16 +50,16 @@ const paymentSlice = createSlice({
   name: 'payment',
   initialState,
   extraReducers: {
-    [encReqThunk.pending]: (state) => {
+    [encReqThunk.pending]: state => {
       state.encReqLoading = true;
       state.encReq = '';
       state.encReqError = false;
     },
-    [encReqThunk.fulfilled]: (state,{payload}) => {
+    [encReqThunk.fulfilled]: (state, {payload}) => {
       state.encReqLoading = false;
       state.encReq = payload?.data?.encRequest;
     },
-    [encReqThunk.rejected]: (state) => {
+    [encReqThunk.rejected]: state => {
       state.encReqLoading = true;
       state.encReqError = true;
     },

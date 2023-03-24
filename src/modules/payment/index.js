@@ -8,7 +8,7 @@ import {styles} from './style';
 
 const Payment = props => {
   const {paymentProps} = props;
-  const {encRequest, renderData} = usePayment(paymentProps);
+  const {encRequest, renderData, postPaymentNavigation} = usePayment(paymentProps);
   const {container, indicatorStyle} = styles();
   if (!renderData)
     return (
@@ -27,6 +27,7 @@ const Payment = props => {
           }}
           onNavigationStateChange={state => {
             console.log('State', state);
+            if(state?.url.includes('LoadingPayment')) postPaymentNavigation(state?.url);
           }}
         />
       </View>
