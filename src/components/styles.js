@@ -202,8 +202,7 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     marginTop: 50,
     fontFamily: fonts.family.rubik500,
-    marginLeft: 17.3,
-    marginRight: 34,
+    marginHorizontal:34
   },
   cards: {
     backgroundColor: WHITE,
@@ -530,4 +529,25 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: BIANCA,
   },
+  direction: {
+  paddingHorizontal: 15,
+  marginTop:"2%",
+  flexDirection: ROW,
+  alignSelf: FLEX_END,
+
+  },
+  dateStyle: {
+    marginTop:"5%",
+    marginLeft: 5,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize10,
+  },
+  timeStyle:{
+    marginTop:"5%",
+    marginLeft: 5,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize4,
+  }
 });
