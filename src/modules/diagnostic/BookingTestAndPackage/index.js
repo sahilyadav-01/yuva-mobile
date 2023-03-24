@@ -48,14 +48,7 @@ const BookingTestAndPackage = () => {
                                     {item?.parameterCount > 0 &&
                                         <Text style={styles.itemCount}>-{item?.parameterCount ?? item?.parameters?.length} Test</Text>}
                                 </Text>
-                                cost: 105
-description: "Don't test this"
-id: 5
-instruction: "Don't test this instruction"
-interpretation: "Don't test this interpretation"
-name: "Developer urine test"
-parameters: [{parameterName: "Developer first parameter"}, {parameterName: "Para name"},…]
-reportTime: 27                            </View>
+                            </View>
                             <View >
                             </View>
                             {item?.parameterCount > 0 &&
