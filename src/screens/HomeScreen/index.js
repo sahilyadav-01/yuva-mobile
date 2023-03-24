@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -32,29 +32,17 @@ import { popularTestsSliceThunk } from '../../store/reducers/PopularTestsSlice '
 import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
-import { useCart } from '../../modules/cart/hooks/useCart';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { addToCart } = useCart()
   const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
   const { userAppointments } = useSelector(state => state?.appointment);
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
-  const { lifestylePackage } = useSelector(state => state.lifestylePackage);
-  const { existingIds } = useSelector(state => state.cart);
-  const [addedItem, setAddedItem] = useState({ id: "", type: "", })
-  const [enableNavigation, setEnableNavigation] = useState(false)
-
-
-  const onPressAdd = (arg) => {
-    addToCart({ name: arg.name, cost: arg.cost, productId: arg.productId }, arg.productType)
-    setAddedItem({ id: arg.productId, type: arg.productType })
-    setEnableNavigation(true)
-  };
+  const { lifestylePackage } = useSelector(state => state.lifestylePackage); 
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
   };
@@ -63,7 +51,6 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       const isActive = 'true';
-      setEnableNavigation(false);
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
@@ -77,13 +64,6 @@ const HomeScreen = ({ navigation }) => {
 
     }
   }, [focused]);
-
-  useEffect(() => {
-    if (addedItem.id && existingIds.includes(addedItem.id.toString()) && enableNavigation) {
-      navigation.navigate('HealthCheckupsTests', { index: addedItem.type === 'PACKAGE' ? 0 : 1 })
-    }
-  }, [existingIds, addedItem, enableNavigation]);
-
 
   if (appointmentLoading || servicesLoading) return null;
   return (
@@ -124,7 +104,6 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem2
               imgPath={PNG.POPULARHEALTHICON}
-              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}
@@ -146,7 +125,6 @@ const HomeScreen = ({ navigation }) => {
             isIndexed={false}>
             <CarouselItem4
               imgPath={PNG.POPULARDIAGNOSTICICON}
-              onPressAdd={(arg) => onPressAdd(arg)}
             />
           </CarouselContainer>
         </View>}
