@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -113,7 +114,9 @@ const AppointmentCard = ({
                 <Text style={styles.dateAndTimeStyle}>
                   {getDateInFormat(new Date(slot), 'dd mm')}
                 </Text>
-                <Text style={styles.dateAndTimeStyle}>{getTime(slot)}</Text>
+                <Text style={styles.dateAndTimeStyle}>
+                  {moment(new Date(slot)).format('hh:mm A')}
+                </Text>
               </View>
             </View>
           </View>
