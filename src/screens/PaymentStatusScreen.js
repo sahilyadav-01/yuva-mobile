@@ -6,7 +6,12 @@ import {styles} from './styles';
 const PaymentStatusScreen = props => {
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
-      <PaymentStatus paymentSuccess={props?.route?.params?.paymentSuccess} />
+      <PaymentStatus
+        paymentProps={{
+          token: props?.route?.params?.token ?? '',
+          email: props?.route?.params?.email ?? '',
+        }}
+      />
     </SafeAreaView>
   );
 };

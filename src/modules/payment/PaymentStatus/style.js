@@ -34,5 +34,6 @@ export const styles = paymentSuccess => {
     },
     screenContainer: {paddingTop: 24},
     container: {flex: 1},
+    indicatorStyle: {flex: 1, alignItems: CENTER, justifyContent: CENTER},
   });
 };

@@ -37,6 +37,19 @@ export const encReqThunk = createAsyncThunk(
   },
 );
 
+export const paymentStatus = createAsyncThunk(
+  'payment/paymentStatus',
+  async ({email,token}) => {
+    try {
+      const endpoint = `/paymentGateway/status?email=${email}&token=${token}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+
 const initialState = {
   encReqLoading: false,
   encReqError: false,
@@ -44,6 +57,9 @@ const initialState = {
   createOrderLoading: false,
   createOrderError: false,
   orderId: '',
+  paymentStatusLoading: false,
+  paymentError: false,
+  paymentStatus: null,
 };
 
 const paymentSlice = createSlice({
@@ -78,6 +94,21 @@ const paymentSlice = createSlice({
       state.createOrderLoading = false;
       state.createOrderError = true;
     },
+    [paymentStatus.pending]: (state) => {
+      state.paymentStatusLoading = true;
+      state.paymentError = false;
+      state.paymentStatus = null;
+    },
+    [paymentStatus.fulfilled]: (state,{payload}) => {
+      state.paymentStatusLoading = false;
+      state.paymentStatus = payload?.data?.paymentStatus;
+      state.paymentError = false;
+    },
+    [paymentStatus.rejected]: (state) => {
+      state.paymentStatusLoading = false;
+      state.paymentError = true;
+      state.paymentStatus = null;
+    }
   },
 });
 

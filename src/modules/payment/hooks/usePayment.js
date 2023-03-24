@@ -1,5 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
+import { BackHandler } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   createOrderThunk,
@@ -20,6 +21,7 @@ export const usePayment = paymentProps => {
   const [renderData, setRenderData] = useState(false);
   useEffect(() => {
     if (navigation.isFocused()) {
+      BackHandler.addEventListener('hardwareBackPress', () => true);
       setRenderData(false);
       dispatch(
         createOrderThunk({plan, bookingRequestDto, subscriptionRequestDto,name,age,gender}),
@@ -41,8 +43,11 @@ export const usePayment = paymentProps => {
   }, [createOrder, orderId, encReqLoading, encReq]);
 
   const postPaymentNavigation = (url) => {
-    
-    //navigation.navigate('Payment',{screen:'PaymentStatus',params:{url}})
+  const params = url?.split('LoadingPayment?')[1];
+  const tokenString = params?.split('&email=')[0];
+  const token = tokenString?.substring(6,tokenString?.length);
+  const email = params?.split('&email=')[1];
+  navigation.navigate('Payment',{screen:'PaymentStatus',params:{token,email}})
   }
 
   return {

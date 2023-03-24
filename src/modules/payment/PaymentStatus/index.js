@@ -1,7 +1,6 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ActivityIndicator} from 'react-native';
 import {SVG} from '../../../../assets';
-import Header from '../../../components/Header';
 import Timer from '../../../components/Timer';
 import {
   PAYMENT_FAILURE,
@@ -13,8 +12,8 @@ import {
 import {usePaymentStatus} from './hooks/usePaymentStatus';
 import {styles} from './style';
 
-const PaymentStatus = ({paymentSuccess}) => {
-  usePaymentStatus();
+const PaymentStatus = ({paymentProps}) => {
+  const {paymentSuccess, loading} = usePaymentStatus(paymentProps);
   const {
     paymentStatus,
     paymentText,
@@ -23,7 +22,14 @@ const PaymentStatus = ({paymentSuccess}) => {
     imageContainer,
     screenContainer,
     container,
+    indicatorStyle
   } = styles(paymentSuccess);
+  if (loading)
+    return (
+      <View style={indicatorStyle}>
+        <ActivityIndicator size={'small'} />
+      </View>
+    );
   return (
     <View style={container}>
       <View style={screenContainer}>
@@ -39,7 +45,7 @@ const PaymentStatus = ({paymentSuccess}) => {
         </Text>
         {!paymentSuccess && <Text style={paymentText}>{PLEASE_TRY_AGAIN}</Text>}
         <View style={timer}>
-          <Timer interval={50} resetEnable={() => {}} HRA={true} />
+          <Timer interval={10} resetEnable={() => {}} HRA={true} />
         </View>
       </View>
     </View>

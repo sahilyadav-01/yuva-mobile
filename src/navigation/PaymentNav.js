@@ -13,7 +13,17 @@ const PaymentNavigation = () => {
       <Stack.Screen
         name={'PaymentScreen'}
         component={PaymentScreen}
-        options={{headerShown: false}}
+        options={{
+          headerShown: true,
+          headerLeft: () => null,
+          headerTitle: 'Payment',
+          headerTitleStyle: {
+            fontFamily: fonts.family.rubik500,
+            fontSize: fonts.size.fontSize14,
+            lineHeight: 17,
+            color: CYAN_BLUE,
+          },
+        }}
       />
       <Stack.Screen
         name={'PaymentStatus'}
