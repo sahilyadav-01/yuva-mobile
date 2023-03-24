@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
   details: {
     flexDirection: ROW,
     backgroundColor: LIGHT_GREY,
+    justifyContent:SPACE_BETWEEN,
   },
   BookingStatus: {
     marginTop: 22,
@@ -146,7 +147,7 @@ export const styles = StyleSheet.create({
   },
   packageDetails: {
     marginTop: 14,
-    marginLeft: 133,
+    marginRight:"5%",
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
