@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import { BLACK, CYAN_BLUE, DEEP_RED, LIGHT_SKY_BLUE, ORANGE, PINK_RED, VERY_LIGHT_SKY_BLUE, WHITE } from '../../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, LINE_THROUGH, RIGHT, ROW } from '../../../../styles/constants';
+import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, LINE_THROUGH, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { getDimensions } from '../../../../utils/utils';
 
@@ -8,26 +8,27 @@ const {width, height} = getDimensions();
 
 export const styles = StyleSheet.create({
   container: {
-    width: 0.84 * width,
-    height: 0.38 * height,
     borderRadius: 12,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.2,
-    shadowColor: BLACK,
+    elevation:10,
+    zIndex:10,
+    shadowColor:BLACK,
+    marginBottom:12,
+    marginTop:8
   },
   imgBackground: {
-    width: 0.84 * width,
-    height: 0.38 * height,
-    position: ABSOLUTE,
-  },
-  containerView: {
     width: '100%',
     height: '100%',
-    paddingHorizontal: '3%',
-    paddingVertical: '5%',
+    position: ABSOLUTE,
+    borderRadius: 12,
+    elevation:15,
+    zIndex:15,
+    shadowColor:BLACK
+  },
+  containerView: {
+    paddingLeft: 12,
+    paddingTop: 10,
+    elevation:16,
+    zIndex:16
   },
   headingView: {
     paddingTop: 4,
@@ -37,51 +38,46 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     color: ORANGE,
     lineHeight: 18,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
   },
   itemContainer: {
+    flex:1,
     flexDirection: ROW,
-    paddingHorizontal: 6,
     paddingVertical: 6,
-    width: '40%',
-    marginHorizontal: 12,
   },
   iconStyle: {
-    width: 0.08 * width,
-    height: 0.08 * width
+    width:30,
+    height:30
   },
   serviceContainer: {
     flex:1,
     paddingTop: 4,
   },
   detailsView: {
-    paddingHorizontal: 4,
     justifyContent: CENTER,
-    width: '80%'
   },
   serviceNameText: {
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize8,
     lineHeight: 10,
     color: CYAN_BLUE,
+    maxWidth: 80,
   },
   serviceDetailsText: {
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize6,
     lineHeight: 8,
     color: CYAN_BLUE,
+    maxWidth: 80
   },
   notAvailable: {
     color: DEEP_RED,
   },
   bottomView: {
-    width: '100%',
     flex: 1,
     flexDirection: ROW,
   },
   priceView: {
-    width: '40%',
-    marginHorizontal: 4,
     justifyContent: CENTER,
     alignItems: CENTER,
   },
@@ -138,12 +134,8 @@ export const styles = StyleSheet.create({
     color: WHITE,
     lineHeight: 15,
   },
-  imageView: {
-    width: '50%',
-  },
   valueContainer: {
     flexDirection: ROW,
-    paddingHorizontal: 4,
   },
   imageDetails: {
     width: 0.45 * width,

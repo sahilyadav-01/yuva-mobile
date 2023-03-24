@@ -17,7 +17,7 @@ const PlanCard = (props) => {
   const renderItem = ({item: serviceItem, index}) => {
     const { serviceName, shortDescription, image, available } = serviceItem || {};
     return (
-      <View style={styles.itemContainer} key={index}>
+      <View style={{...styles.itemContainer,maxWidth:'40%',marginRight:index%2===0? 36 : undefined}} key={index}>
         <View>
           <Image source={image} style={styles.iconStyle}/>
         </View>
@@ -31,7 +31,7 @@ const PlanCard = (props) => {
 
   return (
     <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
-      <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'contain'}/>
+      <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
         <View style={styles.containerView}>
           <View style={styles.headingView}>
             <Text style={styles.headingText}>{name || ''}</Text>
@@ -42,7 +42,7 @@ const PlanCard = (props) => {
             scrollEnabled={false}
             keyExtractor={item => `${item}`}
             numColumns={2}
-            style={styles.serviceContainer}
+            contentContainerStyle={styles.serviceContainer}
           />
           <View style={styles.bottomView}>
             <View style={styles.priceView}>
@@ -66,7 +66,7 @@ const PlanCard = (props) => {
                 </View>
               }
             </View>
-            <View style={styles.imageView}>
+            <View>
               <Image source={PNG.POPULAR_PLAN} style={styles.imageDetails}/>
             </View>
           </View>
