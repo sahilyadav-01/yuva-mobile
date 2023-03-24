@@ -5,7 +5,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
   const data = [
     {heading: 'Name', placeholder: 'Name'},
     {heading: 'Age', placeholder: 'Age'},
-    {heading: 'Relationship', placeholder: 'Relationship'},
+    {heading: 'Gender', placeholder: 'Gender'},
   ];
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -17,7 +17,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
         return {value: name, func: setName,type:'input'};
       case 'Age':
         return {value: age, func: setAge,type:'input',keyboardType:'numeric'};
-      case 'Relationship':
+      case 'Gender':
         return {value: '0',type:'picker'};
     }
   };
