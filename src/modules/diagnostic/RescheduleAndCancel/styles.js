@@ -15,7 +15,13 @@ export const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik700,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize16,
+    marginHorizontal: 10,
+  },
+  cancelButtonTextStyle:{
+    color: WHITE,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     marginHorizontal: 10,
   },
