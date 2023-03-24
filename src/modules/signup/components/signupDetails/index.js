@@ -1,11 +1,10 @@
 import React from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
+import {Checkbox} from 'react-native-paper';
 import {
-  CYAN_BLUE,
   ORANGE,
   ORANGE_GREY,
   SILVER_CHALICE,
-  WHITE,
 } from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
@@ -89,13 +88,7 @@ const SignUpDetailsCard = props => {
           </View>
         )}
         <View style={style.termsAndConditionsContainer}>
-          <TouchableOpacity
-            onPress={signUp?.toggleTerms}
-            style={{
-              ...style.checkBoxContainer,
-              backgroundColor: signUp?.terms ? CYAN_BLUE : WHITE,
-            }}
-          />
+          <Checkbox onPress={signUp?.toggleTerms} status={signUp?.terms ? 'checked' : 'unchecked'}/>
           <Text style={style.termsAndConditionsText}>
             By clicking on the below button, you agree to our Terms and
             Conditions & Privacy Policy.
