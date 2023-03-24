@@ -12,7 +12,7 @@ const OurPlanDetails = () => {
     const { planDetails,bookOurPlan } = useOurPlanDetails();
     const renderItem = ({ item, index }) => {
         return (
-            <View>
+            <View key={index}>
                 <View style={styles.starIcon}>
                     <SVG.StarIcon />
                     <Text style={styles.details}> {item}</Text>
@@ -34,14 +34,14 @@ const OurPlanDetails = () => {
                         <FlatList
                             renderItem={renderItem}
                             data={planDetails}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item) => item?.id}
                             showsHorizontalScrollIndicator={false}
                         />}
                     <Text style={styles.termsCondition}>{TERMS_AND_CONDITION}</Text>
                     <FlatList
                         renderItem={renderItem}
                         data={termsAndCondition}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item) => item?.id}
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
