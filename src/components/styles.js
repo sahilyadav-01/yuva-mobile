@@ -289,7 +289,7 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   head: {
-    alignSelf: FLEX_START,
+    alignSelf: CENTER,
     marginHorizontal:19,
     shadowColor: WHITE,
     position: ABSOLUTE,
