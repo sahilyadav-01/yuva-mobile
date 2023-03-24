@@ -32,6 +32,8 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     backgroundColor: LIGHT_GREY,
     justifyContent:SPACE_BETWEEN,
+    borderWidth:1,
+    borderColor:V_LIGHT_GREY,
   },
   BookingStatus: {
     marginTop: 22,
@@ -107,6 +109,8 @@ export const styles = StyleSheet.create({
     marginTop: 37,
     backgroundColor: V_LIGHT_GREY,
     minHeight: 50,
+    borderWidth:1,
+    borderColor:V_LIGHT_GREY,
   },
   Test: {
     marginTop: 14,
@@ -117,6 +121,8 @@ export const styles = StyleSheet.create({
   },
   TestList: {
     backgroundColor: LIGHT_GREY,
+    borderWidth:0.7,
+    borderColor:V_LIGHT_GREY,
   },
   testItems: {
     minHeight: 50,
@@ -129,6 +135,8 @@ export const styles = StyleSheet.create({
   PackageHeader: {
     backgroundColor: V_LIGHT_GREY,
     minHeight: 50,
+    borderWidth:1,
+    borderColor:V_LIGHT_GREY,
   },
   package: {
     marginTop: 14,
