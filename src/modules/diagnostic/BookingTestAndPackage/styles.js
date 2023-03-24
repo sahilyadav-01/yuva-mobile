@@ -145,7 +145,7 @@ export const styles = StyleSheet.create({
     },
     itemText: {
         width:"93%",
-        marginLeft:"5%",
+        marginLeft:13,
         color: WHITE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
