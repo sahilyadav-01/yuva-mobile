@@ -41,10 +41,8 @@ export const createCartUserThunk = createAsyncThunk(
       if (response?.data?.status) {
         store.dispatch(getCartUserThunk());
       }
-      //return fulfillWithValue(response);
     } catch (error) {
       Alert.alert('Alert', 'Unable to add item to cart');
-      return rejectWithValue(error);
     }
   },
 );
@@ -59,10 +57,8 @@ export const createCartGuestThunk = createAsyncThunk(
       if (response?.data?.status) {
         store.dispatch(getCartGuestThunk());
       }
-      return fulfillWithValue(response);
     } catch (error) {
       Alert.alert('Alert', 'Unable to add item to cart');
-      return rejectWithValue(error);
     }
   },
 );
@@ -183,27 +179,6 @@ const cartSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = payload.data.message;
       state.loading = false;
-    },
-    [createCartGuestThunk.pending]: state => {
-      state.loading = true;
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.cart = {};
-      state.addToCartLoad = true;
-    },
-    [createCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart = payload.data.data;
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.loading = false;
-      state.addToCartLoad = false;
-    },
-    [createCartGuestThunk.rejected]: (state, {payload}) => {
-      state.cart = {};
-      state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
-      state.loading = false;
-      state.addToCartLoad = false;
     },
     [deleteCartThunk.pending]: state => {
       state.loading = true;
