@@ -20,7 +20,7 @@ const {bookedData}=useBooking();
     return (
         <View>
             <View >
-                {bookedData.length ? (
+                {bookedData?.data?.length ? (
                     <ScrollView
                         bounces={false}
                         contentContainerStyle={styles.contentContainerStyle}
@@ -28,7 +28,7 @@ const {bookedData}=useBooking();
                         {bookedData &&
                             <FlatList
                                 renderItem={renderItem}
-                                data={bookedData}
+                                data={bookedData?.data}
                                 keyExtractor={(item) => item.id}
                                 showsHorizontalScrollIndicator={false}
                             />
