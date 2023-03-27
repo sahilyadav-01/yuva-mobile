@@ -42,12 +42,11 @@ export const useCart = (args) => {
     { key: KEY_VALUE2, value: FEMALE },
   ]
   /** */
-  const onPress = () => {
+  const onPressCardButton = () => {
     if (isLoggedIn) {
-      if (isLoggedIn && userData == null) {
+      if (userData == null) {
         openModal();
-      }
-      else if (userData !== null) {
+      } else {
         dispatch(dispatch_relationData({ userData }));
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
       }
@@ -190,7 +189,7 @@ export const useCart = (args) => {
 
   return {
     cart,
-    onPress,
+    onPressCardButton,
     buttonText,
     addToCart,
     onRemove,

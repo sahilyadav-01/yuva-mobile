@@ -104,7 +104,7 @@ export const styles = StyleSheet.create({
   },
   PopularHealthCheckups: {
     alignItems: CENTER,
-    marginTop: 15,
+    marginTop: 18,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
@@ -132,4 +132,5 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 118,
   },
+  planContainer: {marginTop:30}
 });

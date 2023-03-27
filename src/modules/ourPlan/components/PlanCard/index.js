@@ -66,7 +66,7 @@ const PlanCard = (props) => {
                 </View>
               }
             </View>
-            <View>
+            <View style={styles.popularPlanImageContainer}>
               <Image source={PNG.POPULAR_PLAN} style={styles.imageDetails}/>
             </View>
           </View>

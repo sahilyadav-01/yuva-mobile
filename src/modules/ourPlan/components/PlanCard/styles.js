@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     zIndex:10,
     shadowColor:BLACK,
     marginBottom:12,
-    marginTop:8
+    marginTop:8,
   },
   imgBackground: {
     width: '100%',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     shadowColor:BLACK
   },
   containerView: {
-    paddingLeft: 12,
+    paddingLeft: 16,
     paddingTop: 10,
     elevation:16,
     zIndex:16
@@ -34,10 +34,10 @@ export const styles = StyleSheet.create({
     paddingTop: 4,
   }, 
   headingText: {
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik600,
     color: ORANGE,
-    lineHeight: 18,
+    lineHeight: 21,
     paddingHorizontal: 8,
   },
   itemContainer: {
@@ -58,14 +58,14 @@ export const styles = StyleSheet.create({
   },
   serviceNameText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize8,
+    fontSize: fonts.size.fontSize10,
     lineHeight: 10,
     color: CYAN_BLUE,
     maxWidth: 80,
   },
   serviceDetailsText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize6,
+    fontSize: fonts.size.fontSize8,
     lineHeight: 8,
     color: CYAN_BLUE,
     maxWidth: 80
@@ -79,7 +79,6 @@ export const styles = StyleSheet.create({
   },
   priceView: {
     justifyContent: CENTER,
-    alignItems: CENTER,
   },
   priceContainer: {
     paddingBottom: 12,
@@ -87,16 +86,16 @@ export const styles = StyleSheet.create({
   },
   priceText: {
     fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     color: CYAN_BLUE,
-    lineHeight: 15,
+    lineHeight: 18,
     paddingHorizontal: 4,
   },
   discountpriceText: {
     fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     color: PINK_RED,
-    lineHeight: 15,
+    lineHeight: 18,
     textDecorationLine: LINE_THROUGH,
     paddingHorizontal: 4,
   },
@@ -108,17 +107,17 @@ export const styles = StyleSheet.create({
     paddingLeft: 40,
   },
   footerView: {
-    justifyContent: CENTER,
-    alignItems: CENTER,
+   justifyContent: CENTER,
+   alignItems: FLEX_START,
   },
   moreView: {
     paddingVertical: 8,
   },
   moreText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize6,
+    fontSize: fonts.size.fontSize8,
     color: CYAN_BLUE,
-    lineHeight: 9,
+    lineHeight: 12,
   },
   buyNowView: {
     backgroundColor: CYAN_BLUE,
@@ -129,10 +128,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   buyNowText: {
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
     color: WHITE,
-    lineHeight: 15,
+    lineHeight: 17,
   },
   valueContainer: {
     flexDirection: ROW,
@@ -140,4 +139,5 @@ export const styles = StyleSheet.create({
   imageDetails: {
     width: 0.45 * width,
   },
+  popularPlanImageContainer: {paddingRight:8}
 });
