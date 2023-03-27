@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     width: 208,
   },
   cardView: {
-    backgroundColor: WHITE,
+    paddingHorizontal: 12
   },
   subHeadingView: {
     marginVertical: 12,
@@ -56,5 +56,6 @@ export const styles = StyleSheet.create({
   },
   activeIndexView: {
     backgroundColor: ORANGE
-  }
+  },
+  separatorStyle: {width:24}
 });

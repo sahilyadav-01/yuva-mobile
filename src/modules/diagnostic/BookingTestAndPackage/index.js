@@ -39,26 +39,27 @@ const BookingTestAndPackage = () => {
 
         return (
             <View>
-                <TouchableOpacity onPress={onToggle}>
+                <TouchableOpacity onPress={onToggle} disabled={!item?.parameterCount>0}>
                     {!item.isExpanded ?
                         <View style={styles.itemView}>
                             <View >
                                 <Text style={styles.itemText}>
                                     {item?.attributeName ?? item?.name}{" "}
-                                    <Text style={styles.itemCount}>-{item?.parameterCount ?? item?.parameters?.length} Test</Text>
+                                    {item?.parameterCount > 0 &&
+                                        <Text style={styles.itemCount}>-{item?.parameterCount ?? item?.parameters?.length} Test</Text>}
                                 </Text>
                             </View>
                             <View >
-
                             </View>
-                            <View style={styles.drop} >
+                            {item?.parameterCount > 0 &&
+                                <View style={styles.drop} >
 
-                                <SVG.dropDown />
-                            </View>
+                                    <SVG.dropDown />
+                                </View>}
                         </View>
                         : <View style={styles.dropDown}>
                             <Text style={styles.itemHead}>
-                                {item?.attributeName ?? item?.name}
+                                {item?.attributeName ?? item?.name}{" "}
                                 <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
                             </Text>
                             <View style={styles.dropDownDetails}>

@@ -111,10 +111,11 @@ const RescheduleAndCancel = () => {
                         name={RESCHEDULE}
                         color={AMBER}
                         action={rescheduleBooking}
+                        reschedule={true}
                     />
                     <AppointmentButton
                     extraStyles={styles.button}
-                    textStyles={styles.buttonTextStyle}
+                    textStyles={styles.cancelButtonTextStyle}
                         name={CANCEL}
                         color={RED_SHADE}
                         action={cancelBookingButton}
