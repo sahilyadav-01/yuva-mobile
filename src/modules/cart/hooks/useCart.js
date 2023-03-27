@@ -13,7 +13,8 @@ import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
-export const useCart = () => {
+export const useCart = (args) => {
+  const fromHome = args?.isHomeScreen ?? false;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
@@ -89,10 +90,9 @@ export const useCart = () => {
     setAddModalVisible(true)
   }
   useEffect(() => {
-    if (isLoggedIn && isRemoved) {
-      console.log('Effect',cart)
+    if (isLoggedIn && isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
-    } else if(isRemoved) {
+    } else if(isRemoved && !fromHome) {
       dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);

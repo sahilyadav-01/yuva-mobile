@@ -6,7 +6,7 @@ import { HEALTH, NEXTSCREEN_NAVIGATION, PRODUCT_DETAILS_NAVIGATION, TESTCOUNT } 
 
 export const useCarouselItem4 = (props) => {
   const { item } = props;
-  const { addToCart } = useCart();
+  const { addToCart } = useCart({isHomeScreen:true});
   const navigation = useNavigation();
   const {existingIds} = useSelector(state=>state.cart)
    const onTestPress = (item) => navigation.navigate(PRODUCT_DETAILS_NAVIGATION, {

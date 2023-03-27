@@ -205,27 +205,6 @@ const cartSlice = createSlice({
       state.loading = false;
       state.addToCartLoad = false;
     },
-    // [createCartUserThunk.pending]: (state) => {
-    //   state.loading = true;
-    //   state.apiError= false;
-    //   state.apiErrorMessage= '';
-    //   state.cart= {};
-    //   state.addToCartLoad = true;
-    // },
-    // [createCartUserThunk.fulfilled]: (state, {payload}) => {
-    //   state.cart= payload.data.data;
-    //   state.apiError= false;
-    //   state.apiErrorMessage= '';
-    //   state.loading= false;
-    //   state.addToCartLoad = false;
-    // },
-    // [createCartUserThunk.rejected]: (state, {payload}) => {
-    //   state.cart= {};
-    //   state.apiError= true;
-    //   state.apiErrorMessage= payload.data.message;
-    //   state.loading= false;
-    //   state.addToCartLoad = false;
-    // },
     [deleteCartThunk.pending]: state => {
       state.loading = true;
       state.apiError = false;
@@ -234,7 +213,6 @@ const cartSlice = createSlice({
       state.addToCartLoad = true;
     },
     [deleteCartThunk.fulfilled]: (state, {payload}) => {
-      console.log('Payload',payload)
       if(payload?.data?.status){
       state.apiError = false;
       state.apiErrorMessage = '';
