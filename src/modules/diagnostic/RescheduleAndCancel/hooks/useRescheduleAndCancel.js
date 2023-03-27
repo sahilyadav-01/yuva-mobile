@@ -32,11 +32,16 @@ export const useRescheduleAndCancel = () => {
     const rescheduleBooking = () => {
         navigation.navigate(BOKINGCONFIRM, { bookedDetails: { data:reschedule, flag: true } })
     }
+    const packageUuid=reschedule?.packageNameDescriptionDtoList[0]?.packageUuid;
+    const onDetailsScreen=()=>{
+        navigation.navigate("BookingTestAndPackage",{packageName:packageUuid,isScreenRes:true})
+    }
     return {
         cancelBookingButton,
         cancelBooking,
         cancelFlag,
         reschedule,
-        rescheduleBooking
+        rescheduleBooking,
+        onDetailsScreen
     }
 }
