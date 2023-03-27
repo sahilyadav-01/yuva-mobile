@@ -6,6 +6,7 @@ import {newAppointment} from '../store/reducers/AppointmentSlice';
 import {PNG, SVG} from '../../assets';
 import {styles} from './styles';
 import {BOOK_APPOINTMENT, YEARS_EXP} from './constants';
+import {ABSOLUTE, FLEX_END} from '../styles/constants';
 const DoctorCard = ({
   doctorId,
   name,
@@ -57,15 +58,13 @@ const DoctorCard = ({
           </View>
           <Text style={styles.ContentStyle}>{specialization}</Text>
 
-          <View style={styles.Location}>
-            <View style={styles.addressView}>
-              <SVG.LocationOn />
-              <Text style={styles.Address}>
-                {address == undefined ? '' : address.slice(0, 20)}
-              </Text>
-            </View>
+          <Text style={styles.HospitalStyle}>{hospital} </Text>
 
-            <Text style={styles.HospitalStyle}>{hospital} </Text>
+          <View style={styles.addressView}>
+            <SVG.LocationOn />
+            <Text style={styles.Address}>
+              {address == undefined ? '' : address.slice(0, 20)}
+            </Text>
           </View>
         </View>
       </View>

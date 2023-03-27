@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
     marginLeft: '5%',
     marginRight: '5%',
     marginVertical: 12,
-    height: 109,
+    height: 143,
     width: '90%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -675,11 +675,14 @@ export const styles = StyleSheet.create({
     marginTop: '5%',
   },
   HospitalStyle: {
-    marginRight: '5%',
+    marginBottom: 13,
+    marginLeft: '3%',
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
   },
   addressView: {
+    marginBottom: 15,
+    marginLeft: '3%',
     flexDirection: ROW,
   },
 });
