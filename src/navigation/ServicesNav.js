@@ -106,11 +106,6 @@ const ServicesNav = () => {
         component={AppointmentHome}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="Doctor"
-        component={DoctorScreen}
-        options={{headerShown: false}}
-      /> */}
     </Stack.Navigator>
   );
 };

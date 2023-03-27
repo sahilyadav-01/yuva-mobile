@@ -12,7 +12,6 @@ const Doctor = () => {
   const {plan, userVersion, uuid, version} = params;
   const {onChangeSearch, searchQuery, data} = useDoctor();
   const renderItem = ({item, index}) => {
-    console.log(item, 'doctor');
     return (
       <DoctorCard
         key={item.id}

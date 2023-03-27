@@ -9,8 +9,6 @@ import {Text} from 'react-native';
 import {styles} from '../screens/styles';
 import {CENTER} from '../styles/constants';
 import {OPD_CONSULTATION} from './constants';
-import MyPlansScreen from '../screens/yuvaservices/opd/plans/Plans';
-import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -34,7 +32,6 @@ const OPDNavigation = () => {
         }}>
         <Tab.Screen
           name="My Plans"
-          // component={MyPlansScreen}
           component={MyPlansNav}
           options={{
             tabBarLabel: () => <Text style={styles.textColor}>My Plans</Text>,
@@ -42,7 +39,6 @@ const OPDNavigation = () => {
         />
         <Tab.Screen
           name="Appointments"
-          // component={AppointmentHome}
           component={AppointmentNav}
           options={{
             tabBarLabel: () => (

@@ -77,6 +77,9 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowColor: BLACK,
   },
+  childView: {
+    height: 46,
+  },
   viewCont: {
     backgroundColor: LIGHT_ORANGE,
     height: 92,

@@ -142,7 +142,9 @@ const ViewAppointments = () => {
           </View>
           <View
             style={
-              relation ? styles.familyView : [styles.familyView, {height: 46}]
+              relation
+                ? styles.familyView
+                : [styles.familyView, styles.childView]
             }>
             <Text
               style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
