@@ -29,7 +29,7 @@ const OurPlan = (props) => {
     );
   };
 
-  if(!popularPlan) {
+  if(popularPlan.length === 0) {
     return null;
   }
 
