@@ -44,16 +44,13 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
   },
   ContentStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
+    marginVertical: '2%',
     marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
   NameStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
     marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
@@ -63,19 +60,22 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     marginLeft: '5%',
   },
+  pngView: {
+    width: 68,
+    height: 78,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+  },
   Image: {
     height: 48,
     width: 48,
-    marginTop: '16%',
-    marginLeft: '12%',
     borderRadius: 24,
   },
   CompleteView: {
     backgroundColor: WHITE,
     marginLeft: '5%',
     marginRight: '5%',
-    marginTop: '10%',
-    marginBottom: '5%',
+    marginVertical: 12,
     height: 109,
     width: '90%',
     borderTopLeftRadius: 10,
@@ -99,18 +99,19 @@ export const styles = StyleSheet.create({
   },
   Top: {
     flexDirection: ROW,
-    margintop: '5%',
   },
   Add: {
     flex: 1,
   },
   Location: {
     flexDirection: ROW,
-    marginLeft: '3%',
+    marginLeft: '2%',
     color: BLACK,
+    justifyContent: SPACE_BETWEEN,
   },
 
   Cont: {
+    marginTop: '5%',
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
   },
@@ -119,7 +120,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize10,
     marginRight: '5%',
-    marginTop: '5%',
   },
   Address: {
     color: CYAN_BLUE,
@@ -675,10 +675,11 @@ export const styles = StyleSheet.create({
     marginTop: '5%',
   },
   HospitalStyle: {
-    position: ABSOLUTE,
-    right: '5%',
-    top: '65%',
+    marginRight: '5%',
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
+  },
+  addressView: {
+    flexDirection: ROW,
   },
 });

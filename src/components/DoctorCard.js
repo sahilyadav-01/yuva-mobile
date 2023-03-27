@@ -55,18 +55,20 @@ const DoctorCard = ({
               {exp} {YEARS_EXP}
             </Text>
           </View>
-
           <Text style={styles.ContentStyle}>{specialization}</Text>
 
           <View style={styles.Location}>
-            <SVG.LocationOn />
-            <Text style={styles.Address}>
-              {address == undefined ? '' : address.slice(0, 20)}
-            </Text>
+            <View style={styles.addressView}>
+              <SVG.LocationOn />
+              <Text style={styles.Address}>
+                {address == undefined ? '' : address.slice(0, 20)}
+              </Text>
+            </View>
+
+            <Text style={styles.HospitalStyle}>{hospital} </Text>
           </View>
         </View>
       </View>
-      <Text style={styles.HospitalStyle}>{hospital}</Text>
       <TouchableOpacity style={styles.Button} onPress={bookAppointment}>
         <Text style={styles.ButtonText}>{BOOK_APPOINTMENT}</Text>
       </TouchableOpacity>

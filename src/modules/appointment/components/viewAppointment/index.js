@@ -1,11 +1,9 @@
 import React from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
-import GoBackCross from '../../../../components/GoBackCross';
+import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
 import {
-  getDate,
-  getTime,
   appointmentStatus,
   splitCustomId,
   getDateInFormat,
@@ -131,7 +129,9 @@ const ViewAppointments = () => {
                     <Text style={styles.numberSytle}>
                       {getDateInFormat(new Date(slot), 'dd mm')}
                     </Text>
-                    <Text style={styles.numberSytle}>{getTime(slot)}</Text>
+                    <Text style={styles.numberSytle}>
+                      {moment(new Date(slot)).format('hh:mm A')}
+                    </Text>
                   </View>
                 </View>
               </View>
