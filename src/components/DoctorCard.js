@@ -6,7 +6,6 @@ import {newAppointment} from '../store/reducers/AppointmentSlice';
 import {PNG, SVG} from '../../assets';
 import {styles} from './styles';
 import {BOOK_APPOINTMENT, YEARS_EXP} from './constants';
-import {ABSOLUTE, FLEX_END} from '../styles/constants';
 const DoctorCard = ({
   doctorId,
   name,
