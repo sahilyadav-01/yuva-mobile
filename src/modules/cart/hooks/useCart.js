@@ -89,9 +89,10 @@ export const useCart = () => {
     setAddModalVisible(true)
   }
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && isRemoved) {
+      console.log('Effect',cart)
       dispatch(getCartUserThunk());
-    } else {
+    } else if(isRemoved) {
       dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);

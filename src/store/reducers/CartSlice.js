@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 import {YuvaService} from '../../network/yuvaService';
-import { getDeviceId } from '../../utils/utils';
+import {getDeviceId} from '../../utils/utils';
 import store from '../Store';
 
 export const getCartUserThunk = createAsyncThunk(
@@ -38,12 +38,12 @@ export const createCartUserThunk = createAsyncThunk(
     try {
       const endpoint = '/cart';
       const response = await YuvaService.post(endpoint, cartDto);
-      if(response?.data?.status){
+      if (response?.data?.status) {
         store.dispatch(getCartUserThunk());
       }
-      return fulfillWithValue(response);
+      //return fulfillWithValue(response);
     } catch (error) {
-      Alert.alert('Alert','Unable to add item to cart');
+      Alert.alert('Alert', 'Unable to add item to cart');
       return rejectWithValue(error);
     }
   },
@@ -56,12 +56,12 @@ export const createCartGuestThunk = createAsyncThunk(
       const sessionId = await getDeviceId();
       const endpoint = `/cart/guest?sessionId=${sessionId}`;
       const response = await YuvaService.post(endpoint, cartDto);
-      if(response?.data?.status){
+      if (response?.data?.status) {
         store.dispatch(getCartGuestThunk());
       }
       return fulfillWithValue(response);
     } catch (error) {
-      Alert.alert('Alert','Unable to add item to cart');
+      Alert.alert('Alert', 'Unable to add item to cart');
       return rejectWithValue(error);
     }
   },
@@ -76,7 +76,7 @@ export const deleteCartThunk = createAsyncThunk(
       const response = await YuvaService.delete(endpoint);
       return fulfillWithValue(response);
     } catch (error) {
-      Alert.alert('Alert','Unable to remove item to cart');
+      Alert.alert('Alert', 'Unable to remove item to cart');
       return rejectWithValue(error);
     }
   },
@@ -87,16 +87,16 @@ const initialState = {
     itemDtoList: [],
     totalCost: 0,
     isRemoved: false,
-    amountToBePaid:0,
-    totalDiscount:0,
-    couponViewCart:null,
+    amountToBePaid: 0,
+    totalDiscount: 0,
+    couponViewCart: null,
   },
   loading: false,
   apiError: false,
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
-  termsAndCondtionChecked:false,
+  termsAndCondtionChecked: false,
 };
 
 const cartSlice = createSlice({
@@ -104,18 +104,18 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     removeCouponCart(state) {
-      state.cart.couponViewCart=null;
+      state.cart.couponViewCart = null;
     },
-    setTermsAndCondtionChecked(state,{payload}){
-      state.termsAndCondtionChecked=payload;
+    setTermsAndCondtionChecked(state, {payload}) {
+      state.termsAndCondtionChecked = payload;
     },
   },
   extraReducers: {
-    [getCartUserThunk.pending]: (state) => {
+    [getCartUserThunk.pending]: state => {
       state.loading = true;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.cart= {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.cart = {
         itemDtoList: [],
         totalCost: 0,
         isRemoved: false,
@@ -135,116 +135,124 @@ const cartSlice = createSlice({
       state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
-      state.cart= {
+      state.cart = {
         itemDtoList: [],
         totalCost: 0,
         isRemoved: false,
       };
       state.existingIds = [];
-      state.apiError= true;
-      state.apiErrorMessage= payload.data.message;
-      state.loading= false;
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
     },
-    [getCartGuestThunk.pending]: (state) => {
+    [getCartGuestThunk.pending]: state => {
       state.loading = true;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.cart= {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.cart = {
         itemDtoList: [],
         totalCost: 0,
         isRemoved: false,
-};
+      };
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
-      state.cart.totalCost= payload?.data?.data?.totalCost || 0
-      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
-      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
-      if(typeof payload?.data?.data?.itemDtoList === 'object' && payload?.data?.data?.itemDtoList.length >= 0){
-        state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
+      state.cart.itemDtoList = payload?.data?.data?.itemDtoList || [];
+      state.cart.totalCost = payload?.data?.data?.totalCost || 0;
+      state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;
+      state.cart.totalDiscount = payload?.data?.data?.totalDiscount || 0;
+      if (
+        typeof payload?.data?.data?.itemDtoList === 'object' &&
+        payload?.data?.data?.itemDtoList.length >= 0
+      ) {
+        state.existingIds = payload?.data?.data?.itemDtoList.map(
+          item => item.productId,
+        );
       }
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.loading= false;
-      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.cart.couponViewCart = payload?.data?.data?.couponCode || null;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
-      state.cart= {
+      state.cart = {
         itemDtoList: [],
         totalCost: 0,
         isRemoved: false,
       };
       state.existingIds = [];
-      state.apiError= true;
-      state.apiErrorMessage= payload.data.message;
-      state.loading= false;
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
     },
-    [createCartGuestThunk.pending]: (state) => {
+    [createCartGuestThunk.pending]: state => {
       state.loading = true;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.cart= {};
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.cart = {};
       state.addToCartLoad = true;
     },
     [createCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.loading= false;
+      state.cart = payload.data.data;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
       state.addToCartLoad = false;
     },
     [createCartGuestThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
-      state.apiError= true;
-      state.apiErrorMessage= payload.data.message;
-      state.loading= false;
+      state.cart = {};
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
       state.addToCartLoad = false;
     },
-    [createCartUserThunk.pending]: (state) => {
+    // [createCartUserThunk.pending]: (state) => {
+    //   state.loading = true;
+    //   state.apiError= false;
+    //   state.apiErrorMessage= '';
+    //   state.cart= {};
+    //   state.addToCartLoad = true;
+    // },
+    // [createCartUserThunk.fulfilled]: (state, {payload}) => {
+    //   state.cart= payload.data.data;
+    //   state.apiError= false;
+    //   state.apiErrorMessage= '';
+    //   state.loading= false;
+    //   state.addToCartLoad = false;
+    // },
+    // [createCartUserThunk.rejected]: (state, {payload}) => {
+    //   state.cart= {};
+    //   state.apiError= true;
+    //   state.apiErrorMessage= payload.data.message;
+    //   state.loading= false;
+    //   state.addToCartLoad = false;
+    // },
+    [deleteCartThunk.pending]: state => {
       state.loading = true;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.cart= {};
-      state.addToCartLoad = true;
-    },
-    [createCartUserThunk.fulfilled]: (state, {payload}) => {
-      state.cart= payload.data.data;
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.loading= false;
-      state.addToCartLoad = false;
-    },
-    [createCartUserThunk.rejected]: (state, {payload}) => {
-      state.cart= {};
-      state.apiError= true;
-      state.apiErrorMessage= payload.data.message;
-      state.loading= false;
-      state.addToCartLoad = false;
-    },
-    [deleteCartThunk.pending]: (state) => {
-      state.loading = true;
-      state.apiError= false;
-      state.apiErrorMessage= '';
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.cart.isRemoved = false;
       state.addToCartLoad = true;
     },
     [deleteCartThunk.fulfilled]: (state, {payload}) => {
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.loading= false;
+      console.log('Payload',payload)
+      if(payload?.data?.status){
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
       state.cart.isRemoved = true;
       state.addToCartLoad = false;
+      }
     },
     [deleteCartThunk.rejected]: (state, {payload}) => {
-      state.apiError= true;
-      state.apiErrorMessage= payload.data.message;
-      state.loading= false;
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
       state.cart.isRemoved = false;
       state.addToCartLoad = false;
-    },    
+    },
   },
 });
-export const {setTermsAndCondtionChecked}=cartSlice.actions;
+export const {setTermsAndCondtionChecked} = cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
-export const {removeCouponCart } = cartSlice.actions;
+export const {removeCouponCart} = cartSlice.actions;
 export default cartSlice.reducer;
