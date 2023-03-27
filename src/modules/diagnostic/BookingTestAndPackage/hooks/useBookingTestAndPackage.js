@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    diagnosisPackageDetailsThunk, diagnosisTestDetailsThunk
+    diagnosisPackageDetailsThunk, diagnosisTestDetailsThunk,
 } from '../../../../store/reducers/DiagnosticsSlice';
 import { useIsFocused, useNavigation } from '@react-navigation/core'
 import { useRoute } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import { useCart } from '../../../cart/hooks/useCart';
 
 export const useBookingTestAndPackage = () => {
     const route = useRoute();
-    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest,headerName } = route.params;
+    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = route.params;
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const focused = useIsFocused();
@@ -26,7 +26,7 @@ export const useBookingTestAndPackage = () => {
         if (isTest) dispatch(diagnosisTestDetailsThunk({ id: uuid }));
         else
             dispatch(diagnosisPackageDetailsThunk({ packageName }));
-    }, []);
+    }, [isScreenRes]);
 
     useEffect(() => {
         if (focused) {
@@ -105,6 +105,7 @@ export const useBookingTestAndPackage = () => {
         isTest,
         isDisabled,
         headerName,
-        headerTitle
+        headerTitle,
+        isScreenRes
     }
 }
