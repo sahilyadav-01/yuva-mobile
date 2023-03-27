@@ -10,7 +10,7 @@ export const createOrderThunk = createAsyncThunk(
     try {
       const endpoint = `/order?plan=${plan}`;
       const reqBody =
-        name === -1
+        plan
           ? {bookingRequestDto, subscriptionRequestDto}
           : {bookingRequestDto, subscriptionRequestDto, name, age, gender};
       const response = await YuvaService.post(endpoint, reqBody);
