@@ -33,8 +33,10 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
   };
   const onSaveDetails = () => {
     const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi
+    const nameReg = /^[A-Za-z. ]+$/
     if(!(name && age && selectedRelation)) Alert.alert('Alert', 'Please fill all the details');
     else if(reg.test(age)) Alert.alert('Alert', 'Please enter a proper age');
+    else if(!nameReg.test(name)) Alert.alert('Alert', 'Please enter a proper name');
     else onSaveDetailsPress({name, age, selectedRelation});
   };
   return {
