@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         color: DARK_BLUE,
     },
     scrollViewContainer: {
-        height: 650,
+        height: 550,
     },
     scrollViewContentContainerStyle: {
         flexGrow: 1,

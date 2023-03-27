@@ -15,7 +15,7 @@ import Dependents from '../profile/components/dependents';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
 
 const Cart = props => {
-  const { cart, coupon, couponView, onPress, crossAction, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, data, onAddMembersPress, relationsData } = useCart();
+  const { cart, coupon, couponView, onPressCardButton, crossAction, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, data, onAddMembersPress, relationsData } = useCart();
   const { itemDtoList, totalCost, amountToBePaid, totalDiscount, couponViewCart } = cart || {};
   const { totalCost: appliedTotalCost, amountToBePaid: appliedAmountToBePaid, totalDiscount: appliedTotalDiscount } = coupon || {};
   return (
@@ -64,7 +64,7 @@ const Cart = props => {
           {userData !== null && <Dependents hideShadow={true} dependents={[userData]} />}
           <CardButton
             text={buttonText}
-            onPress={onPress}
+            onPress={onPressCardButton}
             containerStyle={styles.containerStyle}
             textStyle={styles.textStyle}
           />

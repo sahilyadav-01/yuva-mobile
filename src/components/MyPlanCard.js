@@ -40,7 +40,7 @@ const MyPlanCard = ({ item }) => {
                                 {`${USED} ${used}`}
 
                             </Text>
-                            <Text>
+                            <Text style={styles.textSpacing}>
                             {`${AVAIL} ${available}`}
 
                             </Text>
@@ -52,7 +52,7 @@ const MyPlanCard = ({ item }) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.buttonStyleMyTest}  onPress={onBookingTestandPackage}>
+                    <TouchableOpacity style={styles.buttonStyleMyTest} onPress={onBookingTestandPackage}>
                         <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>
@@ -66,7 +66,9 @@ const MyPlanCard = ({ item }) => {
 
         <View style={styles.viewContainer}>
             <View>
-                <Text style={styles.head}>{item?.name} </Text>
+                <View style={styles.headView}>
+                    <Text style={styles.head}>{item?.name} </Text>
+                </View>
                 <Text style={styles.expiry}>{VALID}{getPlanDate(item.endDate)}</Text>
             </View>
             {item.assignedAttributeResponseDto.length &&

@@ -13,7 +13,8 @@ import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
-export const useCart = () => {
+export const useCart = (args) => {
+  const fromHome = args?.isHomeScreen ?? false;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
@@ -41,12 +42,11 @@ export const useCart = () => {
     { key: KEY_VALUE2, value: FEMALE },
   ]
   /** */
-  const onPress = () => {
+  const onPressCardButton = () => {
     if (isLoggedIn) {
-      if (isLoggedIn && userData == null) {
+      if (userData == null) {
         openModal();
-      }
-      else if (userData !== null) {
+      } else {
         dispatch(dispatch_relationData({ userData }));
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
       }
@@ -89,9 +89,9 @@ export const useCart = () => {
     setAddModalVisible(true)
   }
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
-    } else {
+    } else if(isRemoved && !fromHome) {
       dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);
@@ -189,7 +189,7 @@ export const useCart = () => {
 
   return {
     cart,
-    onPress,
+    onPressCardButton,
     buttonText,
     addToCart,
     onRemove,

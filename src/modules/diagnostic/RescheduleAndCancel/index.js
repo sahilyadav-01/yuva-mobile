@@ -33,7 +33,8 @@ const RescheduleAndCancel = () => {
         cancelBooking,
         cancelFlag,
         reschedule,
-        rescheduleBooking
+        rescheduleBooking,
+        onDetailsScreen
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
@@ -47,7 +48,7 @@ const RescheduleAndCancel = () => {
         return (
             <View style={styles.details}>
                 <Text style={styles.packageName}>{item.name}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onDetailsScreen}>
                     <Text style={styles.packageDetails}>{DETAILS}</Text>
                 </TouchableOpacity>
             </View>
@@ -111,10 +112,11 @@ const RescheduleAndCancel = () => {
                         name={RESCHEDULE}
                         color={AMBER}
                         action={rescheduleBooking}
+                        reschedule={true}
                     />
                     <AppointmentButton
                     extraStyles={styles.button}
-                    textStyles={styles.buttonTextStyle}
+                    textStyles={styles.cancelButtonTextStyle}
                         name={CANCEL}
                         color={RED_SHADE}
                         action={cancelBookingButton}

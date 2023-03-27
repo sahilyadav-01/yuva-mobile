@@ -1,28 +1,15 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
 import { ORANGE, ORANGE_GREY } from '../../styles/colors';
-import { BUTTONCONTENT, COST, HEALTH, TESTCOUNT } from './constant';
+import { BUTTONCONTENT, COST } from './constant';
+import { useCarouselItem2 } from './hooks/useCarouselItem2';
 import { styles } from './styles';
 
-const getTestCount = (item) => {
-  return TESTCOUNT(item.parameterCount === 0 ? item.totalTest : item.parameterCount);
-};
-
 const CarouselItem2 = (props) => {
-  const navigation = useNavigation();
-  const { imgPath, index, totalItem, onPressAdd, item } = props;
-  const { existingIds } = useSelector(state => state.cart)
-  const onPackagePress = (item) => navigation.navigate('ProductDetails', {
-    headerName:HEALTH,
-    packageName: item.packageUuid,
-    uuid: item.packageUuid ?? null,
-    showCartButton: true,
-    isTest: item.testId ? true : false,
-    name: item.packageName ?? null,
-    cost: item.cost ?? null
-  });
+  const { imgPath, index, totalItem, item } = props;
+
+  const { onPackagePress, getTestCount, existingIds, onPressAdd } = useCarouselItem2({item});
+
   return (
     <TouchableOpacity onPress={() => onPackagePress(item)}>
       <View
@@ -57,7 +44,7 @@ const CarouselItem2 = (props) => {
         <View style={styles.addButtonViewContainer}>
           <TouchableOpacity
             disabled={existingIds.length > 0 && existingIds.includes(item.packageUuid)}
-            onPress={() => onPressAdd({ name: item.packageName, cost: item.cost, productType: 'PACKAGE', productId: item.packageUuid })}
+            onPress={onPressAdd}
             style={{ ...styles.addButtonContainer, backgroundColor: existingIds.length > 0 && existingIds.includes(item.packageUuid) ? ORANGE_GREY : ORANGE }}
           >
             <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>

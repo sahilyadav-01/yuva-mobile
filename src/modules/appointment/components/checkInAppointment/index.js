@@ -1,26 +1,45 @@
-import React from 'react'
-import { View, Text, TextInput,Image } from 'react-native';
-import { useView } from '../viewAppointment/hooks/useView';
-import { PNG,SVG } from '../../../../../assets';
-import { HOPE_YOUR_APPOINTMENT, THANK_YOU, YOUR_PIN } from '../../constant';
-import { styles } from './styles';
+import React from 'react';
+import {View, Text, Image} from 'react-native';
+import {useView} from '../viewAppointment/hooks/useView';
+import {PNG} from '../../../../../assets';
+import {
+  HOPE_YOUR_APPOINTMENT,
+  NAME,
+  THANKS,
+  THANK_YOU,
+  WISHES,
+  YOUR_PIN,
+} from '../../constant';
+import {styles} from './styles';
 const CheckInAppointments = () => {
-    const { otp } =useView();
-    return (
-        <View style={styles.contentContainerStyle} className='h-[130px] mt-[35px] mr-[15px] ml-[15px] rounded-lg shadow-md'>
-        <View >
-            <Text className="flex h-[50px] font-[500] color-[#44576A] w-40 mr-[30px] ml-[20px] mt-[35px] mb-[30px] justify-center rounded">{THANK_YOU}</Text>
-                <Image className='flexml ml-[260px] mt-[-111px] justify-end' source={PNG.THANK_IMAGE}/>
-                </View>
-                <View style={styles.contentContainerStyle}  className='h-[300px] mt-[65px]  rounded-lg '>
-                <Image className='flexml ml-[272px]  justify-end' source={PNG.THANK_DESIGN}/>
-                <Text className="flex  font-[500] color-[#44576A] mr-[30px] ml-[30px] ] mt-[-76px] mb-[20px] justify-center rounded" >Dear.</Text>
-            <Text className="flex  font-[500] color-[#44576A] mr-[30px] ml-[30px] ] mb-[30px] justify-center rounded" > {YOUR_PIN}<Text style={styles.text}  >{otp}</Text>.</Text>
-            <Text className="flex  font-[500] color-[#44576A] mr-[30px] ml-[30px]  mb-[30px] justify-center rounded">{HOPE_YOUR_APPOINTMENT}</Text>
-            <Text className="flex h-[50px] font-[500] color-[#44576A] mr-[30px] ml-[30px] mt-[10px] justify-center rounded">Thank You</Text>
-            <Text className="flex h-[50px] font-[500] color-[#44576A] mr-[30px] ml-[30px] mt-[-25px] justify-center rounded">Keep Smiling, Stay Healthy.!</Text>
+  const {otp} = useView();
+  return (
+    <View>
+      <View style={styles.thanksMessageView}>
+        <View style={styles.thanksView}>
+          <Text style={styles.thanksMessageStyle}> {THANK_YOU}</Text>
         </View>
+        <View style={styles.imageView}>
+          <Image source={PNG.THANK_IMAGE} />
         </View>
-    )
-}
+      </View>
+      <View style={styles.messageView}>
+        <Image source={PNG.THANK_DESIGN} style={styles.imageStyle} />
+        <View style={styles.secondView}>
+          <Text style={styles.thankStyle}>{NAME}</Text>
+
+          <View style={styles.otpView}>
+            <Text style={styles.otpDescriptionStyle}>{YOUR_PIN}</Text>
+            <Text style={styles.otpStyle}>{otp}</Text>
+          </View>
+
+          <Text style={styles.descriptionStyle}> {HOPE_YOUR_APPOINTMENT}</Text>
+
+          <Text style={styles.thankStyle}>{THANKS}</Text>
+          <Text style={styles.descriptionStyle}>{WISHES}</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
 export default CheckInAppointments;

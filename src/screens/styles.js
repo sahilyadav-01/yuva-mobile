@@ -80,8 +80,9 @@ export const styles = StyleSheet.create({
     marginTop: 100,
   },
   verticalLine: {
-    borderRightWidth: 2,
-    height: 40,
+    borderRightWidth: 1,
+    height: 20,
+    marginVertical:20,
     borderRightColor: CYAN_BLUE,
   },
   height: {
@@ -103,7 +104,7 @@ export const styles = StyleSheet.create({
   },
   PopularHealthCheckups: {
     alignItems: CENTER,
-    marginTop: 15,
+    marginTop: 18,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
@@ -131,4 +132,5 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 118,
   },
+  planContainer: {marginTop:30}
 });

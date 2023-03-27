@@ -25,6 +25,7 @@ import {
   TIME,
 } from './constant';
 import {useRoute} from '@react-navigation/native';
+import {PNG} from '../../../../../assets';
 
 const NewAppointments = () => {
   const route = useRoute();
@@ -53,15 +54,11 @@ const NewAppointments = () => {
   return (
     <View>
       <ScrollView>
-        <GoBackCross onPress={goBack} />
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
         <View style={styles.border}>
           <View style={styles.ImageStyle}>
-            <Image
-              source={require('../../../../../assets/icon.png')}
-              style={styles.Image}
-            />
+            <Image source={PNG.ICON} style={styles.Image} />
             <View>
               <Text style={styles.NameStyle}>{Doctor}</Text>
               <Text style={styles.ContentStyle}>{Specialization}</Text>
@@ -70,6 +67,7 @@ const NewAppointments = () => {
         </View>
 
         <Text style={styles.TitleStyle}>{ADD_DESCRIPTION}</Text>
+
         <View style={styles.border}>
           <Text style={styles.Description}>{DESC}</Text>
           <TextInput
@@ -81,7 +79,7 @@ const NewAppointments = () => {
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
         <View style={styles.border}>
           <View style={styles.dateAndTime}>
-            <Text style={styles.Date}>{DATE}</Text>
+            <Text style={styles.dateTimeStyles}>{DATE}</Text>
             <DateTimePicker
               type="date"
               value={date}
@@ -93,7 +91,7 @@ const NewAppointments = () => {
             />
           </View>
           <View style={styles.dateAndTime}>
-            <Text style={styles.Time}>{TIME}</Text>
+            <Text style={styles.dateTimeStyles}>{TIME}</Text>
             <DateTimePicker
               type="time"
               value={time}

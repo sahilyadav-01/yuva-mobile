@@ -2,13 +2,11 @@ import {StyleSheet} from 'react-native';
 import {BLACK, CYAN_BLUE, PINK_ORANGE, WHITE} from '../../styles/colors';
 import {ABSOLUTE, CENTER, FLEX_START, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
-import {getDimensions} from '../../utils/utils';
-
-const {height} = getDimensions();
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    minHeight: 0.12 * height,
+   paddingTop:10,
+   paddingBottom:12,
     width: '100%',
     backgroundColor: WHITE,
     paddingHorizontal: 16,
@@ -25,21 +23,22 @@ export const styles = StyleSheet.create({
   topSection: {
     flexDirection: ROW,
     justifyContent: CENTER,
-    paddingVertical: 4,
-    paddingTop: 16,
   },
   pinView: {
     left: 0,
     flex: 1,
     flexDirection: ROW,
+    marginTop:4
   },
   rightView: {
     right: 0,
     flexDirection: ROW,
-    alignItems: CENTER,
+    alignItems: FLEX_START,
   },
   rightIcon: {
     paddingHorizontal: 4,
+    height: 24,
+    justifyContent:CENTER
   },
   loginText: {
     fontFamily: fonts.family.rubik500,
@@ -102,4 +101,5 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize8,
   },
+  searchContainer: {position:ABSOLUTE,bottom:18}
 });

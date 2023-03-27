@@ -29,7 +29,7 @@ const OurPlan = (props) => {
     );
   };
 
-  if(!popularPlan) {
+  if(popularPlan.length === 0) {
     return null;
   }
 
@@ -52,11 +52,12 @@ const OurPlan = (props) => {
         renderItem={renderItem}
         contentContainerStyle={styles.cardView}
         snapToAlignment={'center'}
-        snapToInterval={0.7* width}
+        snapToInterval={0.84* width}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
+        ItemSeparatorComponent={() => <View style={styles.separatorStyle}/>}
       />
       <FlatList
         data={new Array(popularPlan.length)}

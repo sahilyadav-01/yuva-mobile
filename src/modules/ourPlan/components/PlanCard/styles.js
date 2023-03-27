@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import { BLACK, CYAN_BLUE, DEEP_RED, LIGHT_SKY_BLUE, ORANGE, PINK_RED, VERY_LIGHT_SKY_BLUE, WHITE } from '../../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, LINE_THROUGH, RIGHT, ROW } from '../../../../styles/constants';
+import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, LEFT, LINE_THROUGH, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { getDimensions } from '../../../../utils/utils';
 
@@ -8,73 +8,77 @@ const {width, height} = getDimensions();
 
 export const styles = StyleSheet.create({
   container: {
-    width: 0.70 * width,
-    height: 0.32 * height,
     borderRadius: 12,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.2,
-    shadowColor: BLACK,
+    elevation:10,
+    zIndex:10,
+    shadowColor:BLACK,
+    marginBottom:12,
+    marginTop:8,
   },
   imgBackground: {
     width: '100%',
     height: '100%',
+    position: ABSOLUTE,
+    borderRadius: 12,
+    elevation:15,
+    zIndex:15,
+    shadowColor:BLACK
   },
   containerView: {
-    width: '100%',
-    height: '100%',
-    paddingHorizontal: 8,
-    paddingVertical: 8,
+    paddingLeft: 16,
+    paddingTop: 10,
+    elevation:16,
+    zIndex:16
   },
   headingView: {
     paddingTop: 4,
   }, 
   headingText: {
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik600,
     color: ORANGE,
-    lineHeight: 18,
-    paddingHorizontal: 16,
+    lineHeight: 21,
+    paddingHorizontal: 8,
   },
   itemContainer: {
+    flex:1,
     flexDirection: ROW,
-    paddingHorizontal: 6,
-    paddingVertical: 4,
-    width: '40%',
-    marginHorizontal: 8,
+    paddingVertical: 6,
+  },
+  iconStyle: {
+    width:30,
+    height:30
   },
   serviceContainer: {
     flex:1,
+    paddingTop: 4,
   },
   detailsView: {
-    paddingHorizontal: 4,
     justifyContent: CENTER,
   },
   serviceNameText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize8,
+    fontSize: fonts.size.fontSize10,
     lineHeight: 10,
     color: CYAN_BLUE,
+    maxWidth: 80,
   },
   serviceDetailsText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize6,
+    fontSize: fonts.size.fontSize8,
     lineHeight: 8,
     color: CYAN_BLUE,
+    maxWidth: 80
   },
   notAvailable: {
     color: DEEP_RED,
   },
   bottomView: {
-    width: '100%',
     flex: 1,
     flexDirection: ROW,
   },
   priceView: {
-    width: '40%',
-    marginHorizontal: 4,
+    justifyContent: CENTER,
   },
   priceContainer: {
     paddingBottom: 12,
@@ -82,16 +86,16 @@ export const styles = StyleSheet.create({
   },
   priceText: {
     fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     color: CYAN_BLUE,
-    lineHeight: 15,
+    lineHeight: 18,
     paddingHorizontal: 4,
   },
   discountpriceText: {
     fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     color: PINK_RED,
-    lineHeight: 15,
+    lineHeight: 18,
     textDecorationLine: LINE_THROUGH,
     paddingHorizontal: 4,
   },
@@ -103,17 +107,17 @@ export const styles = StyleSheet.create({
     paddingLeft: 40,
   },
   footerView: {
-    justifyContent: CENTER,
-    alignItems: CENTER,
+   justifyContent: CENTER,
+   alignItems: FLEX_START,
   },
   moreView: {
     paddingVertical: 8,
   },
   moreText: {
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize6,
+    fontSize: fonts.size.fontSize8,
     color: CYAN_BLUE,
-    lineHeight: 9,
+    lineHeight: 12,
   },
   buyNowView: {
     backgroundColor: CYAN_BLUE,
@@ -124,18 +128,16 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   buyNowText: {
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
     color: WHITE,
-    lineHeight: 15,
-  },
-  imageView: {
-    width: '50%',
-    bottom: 10,
-    right: 10,
+    lineHeight: 17,
   },
   valueContainer: {
     flexDirection: ROW,
-    paddingHorizontal: 4,
-  }
+  },
+  imageDetails: {
+    width: 0.45 * width,
+  },
+  popularPlanImageContainer: {paddingRight:8}
 });
