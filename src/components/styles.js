@@ -68,7 +68,6 @@ export const styles = StyleSheet.create({
     width: 48,
     marginTop: '16%',
     marginLeft: '12%',
-    // paddingLeft: '12%',
     borderRadius: 24,
   },
   CompleteView: {

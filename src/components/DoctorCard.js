@@ -4,7 +4,6 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {newAppointment} from '../store/reducers/AppointmentSlice';
 import {PNG, SVG} from '../../assets';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './styles';
 import {BOOK_APPOINTMENT, YEARS_EXP} from './constants';
 const DoctorCard = ({
@@ -43,7 +42,7 @@ const DoctorCard = ({
   return (
     <View style={styles.CompleteView}>
       <View style={styles.Top}>
-        <View>
+        <View style={styles.pngView}>
           <Image source={PNG.ICON} style={styles.Image} />
         </View>
 
@@ -68,12 +67,9 @@ const DoctorCard = ({
         </View>
       </View>
       <Text style={styles.HospitalStyle}>{hospital}</Text>
-
-      <View style={styles.buttonView}>
-        <TouchableOpacity style={styles.Button} onPress={bookAppointment}>
-          <Text style={styles.ButtonText}>{BOOK_APPOINTMENT}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.Button} onPress={bookAppointment}>
+        <Text style={styles.ButtonText}>{BOOK_APPOINTMENT}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
