@@ -72,15 +72,15 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <View>
+        <View style={styles.planContainer}>
           <OurPlan isHomeScreen={true}/>
         </View>
-        <CarouselContainer
+        { userAppointments.length > 0 && <CarouselContainer
           data={userAppointments}
           isIndexed={true}
           includeMockData={false}>
           <CarouselItem />
-        </CarouselContainer>
+        </CarouselContainer>}
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT0} </Text>
           <View style={styles.line1} />
