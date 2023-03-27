@@ -1,16 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {
-  DARK_BLUE,
   PLATINUM,
-  FLASH_WHITE,
   WHITE,
   BLACK,
   CYAN_BLUE,
   LIGHT_GREYISH_RED,
-  DARK_GREY,
-  ORANGE,
   LIGHT_MERCURY,
-  RED,
 } from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
@@ -25,9 +20,6 @@ export const styles = StyleSheet.create({
     margin: '3%',
     borderRadius: 6,
   },
-  dateTimePicker: {
-    backgroundColor: {FLASH_WHITE},
-  },
   boxStyles: {
     marginLeft: '3%',
     marginRight: '3%',
@@ -36,22 +28,13 @@ export const styles = StyleSheet.create({
     color: LIGHT_GREYISH_RED,
   },
   dateAndTime: {
-    marginTop: 10,
-    marginLeft: '3%',
-    marginRight: '3%',
     minHeight: 42,
-    marginBottom: 15,
+    marginVertical: '3%',
+    marginHorizontal: '3%',
   },
-  Date: {
-    marginTop: '10%',
-    marginBottom: '5%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
-  },
-  Time: {
-    marginTop: '5%',
-    marginBottom: '5%',
+
+  dateTimeStyles: {
+    marginVertical: '2%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -73,7 +56,7 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize12,
   },
   Description: {
-    marginTop: '10%',
+    marginTop: '4%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -100,21 +83,25 @@ export const styles = StyleSheet.create({
     marginRight: '3%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
+    shadowColor: BLACK,
     borderRadius: 10,
     backgroundColor: WHITE,
+    elevation: 10,
   },
   dateTimePicker: {
-    minHeight: 22,
-    backgroundColor: LIGHT_MERCURY,
+    backgroundColor: WHITE,
+    borderWidth: 1,
+    borderRadius: 8,
+    height: 42,
   },
-  theme: {colors: {text: DARK_GREY}},
   ImageStyle: {
     flexDirection: ROW,
-    marginLeft: '5%',
+    marginLeft: '3%',
   },
   Image: {
     height: 48,
     width: 48,
     alignSelf: CENTER,
+    borderRadius: 24,
   },
 });

@@ -356,6 +356,8 @@ export const getDateInFormat = (date, format) => {
       return (
         date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       );
+    case 'dd mm':
+      return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
     default:
       getDateText(date);
   }
@@ -367,6 +369,9 @@ export const getTimeInFormat = (date, format) => {
       return (
         date && `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
       );
+    case 'hh:mm ': {
+      return date && `${date.getHours()}:${date.getMinutes()}`;
+    }
   }
 };
 

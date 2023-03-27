@@ -13,3 +13,6 @@ export const CHECK = 'Check In';
 export const WAITING = 'Waiting for Confirmation From Hospital...';
 export const OPD_CONSULTATION = 'OPD Consultations';
 export const MESSAGE = 'Message';
+export const NAME = 'Dear Nishant,';
+export const THANKS = 'Thank You';
+export const WISHES = 'Keep Smiling, Stay Healthy.!';
