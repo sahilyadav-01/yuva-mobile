@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     backgroundColor: LIGHT_GREYISH_RED,
     paddingLeft: 13,
   },
+  backGroundStyle: {backgroundColor: WHITE},
   dropStyles: {
     marginHorizontal: 13,
     borderColor: LIGHT_MERCURY,

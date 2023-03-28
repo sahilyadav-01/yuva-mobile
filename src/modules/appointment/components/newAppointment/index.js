@@ -110,7 +110,7 @@ const NewAppointments = () => {
               boxStyles={
                 selected.length > 0
                   ? styles.boxStyles
-                  : [styles.boxStyles, {backgroundColor: WHITE}]
+                  : [styles.boxStyles, styles.backGroundStyle]
               }
               defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
               setSelected={setSelected}
