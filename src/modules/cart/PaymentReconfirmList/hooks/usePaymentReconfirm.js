@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { TERMS_CONDITION } from '../../../ourPlan/components/CheckoutScreen/constants';
 
 export const usePaymentReconfirm = () => {
   const navigation = useNavigation();
@@ -11,12 +12,14 @@ export const usePaymentReconfirm = () => {
     state => state.checkOut,
   );
   const onPayPress = () => {
-    if (
+    if(!termsAndCondtionChecked){
+      Alert.alert('Alert', TERMS_CONDITION)
+    }
+    else if (
       termsAndCondtionChecked &&
       scheduleDate?.date &&
       scheduleDate?.time &&
       addressData?.address !== undefined &&
-      addressData?.cityId !== undefined &&
       addressData?.contact !== undefined &&
       addressData?.pincode !== undefined &&
       ((relationData?.name !== undefined &&

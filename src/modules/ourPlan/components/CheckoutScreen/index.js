@@ -17,9 +17,8 @@ const CheckoutOurPlan = () => {
         quarterlyPrice,
         halfYearlyPrice,
         termsAndCondtionChecked,
+        price,
         onCheckout } = useCheckout();
-
-        const price = Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice)
 
     return (
         <View>

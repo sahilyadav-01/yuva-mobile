@@ -12,12 +12,15 @@ export const useCheckout = () => {
         pincode,
         contact,
         cityName,
-        yearlyPrice,
-        quarterlyPrice,
-        halfYearlyPrice,
+        yearlyPrice:YearlyPrice,
+        quarterlyPrice:QuarterlyPrice,
+        halfYearlyPrice:HalfYearlyPrice,
         cityId,
         plan,
         number} = route?.params || {};
+        const quarterlyPrice = QuarterlyPrice!==undefined ? QuarterlyPrice : mainItem?.quarterlyPrice;
+        const halfYearlyPrice = HalfYearlyPrice!==undefined ? HalfYearlyPrice : mainItem?.halfYearlyPrice;
+        const yearlyPrice = YearlyPrice!==undefined ? YearlyPrice : mainItem?.yearlyPrice
         const plans = [{planTypeEnum:'QUARTERLY',cost:quarterlyPrice ?? 0},{planTypeEnum:'HALF_YEARLY',cost:halfYearlyPrice ?? 0},{planTypeEnum:'ANNUALLY',cost:yearlyPrice ?? 0}]
     const onPayPress = () => {
         const planTypeEnum = plans.find((item)=>item.cost === Math.max(quarterlyPrice,halfYearlyPrice,yearlyPrice))?.planTypeEnum ?? null;
@@ -44,7 +47,7 @@ export const useCheckout = () => {
             planTypeEnum,
             planUuid: mainItem?.planUuid
           }
-        const paymentProps = {plan,bookingRequestDto,subscriptionRequestDto}
+        const paymentProps = {plan:true,bookingRequestDto,subscriptionRequestDto}
         navigation.navigate('Payment',{screen:'PaymentScreen',params:{paymentProps}})
     }
 
@@ -64,6 +67,7 @@ export const useCheckout = () => {
         halfYearlyPrice,
         cityId,
         termsAndCondtionChecked,
-        onCheckout
+        onCheckout,
+        price: Math.max(yearlyPrice,quarterlyPrice,halfYearlyPrice)
     }
 }

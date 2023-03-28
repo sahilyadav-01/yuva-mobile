@@ -1,16 +1,16 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-import { BackHandler } from 'react-native';
+import {BackHandler} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   createOrderThunk,
   encReqThunk,
 } from '../../../store/reducers/PaymentSlice';
+import {CANCEL_URL, REDIRECT_URL} from '../../../utils/utils';
 
 export const usePayment = paymentProps => {
-  const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender} = paymentProps;
-  const redirectUrl = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-  const cancelUrl = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+  const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender} =
+    paymentProps;
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const navigation = useNavigation();
@@ -24,7 +24,14 @@ export const usePayment = paymentProps => {
       BackHandler.addEventListener('hardwareBackPress', () => true);
       setRenderData(false);
       dispatch(
-        createOrderThunk({plan, bookingRequestDto, subscriptionRequestDto,name,age,gender}),
+        createOrderThunk({
+          plan,
+          bookingRequestDto,
+          subscriptionRequestDto,
+          name,
+          age,
+          gender,
+        }),
       );
       setCreateOrder(true);
     }
@@ -32,7 +39,14 @@ export const usePayment = paymentProps => {
 
   useEffect(() => {
     if (createOrder && !createOrderLoading && orderId) {
-      dispatch(encReqThunk({plan, orderId, redirectUrl, cancelUrl}));
+      dispatch(
+        encReqThunk({
+          plan,
+          orderId,
+          redirectUrl: REDIRECT_URL,
+          cancelUrl: CANCEL_URL,
+        }),
+      );
     }
   }, [createOrderLoading, orderId, createOrder]);
 
@@ -42,17 +56,20 @@ export const usePayment = paymentProps => {
     }
   }, [createOrder, orderId, encReqLoading, encReq]);
 
-  const postPaymentNavigation = (url) => {
-  const params = url?.split('LoadingPayment?')[1];
-  const tokenString = params?.split('&email=')[0];
-  const token = tokenString?.substring(6,tokenString?.length);
-  const email = params?.split('&email=')[1];
-  navigation.navigate('Payment',{screen:'PaymentStatus',params:{token,email}})
-  }
+  const postPaymentNavigation = (url,key) => {
+    const params = url?.split(key)[1];
+    const tokenString = params?.split('&email=')[0];
+    const token = tokenString?.substring(6, tokenString?.length);
+    const email = params?.split('&email=')[1];
+    navigation.navigate('Payment', {
+      screen: 'PaymentStatus',
+      params: {token, email},
+    });
+  };
 
   return {
     encRequest: encReq ?? null,
     renderData,
-    postPaymentNavigation
+    postPaymentNavigation,
   };
 };
