@@ -4,7 +4,7 @@ import { setTermsAndCondtionChecked } from "../../../store/reducers/CartSlice";
 
 
 export const useCheckoutPriceDetails=(isPrice)=>{
-    const dispatch = useDispatch();
+const dispatch = useDispatch();
 const {amountToBePaid,yearlyPrice,quarterlyPrice,halfYearlyPrice,totalCost,totalDiscount,Quantity,isCoupon}=isPrice?.isPrice;
 const [checked, setChecked] = useState(false);
 
@@ -17,6 +17,7 @@ return {
         halfYearlyPrice,
         checked,
         setChecked,
+        price:isPrice?.price,
         amountToBePaid,
         totalCost,
         totalDiscount,

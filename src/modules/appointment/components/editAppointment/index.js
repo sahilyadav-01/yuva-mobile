@@ -1,45 +1,30 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, ScrollView, TextInput, Image} from 'react-native';
-import GoBackCross from '../../../../components/GoBackCross';
-import AppointmentInput from '../../../../components/AppointmentInput';
-import AppointmentInputText from '../../../../components/AppointmentInputText';
 import AppointmentButton from '../../../../components/AppointmentButton';
 import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
-import {useSelector} from 'react-redux';
 import {useEdit} from './hooks/useEdit';
 import SelectList from 'react-native-dropdown-select-list';
-import {
-  BOOK_AN_APPOINTMENT,
-  DESCRIPTION,
-  DOCTOR,
-  RESCHEDULE_APPOINTMENT,
-  SPECIALIZATION,
-} from '../../constant';
+import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
 import {DARK_BLUE, ORANGE} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
-  CONTACT_NUMBER,
   DATE,
   DESC,
   PATIENT_CONTACT_NUMBER,
   SELECT_DATE_TIME,
   SELECT_MEMBER,
-  SELECT_MEMBER_HERE,
   TIME,
 } from './constant';
 
 const EditAppointments = () => {
   const {
-    goBack,
     saveAppointment,
-    closeSaveMessageBox,
     handleDate,
     handleTime,
     date,
-    onChangeDescription,
     setSelected,
     dataRelation,
     onChaneNumber,
@@ -52,8 +37,7 @@ const EditAppointments = () => {
   } = useEdit();
   return (
     <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
-      <View className="flex mr-2 ml-2 h-[800px]">
-        <GoBackCross onPress={goBack} />
+      <View>
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
         <View style={styles.border}>
@@ -67,6 +51,7 @@ const EditAppointments = () => {
         </View>
 
         <Text style={styles.TitleStyle}>{ADD_DESCRIPTION}</Text>
+
         <View style={styles.border}>
           <Text style={styles.Description}>{DESC}</Text>
           <Text style={styles.textInputStyle}>{Description}</Text>
@@ -75,7 +60,7 @@ const EditAppointments = () => {
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
         <View style={styles.border}>
           <View style={styles.dateAndTime}>
-            <Text style={styles.Date}>{DATE}</Text>
+            <Text style={styles.dateTimeStyles}>{DATE}</Text>
             <DateTimePicker
               type="date"
               value={date}
@@ -88,7 +73,7 @@ const EditAppointments = () => {
           </View>
 
           <View style={styles.dateAndTime}>
-            <Text tyle={styles.Time}>{TIME}</Text>
+            <Text tyle={styles.dateTimeStyles}>{TIME}</Text>
             <DateTimePicker
               type="time"
               value={time}
@@ -115,7 +100,7 @@ const EditAppointments = () => {
         <View>
           <Text style={styles.TitleStyle}>{PATIENT_CONTACT_NUMBER}</Text>
           <View style={styles.border}>
-            <Text style={styles.TitleStyle}>
+            <Text style={styles.inputTextStyle}>
               {getAppointment?.patientNumber}
             </Text>
           </View>

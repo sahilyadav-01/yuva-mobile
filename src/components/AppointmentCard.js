@@ -1,13 +1,28 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import {View, Text, TouchableOpacity} from 'react-native';
+import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CardButton from './CardButton';
-import { currentAppointment } from '../store/reducers/AppointmentSlice';
-import { appointmentStatus } from '../utils/utils';
-import { getDate,getTime } from '../utils/utils';
+import {currentAppointment} from '../store/reducers/AppointmentSlice';
+import {
+  getTime,
+  appointmentStatus,
+  getDateInFormat,
+  getTimeInFormat,
+} from '../utils/utils';
+import {resetTabBarVisible} from '../store/reducers/DoctorSlice';
+import {styles} from './styles';
+import {BLACK, DULL_BLACK, GREEN, NAVY_BLUE, RED_SHADE} from '../styles/colors';
+import {
+  CALENDAR,
+  CANCEL_APPOINTMENT,
+  CLOCK_OUTLINE,
+  CLOSE,
+  MAP_POINTER,
+  RESCHEDULE,
+} from './constants';
 
 const AppointmentCard = ({
   id,
@@ -21,7 +36,7 @@ const AppointmentCard = ({
   hospitalName,
   relation,
   memberName,
-  customId
+  customId,
 }) => {
   /**
    * Use navigation
@@ -33,6 +48,7 @@ const AppointmentCard = ({
    * Handlers
    */
   const viewAppointment = () => {
+    dispatch(resetTabBarVisible(false));
     dispatch(
       currentAppointment({
         id,
@@ -46,162 +62,86 @@ const AppointmentCard = ({
         hospitalName,
         relation,
         memberName,
-        customId
+        customId,
       }),
     );
-    navigation.navigate('ViewAppointment');
+    navigation.navigate('ViewAppointment', {headerShown: false});
   };
 
   return (
     <View>
-      {status === 'CANCELLED' || status === 'COMPLETED' || status === 'FINISHED' ? (
-        <TouchableOpacity
-          onPress={viewAppointment}
-          className="w-full h-[170px] mt-[20px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
-          <View className="flex my-[10px] mx-[10px]">
-            <View className="flex-row justify-between">
-              <Text className="text-[#319B4B] text-base">
-                {appointmentStatus(status)}
-              </Text>
-              <Text className="text-[#E68D36] text-sm">{doctorName}</Text>
-            </View>
-
-            {/* Description */}
-            <View className="flex-row justify-between mt-[20px]">
-              <View>
-                <View className="flex-row items-center">
-                  <Text className="mr-2 text-[#1D2334] text-base  font-bold">
-                    {hospitalName}
-                  </Text>
-                  <Icon name="map-marker-outline" size={14} color="black" />
-                </View>
-                <Text className="mt-[10px] font-medium text-xs">
-                  {description === undefined ? '' : description.slice(0, 20)}
-                </Text>
+      <TouchableOpacity
+        onPress={viewAppointment}
+        style={
+          status === 'CANCELLED'
+            ? [styles.containerView, {backgroundColor: DULL_BLACK}]
+            : styles.containerView
+        }>
+        <View style={styles.totalView}>
+          <View style={styles.leftView}>
+            <Text
+              style={
+                status === 'FINISHED' ||
+                status === 'COMPLETED' ||
+                status === 'CONFIRMED'
+                  ? [styles.statusText, {color: GREEN}]
+                  : status === 'CANCELLED'
+                  ? [styles.statusText, {color: RED_SHADE}]
+                  : styles.statusText
+              }>
+              {appointmentStatus(status)}
+            </Text>
+            <View style={styles.HospitalViewStyle}>
+              <View style={styles.HospNameStyle}>
+                <Text style={styles.HospNameText}>{hospitalName}</Text>
+                <Icon name={MAP_POINTER} style={styles.LocationStyle} />
               </View>
+              <Text style={styles.DescriptionText}>
+                {description === undefined ? '' : description.slice(0, 20)}
+              </Text>
+            </View>
+          </View>
 
-              <View className="flex-row items-center">
-                <Icon name="calendar-blank-outline" size={24} color="black" />
-                <View className="ml-[2px]">
-                  <Text style={{ fontSize: 12 }} className="">
-                    {getDate(slot)}
-                  </Text>
-                  <Text style={{ fontSize: 10 }}>{getTime(slot)}</Text>
-                </View>
+          {/* right view */}
+          <View style={styles.rightView}>
+            <View style={styles.rightSubView}>
+              <Text style={styles.doctorNameText}>{doctorName}</Text>
+              <Text style={styles.doctorSpecialityText}>{speciality}</Text>
+            </View>
+            <View style={styles.CalView}>
+              <Icon name={CALENDAR} style={styles.CalenderStyle} />
+              <View>
+                <Text style={styles.dateAndTimeStyle}>
+                  {getDateInFormat(new Date(slot), 'dd mm')}
+                </Text>
+                <Text style={styles.dateAndTimeStyle}>
+                  {moment(new Date(slot)).format('hh:mm A')}
+                </Text>
               </View>
             </View>
           </View>
-        </TouchableOpacity>) :
-        (<View>
-          { status === "INITIATED" || status === "RESCHEDULED" ?
-            (
-              <TouchableOpacity
-                onPress={viewAppointment}
-                className="w-full h-[170px] mt-[20px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
-                {/* wrapper */}
-                <View className="flex my-[10px] mx-[10px]">
-                  {/* Doctor */}
-                  <View className="flex-row justify-between">
-                    <Text className="text-[#E68D36] text-base">
-                      {appointmentStatus(status)}
-                    </Text>
-                    <Text className="text-[#E68D36] text-sm">{doctorName}</Text>
-                  </View>
 
-                  {/* Description */}
-                  <View className="flex-row justify-between mt-[20px]">
-                    <View>
-                      <View className="flex-row items-center">
-                        <Text className="mr-2 text-[#1D2334] text-base  font-bold">
-                          {hospitalName}
-                        </Text>
-                        <Icon name="map-marker-outline" size={14} color="black" />
-                      </View>
-                      <Text className="mt-[10px] font-medium text-xs">
-                        {description === undefined ? '' : description.slice(0, 20)}
-                      </Text>
-                    </View>
-
-                    <View className="flex-row items-center">
-                      <Icon name="calendar-blank-outline" size={24} color="black" />
-                      <View className="ml-[2px]">
-                        <Text style={{ fontSize: 12 }} className="">
-                          {getDate(slot)}
-                        </Text>
-                        <Text style={{ fontSize: 10 }}>{getTime(slot)}</Text>
-                      </View>
-                    </View>
-                  </View>
-
-                  {/* actions */}
-                  <View className="flex-row justify-between mt-[30px]">
-                    <CardButton
-                      text="Reschedule"
-                      iconName="clock-outline"
-                      iconColor="#319B4B"
-                    />
-                    <CardButton
-                      text="Cancel Appointment"
-                      iconName="close"
-                      iconColor="#A53F2B"
-                    />
-                  </View>
-                </View>
-              </TouchableOpacity>) : (  <TouchableOpacity
-                onPress={viewAppointment}
-                className="w-full h-[170px] mt-[20px] rounded-lg drop-shadow-2xl shadow-2xl bg-[#FEFCFF]">
-                {/* wrapper */}
-                <View className="flex my-[10px] mx-[10px]">
-                  {/* Doctor */}
-                  <View className="flex-row justify-between">
-                    <Text className="text-[#E68D36] text-base">
-                      {appointmentStatus(status)}
-                    </Text>
-                    <Text className="text-[#E68D36] text-sm">{doctorName}</Text>
-                  </View>
-
-                  {/* Description */}
-                  <View className="flex-row justify-between mt-[20px]">
-                    <View>
-                      <View className="flex-row items-center">
-                        <Text className="mr-2 text-[#1D2334] text-base  font-bold">
-                          {hospitalName}
-                        </Text>
-                        <Icon name="map-marker-outline" size={14} color="black" />
-                      </View>
-                      <Text className="mt-[10px] font-medium text-xs">
-                        {description === undefined ? '' : description.slice(0, 20)}
-                      </Text>
-                    </View>
-
-                    <View className="flex-row items-center">
-                      <Icon name="calendar-blank-outline" size={24} color="black" />
-                      <View className="ml-[2px]">
-                        <Text style={{ fontSize: 12 }} className="">
-                          {getDate(slot)}
-                        </Text>
-                        <Text style={{ fontSize: 10 }}>{getTime(slot)}</Text>
-                      </View>
-                    </View>
-                  </View>
-
-                  {/* actions */}
-                  <View className="flex-row justify-between mt-[30px]">
-                    <CardButton
-                      text="Check-in"
-                      iconName="clock-outline"
-                      iconColor="#319B4B"
-                    />
-                    <CardButton
-                      text="Cancel Appointment"
-                      iconName="close"
-                      iconColor="#A53F2B"
-                    />
-                  </View>
-                </View>
-                </TouchableOpacity>)}
-              </View>
+          {/* actions */}
+        </View>
+        {(status === 'INITIATED' ||
+          status === 'RESCHEDULED' ||
+          status === 'CONFIRMED') && (
+          <View style={styles.ButtonStyle}>
+            <CardButton
+              text={RESCHEDULE}
+              iconName={CLOCK_OUTLINE}
+              iconColor={NAVY_BLUE}
+              containerStyle={styles.RescCancel}
+            />
+            <CardButton
+              text={CANCEL_APPOINTMENT}
+              iconName={CLOSE}
+              iconColor={RED_SHADE}
+              containerStyle={styles.RescCancel}
+            />
+          </View>
         )}
+      </TouchableOpacity>
     </View>
   );
 };

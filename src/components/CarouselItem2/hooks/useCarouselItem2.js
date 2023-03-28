@@ -6,7 +6,7 @@ import { useCart } from '../../../modules/cart/hooks/useCart';
 
 export const useCarouselItem2 = (props) => {
     const { item } = props;
-    const { addToCart } = useCart();
+    const { addToCart } = useCart({isHomeScreen:true});
     const navigation = useNavigation();
     const { existingIds } = useSelector(state => state.cart)
     const onPackagePress = (item) => navigation.navigate(PRODUCT_DETAILS_NAVIGATION, {

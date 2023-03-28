@@ -115,6 +115,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
     handleTime,
     date,
     time,
+    selected,
     setSelected,
     dataRelation,
   };

@@ -11,6 +11,7 @@ import CashlessOPD from '../../modules/staticOPD';
 import {useSelector} from 'react-redux';
 import StaticHra from '../../modules/staticHRA';
 import TalkToDoctor from '../../modules/staticDoctor';
+import ViewAppointment from '../../screens/yuvaservices/opd/appointments/ViewAppointment';
 
 const Stack = createStackNavigator();
 
@@ -37,7 +38,9 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="Diagnostics"
-        component={loggedIn !== 'loggedIn' ? ProfessionalServices : DiagnosticNav}
+        component={
+          loggedIn !== 'loggedIn' ? ProfessionalServices : DiagnosticNav
+        }
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -55,6 +58,11 @@ const ServicesNav = () => {
       <Stack.Screen
         name="LoginScreen"
         component={Authentication}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ViewAppointment"
+        component={ViewAppointment}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

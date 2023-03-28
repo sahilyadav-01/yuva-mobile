@@ -177,7 +177,7 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.bookedData = action.payload.data ;
+      state.bookedData = action.payload ;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;

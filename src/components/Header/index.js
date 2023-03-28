@@ -76,8 +76,8 @@ const Header = (props) => {
           </Text>
         }     
       </View>
-      <View style={styles.search}>
-        {showSearch && 
+      <View style={styles.searchContainer}>
+      {showSearch && 
           <Search 
             placeholder={searchPlaceholder} 
             onChangeText={onChangeSearch} 

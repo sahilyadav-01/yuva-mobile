@@ -1,21 +1,20 @@
 import React from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
-import GoBackCross from '../../../../components/GoBackCross';
+import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
 import {
-  getDate,
-  getTime,
   appointmentStatus,
   splitCustomId,
+  getDateInFormat,
 } from '../../../../utils/utils';
 import MessageBox from '../../../../components/MessageBox';
 import {useSelector} from 'react-redux';
 import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
-  AMBER,
   GREEN,
+  LIGHT_PINK,
   ORANGE,
   RED_SHADE,
   WHITE,
@@ -29,43 +28,50 @@ import {
   CONFIRMED,
   FINISHED,
   INITIATED,
-  NAME,
   OPD_DESCRIPTION,
-  RELATION,
   MYSELF,
+  OPD_CONSULTATION,
+  CANCEL_MESSAGE,
 } from './constant';
 import {PNG} from '../../../../../assets';
+import {useRoute} from '@react-navigation/native';
+import Header from '../../../../components/Header';
 const ViewAppointments = () => {
   const {
-    id,
     doctorName,
-    address,
     status,
     speciality,
     description,
     slot,
-    otp,
     hospitalName,
     memberName,
     relation,
     customId,
-    patientNumber,
   } = useSelector(state => state.appointment.currentAppointment);
-  const cancelMessage = 'Are you sure you want to cancel ?';
+
   const {
-    goBack,
     editAppointment,
     checkIn,
     cancelAppointment,
     cancelAppointmentMessagBox,
     cancelFlag,
   } = useView();
+  const route = useRoute();
+
+  const {headerShown} = route.params;
   return (
     <View>
-      <GoBackCross className="mt-4" onPress={goBack} />
+      {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
       <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
         <View>
-          <View style={styles.viewCont}>
+          <View
+            style={
+              status === COMPLETED || status === CONFIRMED
+                ? [styles.viewCont, styles.confirmStyle]
+                : status === CANCELLED
+                ? [styles.viewCont, styles.cancelledStyle]
+                : styles.viewCont
+            }>
             <View>
               {status === CANCELLED ||
               status === COMPLETED ||
@@ -85,19 +91,6 @@ const ViewAppointments = () => {
                       <Text style={styles.appoitmentidNumber}>
                         {splitCustomId(customId)}
                       </Text>
-                    </View>
-                  </View>
-                  <View style={styles.timeSlot}>
-                    <View style={styles.direction}>
-                      <Icon
-                        name="calendar-blank-outline"
-                        size={24}
-                        color={WHITE}
-                      />
-                      <View>
-                        <Text style={styles.numberSytle}>{getDate(slot)}</Text>
-                        <Text style={styles.numberSytle}>{getTime(slot)}</Text>
-                      </View>
                     </View>
                   </View>
                 </View>
@@ -120,11 +113,36 @@ const ViewAppointments = () => {
                 </View>
               )}
             </View>
+            {status !== INITIATED && (
+              <View
+                style={
+                  status === CANCELLED
+                    ? [styles.timeSlot, styles.cancelStatus]
+                    : styles.timeSlot
+                }>
+                <View style={styles.direction}>
+                  <Icon name="calendar-blank-outline" size={24} color={WHITE} />
+                  <View>
+                    <Text style={styles.numberSytle}>
+                      {getDateInFormat(new Date(slot), 'dd mm')}
+                    </Text>
+                    <Text style={styles.numberSytle}>
+                      {moment(new Date(slot)).format('hh:mm A')}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            )}
           </View>
           <View style={styles.description1}>
             <Text style={styles.Header}>{BOOKING_FOR}</Text>
           </View>
-          <View style={styles.familyView}>
+          <View
+            style={
+              relation
+                ? styles.familyView
+                : [styles.familyView, styles.childView]
+            }>
             <Text
               style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
               {memberName || MYSELF}
@@ -139,7 +157,7 @@ const ViewAppointments = () => {
               </View>
             </View>
             <View style={styles.ImageStyle}>
-              <Image source={PNG.ICON} style={styles.Image} />
+              <Image source={PNG.ICON} style={styles.image} />
               <View>
                 <Text style={styles.NameStyle}>{doctorName}</Text>
                 <Text style={styles.ContentStyle}>{speciality}</Text>
@@ -161,7 +179,7 @@ const ViewAppointments = () => {
             {status === CONFIRMED && (
               <AppointmentButton
                 name={CHECK}
-                color={AMBER}
+                color={GREEN}
                 action={checkIn}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
@@ -171,7 +189,7 @@ const ViewAppointments = () => {
             {status === INITIATED && (
               <AppointmentButton
                 name={RESCHEDULE}
-                color={AMBER}
+                color={GREEN}
                 action={editAppointment}
                 extraStyles={styles.buttonStyleDetails}
                 textStyles={styles.buttonTextStyle}
@@ -181,10 +199,10 @@ const ViewAppointments = () => {
             {(status === CONFIRMED || status === INITIATED) && (
               <AppointmentButton
                 name={CANCEL}
-                color={RED_SHADE}
+                color={LIGHT_PINK}
                 action={cancelAppointment}
                 extraStyles={styles.buttonStyleDetails}
-                textStyles={styles.buttonTextStyle}
+                textStyles={[styles.buttonTextStyle, {color: WHITE}]}
               />
             )}
           </View>
@@ -193,7 +211,7 @@ const ViewAppointments = () => {
               head={MESSAGE}
               showDialog={cancelFlag}
               hideDialog={cancelAppointmentMessagBox}
-              message={cancelMessage}
+              message={CANCEL_MESSAGE}
             />
           </View>
         </View>

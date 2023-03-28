@@ -39,8 +39,18 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
+//DEVELOPMENT SERVER
 export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-//export const SERVER ="localhost"
+export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+export const PORT = '8082';
+
+//UAT Server
+// export const SERVER = 'ec2-15-207-19-131.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-15-207-19-131.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-15-207-19-131.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+// export const PORT = '8081';
+
 
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
 export const PASSWORD_VALIDATION = 'Please enter a valid password !';
@@ -356,6 +366,8 @@ export const getDateInFormat = (date, format) => {
       return (
         date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       );
+    case 'dd mm':
+      return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
     default:
       getDateText(date);
   }
@@ -367,6 +379,9 @@ export const getTimeInFormat = (date, format) => {
       return (
         date && `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
       );
+    case 'hh:mm ': {
+      return date && `${date.getHours()}:${date.getMinutes()}`;
+    }
   }
 };
 
