@@ -233,14 +233,14 @@ export const styles = StyleSheet.create({
     marginTop: 17,
     marginLeft: 36,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize10,
     color: DARK_BLUE,
   },
   customId: {
     marginTop: 5,
     marginLeft: 36,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize10,
     color: CYAN_BLUE,
   },
   appoitmentid: {

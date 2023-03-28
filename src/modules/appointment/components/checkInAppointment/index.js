@@ -25,6 +25,7 @@ const CheckInAppointments = () => {
       </View>
       <View style={styles.messageView}>
         <Image source={PNG.THANK_DESIGN} style={styles.imageStyle} />
+
         <View style={styles.secondView}>
           <Text style={styles.thankStyle}>{NAME}</Text>
 
