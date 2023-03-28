@@ -3,7 +3,7 @@ import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import OurPlan from "../..";
 import Header from "../../../../components/Header";
-import { OURPLAN_DETAILS, OUR_PLANS, PLAN_DETAILS, TERMS_AND_CONDITION ,termsAndCondition, BUY_NOW} from "./constants";
+import { OURPLAN_DETAILS, PLAN_DETAILS, TERMS_AND_CONDITION ,termsAndCondition, BUY_NOW} from "./constants";
 import { useOurPlanDetails } from "./hooks/useOurPlanDetails";
 import { styles } from "./styles";
 import { SVG } from "../../../../../assets";
@@ -20,7 +20,6 @@ const OurPlanDetails = () => {
             </View>
         )
     }
-
     return (
         <View>
             <Header showBackButton={true} title={OURPLAN_DETAILS} />

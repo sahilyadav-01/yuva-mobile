@@ -3,17 +3,22 @@ import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { useCouponCard } from './hooks/useCouponCard';
 import {
-  APPLY,
   APPLY_COUPON,
   CAPITALIZE_TEXT,
   COUPON_APPLIED,
-  COUPON_CODE,
-  COUPON_INVALID,
+  PLACEHOLDER_TEXT,
+  COUPON_LABEL,
+  DISCOUNT,
+  DISCOUNT_PERCENTAGE,
+  DISCOUNT_UPTO,
   USE_COUPON,
+  COUPON_CODE,
 } from './constant';
-import { CYAN_BLUE, GREEN, RED } from '../../styles/colors';
-import { redeemCouponsSliceThunk } from '../../store/reducers/CouponSlice';
+import { GREEN, SLATE_BLUE, WHITE } from '../../styles/colors';
+import { redeemCouponsSliceThunk, selectedCoupon } from '../../store/reducers/CouponSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/Entypo';
+import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
 
 const CouponCard = () => {
   const {
@@ -25,37 +30,31 @@ const CouponCard = () => {
   const renderItem = ({ item }) => {
     const onSuccess = () => {
       let couponCode = item.couponCode
+      dispatch(selectedCoupon({couponCode }));
       setCouponName(item.couponName);
       dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
+      if (isLoggedIn) {
+        dispatch(getCartUserThunk());
+      } else {
+        dispatch(getCartGuestThunk());
+      }
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess}>
-        <View style={[styles.couponContainer, {
-          borderColor:
-            (item.couponName === couponName && couponView) ? GREEN :
-              (item.couponName === couponName && !couponView) ? RED : CYAN_BLUE
-        }]}>
+        <View style={[styles.couponContainer, {borderColor: item.couponName === couponName ? (couponView ? GREEN : SLATE_BLUE) : SLATE_BLUE }]}>
           <View style={styles.viewStyles}>
-            <Text style={styles.textStyle}>{item.couponCode}</Text>
-            <Text style={styles.textStyle1}>{item.description}</Text>
+            {item.maxDiscount ? <Text style={styles.textStyle1}>{DISCOUNT_PERCENTAGE(item.discountAmountOrPercentage)}</Text> : <Text style={styles.textStyle1}>{DISCOUNT(item.discountAmountOrPercentage)}</Text>}
+            {item.maxDiscount != null && (<Text style={styles.textStyle2}>{DISCOUNT_UPTO(item.maxDiscount)}</Text>)}
+            <Text style={styles.textStyle}>{COUPON_CODE(item.couponCode)}</Text>
           </View>
-          <View
-            style={[
-              styles.useCouponStyle,
-              { backgroundColor: couponView && item.couponName == couponName ? GREEN : CYAN_BLUE },
-            ]}
-          >
-            {
-              item.couponName === couponName ? (
-                couponView ? (
-                  <Text style={styles.useCouponTextStyle}>{COUPON_APPLIED}</Text>
-                ) : (
-                  <Text style={styles.useCouponTextStyle}>{COUPON_INVALID}</Text>
-                )
-              ) : (
-                <Text style={styles.useCouponTextStyle}>{USE_COUPON}</Text>
-              )
-            }
+          <View style={[ styles.useCouponStyle]}>
+            <Text style={[
+              styles.useCouponTextStyle3,
+              item.couponName === couponName && couponView ? GREEN : null,
+              item.couponName === couponName && couponView ? styles.useCouponTextStyle1 : null,
+            ]}>
+              {item.couponName === couponName && couponView ? COUPON_APPLIED : USE_COUPON}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -67,14 +66,15 @@ const CouponCard = () => {
       <View style={styles.viewCoupon}>
         <TextInput
           style={styles.textInputStyles}
-          placeholder={COUPON_CODE}
+          placeholder={PLACEHOLDER_TEXT}
           onChangeText={onCouponValue}
           autoCapitalize={CAPITALIZE_TEXT}
         />
         <TouchableOpacity style={styles.applyStyles} onPress={onApply}>
-          <Text style={styles.applyButtonStyles}>{APPLY}</Text>
+          <Icon name="arrow-long-right" color={WHITE} size={20} />
         </TouchableOpacity>
       </View>
+      <Text style={styles.couponLabelStyles}>{COUPON_LABEL}</Text>
       <FlatList
         data={coupon}
         keyExtractor={index => `${index}`}

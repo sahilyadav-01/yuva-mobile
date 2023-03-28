@@ -4,7 +4,6 @@ export const PRICE_DETAILS = 'Price Details';
 export const CHECKOUT = 'Proceed to Checkout';
 export const SELECT_ADD_MEMBER = 'Select / Add Member';
 export const LOGIN_SIGNUP = 'Login/Signup';
-export const COUPON_APPLIED_SUCCESS = ' Your coupon applied successfully.';
 export const ADD_NEW_MEMBER = ' Add New Member';
 export const ADD_MEMBER = 'Add Members';
 export const SELECT_MEMBER = 'Select Member';
