@@ -19,12 +19,15 @@ export const styles = StyleSheet.create({
     color: BLACK,
     margin: '3%',
     borderRadius: 6,
+    paddingLeft: 13,
   },
   boxStyles: {
     marginLeft: '3%',
     marginRight: '3%',
     borderColor: LIGHT_MERCURY,
     color: LIGHT_GREYISH_RED,
+    backgroundColor: LIGHT_GREYISH_RED,
+    paddingLeft: 13,
   },
   dropStyles: {
     marginHorizontal: 13,
@@ -46,6 +49,7 @@ export const styles = StyleSheet.create({
     alignSelf: CENTER,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
+    color: CYAN_BLUE,
   },
   ContentHeading: {
     marginTop: '5%',

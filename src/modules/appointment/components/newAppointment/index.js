@@ -8,7 +8,7 @@ import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
-import {DARK_BLUE, LIGHT_MERCURY} from '../../../../styles/colors';
+import {DARK_BLUE, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
@@ -49,8 +49,8 @@ const NewAppointments = () => {
     time,
     setSelected,
     dataRelation,
+    selected,
   } = useNew(plan, userVersion, uuid, version);
-
   return (
     <View>
       <ScrollView>
@@ -107,7 +107,11 @@ const NewAppointments = () => {
           <View style={styles.borderSelect}>
             <Text style={styles.ContentHeading}>{SELECT_MEMBER}</Text>
             <SelectList
-              boxStyles={styles.boxStyles}
+              boxStyles={
+                selected.length > 0
+                  ? styles.boxStyles
+                  : [styles.boxStyles, {backgroundColor: WHITE}]
+              }
               defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
               setSelected={setSelected}
               data={dataRelation}

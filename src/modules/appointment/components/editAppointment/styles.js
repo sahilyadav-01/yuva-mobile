@@ -136,5 +136,6 @@ export const styles = StyleSheet.create({
     borderColor: LIGHT_MERCURY,
     marginBottom: 15,
     color: LIGHT_GREYISH_RED,
+    paddingLeft: 13,
   },
 });
