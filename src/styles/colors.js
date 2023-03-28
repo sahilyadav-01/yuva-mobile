@@ -65,3 +65,5 @@ export const LIGHT_RED = '#FFE0D6';
 export const DULL_BLACK = '#F1F0EF';
 export const PINK_RED = '#F36161';
 export const LIGHT_PINK = '#E05E5E';
+export const TINTS_OF_SOLITUDE="#F2F4F8";
+export const SERENADE="#FAE8D6";

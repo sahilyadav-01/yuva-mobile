@@ -5,6 +5,7 @@ export const RIGHT = 'right';
 export const MORE = '& More...';
 export const BUY_NOW = 'Buy Now';
 export const OURPLAN="OurPlan";
+export const VIEW_ALL_OUR_PLAN="ViewAllOurPlan";
 export const OUR_PLANS = 'Our Plans';
 export const VIEW_ALL = 'View All';
 export const NOT_AVAILABLE = 'Not Available';
