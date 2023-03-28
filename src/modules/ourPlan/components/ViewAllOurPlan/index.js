@@ -2,12 +2,11 @@ import React from 'react'
 import { FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Header from '../../../../components/Header';
 import OurPlan from "../../index"
-import { ENTER_PHONE_NUMBER, FAQ_QUESTIONS, FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN, SPEAK_TO } from './constants';
+import { ENTER_PHONE_NUMBER,  FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN, SPEAK_TO } from './constants';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useViewAllOurPlan } from './hooks/useViewAllOurPlan';
 import { BLACK } from '../../../../styles/colors';
-import { styled } from 'nativewind';
 
 const ViewAllOurPlan = () => {
     const { onUpdate, packageList } = useViewAllOurPlan();
