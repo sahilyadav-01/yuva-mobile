@@ -9,7 +9,7 @@ import { styles } from './styles'
 
 const CheckoutPriceDetails = (isPrice) => {
 
-    const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity,isCoupon} = useCheckoutPriceDetails(isPrice);
+    const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity,isCoupon, price} = useCheckoutPriceDetails(isPrice);
     return (
         <View>
             <View style={styles.QuantityView}>
@@ -23,7 +23,7 @@ const CheckoutPriceDetails = (isPrice) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                <Text style={styles.orderAmount}>{RUPEE}{totalCost}/-</Text>
+                <Text style={styles.orderAmount}>{RUPEE}{price}/-</Text>
             </View>
             {isCoupon === undefined && <View style={styles.viewCoupon}>
                 <TextInput
@@ -44,7 +44,7 @@ const CheckoutPriceDetails = (isPrice) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{amountToBePaid}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{price}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>

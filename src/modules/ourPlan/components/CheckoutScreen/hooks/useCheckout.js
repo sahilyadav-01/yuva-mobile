@@ -1,4 +1,4 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { TERMS_CONDITION } from "../constants";
 
@@ -6,18 +6,57 @@ import { TERMS_CONDITION } from "../constants";
 export const useCheckout = () => {
     const {termsAndCondtionChecked}=useSelector(state=>state.cart);
     const route = useRoute();
+    const navigation = useNavigation();
+    const {mainItem} = useSelector(state=>state.programAndPlan);
     const { address,
         pincode,
         contact,
         cityName,
-        yearlyPrice,
-        quarterlyPrice,
-        halfYearlyPrice, } = route?.params || {};
-        const onCheckout=()=>{
-            if(!termsAndCondtionChecked){
-                alert(TERMS_CONDITION)
-            }
+        yearlyPrice:YearlyPrice,
+        quarterlyPrice:QuarterlyPrice,
+        halfYearlyPrice:HalfYearlyPrice,
+        cityId,
+        plan,
+        number} = route?.params || {};
+        const quarterlyPrice = QuarterlyPrice!==undefined ? QuarterlyPrice : mainItem?.quarterlyPrice;
+        const halfYearlyPrice = HalfYearlyPrice!==undefined ? HalfYearlyPrice : mainItem?.halfYearlyPrice;
+        const yearlyPrice = YearlyPrice!==undefined ? YearlyPrice : mainItem?.yearlyPrice
+        const plans = [{planTypeEnum:'QUARTERLY',cost:quarterlyPrice ?? 0},{planTypeEnum:'HALF_YEARLY',cost:halfYearlyPrice ?? 0},{planTypeEnum:'ANNUALLY',cost:yearlyPrice ?? 0}]
+    const onPayPress = () => {
+        const planTypeEnum = plans.find((item)=>item.cost === Math.max(quarterlyPrice,halfYearlyPrice,yearlyPrice))?.planTypeEnum ?? null;
+        const bookingRequestDto = {
+            address,
+            cityId,
+            contactNumber:contact,
+            packageUuid: [],
+            patientId: 0,
+            pinCode:pincode,
+            plan: true,
+            programOrPlanUuid: mainItem?.planUuid,
+            relationId: 0,
+            testId: [],
+            timeSlot: 0,
+            userPlanVersion: 0,
+            version: 0
+          };
+        const subscriptionRequestDto = {
+            address,
+            cityId,
+            pinCode: pincode,
+            number,
+            planTypeEnum,
+            planUuid: mainItem?.planUuid
+          }
+        const paymentProps = {plan:true,bookingRequestDto,subscriptionRequestDto}
+        navigation.navigate('Payment',{screen:'PaymentScreen',params:{paymentProps}})
+    }
+
+    const onCheckout=()=>{
+        if(!termsAndCondtionChecked){
+            alert(TERMS_CONDITION)
         }
+        else onPayPress();
+    }
     return {
         address,
         pincode,
@@ -26,7 +65,9 @@ export const useCheckout = () => {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,
+        cityId,
         termsAndCondtionChecked,
-        onCheckout
+        onCheckout,
+        price: Math.max(yearlyPrice,quarterlyPrice,halfYearlyPrice)
     }
 }

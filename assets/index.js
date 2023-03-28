@@ -101,6 +101,8 @@ import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
+import PaymentSuccess from './PaymentSuccess';
+import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
@@ -214,6 +216,8 @@ const SVG = {
   Download: Download,
   Prescriptions,
   Bookings,
+  PaymentSuccess,
+  PaymentFailure,
   EditPen:EditPen,
 };
 
