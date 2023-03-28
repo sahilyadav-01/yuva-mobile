@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WHITE, ORANGE, RED, BLACK, CYAN_BLUE} from '../../../../styles/colors';
+import {WHITE, ORANGE, BLACK, CYAN_BLUE} from '../../../../styles/colors';
 import {ABSOLUTE, CENTER, FLEX_END, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
     justifyContent: FLEX_END,
     position: ABSOLUTE,
     right: 0,
+    borderTopRightRadius: 12,
   },
   otpView: {
     flexDirection: ROW,

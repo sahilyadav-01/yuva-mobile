@@ -24,8 +24,11 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '3%',
     borderColor: LIGHT_MERCURY,
-    marginBottom: 15,
     color: LIGHT_GREYISH_RED,
+  },
+  dropStyles: {
+    marginHorizontal: 13,
+    borderColor: LIGHT_MERCURY,
   },
   dateAndTime: {
     minHeight: 42,
@@ -36,6 +39,11 @@ export const styles = StyleSheet.create({
   dateTimeStyles: {
     marginVertical: '2%',
     color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+  },
+  valueStyle: {
+    alignSelf: CENTER,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
@@ -88,9 +96,21 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     elevation: 10,
   },
+  borderSelect: {
+    marginLeft: '3%',
+    marginRight: '3%',
+    shadowColor: WHITE,
+    shadowOpacity: '15%',
+    shadowColor: BLACK,
+    borderRadius: 10,
+    backgroundColor: WHITE,
+    elevation: 10,
+    paddingBottom: 10,
+  },
   dateTimePicker: {
     backgroundColor: WHITE,
     borderWidth: 1,
+    borderColor: LIGHT_MERCURY,
     borderRadius: 8,
     height: 42,
   },

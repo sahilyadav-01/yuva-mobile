@@ -104,13 +104,15 @@ const NewAppointments = () => {
         </View>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
-          <View style={styles.border}>
+          <View style={styles.borderSelect}>
             <Text style={styles.ContentHeading}>{SELECT_MEMBER}</Text>
             <SelectList
               boxStyles={styles.boxStyles}
               defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
               setSelected={setSelected}
               data={dataRelation}
+              dropdownStyles={styles.dropStyles}
+              inputStyles={styles.valueStyle}
             />
           </View>
         </View>

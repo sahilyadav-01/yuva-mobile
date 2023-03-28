@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
   dateTimePicker: {
     backgroundColor: WHITE,
     borderWidth: 1,
+    borderColor: LIGHT_MERCURY,
     borderRadius: 8,
     height: 42,
   },
