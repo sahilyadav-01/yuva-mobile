@@ -47,7 +47,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="Diagnostics"
-        component={loggedIn !== 'loggedIn' ? OurPlanNav : DiagnosticNav}
+        component={loggedIn !== 'loggedIn' ? ViewAllOurPlan : DiagnosticNav}
         options={{headerShown: false}}
       />
       <Stack.Screen
