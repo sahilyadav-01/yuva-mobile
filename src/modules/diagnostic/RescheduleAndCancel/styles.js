@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, LIGHT_GREY, ORANGE, RED, RED_SHADE, VERY_LIGHT_GREY, VERY_LIGHT_YELLOW, VERY_PALE_WHITE, V_LIGHT_GREY, WHITE } from '../../../styles/colors';
+import { BLACK, BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, LIGHT_GREY, ORANGE, RED, RED_SHADE, VERY_LIGHT_GREY, VERY_LIGHT_YELLOW, VERY_PALE_WHITE, V_LIGHT_GREY, WHITE } from '../../../styles/colors';
 import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -10,28 +10,24 @@ export const styles = StyleSheet.create({
     paddingBottom: 300,
   },
   buttonView: {
-    flexDirection:ROW,
-    marginTop: 47,
+    flexDirection: ROW,
+    marginHorizontal: '4%',
+    justifyContent: SPACE_BETWEEN,
   },
   buttonTextStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize16,
-    marginHorizontal: 10,
-  },
-  cancelButtonTextStyle:{
     color: WHITE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
-    marginHorizontal: 10,
+    marginHorizontal: '4%',
   },
   button:{
-    width: "50%",
+    width: '48%',
+    justifyContent: SPACE_BETWEEN,
     height: 48,
-    borderRadius: 1,
+    marginVertical: 64,
+    borderRadius: 8,
     justifyContent: CENTER,
     alignItems: CENTER,
-    borderWidth: 0,
     flexDirection: ROW,
   },
   details: {
