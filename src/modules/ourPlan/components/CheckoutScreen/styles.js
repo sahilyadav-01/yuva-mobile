@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BOX_SHADOW, CYAN_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
+import { BLUE_GRAY, BOX_SHADOW, CHARCOAL, CYAN_BLUE, DARK_GRAY, DEEP_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
 import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts'
 
@@ -220,4 +220,44 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
     },
+    couponContainer: {
+        flexDirection: ROW,
+        justifyContent: SPACE_BETWEEN,
+        padding: 5,
+        // paddingHorizontal:12,
+        marginVertical:25,
+        marginHorizontal:16
+      },
+      crossStyle: {
+        color: DARK_GRAY,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize16,
+      },
+      iconStyle: {
+        color: CHARCOAL,
+      },
+      appliedStyle: {
+        color: DEEP_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+      },
+      descStyle: {
+        height: 36,
+        width: '60%',
+        borderRadius: 5,
+        paddingLeft: 16,
+        paddingRight: 12,
+        justifyContent: SPACE_BETWEEN,
+        alignItems: CENTER,
+        flexDirection: ROW,
+        backgroundColor: BLUE_GRAY,
+      },
+      couponDiscountStyle: {
+        height: 36,
+        color:GREEN,
+        paddingVertical:10,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+        paddingHorizontal:5,
+      },
 })

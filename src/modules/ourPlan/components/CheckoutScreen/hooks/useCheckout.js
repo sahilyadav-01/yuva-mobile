@@ -1,36 +1,38 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedPlaneCouponCode } from "../../../../../store/reducers/CouponSlice";
 import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
-    const {termsAndCondtionChecked}=useSelector(state=>state.cart);
+    const { termsAndCondtionChecked } = useSelector(state => state.cart);
     const route = useRoute();
+    const dispatch = useDispatch();
     const navigation = useNavigation();
-    const {mainItem} = useSelector(state=>state.programAndPlan);
+    const { mainItem } = useSelector(state => state.programAndPlan);
     const { address,
         pincode,
         contact,
         cityName,
-        yearlyPrice:YearlyPrice,
-        quarterlyPrice:QuarterlyPrice,
-        halfYearlyPrice:HalfYearlyPrice,
+        yearlyPrice: YearlyPrice,
+        quarterlyPrice: QuarterlyPrice,
+        halfYearlyPrice: HalfYearlyPrice,
         cityId,
         plan,
-        number} = route?.params || {};
-        const quarterlyPrice = QuarterlyPrice!==undefined ? QuarterlyPrice : mainItem?.quarterlyPrice;
-        const halfYearlyPrice = HalfYearlyPrice!==undefined ? HalfYearlyPrice : mainItem?.halfYearlyPrice;
-        const yearlyPrice = YearlyPrice!==undefined ? YearlyPrice : mainItem?.yearlyPrice
-        const plans = [{planTypeEnum:'QUARTERLY',cost:quarterlyPrice ?? 0},{planTypeEnum:'HALF_YEARLY',cost:halfYearlyPrice ?? 0},{planTypeEnum:'ANNUALLY',cost:yearlyPrice ?? 0}]
+        number } = route?.params || {};
+    const quarterlyPrice = QuarterlyPrice !== undefined ? QuarterlyPrice : mainItem?.quarterlyPrice;
+    const halfYearlyPrice = HalfYearlyPrice !== undefined ? HalfYearlyPrice : mainItem?.halfYearlyPrice;
+    const yearlyPrice = YearlyPrice !== undefined ? YearlyPrice : mainItem?.yearlyPrice
+    const plans = [{ planTypeEnum: 'QUARTERLY', cost: quarterlyPrice ?? 0 }, { planTypeEnum: 'HALF_YEARLY', cost: halfYearlyPrice ?? 0 }, { planTypeEnum: 'ANNUALLY', cost: yearlyPrice ?? 0 }]
     const onPayPress = () => {
-        const planTypeEnum = plans.find((item)=>item.cost === Math.max(quarterlyPrice,halfYearlyPrice,yearlyPrice))?.planTypeEnum ?? null;
+        const planTypeEnum = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
         const bookingRequestDto = {
             address,
             cityId,
-            contactNumber:contact,
+            contactNumber: contact,
             packageUuid: [],
             patientId: 0,
-            pinCode:pincode,
+            pinCode: pincode,
             plan: true,
             programOrPlanUuid: mainItem?.planUuid,
             relationId: 0,
@@ -38,25 +40,27 @@ export const useCheckout = () => {
             timeSlot: 0,
             userPlanVersion: 0,
             version: 0
-          };
+        };
         const subscriptionRequestDto = {
             address,
             cityId,
             pinCode: pincode,
             number,
             planTypeEnum,
-            planUuid: mainItem?.planUuid
-          }
-        const paymentProps = {plan:true,bookingRequestDto,subscriptionRequestDto}
-        navigation.navigate('Payment',{screen:'PaymentScreen',params:{paymentProps}})
+            planUuid: mainItem?.planUuid,
+        }
+        const paymentProps = { plan: true, bookingRequestDto, subscriptionRequestDto }
+        navigation.navigate('Payment', { screen: 'PaymentScreen', params: { paymentProps } })
     }
-
-    const onCheckout=()=>{
-        if(!termsAndCondtionChecked){
+    const onCheckout = () => {
+        if (!termsAndCondtionChecked) {
             alert(TERMS_CONDITION)
         }
         else onPayPress();
     }
+    const crossAction = () => {
+        dispatch(selectedPlaneCouponCode({couponCode:null}));
+      }
     return {
         address,
         pincode,
@@ -68,6 +72,9 @@ export const useCheckout = () => {
         cityId,
         termsAndCondtionChecked,
         onCheckout,
-        price: Math.max(yearlyPrice,quarterlyPrice,halfYearlyPrice)
+        price: Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice),
+        planUuid: mainItem?.planUuid,
+        plans,
+        crossAction,
     }
 }

@@ -4,14 +4,23 @@ import { YuvaService } from '../../network/yuvaService';
 
 export const couponSliceThunk = createAsyncThunk(
   '/coupon/getAllCoupons/user',
-  async ({ pageNo, pageSize, isLoggedIn }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo, pageSize, isLoggedIn, isPlane, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
     let endpoint;
     const sessionId = await getDeviceId();
-    if (isLoggedIn) {
-      endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
-    }
-    else {
-      endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&sessionId=${sessionId}`;
+    if (isPlane) {
+      if (isLoggedIn) {
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
+      }
+      else {
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}&sessionId=${sessionId}`;
+      }
+    } else {
+      if (isLoggedIn) {
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
+      }
+      else {
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&sessionId=${sessionId}`;
+      }
     }
     try {
       const response = await YuvaService.post(endpoint);
@@ -50,6 +59,18 @@ export const redeemCouponsSliceThunk = createAsyncThunk(
     }
   },
 );
+export const redeemCouponsPlanSliceThunk = createAsyncThunk(
+  '/coupon/plan',
+  async ({couponCode, planeType, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/coupon/plan?couponCode=${couponCode}&planType=${planeType}&planUuid=${planUuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 const initialState = {
   loading: false,
@@ -63,7 +84,11 @@ const initialState = {
   totalDiscount: 0,
   couponMessage: false,
   selectedCouponCode: '',
-  couponDiscount:0,
+  couponDiscount: 0,
+  planTotalAmount:null,
+  planDiscount:null,
+  planFinalAmount:null,
+  planeCouponCode:null,
 }
 
 const couponSlice = createSlice({
@@ -78,6 +103,9 @@ const couponSlice = createSlice({
     },
     selectedCoupon(state, payload) {
       state.selectedCouponCode = payload.payload.couponCode;
+    },
+    selectedPlaneCouponCode(state, payload) {
+      state.planeCouponCode = payload?.payload?.couponCode;
     },
   },
   extraReducers: {
@@ -120,7 +148,7 @@ const couponSlice = createSlice({
       state.totalDiscount = action?.payload?.data?.totalDiscount || 0;
       state.couponMessage = true;
       state.couponView = action?.payload?.data?.couponCode || null;
-      state.couponDiscount= action?.payload?.data?.discountForCoupon;
+      state.couponDiscount = action?.payload?.data?.discountForCoupon;
     },
     [redeemCouponsSliceThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -130,10 +158,28 @@ const couponSlice = createSlice({
       state.couponView = null;
       state.apiErrorMessage = action?.payload?.message;
     },
+     /** redeemCoupons For Plane*/
+     [redeemCouponsPlanSliceThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+      state.apiErrorMessage = '';
+      state.apiError = false;
+    },
+    [redeemCouponsPlanSliceThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.apiErrorMessage = '';
+      state.planTotalAmount = action?.payload?.data?.totalAmount || 0;
+      state.planDiscount = action?.payload?.data?.discount || 0;
+      state.planFinalAmount = action?.payload?.data?.finalAmount || 0;
+    },
+    [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = action?.payload?.message;
+    },
 
   },
 });
 
 export const { couponInit } = couponSlice.getInitialState();
-export const { coupon, removeCoupon, selectedCoupon } = couponSlice.actions;
+export const { coupon, removeCoupon, selectedCoupon, selectedPlaneCouponCode } = couponSlice.actions;
 export default couponSlice.reducer;
