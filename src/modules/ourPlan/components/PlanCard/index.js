@@ -22,8 +22,8 @@ const PlanCard = (props) => {
           <Image source={image} style={styles.iconStyle}/>
         </View>
         <View style={styles.detailsView}>
-          <Text style={[styles.serviceNameText, !available && styles.notAvailable]}>{serviceName}</Text>
-          <Text style={[styles.serviceDetailsText, !available && styles.notAvailable]}>{shortDescription}</Text>
+          <Text numberOfLines={1} style={[styles.serviceNameText, !available && styles.notAvailable]}>{serviceName}</Text>
+          <Text numberOfLines={2} style={[styles.serviceDetailsText, !available && styles.notAvailable]}>{shortDescription}</Text>
         </View>
       </View>
     );
