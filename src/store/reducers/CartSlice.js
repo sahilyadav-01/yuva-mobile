@@ -92,7 +92,8 @@ const initialState = {
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
-  termsAndCondtionChecked: false,
+  termsAndCondtionChecked:false,
+  cartCouponDiscount:0,
 };
 
 const cartSlice = createSlice({
@@ -129,6 +130,7 @@ const cartSlice = createSlice({
       state.apiErrorMessage= '';
       state.loading= false;
       state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
+      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart = {
@@ -164,10 +166,11 @@ const cartSlice = createSlice({
           item => item.productId,
         );
       }
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.loading = false;
-      state.cart.couponViewCart = payload?.data?.data?.couponCode || null;
+      state.apiError= false;
+      state.apiErrorMessage= '';
+      state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
+      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart = {

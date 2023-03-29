@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTermsAndCondtionChecked } from "../../../store/reducers/CartSlice";
 
 
-export const useCheckoutPriceDetails=(isPrice)=>{
-const dispatch = useDispatch();
-const {amountToBePaid,yearlyPrice,quarterlyPrice,halfYearlyPrice,totalCost,totalDiscount,Quantity,isCoupon}=isPrice?.isPrice;
-const [checked, setChecked] = useState(false);
+export const useCheckoutPriceDetails = (isPrice) => {
+    const dispatch = useDispatch();
+    const { amountToBePaid, yearlyPrice, quarterlyPrice, halfYearlyPrice, totalCost, totalDiscount, Quantity } = isPrice?.isPrice;
+    const [checked, setChecked] = useState(false);
+    const { planTotalAmount, planDiscount, planFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
 
-useEffect(()=>{
-dispatch(setTermsAndCondtionChecked(checked))
-},[checked])
-return {
+    useEffect(() => {
+        dispatch(setTermsAndCondtionChecked(checked))
+    }, [checked])
+    return {
         yearlyPrice,
         quarterlyPrice,
         halfYearlyPrice,
         checked,
         setChecked,
-        price:isPrice?.price,
+        price: isPrice?.price,
         amountToBePaid,
         totalCost,
         totalDiscount,
         Quantity,
-        isCoupon,
+        planTotalAmount, 
+        planDiscount, 
+        planFinalAmount, 
+        planeCouponCode,
     }
 }
