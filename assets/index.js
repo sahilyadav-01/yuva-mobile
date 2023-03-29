@@ -106,6 +106,7 @@ import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
+import Gift from './Gift';
 
 const PNG = {
   AMICO,
@@ -219,6 +220,7 @@ const SVG = {
   PaymentSuccess,
   PaymentFailure,
   EditPen:EditPen,
+  Gift,
 };
 
 export {PNG, SVG};

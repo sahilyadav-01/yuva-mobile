@@ -21,10 +21,10 @@ const Drawer = () => {
    <Header showSearch={false} title='Menu'/>
     <View style={container}>
       <View style={drawerContentContainer}>
-        <TouchableOpacity style={rowContainer} onPress={onSubscriptionPress}>
+        {/* <TouchableOpacity style={rowContainer} onPress={onSubscriptionPress}>
           <SVG.Subscriptions/>
           <Text style={textStyle}>{MY_SUBSCRIPTIONS}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={separator} />
         <TouchableOpacity style={rowContainer} onPress={onReportsPress}>
         <SVG.Reports/>
