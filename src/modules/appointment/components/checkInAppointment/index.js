@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import {PNG} from '../../../../../assets';
 import {
   COMMA,
@@ -16,7 +16,7 @@ const CheckInAppointments = () => {
   const route = useRoute();
   const {otp, memberName} = route?.params;
   return (
-    <View>
+    <ScrollView>
       <View style={styles.thanksMessageView}>
         <View style={styles.thanksView}>
           <Text style={styles.thanksMessageStyle}> {THANK_YOU}</Text>
@@ -46,7 +46,7 @@ const CheckInAppointments = () => {
           <Text style={styles.descriptionStyle}>{WISHES}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 export default CheckInAppointments;
