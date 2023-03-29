@@ -6,13 +6,15 @@ import {DARK_BLUE, ORANGE} from '../styles/colors';
 import {CONSULTATIONS, MY_PLANS, TALK_TO_DOCTOR} from './constants';
 import Consultations from '../modules/talkToDoctorConsultations';
 import {styles} from '../screens/styles';
-import {Dimensions, Text} from 'react-native';
+import {Text} from 'react-native';
 import {CENTER} from '../styles/constants';
 import MyPlans from '../modules/talkToDoctorMyplans';
+import {getWindowDimensions} from '../utils/utils';
 
 const Tab = createMaterialTopTabNavigator();
 
 const TalkToDoctorNav = () => {
+  const {width} = getWindowDimensions();
   return (
     <>
       <Header title={TALK_TO_DOCTOR} showBackButton={true} />
@@ -22,7 +24,7 @@ const TalkToDoctorNav = () => {
             backgroundColor: ORANGE,
             width: 40,
             height: 3,
-            left: (Dimensions.get('window').width / 2 - 50) / 2,
+            left: (width / 2 - 50) / 2,
           },
         }}
         screenOptions={{
