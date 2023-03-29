@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles'
 import { WHITE } from '../../../../styles/colors'
+import { DISCOUNT_PRICE } from './constant'
 
 const CheckoutOurPlan = () => {
     const { address,
@@ -61,11 +62,10 @@ const CheckoutOurPlan = () => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View >
-                        {/* <Text style={couponDiscountStyle}>{DISCOUNT_PRICE(couponDiscount !== undefined && couponDiscount !== null && couponDiscount !== 0 ? couponDiscount : cartCouponDiscount)}</Text> */}
+                    <View>
+                         <Text style={styles.couponDiscountStyle}>{DISCOUNT_PRICE(planeCouponCode?planDiscount:0)}</Text> 
                     </View>
                 </View>}
-
                 <CheckoutPriceDetails planeCouponCode={planeCouponCode} price={price} planTotalAmount={planTotalAmount} planDiscount={planDiscount} planFinalAmount={planFinalAmount} isPrice={{ yearlyPrice, quarterlyPrice, halfYearlyPrice } } />
                 <View>
                     <TouchableOpacity

@@ -9,7 +9,6 @@ import { styles } from './styles'
 const CheckoutPriceDetails = (isPrice) => {
 
     const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity, price, planTotalAmount, planDiscount, planFinalAmount, planeCouponCode,} = useCheckoutPriceDetails(isPrice);
-    console.log('fooo',planTotalAmount, planDiscount, planFinalAmount, planeCouponCode);
     return (
         <View>
             <View style={styles.QuantityView}>
