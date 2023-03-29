@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { WHITE, CYAN_BLUE, ORANGE, BLACK, OFF_WHITE, COUPON_DARK_GREY } from '../../styles/colors';
+import { CYAN_BLUE, BLACK, OFF_WHITE, COUPON_DARK_GREY, DARK_BLUE, ORANGE, GREEN, RED } from '../../styles/colors';
 import { CENTER, FLEX_START, ROW } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -15,17 +15,17 @@ export const styles = StyleSheet.create({
   },
   textStyle: {
     justifyContent: FLEX_START,
-    color: CYAN_BLUE,
+    color: ORANGE,
     fontFamily: fonts.family.rubik600,
-    fontSize: fonts.size.fontSize16,
+    fontSize: fonts.size.fontSize12,
     margin: 12,
     alignSelf: FLEX_START,
   },
   textStyling: {
     justifyContent: FLEX_START,
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik600,
-    fontSize: fonts.size.fontSize18,
+    color: DARK_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
     marginLeft: 21,
     alignSelf: FLEX_START,
     marginTop: 19,
@@ -33,55 +33,75 @@ export const styles = StyleSheet.create({
   },
   viewCoupon: {
     flexDirection: ROW,
-    borderRadius: 12,
     height: 40,
     marginHorizontal: 16,
     marginBottom: 25,
-    backgroundColor: WHITE,
     borderWidth: 0.5,
     borderColor: COUPON_DARK_GREY,
-    borderRadius: 12,
+    borderRadius:6,
   },
   textInputStyles: {
     flex: 1,
-    color: BLACK,
+    color: CYAN_BLUE,
     marginBottom: 11,
     height: 40,
     paddingLeft: 8,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize14,
+    fontSize: fonts.size.fontSize16,
   },
   applyStyles: {
-    borderRadius: 12,
+     borderTopRightRadius:6,
+     borderBottomRightRadius:6,
     backgroundColor: ORANGE,
     justifyContent: CENTER,
     alignItems: CENTER,
-    width: '28%',
+    width: '35%',
   },
   couponContainer: {
-    height: 115,
+    height: 82,
     borderWidth: 1,
     borderRadius: 12,
     flexDirection: ROW,
     marginBottom: 35,
-    backgroundColor: WHITE,
+    borderStyle: 'dotted',
+    maxWidth:'100%',
+
   },
   textStyle1: {
-    color: CYAN_BLUE,
+    marginTop: 12,
+    color: DARK_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize16,
+    marginLeft: 12,
+  },
+  textStyle2: {
+    marginTop: 4,
+    color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize8,
     marginLeft: 12,
   },
   useCouponStyle: {
     width: '28%',
     justifyContent: CENTER,
-    backgroundColor: CYAN_BLUE,
-    borderTopRightRadius: 12,
-    borderBottomRightRadius: 12,
     alignItems: CENTER,
   },
-  useCouponTextStyle: {
-    color: WHITE,
+  useCouponTextStyle1: {
+    color: GREEN,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize12,
+    textAlign: CENTER,
+    width: '72%',
+  },
+  useCouponTextStyle2: {
+    color: RED,
+    fontFamily: fonts.family.rubik600,
+    fontSize: fonts.size.fontSize12,
+    textAlign: CENTER,
+    width: '72%',
+  },
+  useCouponTextStyle3: {
+    color: BLACK,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize12,
     textAlign: CENTER,
@@ -90,10 +110,12 @@ export const styles = StyleSheet.create({
   viewStyles: {
     width: '72%',
   },
-  applyButtonStyles: {
-    color: WHITE,
+  couponLabelStyles: {
+    color: DARK_BLUE,
+    paddingLeft: 24,
+    paddingBottom:20,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize16,
+    fontSize: fonts.size.fontSize14,
   },
   buttonStyles: {
     marginHorizontal: 15,

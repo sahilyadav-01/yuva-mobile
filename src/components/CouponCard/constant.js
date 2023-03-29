@@ -1,8 +1,11 @@
 export const APPLY_COUPON = 'Apply Coupon';
-export const APPLY = 'Apply';
-export const USE_COUPON = 'Use Coupon';
-export const COUPON_CODE = 'Coupon Code';
-export const COUPON_APPLIED = 'Coupon Applied';
-export const COUPON_INVALID = 'Coupon Invalid';
+export const COUPON_LABEL = 'Available Coupons';
+export const USE_COUPON = ' ➔ Apply';
+export const PLACEHOLDER_TEXT = 'Enter Next Coupon';
+export const COUPON_APPLIED = ' ➔ Applied';
 export const ALERT = 'ALERT';
 export const CAPITALIZE_TEXT = 'characters';
+export const DISCOUNT = (item) => `₹ ${item}/- OFF`;
+export const DISCOUNT_PERCENTAGE = (item) => `${item}% OFF`;
+export const DISCOUNT_UPTO = (item) => `Upto ₹ ${item} off`;
+export const COUPON_CODE = (item) => `Code: ${item}`;
