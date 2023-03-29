@@ -5,7 +5,7 @@ import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import Header from '../../../components/Header';
 import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, MY_TESTS, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
-import { RED_SHADE, AMBER, WHITE } from '../../../styles/colors';
+import { RED_SHADE,WHITE,GREEN } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getDate, getTime, dignosticStatus } from '../../../utils/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -110,13 +110,13 @@ const RescheduleAndCancel = () => {
                      extraStyles={styles.button}
                      textStyles={styles.buttonTextStyle}
                         name={RESCHEDULE}
-                        color={AMBER}
+                        color={GREEN}
                         action={rescheduleBooking}
                         reschedule={true}
                     />
                     <AppointmentButton
                     extraStyles={styles.button}
-                    textStyles={styles.cancelButtonTextStyle}
+                    textStyles={styles.buttonTextStyle}
                         name={CANCEL}
                         color={RED_SHADE}
                         action={cancelBookingButton}
