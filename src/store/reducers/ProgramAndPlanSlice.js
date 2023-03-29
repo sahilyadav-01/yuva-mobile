@@ -117,7 +117,7 @@ const programAndPlanSlice = createSlice({
       state.loading = true;
     },
     [planDetailsThunk.fulfilled]: (state, {payload}) => {
-      state.planDetails = payload?.data;
+      state.planDetails = payload.data?.filter(item=>{if(item!==null) return item});
       state.loading = false;
     },
     [planDetailsThunk.rejected]: (state, {payload}) => {

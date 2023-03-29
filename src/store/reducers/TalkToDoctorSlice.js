@@ -34,6 +34,7 @@ const initialState = {
   consultationList: [],
   isRequested: false,
   id: null,
+  programData:''
 };
 
 const talkToDoctorSlice = createSlice({
@@ -43,6 +44,9 @@ const talkToDoctorSlice = createSlice({
     clearRequest(state) {
       state.isRequested = false;
     },
+    programOrPlanData(state,{payload}){
+      state.programData=payload;
+    }
   },
   extraReducers: {
     [getAppointmentThunk.pending]: (state, {payload}) => {
@@ -81,6 +85,6 @@ const talkToDoctorSlice = createSlice({
   },
 });
 
-export const {clearRequest} = talkToDoctorSlice.actions;
+export const {clearRequest,programOrPlanData} = talkToDoctorSlice.actions;
 export const talkToDoctorInit = talkToDoctorSlice.getInitialState();
 export default talkToDoctorSlice.reducer;

@@ -8,7 +8,7 @@ export const useHealth = (route) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const {isRequested} = useSelector(state => state.talkToDoctor);
+  const {isRequested,programData} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
   const [description, setDescription] = useState('');
 const {relationId,userId}=route?.params;
@@ -29,6 +29,10 @@ const {relationId,userId}=route?.params;
         healthConcern: HEALTH_LIST[selected]?.name || '',
         id:userId,
         relationId:relationId,
+        plan: programData?.plan,
+        programOrPlanUuid:programData?.uuid,
+        userPlanVersion: programData?.userVersion,
+        version:programData?.version
       };
       dispatch(addRequestThunk({data}));
     };
