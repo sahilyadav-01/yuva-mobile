@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
 import {
   FLASH_WHITE,
-  GREEN,
   ORANGE,
   WHITE,
 } from '../../styles/colors';
-import {ABSOLUTE, CENTER} from '../../styles/constants';
+import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -29,28 +28,5 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
-  },
-  crossStyle: {
-    color: GREEN,
-    fontFamily: fonts.family.rubik600,
-    fontSize: fonts.size.fontSize16,
-  },
-  appliedStyle: {
-    color: GREEN,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize16,
-    marginLeft: 21,
-  },
-  descStyle: {
-    height: 57,
-    width: '100%',
-    justifyContent: CENTER,
-    borderBottomLeftRadius:12,
-    marginBottom:12,
-  },
-  buttonStyle: {
-    position: ABSOLUTE,
-    right: 23,
-    top: 20,
   },
 });

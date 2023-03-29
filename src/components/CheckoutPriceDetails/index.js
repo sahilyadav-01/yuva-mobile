@@ -1,15 +1,14 @@
 
 import React from 'react'
-import { Text, TextInput, View, TouchableOpacity } from 'react-native'
+import { Text, View, } from 'react-native'
 import { Checkbox } from 'react-native-paper'
-import { BALI } from '../../styles/colors'
-import { AMOUNT_PAYABLE, APPLY, COUPON, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION } from './constants'
+import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION } from './constants'
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails'
 import { styles } from './styles'
 
 const CheckoutPriceDetails = (isPrice) => {
 
-    const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity,isCoupon, price} = useCheckoutPriceDetails(isPrice);
+    const { yearlyPrice, checked, setChecked ,amountToBePaid,totalCost,totalDiscount,Quantity, price, planTotalAmount, planDiscount, planFinalAmount, planeCouponCode,} = useCheckoutPriceDetails(isPrice);
     return (
         <View>
             <View style={styles.QuantityView}>
@@ -23,28 +22,16 @@ const CheckoutPriceDetails = (isPrice) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                <Text style={styles.orderAmount}>{RUPEE}{price}/-</Text>
+                <Text style={styles.orderAmount}>{RUPEE}{(planeCouponCode?planTotalAmount:price)|| (totalCost)}/-</Text>
             </View>
-            {isCoupon === undefined && <View style={styles.viewCoupon}>
-                <TextInput
-                    style={styles.textInputStyles}
-                    placeholderTextColor={BALI}
-                    placeholder={COUPON}
-                    //    onChangeText={setSelected}
-                    maxLength={6}
-                />
-                <TouchableOpacity style={styles.applyStyles}>
-                    <Text style={styles.applyButtonStyles}>{APPLY}</Text>
-                </TouchableOpacity>
-            </View>}
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>
-                <Text style={styles.payableAmountDiscount}>{RUPEE}{totalDiscount}/-</Text>
+                <Text style={styles.payableAmountDiscount}>{RUPEE}{planeCouponCode?planDiscount:totalDiscount}/-</Text>
             </View>
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{price}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{(planeCouponCode?planFinalAmount:price)||(amountToBePaid)}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>

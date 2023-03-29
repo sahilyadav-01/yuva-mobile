@@ -1,0 +1,1 @@
+export const DISCOUNT_PRICE = (item) =>  `- ₹ ${item}`;

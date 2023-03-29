@@ -3,12 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
   createCartUserThunk,
-  removeCouponCart,
 } from '../../../store/reducers/CartSlice';
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, CHECKOUT, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
-import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/CouponSlice';
 import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
@@ -77,13 +75,7 @@ export const useCart = (args) => {
     const { productId: itemId } = item || {};
     itemId && dispatch(deleteCartThunk({ itemId }));
   };
-  const crossAction = () => {
 
-    dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
-    dispatch(removeCoupon());
-    dispatch(removeCouponCart());
-
-  }
   const onAddMembersPress = () => {
     setModalVisible(false);
     setAddModalVisible(true)
@@ -195,7 +187,6 @@ export const useCart = (args) => {
     onRemove,
     redeemCoupons,
     couponView,
-    crossAction,
     coupon,
     onModalCrossPress,
     onPressCheckBox,
