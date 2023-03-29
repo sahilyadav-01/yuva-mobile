@@ -21,7 +21,10 @@ export const usePaymentStatus = params => {
   }, [focused]);
 
   useEffect(() => {
-    if (!paymentStatusLoading && !paymentError && paymentStatus !== null) {
+    if (!paymentStatusLoading && !paymentError && paymentStatus === 'ABORTED') {
+      navigation.navigate('HomeService');
+    }
+    else if (!paymentStatusLoading && !paymentError && paymentStatus !== null) {
       paymentStatus === 'PAID' ? setPaymentSuccess(true) : setPaymentSuccess(false);
       setLoading(false);
     }
