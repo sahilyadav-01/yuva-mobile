@@ -24,7 +24,7 @@ export const usePaymentStatus = params => {
     if (!paymentStatusLoading && !paymentError && paymentStatus === 'ABORTED') {
       navigation.navigate('HomeService');
     }
-    if (!paymentStatusLoading && !paymentError && paymentStatus !== null) {
+    else if (!paymentStatusLoading && !paymentError && paymentStatus !== null) {
       paymentStatus === 'PAID' ? setPaymentSuccess(true) : setPaymentSuccess(false);
       setLoading(false);
     }
