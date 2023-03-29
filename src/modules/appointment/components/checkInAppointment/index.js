@@ -1,18 +1,20 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {useView} from '../viewAppointment/hooks/useView';
 import {PNG} from '../../../../../assets';
 import {
+  COMMA,
+  DEAR,
   HOPE_YOUR_APPOINTMENT,
-  NAME,
   THANKS,
   THANK_YOU,
   WISHES,
   YOUR_PIN,
 } from '../../constant';
 import {styles} from './styles';
+import {useRoute} from '@react-navigation/native';
 const CheckInAppointments = () => {
-  const {otp} = useView();
+  const route = useRoute();
+  const {otp, memberName} = route?.params;
   return (
     <View>
       <View style={styles.thanksMessageView}>
@@ -27,7 +29,11 @@ const CheckInAppointments = () => {
         <Image source={PNG.THANK_DESIGN} style={styles.imageStyle} />
 
         <View style={styles.secondView}>
-          <Text style={styles.thankStyle}>{NAME}</Text>
+          <Text style={styles.thankStyle}>
+            {DEAR}
+            {memberName}
+            {COMMA}
+          </Text>
 
           <View style={styles.otpView}>
             <Text style={styles.otpDescriptionStyle}>{YOUR_PIN}</Text>

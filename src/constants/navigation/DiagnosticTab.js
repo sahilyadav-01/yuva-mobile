@@ -1,14 +1,11 @@
-
-
-
-import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Bookings from '../../modules/diagnostic/Booking';
 import MyPlan from '../../modules/diagnostic/MyPlans';
-import { styles } from '../../screens/styles';
-import { AVAILABLE, BOOKING, MYPLAN } from '../../styles/constants';
+import {styles} from '../../screens/styles';
+import {AVAILABLE, BOOKING, MYPLAN} from '../../styles/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -19,30 +16,25 @@ const DiagnosticsNavigation = () => {
     <Tab.Navigator
       style={styles.tabNavigation}
       screenOptions={{
-        tabBarLabelStyle:styles.tab,
-        tabBarStyle:styles.height,
+        tabBarLabelStyle: styles.tab,
+        tabBarStyle: styles.height,
         swipeEnabled: true,
-        lazy: false, 
+        lazy: false,
       }}>
       <Tab.Screen
         name={MYPLAN}
         component={MyPlan}
         options={{
-          tabBarLabel: () => (
-            <Text style={styles.textColor}>
-             {MYPLAN}
-            </Text>
-          ),
+          tabBarLabel: () => <Text style={styles.textColor}>{MYPLAN}</Text>,
         }}
       />
-      <Tab.Screen options={{
-        tabBarLabel: () => (
-          <Text style={styles.textColor}>
-            {BOOKING} 
-          </Text>
-        ),
-      }} name={BOOKING} component={Bookings} />
-
+      <Tab.Screen
+        options={{
+          tabBarLabel: () => <Text style={styles.textColor}>{BOOKING}</Text>,
+        }}
+        name={BOOKING}
+        component={Bookings}
+      />
     </Tab.Navigator>
   );
 };
