@@ -72,3 +72,6 @@ export const CHARCOAL= '#323232';
 export const LIGHT_PINK = '#E05E5E';
 export const TINTS_OF_SOLITUDE="#F2F4F8";
 export const SERENADE="#FAE8D6";
+export const SILVER = "#C7C7C7";
+export const ALTO = '#D0D0D0';
+export const GRAY = '#8C8C8C';
