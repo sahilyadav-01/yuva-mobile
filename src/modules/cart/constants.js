@@ -1,7 +1,6 @@
 export const CART_DETAILS = 'Cart Details';
 export const MY_CART = 'My Cart';
 export const PRICE_DETAILS = 'Price Details';
-export const CHECKOUT = 'Proceed to Checkout';
 export const SELECT_ADD_MEMBER = 'Select / Add Member';
 export const LOGIN_SIGNUP = 'Login/Signup';
 export const ADD_NEW_MEMBER = ' Add New Member';
@@ -16,3 +15,4 @@ export const MALE = 'Male';
 export const FEMALE = 'Female';
 export const KEY_VALUE1 = '1';
 export const KEY_VALUE2 = '2';
+export const TO_BE_PAID = (item) =>  `To Be Paid ₹ ${item} /-`;

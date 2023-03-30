@@ -86,6 +86,8 @@ const initialState = {
     amountToBePaid: 0,
     totalDiscount: 0,
     couponViewCart: null,
+    discountBeforeCoupon:0,
+    orderAmount:0,
   },
   loading: false,
   apiError: false,
@@ -131,6 +133,8 @@ const cartSlice = createSlice({
       state.loading= false;
       state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
       state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
+      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart = {
@@ -171,6 +175,8 @@ const cartSlice = createSlice({
       state.loading= false;
       state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
       state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
+      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart = {

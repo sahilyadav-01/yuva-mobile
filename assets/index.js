@@ -107,6 +107,11 @@ import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
 import SeeYouSoon from './comingSoon';
+import OurPlanDoctors from './OurPlanDoctors';
+import OPDIcon from './OPDIcon';
+import HraSvg from './HraSvg';
+import TalkToDoctorSvg from './talkToDoctorSvg';
+import CheckUpIcon from './CheckUpIcon';
 
 const PNG = {
   AMICO,
@@ -221,6 +226,11 @@ const SVG = {
   PaymentFailure,
   EditPen: EditPen,
   SeeYouSoon: SeeYouSoon,
+  OurPlanDoctors,
+  OPDIcon,
+  HraSvg,
+  TalkToDoctorSvg,
+  CheckUpIcon
 };
 
 export {PNG, SVG};

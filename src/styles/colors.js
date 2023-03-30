@@ -74,3 +74,6 @@ export const TINTS_OF_SOLITUDE = '#F2F4F8';
 export const SERENADE = '#FAE8D6';
 export const LIGHT_WHITE = '#F4F4F4';
 export const LIGHT_ASH = '#E7EBEE';
+export const SILVER = "#C7C7C7";
+export const ALTO = '#D0D0D0';
+export const GRAY = '#8C8C8C';

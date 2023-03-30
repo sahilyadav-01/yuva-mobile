@@ -4,7 +4,7 @@ import {
   createCartGuestThunk,
   createCartUserThunk,
 } from '../../../store/reducers/CartSlice';
-import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, CHECKOUT, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
+import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
 import { profileThunk } from '../../../store/reducers/ProfileSlice';
@@ -17,7 +17,7 @@ export const useCart = (args) => {
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved } = cart || {};
+  const { isRemoved, amountToBePaid} = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
@@ -33,8 +33,7 @@ export const useCart = (args) => {
   const [userData, setUserData] = useState(null);
   const focused = useIsFocused();
   const { userDetails, relations } = useSelector(state => state.profile);
-
-  const buttonText = userData !== null ? CHECKOUT : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
+  const buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   const relationsData = [
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
