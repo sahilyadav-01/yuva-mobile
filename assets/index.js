@@ -106,6 +106,7 @@ import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
+import SeeYouSoon from './comingSoon';
 
 const PNG = {
   AMICO,
@@ -218,7 +219,8 @@ const SVG = {
   Bookings,
   PaymentSuccess,
   PaymentFailure,
-  EditPen:EditPen,
+  EditPen: EditPen,
+  SeeYouSoon: SeeYouSoon,
 };
 
 export {PNG, SVG};
