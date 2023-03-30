@@ -106,6 +106,7 @@ import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
+import SeeYouSoon from './comingSoon';
 import OurPlanDoctors from './OurPlanDoctors';
 import OPDIcon from './OPDIcon';
 import HraSvg from './HraSvg';
@@ -223,7 +224,8 @@ const SVG = {
   Bookings,
   PaymentSuccess,
   PaymentFailure,
-  EditPen:EditPen,
+  EditPen: EditPen,
+  SeeYouSoon: SeeYouSoon,
   OurPlanDoctors,
   OPDIcon,
   HraSvg,
