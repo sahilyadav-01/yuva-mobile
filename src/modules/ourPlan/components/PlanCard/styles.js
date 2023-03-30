@@ -88,7 +88,6 @@ export const styles = StyleSheet.create({
     color: '#949494',
   },
   bottomView: {
-    //flex: 1,
     flexDirection: ROW,
     justifyContent: FLEX_END,
   },
