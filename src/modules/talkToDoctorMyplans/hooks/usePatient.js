@@ -21,8 +21,8 @@ export const usePatient = () => {
   }, [services]);
 
   const navigation = useNavigation();
-  const onConsult = () => {
-    navigation.navigate('HealthScreen');
+  const onConsult = (data) => {
+    navigation.navigate('HealthScreen',{data:data,isScreen:"talkToDoctor"});
   };
 
   const onDownload = (path) => {
