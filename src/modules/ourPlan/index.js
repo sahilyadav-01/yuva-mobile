@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, FlatList} from 'react-native';
-import { getDimensions } from '../../utils/utils';
 import PlanCard from './components/PlanCard';
 import { OUR_PLANS, SUB_HEADING, VIEW_ALL } from './constant';
 import { useOurPlan } from './hooks/useOurPlan';
@@ -15,8 +14,7 @@ const OurPlan = (props) => {
     popularPlan,
     activeIndex,
   } = useOurPlan();
-  const { width } = getDimensions();
-
+  
   const renderItem = ({item, index}) => {
     return(
       <PlanCard item={item} isHomeScreen={isHomeScreen} key={index}/>
@@ -52,7 +50,6 @@ const OurPlan = (props) => {
         renderItem={renderItem}
         contentContainerStyle={styles.cardView}
         snapToAlignment={'center'}
-        snapToInterval={0.84* width}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
