@@ -27,10 +27,16 @@ export const styles = () => {
       paddingVertical: 8,
     },
     priceText: {
-      fontSize: 12,
-      lineHeight: 18,
+      fontSize: 14,
+      lineHeight: 21,
       color: CYAN_BLUE,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.rubik500,
+    },
+    gstText:{
+      fontSize: 10,
+      lineHeight: 15,
+      color: CYAN_BLUE,
+      fontFamily: fonts.family.rubik500,
     },
     titleView: {
       flex: 1,
