@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { PNG } from '../../../../../assets';
+import { PNG, SVG } from '../../../../../assets';
+import { ALTO, CYAN_BLUE, GREY, WHITE } from '../../../../styles/colors';
 import { BUY_NOW, FOR_MORE, RUPEE_SYMOL } from '../../constant';
 import { usePlanCard } from './hooks/usePlanCard';
 import { styles } from './styles';
@@ -10,6 +11,11 @@ const PlanCard = (props) => {
   const {item, isHomeScreen} = props;
   const { onDetailsScreen, priceObj, planService } = usePlanCard(item);
   const {name} = item || {};
+  const RenderedIcon = ({index,colorProp}) => {
+    const Icons = [{index:0,icon:()=><SVG.OPDIcon color={colorProp}/>},{index:1,icon:()=><SVG.CheckUpIcon color={colorProp}/>},{index:2,icon:()=><SVG.HraSvg color={colorProp}/>},{index:3,icon:()=><SVG.TalkToDoctorSvg color={colorProp}/>}]
+    const renderIcon = Icons.find((item,i)=>{if(i===index) return item}).icon();
+    return renderIcon;
+  }
   if(!item) {
     return null;
   }
@@ -17,18 +23,18 @@ const PlanCard = (props) => {
   const renderItem = ({item: serviceItem, index}) => {
     const { serviceName, shortDescription, image, available } = serviceItem || {};
     return (
-      <View style={{...styles.itemContainer,maxWidth:'40%',marginRight:index%2===0? 36 : undefined}} key={index}>
-        <View>
-          <Image source={image} style={styles.iconStyle}/>
+      <View style={{...styles.itemContainer,marginRight:index%2===0? 36 : 28}} key={index}>
+        <View style={{...styles.iconContainer,backgroundColor:available ? CYAN_BLUE : ALTO}}>
+          <RenderedIcon index={index} colorProp={available ? WHITE : GREY}/>
         </View>
         <View style={styles.detailsView}>
-          <Text numberOfLines={1} style={[styles.serviceNameText, !available && styles.notAvailable]}>{serviceName}</Text>
-          <Text numberOfLines={2} style={[styles.serviceDetailsText, !available && styles.notAvailable]}>{shortDescription}</Text>
+          <Text style={[styles.serviceNameText, !available && styles.notAvailable]}>{serviceName}</Text>
+          <View style={styles.detailsSeparator}/>
+          <Text style={[styles.serviceDetailsText, !available && styles.notAvailable]}>{shortDescription}</Text>
         </View>
       </View>
     );
   }
-
   return (
     <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
       <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
@@ -44,32 +50,30 @@ const PlanCard = (props) => {
             numColumns={2}
             contentContainerStyle={styles.serviceContainer}
           />
-          <View style={styles.bottomView}>
-            <View style={styles.priceView}>
-              <View style={styles.priceContainer}>
-                <View style={styles.valueContainer}>
-                  <Text style={styles.discountpriceText}>{RUPEE_SYMOL} {priceObj?.value} {'/-'}</Text>
-                  <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.finalPrice} {'/-'}</Text>
-                </View>
-                <Text style={styles.durationText}>{priceObj?.duration}</Text>
-              </View>
-              { isHomeScreen &&
-                <View style={styles.footerView}>
-                  <View style={styles.buyNowView}>
+          <View style={styles.footerContainer}/>
+          {isHomeScreen && <View style={styles.bottomView}>
+            <View style={styles.bottomContainer}>
+              <View style={styles.descriptionContainer}>
+                <View style={styles.descriptionInitialContainer}>
+           <Text style={styles.planDescriptionInitial}>As low as</Text>
+           </View>
+           <Text style={styles.priceText}>{RUPEE_SYMOL} {priceObj?.finalPrice} {'/'}month</Text>
+           </View>
+              <View style={styles.spaceContainer}>
+              <View style={[styles.buyNowView]}>
                     <Text style={styles.buyNowText}>
                       {BUY_NOW}
                     </Text>
                   </View>
-                  <View style={styles.moreView}>
-                    <Text style={styles.moreText}>{FOR_MORE}</Text>
-                  </View>
-                </View>
-              }
+              <View style={styles.moreTextContainer}>
+              <Text style={styles.moreText}>{FOR_MORE}</Text>
+              </View>
+              </View>
             </View>
             <View style={styles.popularPlanImageContainer}>
-              <Image source={PNG.POPULAR_PLAN} style={styles.imageDetails}/>
+              <SVG.OurPlanDoctors/>
             </View>
-          </View>
+          </View>}
         </View>
     </TouchableOpacity>
   );
