@@ -3,6 +3,9 @@ export const GET_EXPERT_GUIDANCE = "Get expert guidance from a Health Advisor - 
 export const ENTER_PHONE_NUMBER = "Enter Mobile Number";
 export const SPEAK_TO = "Speak To Our Advisor";
 export const FREQUENT_ASKED_QUES = "FREQUENTLY ASKED QUESTIONS";
+export const PLEASE_ENTER_CORRECT_NUMBER="Please enter correct number";
+export const WE_WILL_CONTACT="soon we will be contacting you...!!!";
+export const THANKS_FOR_CONTACTING="Thanks for contacting us";
 export const FAQ_QUESTIONS = [{Headers:"What is Yuva Health Plans?",details:[{details:"Yuva Health is a health  care membership  Plan for your full family. It offers OPD doctor consultations (Inclinic ), Full body health checkup  and chat with doctor along with other services on Yuva Health platform for 12 whole months for your full family of 4 members."}]},
     {Headers:"What is an OPD doctor consultation?",details:[{details:"An OPD (Outpatient Department) doctor consultation is a visit to a doctor's clinic for the treatment of an illness or a medical condition that does not require an overnight stay at a hospital."}]},
     {Headers:"What is an Inclinic consultation?",details:[{details:"An Inclinic consultation is a type of OPD consultation where you can visit the doctor at their clinic or hospital for a face-to-face consultation."}]},

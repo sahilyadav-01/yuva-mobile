@@ -53,7 +53,18 @@ export const planDetailsThunk = createAsyncThunk(
     }
   }
 )
-
+export const requestCallThunk = createAsyncThunk(
+  'plan/call',
+  async ({number}, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/call?number=${number}`;
+      const response = await YuvaService.post(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
 const initialState = {
   loading: false,
   apiError: false,
@@ -62,6 +73,7 @@ const initialState = {
   popularPackageName: null,
   popularPlan: [],
   planDetails:'',
+  requestCall:'',
 }
 
 const programAndPlanSlice = createSlice({
@@ -72,7 +84,8 @@ const programAndPlanSlice = createSlice({
       state.popularPackageName = action?.payload?.data;
     },
     resetPackages(state) {
-      state.popularPackageName = null
+      state.popularPackageName = null;
+      state.requestCall=null;
     },
     setIndex(state,{payload}){
       state.mainItem=payload;
@@ -121,6 +134,16 @@ const programAndPlanSlice = createSlice({
       state.loading = false;
     },
     [planDetailsThunk.rejected]: (state, {payload}) => {
+      state.loading = false;
+    },
+    [requestCallThunk.pending] : (state, {payload}) => {
+      state.loading = true;
+    },
+    [requestCallThunk.fulfilled]: (state, {payload}) => {
+      state.requestCall =payload;
+      state.loading = false;
+    },
+    [requestCallThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
   },
