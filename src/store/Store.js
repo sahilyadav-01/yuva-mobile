@@ -28,6 +28,7 @@ import cart, { cartInit } from './reducers/CartSlice';
 import downloadReport,{downloadInit} from './reducers/DownloadReportSlice';
 import payment,{paymentInit} from './reducers/PaymentSlice';
 import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
+import purchases, { purchasesInit } from './reducers/PurchasesSlice';
 const storeInitialState = {
   auth: authInit,
   section1: section1Init,
@@ -53,7 +54,8 @@ const storeInitialState = {
   cart: cartInit,
   downloadReport:downloadInit,
   paymentInit,
-  checkOut:checkOutInit ,
+  checkOut:checkOutInit,
+  purchasesInit
 };
 
 const appReducer = combineReducers({
@@ -82,6 +84,7 @@ const appReducer = combineReducers({
   downloadReport,
   payment,
   checkOut,
+  purchases
 });
 
 const rootReducer = (state, action) => {

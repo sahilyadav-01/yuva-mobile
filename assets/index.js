@@ -113,6 +113,7 @@ import OPDIcon from './OPDIcon';
 import HraSvg from './HraSvg';
 import TalkToDoctorSvg from './talkToDoctorSvg';
 import CheckUpIcon from './CheckUpIcon';
+import ExpandArrow from './ExpandArrow';
 
 const PNG = {
   AMICO,
@@ -232,7 +233,8 @@ const SVG = {
   OPDIcon,
   HraSvg,
   TalkToDoctorSvg,
-  CheckUpIcon
+  CheckUpIcon,
+  ExpandArrow
 };
 
 export {PNG, SVG};

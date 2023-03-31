@@ -1,15 +1,17 @@
 import React from 'react';
-
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Header from '../components/Header';
 import {CYAN_BLUE, ORANGE} from '../styles/colors';
 import {SafeAreaView, Text, View} from 'react-native';
 import { fonts } from '../styles/fonts';
 import MyPlanPurchases from '../screens/MyPlanPurchases';
+import { useDispatch } from 'react-redux';
+import { toggleTab } from '../store/reducers/PurchasesSlice';
 
 const Tab = createMaterialTopTabNavigator();
 
 const PurchaseNav = () => {
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={{flex:1}}>
       <Header title={'Purchase History'} showBackButton={true} />
@@ -27,14 +29,16 @@ const PurchaseNav = () => {
         <Tab.Screen
           name={'Subscription History'}
           component={MyPlanPurchases}
+          listeners={{tabPress:(e)=>{
+            e.preventDefault();
+            dispatch(toggleTab(0))}}}
         />
         <Tab.Screen
           name={'Purchase History'}
-          component={() => (
-            <View>
-              <Text>Purchase</Text>
-            </View>
-          )}
+          component={MyPlanPurchases}
+          listeners={{tabPress:(e)=>{
+            e.preventDefault();
+            dispatch(toggleTab(1))}}}
         />
       </Tab.Navigator>
     </SafeAreaView>
