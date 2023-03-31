@@ -1,24 +1,27 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { profileThunk } from "../../../store/reducers/ProfileSlice";
 import { addRequestThunk, clearRequest } from "../../../store/reducers/TalkToDoctorSlice";
 import { CHAT_SCREEN, HEALTH_LIST } from "../constant";
 
 export const useHealth = (route) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  const {isRequested} = useSelector(state => state.talkToDoctor);
+  const { userDetails } = useSelector(state => state.profile);
+  const {isRequested,programData} = useSelector(state => state.talkToDoctor);
   const [selected, setSelected] = useState();
   const [description, setDescription] = useState('');
-const {relationId,userId}=route?.params;
+const {relationId,userId,data:relativeId}=route?.params;
   useEffect(() => {
     if(isRequested) {
       navigation.navigate(CHAT_SCREEN);
     }
     return () => dispatch(clearRequest());
   }, [isRequested]);
-
+  useEffect(() => {
+    dispatch(profileThunk());
+  }, [])
   const onChange = (text) => {
     setDescription(text);
   }
@@ -27,8 +30,12 @@ const {relationId,userId}=route?.params;
       const data = {
         description: description,
         healthConcern: HEALTH_LIST[selected]?.name || '',
-        id:userId,
-        relationId:relationId,
+        id:userId || userDetails?.id,
+        relationId:relationId || relativeId?.relativeId,
+        plan: programData?.plan || relativeId?.plan,
+        programOrPlanUuid:programData?.uuid  || relativeId?.programOrPlanUuid,
+        userPlanVersion: programData?.userVersion  || relativeId?.userPlanVersion,
+        version:programData?.version  || relativeId?.version,
       };
       dispatch(addRequestThunk({data}));
     };

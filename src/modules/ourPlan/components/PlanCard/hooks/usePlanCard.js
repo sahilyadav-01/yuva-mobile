@@ -31,18 +31,18 @@ export const usePlanCard = (item) => {
       (quarterlyPrice > 0) && comPrice.push(quarterlyPrice);
       (halfYearlyPrice > 0) && comPrice.push(halfYearlyPrice);
       (yearlyPrice > 0) && comPrice.push(yearlyPrice);
-      const min = Math.min(...comPrice);
+      const min = Math.max(...comPrice);
       let duration = '';
       let finalPrice = 0;
       if(min === quarterlyPrice) {
         duration = 'Quaterly';
-        finalPrice = item?.quarterlyFinalCost || 0;
+        finalPrice = Math.ceil(item?.quarterlyFinalCost/3) || 0;
       } else if(min === halfYearlyPrice) {
         duration = 'Half-Yearly';
-        finalPrice = item?.halfYearlyFinalCost || 0;
+        finalPrice = Math.ceil(item?.halfYearlyFinalCost/6) || 0;
       } else {
         duration = 'Yearly';
-        finalPrice = item?.yearlyFinalCost || 0;
+        finalPrice = Math.ceil(item?.yearlyFinalCost/12) || 0;
       }
       const price = {
         value: min,

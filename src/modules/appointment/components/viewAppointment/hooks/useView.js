@@ -41,7 +41,10 @@ export const useView = () => {
   };
 
   const checkIn = () => {
-    navigation.navigate('CheckInAppointment', {otp: otp});
+    navigation.navigate('CheckInAppointment', {
+      otp: otp,
+      memberName: memberName,
+    });
   };
   const cancelAppointment = () => {
     setCancelFlag(true);

@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {programAndPlanThunk} from '../../../store/reducers/ProgramAndPlanSlice';
-import {getAppointmentThunk} from '../../../store/reducers/TalkToDoctorSlice';
+import {getAppointmentThunk, programOrPlanData} from '../../../store/reducers/TalkToDoctorSlice';
 
 export const usePatient = () => {
   const dispatch = useDispatch();
@@ -21,14 +21,15 @@ export const usePatient = () => {
   }, [services]);
 
   const navigation = useNavigation();
-  const onConsult = () => {
-    navigation.navigate('HealthScreen');
+  const onConsult = (data) => {
+    navigation.navigate('HealthScreen',{data:data,isScreen:"talkToDoctor"});
   };
 
   const onDownload = (path) => {
     checkPermission(path, PRESCRIPTION);
   }
-  const onSelectMember=()=>{
+  const onSelectMember=(data)=>{
+    dispatch(programOrPlanData(data))
     navigation.navigate("MemberSelectScreen");
   }
   return {

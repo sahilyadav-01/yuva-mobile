@@ -86,13 +86,16 @@ const initialState = {
     amountToBePaid: 0,
     totalDiscount: 0,
     couponViewCart: null,
+    discountBeforeCoupon:0,
+    orderAmount:0,
   },
   loading: false,
   apiError: false,
   apiErrorMessage: '',
   existingIds: [],
   addToCartLoad: false,
-  termsAndCondtionChecked: false,
+  termsAndCondtionChecked:false,
+  cartCouponDiscount:0,
 };
 
 const cartSlice = createSlice({
@@ -129,6 +132,9 @@ const cartSlice = createSlice({
       state.apiErrorMessage= '';
       state.loading= false;
       state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
+      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
+      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
       state.cart = {
@@ -164,10 +170,13 @@ const cartSlice = createSlice({
           item => item.productId,
         );
       }
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.loading = false;
-      state.cart.couponViewCart = payload?.data?.data?.couponCode || null;
+      state.apiError= false;
+      state.apiErrorMessage= '';
+      state.loading= false;
+      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
+      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
+      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
     },
     [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart = {

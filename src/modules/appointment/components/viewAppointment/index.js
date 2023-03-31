@@ -13,7 +13,6 @@ import {useSelector} from 'react-redux';
 import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
-  AMBER,
   GREEN,
   LIGHT_PINK,
   ORANGE,
@@ -29,11 +28,10 @@ import {
   CONFIRMED,
   FINISHED,
   INITIATED,
-  NAME,
   OPD_DESCRIPTION,
-  RELATION,
   MYSELF,
   OPD_CONSULTATION,
+  CANCEL_MESSAGE,
 } from './constant';
 import {PNG} from '../../../../../assets';
 import {useRoute} from '@react-navigation/native';
@@ -50,9 +48,8 @@ const ViewAppointments = () => {
     relation,
     customId,
   } = useSelector(state => state.appointment.currentAppointment);
-  const cancelMessage = 'Are you sure you want to cancel ?';
+
   const {
-    goBack,
     editAppointment,
     checkIn,
     cancelAppointment,
@@ -214,7 +211,7 @@ const ViewAppointments = () => {
               head={MESSAGE}
               showDialog={cancelFlag}
               hideDialog={cancelAppointmentMessagBox}
-              message={cancelMessage}
+              message={CANCEL_MESSAGE}
             />
           </View>
         </View>

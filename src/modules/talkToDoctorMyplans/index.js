@@ -37,7 +37,7 @@ const MyPlans = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={onSelectMember}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={() => onSelectMember(item)}>
             <Text style={styles.textStyle}>{CHAT_NOW}</Text>
           </TouchableOpacity>
           </View>
