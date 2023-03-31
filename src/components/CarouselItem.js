@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import CardButton from './CardButton';
 import {getDimensions} from '../utils/utils';
 import {useNavigation} from '@react-navigation/native';
@@ -15,7 +15,7 @@ import {CYAN_BLUE} from '../styles/colors';
 import {styles} from './styles';
 
 const CarouselItem = props => {
-  const {item, index, totalItem} = props;
+  const {item, index, totalItem,isScreen} = props;
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -41,6 +41,8 @@ const CarouselItem = props => {
   };
 
   return (
+    <View>
+      {!isScreen=== "OurPlan" ?
     <TouchableOpacity onPress={viewAppointment}>
       <View
         style={[
@@ -76,7 +78,24 @@ const CarouselItem = props => {
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity>:
+    <View
+    style={[
+      styles.cartView,
+      {
+        marginLeft: index === 0 ? 0 : 10,
+        marginRight: index === totalItem - 1 ? 0 : 10,
+      },
+    ]}><View>
+           <Image
+           source={item?.Image}
+           style={styles.ImageCarousel}
+         />
+    </View>
+        <Text style={styles.OurplanText}>{item?.Text}</Text>
+  </View>
+  }
+    </View>
   );
 };
 

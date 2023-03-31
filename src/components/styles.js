@@ -646,6 +646,14 @@ export const styles = StyleSheet.create({
     width: width - 30,
     borderRadius: 6,
   },
+  cartView:{
+    shadowOpacity: 1,
+    shadowColor: BLACK,
+    minHeight: 117,
+    borderRadius: 6,
+    alignSelf:CENTER,
+    width:width-40,
+  },
   carDoctorNameText: {
     color: ORANGE,
     fontSize: fonts.size.fontSize14,
@@ -685,4 +693,16 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     flexDirection: ROW,
   },
+  OurplanText:{
+    width:"60%",
+    color: CYAN_BLUE,
+    marginVertical:15,
+    fontSize: fonts.size.fontSize15,
+    fontFamily: fonts.family.rubik400,
+    alignSelf:CENTER,
+  },
+  ImageCarousel:{
+    marginTop:15,
+    alignSelf:CENTER,
+  }
 });

@@ -77,5 +77,31 @@ headerView: {
   justifyContent: CENTER,
   paddingHorizontal: 15,
 },
-  
+PricePerMonth:{
+  marginTop:10,
+  alignSelf:CENTER,
+  fontFamily: fonts.family.rubik500,
+  fontSize: fonts.size.fontSize12,
+  color:CYAN_BLUE,
+},
+rupee:{
+  fontFamily: fonts.family.rubik600,
+  fontSize: fonts.size.fontSize16,
+},
+image:{
+  height:40,
+},
+carView: {
+  backgroundColor: WHITE,
+  shadowOpacity: 1,
+  shadowColor: BLACK,
+  minHeight: 117,
+  width: width - 30,
+  borderRadius: 6,
+},
+overallView: {
+  flex: 1,
+  marginTop: 15,
+  marginHorizontal: '4%',
+},
 });

@@ -112,6 +112,9 @@ import OPDIcon from './OPDIcon';
 import HraSvg from './HraSvg';
 import TalkToDoctorSvg from './talkToDoctorSvg';
 import CheckUpIcon from './CheckUpIcon';
+import AmbulanceImage from './ambulance';
+import InsuranceClaim from './insuranceClaim';
+import PharmacyDiscount from './PharmacyDiscount';
 
 const PNG = {
   AMICO,
@@ -230,7 +233,11 @@ const SVG = {
   OPDIcon,
   HraSvg,
   TalkToDoctorSvg,
-  CheckUpIcon
+  CheckUpIcon,
+  AmbulanceImage:AmbulanceImage,
+  InsuranceClaim:InsuranceClaim,
+  PharmacyDiscount:PharmacyDiscount,
+
 };
 
 export {PNG, SVG};
