@@ -8,7 +8,7 @@ export const styles = () => {
     itemContainer: {
       borderRadius: 6,
       paddingTop: 21,
-      borderWidth: 1,
+      borderWidth: 2,
       borderColor: 'rgba(0,0,0,0.05)',
       width: '100%',
     },

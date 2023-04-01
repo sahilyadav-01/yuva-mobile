@@ -19,7 +19,7 @@ const RenderPlans = ({item, index}) => {
     inputStyles,
     boxStyles,
     dropdownItemStyles,
-    dropdownContainer
+    dropdownContainer,
   } = styles();
 
   return (
@@ -30,21 +30,23 @@ const RenderPlans = ({item, index}) => {
         </View>
         {item?.serviceUuid === 'ee5413dd-eb09-4a99-92d0-a4fc6d92a5e9' ? (
           <View style={dropdownContainer}>
-          <SelectList
-            search={false}
-            setSelected={()=>{}}
-            data={getTests(item)}
-            defaultOption={getTests(item)[0]}
-            boxStyles={boxStyles}
-            inputStyles={inputStyles}
-            dropdownTextStyles={inputStyles}
-            dropdownItemStyles={dropdownItemStyles}
-          />
+            <SelectList
+              search={false}
+              setSelected={() => {}}
+              data={getTests(item)}
+              defaultOption={getTests(item)[0]}
+              boxStyles={boxStyles}
+              inputStyles={inputStyles}
+              dropdownTextStyles={inputStyles}
+              dropdownItemStyles={dropdownItemStyles}
+            />
           </View>
         ) : (
           <View>
             <Text style={serviceText}>{item?.serviceName}</Text>
-            <Text style={usageText}>{`Used -${getTests(item)[0]?.used} Available -${getTests(item)[0]?.available}`}</Text>
+            <Text style={usageText}>{`Used -${
+              getTests(item)[0]?.used
+            } Available -${getTests(item)[0]?.available}`}</Text>
           </View>
         )}
       </View>

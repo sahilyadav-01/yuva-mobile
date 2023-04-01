@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE} from '../../../../styles/colors';
+import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE, CATSKILL_WHITE_2} from '../../../../styles/colors';
 import {SPACE_BETWEEN, CENTER, ROW, LINE_THROUGH} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -76,11 +76,11 @@ export const styles = () => {
       color: CYAN_BLUE,
     },
     priceBreakupText: {
-      marginBottom: 12,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
       lineHeight: 12,
       color: CYAN_BLUE,
+      marginBottom:8,
     },
     planDetailsContainer: {
       flexDirection: ROW,
@@ -155,6 +155,11 @@ export const styles = () => {
     arrowContainer: {
       paddingHorizontal: 6,
       paddingVertical:8
-    }
+    },
+    couponText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize10,lineHeight:15,color:CYAN_BLUE},
+    couponDescription: {fontFamily:fonts.family.rubik400,fontSize:fonts.size.fontSize10,lineHeight:15,color:CYAN_BLUE},
+    couponContainer: {borderRadius:12,backgroundColor:CATSKILL_WHITE_2,paddingVertical:10,paddingLeft:16},
+    priceBreakUpContainer: {marginBottom:12},
+    listExpandContainer: {marginVertical: 20}
   });
 };

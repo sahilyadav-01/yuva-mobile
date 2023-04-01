@@ -79,4 +79,5 @@ export const ALTO = '#D0D0D0';
 export const GRAY = '#8C8C8C';
 export const MEDIUM_CARMINE = '#AD343E';
 export const GALLERY = '#EAEAEA';
-export const BOSTON_BLUE = '#388BB9'
+export const BOSTON_BLUE = '#388BB9';
+export const CATSKILL_WHITE_2 = '#EFF4F8';
