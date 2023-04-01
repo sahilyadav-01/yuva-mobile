@@ -77,4 +77,6 @@ export const LIGHT_ASH = '#E7EBEE';
 export const SILVER = "#C7C7C7";
 export const ALTO = '#D0D0D0';
 export const GRAY = '#8C8C8C';
-export const MEDIUM_CARMINE = '##AD343E'
+export const MEDIUM_CARMINE = '#AD343E';
+export const GALLERY = '#EAEAEA';
+export const BOSTON_BLUE = '#388BB9'

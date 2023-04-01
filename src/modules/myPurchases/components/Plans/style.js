@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, WHITE} from '../../../../styles/colors';
+import {CYAN_BLUE, GALLERY, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -42,5 +42,21 @@ export const styles = () => {
       lineHeight: 18,
       color: WHITE,
     },
+    inputStyles: {
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+      lineHeight: 18,
+      color: CYAN_BLUE,
+    },
+    boxStyles: {
+      paddingVertical: 4,
+      paddingLeft: 12,
+      borderRadius: 4,
+      borderColor: GALLERY,
+      borderWidth: 2,
+      alignItems: CENTER,
+    },
+    dropdownItemStyles: {paddingLeft: 12, paddingVertical: 0},
+    dropdownContainer: {flex:1,marginBottom:16,marginHorizontal:10}
   });
 };

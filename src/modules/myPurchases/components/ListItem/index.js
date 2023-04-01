@@ -5,10 +5,10 @@ import {PNG, SVG} from '../../../../../assets';
 import RenderPlans from '../Plans';
 import { useItem } from './hooks/useItem';
 import {styles} from './style';
+import { getDateInFormat, getTimeInFormat } from '../../../../utils/utils';
 
 const ListItem = ({renderList,item,index}) => {
-
-  const {expanded,onArrowPress} = useItem();
+  const {expanded,onArrowPress,priceBreakUpArray} = useItem(item);
   const {
     listContainer,
     topSectionContainer,
@@ -38,24 +38,25 @@ const ListItem = ({renderList,item,index}) => {
     rowView,
     regularPriceText,
     separator,
-    discountPrice
+    discountPrice,
+    arrowContainer
   } = styles();
 
   const renderPlans = ({item, index}) => {
-    return <RenderPlans />;
+    return <RenderPlans item={item} index={index} />;
   };
   return (
     <ScrollView>
       <View style={listContainer}>
         <View style={topSectionContainer}>
           <Text numberOfLines={1} style={orderText}>
-            ORDER NUMBER - 455-3999999-676756789
+            ORDER NUMBER - {item?.orderNumber}
           </Text>
           <View style={rowContainer}>
             <Image source={PNG.DATE} resizeMode="contain" style={imageStyle} />
             <View style={{marginLeft: 2}}>
-              <Text style={dateText}>26th May</Text>
-              <Text style={timeText}>11:20</Text>
+              <Text style={dateText}>{getDateInFormat(new Date(item.dateOfPurchase),'dd/mm/yyyy')}</Text>
+              <Text style={timeText}>{getTimeInFormat(new Date(item.dateOfPurchase),'hh:mm ')}</Text>
             </View>
           </View>
         </View>
@@ -66,7 +67,7 @@ const ListItem = ({renderList,item,index}) => {
             </View>
             <Text style={bookingText}>Booking Confirmed</Text>
           </View>
-          <TouchableOpacity onPress={onArrowPress}>
+          <TouchableOpacity style={arrowContainer} onPress={onArrowPress}>
           <SVG.ExpandArrow expanded={expanded} />
           </TouchableOpacity>
         </View>
@@ -75,7 +76,7 @@ const ListItem = ({renderList,item,index}) => {
             {renderList && (
               <View style={{marginVertical: 20}}>
                 <FlatList
-                  data={[0, 0]}
+                  data={item?.planServiceDtoList}
                   keyExtractor={index => index}
                   renderItem={renderPlans}
                   ItemSeparatorComponent={() => <View style={{height: 24}} />}
@@ -84,28 +85,28 @@ const ListItem = ({renderList,item,index}) => {
             )}
             <View style={purchaseContainer}>
               <Text style={purchaseText}>Purchased By</Text>
-              <Text style={personText}>Nishanth Mund</Text>
+              <Text style={personText}>{item?.customerName}</Text>
             </View>
             <View>
               <Text style={orderDetailsText}>Order Details</Text>
               <Text style={priceBreakupText}>{`(Price break up)`}</Text>
-              { [0,0,0].map(()=>{return (
+              { priceBreakUpArray.map((item)=>{return (
                 <View style={planDetailsContainer}>
-                <Text style={planText}>Silver Yuva Health Plan</Text>
+                <Text style={planText}>{item?.name}</Text>
                 <View style={rowView}>
-                {false && <Text style={[amountText,regularPriceText]}>₹5999.00</Text>}
-                <Text style={amountText}>₹5999.00</Text>
+                {item?.discount && <Text style={[amountText,regularPriceText]}>{`₹${Math.ceil(item?.totalAmount)}/-`}</Text>}
+                <Text style={amountText}>{`₹${Math.ceil(item?.amountPaid)}/-`}</Text>
                 </View>
               </View>
               )})}
               <View style={separator}/>
               <View style={amountDetailsContainer}>
                 <Text style={totalAmountText}>Discount</Text>
-                <Text style={discountPrice}>2500</Text>
+                <Text style={discountPrice}>{`₹${Math.ceil(item?.totalAmount - item?.amountPaid + item?.couponDiscount)}/-`}</Text>
               </View>
               <View style={amountDetailsContainer}>
                 <Text style={totalAmountText}>Total Amount</Text>
-                <Text style={priceText}>2500</Text>
+                <Text style={priceText}>{`₹${Math.ceil(item?.amountPaid - item?.couponDiscount)}/-`}</Text>
               </View>
               <Text style={reorderText}>Reorder</Text>
               <View style={summaryContainer}>

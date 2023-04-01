@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN} from '../../../../styles/colors';
+import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE} from '../../../../styles/colors';
 import {SPACE_BETWEEN, CENTER, ROW, LINE_THROUGH} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -137,10 +137,10 @@ export const styles = () => {
       color: CYAN_BLUE,
     },
     invoiceText: {
-        fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
-      color: CYAN_BLUE,
+      color: BOSTON_BLUE,
     },
     regularPriceText: {textDecorationLine: LINE_THROUGH,marginRight:4,color:MEDIUM_CARMINE},
     rowView: {flexDirection:ROW},
@@ -152,5 +152,9 @@ export const styles = () => {
         lineHeight: 21,
         color: GREEN,
       },
+    arrowContainer: {
+      paddingHorizontal: 6,
+      paddingVertical:8
+    }
   });
 };
