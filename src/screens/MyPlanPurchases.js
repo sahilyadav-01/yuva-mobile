@@ -6,7 +6,7 @@ import {styles} from './styles'
 const MyPlanPurchases = (props) => {
     return (
         <View style={styles.homeScreenContainer}>
-           <MyPurchases/>
+           <MyPurchases plan={props?.route?.params?.plan}/>
         </View>
     );
 }

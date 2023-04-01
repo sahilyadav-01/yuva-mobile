@@ -4,8 +4,8 @@ import ListItem from './components/ListItem';
 import { usePurchase } from './hooks/usePurchase';
 import {styles} from './style';
 
-const MyPurchases = () => {
-  const {tabIndex,planList} = usePurchase();
+const MyPurchases = ({plan}) => {
+  const {tabIndex,planList, onEndReached} = usePurchase(plan);
   const {container, separatorStyle} = styles();
   const renderItem = ({item, index}) => {
     return <ListItem item={item} index={index} renderList={tabIndex === 0}/>;
@@ -18,10 +18,11 @@ const MyPurchases = () => {
   return (
     <View style={container}>
       <FlatList
-        data={planList.userPlanOrderHistoryResponseDtoList}
+        data={planList}
         keyExtractor={index => index}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={onEndReached}
       />
     </View>
   );

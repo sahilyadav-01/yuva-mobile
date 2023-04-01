@@ -29,12 +29,14 @@ const PurchaseNav = () => {
         <Tab.Screen
           name={'Subscription History'}
           component={MyPlanPurchases}
+          initialParams={{plan:true}}
           listeners={{tabPress:(e)=>{
             dispatch(toggleTab(0))}}}
         />
         <Tab.Screen
           name={'Purchase History'}
           component={MyPlanPurchases}
+          initialParams={{plan:false}}
           listeners={{tabPress:(e)=>{
             dispatch(toggleTab(1))}}}
         />
