@@ -8,14 +8,14 @@ import Icon from 'react-native-vector-icons/Feather';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { redeemCouponsSliceThunk, removeCoupon } from '../../store/reducers/CouponSlice';
-import { getCartGuestThunk, getCartUserThunk, removeCouponCart } from '../../store/reducers/CartSlice';
+import { removeCouponCart } from '../../store/reducers/CartSlice';
 
 const PriceDetails = props => {
-  const { heading, totalCost, totalDiscount, amountToBePaid, coupon } = props;
+  const { heading, totalCost, coupon } = props;
   const { cart } = useSelector(state => state.cart);
   const { couponViewCart, itemDtoList, cartCouponDiscount, orderAmount, discountBeforeCoupon } = cart || {};
   const { detailsContainer, headingText, priceContainer, priceText, titleView, priceView, appliedStyle, couponContainer, descStyle, crossStyle, iconStyle, couponDiscountStyle, gstText } = styles();
-  const { couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount } = coupon;
+  const { couponView, couponDiscount } = coupon;
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -25,11 +25,6 @@ const PriceDetails = props => {
     dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
     dispatch(removeCoupon());
     dispatch(removeCouponCart());
-    if (isLoggedIn) {
-      dispatch(getCartUserThunk());
-    } else {
-      dispatch(getCartGuestThunk());
-    }
   }
   return (
     <View style={detailsContainer}>

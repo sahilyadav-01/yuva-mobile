@@ -1,6 +1,8 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedPlaneCouponCode } from "../../../../../store/reducers/CouponSlice";
+import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
 
@@ -9,7 +11,8 @@ export const useCheckout = () => {
     const route = useRoute();
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const { mainItem } = useSelector(state => state.programAndPlan);
+    const { mainItem,planPrice } = useSelector(state => state.programAndPlan);
+    const planName = mainItem.name;
     const { address,
         pincode,
         contact,
@@ -58,9 +61,9 @@ export const useCheckout = () => {
         }
         else onPayPress();
     }
-    const crossAction = () => {
-        dispatch(selectedPlaneCouponCode({couponCode:null}));
-      }
+      useEffect(()=> {
+        dispatch(planAmountThunk({planUuid: mainItem?.planUuid}))
+      }, []);
     return {
         address,
         pincode,
@@ -75,6 +78,7 @@ export const useCheckout = () => {
         price: Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice),
         planUuid: mainItem?.planUuid,
         plans,
-        crossAction,
+        planName,
+        planPrice,
     }
 }

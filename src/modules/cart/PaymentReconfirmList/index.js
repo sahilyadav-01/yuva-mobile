@@ -18,9 +18,8 @@ const PaymentReconfirmList = props => {
   const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
   const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
   const { cart } = useSelector(state => state.cart);
-  const { amountToBePaid, itemDtoList, totalCost, totalDiscount, couponViewCart } = cart || {};
+  const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
   const { coupon } = useSelector(state => state.coupon);
-  const { appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount } = coupon || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const PaymentReconfirmList = props => {
           <Text style={styles.timeSlotStyle}>{renderTime}</Text>
         </View>
         <View style={styles.PriceDetails}>
-          <CheckoutPriceDetails isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount }} />
+          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount }} />
         </View>
 
         <TouchableOpacity onPress={onPayPress} style={styles.touchableButton}>

@@ -15,16 +15,14 @@ import {
   COUPON_CODE,
 } from './constant';
 import { GREEN, SLATE_BLUE, WHITE } from '../../styles/colors';
-import { redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon, selectedPlaneCouponCode } from '../../store/reducers/CouponSlice';
+import { redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } from '../../store/reducers/CouponSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
 
 const CouponCard = (props) => {
-  const { isPlane, planeType, planUuid } = props;
-  const {
-    couponName, setCouponName, coupon, couponView, onApply, onCouponValue
-  } = useCouponCard(isPlane, planeType, planUuid);
+  const { isPlan, planType ,planUuid } = props;
+  const { couponName, setCouponName, coupon, couponView, onApply, onCouponValue } = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -33,9 +31,8 @@ const CouponCard = (props) => {
       let couponCode = item.couponCode
       dispatch(selectedCoupon({ couponCode }));
       setCouponName(item.couponName);
-      if (isPlane) {
-        dispatch(selectedPlaneCouponCode({ couponCode: couponCode }));
-        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planeType, planUuid }));
+      if (isPlan) {
+        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
       } else {
         dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
       }

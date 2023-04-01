@@ -41,6 +41,7 @@ export const useCart = (args) => {
   /** */
   const onPressCardButton = () => {
     if (isLoggedIn) {
+      dispatch(getCartUserThunk());
       if (userData == null) {
         openModal();
       } else {
@@ -51,7 +52,6 @@ export const useCart = (args) => {
       navigation.navigate(LOGIN_SCREEN_NAVIGATION);
     }
   };
-
   const onSaveDetailsPress = (arg) => {
     setUserData({
       name: arg.name,

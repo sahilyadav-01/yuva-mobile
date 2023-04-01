@@ -5,13 +5,9 @@ import CheckoutPriceDetails from '../../../../components/CheckoutPriceDetails'
 import CouponCard from '../../../../components/CouponCard'
 import Header from '../../../../components/Header'
 import ProgressBar from '../../../../components/ProgressBar'
-import { CHECKOUT, RUPEE, TO_BE_PAID } from './constants'
 import { useCheckout } from './hooks/useCheckout'
-import Icon from 'react-native-vector-icons/Feather';
-import Icons from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles'
-import { WHITE } from '../../../../styles/colors'
-import { DISCOUNT_PRICE } from './constant'
+import { CHECKOUT, PLAN_TYPE, RUPEE, TO_BE_PAID } from './constants'
 
 const CheckoutOurPlan = () => {
     const { address,
@@ -22,14 +18,13 @@ const CheckoutOurPlan = () => {
         quarterlyPrice,
         halfYearlyPrice,
         termsAndCondtionChecked,
-        price,
         onCheckout,
         plans,
         planUuid,
-        crossAction } = useCheckout();
-    const planeType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
-    const { planTotalAmount, planDiscount, planFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
-    console.log('planeCouponDetials', planTotalAmount, planDiscount, planFinalAmount, planeCouponCode);
+        planName,
+        planPrice } = useCheckout();
+    const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
+    const { planCouponDiscount, planCouponAmountToBePaid } = useSelector(state => state.coupon);
     return (
         <View>
             <Header showBackButton={true} title={CHECKOUT} />
@@ -47,36 +42,20 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
+                <View><Text style={styles.planName}>{planName + PLAN_TYPE(planType)}</Text></View>
+                
+                <CheckoutPriceDetails isplan={{planUuid}}/>
 
-                {planeCouponCode && <View style={[styles.couponContainer, { backgroundColor: WHITE }]}>
-                    <View style={styles.descStyle}>
-                        <View >
-                            <Icons name="local-offer" size={15} style={styles.iconStyle} />
-                        </View>
-                        <View>
-                            <Text style={styles.appliedStyle}>{planeCouponCode ?? ''}</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity onPress={crossAction}>
-                                <Icon name="x" size={11} style={styles.crossStyle} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View>
-                         <Text style={styles.couponDiscountStyle}>{DISCOUNT_PRICE(planeCouponCode?planDiscount:0)}</Text> 
-                    </View>
-                </View>}
-                <CheckoutPriceDetails planeCouponCode={planeCouponCode} price={price} planTotalAmount={planTotalAmount} planDiscount={planDiscount} planFinalAmount={planFinalAmount} isPrice={{ yearlyPrice, quarterlyPrice, halfYearlyPrice } } />
                 <View>
                     <TouchableOpacity
                         onPress={onCheckout}
                         style={styles.touchableButton}>
                         <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {planeCouponCode?planFinalAmount:price}/-
+                            {TO_BE_PAID} {RUPEE} {planCouponDiscount?planCouponAmountToBePaid:planPrice}/-
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <CouponCard isPlane={true} planeType={planeType} planUuid={planUuid} />
+                <CouponCard isPlan={true} planType={planType} planUuid={planUuid} />
             </ScrollView>
         </View>
     )

@@ -4,10 +4,10 @@ import { YuvaService } from '../../network/yuvaService';
 
 export const couponSliceThunk = createAsyncThunk(
   '/coupon/getAllCoupons/user',
-  async ({ pageNo, pageSize, isLoggedIn, isPlane, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo, pageSize, isLoggedIn, isPlan, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
     let endpoint;
     const sessionId = await getDeviceId();
-    if (isPlane) {
+    if (isPlan) {
       if (isLoggedIn) {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
       }
@@ -61,9 +61,9 @@ export const redeemCouponsSliceThunk = createAsyncThunk(
 );
 export const redeemCouponsPlanSliceThunk = createAsyncThunk(
   '/coupon/plan',
-  async ({couponCode, planeType, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async ({couponCode, planUuid }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/coupon/plan?couponCode=${couponCode}&planType=${planeType}&planUuid=${planUuid}`;
+      const endpoint = `/plan/amount?couponCode=${couponCode}&planUuid=${planUuid}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -105,7 +105,7 @@ const couponSlice = createSlice({
       state.selectedCouponCode = payload.payload.couponCode;
     },
     selectedPlaneCouponCode(state, payload) {
-      state.planeCouponCode = payload?.payload?.couponCode;
+      state.planDiscount = payload?.payload?.couponCode;
     },
   },
   extraReducers: {
