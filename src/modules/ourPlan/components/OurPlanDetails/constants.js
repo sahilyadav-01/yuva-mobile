@@ -1,7 +1,5 @@
-import Group9158 from "../../../../../assets/Group9158.png"
-import Group9159 from "../../../../../assets/Group9159.png"
-import Group9160 from "../../../../../assets/Group9160.png"
-import React from "react";
+
+import { PNG } from "../../../../../assets";
 
 export const OURPLAN_DETAILS = "Plan Details";
 export const OUR_PLANS = "Our Plans";
@@ -22,7 +20,7 @@ export const termsAndCondition = ["Any plan can be cancelled within 7 days subje
     "Health checkup booking will only be scheduled 24 hours before the booking time."]
 export const LOGIN_SCREEN = 'LoginScreen';
 export const Carouselt=[
-    {Text:"Ambulance Service An event upto ₹ 5000/-",Image:Group9158},
-    {Text:"Insurance claims advisory service 4 Claims in a year.",Image:Group9159},
-    {Text:"Pharmacy Discount 10% Discount on every purchase.",Image:Group9160}
+    {Text:"Ambulance Service An event upto ₹ 5000/-",Image:PNG.ambulance},
+    {Text:"Insurance claims advisory service 4 Claims in a year.",Image:PNG.PharmacyDiscount},
+    {Text:"Pharmacy Discount 10% Discount on every purchase.",Image:PNG.insuranceClaim}
 ]

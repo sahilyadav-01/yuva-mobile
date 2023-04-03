@@ -120,5 +120,11 @@ includes:{
 },
 PlanText:{
   flexDirection:ROW,
-}
+},
+  ImageStyle
+    : {
+      width: 6,
+    height: 6,
+    alignSelf: CENTER
+  }
 });

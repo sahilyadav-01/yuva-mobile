@@ -1,12 +1,12 @@
 
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList, Image } from "react-native";
 import OurPlan from "../..";
 import Header from "../../../../components/Header";
 import { OURPLAN_DETAILS, PLAN_DETAILS, TERMS_AND_CONDITION, termsAndCondition, BUY_NOW, Carouselt, PLAN, INCLUDES } from "./constants";
 import { useOurPlanDetails } from "./hooks/useOurPlanDetails";
 import { styles } from "./styles";
-import { SVG } from "../../../../../assets";
+import { PNG } from "../../../../../assets";
 import { RUPEE_SYMOL } from "../../constant";
 import CarouselItem from '../../../../components/CarouselItem';
 import CarouselContainer from '../../../../components/CarouselContainer';
@@ -16,7 +16,7 @@ const OurPlanDetails = () => {
         return (
             <View key={index}>
                 <View style={styles.starIcon}>
-                    <SVG.StarIcon />
+                    <Image style={styles.ImageStyle}source={PNG.dot} />
                     <Text style={styles.details}> {item}</Text>
                 </View>
             </View>
