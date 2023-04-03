@@ -18,7 +18,7 @@ export const useBookingConfirm = () => {
     const [city, setCity] = useState(null);
     const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { selectedCityId } = useSelector(state => state.diagnostic);
-    const { relationId, userAddress, selectedAddress } = useSelector(state => state.profile);
+    const { relationId, userAddress, selectedAddress,addressListing } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
@@ -138,5 +138,6 @@ export const useBookingConfirm = () => {
         bookTestScreen,
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
+        addressListing
     }
 }

@@ -10,7 +10,7 @@ export const useCartAddressList = () => {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const navigation = useNavigation();
-  const { selectedAddress } = useSelector(state => state.profile);
+  const { selectedAddress,addressListing} = useSelector(state => state.profile);
   const currentDate = new Date();
   const twoHoursCheck = new Date(currentDate.getTime() + 2 * 60 * 60 * 1000);
 
@@ -52,5 +52,6 @@ export const useCartAddressList = () => {
     handleTime,
     date,
     time,
+    addressListing
   };
 };

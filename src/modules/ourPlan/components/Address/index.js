@@ -9,7 +9,7 @@ import AddressList from "../../../../components/Address";
 import ProgressBar from "../../../../components/ProgressBar";
 
 const OurPlanAddress = () => {
-    const { AddressAdded } = useOurPlanAddress();
+    const { AddressAdded,addressListing } = useOurPlanAddress();
 
     return (
         <View>
@@ -19,6 +19,8 @@ const OurPlanAddress = () => {
                     <ProgressBar progress={0} />
                 </View>
                 <AddressList isNavScreen={OUR_PLAN_ADDRESS}/>
+                <View>
+                {addressListing?.length>0 &&
                 <TouchableOpacity
                     onPress={AddressAdded}
                     style={styles.touchableButton}>
@@ -26,6 +28,8 @@ const OurPlanAddress = () => {
                         {CONFIRM_DETAILS}
                     </Text>
                 </TouchableOpacity>
+            } 
+            </View>
             </ScrollView>
         </View>
     )

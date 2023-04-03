@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserAddress, saveCheckedAddress } from "../../store/reducers/ProfileSlice";
+import { AddressListing, getUserAddress, saveCheckedAddress } from "../../store/reducers/ProfileSlice";
 import { NEW_ADDRESS } from "../constants";
 
 
@@ -57,7 +57,9 @@ export const useOurAddress = (isNavScreen) => {
       setUserAddressListing(userAddress);
     }
   }, [userAddress, userNewAddress]);
-
+  useEffect(() => {
+    dispatch(AddressListing(userAddressListing))
+  }, [userAddressListing])
   return {
     userAddress,
     setChecked,
