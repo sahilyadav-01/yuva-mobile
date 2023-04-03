@@ -3,7 +3,7 @@ import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import OurPlan from "../..";
 import Header from "../../../../components/Header";
-import { OURPLAN_DETAILS, PLAN_DETAILS, TERMS_AND_CONDITION, termsAndCondition, BUY_NOW, Carouselt } from "./constants";
+import { OURPLAN_DETAILS, PLAN_DETAILS, TERMS_AND_CONDITION, termsAndCondition, BUY_NOW, Carouselt, PLAN, INCLUDES } from "./constants";
 import { useOurPlanDetails } from "./hooks/useOurPlanDetails";
 import { styles } from "./styles";
 import { SVG } from "../../../../../assets";
@@ -30,6 +30,10 @@ const OurPlanDetails = () => {
                 <View style={styles.planDetailsCard}>
                     <View style={styles.headerView}>
                         <Text style={styles.planDetails}>{PLAN_DETAILS}</Text>
+                    </View>
+                    <View style={styles.PlanText}>
+                        <Text style={styles.planAlso}>{PLAN}</Text>
+                        <Text style={styles.includes}>{INCLUDES}</Text>
                     </View>
                     <View>
                         <CarouselContainer

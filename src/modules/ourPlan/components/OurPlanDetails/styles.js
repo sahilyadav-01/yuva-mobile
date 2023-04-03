@@ -104,4 +104,21 @@ overallView: {
   marginTop: 15,
   marginHorizontal: '4%',
 },
+planAlso:{
+  fontFamily: fonts.family.rubik400,
+  fontSize: fonts.size.fontSize20,
+  marginTop:30,
+  color: ORANGE,
+  marginLeft:16,
+},
+includes:{
+  fontFamily: fonts.family.rubik500,
+  fontSize: fonts.size.fontSize20,
+  color: ORANGE,
+  marginTop:30,
+  marginLeft:6,
+},
+PlanText:{
+  flexDirection:ROW,
+}
 });

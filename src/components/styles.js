@@ -702,7 +702,9 @@ export const styles = StyleSheet.create({
     alignSelf:CENTER,
   },
   ImageCarousel:{
-    marginTop:15,
     alignSelf:CENTER,
+    width:300,
+    minHeight:104,
+    borderRadius:6,
   }
 });
