@@ -52,6 +52,7 @@ export const useCheckout = () => {
             number,
             planTypeEnum,
             planUuid: mainItem?.planUuid,
+            couponName:planeCouponCode ?? undefined,
         }
         const paymentProps = { plan: true, bookingRequestDto, subscriptionRequestDto }
         navigation.navigate('Payment', { screen: 'PaymentScreen', params: { paymentProps } })
