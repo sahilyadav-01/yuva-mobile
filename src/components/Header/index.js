@@ -31,19 +31,6 @@ const Header = (props) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.topSection}>
-        <View style={styles.pinView}>
-          <SVG.LocationOn fill={CYAN_BLUE}/>
-          <SelectList 
-            data={cityList}
-            defaultOption={cityList[0]}
-            search={false}
-            setSelected={setSelected}
-            boxStyles={styles.boxStyle}
-            inputStyles={styles.inputStyles}
-            dropdownStyles={styles.dropdownStyles}
-            dropdownTextStyles={styles.inputStyles}
-          />
-        </View>
         <View style={styles.rightView}>
           <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
             { showCount && 
