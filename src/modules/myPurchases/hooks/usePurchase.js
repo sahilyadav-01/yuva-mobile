@@ -96,7 +96,7 @@ export const usePurchase = plan => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
       setPlansPageNo(plansPageNo + 1);
     } else if (purchasesTab === 1 && purchasesPageNo < purchases?.totalPages) {
-      setPlansPageNo(purchasesPageNo + 1);
+      setPurchasesPageNo(purchasesPageNo + 1);
     }
   };
 

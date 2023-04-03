@@ -34,13 +34,13 @@ export const useItem = item => {
           discount: item?.totalAmount !== item?.amountPaid,
         },
       ]
-    : purchasesItemDetails[`${item.orderNumber}`]?.itemDetails.map(item => {
+    : expanded ? purchasesItemDetails[`${item.orderNumber}`]?.itemDetails.map(item => {
         return {
           name: item?.itemName,
           totalAmount: item?.itemCost,
           amountPaid: item?.itemDiscountedCost,
           discount: item?.itemCost !== item?.itemDiscountedCost,
         };
-      });
+      }) : null;
   return {expanded, onArrowPress, priceBreakUpArray};
 };
