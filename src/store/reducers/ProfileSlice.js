@@ -118,6 +118,7 @@ const initialState = {
   enableAddMember: null,
   profileUpdated: false,
   selectedAddress:null,
+  addressListing:null,
 };
 
 const profileSlice = createSlice({
@@ -133,7 +134,10 @@ const profileSlice = createSlice({
     },
     resetAddress(state){
       state.selectedAddress=null;
-    }
+    },
+    AddressListing(state,{payload}){
+      state.addressListing=payload;
+    },
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -264,6 +268,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const {updateProfileStatus,saveCheckedAddress} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

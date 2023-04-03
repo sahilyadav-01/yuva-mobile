@@ -23,6 +23,7 @@ const BookingConfirm = () => {
         bookTestScreen,
         bookedDetails,
         rescheduleBooking,
+        addressListing
     } = useBookingConfirm();
 
     if (userAddress) {
@@ -98,7 +99,7 @@ const BookingConfirm = () => {
                         <AddressList isNavScreen={BOOKINGCONFIRM}/>
                     </View>
                     <View>
-                        {!bookedDetails ? (
+                        {!bookedDetails || addressListing?.length>0 ? (
                             <TouchableOpacity
                                 onPress={bookTestScreen}
                                 style={styles.touchableButton}>
