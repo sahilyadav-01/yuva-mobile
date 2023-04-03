@@ -4,9 +4,10 @@ import _ from 'lodash';
 import { getPlans } from "../../../store/reducers/PurchasesSlice";
 
 export const usePurchase = (plan) => {
-    const {purchasesTab,plans} = useSelector(state => state.purchases);
+    const {purchasesTab,plans,plansError} = useSelector(state => state.purchases);
     const [planList, setPlanList] = useState([]);
-    const [plansPageNo,setPlansPageNo] = useState(1)
+    const [plansPageNo,setPlansPageNo] = useState(1);
+    const [loading,setLoading] = useState(true);
     const dispatch = useDispatch();
     useEffect(()=>{
         if(purchasesTab === 0 && plansPageNo === 1 && plan){
@@ -23,9 +24,16 @@ export const usePurchase = (plan) => {
 
     useEffect(()=>{
         if(plans && typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' && plans?.userPlanOrderHistoryResponseDtoList.length > 0){
-            setPlanList(_.uniqBy(planList.concat(plans.userPlanOrderHistoryResponseDtoList),'dateOfPurchase'))
+            setPlanList(_.uniqBy(planList.concat(plans.userPlanOrderHistoryResponseDtoList),'dateOfPurchase'));
+            setLoading(false);
         }
-    },[plans])
+        else if(plans && typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' && plans?.userPlanOrderHistoryResponseDtoList.length === 0){
+            setLoading(false);
+        }
+        else if(plans === null && plansError){
+            setLoading(false);
+        }
+    },[plans,plansError])
 
     const onEndReached = () => {
         if(purchasesTab === 0 && plansPageNo < plans?.totalPages){
@@ -33,5 +41,5 @@ export const usePurchase = (plan) => {
         }
     } 
 
-    return {tabIndex:purchasesTab,planList, onEndReached};
+    return {tabIndex:purchasesTab,planList, onEndReached, loading, plansError};
 }
