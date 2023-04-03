@@ -22,7 +22,7 @@ const MyPurchases = ({plan}) => {
     );
   }
 
-  if(plansError) {
+  if(plansError && planList.length === 0) {
     return (
       <View style={emptyContainer}>
         <Text style={emptyText}>Error fetching plans</Text>

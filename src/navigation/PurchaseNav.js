@@ -14,7 +14,7 @@ const PurchaseNav = () => {
   const dispatch = useDispatch();
   return (
     <SafeAreaView style={{flex:1}}>
-      <Header title={'Purchase History'} showBackButton={true} />
+      <Header title={'Purchase History'} showBackButton={true} hideMenu={true}/>
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: {fontSize: 14, fontFamily:fonts.family.rubik600, lineHeight:21, color:CYAN_BLUE},

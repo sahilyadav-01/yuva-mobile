@@ -18,7 +18,6 @@ export const usePurchase = (plan) => {
     useEffect(()=>{
         if(plansPageNo > 1 && purchasesTab === 0){
             dispatch(getPlans({pageNo:plansPageNo,pageSize:3,orderStatus:''}))
-            console.log('Call api',plansPageNo,purchasesTab)
         }
     },[plansPageNo])
 
