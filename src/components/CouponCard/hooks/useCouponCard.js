@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
-import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedPlaneCouponCode } from '../../../store/reducers/CouponSlice';
+import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk } from '../../../store/reducers/CouponSlice';
 
-export const useCouponCard = (isPlane ,planeType,planUuid) => {
+export const useCouponCard = (isPlan ,planUuid,planType) => {
     const [couponCode, setCouponCode] = useState('');
     const dispatch = useDispatch();
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
-    const { coupon, couponView } = useSelector(state => state.coupon);
+    const { coupon, couponView, planeCouponCode } = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
     const onCouponValue = (value) => {
 
@@ -16,9 +16,8 @@ export const useCouponCard = (isPlane ,planeType,planUuid) => {
     }
     const [couponName, setCouponName] = useState('');
     const onApply = () => {
-        if (isPlane) {
-            dispatch(selectedPlaneCouponCode({ couponCode: couponCode }));
-            dispatch(redeemCouponsPlanSliceThunk({ couponCode, planeType, planUuid }));
+        if (isPlan) {
+            dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
           } else {
             dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
           }
@@ -29,9 +28,9 @@ export const useCouponCard = (isPlane ,planeType,planUuid) => {
           }
     }
     useEffect(() => {
-        if(isPlane){
+        if(isPlan){
             if (isLoggedIn) {
-                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlane, planTypeEnum:planeType, planUuid }));
+                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlan, planTypeEnum:planType, planUuid }));
             }
             else {
                 dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));
@@ -54,5 +53,6 @@ export const useCouponCard = (isPlane ,planeType,planUuid) => {
         onApply,
         onCouponValue,
         cart,
+        planeCouponCode,
     };
 }
