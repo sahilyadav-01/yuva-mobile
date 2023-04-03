@@ -77,9 +77,7 @@ const initialState = {
   planAmountToBePaid: null,
   planCostAfterDiscount: null,
   planDiscountBeforeCoupon: null,
-  planDiscountForCoupon: null,
   planPrice: null,
-  planTotalDiscount: null,
 }
 
 const programAndPlanSlice = createSlice({
@@ -148,9 +146,7 @@ const programAndPlanSlice = createSlice({
       state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
       state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
       state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
-      state.planDiscountForCoupon = payload?.data.planAmountResponse.ANNUALLY.discountForCoupon;
       state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
-      state.planTotalDiscount = payload?.data.planAmountResponse.ANNUALLY.totalDiscount;
       state.loading = false;
     },
     [planAmountThunk.rejected]: (state, { payload }) => {

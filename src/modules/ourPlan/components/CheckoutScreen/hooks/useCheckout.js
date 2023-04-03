@@ -1,7 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedPlaneCouponCode } from "../../../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
@@ -11,7 +10,9 @@ export const useCheckout = () => {
     const route = useRoute();
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const { mainItem,planPrice } = useSelector(state => state.programAndPlan);
+    const { mainItem,planPrice,planAmountToBePaid} = useSelector(state => state.programAndPlan);
+    const { planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
+
     const planName = mainItem.name;
     const { address,
         pincode,
@@ -80,5 +81,8 @@ export const useCheckout = () => {
         plans,
         planName,
         planPrice,
+        planAmountToBePaid,
+        planeCouponCode,
+        planCouponFinalAmount,
     }
 }

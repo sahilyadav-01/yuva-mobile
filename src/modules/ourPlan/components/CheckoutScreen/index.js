@@ -22,7 +22,9 @@ const CheckoutOurPlan = () => {
         plans,
         planUuid,
         planName,
-        planPrice } = useCheckout();
+        planAmountToBePaid,
+        planeCouponCode,
+        planCouponFinalAmount } = useCheckout();
     const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
     const { planCouponDiscount, planCouponAmountToBePaid } = useSelector(state => state.coupon);
     return (
@@ -50,8 +52,8 @@ const CheckoutOurPlan = () => {
                     <TouchableOpacity
                         onPress={onCheckout}
                         style={styles.touchableButton}>
-                        <Text style={styles.tobePaid}>
-                            {TO_BE_PAID} {RUPEE} {planCouponDiscount?planCouponAmountToBePaid:planPrice}/-
+                        <Text style={styles.tobePaid}> 
+                            {TO_BE_PAID} {RUPEE} {planeCouponCode?planCouponFinalAmount:planAmountToBePaid}/-
                         </Text>
                     </TouchableOpacity>
                 </View>

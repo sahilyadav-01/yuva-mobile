@@ -8,12 +8,12 @@ export const useCheckoutPriceDetails = (isPrice) => {
     const dispatch = useDispatch();
     const { amountToBePaid, totalCost, totalDiscount, Quantity } = isPrice?.isPrice || {};
     const [checked, setChecked] = useState(false);
-    const { planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planDiscountForCoupon, planPrice, planTotalDiscount, mainItem } = useSelector(state => state.programAndPlan);
+    const { planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planDiscountForCoupon, planPrice, mainItem } = useSelector(state => state.programAndPlan);
     const crossAction = () => {
         dispatch(selectedPlaneCouponCode({ couponCode: null }));
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
     }
-    const { planCouponDiscount, planCouponAmountToBePaid, planDiscount } = useSelector(state => state.coupon);
+    const { planCouponDiscount, planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     useEffect(() => {
         dispatch(setTermsAndCondtionChecked(checked));
     }, [checked])
@@ -30,10 +30,9 @@ export const useCheckoutPriceDetails = (isPrice) => {
         planDiscountBeforeCoupon,
         planDiscountForCoupon,
         planPrice,
-        planTotalDiscount,
         planCouponDiscount,
-        planCouponAmountToBePaid,
-        planDiscount,
+        planCouponFinalAmount,
         crossAction,
+        planeCouponCode,
     }
 }

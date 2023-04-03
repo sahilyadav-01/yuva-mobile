@@ -85,9 +85,8 @@ const initialState = {
   couponMessage: false,
   selectedCouponCode: '',
   couponDiscount: 0,
-  planTotalAmount:null,
-  planDiscount:null,
-  planFinalAmount:null,
+  planCouponDiscount:null,
+  planCouponFinalAmount:null,
   planeCouponCode:null,
 }
 
@@ -105,7 +104,7 @@ const couponSlice = createSlice({
       state.selectedCouponCode = payload.payload.couponCode;
     },
     selectedPlaneCouponCode(state, payload) {
-      state.planDiscount = payload?.payload?.couponCode;
+      state.planeCouponCode = payload?.payload?.couponCode;
     },
   },
   extraReducers: {
@@ -167,9 +166,9 @@ const couponSlice = createSlice({
     [redeemCouponsPlanSliceThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.apiErrorMessage = '';
-      state.planTotalAmount = action?.payload?.data?.totalAmount || 0;
-      state.planDiscount = action?.payload?.data?.discount || 0;
-      state.planFinalAmount = action?.payload?.data?.finalAmount || 0;
+      state.planCouponDiscount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.discountForCoupon;
+      state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.amountToBePaid;
+      state.planeCouponCode = action?.payload?.data?.couponCode;
     },
     [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {
       state.loading = false;
