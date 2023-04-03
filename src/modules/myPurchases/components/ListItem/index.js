@@ -76,7 +76,9 @@ const ListItem = ({renderList, item, index}) => {
             </View>
             <Text style={bookingText}>Booking Confirmed</Text>
           </View>
-          <TouchableOpacity style={arrowContainer} onPress={onArrowPress}>
+          <TouchableOpacity
+            style={arrowContainer}
+            onPress={() => onArrowPress(item?.orderNumber)}>
             <SVG.ExpandArrow expanded={expanded} />
           </TouchableOpacity>
         </View>
@@ -109,10 +111,9 @@ const ListItem = ({renderList, item, index}) => {
                         Coupon Applied Successfully
                       </Text>
                     </Text>
-                    <Text
-                      style={
-                        couponDescription
-                      }>{`₹${item?.couponDiscount} discount applied to your order.`}</Text>
+                    <Text style={couponDescription}>{`₹${
+                      item?.couponDiscount ?? item?.couponAmount ?? ''
+                    } discount applied to your order.`}</Text>
                   </View>
                 )}
               </View>
@@ -135,16 +136,18 @@ const ListItem = ({renderList, item, index}) => {
                 );
               })}
               <View style={separator} />
-              <View style={amountDetailsContainer}>
-                <Text style={totalAmountText}>Discount</Text>
-                <Text style={discountPrice}>{`₹${Math.ceil(
-                  item?.totalAmount - item?.amountPaid + item?.couponDiscount,
-                )}/-`}</Text>
-              </View>
+              {!expanded && (
+                <View style={amountDetailsContainer}>
+                  <Text style={totalAmountText}>Discount</Text>
+                  <Text style={discountPrice}>{`₹${Math.ceil(
+                    item?.discount,
+                  )}/-`}</Text>
+                </View>
+              )}
               <View style={amountDetailsContainer}>
                 <Text style={totalAmountText}>Total Amount</Text>
                 <Text style={priceText}>{`₹${Math.ceil(
-                  item?.amountPaid - item?.couponDiscount,
+                  item?.amountPaid,
                 )}/-`}</Text>
               </View>
               <Text style={reorderText}>Reorder</Text>
