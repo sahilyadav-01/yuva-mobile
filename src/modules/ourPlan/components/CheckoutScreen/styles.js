@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLUE_GRAY, BOX_SHADOW, CHARCOAL, CYAN_BLUE, DARK_GRAY, DEEP_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
+import { BOX_SHADOW, CYAN_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
 import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts'
 
@@ -26,12 +26,12 @@ export const styles = StyleSheet.create({
         color: V_LIGHT_GREY,
 
     },
-    circles:{
+    circles: {
         minWidth: 12,
         minHeight: 12,
         borderRadius: 15,
         borderWidth: 1.2,
-        borderColor:GREEN,
+        borderColor: GREEN,
     },
     tickMark: {
         color: GREEN,
@@ -65,7 +65,14 @@ export const styles = StyleSheet.create({
         dropShadow: BOX_SHADOW,
         elevation: 5,
         shadowColor: VERY_LIGHT_GREY,
-
+    },
+    planName: {
+        marginTop: 39,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+        marginHorizontal: 26,
+        lineHeight: 21,
+        color:CYAN_BLUE,
     },
     checkboxAddress: {
         alignItems: FLEX_END,
@@ -220,43 +227,4 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
     },
-    couponContainer: {
-        flexDirection: ROW,
-        justifyContent: SPACE_BETWEEN,
-        padding: 5,
-        marginVertical:25,
-        marginHorizontal:16
-      },
-      crossStyle: {
-        color: DARK_GRAY,
-        fontFamily: fonts.family.rubik600,
-        fontSize: fonts.size.fontSize16,
-      },
-      iconStyle: {
-        color: CHARCOAL,
-      },
-      appliedStyle: {
-        color: DEEP_BLUE,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize16,
-      },
-      descStyle: {
-        height: 36,
-        width: '60%',
-        borderRadius: 5,
-        paddingLeft: 16,
-        paddingRight: 12,
-        justifyContent: SPACE_BETWEEN,
-        alignItems: CENTER,
-        flexDirection: ROW,
-        backgroundColor: BLUE_GRAY,
-      },
-      couponDiscountStyle: {
-        height: 36,
-        color:GREEN,
-        paddingVertical:10,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize14,
-        paddingHorizontal:5,
-      },
 })

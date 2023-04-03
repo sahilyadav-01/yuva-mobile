@@ -4,10 +4,10 @@ import { YuvaService } from '../../network/yuvaService';
 
 export const couponSliceThunk = createAsyncThunk(
   '/coupon/getAllCoupons/user',
-  async ({ pageNo, pageSize, isLoggedIn, isPlane, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo, pageSize, isLoggedIn, isPlan, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
     let endpoint;
     const sessionId = await getDeviceId();
-    if (isPlane) {
+    if (isPlan) {
       if (isLoggedIn) {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
       }
@@ -61,9 +61,9 @@ export const redeemCouponsSliceThunk = createAsyncThunk(
 );
 export const redeemCouponsPlanSliceThunk = createAsyncThunk(
   '/coupon/plan',
-  async ({couponCode, planeType, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async ({couponCode, planUuid }, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/coupon/plan?couponCode=${couponCode}&planType=${planeType}&planUuid=${planUuid}`;
+      const endpoint = `/plan/amount?couponCode=${couponCode}&planUuid=${planUuid}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -85,9 +85,8 @@ const initialState = {
   couponMessage: false,
   selectedCouponCode: '',
   couponDiscount: 0,
-  planTotalAmount:null,
-  planDiscount:null,
-  planFinalAmount:null,
+  planCouponDiscount:null,
+  planCouponFinalAmount:null,
   planeCouponCode:null,
 }
 
@@ -167,9 +166,9 @@ const couponSlice = createSlice({
     [redeemCouponsPlanSliceThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.apiErrorMessage = '';
-      state.planTotalAmount = action?.payload?.data?.totalAmount || 0;
-      state.planDiscount = action?.payload?.data?.discount || 0;
-      state.planFinalAmount = action?.payload?.data?.finalAmount || 0;
+      state.planCouponDiscount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.discountForCoupon;
+      state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.amountToBePaid;
+      state.planeCouponCode = action?.payload?.data?.couponCode;
     },
     [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {
       state.loading = false;
