@@ -14,7 +14,6 @@ const ListItem = ({renderList, item, index}) => {
     priceBreakUpArray,
     purchasesTab,
   } = useItem(item);
-  console.log('PBA',priceBreakUpArray)
   const {
     listContainer,
     topSectionContainer,
