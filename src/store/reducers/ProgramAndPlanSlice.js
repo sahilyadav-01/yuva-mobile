@@ -149,8 +149,9 @@ const programAndPlanSlice = createSlice({
     [planDetailsThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
-    [planDetailsThunk.fulfilled]: (state, { payload }) => {
-      state.planDetails = payload.data?.filter(item => { if (item !== null) return item });
+    [planDetailsThunk.fulfilled]: (state, {payload}) => {
+      state.planDetails = payload.data?.filter(item=>{
+        if(item !== null && item !== "null") return item});
       state.loading = false;
     },
     [planDetailsThunk.rejected]: (state, { payload }) => {

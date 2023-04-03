@@ -19,7 +19,7 @@ export const useChangePassword = () => {
 
   useEffect(() => {
     if (!changePasswordLoading && changePasswordSuccess && enableNavigation) {
-      if (from === 'Profile') navigation.navigate('Home');
+      if (from !== 'Home') navigation.navigate('Home');
       else navigation.navigate('HomeService');
     }
   }, [changePasswordLoading, enableNavigation, from]);
