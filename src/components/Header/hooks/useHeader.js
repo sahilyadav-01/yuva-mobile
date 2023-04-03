@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton, onSearch } = props;
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu } = props;
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -64,5 +64,6 @@ export const useHeader = (props) => {
     title,
     showCount,
     count,
+    hideMenu: hideMenu ?? false,
   };
 }

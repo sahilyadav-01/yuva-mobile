@@ -1,4 +1,4 @@
-import { View, Text, ScrollView ,FlatList} from 'react-native';
+import { View, FlatList} from 'react-native';
 import React from 'react';
 import ReportCard from '../../ReportCard';
 import { styles } from './styles';
@@ -13,15 +13,13 @@ const MyPrescription = () => {
   const {myPrescriptionReport}=useMyPrescription();
 
   return (
-    <View>
-       <Header title={MY_PRESCRIPTIONS} showBackButton={true} />
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+    <View style={styles.contentContainerStyle}>
+       <Header title={MY_PRESCRIPTIONS} showBackButton={true} hideMenu={true}/>
         <FlatList
           data={myPrescriptionReport}
           keyExtractor={index => `${index}`}
           renderItem={renderItem}
         />
-      </ScrollView>
     </View>
   );
 };

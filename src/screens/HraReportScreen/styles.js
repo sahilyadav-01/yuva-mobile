@@ -4,8 +4,8 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
 
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 300,
+        flex: 1,
+        paddingBottom: 12,
     },
 
 });
