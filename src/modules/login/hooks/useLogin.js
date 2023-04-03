@@ -69,7 +69,7 @@ export const useLogin = () => {
     } else {
       if (loggedIn == 'loggedIn' && status) {
         dispatch(profileThunk());
-        if (from !== 'Home') navigation.navigate('Home');
+        if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
         else navigation.navigate('HomeService');
       }
     }
