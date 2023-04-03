@@ -8,7 +8,13 @@ import {styles} from './style';
 import {getDateInFormat, getTimeInFormat} from '../../../../utils/utils';
 
 const ListItem = ({renderList, item, index}) => {
-  const {expanded, onArrowPress, priceBreakUpArray} = useItem(item);
+  const {
+    expanded,
+    onArrowPress,
+    priceBreakUpArray,
+    purchasesTab,
+  } = useItem(item);
+  console.log('PBA',priceBreakUpArray)
   const {
     listContainer,
     topSectionContainer,
@@ -102,7 +108,7 @@ const ListItem = ({renderList, item, index}) => {
               <Text style={orderDetailsText}>Order Details</Text>
               <View style={priceBreakupContainer}>
                 <Text style={priceBreakupText}>{`(Price break up)`}</Text>
-                {item?.couponName && (
+                {purchasesTab === 0 && item?.couponName && (
                   <View style={couponContainer}>
                     <Text style={couponText}>
                       {item?.couponName}
@@ -111,9 +117,25 @@ const ListItem = ({renderList, item, index}) => {
                         Coupon Applied Successfully
                       </Text>
                     </Text>
-                    <Text style={couponDescription}>{`₹${
-                      item?.couponDiscount ?? item?.couponAmount ?? ''
-                    } discount applied to your order.`}</Text>
+                    <Text
+                      style={
+                        couponDescription
+                      }>{`₹${item?.couponDiscount} discount applied to your order.`}</Text>
+                  </View>
+                )}
+                {purchasesTab === 1 && priceBreakUpArray[0]?.couponName && (
+                  <View style={couponContainer}>
+                    <Text style={couponText}>
+                      {priceBreakUpArray[0]?.couponName}
+                      <Text style={[couponDescription, {maxWidth: '50%'}]}>
+                        {' '}
+                        Coupon Applied Successfully
+                      </Text>
+                    </Text>
+                    <Text
+                      style={
+                        couponDescription
+                      }>{`₹${priceBreakUpArray[0]?.discount} discount applied to your order.`}</Text>
                   </View>
                 )}
               </View>
@@ -136,11 +158,11 @@ const ListItem = ({renderList, item, index}) => {
                 );
               })}
               <View style={separator} />
-              {!expanded && (
+              {purchasesTab === 1 && (
                 <View style={amountDetailsContainer}>
                   <Text style={totalAmountText}>Discount</Text>
                   <Text style={discountPrice}>{`₹${Math.ceil(
-                    item?.discount,
+                    priceBreakUpArray[0]?.totalDiscount
                   )}/-`}</Text>
                 </View>
               )}

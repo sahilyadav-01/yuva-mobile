@@ -34,13 +34,22 @@ export const useItem = item => {
           discount: item?.totalAmount !== item?.amountPaid,
         },
       ]
-    : expanded ? purchasesItemDetails[`${item.orderNumber}`]?.itemDetails.map(item => {
+    : expanded
+    ? purchasesItemDetails[`${item.orderNumber}`]?.itemDetails.map(i => {
         return {
-          name: item?.itemName,
-          totalAmount: item?.itemCost,
-          amountPaid: item?.itemDiscountedCost,
-          discount: item?.itemCost !== item?.itemDiscountedCost,
+          name: i?.itemName,
+          totalAmount: i?.itemCost,
+          amountPaid: i?.itemDiscountedCost,
+          discount: `${purchasesItemDetails[`${item.orderNumber}`]?.couponAmount}`,
+          couponName:purchasesItemDetails[`${item.orderNumber}`]?.couponName ?? null,
+          totalDiscount: `${purchasesItemDetails[`${item.orderNumber}`]?.discount}`
         };
-      }) : null;
-  return {expanded, onArrowPress, priceBreakUpArray};
+      })
+    : null;
+  return {
+    expanded,
+    onArrowPress,
+    priceBreakUpArray,
+    purchasesTab
+  };
 };
