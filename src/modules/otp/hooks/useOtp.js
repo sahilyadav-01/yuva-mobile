@@ -31,11 +31,11 @@ export const useOtp = () => {
 
   useEffect(() => {
     if (!signUpLoading && !apiError && otp) {
-      if (from === 'Profile') navigation.navigate('Home');
+      if (from !== 'Home') navigation.navigate('Home');
       else navigation.navigate('HomeService');
     }
     else if(!signUpLoading && loggedIn==='loggedIn' && status) {
-      if (from === 'Profile') navigation.navigate('Home');
+      if (from !== 'Home') navigation.navigate('Home');
       else navigation.navigate('HomeService');
     }
   }, [signUpLoading]);
