@@ -1,9 +1,14 @@
+
+import { PNG } from "../../../../../assets";
+
 export const OURPLAN_DETAILS = "Plan Details";
 export const OUR_PLANS = "Our Plans";
 export const PLAN_DETAILS = "Plan Details";
 export const TERMS_AND_CONDITION = "Terms & Conditions";
 export const BUY_NOW="Buy Now";
-export const ADDRESS="OurPlanAddress"
+export const ADDRESS="OurPlanAddress";
+export const PLAN="Plan also";
+export const INCLUDES="includes";
 export const termsAndCondition = ["Any plan can be cancelled within 7 days subject to a cancellation fee. The plan can only be cancelled if none of the service has been utilised by the customer.",
     "The plan is valid for family members ( Self, spouse, and children ).",
     "OPD consultation means treatment and examination from a network clinic and hospital. which do not require hospitalisation.",
@@ -14,3 +19,8 @@ export const termsAndCondition = ["Any plan can be cancelled within 7 days subje
     " Health risk assessment is a tool to assess current medical conditions and it is not a substitute for doctor consultation. ",
     "Health checkup booking will only be scheduled 24 hours before the booking time."]
 export const LOGIN_SCREEN = 'LoginScreen';
+export const Carouselt=[
+    {Text:"Ambulance Service An event upto ₹ 5000/-",Image:PNG.ambulance},
+    {Text:"Insurance claims advisory service 4 Claims in a year.",Image:PNG.PharmacyDiscount},
+    {Text:"Pharmacy Discount 10% Discount on every purchase.",Image:PNG.insuranceClaim}
+]
