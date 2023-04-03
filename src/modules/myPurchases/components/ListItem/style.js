@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE, CATSKILL_WHITE_2} from '../../../../styles/colors';
+import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE, CATSKILL_WHITE_2, BLACK_OPACITY} from '../../../../styles/colors';
 import {SPACE_BETWEEN, CENTER, ROW, LINE_THROUGH} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -47,7 +47,7 @@ export const styles = () => {
     iconContainer: {
       borderWidth: 1,
       borderRadius: 12,
-      borderColor: 'rgba(0,0,0,0.1)',
+      borderColor: BLACK_OPACITY,
       marginRight: 10,
     },
     bookingText: {
@@ -99,11 +99,11 @@ export const styles = () => {
       color: CYAN_BLUE,
     },
     reorderText: {
-      marginBottom: 26,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
-      color: CYAN_BLUE
+      color: CYAN_BLUE,
+      marginRight: 8
     },
     summaryContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
     personText: {
@@ -160,6 +160,9 @@ export const styles = () => {
     couponDescription: {fontFamily:fonts.family.rubik400,fontSize:fonts.size.fontSize10,lineHeight:15,color:CYAN_BLUE},
     couponContainer: {borderRadius:12,backgroundColor:CATSKILL_WHITE_2,paddingVertical:10,paddingLeft:16},
     priceBreakUpContainer: {marginBottom:12},
-    listExpandContainer: {marginVertical: 20}
+    listExpandContainer: {marginVertical: 20},
+    itemSeparatorStyle: {height: 24},
+    reorderContainer: {alignItems:CENTER, marginBottom: 26},
+    dateTimeContainer: {marginLeft: 2}
   });
 };

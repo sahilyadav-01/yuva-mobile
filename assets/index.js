@@ -118,6 +118,7 @@ import ambulance from './ambulance.png';
 import insuranceClaim from './insuranceClaim.png'
 import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
+import Reorder from './Reorder';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -241,8 +242,8 @@ const SVG = {
   HraSvg,
   TalkToDoctorSvg,
   CheckUpIcon,
-  ExpandArrow
-
+  ExpandArrow,
+  Reorder
 };
 
 export {PNG, SVG};

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, GALLERY, WHITE} from '../../../../styles/colors';
+import {BLACK_LIGHT_OPACITY, CYAN_BLUE, GALLERY, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -9,7 +9,7 @@ export const styles = () => {
       borderRadius: 6,
       paddingTop: 21,
       borderWidth: 2,
-      borderColor: 'rgba(0,0,0,0.05)',
+      borderColor: BLACK_LIGHT_OPACITY,
       width: '100%',
     },
     serviceText: {

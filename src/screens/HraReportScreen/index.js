@@ -1,7 +1,6 @@
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React from 'react';
 import ReportCard from '../../ReportCard';
-import { FlatList } from 'react-native-gesture-handler';
 import { useReportCard } from './hooks/useHraReport';
 import { styles } from './styles';
 

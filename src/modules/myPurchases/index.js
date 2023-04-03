@@ -3,6 +3,7 @@ import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import ListItem from './components/ListItem';
 import {usePurchase} from './hooks/usePurchase';
 import {styles} from './style';
+import {ERROR_FETCHING_ITEMS, NO_ITEMS_LEFT} from './constants';
 
 const MyPurchases = ({plan}) => {
   const {
@@ -37,7 +38,7 @@ const MyPurchases = ({plan}) => {
   ) {
     return (
       <View style={emptyContainer}>
-        <Text style={emptyText}>Error fetching items</Text>
+        <Text style={emptyText}>{ERROR_FETCHING_ITEMS}</Text>
       </View>
     );
   }
@@ -47,7 +48,7 @@ const MyPurchases = ({plan}) => {
   ) {
     return (
       <View style={emptyContainer}>
-        <Text style={emptyText}>No Items left</Text>
+        <Text style={emptyText}>{NO_ITEMS_LEFT}</Text>
       </View>
     );
   }
