@@ -5,7 +5,7 @@ export const COUPON="Coupon Code";
 export const APPLY="Apply";
 export const DISCOUNT="Discount";
 export const AMOUNT_PAYABLE="Amount Payable";
-export const QUANTITY="Quantity - 1";
+export const QUANTITY = (item) =>`Quantity ${item}`;
 export const TERMS_AND_CONDTION="By clicking on the below button, you agree to our Terms and Conditions & Privacy Policy.";
 export const COST = (item) =>  `₹ ${item} /-`;
 export const DISCOUNT_AMOUNT = (item) =>  `- ₹ ${item} /-`;

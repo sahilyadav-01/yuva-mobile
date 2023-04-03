@@ -4,18 +4,17 @@ import { Checkbox } from 'react-native-paper';
 import { WHITE } from '../../styles/colors';
 import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION, COST, DISCOUNT_AMOUNT } from './constants';
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails';
-import Icon from 'react-native-vector-icons/Feather';
-import Icons from 'react-native-vector-icons/MaterialIcons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
 
 const CheckoutPriceDetails = (props) => {
 
-    const {amountToBePaid ,checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode,crossAction, planCouponFinalAmount } = useCheckoutPriceDetails(props);
-    console.log('planCouponDiscount',planCouponDiscount);
+    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan } = useCheckoutPriceDetails(props);
     return (
         <View>
             <View style={styles.QuantityView}>
-                <Text style={styles.Quantity}>{QUANTITY}</Text>
+                <Text style={styles.Quantity}>{Quantity ? QUANTITY('') : QUANTITY('-1')}</Text>
                 <Text style={styles.QuantityNumber}>{Quantity ?? COST(planPrice)}</Text>
             </View>
             <View>
@@ -24,34 +23,34 @@ const CheckoutPriceDetails = (props) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>
-                <Text style={styles.payableAmountDiscount}>{ totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon) }</Text>
+                <Text style={styles.payableAmountDiscount}>{totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                <Text style={styles.orderAmount}>{RUPEE}{totalCost?totalCost : planCostAfterDiscount}/-</Text>
+                <Text style={styles.orderAmount}>{RUPEE}{totalCost ? totalCost : planCostAfterDiscount}/-</Text>
             </View>
-               {planeCouponCode && <View style={[styles.couponContainer, { backgroundColor: WHITE }]}>
-                    <View style={styles.descStyle}>
-                        <View >
-                            <Icons name="local-offer" size={15} style={styles.iconStyle} />
-                        </View>
-                        <View>
-                            <Text style={styles.appliedStyle}>{planeCouponCode ?? ''}</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity onPress={crossAction}>
-                                <Icon name="x" size={11} style={styles.crossStyle} />
-                            </TouchableOpacity>
-                        </View>
+            {(plan && planeCouponCode) && <View style={[styles.couponContainer, { backgroundColor: WHITE }]}>
+                <View style={styles.descStyle}>
+                    <View >
+                        <MaterialIcon name="local-offer" size={15} style={styles.iconStyle} />
                     </View>
                     <View>
-                         <Text style={styles.couponDiscountStyle}>{DISCOUNT_AMOUNT(planeCouponCode?planCouponDiscount:0)}</Text> 
+                        <Text style={styles.appliedStyle}>{planeCouponCode ?? ''}</Text>
                     </View>
-                </View>} 
+                    <View>
+                        <TouchableOpacity onPress={crossAction}>
+                            <FeatherIcon name="x" size={11} style={styles.crossStyle} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View>
+                    <Text style={styles.couponDiscountStyle}>{DISCOUNT_AMOUNT(planeCouponCode ? planCouponDiscount : 0)}</Text>
+                </View>
+            </View>}
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{ amountToBePaid ? amountToBePaid : (planeCouponCode?planCouponFinalAmount: planAmountToBePaid)}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{amountToBePaid ? amountToBePaid : (planeCouponCode ? planCouponFinalAmount : planAmountToBePaid)}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>

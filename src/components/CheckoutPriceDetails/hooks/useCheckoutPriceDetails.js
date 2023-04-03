@@ -7,6 +7,7 @@ import { planAmountThunk } from "../../../store/reducers/ProgramAndPlanSlice";
 export const useCheckoutPriceDetails = (isPrice) => {
     const dispatch = useDispatch();
     const { amountToBePaid, totalCost, totalDiscount, Quantity } = isPrice?.isPrice || {};
+    const { plan } = isPrice?.isplan || {};
     const [checked, setChecked] = useState(false);
     const { planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planDiscountForCoupon, planPrice, mainItem } = useSelector(state => state.programAndPlan);
     const crossAction = () => {
@@ -34,5 +35,6 @@ export const useCheckoutPriceDetails = (isPrice) => {
         planCouponFinalAmount,
         crossAction,
         planeCouponCode,
+        plan,
     }
 }

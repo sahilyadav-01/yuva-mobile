@@ -12,4 +12,3 @@ export const ADDRES="Address";
 export const TERMS_CONDITION="Check terms and condition";
 export const TERMS_AND_CONDTION="By clicking on the below button, you agree to our Terms and Conditions & Privacy Policy.";
 export const DISCOUNT_PRICE = (item) =>  `- ₹ ${item}`;
-export const PLAN_TYPE = (item) =>  ` (${item})`;

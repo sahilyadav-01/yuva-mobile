@@ -1,13 +1,12 @@
 import React from 'react'
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux'
 import CheckoutPriceDetails from '../../../../components/CheckoutPriceDetails'
 import CouponCard from '../../../../components/CouponCard'
 import Header from '../../../../components/Header'
 import ProgressBar from '../../../../components/ProgressBar'
 import { useCheckout } from './hooks/useCheckout'
 import { styles } from './styles'
-import { CHECKOUT, PLAN_TYPE, RUPEE, TO_BE_PAID } from './constants'
+import { CHECKOUT, RUPEE, TO_BE_PAID } from './constants'
 
 const CheckoutOurPlan = () => {
     const { address,
@@ -26,7 +25,6 @@ const CheckoutOurPlan = () => {
         planeCouponCode,
         planCouponFinalAmount } = useCheckout();
     const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
-    const { planCouponDiscount, planCouponAmountToBePaid } = useSelector(state => state.coupon);
     return (
         <View>
             <Header showBackButton={true} title={CHECKOUT} />
@@ -44,10 +42,8 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
-                <View><Text style={styles.planName}>{planName + PLAN_TYPE(planType)}</Text></View>
-                
-                <CheckoutPriceDetails isplan={{planUuid}}/>
-
+                <View><Text style={styles.planName}>{`${planName} (${planType})`}</Text></View>
+                <CheckoutPriceDetails isplan={{plan:true}}/>
                 <View>
                     <TouchableOpacity
                         onPress={onCheckout}
