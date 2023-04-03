@@ -114,7 +114,10 @@ import HraSvg from './HraSvg';
 import TalkToDoctorSvg from './talkToDoctorSvg';
 import CheckUpIcon from './CheckUpIcon';
 import ExpandArrow from './ExpandArrow';
-
+import ambulance from './ambulance.png';
+import insuranceClaim from './insuranceClaim.png'
+import PharmacyDiscount from './PharmacyDiscount.png';
+import dot from './dots.png'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -175,6 +178,10 @@ const PNG = {
   POPULAR_PLAN,
   LandingPageBanner2,
   OurPlanBackground,
+  ambulance,
+  PharmacyDiscount,
+  insuranceClaim,
+  dot
 };
 
 const SVG = {
@@ -235,6 +242,7 @@ const SVG = {
   TalkToDoctorSvg,
   CheckUpIcon,
   ExpandArrow
+
 };
 
 export {PNG, SVG};
