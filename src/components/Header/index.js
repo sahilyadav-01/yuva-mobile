@@ -25,6 +25,7 @@ const Header = (props) => {
     title,
     showCount,
     count,
+    hideMenu
   } = useHeader(props);
 
   return (
@@ -40,8 +41,8 @@ const Header = (props) => {
             <SVG.ShoppingCart />
           </TouchableOpacity>
           <TouchableOpacity style={styles.rightIcon} onPress={onRightPress}>
-            {isLoggedIn ?
-              <SVG.MenuIcon />
+            {isLoggedIn && !hideMenu ?
+              <SVG.MenuIcon /> : isLoggedIn && hideMenu ? null
               :
               <Text style={styles.loginText}>
                 {LOGIN_TEXT}

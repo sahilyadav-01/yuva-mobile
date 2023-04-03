@@ -12,6 +12,7 @@ import ReportNav from './ReportNav';
 import MyPrescription from '../screens/MyPrescriptionScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import PaymentNavigation from './PaymentNav';
+import PurchaseNav from './PurchaseNav';
 
 const Stack = createStackNavigator();
 
@@ -66,6 +67,11 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="Payment"
         component={PaymentNavigation}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PurchaseScreen"
+        component={PurchaseNav}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

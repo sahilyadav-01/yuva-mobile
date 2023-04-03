@@ -19,3 +19,5 @@ const CheckUpIcon = (props) => (
 )
 
 export default CheckUpIcon
+
+
