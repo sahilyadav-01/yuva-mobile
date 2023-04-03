@@ -10,7 +10,7 @@ import {CONFIRM_ADDRESS} from './constant';
 import {useCartAddressList} from './hook/useCartAddressList';
 
 const CartAddressList = props => {
-  const {ConfirmAddress} = useCartAddressList();
+  const {ConfirmAddress,addressListing} = useCartAddressList();
 
   return (
     <>
@@ -21,9 +21,10 @@ const CartAddressList = props => {
           <ProgressBar progress="0" showDateTimeSection={true} />
         </View>
         <AddressList isNavScreen={'CheckoutAddressList'}/>
+        {addressListing?.length>0 &&
         <TouchableOpacity onPress={ConfirmAddress} style={styles.touchableButton}>
           <Text style={styles.textBook}>{CONFIRM_ADDRESS}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </ScrollView>
     </>
   );
