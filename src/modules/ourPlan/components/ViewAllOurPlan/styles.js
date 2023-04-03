@@ -95,5 +95,12 @@ export const styles = StyleSheet.create({
     },
     faqAnswerView: {
         width: "90%"
-    }
+    },
+    errorContact: {
+        color: RED,
+        marginHorizontal: 30,
+        marginVertical:5,
+        fontSize: fonts.size.fontSize10,
+        fontFamily: fonts.family.rubik400,
+      },
 });
