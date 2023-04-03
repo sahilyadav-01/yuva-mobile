@@ -1,11 +1,20 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, Image, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import ListItem from './components/ListItem';
 import {usePurchase} from './hooks/usePurchase';
 import {styles} from './style';
 
 const MyPurchases = ({plan}) => {
-  const {tabIndex, planList, onEndReached,loading, plansError} = usePurchase(plan);
+  const {
+    tabIndex,
+    planList,
+    onEndReached,
+    loading,
+    plansError,
+    purchasesLoader,
+    purchasesList,
+    purchasesError,
+  } = usePurchase(plan);
   const {container, separatorStyle, emptyContainer, emptyText} = styles();
   const renderItem = ({item, index}) => {
     return <ListItem item={item} index={index} renderList={tabIndex === 0} />;
@@ -14,33 +23,42 @@ const MyPurchases = ({plan}) => {
     return <View style={separatorStyle} />;
   };
 
-  if(loading) {
+  if ((tabIndex === 0 && loading) || (tabIndex === 1 && purchasesLoader)) {
     return (
       <View style={emptyContainer}>
-        <ActivityIndicator size={'small'}/>
+        <ActivityIndicator size={'small'} />
       </View>
     );
   }
 
-  if(plansError && planList.length === 0) {
+  if (
+    (tabIndex === 0 && plansError && planList.length === 0) ||
+    (tabIndex === 1 && purchasesError && purchasesList.length === 0)
+  ) {
     return (
       <View style={emptyContainer}>
-        <Text style={emptyText}>Error fetching plans</Text>
+        <Text style={emptyText}>Error fetching items</Text>
       </View>
     );
   }
-  if (planList.length === 0) {
+  if (
+    (tabIndex === 0 && planList.length === 0) ||
+    (tabIndex === 1 && purchasesList.length === 0)
+  ) {
     return (
       <View style={emptyContainer}>
-        <Text style={emptyText}>No Plans left</Text>
+        <Text style={emptyText}>No Items left</Text>
       </View>
     );
   }
-  if (planList.length > 0) {
+  if (
+    (tabIndex === 0 && planList.length > 0) ||
+    (tabIndex === 1 && purchasesList.length > 0)
+  ) {
     return (
       <View style={container}>
         <FlatList
-          data={planList}
+          data={tabIndex === 0 ? planList : purchasesList}
           keyExtractor={index => index}
           renderItem={renderItem}
           ItemSeparatorComponent={ItemSeparator}

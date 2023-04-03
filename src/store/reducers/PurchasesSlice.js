@@ -15,11 +15,43 @@ export const getPlans = createAsyncThunk(
   },
 );
 
+export const getPurchases = createAsyncThunk(
+  'myPurchases/getPurchases',
+  async ({pageNo,pageSize,orderStatus}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = `/order/order-history/user?pageNo=${pageNo}&pageSize=${pageSize}`;
+      const reqBody = {orderStatus};
+      const response = await YuvaService.post(endpoint, reqBody);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const getPurchaseItemDetails = createAsyncThunk(
+  'myPurchases/getItemDetails',
+  async ({orderId}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = `/order/details/user?id=${orderId}`;
+      const response = await YuvaService.get(endpoint);
+      return {...response.data,orderId};
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const initialState = {
   purchasesTab: 0,
   plansLoading: false,
   plans: null,
   plansError: false,
+  purchasesLoading: false,
+  purchases: null,
+  purchasesError: false,
+  purchasesItemDetails:null,
+  purchasesDetailLoading: false,
 };
 
 const purchasesSlice = createSlice({
@@ -45,6 +77,36 @@ const purchasesSlice = createSlice({
       state.plansLoading = false;
       state.plans = null;
       state.plansError = true;
+    },
+    [getPurchases.pending]: state => {
+      state.purchasesLoading = true;
+      state.purchases = null;
+      state.purchasesError = false;
+    },
+    [getPurchases.fulfilled]: (state, {payload}) => {
+      state.purchasesLoading = false;
+      state.purchases = payload.data;
+      state.purchasesError = false;
+    },
+    [getPurchases.rejected]: (state) => {
+      state.purchasesLoading = false;
+      state.purchases = null;
+      state.purchasesError = true;
+    },
+    [getPurchaseItemDetails.pending]: state => {
+      state.purchasesDetailLoading = true;
+    },
+    [getPurchaseItemDetails.fulfilled]: (state, {payload}) => {
+      state.purchasesDetailLoading = false;
+      if(state.purchasesItemDetails === null) {
+       state.purchasesItemDetails = {[`${payload.orderId}`]:payload.data};
+      }
+      else {
+        state.purchasesItemDetails = {...state.purchasesItemDetails,[`${payload.orderId}`]:payload.data}
+      }
+    },
+    [getPurchaseItemDetails.rejected]: (state) => {
+      state.purchasesDetailLoading = false;
     },
   },
 });
