@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {BLACK, CYAN_BLUE, PINK_ORANGE, WHITE} from '../../styles/colors';
-import {ABSOLUTE, CENTER, FLEX_START, ROW} from '../../styles/constants';
+import {ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import {getDimensions} from '../../utils/utils';
 
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   topSection: {
     flexDirection: ROW,
-    justifyContent: CENTER,
+    justifyContent: FLEX_END,
     paddingVertical: 4,
      paddingTop: 16,
   },

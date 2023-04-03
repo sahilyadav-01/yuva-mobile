@@ -2,14 +2,14 @@ import React from 'react'
 import { FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Header from '../../../../components/Header';
 import OurPlan from "../../index"
-import { ENTER_PHONE_NUMBER,  FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN, SPEAK_TO } from './constants';
+import { ENTER_PHONE_NUMBER,  FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN, PLEASE_ENTER_CORRECT_NUMBER, SPEAK_TO } from './constants';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useViewAllOurPlan } from './hooks/useViewAllOurPlan';
 import { BLACK } from '../../../../styles/colors';
 
 const ViewAllOurPlan = () => {
-    const { onUpdate, packageList } = useViewAllOurPlan();
+    const { onUpdate, packageList,errorState,onRequestCall,onChangeContact } = useViewAllOurPlan();
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
             onUpdate(index)
@@ -56,12 +56,15 @@ const ViewAllOurPlan = () => {
                         <TextInput
                             placeholder={ENTER_PHONE_NUMBER}
                             keyboardType="number-pad"
-                            //  onChangeText={onToggle}
+                            onChangeText={onChangeContact}
                             style={styles.textInputStyle}
                         />
+                            {errorState && (
+                            <Text style={styles.errorContact}>{PLEASE_ENTER_CORRECT_NUMBER}</Text>
+                        )}
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.touchableOpacityStyle}>
+                        <TouchableOpacity style={styles.touchableOpacityStyle} onPress={onRequestCall}>
                             <Text style={styles.touchableOpacityTextStyle}>
                                 {SPEAK_TO}
                             </Text>
