@@ -33,7 +33,6 @@ export const useViewAllOurPlan = () => {
             setErrorState(true);
         }
         else {
-            errorState
             setNumber(number);
             setErrorState(false)
         }
