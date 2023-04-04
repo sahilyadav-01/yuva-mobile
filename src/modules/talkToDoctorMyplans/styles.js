@@ -6,6 +6,7 @@ import {
   FLEX_END,
   FLEX_START,
   ROW,
+  SPACE_BETWEEN,
 } from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -23,6 +24,10 @@ export const styles = StyleSheet.create({
     borderColor: GREY,
     elevation: 7,
   },
+  headViewContainer:{
+    flexDirection:ROW,
+    justifyContent:SPACE_BETWEEN,
+  },
   buttonStyle: {
     height: 48,
     backgroundColor: ORANGE,
@@ -37,15 +42,19 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     marginLeft: 19,
     bottom: 9,
-    width: '44%',
-    height: 20,
+    minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
+    maxWidth:155,
   },
   head: {
+    alignSelf: FLEX_START,
+    shadowColor: WHITE,
+    color: CYAN_BLUE,
+    paddingHorizontal: 5,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    color: CYAN_BLUE,
+    paddingVertical:5,
   },
   expiry: {
     alignSelf: FLEX_END,
