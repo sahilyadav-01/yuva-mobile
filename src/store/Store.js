@@ -90,9 +90,26 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   if (action.type === 'auth/logoutThunk/fulfilled') {
     return appReducer(storeInitialState, action);
+  } else if (action.type === 'hra/resetHRA') {
+    return appReducer(
+      {
+        ...state,
+        section1: section1Init,
+        section2: section2Init,
+        section3: section3Init,
+        section4: section4Init,
+        section5: section5Init,
+        section6: section6Init,
+        section7: section7Init,
+        section8: section8Init,
+        section9: section9Init,
+      },
+      action,
+    );
   }
   return appReducer(state, action);
 };
+
 
 const store = configureStore({
   reducer: rootReducer,
