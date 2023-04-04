@@ -4,6 +4,7 @@ export const RUPEE="₹ ";
 export const COUPON="Coupon Code";
 export const APPLY="Apply";
 export const DISCOUNT="Discount";
+export const TEST_AND_PACKAGES_PRICE="Price";
 export const AMOUNT_PAYABLE="Amount Payable";
 export const QUANTITY = (item) =>`Quantity ${item}`;
 export const TERMS_AND_CONDTION="By clicking on the below button, you agree to our Terms and Conditions & Privacy Policy.";
