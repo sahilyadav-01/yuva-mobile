@@ -329,7 +329,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
-    marginTop:11
   },
   StatusColor: {
     color: RED_SHADE,
