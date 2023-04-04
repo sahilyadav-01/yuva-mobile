@@ -67,11 +67,9 @@ const MyPlanCard = ({ item }) => {
         <View style={styles.viewContainer}>
             <View>
                 <View style={styles.headView}>
-                    <View style={styles.labelTextContainer}>
-                    <Text numberOfLines={1} style={styles.head}>{item?.name}</Text>
-                    </View>
-                    <Text style={styles.expiry}>{VALID}{getPlanDate(item.endDate)}</Text>
+                <Text style={styles.head}>{item?.name} </Text>
                 </View>
+                <Text style={styles.expiry}>{VALID}{getPlanDate(item.endDate)}</Text>
             </View>
             {item.assignedAttributeResponseDto.length &&
                 <FlatList
