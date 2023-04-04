@@ -288,15 +288,13 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   head: {
+    maxWidth:'73%',
     alignSelf: FLEX_START,
-    marginHorizontal: 19,
     shadowColor: WHITE,
-    position: ABSOLUTE,
-    fontSize: 14,
     color: CYAN_BLUE,
-    paddingHorizontal: 6,
     fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik400,
+    lineHeight:16,
   },
   textStyle: {
     color: WHITE,
@@ -329,6 +327,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
+    marginTop:11
   },
   StatusColor: {
     color: RED_SHADE,
@@ -609,14 +608,15 @@ export const styles = StyleSheet.create({
     alignItems: FLEX_END,
   },
   headView: {
+    position: ABSOLUTE,
     justifyContent: CENTER,
-    alignItems: CENTER,
-    marginLeft: 19,
-    bottom: 9,
-    width: '44%',
-    minHeight: 20,
+    alignItems: FLEX_START,
+    marginLeft: 6,
+    top: -20,
+    width:'100%',
     borderRadius: 6,
-    backgroundColor: BIANCA,
+    paddingVertical:12,
+    paddingHorizontal: 16
   },
   direction: {
     paddingHorizontal: 15,
@@ -706,5 +706,8 @@ export const styles = StyleSheet.create({
     width:300,
     minHeight:104,
     borderRadius:6,
+  },
+  labelTextContainer: {
+    backgroundColor: BIANCA
   }
 });
