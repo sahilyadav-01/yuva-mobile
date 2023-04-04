@@ -105,6 +105,7 @@ const RescheduleAndCancel = () => {
                             showsHorizontalScrollIndicator={false}
                         />}
                 </View>
+                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED') &&
                 <View style={styles.buttonView}>
                     <AppointmentButton
                      extraStyles={styles.button}
@@ -121,7 +122,7 @@ const RescheduleAndCancel = () => {
                         color={RED_SHADE}
                         action={cancelBookingButton}
                     />
-                </View>
+                </View>}
                 <View>
                     <MessageBox
                         head={MESSAGE}
