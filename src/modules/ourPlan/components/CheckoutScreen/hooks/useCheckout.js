@@ -1,5 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
+import {Alert} from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
@@ -59,7 +60,7 @@ export const useCheckout = () => {
     }
     const onCheckout = () => {
         if (!termsAndCondtionChecked) {
-            alert(TERMS_CONDITION)
+            Alert.alert('Alert',TERMS_CONDITION)
         }
         else onPayPress();
     }
