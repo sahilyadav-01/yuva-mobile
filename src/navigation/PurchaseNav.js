@@ -23,7 +23,7 @@ const PurchaseNav = () => {
             paddingVertical:8
           },
           tabBarIndicatorStyle:{backgroundColor:ORANGE,width:'15%',height:3,marginHorizontal:'10%'},
-          swipeEnabled: true,
+          swipeEnabled: false,
           lazy: false,
         }}>
         <Tab.Screen

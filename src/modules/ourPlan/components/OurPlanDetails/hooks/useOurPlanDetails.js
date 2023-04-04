@@ -21,7 +21,7 @@ export const useOurPlanDetails = () => {
             navigation.navigate(LOGIN_SCREEN);
         }
     }
-    const pricePerMonth=Math.round(mainItem?.yearlyFinalCost/12);
+    const pricePerMonth=Math.ceil(mainItem?.yearlyFinalCost/12);
     return {
         planDetails,
         bookOurPlan,
