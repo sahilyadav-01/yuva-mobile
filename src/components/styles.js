@@ -694,16 +694,22 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
   },
   OurplanText:{
-    width:"60%",
-    color: CYAN_BLUE,
-    marginVertical:15,
-    fontSize: fonts.size.fontSize15,
+    color: ORANGE,
+    marginTop:15,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+    alignSelf:CENTER,
+  },
+  OurplanText2:{
+    color: DARK_BLUE,
+    marginTop:5,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
     alignSelf:CENTER,
   },
   ImageCarousel:{
     alignSelf:CENTER,
-    width:300,
+    minWidth:300,
     minHeight:104,
     borderRadius:6,
   }
