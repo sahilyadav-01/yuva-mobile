@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
     paddingBottom:22,
   },
   details:{
-    marginLeft:16,
-    fontFamily: fonts.family.rubik500,
+    marginLeft:10,
+    fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
     color:CYAN_BLUE
 
@@ -50,9 +50,9 @@ export const styles = StyleSheet.create({
     marginBottom:18,
     marginTop:24,
     marginLeft:26,
-    fontFamily: fonts.family.rubik600,
-    fontSize: fonts.size.fontSize12,
-    color:CYAN_BLUE
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
+    color:ORANGE
   },
   buyNow: {
     textAlign: CENTER,
@@ -87,6 +87,7 @@ PricePerMonth:{
 rupee:{
   fontFamily: fonts.family.rubik600,
   fontSize: fonts.size.fontSize16,
+  color:ORANGE,
 },
 image:{
   height:40,
@@ -125,6 +126,6 @@ PlanText:{
     : {
       width: 6,
     height: 6,
-    alignSelf: CENTER
+    marginVertical:4,
   }
 });

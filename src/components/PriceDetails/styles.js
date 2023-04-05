@@ -32,6 +32,12 @@ export const styles = () => {
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik500,
     },
+    discountPriceTextStyle:{
+      fontSize: 14,
+      lineHeight: 21,
+      color: GREEN,
+      fontFamily: fonts.family.rubik500,
+    },
     gstText:{
       fontSize: 10,
       lineHeight: 15,

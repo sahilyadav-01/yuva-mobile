@@ -11,7 +11,7 @@ const {getPlanDate,downloadReport}=useReportCard(filePath,name);
     <View style={styles.renderItemStyle}>
       <SVG.Pdf />
       <Text style={styles.reportTextStyle}>{name}</Text>
-      <TouchableOpacity onPress={downloadReport} >
+      <TouchableOpacity style={styles.downloadReportStyle} onPress={downloadReport} >
         <SVG.Download />
       </TouchableOpacity>
       <Text style={styles.dateStyle}>{getPlanDate(date)}</Text>

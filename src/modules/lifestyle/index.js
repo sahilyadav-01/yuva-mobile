@@ -47,7 +47,7 @@ const LifestyleTestsAndPackages = props => {
     childContainerStyle,
     addToCartLoader,
     screenStyle,
-  } = styles(addToCartLoad);
+  } = styles(addToCartLoad,packageData.length === 0 && testData.length === 0);
   if (renderData) {
     return (
       <ScrollView

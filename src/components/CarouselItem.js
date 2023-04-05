@@ -42,7 +42,7 @@ const CarouselItem = props => {
 
   return (
     <View>
-      {!isScreen=== "OurPlan" ?
+      {isScreen!== "OurPlan" ?
     <TouchableOpacity onPress={viewAppointment}>
       <View
         style={[
@@ -93,6 +93,7 @@ const CarouselItem = props => {
          />
     </View>
         <Text style={styles.OurplanText}>{item?.Text}</Text>
+        <Text style={styles.OurplanText2}>{item?.Text2}</Text>
   </View>
   }
     </View>

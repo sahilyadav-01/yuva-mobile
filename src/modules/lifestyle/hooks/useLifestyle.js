@@ -98,6 +98,14 @@ export const useLifestyle = (initialEnum,initialName) => {
       );
       setRenderData(true);
     }
+    else if (!packageDataLoading &&
+      !packageDataError &&
+      lifestylePackages.length === 0 &&
+      lifestyleTests.length === 0 ){
+        setPackageData([]);
+        setTestData([]);
+        setRenderData(true);
+      }
   }, [packageDataLoading]);
 
   useEffect(()=>{

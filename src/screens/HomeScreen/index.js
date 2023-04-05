@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from 'react';
 import {
   View,
@@ -85,18 +87,22 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT0} </Text>
           <View style={styles.line1} />
         </View>
+        <ScrollView horizontal={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer serviceCard={true} />
         </View>
+        </ScrollView>
         <View style={styles.bannerContainer}>
           <SVG.landingPageBanner1 />
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
-          <View style={styles.line} />
+          <View style={styles.textContainer}>
           <TouchableOpacity onPress={() => onHealthPackagePress(0)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+            <View style={styles.line}/>
+          </View>
         </View>
         {popularPackageName && <View>
           <CarouselContainer
@@ -114,10 +120,12 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT3} </Text>
-          <View style={styles.line} />
+          <View style={styles.textContainer}>
           <TouchableOpacity onPress={() => onHealthPackagePress(1)}>
             <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+            <View style={styles.line}/>
+          </View>
         </View>
         {popularTest && <View>
           <CarouselContainer
@@ -132,6 +140,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line2} />
         </View>
+        <ScrollView horizontal={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer
             lifeStyleCard={true}
@@ -139,9 +148,11 @@ const HomeScreen = ({ navigation }) => {
             onPackagePress={onPackagePress}
           />
         </View>
+        </ScrollView>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
+
