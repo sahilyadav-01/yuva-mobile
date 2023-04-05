@@ -65,9 +65,9 @@ const MyPlanCard = ({ item }) => {
     return (
 
         <View style={styles.viewContainer}>
-            <View>
+            <View style={styles.headViewContainer}>
                 <View style={styles.headView}>
-                    <Text style={styles.head}>{item?.name} </Text>
+                    <Text style={styles.head}>{item?.name.length > 26 ? item?.name.substring(0, 26) + '...' : item?.name}</Text>
                 </View>
                 <Text style={styles.expiry}>{VALID}{getPlanDate(item.endDate)}</Text>
             </View>
