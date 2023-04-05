@@ -14,7 +14,7 @@ const TalkToDoctorCard = () => {
   const onLogin = () => {
     navigation.navigate('LoginScreen');
   };
-  const renderItem = ({key, item}) => {
+  const renderItem = ({item, index}) => {
     return (
       <View key={index}>
         <View style={styles.container}>

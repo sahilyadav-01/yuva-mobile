@@ -27,7 +27,7 @@ const Health = () => {
     const onHealthCardPress = () => setSelected(item?.index);
     return (
       <HealthCard
-        key={index}
+        key={item?.index}
         item={item}
         selected={selected}
         onHealthCardPress={onHealthCardPress}

@@ -3,7 +3,7 @@ import React from 'react';
 import {styles} from './styles';
 import {DEDICATED_DOCTOR, DEDICATED} from '../../constant';
 const DedicatedDoctor = () => {
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
       <View style={styles.Ocircle} key={index}>
         <Image source={item.image} />
