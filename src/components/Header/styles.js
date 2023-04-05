@@ -41,6 +41,11 @@ export const styles = StyleSheet.create({
   rightIcon: {
     paddingHorizontal: 4,
   },
+  backIcon:{
+    paddingHorizontal: 8,
+    paddingVertical:8,
+    marginRight:6,
+  },
   loginText: {
     fontFamily: fonts.family.rubik500,
     color: CYAN_BLUE,
@@ -80,7 +85,8 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     color: CYAN_BLUE,
-    paddingHorizontal: 12,
+    paddingRight:12,
+    paddingVertical:6,
   },
   search: {
     zIndex: -1,

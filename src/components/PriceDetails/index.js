@@ -14,7 +14,7 @@ const PriceDetails = props => {
   const { heading, totalCost, coupon } = props;
   const { cart } = useSelector(state => state.cart);
   const { couponViewCart, itemDtoList, cartCouponDiscount, orderAmount, discountBeforeCoupon } = cart || {};
-  const { detailsContainer, headingText, priceContainer, priceText, titleView, priceView, appliedStyle, couponContainer, descStyle, crossStyle, iconStyle, couponDiscountStyle, gstText } = styles();
+  const { detailsContainer, headingText, priceContainer, priceText, discountPriceTextStyle, titleView, priceView, appliedStyle, couponContainer, descStyle, crossStyle, iconStyle, couponDiscountStyle, gstText } = styles();
   const { couponView, couponDiscount } = coupon;
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
@@ -47,9 +47,9 @@ const PriceDetails = props => {
         </View>
         <View style={priceView}>
           {loggedIn === 'loggedIn' ? (
-            <Text style={priceText}>{RUPEE_SYMOL} {discountBeforeCoupon}</Text>
+            <Text style={discountPriceTextStyle}> {DISCOUNT_PRICE(discountBeforeCoupon)}</Text>
           ) : (
-            <Text style={priceText}>{RUPEE_SYMOL} {discountBeforeCoupon}</Text>
+            <Text style={discountPriceTextStyle}> {DISCOUNT_PRICE(discountBeforeCoupon)}</Text>
           )}
         </View>
       </View>
