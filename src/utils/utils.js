@@ -44,12 +44,14 @@ export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
 export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
 export const PORT = ':8082';
+export const PROTOCOL = 'http://';
 
 //UAT Server
 // export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
 // export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 // export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
 // export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
 
 
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
