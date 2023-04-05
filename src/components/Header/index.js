@@ -53,7 +53,7 @@ const Header = (props) => {
       </View>
       <View style={styles.sectionBottom}>
       { canGoBack && 
-          <TouchableOpacity onPress={onBackPress}>
+          <TouchableOpacity style={styles.backIcon} onPress={onBackPress}>
             <SVG.Back />
           </TouchableOpacity>
         } 
