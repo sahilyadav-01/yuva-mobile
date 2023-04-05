@@ -20,7 +20,7 @@ const Payment = props => {
         <WebView
           style={container}
           source={{
-            uri: `http://${SERVER}:${PORT}/PaymentRedirect?encRequest=${encRequest}`,
+            uri: `http://${SERVER}${PORT}/PaymentRedirect?encRequest=${encRequest}`,
           }}
           onNavigationStateChange={state => {
             if(state?.url.includes('loadingPayment')) postPaymentNavigation(state?.url,'loadingPayment?');
