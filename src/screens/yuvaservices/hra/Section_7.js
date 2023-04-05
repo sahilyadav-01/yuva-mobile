@@ -1,14 +1,14 @@
 import React from 'react'
 import {SafeAreaView } from 'react-native'
-import HRAHome from '../../../modules/hra/HRAHome';
+import Section7 from '../../../modules/hra/Section7';
 
-const homeScreen = () => {
+const Section_7 = () => {
   
   return (
     <SafeAreaView >
-      <HRAHome />
+      <Section7 />
     </SafeAreaView>
   )
 }
 
-export default homeScreen;
+export default Section_7;

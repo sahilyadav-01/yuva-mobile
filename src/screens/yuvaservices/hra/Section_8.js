@@ -1,14 +1,14 @@
 import React from 'react'
 import {SafeAreaView } from 'react-native'
-import Section7 from '../../../modules/hra/Section7';
+import Section8 from '../../../modules/hra/Section8';
 
-const section_7 = () => {
+const Section_8 = () => {
   
   return (
     <SafeAreaView >
-      <Section7 />
+      <Section8 />
     </SafeAreaView>
   )
 }
 
-export default section_7;
+export default Section_8;
