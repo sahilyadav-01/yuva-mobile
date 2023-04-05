@@ -53,9 +53,9 @@ const storeInitialState = {
   lifestylePackage:lifestylePackageInit,
   cart: cartInit,
   downloadReport:downloadInit,
-  paymentInit,
+  payment: paymentInit,
   checkOut:checkOutInit,
-  purchasesInit
+  purchases: purchasesInit
 };
 
 const appReducer = combineReducers({
