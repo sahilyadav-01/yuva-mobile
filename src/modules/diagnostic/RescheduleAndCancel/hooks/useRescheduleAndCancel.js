@@ -34,7 +34,7 @@ export const useRescheduleAndCancel = () => {
     }
     const packageUuid=reschedule?.packageNameDescriptionDtoList[0]?.packageUuid;
     const onDetailsScreen=()=>{
-        navigation.navigate("BookingTestAndPackage",{packageName:packageUuid,isScreenRes:true})
+        navigation.navigate("BookingTestAndPackage",{packageName:packageUuid,isScreenRes:true,headerName:"myTest"})
     }
     return {
         cancelBookingButton,

@@ -16,9 +16,9 @@ export const useOurPlanDetails = () => {
     }, [mainItem])
     const bookOurPlan = () => {
         if(loggedIn === 'loggedIn') {
-            navigation.navigate(ADDRESS,{...mainItem,plan:true});
+            navigation.navigate('Home',{screen:'OurPlan',params: {screen:ADDRESS,params:{...mainItem,plan:true}}})
         } else {
-            navigation.navigate(LOGIN_SCREEN);
+            navigation.navigate('Home',{screen:LOGIN_SCREEN})
         }
     }
     const pricePerMonth=Math.ceil(mainItem?.yearlyFinalCost/12);

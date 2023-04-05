@@ -10,7 +10,7 @@ import { useCart } from '../../../cart/hooks/useCart';
 
 export const useBookingTestAndPackage = () => {
     const route = useRoute();
-    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = route.params;
+    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = route?.params;
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const focused = useIsFocused();
@@ -19,7 +19,7 @@ export const useBookingTestAndPackage = () => {
     const { existingIds, addToCartLoad } = useSelector(state => state.cart);
     const [packageList, setPackageList] = useState('');
     const [renderData, setRenderData] = useState(false);
-    const [isDisabled, setIsDisabled] = useState(existingIds.length > 0 && existingIds.includes(uuid.toString()));
+    const [isDisabled, setIsDisabled] = useState(existingIds.length > 0 && existingIds.includes(uuid?.toString()));
     const { addToCart, onRemove } = useCart();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export const useBookingTestAndPackage = () => {
 
     useEffect(() => {
         if (focused) {
-            let isDisabled = existingIds.length > 0 && existingIds.includes(uuid.toString());
+            let isDisabled = existingIds.length > 0 && existingIds.includes(uuid?.toString());
             setIsDisabled(isDisabled);
         }
     }, [existingIds, focused]);
@@ -80,7 +80,7 @@ export const useBookingTestAndPackage = () => {
             {
                 name,
                 cost,
-                productId: uuid.toString()
+                productId: uuid?.toString()
             },
             isTest ? 'TEST' : 'PACKAGE'
         );
