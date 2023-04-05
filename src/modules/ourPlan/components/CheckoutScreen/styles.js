@@ -26,12 +26,12 @@ export const styles = StyleSheet.create({
         color: V_LIGHT_GREY,
 
     },
-    circles:{
+    circles: {
         minWidth: 12,
         minHeight: 12,
         borderRadius: 15,
         borderWidth: 1.2,
-        borderColor:GREEN,
+        borderColor: GREEN,
     },
     tickMark: {
         color: GREEN,
@@ -65,7 +65,14 @@ export const styles = StyleSheet.create({
         dropShadow: BOX_SHADOW,
         elevation: 5,
         shadowColor: VERY_LIGHT_GREY,
-
+    },
+    planName: {
+        marginTop: 39,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+        marginHorizontal: 26,
+        lineHeight: 21,
+        color:CYAN_BLUE,
     },
     checkboxAddress: {
         alignItems: FLEX_END,

@@ -14,16 +14,16 @@ const ConsultationList = props => {
         key={index}
         item={item}
         onConsult={onConsult}
-        onDownload={onDownload}
       />
     );
   };
   if (!data || data?.length === 0) {
-    return null;
+    return <View style={styles.emptyContainer}>
+      <Text style={styles.emptyText}>No Consultations</Text>
+    </View>
   }
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.headerText}>{COMPLETED}</Text> */}
       <FlatList
         data={data}
         keyExtractor={(item, index) => index + ''}

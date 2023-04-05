@@ -1,22 +1,40 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTermsAndCondtionChecked } from "../../../store/reducers/CartSlice";
+import { selectedPlaneCouponCode } from "../../../store/reducers/CouponSlice";
+import { planAmountThunk } from "../../../store/reducers/ProgramAndPlanSlice";
 
-
-export const useCheckoutPriceDetails=(isPrice)=>{
+export const useCheckoutPriceDetails = (isPrice) => {
     const dispatch = useDispatch();
-const {yearlyPrice,quarterlyPrice,halfYearlyPrice}=isPrice?.isPrice;
-const [checked, setChecked] = useState(false);
-
-useEffect(()=>{
-dispatch(setTermsAndCondtionChecked(checked))
-},[checked])
-return {
-        yearlyPrice,
-        quarterlyPrice,
-        halfYearlyPrice,
+    const { amountToBePaid, totalCost, totalDiscount, Quantity } = isPrice?.isPrice || {};
+    const { plan } = isPrice?.isplan || {};
+    const [checked, setChecked] = useState(false);
+    const { planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planDiscountForCoupon, planPrice, mainItem } = useSelector(state => state.programAndPlan);
+    const crossAction = () => {
+        dispatch(selectedPlaneCouponCode({ couponCode: null }));
+        dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
+    }
+    const { planCouponDiscount, planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
+    useEffect(() => {
+        dispatch(setTermsAndCondtionChecked(checked));
+    }, [checked])
+    return {
+        amountToBePaid,
         checked,
-        setChecked
-
+        setChecked,
+        price: isPrice?.price,
+        totalCost,
+        totalDiscount,
+        Quantity,
+        planAmountToBePaid,
+        planCostAfterDiscount,
+        planDiscountBeforeCoupon,
+        planDiscountForCoupon,
+        planPrice,
+        planCouponDiscount,
+        planCouponFinalAmount,
+        crossAction,
+        planeCouponCode,
+        plan,
     }
 }

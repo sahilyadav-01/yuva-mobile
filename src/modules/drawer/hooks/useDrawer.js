@@ -8,7 +8,7 @@ export const useDrawer = () => {
   const dispatch = useDispatch();
   const onSubscriptionPress = () => {};
   const onReportsPress = () => navigation.navigate('ReportsScreen');
-  const onOrdersPress = () => {};
+  const onOrdersPress = () => navigation.navigate('PurchaseScreen');
   const onPrescriptionsPress = () => navigation.navigate('MyPrescription');
   const onLogoutPress = () => {
     dispatch(logoutThunk());

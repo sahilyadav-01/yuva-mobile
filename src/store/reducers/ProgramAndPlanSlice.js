@@ -17,7 +17,7 @@ export const programAndPlanThunk = createAsyncThunk(
 
 export const popularPackageNameThunk = createAsyncThunk(
   'package/popular',
-  async ({ pageNo,pageSize,search }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ pageNo, pageSize, search }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const endpoint = `/package/popular?pageNo=${pageNo}&pageSize=${pageSize}${search ? `&search=${search}` : ''}`;
       const response = await YuvaService.get(endpoint);
@@ -54,6 +54,32 @@ export const planDetailsThunk = createAsyncThunk(
   }
 )
 
+export const planAmountThunk = createAsyncThunk(
+  'plan/amount',
+  async (planUuid, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/amount?planUuid=${planUuid.planUuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+
+export const requestCallThunk = createAsyncThunk(
+  'plan/call',
+  async ({number}, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/call?number=${number}`;
+      const response = await YuvaService.post(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+
 const initialState = {
   loading: false,
   apiError: false,
@@ -61,7 +87,13 @@ const initialState = {
   programAndPlan: [],
   popularPackageName: null,
   popularPlan: [],
+  planDetails: '',
+  planAmountToBePaid: null,
+  planCostAfterDiscount: null,
+  planDiscountBeforeCoupon: null,
+  planPrice: null,
   planDetails:'',
+  requestCall:'',
 }
 
 const programAndPlanSlice = createSlice({
@@ -72,10 +104,11 @@ const programAndPlanSlice = createSlice({
       state.popularPackageName = action?.payload?.data;
     },
     resetPackages(state) {
-      state.popularPackageName = null
+      state.popularPackageName = null;
+      state.requestCall=null;
     },
-    setIndex(state,{payload}){
-      state.mainItem=payload;
+    setIndex(state, { payload }) {
+      state.mainItem = payload;
     },
   },
   extraReducers: {
@@ -113,19 +146,43 @@ const programAndPlanSlice = createSlice({
     [planPopularThunk.rejected]: (state, { payload }) => {
       state.loading = false;
     },
-    [planDetailsThunk.pending] : (state, {payload}) => {
+    [planDetailsThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
     [planDetailsThunk.fulfilled]: (state, {payload}) => {
-      state.planDetails = payload?.data;
+      state.planDetails = payload.data?.filter(item=>{
+        if(item !== null && item !== "null") return item});
       state.loading = false;
     },
-    [planDetailsThunk.rejected]: (state, {payload}) => {
+    [planDetailsThunk.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [planAmountThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [planAmountThunk.fulfilled]: (state, { payload }) => {
+      state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
+      state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
+      state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
+      state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
+      state.loading = false;
+    },
+    [planAmountThunk.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [requestCallThunk.pending] : (state, {payload}) => {
+      state.loading = true;
+    },
+    [requestCallThunk.fulfilled]: (state, {payload}) => {
+      state.requestCall =payload;
+      state.loading = false;
+    },
+    [requestCallThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
   },
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName ,setIndex,setPlanDetails,resetPackages} = programAndPlanSlice.actions;
+export const { popularPackageName, setIndex, setPlanDetails, resetPackages } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

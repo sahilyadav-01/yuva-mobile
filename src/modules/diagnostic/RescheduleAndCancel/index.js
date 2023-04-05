@@ -4,8 +4,8 @@ import AppointmentButton from '../../../components/AppointmentButton';
 import MessageBox from '../../../components/MessageBox';
 import { styles } from './styles';
 import Header from '../../../components/Header';
-import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
-import { RED_SHADE, AMBER, WHITE } from '../../../styles/colors';
+import { ARE_YOU_SURE, CALENDER, CANCEL, DETAILS, MESSAGE, MY_TESTS, PACKAGE, RESCHEDULE, SELECTED_ADRESS, TEST, } from './constants';
+import { RED_SHADE,WHITE,GREEN } from '../../../styles/colors';
 import { useRescheduleAndCancel } from './hooks/useRescheduleAndCancel';
 import { getDate, getTime, dignosticStatus } from '../../../utils/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -33,7 +33,8 @@ const RescheduleAndCancel = () => {
         cancelBooking,
         cancelFlag,
         reschedule,
-        rescheduleBooking
+        rescheduleBooking,
+        onDetailsScreen
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
@@ -47,7 +48,7 @@ const RescheduleAndCancel = () => {
         return (
             <View style={styles.details}>
                 <Text style={styles.packageName}>{item.name}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onDetailsScreen}>
                     <Text style={styles.packageDetails}>{DETAILS}</Text>
                 </TouchableOpacity>
             </View>
@@ -55,7 +56,7 @@ const RescheduleAndCancel = () => {
     }
     return (
         <View >
-            <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
+            <Header showBackButton={true} title={MY_TESTS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
                     <Text style={textStyle(reschedule?.bookingStatus)}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}..</Text>
@@ -104,13 +105,15 @@ const RescheduleAndCancel = () => {
                             showsHorizontalScrollIndicator={false}
                         />}
                 </View>
+                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED') &&
                 <View style={styles.buttonView}>
                     <AppointmentButton
                      extraStyles={styles.button}
                      textStyles={styles.buttonTextStyle}
                         name={RESCHEDULE}
-                        color={AMBER}
+                        color={GREEN}
                         action={rescheduleBooking}
+                        reschedule={true}
                     />
                     <AppointmentButton
                     extraStyles={styles.button}
@@ -119,7 +122,7 @@ const RescheduleAndCancel = () => {
                         color={RED_SHADE}
                         action={cancelBookingButton}
                     />
-                </View>
+                </View>}
                 <View>
                     <MessageBox
                         head={MESSAGE}

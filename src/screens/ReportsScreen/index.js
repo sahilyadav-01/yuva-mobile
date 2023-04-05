@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React from 'react';
 import MyReports from '../../components/myReports';
 import { useReport } from './hooks/useReport';
@@ -16,14 +16,12 @@ const Reports = () => {
   };
   const { downloadDiagnosticReport } = useReport();
   return (
-    <View >
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+    <View style={styles.contentContainerStyle}>
         <FlatList
           data={downloadDiagnosticReport}
           keyExtractor={index => `${index}`}
           renderItem={renderItem}
         />
-      </ScrollView>
     </View>
   );
 };

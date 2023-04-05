@@ -9,8 +9,7 @@ import DateAndTime from '../../../components/DateAndTime';
 import FinalAddress from '../../../components/FinalAddress';
 import {CONFIRM_DATE_TIME} from './constant';
 const CheckoutScheduleList = () => {
-  const {ConfirmDateAndTime, handleDate, handleTime, date, time} =
-    useCartAddressList();
+  const {ConfirmDateAndTime, handleDate, handleTime, date, time} = useCartAddressList();
 
   return (
     <>

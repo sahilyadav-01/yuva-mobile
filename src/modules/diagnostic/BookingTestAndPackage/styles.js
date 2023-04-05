@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
         backgroundColor: AMBER,
         color: GAINSBORO,
         marginTop: 23,
-        fontSize: 1,
+        fontSize: fonts.size.fontSize1,
         height: 51,
         fontFamily: fonts.family.fontFamilyRubix,
     },
@@ -53,7 +53,6 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.fontFamilyRubix,
         fontWeight: BOLD,
         marginLeft: 17,
-        // marginTop: 23,
     },
     textColor2: {
         color: CYAN_BLUE,
@@ -145,7 +144,7 @@ export const styles = StyleSheet.create({
     },
     itemText: {
         width:"93%",
-        marginLeft:"5%",
+        marginLeft:13,
         color: WHITE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,

@@ -1,19 +1,37 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {getDateInFormat, getTimeInFormat} from '../../../utils/utils';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { getDateInFormat, getTimeInFormat } from '../../../utils/utils';
 import Header from '../../../components/Header';
 import OrderDetails from '../../../components/OrderDetails';
 import ProgressBar from '../../../components/ProgressBar';
 import FinalAddress from '../../../components/FinalAddress';
-import {TO_BE_PAID} from './constant';
-import {useRoute} from '@react-navigation/native';
-import {styles} from './styles';
+import { TO_BE_PAID } from './constant';
+import { styles } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import CheckoutPriceDetails from '../../../components/CheckoutPriceDetails'
+import { usePaymentReconfirm } from './hooks/usePaymentReconfirm';
+import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 
 const PaymentReconfirmList = props => {
-  const route = useRoute();
-  const {date, time} = route?.params;
-  const renderDate = getDateInFormat(new Date(date), 'dd/mm/yyyy');
-  const renderTime = getTimeInFormat(new Date(time), 'hh:mm:ss');
+  const { onPayPress } = usePaymentReconfirm();
+  const { scheduleDate } = useSelector(state => state.checkOut);
+  const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
+  const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
+  const { cart } = useSelector(state => state.cart);
+  const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
+  const { coupon } = useSelector(state => state.coupon);
+  const { loggedIn } = useSelector(state => state.auth);
+  const isLoggedIn = loggedIn === 'loggedIn';
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getCartUserThunk());
+    } else {
+      dispatch(getCartGuestThunk());
+    }
+  }, []);
+
   return (
     <>
       <Header title={'Checkout'} showSearch={false} showBackButton={true} />
@@ -29,10 +47,12 @@ const PaymentReconfirmList = props => {
           <Text style={styles.timeSlotStyle}>{renderDate}</Text>
           <Text style={styles.timeSlotStyle}>{renderTime}</Text>
         </View>
-        {/*  to do ranjit component */}
+        <View style={styles.PriceDetails}>
+          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount }} />
+        </View>
 
-        <TouchableOpacity style={styles.touchableButton}>
-          <Text style={styles.textBook}>{TO_BE_PAID}</Text>
+        <TouchableOpacity onPress={onPayPress} style={styles.touchableButton}>
+          <Text style={styles.textBook}>{TO_BE_PAID(amountToBePaid)}</Text>
         </TouchableOpacity>
       </ScrollView>
     </>

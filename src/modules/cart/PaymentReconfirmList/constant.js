@@ -1,1 +1,1 @@
-export const TO_BE_PAID = 'To Be Paid ₹ ---- /-';
+export const TO_BE_PAID = (item) =>  `To Be Paid ₹ ${item} /-`;

@@ -30,7 +30,7 @@ const MyPlans = () => {
               />
             }
           </ScrollView>
-        ) : <Text style={styles.textColor}>{NO_PLAN}</Text>}
+        ) : <View style={styles.emptyContainer}><Text style={styles.textColor}>{NO_PLAN}</Text></View>}
 
       </View>
     </View>

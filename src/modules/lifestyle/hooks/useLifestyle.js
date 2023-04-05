@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {lifeStyleEnumData} from '../../../store/reducers/LifeStyleSlice';
 import { useCart } from '../../cart/hooks/useCart';
+import { LIFESTYLE } from '../constants';
 
 export const useLifestyle = (initialEnum,initialName) => {
   const {
@@ -97,6 +98,14 @@ export const useLifestyle = (initialEnum,initialName) => {
       );
       setRenderData(true);
     }
+    else if (!packageDataLoading &&
+      !packageDataError &&
+      lifestylePackages.length === 0 &&
+      lifestyleTests.length === 0 ){
+        setPackageData([]);
+        setTestData([]);
+        setRenderData(true);
+      }
   }, [packageDataLoading]);
 
   useEffect(()=>{
@@ -141,6 +150,7 @@ export const useLifestyle = (initialEnum,initialName) => {
   };
   const onPackagePress = arg => {
         navigation.navigate('ProductDetails', {
+          headerName:LIFESTYLE,
           packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
           uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
           showCartButton: true,

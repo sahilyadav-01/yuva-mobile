@@ -37,10 +37,11 @@ export const useHRASectionContainer = () => {
       setStartHRA(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      dispatch(getRelations());
     }
   }, [focused]);
   useEffect(() => {
-    if (startHRA && userDetails && relations.length > 0) {
+    if (startHRA && userDetails) {
       setData(
         relations.map((item, index) => {
           return {
@@ -112,7 +113,6 @@ export const useHRASectionContainer = () => {
   const openModal = () => {
     dispatch(resetHRAData());
     dispatch(profileThunk());
-    dispatch(getRelations());
     setStartHRA(true);
   };
 

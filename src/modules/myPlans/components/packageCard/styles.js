@@ -1,6 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, GREY, ORANGE, WHITE} from '../../../../styles/colors';
-import {CENTER, FLEX_END, FLEX_START, ROW} from '../../../../styles/constants';
+import {
+  BIANCA,
+  CYAN_BLUE,
+  GREY,
+  ORANGE,
+  WHITE,
+} from '../../../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  FLEX_END,
+  FLEX_START,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   imageStyle: {
@@ -10,30 +23,44 @@ export const styles = StyleSheet.create({
   },
   viewContainer: {
     height: 166,
-    borderRadius: 6,
+    borderRadius: 8,
     margin: '5%',
     backgroundColor: WHITE,
-    shadowColor: GREY,
-    borderWidth: 1,
+    borderColor: GREY,
+    elevation: 7,
+  },
+  headViewContainer:{
+    flexDirection:ROW,
+    justifyContent:SPACE_BETWEEN,
   },
   buttonStyle: {
-    height: '20%',
+    height: 48,
     backgroundColor: ORANGE,
     borderRadius: 8,
-    marginTop: '2%',
-    marginLeft: '5%',
-    marginRight: '5%',
     justifyContent: CENTER,
+    position: ABSOLUTE,
+    bottom: 0,
+    width: '100%',
+  },
+
+  headView: {
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    marginLeft: 19,
+    bottom: 9,
+    minHeight: 20,
+    borderRadius: 6,
+    backgroundColor: BIANCA,
+    maxWidth:155,
   },
   head: {
-    backgroundColor: WHITE,
     alignSelf: FLEX_START,
-    marginLeft: '5%',
-    top: -11,
-    fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    shadowColor: WHITE,
     color: CYAN_BLUE,
+    paddingHorizontal: 5,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
+    paddingVertical:5,
   },
   expiry: {
     alignSelf: FLEX_END,
@@ -68,4 +95,6 @@ export const styles = StyleSheet.create({
   textColor: {
     color: CYAN_BLUE,
   },
+  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
+  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
 });

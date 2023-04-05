@@ -101,8 +101,24 @@ import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
 import Bookings from './Bookings';
+import PaymentSuccess from './PaymentSuccess';
+import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
+import EditPen from './EditPen';
 import OurPlanBackground from './OurPlanBackground.png';
+import Gift from './Gift';
+import SeeYouSoon from './comingSoon';
+import OurPlanDoctors from './OurPlanDoctors';
+import OPDIcon from './OPDIcon';
+import HraSvg from './HraSvg';
+import TalkToDoctorSvg from './talkToDoctorSvg';
+import CheckUpIcon from './CheckUpIcon';
+import ExpandArrow from './ExpandArrow';
+import ambulance from './ambulance.png';
+import insuranceClaim from './insuranceClaim.png'
+import PharmacyDiscount from './PharmacyDiscount.png';
+import dot from './dots.png'
+import Reorder from './Reorder';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -163,6 +179,10 @@ const PNG = {
   POPULAR_PLAN,
   LandingPageBanner2,
   OurPlanBackground,
+  ambulance,
+  PharmacyDiscount,
+  insuranceClaim,
+  dot
 };
 
 const SVG = {
@@ -212,6 +232,18 @@ const SVG = {
   Download: Download,
   Prescriptions,
   Bookings,
+  PaymentSuccess,
+  PaymentFailure,
+  EditPen:EditPen,
+  Gift,
+  SeeYouSoon: SeeYouSoon,
+  OurPlanDoctors,
+  OPDIcon,
+  HraSvg,
+  TalkToDoctorSvg,
+  CheckUpIcon,
+  ExpandArrow,
+  Reorder
 };
 
 export {PNG, SVG};

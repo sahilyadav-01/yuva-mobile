@@ -3,11 +3,10 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import SelectList from 'react-native-dropdown-select-list'
 import Header from '../../../components/Header'
-import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
+import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, MY_TESTS, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
 import { DARK_BLUE } from '../../../styles/colors';
-import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 import AddressList from '../../../components/Address';
 
 
@@ -24,6 +23,7 @@ const BookingConfirm = () => {
         bookTestScreen,
         bookedDetails,
         rescheduleBooking,
+        addressListing
     } = useBookingConfirm();
 
     if (userAddress) {
@@ -31,7 +31,7 @@ const BookingConfirm = () => {
         return (
 
             <View>
-                <Header showBackButton={true} title={DIAGNOSTIC_HEALTH_PACKAGE} />
+                <Header showBackButton={true} title={MY_TESTS} />
                 <ScrollView
                     contentContainerStyle={styles.contentContainerStyle}>
                     <View style={styles.booksID}>
@@ -99,7 +99,7 @@ const BookingConfirm = () => {
                         <AddressList isNavScreen={BOOKINGCONFIRM}/>
                     </View>
                     <View>
-                        {!bookedDetails ? (
+                        {!bookedDetails || addressListing?.length>0 ? (
                             <TouchableOpacity
                                 onPress={bookTestScreen}
                                 style={styles.touchableButton}>

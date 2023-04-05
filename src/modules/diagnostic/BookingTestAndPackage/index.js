@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './styles';
-import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT, INSTRUCTIONS, LAB, MY_TESTS } from './constants';
+import { ABOUT_PACKAGE, ABOUT_TEST, BOOK_NOW, BUTTON_TEXT,  INSTRUCTIONS, LAB } from './constants';
 import Header from '../../../components/Header'
 import { useBookingTestAndPackage } from './hooks/useBookingTestAndPackage';
 import { SVG } from '../../../../assets';
+import { useRoute } from '@react-navigation/native';
 
 
 const BookingTestAndPackage = () => {
@@ -19,8 +20,9 @@ const BookingTestAndPackage = () => {
         isTest,
         isDisabled,
         testDetails,
+        headerTitle,
+        isScreenRes
     } = useBookingTestAndPackage();
-
     const renderItem = ({ item, index }) => {
         const onToggle = () => {
             onUpdate(index)
@@ -38,28 +40,27 @@ const BookingTestAndPackage = () => {
 
         return (
             <View>
-                <TouchableOpacity onPress={onToggle}>
+                <TouchableOpacity onPress={onToggle} disabled={!item?.parameterCount>0}>
                     {!item.isExpanded ?
                         <View style={styles.itemView}>
                             <View >
                                 <Text style={styles.itemText}>
-                                    {item?.attributeName ?? item?.name}
+                                    {item?.attributeName ?? item?.name}{" "}
+                                    {item?.parameterCount > 0 &&
+                                        <Text style={styles.itemCount}>-{item?.parameterCount ?? item?.parameters?.length} Test</Text>}
                                 </Text>
                             </View>
                             <View >
-                                <Text style={styles.itemCount}>
-
-                                    <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
-                                </Text>
                             </View>
-                            <View style={styles.drop} >
+                            {item?.parameterCount > 0 &&
+                                <View style={styles.drop} >
 
-                                <SVG.dropDown />
-                            </View>
+                                    <SVG.dropDown />
+                                </View>}
                         </View>
                         : <View style={styles.dropDown}>
                             <Text style={styles.itemHead}>
-                                {item?.attributeName ?? item?.name}
+                                {item?.attributeName ?? item?.name}{" "}
                                 <Text>-{item?.parameterCount ?? item?.parameters?.length}</Text>
                             </Text>
                             <View style={styles.dropDownDetails}>
@@ -81,7 +82,7 @@ const BookingTestAndPackage = () => {
     if (!renderData) return null;
     return (
         <View>
-            <Header showBackButton={true} title={MY_TESTS} />
+            <Header showBackButton={true} title={headerTitle()} />
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.booksID}>
@@ -125,13 +126,18 @@ const BookingTestAndPackage = () => {
                     <Text style={styles.textBook}>
                         {BUTTON_TEXT}
                     </Text>
-                </TouchableOpacity> : <TouchableOpacity
+                </TouchableOpacity> : 
+                   <View>
+                {!isScreenRes &&                
+                <TouchableOpacity
                     onPress={bookPackageScreen}
                     style={styles.touchable()}>
                     <Text style={styles.textBook}>
                         {BOOK_NOW}
                     </Text>
-                </TouchableOpacity>}
+                </TouchableOpacity>
+                }
+                </View>}
                 <View>
                 </View>
             </ScrollView >

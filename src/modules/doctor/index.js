@@ -1,13 +1,11 @@
 import React from 'react';
 import {View, FlatList, ScrollView} from 'react-native';
 import DoctorCard from '../../components/DoctorCard';
-import {Searchbar} from 'react-native-paper';
 import {useDoctor} from './hooks/useDoctor';
-import SearchLabel from '../../components/SearchLabel';
 import {styles} from './styles';
 import {SEARCH} from './constant';
-import {PLACEHOLDER_TEXT_COLOR} from '../../styles/colors';
 import {useRoute} from '@react-navigation/native';
+import Search from '../../components/Search';
 
 const Doctor = () => {
   const {params} = useRoute();
@@ -29,22 +27,20 @@ const Doctor = () => {
         userVersion={userVersion}
         uuid={uuid}
         version={version}
+        hospital={item.hospital}
       />
     );
   };
   return (
     <ScrollView>
       <View>
-        <Searchbar
-          multiline={false}
-          style={styles.search}
-          placeholder={SEARCH}
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          theme={styles.theme}
-          placeholderTextColor={PLACEHOLDER_TEXT_COLOR}
-          label={SearchLabel}
-        />
+        <View style={styles.search}>
+          <Search
+            placeholder={SEARCH}
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
+        </View>
         <View>
           <FlatList
             renderItem={renderItem}

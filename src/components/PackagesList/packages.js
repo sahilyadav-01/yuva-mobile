@@ -1,5 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import EmptyComponent from './EmptyComponent';
 import ListItem from './ListItem';
 import {styles} from './style';
 
@@ -49,6 +50,7 @@ const Packages = props => {
         ItemSeparatorComponent={ItemSeparator}
         onEndReached={props?.onEndReached}
         ListFooterComponent={RenderListFooter}
+        ListEmptyComponent={()=><EmptyComponent emptyText={props?.emptyText}/>}
       />
     </View>
   );

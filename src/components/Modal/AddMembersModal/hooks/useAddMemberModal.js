@@ -5,7 +5,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
   const data = [
     {heading: 'Name', placeholder: 'Name'},
     {heading: 'Age', placeholder: 'Age'},
-    {heading: 'Relationship', placeholder: 'Relationship'},
+    {heading: 'Gender', placeholder: 'Gender'},
   ];
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -17,7 +17,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
         return {value: name, func: setName,type:'input'};
       case 'Age':
         return {value: age, func: setAge,type:'input',keyboardType:'numeric'};
-      case 'Relationship':
+      case 'Gender':
         return {value: '0',type:'picker'};
     }
   };
@@ -33,8 +33,10 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
   };
   const onSaveDetails = () => {
     const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi
+    const nameReg = /^[A-Za-z. ]+$/
     if(!(name && age && selectedRelation)) Alert.alert('Alert', 'Please fill all the details');
     else if(reg.test(age)) Alert.alert('Alert', 'Please enter a proper age');
+    else if(!nameReg.test(name)) Alert.alert('Alert', 'Please enter a proper name');
     else onSaveDetailsPress({name, age, selectedRelation});
   };
   return {

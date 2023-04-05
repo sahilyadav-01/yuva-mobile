@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
     backgroundColor: AMBER,
     color: GAINSBORO,
     marginTop: 23,
-    fontSize: 1,
+    fontSize: fonts.size.fontSize1,
     height: 51,
     fontFamily: fonts.family.rubik400,
   },

@@ -7,7 +7,7 @@ import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../assets";
 import { Checkbox } from 'react-native-paper';
 import { VERY_LIGHT_GREY, WHITE } from "../styles/colors";
-
+import AddNewAddressContainer from './AddNewAddressContainer'
 const AddressList = (isNavScreen) => {
     const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress(isNavScreen);
     const renderAddress = ({ item, index }) => {
@@ -39,16 +39,13 @@ const AddressList = (isNavScreen) => {
             </View>
         )
     }
-    if (!userAddress) {
-        return null;
-    }
     return (
         <View>
             <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
-                <TouchableOpacity disabled={userAddress?.[checked]} onPress={AddNewAddress} >
+                <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length} onPress={AddNewAddress} >
                     <View style={[styles.AddNewAdd, { opacity: userAddress?.[checked] && 0.5 }]} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
@@ -58,12 +55,13 @@ const AddressList = (isNavScreen) => {
                 </TouchableOpacity>
             </View>
             <View >
+                {userAddressListing?.length > 0 ?
                 <FlatList
                     renderItem={renderAddress}
                     data={userAddressListing}
                     keyExtractor={(item) => item?.id}
                     showsHorizontalScrollIndicator={false}
-                />
+                />:<AddNewAddressContainer isScreen={isNavScreen?.isNavScreen}/>}
             </View>
         </View>
     )

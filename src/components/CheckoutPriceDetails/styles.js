@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COUPON_DARK_GREY, CYAN_BLUE, GREY70, ORANGE, WHITE } from '../../styles/colors'
+import { BLUE_GRAY, CHARCOAL, COUPON_DARK_GREY, CYAN_BLUE, DARK_GRAY, DEEP_BLUE, GREEN, GREY70, INDIGO, ORANGE, WHITE } from '../../styles/colors'
 import { FLEX_END, RIGHT, ROW, SPACE_BETWEEN, CENTER } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -17,11 +17,12 @@ export const styles = StyleSheet.create({
     QuantityNumber: {
         textAlign: RIGHT,
         flex: 1,
-        marginRight: "11%",
+        marginHorizontal:25,
         marginTop: "5%",
-        color: CYAN_BLUE,
+        color: INDIGO,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
+        lineHeight:21,
     },
     QuantityViewNumber: {
         backgroundColor: ORANGE,
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
     },
     OrderAmountDirection: {
         flexDirection: ROW,
+        marginTop:'2.5%',
     },
 
     orderAmount: {
@@ -57,7 +59,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginRight: "8%",
         marginTop: "2%",
-        color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize16,
     },
@@ -175,8 +176,46 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginRight: "8%",
         marginTop: "3.76%",
-        color: CYAN_BLUE,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
-    }
+    },
+    couponContainer: {
+        flexDirection: ROW,
+        justifyContent: SPACE_BETWEEN,
+        padding: 5,
+        marginVertical: 25,
+        marginHorizontal: 16
+    },
+    crossStyle: {
+        color: DARK_GRAY,
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize16,
+    },
+    iconStyle: {
+        color: CHARCOAL,
+    },
+    appliedStyle: {
+        color: DEEP_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+    },
+    descStyle: {
+        height: 36,
+        width: '60%',
+        borderRadius: 5,
+        paddingLeft: 16,
+        paddingRight: 12,
+        justifyContent: SPACE_BETWEEN,
+        alignItems: CENTER,
+        flexDirection: ROW,
+        backgroundColor: BLUE_GRAY,
+    },
+    couponDiscountStyle: {
+        height: 36,
+        color: GREEN,
+        paddingVertical: 10,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize14,
+        paddingHorizontal: 5,
+    },
 })

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { CYAN_BLUE, ORANGE, SEASHELL, WHITE } from '../../styles/colors';
+import { CYAN_BLUE, ORANGE, SEASHELL, V_LIGHT_GREY, WHITE } from '../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 import { getDimensions } from '../../utils/utils';
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     width: 208,
   },
   cardView: {
-    backgroundColor: WHITE,
+    paddingHorizontal: 12
   },
   subHeadingView: {
     marginVertical: 12,
@@ -43,4 +43,19 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize10,
     color: ORANGE,
   },
+  indexContainer:{
+    marginHorizontal: 15,
+    marginVertical: 10,
+  },
+  indexView: {
+    backgroundColor: V_LIGHT_GREY,
+    height: 10,
+    width: 10,
+    marginHorizontal: 5,
+    borderRadius: 10,
+  },
+  activeIndexView: {
+    backgroundColor: ORANGE
+  },
+  separatorStyle: {width:24}
 });

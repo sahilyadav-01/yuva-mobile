@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, FlatList} from 'react-native';
-import { getDimensions } from '../../utils/utils';
 import PlanCard from './components/PlanCard';
 import { OUR_PLANS, SUB_HEADING, VIEW_ALL } from './constant';
 import { useOurPlan } from './hooks/useOurPlan';
@@ -13,16 +12,22 @@ const OurPlan = (props) => {
     viewabilityConfig,
     onPressAll,
     popularPlan,
+    activeIndex,
   } = useOurPlan();
-  const { width } = getDimensions();
-
+  
   const renderItem = ({item, index}) => {
     return(
-      <PlanCard item={item} isHomeScreen={isHomeScreen}/>
+      <PlanCard item={item} isHomeScreen={isHomeScreen} key={index}/>
     );
-  }
+  };
 
-  if(!popularPlan) {
+  const renderItemIndex = ({item, index}) => {
+    return (
+      <View key={index} style={[styles.indexView,(index === activeIndex) && styles.activeIndexView ]} />
+    );
+  };
+
+  if(popularPlan.length === 0) {
     return null;
   }
 
@@ -44,12 +49,19 @@ const OurPlan = (props) => {
         data={popularPlan}
         renderItem={renderItem}
         contentContainerStyle={styles.cardView}
-        snapToAlignment={'start'}
-        snapToInterval={width - 20}
+        snapToAlignment={'center'}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
+        ItemSeparatorComponent={() => <View style={styles.separatorStyle}/>}
+      />
+      <FlatList
+        data={new Array(popularPlan.length)}
+        renderItem={renderItemIndex}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.indexContainer}
       />
     </View>
   );

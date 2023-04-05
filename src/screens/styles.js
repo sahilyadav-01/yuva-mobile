@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
+import {CENTER, SPACE_BETWEEN, FLEX, ROW, ROW_REVERSE, HIDDEN} from '../styles/constants';
 import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
 import {fonts} from '../styles/fonts';
 
@@ -47,10 +47,8 @@ export const styles = StyleSheet.create({
   },
   line: {
     borderBottomColor: SEASHELL,
-    borderBottomWidth: 1,
-    width: 246,
-    marginLeft: 35,
-    marginTop: 19,
+    borderBottomWidth: 2,
+    flex:1,
   },
   line1: {
     borderBottomColor: SEASHELL,
@@ -80,8 +78,9 @@ export const styles = StyleSheet.create({
     marginTop: 100,
   },
   verticalLine: {
-    borderRightWidth: 2,
-    height: 40,
+    borderRightWidth: 1,
+    height: 20,
+    marginVertical:20,
     borderRightColor: CYAN_BLUE,
   },
   height: {
@@ -103,7 +102,7 @@ export const styles = StyleSheet.create({
   },
   PopularHealthCheckups: {
     alignItems: CENTER,
-    marginTop: 15,
+    marginTop: 18,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
@@ -131,4 +130,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 118,
   },
+  planContainer: {marginTop:30},
+  textContainer: {flex:1,flexDirection:ROW_REVERSE,justifyContent:SPACE_BETWEEN,alignItems:CENTER,overflow:HIDDEN}
 });

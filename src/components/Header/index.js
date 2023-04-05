@@ -25,24 +25,12 @@ const Header = (props) => {
     title,
     showCount,
     count,
+    hideMenu
   } = useHeader(props);
 
   return (
     <View style={styles.headerContainer}>
       <View style={styles.topSection}>
-        <View style={styles.pinView}>
-          <SVG.LocationOn fill={CYAN_BLUE}/>
-          <SelectList 
-            data={cityList}
-            defaultOption={cityList[0]}
-            search={false}
-            setSelected={setSelected}
-            boxStyles={styles.boxStyle}
-            inputStyles={styles.inputStyles}
-            dropdownStyles={styles.dropdownStyles}
-            dropdownTextStyles={styles.inputStyles}
-          />
-        </View>
         <View style={styles.rightView}>
           <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
             { showCount && 
@@ -53,8 +41,8 @@ const Header = (props) => {
             <SVG.ShoppingCart />
           </TouchableOpacity>
           <TouchableOpacity style={styles.rightIcon} onPress={onRightPress}>
-            {isLoggedIn ?
-              <SVG.MenuIcon />
+            {isLoggedIn && !hideMenu ?
+              <SVG.MenuIcon /> : isLoggedIn && hideMenu ? null
               :
               <Text style={styles.loginText}>
                 {LOGIN_TEXT}
@@ -65,7 +53,7 @@ const Header = (props) => {
       </View>
       <View style={styles.sectionBottom}>
       { canGoBack && 
-          <TouchableOpacity onPress={onBackPress}>
+          <TouchableOpacity style={styles.backIcon} onPress={onBackPress}>
             <SVG.Back />
           </TouchableOpacity>
         } 
@@ -77,7 +65,7 @@ const Header = (props) => {
         }     
       </View>
       <View style={styles.search}>
-        {showSearch && 
+         {showSearch && 
           <Search 
             placeholder={searchPlaceholder} 
             onChangeText={onChangeSearch} 

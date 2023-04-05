@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   DARK_BLUE,
   WHITE,
@@ -12,7 +12,7 @@ import {
   LIGHT_MERCURY,
   LIGHT_GREYISH_RED,
   RED,
-  VERY_LIGHT_GREY,
+  BIANCA,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -20,41 +20,35 @@ import {
   SPACE_BETWEEN,
   CENTER,
   FLEX_END,
-  ABSOLUTE,
   FLEX_START,
 } from '../styles/constants';
 import {fonts} from '../styles/fonts';
-
+import {getDimensions} from '../utils/utils';
+const {width} = getDimensions();
 export const styles = StyleSheet.create({
-  Image: {
-    height: 48,
-    width: 48,
-    alignSelf: 'center',
-    marginLeft: 20,
-  },
   buttonStyle: {
     backgroundColor: ORANGE,
     height: 48,
     marginLeft: '3%',
     marginRight: '3%',
+    borderRadius: 8,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    marginVertical: 31,
   },
   text: {
     color: WHITE,
-    alignSelf: CENTER,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
   },
   ContentStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
+    marginVertical: '2%',
     marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
   NameStyle: {
-    marginTop: '5%',
-    marginBottom: '5%',
     marginLeft: '3%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
@@ -64,21 +58,26 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     marginLeft: '5%',
   },
+  pngView: {
+    width: 68,
+    height: 78,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+  },
   Image: {
     height: 48,
     width: 48,
-    marginTop: '40%',
-    marginLeft: '10%',
+    borderRadius: 24,
   },
   CompleteView: {
     backgroundColor: WHITE,
     marginLeft: '5%',
     marginRight: '5%',
-    marginTop: '5%',
-    marginBottom: '5%',
-    height: 139,
+    marginVertical: 12,
+    height: 143,
     width: '90%',
-    borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   Button: {
     backgroundColor: CYAN_BLUE,
@@ -87,7 +86,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   buttonView: {
-    marginTop: 18,
+    marginTop: 4,
   },
   ButtonText: {
     color: WHITE,
@@ -98,18 +97,19 @@ export const styles = StyleSheet.create({
   },
   Top: {
     flexDirection: ROW,
-    margintop: '5%',
   },
   Add: {
     flex: 1,
   },
   Location: {
     flexDirection: ROW,
-    marginLeft: '3%',
+    marginLeft: '2%',
     color: BLACK,
+    justifyContent: SPACE_BETWEEN,
   },
 
   Cont: {
+    marginTop: '5%',
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
   },
@@ -118,7 +118,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize10,
     marginRight: '5%',
-    marginTop: '5%',
   },
   Address: {
     color: CYAN_BLUE,
@@ -136,6 +135,9 @@ export const styles = StyleSheet.create({
 
   available: {
     flexDirection: ROW,
+  },
+  textSpacing: {
+    marginHorizontal: 5,
   },
   BookingCard: {
     marginTop: 28,
@@ -198,8 +200,7 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     marginTop: 50,
     fontFamily: fonts.family.rubik500,
-    marginLeft: 17.3,
-    marginRight: 34,
+    marginHorizontal: 34,
   },
   cards: {
     backgroundColor: WHITE,
@@ -278,7 +279,7 @@ export const styles = StyleSheet.create({
     marginTop: 28,
   },
   buttonStyleMyTest: {
-    minHeight:48,
+    minHeight: 48,
     backgroundColor: ORANGE,
     borderRadius: 6,
     marginTop: 17,
@@ -286,16 +287,16 @@ export const styles = StyleSheet.create({
   },
   head: {
     alignSelf: FLEX_START,
-    marginLeft: 9,
     shadowColor: WHITE,
-    position: ABSOLUTE,
-    top: -11,
-    fontSize: 14,
     color: CYAN_BLUE,
-    paddingLeft: 6,
-    paddingRight: 6,
-    fontSize: fonts.size.fontSize14,
+    paddingHorizontal: 5,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
+    paddingVertical:5,
+  },
+  headViewContainer:{
+  flexDirection:ROW,
+  justifyContent:SPACE_BETWEEN,
   },
   textStyle: {
     color: WHITE,
@@ -322,10 +323,9 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
   },
   expiry: {
-    alignSelf: FLEX_END,
-    marginTop: 18,
+    marginTop:20,
     marginRight: 11,
-    marginTop: 11,
+    bottom: 9,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik400,
@@ -425,7 +425,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     flexDirection: ROW,
     shadowColor: GREY,
-    elevation:10,
+    elevation: 10,
   },
   addNew: {
     alignItems: CENTER,
@@ -442,23 +442,23 @@ export const styles = StyleSheet.create({
     marginLeft: 7.33,
   },
   border: {
-    elevation:5,
+    elevation: 5,
     marginTop: 14,
-    marginHorizontal:16,
+    marginHorizontal: 16,
     shadowColor: GREY,
     borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
   },
-  borderAddNewAddress:{
-    elevation:5,
+  borderAddNewAddress: {
+    elevation: 5,
     marginTop: 14,
-    marginHorizontal:16,
+    marginHorizontal: 16,
     shadowColor: GREY,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
     shadowColor: WHITE,
-    shadowOpacity: "5%",
+    shadowOpacity: '5%',
     borderRadius: 6,
   },
   checkboxAddress: {
@@ -468,16 +468,16 @@ export const styles = StyleSheet.create({
     marginTop: 8,
   },
   adressName: {
-    width:"80%",
+    width: '80%',
     marginTop: 10,
-    marginHorizontal:19,
+    marginHorizontal: 19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
-  CityName:{
+  CityName: {
     marginTop: 5,
-    marginHorizontal:19,
+    marginHorizontal: 19,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -485,12 +485,12 @@ export const styles = StyleSheet.create({
   AddressImages: {
     justifyContent: SPACE_BETWEEN,
     flexDirection: ROW,
-    marginTop:20,
+    marginTop: 20,
     marginRight: 25,
   },
   AdressCheckBox: {
-    marginTop:5,
-    marginHorizontal:19,
+    marginTop: 5,
+    marginHorizontal: 19,
     marginBottom: 15,
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -504,8 +504,8 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize10,
-    },
-    check:  {
+  },
+  check: {
     marginRight: '6%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
@@ -519,6 +519,198 @@ export const styles = StyleSheet.create({
     color: RED,
     marginHorizontal: 14,
   },
-
-
+  dateAndTimeStyle: {
+    fontSize: fonts.size.fontSize8,
+    fontFamily: fonts.family.rubik500,
+  },
+  containerView: {
+    width: '100%',
+    backgroundColor: WHITE,
+    elevation: 2,
+    shadowOpacity: 0.2,
+    shadowColor: BLACK,
+    marginVertical: '3%',
+    borderRadius: 6,
+  },
+  StatusAndDoctorStyle: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  statusText: {
+    color: ORANGE,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+  },
+  leftView: {
+    width: '70%',
+  },
+  rightView: {
+    alignItems: FLEX_END,
+    width: '30%',
+  },
+  doctorNameText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+  },
+  doctorSpecialityText: {
+    marginTop: '8%',
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+  },
+  HospView: {
+    justifyContent: SPACE_BETWEEN,
+    flexDirection: ROW,
+    width: '100%',
+    marginTop: 20,
+  },
+  HospitalViewStyle: {
+    marginTop: '4%',
+  },
+  HospNameStyle: {
+    flexDirection: ROW,
+  },
+  HospNameText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik500,
+  },
+  LocationStyle: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+  },
+  DescriptionText: {
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+    marginTop: '10%',
+  },
+  CalView: {
+    marginTop: '20%',
+    flexDirection: ROW,
+    alignItems: CENTER,
+  },
+  CalenderStyle: {
+    color: BLACK,
+    fontSize: fonts.size.fontSize24,
+  },
+  ButtonStyle: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  totalView: {
+    flexDirection: ROW,
+    flex: 1,
+    marginVertical: '3%',
+    marginHorizontal: '3%',
+  },
+  rightSubView: {
+    alignItems: FLEX_END,
+  },
+  headView: {
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    marginLeft: 19,
+    bottom: 9,
+    minHeight: 20,
+    borderRadius: 6,
+    backgroundColor: BIANCA,
+    maxWidth:155,
+  },
+  direction: {
+    paddingHorizontal: 15,
+    marginTop: '2%',
+    flexDirection: ROW,
+    alignSelf: FLEX_END,
+  },
+  dateStyle: {
+    marginTop: '5%',
+    marginLeft: 5,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize10,
+  },
+  timeStyle: {
+    marginTop: '5%',
+    marginLeft: 5,
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize4,
+  },
+  carView: {
+    backgroundColor: WHITE,
+    shadowOpacity: 1,
+    shadowColor: BLACK,
+    minHeight: 117,
+    width: width - 30,
+    borderRadius: 6,
+  },
+  cartView:{
+    shadowOpacity: 1,
+    shadowColor: BLACK,
+    minHeight: 117,
+    borderRadius: 6,
+    alignSelf:CENTER,
+    width:width-40,
+  },
+  carDoctorNameText: {
+    color: ORANGE,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.rubik400,
+    marginRight: '3%',
+  },
+  overallView: {
+    flex: 1,
+    marginTop: 15,
+    marginHorizontal: '4%',
+  },
+  HospitalName: {
+    color: DARK_BLUE,
+    fontSize: fonts.size.fontSize16,
+    fontFamily: fonts.family.rubik400,
+    marginTop: 12,
+  },
+  CancelReschedule: {
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
+  },
+  RescCancel: {
+    marginHorizontal: '3%',
+    marginBottom: '3%',
+  },
+  RescheduleCancel: {
+    marginTop: '5%',
+  },
+  HospitalStyle: {
+    marginBottom: 13,
+    marginLeft: '3%',
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+  },
+  addressView: {
+    marginBottom: 15,
+    marginLeft: '3%',
+    flexDirection: ROW,
+  },
+  OurplanText:{
+    color: ORANGE,
+    marginTop:15,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+    alignSelf:CENTER,
+  },
+  OurplanText2:{
+    color: DARK_BLUE,
+    marginTop:5,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
+    alignSelf:CENTER,
+  },
+  ImageCarousel:{
+    alignSelf:CENTER,
+    minWidth:300,
+    minHeight:104,
+    borderRadius:6,
+  }
 });

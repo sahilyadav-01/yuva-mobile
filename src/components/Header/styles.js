@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
 import {BLACK, CYAN_BLUE, PINK_ORANGE, WHITE} from '../../styles/colors';
-import {ABSOLUTE, CENTER, FLEX_START, ROW} from '../../styles/constants';
+import {ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import {getDimensions} from '../../utils/utils';
 
 const {height} = getDimensions();
-
 export const styles = StyleSheet.create({
   headerContainer: {
     minHeight: 0.12 * height,
@@ -24,14 +23,15 @@ export const styles = StyleSheet.create({
   },
   topSection: {
     flexDirection: ROW,
-    justifyContent: CENTER,
+    justifyContent: FLEX_END,
     paddingVertical: 4,
-    paddingTop: 16,
+     paddingTop: 16,
   },
   pinView: {
     left: 0,
     flex: 1,
     flexDirection: ROW,
+    marginTop:4
   },
   rightView: {
     right: 0,
@@ -40,6 +40,11 @@ export const styles = StyleSheet.create({
   },
   rightIcon: {
     paddingHorizontal: 4,
+  },
+  backIcon:{
+    paddingHorizontal: 8,
+    paddingVertical:8,
+    marginRight:6,
   },
   loginText: {
     fontFamily: fonts.family.rubik500,
@@ -80,7 +85,8 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     color: CYAN_BLUE,
-    paddingHorizontal: 12,
+    paddingRight:12,
+    paddingVertical:6,
   },
   search: {
     zIndex: -1,

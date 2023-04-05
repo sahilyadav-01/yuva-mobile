@@ -10,7 +10,7 @@ import {
 import React, {useEffect} from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
-import {AVAILABLE, BOOK_NOW, PARAMETERS, USED} from './constant';
+import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, PARAMETERS, USED} from './constant';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {usePackageCard} from './hooks/usePackageCard';
@@ -33,10 +33,15 @@ const PackageCard = () => {
       return (
         <ScrollView>
           <View style={styles.viewContainer} key={index}>
-            <Text style={styles.head}>{item.name}</Text>
-
-            <Text style={styles.expiry}>{getPlanDate(item.endDate)}</Text>
-
+          <View style={styles.headViewContainer}>
+            <View style={styles.headView}>
+              <Text style={styles.head}>{item?.name.length > 26 ? item?.name.substring(0, 26) + '...' : item?.name}</Text>
+            </View>
+            <Text style={styles.expiry}>
+              {EXPIRY_DATE}
+              {getPlanDate(item.endDate)}
+            </Text>
+        </View>
             <View style={styles.sideBySide}>
               <Image source={PNG.DOCTOR} style={styles.imageStyle} />
               <View style={styles.text1}>
@@ -59,6 +64,13 @@ const PackageCard = () => {
     });
   };
 
+  if(programAndPlan?.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No Active Plans left</Text>
+        </View>
+    );
+  }
   return (
     <FlatList
       data={programAndPlan}

@@ -6,6 +6,7 @@ import {
   PLATINUM,
   LIGHT_GREYISH_RED,
   ORANGE,
+  LIGHT_MERCURY,
 } from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
@@ -14,27 +15,18 @@ export const styles = StyleSheet.create({
   dateTimePicker: {
     backgroundColor: WHITE,
     borderWidth: 1,
+    borderColor: LIGHT_MERCURY,
     borderRadius: 8,
-    height: 45,
+    height: 42,
   },
   theme: {colors: {text: BLACK}},
   dateAndTime: {
-    marginTop: 5,
-    marginLeft: '3%',
-    marginRight: '3%',
     minHeight: 42,
-    marginBottom: 5,
+    marginVertical: '3%',
+    marginHorizontal: '3%',
   },
-  Date: {
-    marginTop: '5%',
-    marginBottom: '5%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
-  },
-  Time: {
-    marginTop: '5%',
-    marginBottom: '10%',
+  dateTimeStyles: {
+    marginVertical: '2%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -44,8 +36,10 @@ export const styles = StyleSheet.create({
     marginRight: '3%',
     shadowColor: WHITE,
     shadowOpacity: '15%',
+    shadowColor: BLACK,
     borderRadius: 10,
     backgroundColor: WHITE,
+    elevation: 10,
   },
   TitleStyle: {
     marginTop: '5%',
@@ -55,13 +49,22 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
   },
+  inputTextStyle: {
+    borderBottomWidth: 1,
+    borderColor: PLATINUM,
+    backgroundColor: LIGHT_GREYISH_RED,
+    marginBottom: 15,
+    color: BLACK,
+    margin: '3%',
+    padding: 10,
+    borderRadius: 6,
+  },
   ScrollViewContainerStyle: {
-    paddingBottom: '80%',
+    paddingBottom: '20%',
   },
   buttonStyles: {
     marginVertical: '20%',
-    marginHorizontal: '6%',
-    width: 335,
+    marginHorizontal: '4%',
     height: 48,
     borderRadius: 8,
     justifyContent: CENTER,
@@ -69,7 +72,7 @@ export const styles = StyleSheet.create({
     backgroundColor: ORANGE,
   },
   Description: {
-    marginTop: '10%',
+    marginTop: '5%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
@@ -81,9 +84,10 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize12,
     borderColor: PLATINUM,
     backgroundColor: LIGHT_GREYISH_RED,
-    marginBottom: 15,
+    marginBottom: 17,
     color: BLACK,
     margin: '3%',
+    padding: 10,
     borderRadius: 6,
   },
   ContentStyle: {
@@ -114,15 +118,24 @@ export const styles = StyleSheet.create({
     height: 48,
     width: 48,
     alignSelf: CENTER,
+    borderRadius: 24,
   },
   ImageStyle: {
     flexDirection: ROW,
-    marginLeft: '5%',
+    marginLeft: '3%',
   },
   buttonTextStyle: {
     color: WHITE,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
     marginHorizontal: 10,
+  },
+  boxStyles: {
+    marginLeft: '3%',
+    marginRight: '3%',
+    borderColor: LIGHT_MERCURY,
+    marginBottom: 15,
+    color: LIGHT_GREYISH_RED,
+    paddingLeft: 13,
   },
 });
