@@ -6,6 +6,7 @@ import { PNG } from '../../assets';
 import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 import { useNavigation } from '@react-navigation/native';
+import { AMBER, CYAN_BLUE, ORANGE, WHITE } from '../styles/colors';
 
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
@@ -52,8 +53,8 @@ const MyPlanCard = ({ item }) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.buttonStyleMyTest} onPress={onBookingTestandPackage}>
-                        <Text style={styles.textStyle}>{SELECT_THIS_PACKAGE}</Text>
+                    <TouchableOpacity style={[styles.buttonStyleMyTest,{backgroundColor: available===0 ?AMBER :ORANGE}]} onPress={onBookingTestandPackage} disabled={!available}>
+                        <Text style={[styles.textStyle,{color: available===0 ?CYAN_BLUE :WHITE}]}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>
             </View >
