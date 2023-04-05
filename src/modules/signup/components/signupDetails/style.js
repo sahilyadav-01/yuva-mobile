@@ -22,7 +22,7 @@ const styles = () => {
       paddingVertical: 0.5,
       marginBottom: 4,
       fontFamily: fonts.family.rubik400,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
     },
     separator: {
@@ -41,14 +41,14 @@ const styles = () => {
     buttonText: {
       marginVertical: 16,
       lineHeight: 17,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       fontFamily: fonts.family.rubik700,
       color: WHITE,
     },
     termsAndConditionsText: {
       lineHeight: 20,
       fontFamily: fonts.family.rubik400,
-      fontSize: 10,
+      fontSize: fonts.size.fontSize10,
       color: CYAN_BLUE,
     },
     termsAndConditionsContainer: {
@@ -67,13 +67,13 @@ const styles = () => {
     existingMember: {
       color: BLACK,
       fontFamily: fonts.family.nunito600,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
     },
     loginText: {
       color: KASHMIR_BLUE,
       fontFamily: fonts.family.rubik500,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
     },
     bottomTextContainer: {alignItems: CENTER},

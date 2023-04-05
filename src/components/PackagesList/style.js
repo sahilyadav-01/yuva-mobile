@@ -33,7 +33,7 @@ export const styles = () => {
     },
     headingText: {
       lineHeight: 18,
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       fontFamily: fonts.family.rubik500,
       color: CYAN_BLUE,
     },

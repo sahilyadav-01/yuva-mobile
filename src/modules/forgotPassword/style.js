@@ -26,7 +26,7 @@ const styles = () => {
       paddingVertical: 0.5,
       marginBottom: 4,
       fontFamily: fonts.family.rubik400,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
     },
     separator: {
@@ -44,7 +44,7 @@ const styles = () => {
     buttonText: {
       marginVertical: 16,
       lineHeight: 17,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       fontFamily: fonts.family.rubik700,
       color: WHITE,
     },
