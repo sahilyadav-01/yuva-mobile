@@ -46,9 +46,9 @@ export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.
 export const PORT = '8082';
 
 //UAT Server
-// export const SERVER = 'ec2-15-207-19-131.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-15-207-19-131.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-15-207-19-131.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+// export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
 // export const PORT = '8081';
 
 
