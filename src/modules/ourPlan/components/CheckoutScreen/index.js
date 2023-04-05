@@ -29,6 +29,7 @@ const CheckoutOurPlan = () => {
         <View>
             <Header showBackButton={true} title={CHECKOUT} />
             <ScrollView
+                nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View style={styles.progressView}>
                     <ProgressBar progress={0.99} />

@@ -18,7 +18,7 @@ const MyPurchases = ({plan}) => {
   } = usePurchase(plan);
   const {container, separatorStyle, emptyContainer, emptyText} = styles();
   const renderItem = ({item, index}) => {
-    return <ListItem item={item} index={index} renderList={tabIndex === 0} />;
+    return <ListItem item={item} index={index} key={index} renderList={tabIndex === 0} />;
   };
   const ItemSeparator = () => {
     return <View style={separatorStyle} />;
@@ -60,7 +60,8 @@ const MyPurchases = ({plan}) => {
       <View style={container}>
         <FlatList
           data={tabIndex === 0 ? planList : purchasesList}
-          keyExtractor={index => index}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
           renderItem={renderItem}
           ItemSeparatorComponent={ItemSeparator}
           onEndReached={onEndReached}

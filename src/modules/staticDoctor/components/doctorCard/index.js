@@ -5,7 +5,7 @@ import {DEDICATED_DOCTOR, DEDICATED} from '../../constant';
 const DedicatedDoctor = () => {
   const renderItem = ({item}) => {
     return (
-      <View style={styles.Ocircle}>
+      <View style={styles.Ocircle} key={index}>
         <Image source={item.image} />
         <Text style={styles.textStyle}>{item.data}</Text>
       </View>
@@ -16,9 +16,10 @@ const DedicatedDoctor = () => {
       <Text style={styles.headTitle}>{DEDICATED}</Text>
       <FlatList
         data={DEDICATED_DOCTOR}
-        keyExtractor={index => `${index}`}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={renderItem}
-      />
+        nestedScrollEnabled={true}
+        />
     </View>
   );
 };

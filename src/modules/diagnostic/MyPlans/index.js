@@ -9,7 +9,7 @@ const MyPlans = () => {
   const { programAndPlan } = useMyPlan();
   const renderItem = ({ item, index }) => {
     return (<MyPlanCard
-      key={item.id}
+      key={index}
       item={item}
     />);
   }
@@ -25,8 +25,9 @@ const MyPlans = () => {
               <FlatList
                 renderItem={renderItem}
                 data={programAndPlan}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => `${index}`}
                 showsHorizontalScrollIndicator={false}
+                nestedScrollEnabled={true}
               />
             }
           </ScrollView>

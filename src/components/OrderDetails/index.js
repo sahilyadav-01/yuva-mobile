@@ -6,9 +6,9 @@ import { useOrderDetails } from './hook/useOrderDetails';
 
 const OrderDetails = () => {
   const { itemDtoList} = useOrderDetails();
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
-      <View>
+      <View key={index}>
         <Text style={styles.textTestStyle}>{item.name}</Text>
       </View>
     );
@@ -20,9 +20,9 @@ const OrderDetails = () => {
           <Text style={styles.textStyle1}>{ORDER_DETAILS}</Text>
         </View>
         <FlatList
-          nestedScrollEnabled
+          nestedScrollEnabled={true}
           data={itemDtoList}
-          keyExtractor={index => `${index}`}
+          keyExtractor={(item, index) => `${index}`}
           renderItem={renderItem}
         />
       </View>

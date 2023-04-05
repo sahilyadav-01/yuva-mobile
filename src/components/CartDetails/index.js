@@ -10,7 +10,7 @@ const CartDetails = props => {
     const onPressRemove = () => {
       onRemove(item);
     }
-    return <CartItem item={item} index={index} onPressRemove={onPressRemove}/>;
+    return <CartItem item={item} index={index} key={index} onPressRemove={onPressRemove}/>;
   };
   return (
     <View style={detailsContainer}>
@@ -18,8 +18,9 @@ const CartDetails = props => {
       <FlatList
         scrollEnabled={false}
         data={data}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={RenderItem}
+        nestedScrollEnabled={true}
       />
     </View>
   );

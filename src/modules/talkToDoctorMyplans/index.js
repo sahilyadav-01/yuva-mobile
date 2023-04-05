@@ -18,7 +18,7 @@ const MyPlans = () => {
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
-        <ScrollView>
+        <ScrollView key={index} nestedScrollEnabled={true}>
           <View style={styles.viewContainer}>
           <View style={styles.headViewContainer}>
             <View style={styles.headView}>
@@ -58,8 +58,9 @@ const MyPlans = () => {
     <FlatList
       data={programAndPlan}
       renderItem={renderItem}
-      keyExtractor={index => `${index}`}
-    />
+      keyExtractor={(item, index) => `${index}`}
+      nestedScrollEnabled={true}
+      />
   );
 };
 

@@ -48,6 +48,8 @@ const OurPlan = (props) => {
       <FlatList 
         data={popularPlan}
         renderItem={renderItem}
+        keyExtractor={(item, index) => `${index}`}
+        nestedScrollEnabled={true}
         contentContainerStyle={styles.cardView}
         snapToAlignment={'center'}
         horizontal={true}
@@ -59,6 +61,8 @@ const OurPlan = (props) => {
       <FlatList
         data={new Array(popularPlan.length)}
         renderItem={renderItemIndex}
+        nestedScrollEnabled={true}
+        keyExtractor={(item, index) => `${index}`}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.indexContainer}

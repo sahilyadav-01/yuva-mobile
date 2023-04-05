@@ -15,7 +15,7 @@ const ViewAllOurPlan = () => {
             onUpdate(index)
         }
         return (
-            <View>
+            <View key={index}>
                 {!item?.isExpanded ?
                     <View style={styles.fqaQuestionView} key={index}>
 
@@ -44,7 +44,7 @@ const ViewAllOurPlan = () => {
     return (
         <View>
             <Header showBackButton={true} title={OURPLAN} />
-            <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+            <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle} nestedScrollEnabled={true}>
                 <View style={styles.OurplanView}>
                     <OurPlan isHomeScreen={false} />
                 </View>
@@ -77,12 +77,13 @@ const ViewAllOurPlan = () => {
                     </Text>
                 </View>
                 <View style={styles.frequentView}>
-                    <ScrollView>
+                    <ScrollView nestedScrollEnabled={true}>
                         <FlatList
                             data={packageList}
-                            keyExtractor={(item) => item?.id}
+                            keyExtractor={(item, index) => `${index}`}
                             renderItem={renderItem}
                             showsHorizontalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                         />
                     </ScrollView>
                 </View>

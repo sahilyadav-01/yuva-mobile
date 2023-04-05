@@ -73,7 +73,7 @@ const ListItem = ({renderList, item, index}) => {
   } = styles();
 
   const renderPlans = ({item, index}) => {
-    return <RenderPlans item={item} index={index} />;
+    return <RenderPlans item={item} index={index} key={index}/>;
   };
   return (
     <ScrollView>
@@ -113,7 +113,8 @@ const ListItem = ({renderList, item, index}) => {
               <View style={listExpandContainer}>
                 <FlatList
                   data={item?.planServiceDtoList}
-                  keyExtractor={index => index}
+                  keyExtractor={(item, index) => `${index}`}
+                  nestedScrollEnabled={true}
                   renderItem={renderPlans}
                   ItemSeparatorComponent={() => (
                     <View style={itemSeparatorStyle} />

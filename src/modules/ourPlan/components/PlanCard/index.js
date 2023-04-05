@@ -46,9 +46,10 @@ const PlanCard = (props) => {
             data={planService}
             renderItem={renderItem}
             scrollEnabled={false}
-            keyExtractor={item => `${item}`}
+            keyExtractor={(item, index) => `${index}`}
             numColumns={2}
             contentContainerStyle={styles.serviceContainer}
+            nestedScrollEnabled={true}
           />
           <View style={styles.footerContainer}/>
           {isHomeScreen && <View style={styles.bottomView}>

@@ -9,6 +9,7 @@ const SlideIndicator = (props) => {
   const renderItem = ({item, index}) => {
     return (
       <View 
+        key={index}
         style={[styles.indicator, {
           backgroundColor: index === activeIndex ? CYAN_BLUE : WHITE,
         }]} 
@@ -22,6 +23,8 @@ const SlideIndicator = (props) => {
       data={new Array(count)}
       renderItem={renderItem}
       style={styles.container}
+      keyExtractor={(item, index) => `${index}`}
+      nestedScrollEnabled={true}
     />
   );
 }

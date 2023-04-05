@@ -8,9 +8,10 @@ import {useMyReport} from './hooks/useMyreports';
 const MyReports = props => {
   const {bookingId, title, data} = props;
 
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
       <ReportCard
+        key={index}
         name={item?.fileName}
         date={item?.generatedAt}
         filePath={item?.filePath}
@@ -41,8 +42,9 @@ const MyReports = props => {
         <View style={styles.reportContainer}>
           <FlatList
             data={data}
-            keyExtractor={index => `${index}`}
+            keyExtractor={(item, index) => `${index}`}
             renderItem={renderItem}
+            nestedScrollEnabled={true}
           />
         </View>
       )}

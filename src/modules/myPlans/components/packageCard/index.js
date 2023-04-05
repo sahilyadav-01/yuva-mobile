@@ -31,7 +31,7 @@ const PackageCard = () => {
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
-        <ScrollView>
+        <ScrollView key={index}>
           <View style={styles.viewContainer} key={index}>
           <View style={styles.headViewContainer}>
             <View style={styles.headView}>
@@ -75,7 +75,8 @@ const PackageCard = () => {
     <FlatList
       data={programAndPlan}
       renderItem={renderItem}
-      keyExtractor={index => `${index}`}
+      nestedScrollEnabled={true}
+      keyExtractor={(item, index) => `${index}`}
     />
   );
 };

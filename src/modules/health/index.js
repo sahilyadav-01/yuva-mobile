@@ -27,6 +27,7 @@ const Health = () => {
     const onHealthCardPress = () => setSelected(item?.index);
     return (
       <HealthCard
+        key={index}
         item={item}
         selected={selected}
         onHealthCardPress={onHealthCardPress}
@@ -42,11 +43,12 @@ const Health = () => {
         </View>
         <FlatList
           data={HEALTH_LIST}
-          keyExtractor={(item, index) => index + ''}
+          keyExtractor={(item, index) => `${index}`}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           style={styles.healthContainer}
           contentContainerStyle={styles.contentContainer}
+          nestedScrollEnabled={true}
         />
         {!isNaN(selected) && (
           <>

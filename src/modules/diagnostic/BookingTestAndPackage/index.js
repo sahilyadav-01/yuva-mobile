@@ -30,7 +30,7 @@ const BookingTestAndPackage = () => {
         const RenderParameters = ({ item, index }) => {
             return (
 
-                <View>
+                <View key={index}>
                     <Text style={styles.dropDownText}>
                         {item.parameterName}
                     </Text>
@@ -68,8 +68,9 @@ const BookingTestAndPackage = () => {
                                     <FlatList
                                         renderItem={RenderParameters}
                                         data={item.parameters}
-                                        keyExtractor={(item) => item.id}
+                                        keyExtractor={(item, index) => `${index}`}
                                         showsHorizontalScrollIndicator={false}
+                                        nestedScrollEnabled={true}
                                     />}
                             </View>
                         </View>
@@ -110,8 +111,9 @@ const BookingTestAndPackage = () => {
                                 <FlatList
                                     renderItem={renderItem}
                                     data={packageList}
-                                    keyExtractor={(item) => item.id}
+                                    keyExtractor={(item, index) => `${index}`}
                                     showsHorizontalScrollIndicator={false}
+                                    nestedScrollEnabled={true}
                                 />
 
                             }

@@ -14,7 +14,7 @@ const Doctor = () => {
   const renderItem = ({item, index}) => {
     return (
       <DoctorCard
-        key={item.id}
+        key={index}
         doctorId={item.id}
         name={item.name}
         specialization={item.speciality}
@@ -45,8 +45,9 @@ const Doctor = () => {
           <FlatList
             renderItem={renderItem}
             data={data}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) => `${index}`}
             showsHorizontalScrollIndicator={false}
+            nestedScrollEnabled={true}
           />
         </View>
       </View>

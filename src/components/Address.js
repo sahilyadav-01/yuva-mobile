@@ -15,7 +15,7 @@ const AddressList = (isNavScreen) => {
             return null;
         }
         return (
-            <View style={[styles.border, { backgroundColor: checked === index ? VERY_LIGHT_GREY : WHITE }]}>
+            <View key={index} style={[styles.border, { backgroundColor: checked === index ? VERY_LIGHT_GREY : WHITE }]}>
 
                 <View style={styles.checkboxAddress} >
                     <View>
@@ -59,7 +59,8 @@ const AddressList = (isNavScreen) => {
                 <FlatList
                     renderItem={renderAddress}
                     data={userAddressListing}
-                    keyExtractor={(item) => item?.id}
+                    nestedScrollEnabled={true}
+                    keyExtractor={(item, index) => `${index}`}
                     showsHorizontalScrollIndicator={false}
                 />:<AddNewAddressContainer isScreen={isNavScreen?.isNavScreen}/>}
             </View>

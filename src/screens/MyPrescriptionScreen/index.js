@@ -7,8 +7,8 @@ import Header from '../../components/Header';
 import { MY_PRESCRIPTIONS } from './constants';
 
 const MyPrescription = () => {
-  const renderItem = ({ item }) => {
-    return <ReportCard name={item?.name} date={item?.createdAt} filePath={item?.filePath} />;
+  const renderItem = ({ item, index }) => {
+    return <ReportCard name={item?.name} date={item?.createdAt} filePath={item?.filePath} key={index}/>;
   };
   const {myPrescriptionReport}=useMyPrescription();
 
@@ -17,7 +17,8 @@ const MyPrescription = () => {
        <Header title={MY_PRESCRIPTIONS} showBackButton={true} hideMenu={true}/>
         <FlatList
           data={myPrescriptionReport}
-          keyExtractor={index => `${index}`}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
           renderItem={renderItem}
         />
     </View>
