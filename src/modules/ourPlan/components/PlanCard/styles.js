@@ -166,7 +166,7 @@ export const styles = StyleSheet.create({
   },
   planDescriptionInitial: {
     fontFamily: fonts.family.rubik400,
-    fontSize: 7,
+    fontSize: fonts.size.fontSize7,
     color: CYAN_BLUE,
     textAlign: CENTER,
     lineHeight:10.5

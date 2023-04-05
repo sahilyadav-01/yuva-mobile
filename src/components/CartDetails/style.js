@@ -14,7 +14,7 @@ export const styles = () => {
         marginLeft: 12,
         marginVertical: 16,
         fontFamily: fonts.family.rubik500,
-        fontSize: 14,
+        fontSize: fonts.size.fontSize14,
         lineHeight: 21,
         color: CYAN_BLUE,
       }

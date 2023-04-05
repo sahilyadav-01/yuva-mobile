@@ -20,13 +20,13 @@ export const styles = () => {
     },
     packageName: {
       maxWidth: '40%',
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik500,
     },
     discountText: {
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: RED_SHADE,
       fontFamily: fonts.family.rubik400,
@@ -34,7 +34,7 @@ export const styles = () => {
       textDecorationLine:LINE_THROUGH
     },
     priceText: {
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik400,
@@ -50,14 +50,14 @@ export const styles = () => {
     testText: {
       fontFamily: fonts.family.rubik400,
       lineHeight: 15,
-      fontSize: 10,
+      fontSize: fonts.size.fontSize10,
       color: CYAN_BLUE,
     },
     buttonContainer: {flexDirection: ROW, alignItems: CENTER},
     removeText: {
       fontFamily: fonts.family.rubik400,
       lineHeight: 18,
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       color: GUARDSMAN_RED,
       marginLeft: 8,
     },

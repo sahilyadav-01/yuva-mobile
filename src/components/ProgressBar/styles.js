@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: fonts.weight.fontWeight700,
   },
   statusText: {
-    fontSize: 10,
+    fontSize: fonts.size.fontSize10,
     color: BLACK,
     fontFamily: fonts.family.rubik600,
   },

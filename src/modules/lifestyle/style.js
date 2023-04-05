@@ -21,7 +21,7 @@ export const styles = (addToCartLoad) => {
     buttonText: {
       fontFamily: fonts.family.rubik500,
       lineHeight: 24,
-      fontSize: 16,
+      fontSize: fonts.size.fontSize16,
       color: WHITE,
     },
     testsContainer: {marginTop: 36},
