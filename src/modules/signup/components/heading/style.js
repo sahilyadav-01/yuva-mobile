@@ -9,7 +9,7 @@ const styles = () => {
     headingText: {
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik600,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
     },
     separator: {

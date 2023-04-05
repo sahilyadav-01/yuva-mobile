@@ -31,7 +31,7 @@ export const styles = ({selected}) => {
     },
     nameContainer: {
       fontFamily: fonts.family.rubik500,
-      fontSize: 12,
+      fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: false ? GREEN : INDIGO,
       maxWidth: '45%',
@@ -39,7 +39,7 @@ export const styles = ({selected}) => {
     priceContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
     discountText: {
       fontFamily: fonts.family.rubik500,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: SUNSET_ORANGE,
       textDecorationLine: LINE_THROUGH,
@@ -47,7 +47,7 @@ export const styles = ({selected}) => {
     priceText: {
       marginHorizontal: 6,
       fontFamily: fonts.family.rubik500,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: CYAN_BLUE,
     },

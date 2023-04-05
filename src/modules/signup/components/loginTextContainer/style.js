@@ -8,13 +8,13 @@ const styles = () => {
     existingMember: {
       color: BLACK,
       fontFamily: fonts.family.rubik500,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
     },
     loginText: {
       color: KASHMIR_BLUE,
       fontFamily: fonts.family.nunito600,
-      fontSize: 14,
+      fontSize: fonts.size.fontSize14,
       lineHeight: 21,
     },
     bottomTextContainer: {alignItems: CENTER},

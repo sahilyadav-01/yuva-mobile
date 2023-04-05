@@ -5,6 +5,7 @@ import {CurrentRenderContext, useNavigation} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import AppointmentNav from './AppointmentNav';
 import DoctorScreen from '../../screens/yuvaservices/opd/doctors/Doctor';
+import { fonts } from '../../styles/fonts';
 // import Entypo from 'react-native-vector-icons/Entypo';
 const Tab = createMaterialTopTabNavigator();
 
@@ -57,6 +58,6 @@ const styles = StyleSheet.create({
 
   inputSearchStyle: {
     height: 40,
-    fontSize: 16,
+    fontSize: fonts.size.fontSize16,
   },
 });

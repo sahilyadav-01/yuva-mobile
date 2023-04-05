@@ -7,7 +7,7 @@ const styles = () => {
   return StyleSheet.create({
     needHelpText: {
       fontFamily: fonts.family.rubik400,
-      fontSize: 16,
+      fontSize: fonts.size.fontSize16,
       lineHeight: 18,
       alignSelf: CENTER,
       color: CYAN_BLUE,

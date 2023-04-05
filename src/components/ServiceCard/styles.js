@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { DARK_BLUE } from '../../styles/colors';
 import { CENTER, FLEX, ROW, WRAP } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
@@ -37,7 +38,7 @@ export const styles = StyleSheet.create({
     marginTop: 5,
   },
   subBottomContainerStyle: {
-    fontSize: 10,
+    fontSize: fonts.size.fontSize10,
     textAlign: CENTER,
     paddingHorizontal: 15,
     color: DARK_BLUE,
