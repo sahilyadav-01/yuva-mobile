@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'react-native-paper';
-import { WHITE } from '../../styles/colors';
-import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION, COST, DISCOUNT_AMOUNT } from './constants';
+import { CYAN_BLUE, GREEN, WHITE } from '../../styles/colors';
+import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE } from './constants';
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -22,12 +22,12 @@ const CheckoutPriceDetails = (props) => {
             </View>
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
-                <Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>
-                <Text style={styles.payableAmountDiscount}>{totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
+                {totalCost?<Text style={styles.TextPriceDiscount}>{TEST_AND_PACKAGES_PRICE}</Text>:<Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>}
+                <Text style={[styles.payableAmountDiscount, {color:totalDiscount ? CYAN_BLUE : GREEN}]}>{totalCost ? COST(totalCost) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
-                <Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>
-                <Text style={styles.orderAmount}>{RUPEE}{totalCost ? totalCost : planCostAfterDiscount}/-</Text>
+                {totalCost?<Text style={styles.orderPrice}>{DISCOUNT}</Text>:<Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>}
+                <Text style={[styles.orderAmount, {color:totalDiscount ? GREEN : CYAN_BLUE}]}>{totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : COST(planCostAfterDiscount)}</Text>
             </View>
             {(plan && planeCouponCode) && <View style={[styles.couponContainer, { backgroundColor: WHITE }]}>
                 <View style={styles.descStyle}>

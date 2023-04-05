@@ -20,14 +20,15 @@ const MyPlans = () => {
       return (
         <ScrollView>
           <View style={styles.viewContainer}>
+          <View style={styles.headViewContainer}>
             <View style={styles.headView}>
-              <Text style={styles.head}>{item.name}</Text>
+              <Text style={styles.head}>{item?.name.length > 26 ? item?.name.substring(0, 26) + '...' : item?.name}</Text>
             </View>
 
             <Text style={styles.expiry}>
               {VALIDITY} {getPlanDate(item.endDate)}
             </Text>
-
+        </View>
             <View style={styles.sideBySide}>
               <SVG.Stethoscope />
               <View style={styles.text1}>

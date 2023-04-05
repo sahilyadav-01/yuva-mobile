@@ -20,7 +20,7 @@ export const termsAndCondition = ["Any plan can be cancelled within 7 days subje
     "Health checkup booking will only be scheduled 24 hours before the booking time."]
 export const LOGIN_SCREEN = 'LoginScreen';
 export const Carouselt=[
-    {Text:"Ambulance Service An event upto ₹ 5000/-",Image:PNG.ambulance},
-    {Text:"Insurance claims advisory service 4 Claims in a year.",Image:PNG.PharmacyDiscount},
-    {Text:"Pharmacy Discount 10% Discount on every purchase.",Image:PNG.insuranceClaim}
+    {Text:"Ambulance Service",Text2: "An event upto ₹ 5000/-",Image:PNG.ambulance},
+    {Text:"Insurance claims advisory service-Service",Text2: "4 Claims in a year.",Image:PNG.PharmacyDiscount},
+    {Text:"Pharmacy DiscountService",Text2: "10% Discount on every purchase.",Image:PNG.insuranceClaim}
 ]

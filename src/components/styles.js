@@ -12,7 +12,6 @@ import {
   LIGHT_MERCURY,
   LIGHT_GREYISH_RED,
   RED,
-  VERY_LIGHT_GREY,
   BIANCA,
 } from '../styles/colors';
 import {
@@ -21,7 +20,6 @@ import {
   SPACE_BETWEEN,
   CENTER,
   FLEX_END,
-  ABSOLUTE,
   FLEX_START,
 } from '../styles/constants';
 import {fonts} from '../styles/fonts';
@@ -289,14 +287,16 @@ export const styles = StyleSheet.create({
   },
   head: {
     alignSelf: FLEX_START,
-    marginHorizontal: 19,
     shadowColor: WHITE,
-    position: ABSOLUTE,
-    fontSize: 14,
     color: CYAN_BLUE,
-    paddingHorizontal: 6,
-    fontSize: fonts.size.fontSize14,
+    paddingHorizontal: 5,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
+    paddingVertical:5,
+  },
+  headViewContainer:{
+  flexDirection:ROW,
+  justifyContent:SPACE_BETWEEN,
   },
   textStyle: {
     color: WHITE,
@@ -323,7 +323,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
   },
   expiry: {
-    alignSelf: FLEX_END,
+    marginTop:20,
     marginRight: 11,
     bottom: 9,
     color: CYAN_BLUE,
@@ -613,10 +613,10 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     marginLeft: 19,
     bottom: 9,
-    width: '44%',
     minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
+    maxWidth:155,
   },
   direction: {
     paddingHorizontal: 15,
@@ -694,16 +694,22 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
   },
   OurplanText:{
-    width:"60%",
-    color: CYAN_BLUE,
-    marginVertical:15,
-    fontSize: fonts.size.fontSize15,
+    color: ORANGE,
+    marginTop:15,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik500,
+    alignSelf:CENTER,
+  },
+  OurplanText2:{
+    color: DARK_BLUE,
+    marginTop:5,
+    fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
     alignSelf:CENTER,
   },
   ImageCarousel:{
     alignSelf:CENTER,
-    width:300,
+    minWidth:300,
     minHeight:104,
     borderRadius:6,
   }

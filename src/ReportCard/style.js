@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
   reportTextStyle: {
     marginHorizontal: 15,
   },
+  downloadReportStyle:{
+    paddingHorizontal:12,
+    paddingVertical:12,
+  }
 });
