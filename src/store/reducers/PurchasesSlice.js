@@ -55,7 +55,7 @@ const initialState = {
 };
 
 const purchasesSlice = createSlice({
-  name: 'myPurchases',
+  name: 'purchases',
   initialState,
   reducers: {
     toggleTab: (state, {payload}) => {

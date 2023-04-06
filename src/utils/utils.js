@@ -43,13 +43,25 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
 export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-export const PORT = '8082';
+export const PORT = ':8082';
+export const PROTOCOL = 'http://';
+export const PATH = ':8080/api/v1/yuva';
 
 //UAT Server
 // export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
 // export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 // export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-// export const PORT = '8081';
+// export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
+// export const PATH = ':8080/api/v1/yuva';
+
+// Production Server
+// export const SERVER = 'yuvahealth.in';
+// export const REDIRECT_URL = 'https://yuvahealth.in';
+// export const CANCEL_URL = 'https://yuvahealth.in';
+// export const PORT = '';
+// export const PROTOCOL = 'https://';
+// export const PATH = '/api/v1/yuva';
 
 
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';

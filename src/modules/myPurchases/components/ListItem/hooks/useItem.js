@@ -12,7 +12,7 @@ export const useItem = item => {
     if (
       arrowPress &&
       purchasesDetailLoading === false &&
-      purchasesItemDetails[`${item.orderNumber}`] !== undefined
+      purchasesItemDetails !== null && purchasesItemDetails[`${item?.orderNumber}`] !== undefined 
     ) {
       setExpanded(true);
     }
