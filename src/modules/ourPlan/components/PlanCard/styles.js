@@ -155,7 +155,7 @@ export const styles = StyleSheet.create({
   imageDetails: {
     width: 0.45 * width,
   },
-  popularPlanImageContainer: {marginLeft:16,paddingRight:4},
+  popularPlanImageContainer: {marginLeft:16,paddingRight:4, flex: 1},
   iconContainer: {
     alignItems: CENTER,
     justifyContent: CENTER,
@@ -177,5 +177,7 @@ export const styles = StyleSheet.create({
   descriptionContainer: {width:'100%',flexDirection:ROW},
   bottomContainer: {flex:1,marginTop:10},
   footerContainer: {marginTop:10,borderWidth:0.3,marginRight:16,borderColor:SILVER},
-  detailsSeparator: {height:2}
+  detailsSeparator: {height:2},
+  imageContainer: {flex:1},
+  imageStyle: {width:'100%',height:'100%'}
 });
