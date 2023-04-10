@@ -176,7 +176,7 @@ export const styles = StyleSheet.create({
   moreTextContainer: {marginTop:5},
   descriptionContainer: {width:'100%',flexDirection:ROW},
   bottomContainer: {flex:1,marginTop:10},
-  footerContainer: {marginTop:10,borderWidth:0.3,marginRight:16,borderColor:SILVER},
+  footerContainer: {marginTop:10,borderWidth:0.3,marginRight:16,borderColor:SILVER,backgroundColor:SILVER},
   detailsSeparator: {height:2},
   imageContainer: {flex:1},
   imageStyle: {width:'100%',height:'100%'}
