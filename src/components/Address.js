@@ -15,14 +15,15 @@ const AddressList = (isNavScreen) => {
             return null;
         }
         return (
-            <View style={[styles.border, { backgroundColor: checked === index ? VERY_LIGHT_GREY : WHITE }]}>
+            <View style={[styles.border, { backgroundColor: (checked === index || isNavScreen?.isNavScreen?.booked) ? VERY_LIGHT_GREY : WHITE }]}>
 
-                <View style={styles.checkboxAddress} >
+                <View style={styles.checkboxAddress} disabled={isNavScreen?.isNavScreen?.booked}>
                     <View>
                         <Text style={styles.adressName}>{item?.address}</Text>
                         <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
                     </View>
                     <Checkbox
+                        disabled={isNavScreen?.isNavScreen?.booked}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
@@ -45,7 +46,7 @@ const AddressList = (isNavScreen) => {
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
-                <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length} onPress={AddNewAddress} >
+                <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length ||isNavScreen?.isNavScreen?.booked} onPress={AddNewAddress} >
                     <View style={[styles.AddNewAdd, { opacity: userAddress?.[checked] && 0.5 }]} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
