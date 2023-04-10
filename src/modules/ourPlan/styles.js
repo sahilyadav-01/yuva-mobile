@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   line: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
-    width: 208,
+    flex:1
   },
   cardView: {
     paddingHorizontal: 12
