@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialLoad } from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
 import { getExistingUser, getProfileStatus } from '../store/LocalStore';
-import { updateProfileStatus } from '../store/reducers/ProfileSlice';
+import { profileThunk, updateProfileStatus } from '../store/reducers/ProfileSlice';
 import { cityIdThunk } from '../store/reducers/DiagnosticsSlice';
 import CartNavigation from './CartNavigation';
 import DrawerNav from './DrawerNav';
@@ -21,6 +21,7 @@ const IntroStackNav = () => {
   const [initialRouteName, setInitialRouteName] = useState(null);
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute))
+    dispatch(profileThunk());
     dispatch(initialLoad())
     dispatch(cityIdThunk());
     getProfileStatus().then((status)=>

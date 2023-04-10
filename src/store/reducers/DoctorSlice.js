@@ -3,9 +3,9 @@ import {YuvaService} from '../../network/yuvaService';
 
 export const searchDoctorThunk = createAsyncThunk(
   'doctor/search',
-  async ({search}, {fulfillWithValue, rejectWithValue}) => {
+  async ({search,cityId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/doctor/search?fromApp=true${search}`;
+      const endpoint = `/doctor/search?fromApp=false${search}&cityId=${cityId}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
