@@ -315,16 +315,25 @@ const downloadFile = (filePath, fileName) => {
     });
 };
 export const checkPermission = async (filePath, fileName) => {
-  if (Platform.OS === 'android') {
-    downloadFile(filePath, fileName);
-  } else {
-    try {
-      granted(filePath, fileName);
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        downloadFile(filePath, fileName);
-      }
-    } catch (error) {}
-  }
+  if(Platform.OS === 'android'){
+  PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
+    PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then(write=>{
+    if(read && write){
+      downloadFile(filePath, fileName);
+    }
+    else if(read && !write){
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+    }
+    else if(!read && write){
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
+    }
+    else {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
+    }
+    })
+  })
+}
 };
 
 const getExtention = filename => {
