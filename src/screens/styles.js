@@ -12,8 +12,7 @@ export const styles = StyleSheet.create({
     marginBottom: 0,
   },
   ScrollViewContainerStyle: {
-    paddingTop: 23,
-    paddingBottom: 100,
+    paddingVertical: 23,
   },
   serviceContainerWrapperStyle: {
     display: FLEX,
