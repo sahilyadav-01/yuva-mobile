@@ -47,7 +47,7 @@ const AddressList = (isNavScreen) => {
                     {SELECT_ADRESS}
                 </Text>
                 <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length ||isNavScreen?.isNavScreen?.booked} onPress={AddNewAddress} >
-                    <View style={[styles.AddNewAdd, { opacity: userAddress?.[checked] && 0.5 }]} >
+                    <View style={[styles.AddNewAdd, { opacity: (userAddress?.[checked] ||isNavScreen?.isNavScreen?.booked) && 0.5 }]} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
                             {ADD_NEW}
