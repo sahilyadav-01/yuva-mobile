@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, Text, TouchableOpacity, Linking} from 'react-native';
+import {View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import {ORANGE, ORANGE_GREY, SILVER_CHALICE} from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
