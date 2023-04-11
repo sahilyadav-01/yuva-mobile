@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { planIsSubscribedThunk } from "../../../store/reducers/ProfileSlice";
 import { planPopularThunk, setIndex } from "../../../store/reducers/ProgramAndPlanSlice"
 import { VIEW_ALL_OUR_PLAN } from "../constant";
 
@@ -32,6 +33,7 @@ export const useOurPlan = () => {
 
   const { popularPlan } = useSelector(state => state.programAndPlan);
   useEffect(() => {
+    dispatch(planIsSubscribedThunk());
     dispatch(planPopularThunk())
   }, []);
 

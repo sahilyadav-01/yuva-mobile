@@ -38,6 +38,7 @@ import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSl
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
+  const { isSubscribed } = useSelector(state => state.profile);
   const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
@@ -74,10 +75,12 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <View style={styles.planContainer}>
-          <OurPlan isHomeScreen={true}/>
-        </View>
-        { userAppointments.length > 0 && <CarouselContainer
+        {!isSubscribed && (
+          <View style={styles.planContainer}>
+            <OurPlan isHomeScreen={true} />
+          </View>
+        )}
+        {userAppointments.length > 0 && <CarouselContainer
           data={userAppointments}
           isIndexed={true}
           includeMockData={false}>
@@ -149,6 +152,11 @@ const HomeScreen = ({ navigation }) => {
           />
         </View>
         </ScrollView>
+        {isSubscribed && (
+          <View style={styles.planContainer}>
+            <OurPlan isHomeScreen={true} />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
