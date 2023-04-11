@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, ScrollView, Image} from 'react-native';
+import {View, Text, TextInput, ScrollView, Image, FlatList} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
@@ -26,6 +26,9 @@ import {
 } from './constant';
 import {useRoute} from '@react-navigation/native';
 import {PNG} from '../../../../../assets';
+import { getSlots } from '../../../../utils/utils';
+import { BLACK_LIGHT_OPACITY } from '../../../../styles/colors';
+import { BLACK_OPACITY } from '../../../../styles/colors';
 
 const NewAppointments = () => {
   const route = useRoute();
@@ -90,7 +93,7 @@ const NewAppointments = () => {
               minimumDate={new Date()}
             />
           </View>
-          <View style={styles.dateAndTime}>
+          {/* <View style={styles.dateAndTime}>
             <Text style={styles.dateTimeStyles}>{TIME}</Text>
             <DateTimePicker
               type="time"
@@ -100,8 +103,22 @@ const NewAppointments = () => {
               selectionColor={DARK_BLUE}
               theme={styles.theme}
             />
-          </View>
+          </View> */}
         </View>
+        <FlatList contentContainerStyle={{backgroundColor:WHITE}} keyExtractor={(index)=>index} data={getSlots().filter(item=>{if(typeof item?.length === 'number') return item})} renderItem={({item})=>{
+          return  <View style={{marginHorizontal:16,paddingHorizontal:16}}>
+          <Text>{item[0]?.type}</Text>
+          <View style={{marginVertical:16}}>
+              {<FlatList numColumns={2}  keyExtractor={(index)=>index} data={item} renderItem={({i,index})=>{
+                return <View style={{flex:1,alignItems:index%2 === 0 ? 'flex-start' : 'flex-end'}}>
+                 <View style={{paddingHorizontal:20,paddingVertical:4,borderRadius:12,borderWidth:2,marginBottom:12,borderColor:BLACK_OPACITY}}>
+                  <Text>{item[index]?.from}-{item[index]?.to}</Text>
+                 </View>
+                </View>
+              }}/>}
+            </View>
+            </View>
+        }}/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.borderSelect}>
