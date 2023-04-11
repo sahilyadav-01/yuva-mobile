@@ -96,10 +96,10 @@ const BookingConfirm = () => {
                                     data={dataRelation}
                                 />
                             </View>)}
-                        <AddressList isNavScreen={BOOKINGCONFIRM}/>
+                        <AddressList isNavScreen={{BOOKINGCONFIRM,booked:bookedDetails}}/>
                     </View>
                     <View>
-                        {!bookedDetails || addressListing?.length>0 ? (
+                        {!bookedDetails && addressListing?.length>0 ? (
                             <TouchableOpacity
                                 onPress={bookTestScreen}
                                 style={styles.touchableButton}>
