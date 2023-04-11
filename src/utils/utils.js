@@ -1,5 +1,5 @@
 import validator from 'is_js';
-import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
+import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
 
@@ -417,3 +417,37 @@ export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();
   return deviceId || '';
 };
+
+export const onTermsConditionsPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/TermsAndConditions');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL('https://www.yuvahealth.in/TermsAndConditions');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+
+export const onPrivacyPolicyPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/PrivacyPolicy');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL(storeUrl);
+  }
+  else {
+    Linking.openURL('market://details?id=com.android.chrome');
+  }
+}
+
+export const onNeedHelpPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://yuvahealth.in/ContactUs');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome';
+  if(canOpen){
+    Linking.openURL('https://yuvahealth.in/ContactUs');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+
