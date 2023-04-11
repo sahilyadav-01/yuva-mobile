@@ -1,15 +1,12 @@
 import React from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import {
-  ORANGE,
-  ORANGE_GREY,
-  SILVER_CHALICE,
-} from '../../../../styles/colors';
+import {ORANGE, ORANGE_GREY, SILVER_CHALICE} from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
 import styles from './style';
+import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../../../utils/utils';
 
 const SignUpDetailsCard = props => {
   const style = styles();
@@ -69,7 +66,9 @@ const SignUpDetailsCard = props => {
         />
         {signUp?.checkPassword && (
           <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>Password should be atleast 6 characters long</Text>
+            <Text style={style.warningText}>
+              Password should be atleast 6 characters long
+            </Text>
           </View>
         )}
         <View style={{height: 48}} />
@@ -84,14 +83,29 @@ const SignUpDetailsCard = props => {
         />
         {signUp?.checkConfirmPassword && (
           <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>Password should be atleast 6 characters long</Text>
+            <Text style={style.warningText}>
+              Password should be atleast 6 characters long
+            </Text>
           </View>
         )}
         <View style={style.termsAndConditionsContainer}>
-          <Checkbox onPress={signUp?.toggleTerms} status={signUp?.terms ? 'checked' : 'unchecked'}/>
+          <Checkbox
+            onPress={signUp?.toggleTerms}
+            status={signUp?.terms ? 'checked' : 'unchecked'}
+          />
           <Text style={style.termsAndConditionsText}>
-            By clicking on the below button, you agree to our Terms and
-            Conditions & Privacy Policy.
+            By clicking on the below button, you agree to our{' '}
+            <Text
+              onPress={onTermsConditionsPress}
+              style={style.termsConditionsText}>
+              Terms and Conditions
+            </Text>{' '}
+            & <Text
+              onPress={onPrivacyPolicyPress}
+              style={style.termsConditionsText}>
+              Privacy Policy
+            </Text>
+            .
           </Text>
         </View>
       </View>

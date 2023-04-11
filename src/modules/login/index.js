@@ -14,6 +14,7 @@ import {SILVER_CHALICE} from '../../styles/colors';
 import {useLogin} from './hooks/useLogin';
 import LoginTextContainer from '../signup/components/loginTextContainer';
 import styles from './style';
+import { onNeedHelpPress } from '../../utils/utils';
 
 const Login = props => {
   const {
@@ -75,7 +76,7 @@ const Login = props => {
               pressableText="Sign Up Here"
               extraStyles={signUpContainer}
             />
-            <Text style={needHelpText}>Need help? Get in touch</Text>
+            <Text onPress={onNeedHelpPress} style={needHelpText}>Need help? Get in touch</Text>
           </View>
         </View>
       </ScrollView>

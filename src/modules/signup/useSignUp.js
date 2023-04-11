@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Linking} from 'react-native';
 import {
   verifySmsThunk,
   verifyUserExistenceThunk,

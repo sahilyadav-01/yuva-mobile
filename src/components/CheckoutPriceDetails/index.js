@@ -2,11 +2,12 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { CYAN_BLUE, GREEN, WHITE } from '../../styles/colors';
-import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, TERMS_AND_CONDTION, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE } from './constants';
+import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE, BY_CLICKING, TERMS_AND_CONDITIONS, AND, PRIVACY_POLICY } from './constants';
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
+import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../utils/utils';
 
 const CheckoutPriceDetails = (props) => {
 
@@ -61,7 +62,7 @@ const CheckoutPriceDetails = (props) => {
                         }}
                     />
                 </View>
-                <Text style={styles.termsAndCondtion}>{TERMS_AND_CONDTION}</Text>
+                <Text style={styles.termsAndCondtion}>{BY_CLICKING} <Text onPress={onTermsConditionsPress} style={[styles.termsAndCondtion,styles.termsTextStyle]}>{TERMS_AND_CONDITIONS}</Text> {AND} <Text onPress={onPrivacyPolicyPress} style={[styles.termsAndCondtion,styles.termsTextStyle]}>{PRIVACY_POLICY}</Text>.</Text>
             </View>
         </View>
     )
