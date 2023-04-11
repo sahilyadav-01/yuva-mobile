@@ -92,6 +92,18 @@ export const getUserAddress = createAsyncThunk(
   },
 );
 
+export const planIsSubscribedThunk = createAsyncThunk(
+  'user/address',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const response = await YuvaService.get('/plan/isSubscribed');
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   profile: {
     companyName: '',
@@ -119,6 +131,7 @@ const initialState = {
   profileUpdated: false,
   selectedAddress:null,
   addressListing:null,
+  isSubscribed:false,
 };
 
 const profileSlice = createSlice({
@@ -264,6 +277,23 @@ const profileSlice = createSlice({
     },
     [logoutThunk.fulfilled]: state => {
       state.profileUpdated = false;
+    },
+    /**
+     * planIsSubscribed
+     */
+    [planIsSubscribedThunk.pending]: state => {
+      state.loading = true;
+    },
+    [planIsSubscribedThunk.fulfilled]: (state, {payload}) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.isSubscribed = payload?.data?.data;
+    },
+    [planIsSubscribedThunk.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload.message;
     },
   },
 });

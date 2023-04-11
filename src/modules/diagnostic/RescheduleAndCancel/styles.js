@@ -182,7 +182,7 @@ export const styles = StyleSheet.create({
   cancelledColor: {
     marginTop: 22,
     marginLeft: 16,
-    color: RED_SHADE,
+    color: WHITE,
     fontFamily: fonts.family.rubik500,
   },
   confirmedColor: {
@@ -209,4 +209,8 @@ export const styles = StyleSheet.create({
     minHeight: 92,
     justifyContent:SPACE_BETWEEN,
   },
+  bookingText:{
+  flex:1,
+  maxWidth:"100%",
+  }
 });

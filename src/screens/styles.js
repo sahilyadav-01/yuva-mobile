@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     marginBottom: 0,
   },
   ScrollViewContainerStyle: {
-    paddingBottom: 100,
+    paddingVertical: 23,
   },
   serviceContainerWrapperStyle: {
     display: FLEX,
@@ -130,6 +130,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 118,
   },
-  planContainer: {marginTop:30},
+  planContainer: {marginTop:0},
   textContainer: {flex:1,flexDirection:ROW_REVERSE,justifyContent:SPACE_BETWEEN,alignItems:CENTER,overflow:HIDDEN}
 });

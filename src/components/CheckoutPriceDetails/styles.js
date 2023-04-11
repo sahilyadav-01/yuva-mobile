@@ -218,4 +218,8 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize14,
         paddingHorizontal: 5,
     },
+    termsTextStyle: {
+        fontFamily: fonts.family.rubik600,
+        fontSize: fonts.size.fontSize12,
+    }
 })
