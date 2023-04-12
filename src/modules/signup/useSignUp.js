@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Linking} from 'react-native';
 import {
+  resetExistingNumber,
+  resetExistingEmail,
   verifySmsThunk,
   verifyUserExistenceThunk,
 } from '../../store/reducers/AuthSlice';
@@ -29,6 +30,21 @@ export const useSignUp = () => {
     setExisting(emailExisting || numberExisting);
   }, [emailExisting, numberExisting]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetExistingNumber());
+      dispatch(resetExistingEmail());
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(resetExistingNumber());
+  }, [number]);
+
+  useEffect(() => {
+    dispatch(resetExistingEmail());
+  }, [email]);
+  
   useEffect(() => {
     const enable =
       name.length &&
@@ -131,6 +147,8 @@ export const useSignUp = () => {
     secureConfirmPasswordEntry,
     checkPassword,
     checkConfirmPassword,
+    emailExisting,
+    numberExisting,
     toggleTerms,
     onLoginPress,
     onPasswordIconPress,
