@@ -93,7 +93,7 @@ export const getUserAddress = createAsyncThunk(
 );
 
 export const planIsSubscribedThunk = createAsyncThunk(
-  'user/address',
+  'plan/isSubscribed',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const response = await YuvaService.get('/plan/isSubscribed');
@@ -132,6 +132,7 @@ const initialState = {
   selectedAddress:null,
   addressListing:null,
   isSubscribed:false,
+  userAddress:[],
 };
 
 const profileSlice = createSlice({
