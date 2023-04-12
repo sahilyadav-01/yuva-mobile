@@ -14,7 +14,7 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const {rescheduleAppointment, errorAppointment} = useSelector(
     state => state.appointment,
   );
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(Date.now() + 3600 * 1000 * 25));
   const [time, setTime] = useState(new Date());
   const [saveFlag, setSaveFlag] = useState(false);
   const [selected, setSelected] = useState('');
@@ -39,6 +39,13 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const goBack = () => {
     navigation.goBack();
   };
+useEffect(()=>{
+  const tomorrow = new Date()
+  tomorrow.setHours(7);
+  tomorrow.setMinutes(0);
+  tomorrow.setSeconds(0);
+  setTime(tomorrow);
+},[])
 
   const {
     newMessage,
@@ -123,5 +130,6 @@ export const useEdit = (plan, userVersion, uuid, version) => {
     Doctor,
     Specialization,
     Description,
+    initial
   };
 };

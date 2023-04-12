@@ -11,7 +11,7 @@ import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRES
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(new Date(Date.now() + 3600 * 1000 * 25));
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
     const [dataRelation, setDataRelation] = useState();
@@ -22,6 +22,13 @@ export const useBookingConfirm = () => {
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
+    useEffect(()=>{
+        const tomorrow = new Date()
+        tomorrow.setHours(7);
+        tomorrow.setMinutes(0);
+        tomorrow.setSeconds(0);
+        setTime(tomorrow);
+      },[])
 
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {

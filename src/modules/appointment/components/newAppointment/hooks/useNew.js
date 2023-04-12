@@ -14,7 +14,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const [signupMessage, setSignupMessage] = useState();
   const [description, setDesciption] = useState('');
   const [alternateContactNumber, setAlternateContactNumber] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(Date.now() + 3600 * 1000 * 25));
   const [time, setTime] = useState(new Date());
   const [selected, setSelected] = useState('');
   const [dataRelation, setDataRelation] = useState();
@@ -31,6 +31,14 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
+  useEffect(()=>{
+    const tomorrow = new Date()
+    tomorrow.setHours(7);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    setTime(tomorrow);
+  },[])
+  
   const {relationId} = useSelector(state => state.profile);
   useEffect(() => {
     if (newMessage?.message) {
