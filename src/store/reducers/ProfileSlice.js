@@ -132,7 +132,7 @@ const initialState = {
   selectedAddress:null,
   addressListing:null,
   isSubscribed:false,
-  userAddress:null,
+  userAddress:[],
 };
 
 const profileSlice = createSlice({
