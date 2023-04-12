@@ -19,6 +19,7 @@ const InputPassword = props => {
           placeholderTextColor={SILVER_CHALICE}
           secureTextEntry={props?.secureTextEntry}
           onEndEditing={props.onEndEditing}
+          autoComplete={'off'}
         />
         <TouchableOpacity
           style={imageContainer}
