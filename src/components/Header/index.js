@@ -7,7 +7,6 @@ import { useHeader } from './hooks/useHeader';
 import { CYAN_BLUE } from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
-import { useSelector } from 'react-redux';
 
 const Header = (props) => {
   const {
@@ -26,9 +25,9 @@ const Header = (props) => {
     title,
     showCount,
     count,
-    hideMenu
+    hideMenu,
+    userDetails
   } = useHeader(props);
-  const {userDetails} =  useSelector(state  =>  state.profile)
   return (
     <View style={styles.headerContainer}>
       <View style={styles.topSection}>
