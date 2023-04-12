@@ -255,6 +255,12 @@ const authSlice = createSlice({
     resetHash(state) {
       state.verifyLinkSuccessOtp = '';
     },
+    resetExistingNumber(state) {
+      state.numberExisting = null;
+    },
+    resetExistingEmail(state) {
+      state.emailExisting = null;
+    }
   },
   extraReducers: {
     [loginThunk.pending]: (state, {payload}) => {
@@ -507,6 +513,8 @@ export const {
   resetVerifyEmail,
   resetVerifySms,
   resetHash,
+  resetExistingNumber,
+  resetExistingEmail,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

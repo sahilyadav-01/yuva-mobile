@@ -7,6 +7,7 @@ import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
 import styles from './style';
 import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../../../utils/utils';
+import { EMAIL_EXISTS, EMAIL_NOT_VALID, NUMBER_EXISTS, NUMBER_NOT_VALID } from '../../constants';
 
 const SignUpDetailsCard = props => {
   const style = styles();
@@ -20,6 +21,7 @@ const SignUpDetailsCard = props => {
           onChangeText={signUp?.onChangeName}
           value={signUp?.name}
           placeholderTextColor={SILVER_CHALICE}
+          autoComplete={'off'}
         />
         <View style={style.separator} />
         <View style={{height: 48}} />
@@ -31,11 +33,17 @@ const SignUpDetailsCard = props => {
           onEndEditing={signUp?.checkNumberText}
           value={signUp?.number}
           placeholderTextColor={SILVER_CHALICE}
+          autoComplete={'off'}
         />
         <View style={style.separator} />
         {signUp?.checkNumber && (
           <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>Number not valid</Text>
+            <Text style={style.warningText}>{NUMBER_NOT_VALID}</Text>
+          </View>
+        )}
+        {!signUp?.checkNumber && signUp?.numberExisting && (
+          <View style={style.checkTextContainer}>
+            <Text style={style.warningText}>{NUMBER_EXISTS}</Text>
           </View>
         )}
         <View style={{height: signUp?.checkNumber ? 40 : 48}} />
@@ -47,11 +55,17 @@ const SignUpDetailsCard = props => {
           onEndEditing={signUp?.checkEmailText}
           value={signUp?.email}
           placeholderTextColor={SILVER_CHALICE}
+          autoComplete={'off'}
         />
         <View style={style.separator} />
         {signUp?.checkEmail && (
           <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>Email not valid</Text>
+            <Text style={style.warningText}>{EMAIL_NOT_VALID}</Text>
+          </View>
+        )}
+        {!signUp?.checkEmail && signUp.emailExisting && (
+          <View style={style.checkTextContainer}>
+            <Text style={style.warningText}>{EMAIL_EXISTS}</Text>
           </View>
         )}
         <View style={{height: signUp?.checkEmail ? 40 : 48}} />
