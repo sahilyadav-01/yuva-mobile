@@ -7,6 +7,7 @@ import { useHeader } from './hooks/useHeader';
 import { CYAN_BLUE } from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
+import { useSelector } from 'react-redux';
 
 const Header = (props) => {
   const {
@@ -27,7 +28,7 @@ const Header = (props) => {
     count,
     hideMenu
   } = useHeader(props);
-
+  const {userDetails} =  useSelector(state  =>  state.profile)
   return (
     <View style={styles.headerContainer}>
       <View style={styles.topSection}>
@@ -35,7 +36,7 @@ const Header = (props) => {
            <SVG.LocationOn fill={CYAN_BLUE}/>
            <SelectList 
              data={cityList}
-             defaultOption={cityList[0]}
+             placeholder={userDetails?.cityName}
              search={false}
              setSelected={setSelected}
              boxStyles={styles.boxStyle}
