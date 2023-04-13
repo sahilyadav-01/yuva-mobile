@@ -13,7 +13,7 @@ import { usePaymentReconfirm } from './hooks/usePaymentReconfirm';
 import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 
 const PaymentReconfirmList = props => {
-  const { onPayPress } = usePaymentReconfirm();
+  const { onPayPress,processingCharge } = usePaymentReconfirm();
   const { scheduleDate } = useSelector(state => state.checkOut);
   const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
   const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
@@ -48,7 +48,7 @@ const PaymentReconfirmList = props => {
           <Text style={styles.timeSlotStyle}>{renderTime}</Text>
         </View>
         <View style={styles.PriceDetails}>
-          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount }} />
+          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount, processingCharge }} />
         </View>
 
         <TouchableOpacity onPress={onPayPress} style={styles.touchableButton}>

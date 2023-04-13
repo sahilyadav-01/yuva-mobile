@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { CYAN_BLUE, GREEN, WHITE } from '../../styles/colors';
-import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE, BY_CLICKING, TERMS_AND_CONDITIONS, AND, PRIVACY_POLICY } from './constants';
+import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE, BY_CLICKING, TERMS_AND_CONDITIONS, AND, PRIVACY_POLICY, COLLECTION_CHARGES, PROCESSING_AMOUNT } from './constants';
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -11,7 +11,7 @@ import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../utils/utils'
 
 const CheckoutPriceDetails = (props) => {
 
-    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan } = useCheckoutPriceDetails(props);
+    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan, processingCharge } = useCheckoutPriceDetails(props);
     return (
         <View>
             <View style={styles.QuantityView}>
@@ -30,6 +30,10 @@ const CheckoutPriceDetails = (props) => {
                 {totalCost?<Text style={styles.orderPrice}>{DISCOUNT}</Text>:<Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>}
                 <Text style={[styles.orderAmount, {color:totalDiscount ? GREEN : CYAN_BLUE}]}>{totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : COST(planCostAfterDiscount)}</Text>
             </View>
+           {processingCharge > 0 && <View style={styles.collectionContainer}>
+            <Text style={styles.orderPrice}>{COLLECTION_CHARGES}</Text>
+            <Text style={styles.orderAmount}>{PROCESSING_AMOUNT(processingCharge)}</Text>
+           </View>}
             {(plan && planeCouponCode) && <View style={[styles.couponContainer, { backgroundColor: WHITE }]}>
                 <View style={styles.descStyle}>
                     <View >

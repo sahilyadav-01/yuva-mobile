@@ -42,7 +42,8 @@ export const useItem = item => {
           amountPaid: i?.itemDiscountedCost,
           discount: `${purchasesItemDetails[`${item.orderNumber}`]?.couponAmount}`,
           couponName:purchasesItemDetails[`${item.orderNumber}`]?.couponName ?? null,
-          totalDiscount: `${purchasesItemDetails[`${item.orderNumber}`]?.discount}`
+          totalDiscount: `${purchasesItemDetails[`${item.orderNumber}`]?.discount}`,
+          processingCharge:purchasesItemDetails[`${item.orderNumber}`]?.processingCharge
         };
       })
     : null;

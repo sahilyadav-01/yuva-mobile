@@ -88,6 +88,7 @@ const initialState = {
     couponViewCart: null,
     discountBeforeCoupon:0,
     orderAmount:0,
+    processingCharge: 0,
   },
   loading: false,
   apiError: false,
@@ -125,6 +126,7 @@ const cartSlice = createSlice({
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
       state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
+      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
       if(typeof payload?.data?.data?.itemDtoList === 'object' && payload?.data?.data?.itemDtoList.length >= 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -162,6 +164,7 @@ const cartSlice = createSlice({
       state.cart.totalCost = payload?.data?.data?.totalCost || 0;
       state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;
       state.cart.totalDiscount = payload?.data?.data?.totalDiscount || 0;
+      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
       if (
         typeof payload?.data?.data?.itemDtoList === 'object' &&
         payload?.data?.data?.itemDtoList.length >= 0
