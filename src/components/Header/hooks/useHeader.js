@@ -2,6 +2,7 @@ import { DrawerActions, useNavigation, useRoute } from "@react-navigation/native
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
+import { PLACEHOLDER_TEXT } from "../constant";
 export const useHeader = (props) => {
   const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu } = props;
   const navigation = useNavigation();
@@ -10,8 +11,10 @@ export const useHeader = (props) => {
   const [selectedCity, setSelectedCity] = useState('');
   const [query, setQuery] = useState('');
   const [showCount, setShowCount] = useState(false);
+  const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
   const { loggedIn } = useSelector(state => state.auth);
-  const { cityId } = useSelector(state => state.diagnostic);
+  const diagnosticState = useSelector(state => state.diagnostic);
+  const { cityId } = diagnosticState;
   const { cart } = useSelector(state => state.cart);
   const {userDetails} =  useSelector(state  =>  state.profile)
   const count = cart?.itemDtoList?.length || 0;
@@ -45,6 +48,14 @@ export const useHeader = (props) => {
     setShowCount(count>0);
   }, [count]);
 
+  useEffect(() => {
+   if(diagnosticState.selectedCityId===''){
+    setPlaceholder(userDetails?.cityName)
+   }
+   else{
+    setPlaceholder(diagnosticState.selectedCityId)
+   }
+  }, [diagnosticState])
   const onChangeSearch = (text) => {
     onSearch && onSearch(text);
     setQuery(text);
@@ -66,6 +77,6 @@ export const useHeader = (props) => {
     showCount,
     count,
     hideMenu: hideMenu ?? false,
-    userDetails,
+    placeholder,
   };
 }

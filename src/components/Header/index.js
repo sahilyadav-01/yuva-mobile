@@ -26,7 +26,7 @@ const Header = (props) => {
     showCount,
     count,
     hideMenu,
-    userDetails
+    placeholder,
   } = useHeader(props);
   return (
     <View style={styles.headerContainer}>
@@ -35,7 +35,7 @@ const Header = (props) => {
            <SVG.LocationOn fill={CYAN_BLUE}/>
            <SelectList 
              data={cityList}
-             placeholder={userDetails?.cityName}
+             placeholder={placeholder}
              search={false}
              setSelected={setSelected}
              boxStyles={styles.boxStyle}
