@@ -110,7 +110,7 @@ export const useMemberSelect = () => {
     setStartConsultation(false);
   };
   const onPress = () => {
-    navigation.navigate(HEALTH_SCREEN, userData);
+    navigation.replace(HEALTH_SCREEN, userData);
   }
   return {
     modalVisible,
