@@ -9,7 +9,7 @@ import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../s
 import { useEffect, useState } from 'react';
 import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
-import { dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
+import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
@@ -17,7 +17,7 @@ export const useCart = (args) => {
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved, amountToBePaid} = cart || {};
+  const { isRemoved, amountToBePaid, processingCharge} = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
@@ -46,6 +46,7 @@ export const useCart = (args) => {
         openModal();
       } else {
         dispatch(dispatch_relationData({ userData }));
+        dispatch(dispatch_processingCharge(processingCharge));
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
       }
     } else {

@@ -221,5 +221,6 @@ export const styles = StyleSheet.create({
     termsTextStyle: {
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize12,
-    }
+    },
+    collectionContainer: {flexDirection:ROW,marginTop:'2.5%'}
 })
