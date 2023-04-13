@@ -77,7 +77,8 @@ export const useMemberSelect = () => {
         genderId: gender === MALE ? 0 : 1,
         relation: MYSELF,
         relationId:null
-      });
+      })
+      setModalVisible(false);
     } else if (
       checkBoxFlag.length > 0 &&
       checkBoxFlag.filter(item => item.status === CHECKED).length > 0
@@ -85,6 +86,7 @@ export const useMemberSelect = () => {
       const { id, name, age, gender, relation } =
         relations[checkBoxFlag.find(item => item.status === CHECKED).index];
       setUserData({ relationId:id, name, age, gender, genderId: gender === MALE ? 0 : 1, relation ,userId:userDetails?.id});
+      setModalVisible(false);
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
