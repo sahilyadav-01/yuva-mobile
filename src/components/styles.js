@@ -712,5 +712,6 @@ export const styles = StyleSheet.create({
     minWidth:300,
     minHeight:104,
     borderRadius:6,
-  }
+  },
+  addressTextField: {width: '90%'}
 });
