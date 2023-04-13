@@ -18,7 +18,7 @@ const AddressList = (isNavScreen) => {
             <View style={[styles.border, { backgroundColor: (checked === index || isNavScreen?.isNavScreen?.booked) ? VERY_LIGHT_GREY : WHITE }]}>
 
                 <View style={styles.checkboxAddress} disabled={isNavScreen?.isNavScreen?.booked}>
-                    <View>
+                    <View style={styles.addressTextField}>
                         <Text style={styles.adressName}>{item?.address}</Text>
                         <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
                     </View>
