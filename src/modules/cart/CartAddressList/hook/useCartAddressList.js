@@ -7,7 +7,7 @@ import { ADDRESS_CHECK, ALERT, CHECKOUT_SCHEDULE_NAVIGATION, PAYMENT_PAGE_NAVIGA
 
 export const useCartAddressList = () => {
   const dispatch = useDispatch();
-  const [date, setDate] = useState(new Date(Date.now() + 3600 * 1000 * 25));
+  const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const navigation = useNavigation();
   const { selectedAddress,addressListing} = useSelector(state => state.profile);
@@ -15,10 +15,12 @@ export const useCartAddressList = () => {
   const twoHoursCheck = new Date(currentDate.getTime() + 2 * 60 * 60 * 1000);
   useEffect(()=>{
     const tomorrow = new Date()
+      tomorrow.setDate(tomorrow.getDate() +1);
     tomorrow.setHours(7);
     tomorrow.setMinutes(0);
     tomorrow.setSeconds(0);
     setTime(tomorrow);
+    setDate(tomorrow);
   },[])
   const handleDate = arg => {
     setDate(arg);

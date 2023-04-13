@@ -14,7 +14,7 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const {rescheduleAppointment, errorAppointment} = useSelector(
     state => state.appointment,
   );
-  const [date, setDate] = useState(new Date(Date.now() + 3600 * 1000 * 25));
+  const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [saveFlag, setSaveFlag] = useState(false);
   const [selected, setSelected] = useState('');
@@ -41,10 +41,12 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   };
 useEffect(()=>{
   const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() +1);
   tomorrow.setHours(7);
   tomorrow.setMinutes(0);
   tomorrow.setSeconds(0);
   setTime(tomorrow);
+  setDate(tomorrow);
 },[])
 
   const {
