@@ -1,16 +1,17 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
 import PriceDetails from '../../components/PriceDetails';
-import { CART_DETAILS, MY_CART, PRICE_DETAILS, ADD_NEW_MEMBER, ADD_MEMBER, SELECT_MEMBER, SAVE_DETAILS, MYSELF } from './constants';
+import { CART_DETAILS, MY_CART, PRICE_DETAILS, ADD_NEW_MEMBER, ADD_MEMBER, SELECT_MEMBER, SAVE_DETAILS, MYSELF, EMPTY_CART } from './constants';
 import { useCart } from './hooks/useCart';
 import { styles } from './styles';
 import DependentsModal from '../../components/Modal/DependentsModal';
 import Dependents from '../profile/components/dependents';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
+import { getWindowDimensions } from '../../utils/utils';
 
 const Cart = props => {
   const { cart, coupon, couponView, onPressCardButton, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, onAddMembersPress, relationsData } = useCart();
@@ -41,7 +42,10 @@ const Cart = props => {
           relationsData={relationsData}
           buttonText={SAVE_DETAILS}
         />
-        <View style={styles.bodyContainer}>
+        {itemDtoList.length === 0 && <View style={styles.emptyCartContainer}>
+          <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
+          </View>}
+        {itemDtoList.length > 0 && <View style={styles.bodyContainer}>
           <CartDetails
             data={itemDtoList}
             heading={CART_DETAILS}
@@ -55,8 +59,8 @@ const Cart = props => {
             containerStyle={styles.containerStyle}
             textStyle={styles.textStyle}
           />
-        </View>
-        <CouponCard />
+        </View>}
+        {itemDtoList.length > 0 && <CouponCard />}
       </ScrollView>
     </>
 

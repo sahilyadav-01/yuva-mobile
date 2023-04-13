@@ -16,3 +16,4 @@ export const FEMALE = 'Female';
 export const KEY_VALUE1 = '1';
 export const KEY_VALUE2 = '2';
 export const TO_BE_PAID = (item) =>  `To Be Paid ₹ ${item} /-`;
+export const EMPTY_CART = 'Cart is Empty';
