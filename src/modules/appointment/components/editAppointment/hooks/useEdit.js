@@ -132,6 +132,6 @@ useEffect(()=>{
     Doctor,
     Specialization,
     Description,
-    initial
+   
   };
 };
