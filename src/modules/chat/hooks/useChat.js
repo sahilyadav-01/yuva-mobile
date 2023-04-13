@@ -6,7 +6,7 @@ import { ERROR_MESSAGE } from "../constant";
 
 export const useChat = () => {
   const [error, setError] = useState(false);
-  const {profile} = useSelector(state => state.profile);
+  const {userDetails} = useSelector(state => state.profile);
 
   useEffect(() => {
     onInitChat();
@@ -22,10 +22,10 @@ export const useChat = () => {
   }, [error]);
   const onInitChat = () => {
     var freshchatUser = new FreshchatUser();
-    freshchatUser.firstName = profile?.name;
-    freshchatUser.email = profile?.email;
+    freshchatUser.firstName = userDetails?.name;
+    freshchatUser.email = userDetails?.email;
     freshchatUser.phoneCountryCode = '+91';
-    freshchatUser.phone = profile?.number;
+    freshchatUser.phone = userDetails?.number;
     Freshchat.setUser(freshchatUser, (error) =>
     {
       setError(true);
