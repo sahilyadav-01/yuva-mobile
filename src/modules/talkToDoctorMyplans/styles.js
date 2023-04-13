@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     marginTop: 12,
   },
   viewContainer: {
-    height: 166,
+    height: 176,
     borderRadius: 8,
     margin: '5%',
     backgroundColor: WHITE,
@@ -63,7 +63,12 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize8,
     color: CYAN_BLUE,
   },
-
+  Available: {
+    marginLeft: 11,
+    marginVertical: 10,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
+  },
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
