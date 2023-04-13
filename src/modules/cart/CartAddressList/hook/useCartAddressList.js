@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { dispatch_addressData, dispatch_scheduleData } from '../../../../store/reducers/CheckOutSlice';
@@ -13,7 +13,15 @@ export const useCartAddressList = () => {
   const { selectedAddress,addressListing} = useSelector(state => state.profile);
   const currentDate = new Date();
   const twoHoursCheck = new Date(currentDate.getTime() + 2 * 60 * 60 * 1000);
-
+  useEffect(()=>{
+    const tomorrow = new Date()
+      tomorrow.setDate(tomorrow.getDate() +1);
+    tomorrow.setHours(7);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    setTime(tomorrow);
+    setDate(tomorrow);
+  },[])
   const handleDate = arg => {
     setDate(arg);
   };
