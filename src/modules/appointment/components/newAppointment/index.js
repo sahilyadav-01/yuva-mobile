@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, ScrollView, Image, FlatList} from 'react-native';
+import {View, Text, TextInput, ScrollView, Image, FlatList, TouchableOpacity} from 'react-native';
 import GoBackCross from '../../../../components/GoBackCross';
 import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import ActionButton from '../../../../components/ActionButton';
@@ -111,9 +111,13 @@ const NewAppointments = () => {
           <View style={{marginVertical:16}}>
               {<FlatList numColumns={2}  keyExtractor={(index)=>index} data={item} renderItem={({i,index})=>{
                 return <View style={{flex:1,alignItems:index%2 === 0 ? 'flex-start' : 'flex-end'}}>
-                 <View style={{paddingHorizontal:20,paddingVertical:4,borderRadius:12,borderWidth:2,marginBottom:12,borderColor:BLACK_OPACITY}}>
+                 <TouchableOpacity onPress={()=>{
+                  const startTime = parseInt(item[index]?.from.replace(':00',''));
+                  const after12 = item[index]?.type === 'Morning' ? false : true;
+                  console.log('Item',after12 ? startTime + 12 : startTime)
+                 }} style={{paddingHorizontal:20,paddingVertical:4,borderRadius:12,borderWidth:2,marginBottom:12,borderColor:BLACK_OPACITY}}>
                   <Text>{item[index]?.from}-{item[index]?.to}</Text>
-                 </View>
+                 </TouchableOpacity>
                 </View>
               }}/>}
             </View>
