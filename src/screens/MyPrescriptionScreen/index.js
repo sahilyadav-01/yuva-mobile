@@ -8,7 +8,7 @@ import { MY_PRESCRIPTIONS } from './constants';
 
 const MyPrescription = () => {
   const renderItem = ({ item, index }) => {
-    return <ReportCard name={item?.name} date={item?.createdAt} filePath={item?.filePath} key={index}/>;
+    return <ReportCard name={item?.customerName} date={item?.createdAt} filePath={item?.filePath} key={index}/>;
   };
   const {myPrescriptionReport}=useMyPrescription();
 
