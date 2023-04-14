@@ -8,9 +8,9 @@ const SelectedMember = ({ dependents,openModal }) => {
     const { dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender, EditIcon,dependenView ,textSpacing,relationView,relationBottomView} = styles({
         disabled: false,
     });
-    const renderItems = (item, index) => {
+    const renderItems = (item) => {
         return (
-            <View style={dependentsContainer} key={index}>
+            <View style={dependentsContainer} key={item?.index}>
                 <View style={dependentNameGenderContainer}>
                     <View style={dependenView}>
                         <Text style={dependentName}>{item?.item?.name}</Text>
@@ -32,8 +32,9 @@ const SelectedMember = ({ dependents,openModal }) => {
             <FlatList
                 renderItem={renderItems}
                 data={Object.values({ dependents })}
-                keyExtractor={(item) => item?.id}
+                keyExtractor={(item, index) => `${index}`}
                 showsHorizontalScrollIndicator={false}
+                nestedScrollEnabled={true}
             />
         </View>
     )

@@ -35,7 +35,8 @@ const ServiceContainer = (props) => {
               )}
             </View>
           )}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
         />
       </View>
     </View>

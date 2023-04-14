@@ -30,7 +30,7 @@ const MyPlanCard = ({ item }) => {
             return null;
         }
         return (
-            <View>
+            <View key={plan?.index}>
                 <View style={styles.sideBySide}>
                     <Image source={PNG.DIAGNOSTICMYPLAN} style={styles.imageStyle} />
                     <View style={styles.text1}>
@@ -76,8 +76,9 @@ const MyPlanCard = ({ item }) => {
                 <FlatList
                     renderItem={renderItem}
                     data={item.assignedAttributeResponseDto}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, index) => `${index}`}
                     showsHorizontalScrollIndicator={false}
+                    nestedScrollEnabled={true}
                 />
             }
         </View>

@@ -29,6 +29,7 @@ const CarouselContainer = (props) => {
   const render = ({ item, index }) => {
     return (
       <View
+        key={index}
         className="h-2 w-2 rounded-full ml-2"
         style={{
           backgroundColor: index === activeIndex ? 'white' : 'grey',
@@ -42,7 +43,8 @@ const CarouselContainer = (props) => {
       <FlatList
         renderItem={renderItem}
         data={data}
-        keyExtractor={item => item.id}
+        nestedScrollEnabled={true}
+        keyExtractor={(item, index) => `${index}`}
         key={(item, index) => index}
         snapToAlignment={'start'}
         snapToInterval={width - 10}
@@ -57,6 +59,8 @@ const CarouselContainer = (props) => {
           horizontal={true}
           data={new Array(data?.length ?? 10)}
           renderItem={render}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
         />
       )}
     </View>

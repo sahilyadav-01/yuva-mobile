@@ -11,6 +11,7 @@ const NewAddress = () => {
         <View>
             <Header showBackButton={true} title={CHECK_OUT} />
             <ScrollView
+                nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>
                 <View>
                     <AddNewAddressContainer isScreen={ADDRESS} />
