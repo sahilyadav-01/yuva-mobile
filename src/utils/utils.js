@@ -1,5 +1,5 @@
 import validator from 'is_js';
-import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
+import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
 
@@ -43,13 +43,25 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
 export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-export const PORT = '8082';
+export const PORT = ':8082';
+export const PROTOCOL = 'http://';
+export const PATH = ':8080/api/v1/yuva';
 
 //UAT Server
 // export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
 // export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
 // export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-// export const PORT = '8081';
+// export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
+// export const PATH = ':8080/api/v1/yuva';
+
+// Production Server
+// export const SERVER = 'yuvahealth.in';
+// export const REDIRECT_URL = 'https://yuvahealth.in/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'https://yuvahealth.in/api/v1/yuva/paymentGateway/response';
+// export const PORT = '';
+// export const PROTOCOL = 'https://';
+// export const PATH = '/api/v1/yuva';
 
 
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
@@ -303,16 +315,25 @@ const downloadFile = (filePath, fileName) => {
     });
 };
 export const checkPermission = async (filePath, fileName) => {
-  if (Platform.OS === 'android') {
-    downloadFile(filePath, fileName);
-  } else {
-    try {
-      granted(filePath, fileName);
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        downloadFile(filePath, fileName);
-      }
-    } catch (error) {}
-  }
+  if(Platform.OS === 'android'){
+  PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
+    PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then(write=>{
+    if(read && write){
+      downloadFile(filePath, fileName);
+    }
+    else if(read && !write){
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+    }
+    else if(!read && write){
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
+    }
+    else {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
+    }
+    })
+  })
+}
 };
 
 const getExtention = filename => {
@@ -396,3 +417,37 @@ export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();
   return deviceId || '';
 };
+
+export const onTermsConditionsPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/TermsAndConditions');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL('https://www.yuvahealth.in/TermsAndConditions');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+
+export const onPrivacyPolicyPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/PrivacyPolicy');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL(storeUrl);
+  }
+  else {
+    Linking.openURL('market://details?id=com.android.chrome');
+  }
+}
+
+export const onNeedHelpPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://yuvahealth.in/ContactUs');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome';
+  if(canOpen){
+    Linking.openURL('https://yuvahealth.in/ContactUs');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+

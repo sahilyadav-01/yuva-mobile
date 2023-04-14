@@ -11,3 +11,4 @@ export const TOTAL_AMOUNT = 'Total Amount';
 export const REORDER = 'Reorder';
 export const DOWNLOAD_INVOICE = 'Download Invoice';
 export const ORDER_SUMMARY = 'Order Summary';
+export const COLLECTION_CHARGES = 'Collection Charges';

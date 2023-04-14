@@ -22,6 +22,15 @@ export const useBookingConfirm = () => {
     const [checked, setChecked] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
+    useEffect(()=>{
+        const tomorrow = new Date()
+        tomorrow.setDate(tomorrow.getDate() +1);
+        tomorrow.setHours(7);
+        tomorrow.setMinutes(0);
+        tomorrow.setSeconds(0);
+        setTime(tomorrow);
+        setDate(tomorrow);
+      },[])
 
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {

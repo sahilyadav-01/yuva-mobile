@@ -6,9 +6,8 @@ import { fonts } from "../../styles/fonts";
 export const styles = StyleSheet.create({
     contentContainerStyle:{
         flexGrow: 1,
-        paddingBottom:60,  
-        margin:10,
-        marginBottom:-225,   
+        paddingBottom: 24,
+        paddingHorizontal: 10
     },
     emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
     emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}

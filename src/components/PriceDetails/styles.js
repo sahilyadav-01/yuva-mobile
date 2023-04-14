@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { WHITE, CYAN_BLUE, GREEN, DEEP_BLUE, DARK_GRAY, CHARCOAL, BLUE_GRAY } from '../../styles/colors';
+import { WHITE, CYAN_BLUE, GREEN, DEEP_BLUE, DARK_GRAY, CHARCOAL, BLUE_GRAY, MEDIUM_CARMINE } from '../../styles/colors';
 import { CENTER, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -88,5 +88,8 @@ export const styles = () => {
       fontSize: fonts.size.fontSize14,
       paddingHorizontal:5,
     },
+    collectionChargesText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize14,color:CYAN_BLUE},
+    applicableText: {fontFamily: fonts.family.rubik400,fontSize:fonts.size.fontSize10,color:MEDIUM_CARMINE},
+    processingChargeContainer: {paddingRight:16,paddingLeft:12,flexDirection:ROW,justifyContent:SPACE_BETWEEN,paddingVertical:8}
   });
 };

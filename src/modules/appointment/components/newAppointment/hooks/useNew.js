@@ -31,6 +31,16 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {doctorId, name, specialization} = useSelector(
     state => state.appointment.appointment,
   );
+  useEffect(()=>{
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() +1);
+    tomorrow.setHours(7);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    setTime(tomorrow);
+    setDate(tomorrow);
+  },[])
+  
   const {relationId} = useSelector(state => state.profile);
   useEffect(() => {
     if (newMessage?.message) {

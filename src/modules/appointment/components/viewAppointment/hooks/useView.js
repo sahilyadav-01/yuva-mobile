@@ -9,6 +9,8 @@ import {useSelector, useDispatch} from 'react-redux';
 
 export const useView = () => {
   const [cancelFlag, setCancelFlag] = useState(false);
+  const [name,setName]=useState("Myself");
+  const [userRelation,setUserRelation]=useState("Myself");
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {
@@ -25,12 +27,22 @@ export const useView = () => {
     relation,
     patientNumber,
   } = useSelector(state => state.appointment.currentAppointment);
+  useEffect(()=>{
+    if(!relation || !memberName){
+      setUserRelation("Myself");
+      setName("Myself")
+    }
+    else{
+      setUserRelation(relation);
+      setName(memberName)
+    }
+    },[memberName,relation])
   const data = {
     hospital: hospitalName,
     Doctor: doctorName,
     Specialization: speciality,
     Description: description,
-    memberName: memberName + '   |   ' + relation,
+    memberName: name + '   |   ' + userRelation,
     patientNumber: patientNumber,
   };
   const goBack = () => {
@@ -43,7 +55,7 @@ export const useView = () => {
   const checkIn = () => {
     navigation.navigate('CheckInAppointment', {
       otp: otp,
-      memberName: memberName,
+      memberName: name,
     });
   };
   const cancelAppointment = () => {

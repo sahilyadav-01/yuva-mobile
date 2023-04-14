@@ -1,7 +1,7 @@
 import axiosClient from './interceptors';
-import {SERVER} from '../utils/utils';
+import {PATH, PROTOCOL, SERVER} from '../utils/utils';
 
-const baseUrl = 'http://' + SERVER + ':8080/api/v1/yuva';
+const baseUrl = PROTOCOL + SERVER + PATH;
 
 class YuvaService {
   get = async endpoint => {

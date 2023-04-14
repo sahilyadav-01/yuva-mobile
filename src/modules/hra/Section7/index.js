@@ -144,7 +144,7 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {((medicalConditionAnyCancer && answers[questionData[9]?.questionId] !== undefined) || (PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
+            {((medicalConditionAnyCancer && answers[questionData[8]?.questionId] !== undefined) || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.key === '1')) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}

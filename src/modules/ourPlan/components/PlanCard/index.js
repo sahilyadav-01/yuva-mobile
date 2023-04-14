@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { PNG, SVG } from '../../../../../assets';
+import { BASE_64, PNG, SVG } from '../../../../../assets';
 import { ALTO, CYAN_BLUE, GREY, WHITE } from '../../../../styles/colors';
 import { BUY_NOW, FOR_MORE, RUPEE_SYMOL } from '../../constant';
 import { usePlanCard } from './hooks/usePlanCard';
@@ -72,7 +72,9 @@ const PlanCard = (props) => {
               </View>
             </View>
             <View style={styles.popularPlanImageContainer}>
-              <SVG.OurPlanDoctors/>
+              <View style={styles.imageContainer}>
+                <Image style={styles.imageStyle} source={BASE_64.DoctorsImage} resizeMode='cover'/>
+              </View>
             </View>
           </View>}
         </View>

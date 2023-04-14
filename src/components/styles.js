@@ -53,6 +53,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
+    width:"40%",
   },
   ImageStyle: {
     flexDirection: ROW,
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
     marginLeft: '5%',
     marginRight: '5%',
     marginVertical: 12,
-    height: 143,
+    minHeight: 143,
     width: '90%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -712,5 +713,6 @@ export const styles = StyleSheet.create({
     minWidth:300,
     minHeight:104,
     borderRadius:6,
-  }
+  },
+  addressTextField: {width: '90%'}
 });

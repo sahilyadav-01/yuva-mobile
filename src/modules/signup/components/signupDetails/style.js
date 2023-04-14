@@ -78,6 +78,10 @@ const styles = () => {
     },
     bottomTextContainer: {alignItems: CENTER},
     rowTextContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
+    termsConditionsText: {lineHeight: 20,
+      fontFamily: fonts.family.rubik600,
+      fontSize: fonts.size.fontSize12,
+      color: CYAN_BLUE,}
   });
 };
 

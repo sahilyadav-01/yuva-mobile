@@ -37,12 +37,12 @@ export const usePackage = (initialIndex) => {
   useEffect(() => {
     if (
       popularPackageName &&
-      popularPackageName.popularPackageResponseDtoList.length > 0
+      popularPackageName?.popularPackageResponseDtoList.length > 0
     ) {
       setPackageData(
         _.uniqBy(
           packageData.concat(
-            popularPackageName.popularPackageResponseDtoList.map(item => ({
+            popularPackageName?.popularPackageResponseDtoList.map(item => ({
               ...item,
               selected:
                 existingIds.length > 0 &&
@@ -56,11 +56,11 @@ export const usePackage = (initialIndex) => {
   }, [popularPackageName]);
 
   useEffect(() => {
-    if (popularTest && popularTest.popularTestResponseDtoList.length > 0) {
+    if (popularTest && popularTest?.popularTestResponseDtoList.length > 0) {
       setTestData(
         _.uniqBy(
           testData.concat(
-            popularTest.popularTestResponseDtoList.map(item => ({
+            popularTest?.popularTestResponseDtoList.map(item => ({
               ...item,
               selected:
                 existingIds.length > 0 &&
@@ -122,7 +122,7 @@ export const usePackage = (initialIndex) => {
   }, [search, currentPageNo, packageData, testData]);
 
   useEffect(() => {
-    if (packageData.length > 0 && testData.length > 0) setRenderData(true);
+    if (packageData.length >= 0 || testData.length >= 0) setRenderData(true);
   }, [packageData, testData]);
 
   const dropdownData = [
@@ -142,7 +142,7 @@ export const usePackage = (initialIndex) => {
         setIndex(0);
         setIsMoreData(false);
         setPackageData(
-          popularPackageName.popularPackageResponseDtoList.map(item => ({
+          popularPackageName?.popularPackageResponseDtoList.map(item => ({
             ...item,
             selected:
               existingIds.length > 0 &&
@@ -155,7 +155,7 @@ export const usePackage = (initialIndex) => {
         setIndex(1);
         setIsMoreData(false);
         setTestData(
-          popularTest.popularTestResponseDtoList.map(item => ({
+          popularTest?.popularTestResponseDtoList.map(item => ({
             ...item,
             selected:
               existingIds.length > 0 &&

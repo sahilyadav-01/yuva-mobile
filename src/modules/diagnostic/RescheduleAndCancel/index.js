@@ -59,7 +59,9 @@ const RescheduleAndCancel = () => {
             <Header showBackButton={true} title={MY_TESTS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
-                    <Text style={textStyle(reschedule?.bookingStatus)}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}..</Text>
+                    <View style={styles.bookingText}>
+                    <Text style={textStyle(reschedule?.bookingStatus)} numberOfLines={1}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}</Text>
+                    </View>
                     <View style={styles.timeSlot}>
                         <View style={styles.direction}>
                             <Icon name={CALENDER} size={24} color={WHITE} />
@@ -107,7 +109,7 @@ const RescheduleAndCancel = () => {
                             nestedScrollEnabled={true}
                         />}
                 </View>
-                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED') &&
+                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED' || reschedule?.bookingStatus==='CANCELLED') &&
                 <View style={styles.buttonView}>
                     <AppointmentButton
                      extraStyles={styles.button}
