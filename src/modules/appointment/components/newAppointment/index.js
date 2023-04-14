@@ -8,7 +8,7 @@ import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
-import {DARK_BLUE, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
+import {CITRINE_WHITE, DARK_BLUE, GREEN, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
@@ -25,12 +25,14 @@ import {
   TIME,
 } from './constant';
 import {useRoute} from '@react-navigation/native';
-import {PNG} from '../../../../../assets';
-import { getSlots } from '../../../../utils/utils';
+import {PNG, SVG} from '../../../../../assets';
+import { getDaysOfMonth, getSlots } from '../../../../utils/utils';
 import { BLACK_LIGHT_OPACITY } from '../../../../styles/colors';
 import { BLACK_OPACITY } from '../../../../styles/colors';
 
 const NewAppointments = () => {
+  const days = getDaysOfMonth();
+  console.log('Days',days);
   const route = useRoute();
   const {Doctor, Specialization, plan, userVersion, uuid, version} =
     route.params;
@@ -81,7 +83,7 @@ const NewAppointments = () => {
         </View>
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
         <View style={styles.border}>
-          <View style={styles.dateAndTime}>
+          {/* <View style={styles.dateAndTime}>
             <Text style={styles.dateTimeStyles}>{DATE}</Text>
             <DateTimePicker
               type="date"
@@ -92,7 +94,7 @@ const NewAppointments = () => {
               theme={styles.theme}
               minimumDate={new Date()}
             />
-          </View>
+          </View> */}
           {/* <View style={styles.dateAndTime}>
             <Text style={styles.dateTimeStyles}>{TIME}</Text>
             <DateTimePicker
@@ -105,6 +107,21 @@ const NewAppointments = () => {
             />
           </View> */}
         </View>
+        <FlatList contentContainerStyle={{paddingHorizontal:24,marginBottom:32}} ItemSeparatorComponent={()=><View style={{width:20}}/>} horizontal={true} keyExtractor={(item,index)=>index} data={getDaysOfMonth()} renderItem={({item,index})=>{
+          return (
+            <View style={{paddingTop:12,backgroundColor:'white',borderRadius:12,borderWidth:1,borderColor:'white'}}>
+              {/* <Text style={{marginHorizontal:40}}>Icon</Text> */}
+              <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+              <SVG.Calender/>
+              </View>
+              <Text style={{marginHorizontal:40,textAlign:'center',marginTop:6}}>14 Apr</Text>
+              <Text style={{marginHorizontal:44,textAlign:'center',marginTop:2}}>Fri</Text>
+              <View style={{backgroundColor:CITRINE_WHITE,flex:1,borderBottomLeftRadius:12,borderBottomRightRadius:12,borderTopLeftRadius:6,borderTopRightRadius:6,paddingVertical:4,alignItems:'center',justifyContent:'center',marginTop:4}}>
+            <Text style={{color:GREEN}}>Available</Text>
+              </View>
+            </View>
+          );
+        }}/>
         <FlatList contentContainerStyle={{backgroundColor:WHITE}} keyExtractor={(index)=>index} data={getSlots().filter(item=>{if(typeof item?.length === 'number') return item})} renderItem={({item})=>{
           return  <View style={{marginHorizontal:16,paddingHorizontal:16}}>
           <Text>{item[0]?.type}</Text>
@@ -116,7 +133,7 @@ const NewAppointments = () => {
                   const after12 = item[index]?.type === 'Morning' ? false : true;
                   console.log('Item',after12 ? startTime + 12 : startTime)
                  }} style={{paddingHorizontal:20,paddingVertical:4,borderRadius:12,borderWidth:2,marginBottom:12,borderColor:BLACK_OPACITY}}>
-                  <Text>{item[index]?.from}-{item[index]?.to}</Text>
+                  <Text>{`${item[index]?.from}:00`}-{`${item[index]?.to}:00`}</Text>
                  </TouchableOpacity>
                 </View>
               }}/>}

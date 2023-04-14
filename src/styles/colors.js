@@ -83,3 +83,4 @@ export const BOSTON_BLUE = '#388BB9';
 export const CATSKILL_WHITE_2 = '#EFF4F8';
 export const BLACK_OPACITY = '#00000019';
 export const BLACK_LIGHT_OPACITY = '#0000000C';
+export const CITRINE_WHITE = '#FCF4E8';

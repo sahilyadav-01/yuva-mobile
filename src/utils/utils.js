@@ -429,21 +429,22 @@ export const getSlots = () => {
   const gap = parseInt(moment().diff(dayEnd, 'hours')) * -1;
   let arr = [];
   for (let i = 1; i <= gap; i++) {
-    arr.push(`${moment().add(i, 'hours').format('hh')}:00`);
+    arr.push(`${moment().add(i, 'hours').format('h')}`);
   }
+  arr.push('12');
   const noonIndex = arr.findIndex(arg => {
-    return arg === '12:00';
+    return arg === '12';
   });
   const morningSlots = arr.filter((item, index) => {
-    if (parseInt(item) <= 12 && index < noonIndex) return item;
+    if (parseInt(item) <= 12 && index <= noonIndex) return item;
   });
-  const afternoonSlots = arr.filter((item, index) => {
-    if (parseInt(item) <= 5 && index > noonIndex) return item;
-  });
+  const afternoonSlots = ['12'].concat(arr.filter((item, index) => {
+    if ((parseInt(item) <= 5 && index >= noonIndex)) return item;
+  }));
   const eveningSlots = arr.filter((item, index) => {
     if (parseInt(item) > 5 && index > noonIndex) return item;
   });
-  
+
   const {morning, afternoon, evening} = {
     morning: () => {
       let slots = [];
@@ -477,7 +478,6 @@ export const getSlots = () => {
       return slots;
     },
   };
-  console.log('Slots',[morning(),afternoon(),evening()])
   return [morning(),afternoon(),evening()];
 };
 

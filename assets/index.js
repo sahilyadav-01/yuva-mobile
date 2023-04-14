@@ -120,6 +120,7 @@ import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
+import Calender from './Calender';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -245,6 +246,7 @@ const SVG = {
   CheckUpIcon,
   ExpandArrow,
   Reorder,
+  Calender,
 };
 
 const BASE_64 = {DoctorsImage}
