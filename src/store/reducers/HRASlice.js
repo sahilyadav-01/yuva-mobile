@@ -74,6 +74,7 @@ const hraSlice = createSlice({
   reducers: {
     resetHRA(state) {
       state.continueHRA = false;
+      state.sectionData = null;
     },
     setCurrentHRAId(state,{payload}) {
       state.currentHRAId = payload;
