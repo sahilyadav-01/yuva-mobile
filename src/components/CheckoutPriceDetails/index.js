@@ -23,12 +23,12 @@ const CheckoutPriceDetails = (props) => {
             </View>
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
-                {totalCost?<Text style={styles.TextPriceDiscount}>{TEST_AND_PACKAGES_PRICE}</Text>:<Text style={styles.TextPriceDiscount}>{DISCOUNT}</Text>}
-                <Text style={[styles.payableAmountDiscount, {color:totalDiscount ? CYAN_BLUE : GREEN}]}>{totalCost ? COST(totalCost) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
+               <Text style={styles.TextPriceDiscount}>{totalCost ? TEST_AND_PACKAGES_PRICE : DISCOUNT}</Text>
+                <Text style={[styles.payableAmountDiscount, {color:totalCost ? CYAN_BLUE : GREEN}]}>{totalCost ? COST(totalCost) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 {totalCost?<Text style={styles.orderPrice}>{DISCOUNT}</Text>:<Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>}
-                <Text style={[styles.orderAmount, {color:totalDiscount ? GREEN : CYAN_BLUE}]}>{totalDiscount ? DISCOUNT_AMOUNT(totalDiscount) : COST(planCostAfterDiscount)}</Text>
+                <Text style={[styles.orderAmount, {color:(totalDiscount || totalDiscount==0) ? GREEN : CYAN_BLUE}]}>{(totalDiscount || totalDiscount==0) ? DISCOUNT_AMOUNT(totalDiscount) : COST(planCostAfterDiscount)}</Text>
             </View>
            {processingCharge > 0 && <View style={styles.collectionContainer}>
             <Text style={styles.orderPrice}>{COLLECTION_CHARGES}</Text>
