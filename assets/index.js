@@ -120,6 +120,8 @@ import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
+import PlanCard from './PlanCard.png';
+import {PlanCard64} from './PlanCard64';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -183,7 +185,8 @@ const PNG = {
   ambulance,
   PharmacyDiscount,
   insuranceClaim,
-  dot
+  dot,
+  PlanCard
 };
 
 const SVG = {
@@ -247,6 +250,6 @@ const SVG = {
   Reorder,
 };
 
-const BASE_64 = {DoctorsImage}
+const BASE_64 = {DoctorsImage,PlanCard64}
 
 export {PNG, SVG, BASE_64};

@@ -40,20 +40,20 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 //DEVELOPMENT SERVER
-export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-export const PORT = ':8082';
-export const PROTOCOL = 'http://';
-export const PATH = ':8080/api/v1/yuva';
-
-//UAT Server
-// export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-// export const PORT = ':8081';
+// export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+// export const PORT = ':8082';
 // export const PROTOCOL = 'http://';
 // export const PATH = ':8080/api/v1/yuva';
+
+//UAT Server
+export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
+export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+export const PORT = ':8081';
+export const PROTOCOL = 'http://';
+export const PATH = ':8080/api/v1/yuva';
 
 // Production Server
 // export const SERVER = 'yuvahealth.in';
@@ -389,6 +389,9 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
     default:
       getDateText(date);
   }

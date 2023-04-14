@@ -1,9 +1,13 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, ImageBackground, Text, View,TouchableOpacity} from 'react-native';
 import ListItem from './components/ListItem';
 import {usePurchase} from './hooks/usePurchase';
 import {styles} from './style';
 import {ERROR_FETCHING_ITEMS, NO_ITEMS_LEFT} from './constants';
+import { PNG, SVG } from '../../../assets';
+import { CYAN_BLUE, WHITE } from '../../styles/colors';
+import { fonts } from '../../styles/fonts';
+import PlanItem from './components/PlanItem';
 
 const MyPurchases = ({plan}) => {
   const {
@@ -18,7 +22,7 @@ const MyPurchases = ({plan}) => {
   } = usePurchase(plan);
   const {container, separatorStyle, emptyContainer, emptyText} = styles();
   const renderItem = ({item, index}) => {
-    return <ListItem item={item} index={index} renderList={tabIndex === 0} />;
+    return tabIndex === 0 ? <PlanItem item={item} index={index}/> : <ListItem item={item} index={index} renderList={tabIndex === 0} />;
   };
   const ItemSeparator = () => {
     return <View style={separatorStyle} />;
