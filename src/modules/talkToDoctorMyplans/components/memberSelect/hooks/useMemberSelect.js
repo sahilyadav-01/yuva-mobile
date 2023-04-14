@@ -47,8 +47,7 @@ export const useMemberSelect = () => {
       );
       setModalVisible(true);
     }
-  }, [userDetails, relations, startConsultation, checkBoxFlag]);
-
+  }, [ relations, startConsultation, checkBoxFlag]);
   useEffect(() => {
     if (activeIndex !== null) {
       const status = relations?.map((item, index) => {
@@ -110,7 +109,7 @@ export const useMemberSelect = () => {
     setStartConsultation(false);
   };
   const onPress = () => {
-    navigation.replace(HEALTH_SCREEN, userData);
+    navigation.navigate(HEALTH_SCREEN, userData);
   }
   return {
     modalVisible,
