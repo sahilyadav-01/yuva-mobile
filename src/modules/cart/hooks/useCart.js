@@ -15,7 +15,7 @@ export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { cart } = useSelector(state => state.cart);
+  const { cart,loading } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved, amountToBePaid, processingCharge} = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
@@ -200,5 +200,6 @@ export const useCart = (args) => {
     relationsData,
     onAddModalCrossPress,
     onSaveDetailsPress,
+    loading,
   };
 };

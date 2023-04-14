@@ -14,7 +14,7 @@ import AddMembersModal from '../../components/Modal/AddMembersModal';
 import { getWindowDimensions } from '../../utils/utils';
 
 const Cart = props => {
-  const { cart, coupon, couponView, onPressCardButton, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, onAddMembersPress, relationsData } = useCart();
+  const { cart, coupon, couponView, onPressCardButton, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, onAddMembersPress, relationsData, loading } = useCart();
   const { itemDtoList, totalCost, amountToBePaid, totalDiscount } = cart || {};
   const { totalCost: appliedTotalCost, amountToBePaid: appliedAmountToBePaid, totalDiscount: appliedTotalDiscount, couponDiscount } = coupon || {};
   return (
@@ -42,10 +42,10 @@ const Cart = props => {
           relationsData={relationsData}
           buttonText={SAVE_DETAILS}
         />
-        {itemDtoList.length === 0 && <View style={styles.emptyCartContainer}>
+        {itemDtoList.length === 0 && !loading && <View style={styles.emptyCartContainer}>
           <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
           </View>}
-        {itemDtoList.length > 0 && <View style={styles.bodyContainer}>
+        {itemDtoList.length > 0 &&  !loading && <View style={styles.bodyContainer}>
           <CartDetails
             data={itemDtoList}
             heading={CART_DETAILS}
@@ -60,7 +60,7 @@ const Cart = props => {
             textStyle={styles.textStyle}
           />
         </View>}
-        {itemDtoList.length > 0 && <CouponCard />}
+        {itemDtoList.length > 0 &&  !loading && <CouponCard />}
       </ScrollView>
     </>
 
