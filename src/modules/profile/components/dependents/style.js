@@ -39,6 +39,7 @@ const styles = ({ disabled, hideShadow }) => {
       fontSize: fonts.size.fontSize14,
       height: 21,
     },
+    rowView: {flexDirection:ROW}
   });
 };
 

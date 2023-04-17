@@ -19,9 +19,15 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       color: ORANGE,
-      lineHeight: 18
+      lineHeight: 18,
     },
     arrowContainer: {padding: 4, justifyContent: CENTER, alignSelf: CENTER},
     footerContainer: {flexDirection: ROW},
+    headingText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      lineHeight: 16,
+      color: CYAN_BLUE,
+    },
   });
 };
