@@ -10,6 +10,7 @@ const SignUp = ({from}) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
+        nestedScrollEnabled={true}
         keyboardShouldPersistTaps="handled">
         <SignUpCard name={name} from={from} />
       </ScrollView>

@@ -9,7 +9,7 @@ export const usePaymentReconfirm = () => {
     termsAndCondtionChecked,
     cart: {itemDtoList},
   } = useSelector(state => state.cart);
-  const {scheduleDate, addressData, relationData} = useSelector(
+  const {scheduleDate, addressData, relationData, processingCharge} = useSelector(
     state => state.checkOut,
   );
   const onPayPress = () => {
@@ -79,5 +79,5 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress};
+  return {onPayPress,processingCharge};
 };

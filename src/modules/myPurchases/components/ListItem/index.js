@@ -14,6 +14,7 @@ import {styles} from './style';
 import {getDateInFormat, getTimeInFormat} from '../../../../utils/utils';
 import {
   BOOKING_CONFIRMED,
+  COLLECTION_CHARGES,
   COUPON_APPLIED_SUCCESSFULLY,
   DISCOUNT,
   DISCOUNT_APPLIED,
@@ -29,6 +30,7 @@ import {
 } from './constants';
 
 const ListItem = ({renderList, item, index}) => {
+  console.log('Item',item)
   const {expanded, onArrowPress, priceBreakUpArray, purchasesTab} =
     useItem(item);
   const {
@@ -73,7 +75,7 @@ const ListItem = ({renderList, item, index}) => {
   } = styles();
 
   const renderPlans = ({item, index}) => {
-    return <RenderPlans item={item} index={index} />;
+    return <RenderPlans item={item} index={index} key={index}/>;
   };
   return (
     <ScrollView>
@@ -113,7 +115,8 @@ const ListItem = ({renderList, item, index}) => {
               <View style={listExpandContainer}>
                 <FlatList
                   data={item?.planServiceDtoList}
-                  keyExtractor={index => index}
+                  keyExtractor={(item, index) => `${index}`}
+                  nestedScrollEnabled={true}
                   renderItem={renderPlans}
                   ItemSeparatorComponent={() => (
                     <View style={itemSeparatorStyle} />
@@ -185,6 +188,12 @@ const ListItem = ({renderList, item, index}) => {
                   <Text style={discountPrice}>{`₹${Math.ceil(
                     priceBreakUpArray[0]?.totalDiscount,
                   )}/-`}</Text>
+                </View>
+              )}
+              {priceBreakUpArray[0]?.processingCharge > 0 && purchasesTab === 1 && (
+                <View style={amountDetailsContainer}>
+                  <Text style={totalAmountText}>{COLLECTION_CHARGES}</Text>
+                  <Text style={priceText}>{`₹${ priceBreakUpArray[0]?.processingCharge}/-`}</Text>
                 </View>
               )}
               <View style={amountDetailsContainer}>

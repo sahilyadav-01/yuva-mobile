@@ -10,6 +10,7 @@ export const UPCOMING = 'Upcoming';
 export const AVAIL = 'Available -';
 export const SELECT_THIS_PACKAGE = 'Select this package';
 export const AVAILABLE = 'Available Tests ';
+export const NOT_AVAILABLE = 'Package Exhausted. ';
 export const USED = 'used -';
 export const DATE = 'Date';
 export const DESCRIPTION = 'description';

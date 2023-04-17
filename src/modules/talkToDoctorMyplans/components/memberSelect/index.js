@@ -12,7 +12,7 @@ const MemberSelect = () => {
   const { openModal, modalVisible, onModalCrossPress, data, onPressCheckBox, checkBoxStatus, userData, onPress } = useMemberSelect();
   return (
     <View>
-      <ScrollView >
+      <ScrollView nestedScrollEnabled={true}>
         <Header title={TALK_TO_DOCTOR} showSearch={false} showBackButton={true} />
         <TalkToDoctorCard />
         <View>

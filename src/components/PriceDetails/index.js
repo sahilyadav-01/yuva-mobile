@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { WHITE } from '../../styles/colors';
-import { ORDER_AMOUNT, DISCOUNT, PRICE, RUPEE_SYMOL, DISCOUNT_PRICE, GST_TEXT } from './constants';
+import { ORDER_AMOUNT, DISCOUNT, PRICE, RUPEE_SYMOL, DISCOUNT_PRICE, GST_TEXT, COLLECTION_CHARGES, APPLICABLE_TEXT } from './constants';
 import { styles } from './styles';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -13,8 +13,8 @@ import { removeCouponCart } from '../../store/reducers/CartSlice';
 const PriceDetails = props => {
   const { heading, totalCost, coupon } = props;
   const { cart } = useSelector(state => state.cart);
-  const { couponViewCart, itemDtoList, cartCouponDiscount, orderAmount, discountBeforeCoupon } = cart || {};
-  const { detailsContainer, headingText, priceContainer, priceText, discountPriceTextStyle, titleView, priceView, appliedStyle, couponContainer, descStyle, crossStyle, iconStyle, couponDiscountStyle, gstText } = styles();
+  const { couponViewCart, itemDtoList, cartCouponDiscount, orderAmount, discountBeforeCoupon, processingCharge } = cart || {};
+  const { detailsContainer, headingText, priceContainer, priceText, discountPriceTextStyle, titleView, priceView, appliedStyle, couponContainer, descStyle, crossStyle, iconStyle, couponDiscountStyle, gstText, collectionChargesText, applicableText, processingChargeContainer } = styles();
   const { couponView, couponDiscount } = coupon;
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
@@ -84,6 +84,16 @@ const PriceDetails = props => {
           <Text style={couponDiscountStyle}>{DISCOUNT_PRICE(couponDiscount !== undefined && couponDiscount !== null && couponDiscount !== 0 ? couponDiscount : cartCouponDiscount)}</Text>
         </View>
       </View>}
+      {processingCharge > 0 && 
+        <View style={processingChargeContainer}>
+          <View>
+            <Text style={collectionChargesText}>{COLLECTION_CHARGES}</Text>
+            <Text style={applicableText}>{APPLICABLE_TEXT}</Text>
+          </View>
+          <Text style={collectionChargesText}>
+            {RUPEE_SYMOL} {processingCharge}
+          </Text>
+        </View>}
     </View>
   );
 };

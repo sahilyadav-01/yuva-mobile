@@ -15,6 +15,8 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {usePackageCard} from './hooks/usePackageCard';
 import {getPlanDate} from '../../../../utils/utils';
+import { NOT_AVAILABLE } from '../../../../components/constants';
+import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../../../styles/colors';
 const PackageCard = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ const PackageCard = () => {
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
-        <ScrollView>
+        <ScrollView key={index}>
           <View style={styles.viewContainer} key={index}>
           <View style={styles.headViewContainer}>
             <View style={styles.headView}>
@@ -51,12 +53,15 @@ const PackageCard = () => {
                 </Text>
               </View>
             </View>
+            <View>
+              <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : CYAN_BLUE }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
+            </View>
             <TouchableOpacity
-              style={styles.buttonStyle}
+              style={[styles.buttonStyle,{backgroundColor: i.available===0 ?AMBER :ORANGE}]}  
               onPress={() =>
                 bookNow(item.plan, item.userVersion, item.uuid, item.version)
-              }>
-              <Text style={styles.textStyle}>{BOOK_NOW}</Text>
+              } disabled={!i.available}>
+              <Text style={[styles.textStyle, { color: i.available === 0 ? CYAN_BLUE : WHITE }]}>{BOOK_NOW}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -75,7 +80,8 @@ const PackageCard = () => {
     <FlatList
       data={programAndPlan}
       renderItem={renderItem}
-      keyExtractor={index => `${index}`}
+      nestedScrollEnabled={true}
+      keyExtractor={(item, index) => `${index}`}
     />
   );
 };

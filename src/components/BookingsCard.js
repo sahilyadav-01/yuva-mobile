@@ -63,11 +63,13 @@ const BookingsCard = ({ item }) => {
                                     iconName="clock-outline"
                                     iconColor={GREEN}
                                 />
-                                <CardButton
-                                    text={CANCELLED}
-                                    iconName="close"
-                                    iconColor={RED_SHADE}
-                                />
+                                {!item?.cannotCancel &&
+                                    <CardButton
+                                        text={CANCELLED}
+                                        iconName="close"
+                                        iconColor={RED_SHADE}
+                                    />
+                                }
                             </View>}
                     </View>
                 </TouchableOpacity>

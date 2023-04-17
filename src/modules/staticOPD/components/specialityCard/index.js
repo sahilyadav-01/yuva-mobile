@@ -3,9 +3,9 @@ import React from 'react';
 import {SPECIALITIES, SPECIALITY} from '../../constant';
 import {styles} from './styles';
 const SpecialityCard = () => {
-  const renderItem = ({item}) => {
+  const renderItem = ({item, index}) => {
     return (
-      <View style={styles.imageStyle}>
+      <View style={styles.imageStyle} key={index}>
         <Image source={item.image} />
         <Text style={styles.imageName}>{item.imageName}</Text>
       </View>
@@ -16,7 +16,8 @@ const SpecialityCard = () => {
       <Text style={styles.textStyle}>{SPECIALITIES}</Text>
       <FlatList
         data={SPECIALITY}
-        keyExtractor={index => `${index}`}
+        keyExtractor={(item, index) => `${index}`}
+        nestedScrollEnabled={true}
         renderItem={renderItem}
       />
     </View>

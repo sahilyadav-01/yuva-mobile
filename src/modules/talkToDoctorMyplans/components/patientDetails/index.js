@@ -53,7 +53,8 @@ const PatientDetails = () => {
       <FlatList
         data={PATIENT_DATA}
         renderItem={renderItem}
-        keyExtractor={item => item.index}
+        keyExtractor={(item, index) => `${index}`}
+        nestedScrollEnabled={true}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.scrollContainer}

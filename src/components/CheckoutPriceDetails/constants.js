@@ -13,3 +13,5 @@ export const AND = "&";
 export const PRIVACY_POLICY = "Privacy Policy";
 export const COST = (item) =>  `₹ ${item} /-`;
 export const DISCOUNT_AMOUNT = (item) =>  `- ₹ ${item} /-`;
+export const COLLECTION_CHARGES = "Collection Charges";
+export const PROCESSING_AMOUNT = (item) =>  `- ₹ ${item} /-`;

@@ -37,6 +37,7 @@ const OTP = props => {
     <>
       <ScrollView
         style={scrollViewContainer}
+        nestedScrollEnabled={true}
         showsVerticalScrollIndicator={false}
         bounces={false}
         keyboardShouldPersistTaps="handled">

@@ -3,10 +3,10 @@ import React  from 'react'
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
-import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
+import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, NOT_AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 import { useNavigation } from '@react-navigation/native';
-import { AMBER, CYAN_BLUE, ORANGE, WHITE } from '../styles/colors';
+import { AMBER, CYAN_BLUE, ORANGE, DEEP_RED, WHITE } from '../styles/colors';
 
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
@@ -30,7 +30,7 @@ const MyPlanCard = ({ item }) => {
             return null;
         }
         return (
-            <View>
+            <View key={plan?.index}>
                 <View style={styles.sideBySide}>
                     <Image source={PNG.DIAGNOSTICMYPLAN} style={styles.imageStyle} />
                     <View style={styles.text1}>
@@ -49,7 +49,7 @@ const MyPlanCard = ({ item }) => {
                     </View>
                 </View>
                 <View>
-                    <Text style={styles.Available}>{AVAILABLE}</Text>
+                    <Text style={[styles.Available,{color: available===0 ?DEEP_RED :CYAN_BLUE}]}>{available===0 ? NOT_AVAILABLE : AVAILABLE}</Text>
                 </View>
 
                 <View>
@@ -76,8 +76,9 @@ const MyPlanCard = ({ item }) => {
                 <FlatList
                     renderItem={renderItem}
                     data={item.assignedAttributeResponseDto}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, index) => `${index}`}
                     showsHorizontalScrollIndicator={false}
+                    nestedScrollEnabled={true}
                 />
             }
         </View>

@@ -25,6 +25,7 @@ const Packages = props => {
           <View style={style.headerMargin} />
         )}
         <ListItem
+          key={index}
           item={item}
           index={index}
           onPackageSelect={args => props?.onPackageSelect(args)}
@@ -45,7 +46,7 @@ const Packages = props => {
         showsVerticalScrollIndicator={false}
         bounces={false}
         data={props?.data}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={RenderItem}
         ItemSeparatorComponent={ItemSeparator}
         onEndReached={props?.onEndReached}

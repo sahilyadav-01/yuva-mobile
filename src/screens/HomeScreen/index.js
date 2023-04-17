@@ -73,6 +73,7 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER} />
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
         {!isSubscribed && (
@@ -90,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT0} </Text>
           <View style={styles.line1} />
         </View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer serviceCard={true} />
         </View>
@@ -143,7 +144,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line2} />
         </View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer
             lifeStyleCard={true}
