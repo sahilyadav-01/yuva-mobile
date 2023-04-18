@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {getPlans, getPurchases} from '../../../store/reducers/PurchasesSlice';
 
 export const usePurchase = plan => {
-  const {purchasesTab, plans, plansError, purchases, purchasesError} =
+  const {purchasesTab, plans, plansError, purchases, purchasesError, lockedPlan} =
     useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
@@ -36,6 +36,7 @@ export const usePurchase = plan => {
   }, [purchasesPageNo]);
 
   useEffect(() => {
+    console.log('Triggered');
     if (
       plans &&
       typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' &&

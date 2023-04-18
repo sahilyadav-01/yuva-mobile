@@ -20,6 +20,9 @@ export const FooterContainer = props => {
     onCrossPress,
     dependents,
     onSaveDetailsPress,
+    onLockPlan,
+    activeRelations,
+    onCheckboxPress
   } = useFooter();
   const style = styles();
 
@@ -29,7 +32,7 @@ export const FooterContainer = props => {
         <Text style={style.textStyle}>{text}</Text>
         <TouchableOpacity
           onPress={() =>
-            planDetails ? onArrowPress(item?.orderNumber) : onToggle()
+            planDetails ? onArrowPress(item?.orderNumber) : onToggle(item)
           }
           style={style.arrowContainer}>
           <SVG.ExpandArrow />
@@ -59,7 +62,9 @@ export const FooterContainer = props => {
         <PlanLockView
           dependents={dependents}
           onAddMembersPress={onAddMembersPress}
-          onCheckboxPress={(memberDetails,arrIndex)=>{console.log('Item',memberDetails,arrIndex)}}
+          onCheckboxPress={onCheckboxPress}
+          onLockPlan={onLockPlan}
+          item={item}
         />
       )}
       <AddMembersModal
@@ -67,10 +72,9 @@ export const FooterContainer = props => {
         onCrossPress={onCrossPress}
         modalVisible={modalVisible}
         onSaveDetailsPress={onSaveDetailsPress}
-        relationsData={[
-          {key: '0', value: 'Father', gender: 'Male'},
-          {key: '1', value: 'Mother', gender: 'Female'},
-        ]}
+        relationsData={activeRelations.map((item, index) => {
+          return {key: index.toString(), value: item.name, relation:item.id};
+        })}
         buttonText="Add Member"
         headingText="Relationship"
       />

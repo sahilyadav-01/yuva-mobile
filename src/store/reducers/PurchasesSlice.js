@@ -42,6 +42,19 @@ export const getPurchaseItemDetails = createAsyncThunk(
   },
 );
 
+export const programAndPlanLockThunk = createAsyncThunk(
+  'plan/lock',
+  async ({programOrPlanUuid,relationId,version}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const requestDto = {programOrPlanUuid,relationId,version}
+      const response = await YuvaService.post('/programAndPlan/lock',requestDto);
+      return {...response,programOrPlanUuid};
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   purchasesTab: 0,
   plansLoading: false,
@@ -52,6 +65,7 @@ const initialState = {
   purchasesError: false,
   purchasesItemDetails:null,
   purchasesDetailLoading: false,
+  lockedPlan: false,
 };
 
 const purchasesSlice = createSlice({
@@ -69,6 +83,7 @@ const purchasesSlice = createSlice({
       state.plansError = false;
     },
     [getPlans.fulfilled]: (state, {payload}) => {
+      console.log('Data',payload.data)
       state.plansLoading = false;
       state.plans = payload.data;
       state.plansError = false;
@@ -108,6 +123,9 @@ const purchasesSlice = createSlice({
     [getPurchaseItemDetails.rejected]: (state) => {
       state.purchasesDetailLoading = false;
     },
+    [programAndPlanLockThunk.fulfilled]: (state,{payload}) => {
+      console.log('Payload',payload);
+    }
   },
 });
 

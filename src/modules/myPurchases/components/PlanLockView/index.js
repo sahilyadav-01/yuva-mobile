@@ -7,15 +7,15 @@ import {Checkbox} from 'react-native-paper';
 import { SVG } from '../../../../../assets';
 
 const PlanLockView = props => {
-  const {onAddMembersPress,dependents,onCheckboxPress} = props;
+  const {onAddMembersPress,dependents,onCheckboxPress, onLockPlan, item} = props;
   const style = styles();
   const renderCheckbox = (props) => {
     const {item,index} = props;
     return (
       <View style={{marginTop:10}}>
         <Checkbox
-          status="unchecked"
-          onPress={()=>onCheckboxPress(item,index)}
+          status={item?.status ? 'checked' : 'unchecked'}
+          onPress={()=>onCheckboxPress(index)}
         />
         </View>
     );
@@ -37,7 +37,7 @@ const PlanLockView = props => {
         <Text style={style.buttonText}>Add Members</Text>
       </TouchableOpacity>
       <View style={{height:24}}/>
-      <TouchableOpacity style={style.buttonContainer}>
+      <TouchableOpacity onPress={()=>onLockPlan(item)} style={style.buttonContainer}>
         <SVG.Lock/>
         <Text style={style.buttonText}>Lock Plan</Text>
       </TouchableOpacity>

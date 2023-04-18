@@ -11,6 +11,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading) =>
   const [age, setAge] = useState('');
   const [selectedRelation, setSelectedRelation] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
+  const [selectedRelationEnum, setSelectedRelationEnum] = useState('');
 
   const getTextInputValue = key => {
     switch (key) {
@@ -31,11 +32,15 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading) =>
     const item = relationsData.find(
       item => item.key === index.toString(),
     )?.value;
+    const relationEnum = relationsData.find(
+      item => item.key === index.toString(),
+    )?.relation;
     const gender = relationsData.find(
       item => item.key === index.toString(),
     )?.gender;
     setSelectedRelation(item);
     setSelectedGender(gender);
+    setSelectedRelationEnum(relationEnum);
   };
   const onSaveDetails = () => {
     const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi
@@ -43,13 +48,10 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading) =>
     if(!(name && age && selectedRelation)) Alert.alert('Alert', 'Please fill all the details');
     else if(reg.test(age)) Alert.alert('Alert', 'Please enter a proper age');
     else if(!nameReg.test(name)) Alert.alert('Alert', 'Please enter a proper name');
-    else onSaveDetailsPress({name, age, selectedRelation,selectedGender});
+    else onSaveDetailsPress({name, age, selectedRelation,selectedGender,selectedRelationEnum});
   };
   return {
     data,
-    name,
-    age,
-    selectedRelation,
     onItemSelect,
     getTextInputValue,
     onTextChange,
