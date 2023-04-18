@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Alert} from 'react-native';
 import {programAndPlanThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import {getAppointmentThunk, programOrPlanData} from '../../../store/reducers/TalkToDoctorSlice';
 
@@ -29,8 +30,13 @@ export const usePatient = () => {
     checkPermission(path, PRESCRIPTION);
   }
   const onSelectMember=(data)=>{
+    if(!data?.locked){
+      Alert.alert('Alert','Please add members to the plan')
+    }
+    else {
     dispatch(programOrPlanData(data))
     navigation.navigate("MemberSelectScreen");
+    }
   }
   return {
     consultationList,

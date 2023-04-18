@@ -25,7 +25,7 @@ export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await YuvaService.get('/relation/active');
+      const response = await YuvaService.get('/relation/dropdown');
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -181,7 +181,7 @@ const profileSlice = createSlice({
       state.loading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
-      state.relations = payload.data.data.relativeResponseDto;
+      state.relations = payload.data.data;
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  Alert
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {styles} from './styles';
@@ -21,13 +22,18 @@ const PackageCard = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const state = useSelector(state => state.attribute);
-  const bookNow = (plan, userVersion, uuid, version) => {
+  const bookNow = (plan, userVersion, uuid, version, locked) => {
+    if(!locked) {
+      Alert.alert('Alert','Please add members to the plan')
+    }
+    else {
     navigation.navigate('Doctor', {
       plan: plan,
       userVersion: userVersion,
       uuid: uuid,
       version: version,
     });
+  }
   };
   const {programAndPlan} = usePackageCard();
   const renderItem = ({item, index}) => {
@@ -59,7 +65,7 @@ const PackageCard = () => {
             <TouchableOpacity
               style={[styles.buttonStyle,{backgroundColor: i.available===0 ?AMBER :ORANGE}]}  
               onPress={() =>
-                bookNow(item.plan, item.userVersion, item.uuid, item.version)
+                bookNow(item.plan, item.userVersion, item.uuid, item.version, item.locked)
               } disabled={!i.available}>
               <Text style={[styles.textStyle, { color: i.available === 0 ? CYAN_BLUE : WHITE }]}>{BOOK_NOW}</Text>
             </TouchableOpacity>

@@ -106,13 +106,15 @@ export const useProfile = () => {
     if (!(dependentName && dependentAge && dependentRelation)) {
       Alert.alert('Alert', 'Please enter all the details');
     }
-    dispatch(
+    else {
+      dispatch(
       addRelation({
         age: dependentAge,
         name: dependentName,
-        relation: dependentRelation,
+        relation: dependentRelation?.id,
       }),
     );
+    }
   };
 
   const onConfirmDate = date => {
@@ -141,7 +143,7 @@ export const useProfile = () => {
       );
     else if (profile.activeRelations.length === 0)
       Alert.alert('Alert', 'No active relations left');
-    else if (!profile.enableAddMember) Alert.alert('Alert', 'Please add plans');
+    //else if (!profile.enableAddMember) Alert.alert('Alert', 'Please add plans');
     else setAddMembers(true);
   };
 
