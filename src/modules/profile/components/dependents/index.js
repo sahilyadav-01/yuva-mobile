@@ -8,7 +8,7 @@ const Dependents = ({dependents,hideShadow,showCheckbox,CheckboxComponent,extraC
   const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender, rowView} = styles({
     disabled: false,hideShadow,
   });
-  return dependents.map(item => {
+  return dependents.map((item,index) => {
     return (
       <View style={[dependentsContainer,extraContainerStyle]}>
         <View style={dependentNameGenderContainer}>
@@ -21,7 +21,7 @@ const Dependents = ({dependents,hideShadow,showCheckbox,CheckboxComponent,extraC
           <Text style={dependentGender}>{`${AGE_}${item.age}`}</Text>
           </>}
         </View>
-          {!renderCheckbox ? <Text style={dependentGender}>{`${AGE_}${item.age}`}</Text> : <CheckboxComponent/>}
+          {!renderCheckbox ? <Text style={dependentGender}>{`${AGE_}${item.age}`}</Text> : <CheckboxComponent item={item} index={index}/>}
         </View>
         <View style={{height: 14}} />
         <Text style={relationText}>{`${item.relation}`}</Text>

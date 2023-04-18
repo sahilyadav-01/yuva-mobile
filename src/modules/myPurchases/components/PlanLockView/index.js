@@ -7,16 +7,15 @@ import {Checkbox} from 'react-native-paper';
 import { SVG } from '../../../../../assets';
 
 const PlanLockView = props => {
-  const {onAddMembersPress,dependents} = props;
+  const {onAddMembersPress,dependents,onCheckboxPress} = props;
   const style = styles();
-  const renderCheckbox = () => {
+  const renderCheckbox = (props) => {
+    const {item,index} = props;
     return (
       <View style={{marginTop:10}}>
         <Checkbox
           status="unchecked"
-          onPress={() => {
-            console.log('Pressed');
-          }}
+          onPress={()=>onCheckboxPress(item,index)}
         />
         </View>
     );

@@ -59,6 +59,7 @@ export const FooterContainer = props => {
         <PlanLockView
           dependents={dependents}
           onAddMembersPress={onAddMembersPress}
+          onCheckboxPress={(memberDetails,arrIndex)=>{console.log('Item',memberDetails,arrIndex)}}
         />
       )}
       <AddMembersModal

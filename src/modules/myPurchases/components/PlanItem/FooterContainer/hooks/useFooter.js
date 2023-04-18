@@ -4,7 +4,7 @@ export const useFooter = () => {
   const [planLockView, setPlanLockView] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [dependents, setDependents] = useState([
-    {name: 'Vamsi', gender: 'Male', age: '24', relation: 'Brother'},
+    {name: 'Vamsi', gender: 'Male', age: '24', relation: 'Brother', status:'unchecked'},
   ]);
   const onToggle = () => setPlanLockView(!planLockView);
   const onAddMembersPress = () => {
