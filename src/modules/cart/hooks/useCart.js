@@ -1,4 +1,4 @@
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
@@ -7,13 +7,14 @@ import {
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
-import { getRelations, profileThunk } from '../../../store/reducers/ProfileSlice';
+import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
   const navigation = useNavigation();
+  const route = useRoute();
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
@@ -24,21 +25,22 @@ export const useCart = (args) => {
   /**/
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [startConsultation, setStartConsultation] = useState(false);
   const [data, setData] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
   const [checkBoxFlag, setCheckBoxFlag] = useState([]);
   const [checkBoxPress, setCheckBoxPress] = useState(0);
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
+  const [relationsModalVisible, setRelationsModalVisible] = useState(false);
   const focused = useIsFocused();
-  const { userDetails, relations } = useSelector(state => state.profile);
+  const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   const buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   const relationsData = [
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
   ]
   /** */
+
   const onPressCardButton = () => {
     if (isLoggedIn) {
       dispatch(getCartUserThunk());
@@ -62,6 +64,18 @@ export const useCart = (args) => {
     })
     setAddModalVisible(false);
   }
+
+  const onSaveRelationsPress = (arg) => {
+    //arg?.name, arg?.age, arg?.selectedRelationEnum
+    dispatch(
+      addRelation({
+        name: arg?.name,
+        age: arg?.age,
+        relation: arg?.selectedRelationEnum,
+      }),
+    );
+  }
+
   const addToCart = ({ name, cost, productId }, productType) => {
     const dToObj = { name, count: 1, cost, productId, productType };
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
@@ -80,6 +94,20 @@ export const useCart = (args) => {
     setModalVisible(false);
     setAddModalVisible(true)
   }
+
+  const onAddRelativePress = () => {
+    if(activeRelations.length > 0){
+    setModalVisible(false);
+    setRelationsModalVisible(true);
+    }
+  }
+  
+  useEffect(()=>{
+    if(relationsModalVisible && route?.name === 'Cart'){
+    dispatch(getRelations());
+    }
+  },[relationAdded])
+
   useEffect(() => {
     if (isLoggedIn && isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
@@ -95,14 +123,14 @@ export const useCart = (args) => {
       setModalVisible(false);
       setCheckBoxStatus('unchecked');
       setCheckBoxFlag([]);
-      setStartConsultation(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      route?.name === 'Cart' ? dispatch(resetRelations()) : null;
     }
   }, [focused]);
   useEffect(() => {
-    if (startConsultation && userDetails || relations.length > 0) {
-      console.log('Relations',relations)
+    if (relations.length > 0 && route?.name === 'Cart') {
+      dispatch(getActiveRelations());
       setData(
         relations.map((item, index) => {
           return {
@@ -116,9 +144,10 @@ export const useCart = (args) => {
           };
         }),
       );
+      setRelationsModalVisible(false);
       setModalVisible(true);
     }
-  }, [userDetails, relations, startConsultation, checkBoxFlag]);
+  }, [relations,checkBoxFlag]);
 
   useEffect(() => {
     if (activeIndex !== null) {
@@ -161,21 +190,22 @@ export const useCart = (args) => {
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
-    setStartConsultation(true);
   };
   const onPressCheckBox = () => {
     setCheckBoxStatus('checked');
     setCheckBoxFlag([]);
     setModalVisible(false);
-    setStartConsultation(false);
   };
 
   const onModalCrossPress = () => {
     setModalVisible(false);
-    setStartConsultation(false);
   };
   const onAddModalCrossPress = () => {
     setAddModalVisible(false);
+  };
+
+  const onRelationModalCrossPress = () => {
+    setRelationsModalVisible(false);
   };
 
 
@@ -202,5 +232,10 @@ export const useCart = (args) => {
     relationsData,
     onAddModalCrossPress,
     onSaveDetailsPress,
+    relationsModalVisible,
+    onRelationModalCrossPress,
+    onAddRelativePress,
+    onSaveRelationsPress,
+    relativesData: activeRelations.map((item,index)=>{return {key:index.toString(),value:item?.name,relation:item?.id}})
   };
 };

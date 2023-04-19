@@ -158,6 +158,9 @@ const profileSlice = createSlice({
     AddressListing(state,{payload}){
       state.addressListing=payload;
     },
+    resetRelations(state){
+      state.relations = [];
+    }
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -318,6 +321,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const {updateProfileStatus,saveCheckedAddress,AddressListing} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;
