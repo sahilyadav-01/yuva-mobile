@@ -31,7 +31,7 @@ export const usePatient = () => {
   }
   const onSelectMember=(data)=>{
     if(!data?.locked){
-      Alert.alert('Alert','Please add members to the plan')
+      navigation.navigate('PurchaseScreen')
     }
     else {
     dispatch(programOrPlanData(data))

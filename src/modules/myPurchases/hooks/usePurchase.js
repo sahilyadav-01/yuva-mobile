@@ -36,7 +36,6 @@ export const usePurchase = plan => {
   }, [purchasesPageNo]);
 
   useEffect(() => {
-    console.log('Triggered');
     if (
       plans &&
       typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' &&

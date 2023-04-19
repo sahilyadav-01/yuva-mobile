@@ -1,12 +1,9 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, ImageBackground, Text, View,TouchableOpacity} from 'react-native';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import ListItem from './components/ListItem';
 import {usePurchase} from './hooks/usePurchase';
 import {styles} from './style';
 import {ERROR_FETCHING_ITEMS, NO_ITEMS_LEFT} from './constants';
-import { PNG, SVG } from '../../../assets';
-import { CYAN_BLUE, WHITE } from '../../styles/colors';
-import { fonts } from '../../styles/fonts';
 import PlanItem from './components/PlanItem';
 
 const MyPurchases = ({plan}) => {

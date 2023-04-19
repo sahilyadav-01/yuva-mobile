@@ -2,29 +2,25 @@ import {
   View,
   Text,
   Image,
-  Touchable,
   TouchableOpacity,
   FlatList,
   ScrollView,
   Alert
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
-import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, PARAMETERS, USED} from './constant';
+import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, USED} from './constant';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
 import {usePackageCard} from './hooks/usePackageCard';
 import {getPlanDate} from '../../../../utils/utils';
 import { NOT_AVAILABLE } from '../../../../components/constants';
 import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../../../styles/colors';
 const PackageCard = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const state = useSelector(state => state.attribute);
   const bookNow = (plan, userVersion, uuid, version, locked) => {
     if(!locked) {
-      Alert.alert('Alert','Please add members to the plan')
+      navigation.navigate('PurchaseScreen')
     }
     else {
     navigation.navigate('Doctor', {

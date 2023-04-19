@@ -244,6 +244,7 @@ const profileSlice = createSlice({
       state.loading = true;
       state.dataUpdated = true;
       state.profileUpdated = true;
+      setProfileStatus('Y');
     },
     [updateProfile.rejected]: (state, {payload}) => {
       state.apiError = true;

@@ -1,21 +1,19 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {SVG} from '../../../../../assets';
 import {CYAN_BLUE} from '../../../../styles/colors';
 import {styles} from './style';
 import {usePlan} from './hooks/usePlan';
 
-const RenderPlans = ({item, index}) => {
+const RenderPlans = ({item}) => {
   const {plans, getTests} = usePlan();
   const {
     itemContainer,
     serviceText,
     usageText,
-    buttonContainer,
     rowContainer,
     iconContainer,
-    buttonText,
     inputStyles,
     boxStyles,
     dropdownItemStyles,
@@ -50,9 +48,6 @@ const RenderPlans = ({item, index}) => {
           </View>
         )}
       </View>
-      <TouchableOpacity style={buttonContainer}>
-        <Text style={buttonText}>{plans[item?.serviceUuid]?.buttonText}</Text>
-      </TouchableOpacity>
     </View>
   );
 };

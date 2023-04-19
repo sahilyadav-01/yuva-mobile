@@ -8,7 +8,7 @@ import {
 } from '../../../../../../store/reducers/ProfileSlice';
 import {programAndPlanLockThunk} from '../../../../../../store/reducers/PurchasesSlice';
 
-export const useFooter = () => {
+export const useFooter = (planDetails) => {
   const dispatch = useDispatch();
   const {
     relationsLoading,
@@ -61,7 +61,10 @@ export const useFooter = () => {
   };
 
   const onAddMembersPress = () => {
-    if (activeRelationsLoading && !activeRelationsError && activeRelations) {
+    if(planDetails?.locked){
+      Alert.alert('Alert','Cannot add any further members as plan has been locked')
+    }
+    else if (activeRelationsLoading && !activeRelationsError && activeRelations) {
       Alert.alert('Alert', 'Relations being fetched. Please try again');
     } else if (
       !activeRelationsLoading &&
@@ -104,7 +107,11 @@ export const useFooter = () => {
   };
 
   const onLockPlan = item => {
-    if(dependents.filter(item=>{if(item?.status) return item}).length === 0){
+    if(planDetails?.locked){
+      Alert.alert('Alert','Plan has been locked')
+    }
+
+    else if(dependents.filter(item=>{if(item?.status) return item}).length === 0){
       Alert.alert('Alert','Please select members')
     }
     else {
@@ -119,12 +126,12 @@ export const useFooter = () => {
   };
 
   const lockPlan = item => {
-    //console.log('Dependents',dependents.filter(item=>{if(item?.status) return item}).map(item => item.id))
     dispatch(
       programAndPlanLockThunk({
         programOrPlanUuid: item.uuid,
         relationId: dependents.filter(item=>{if(item?.status) return item}).map(item => item.id),
         version: item.version,
+        userVersion: item.userVersion
       }),
     );
   };

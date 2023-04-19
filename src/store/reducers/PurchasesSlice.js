@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
+import { Alert } from 'react-native';
 
 export const getPlans = createAsyncThunk(
   'myPurchases/plan',
@@ -44,9 +45,9 @@ export const getPurchaseItemDetails = createAsyncThunk(
 
 export const programAndPlanLockThunk = createAsyncThunk(
   'plan/lock',
-  async ({programOrPlanUuid,relationId,version}, {fulfillWithValue, rejectWithValue}) => {
+  async ({programOrPlanUuid,relationId,version,userVersion}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const requestDto = {programOrPlanUuid,relationId,version}
+      const requestDto = {programOrPlanUuid,relationId,version,userVersion}
       const response = await YuvaService.post('/programAndPlan/lock',requestDto);
       return {...response,programOrPlanUuid};
     } catch (error) {
@@ -65,7 +66,6 @@ const initialState = {
   purchasesError: false,
   purchasesItemDetails:null,
   purchasesDetailLoading: false,
-  lockedPlan: false,
 };
 
 const purchasesSlice = createSlice({
@@ -83,7 +83,6 @@ const purchasesSlice = createSlice({
       state.plansError = false;
     },
     [getPlans.fulfilled]: (state, {payload}) => {
-      console.log('Data',payload.data)
       state.plansLoading = false;
       state.plans = payload.data;
       state.plansError = false;
@@ -124,7 +123,17 @@ const purchasesSlice = createSlice({
       state.purchasesDetailLoading = false;
     },
     [programAndPlanLockThunk.fulfilled]: (state,{payload}) => {
-      console.log('Payload',payload);
+      state.plans = {...state.plans,userPlanOrderHistoryResponseDtoList:state.plans.userPlanOrderHistoryResponseDtoList.map(item=>{
+        if(item.uuid === payload.programOrPlanUuid){
+          return {...item,locked:true}
+        }
+        return item
+      })}
+    },
+    [programAndPlanLockThunk.rejected]: (state,{payload}) => {
+      if(payload?.response?.status === 400) {
+        Alert.alert('Alert',payload?.response?.data?.errorMessage ?? 'Plan already locked')
+      }
     }
   },
 });

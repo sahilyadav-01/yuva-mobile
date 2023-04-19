@@ -23,7 +23,7 @@ const MyPlanCard = ({ item }) => {
              
             }
             if(!item?.locked){
-                Alert.alert('Alert','Please add members to the plan')
+                navigation.navigate('PurchaseScreen')
             }
             else{
                 navigation.navigate(BOKINGTESTANDPACKAGE, params );

@@ -23,7 +23,7 @@ export const FooterContainer = props => {
     onLockPlan,
     activeRelations,
     onCheckboxPress
-  } = useFooter();
+  } = useFooter(item);
   const style = styles();
 
   const FooterItem = ({extraStyles, text, planDetails}) => {

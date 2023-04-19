@@ -14,7 +14,7 @@ import AddMembersModal from '../../components/Modal/AddMembersModal';
 import { getWindowDimensions } from '../../utils/utils';
 
 const Cart = props => {
-  const { cart, coupon, couponView, onPressCardButton, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, onAddMembersPress, relationsData } = useCart();
+  const { cart, coupon, couponView, onPressCardButton, buttonText, onSaveDetailsPress,onAddModalCrossPress, onRemove, userData, onModalCrossPress, onPressCheckBox, checkBoxStatus, addModalVisible, modalVisible, onAddMembersPress, relationsData, data } = useCart();
   const { itemDtoList, totalCost, amountToBePaid, totalDiscount } = cart || {};
   const { totalCost: appliedTotalCost, amountToBePaid: appliedAmountToBePaid, totalDiscount: appliedTotalDiscount, couponDiscount } = coupon || {};
   return (
@@ -27,7 +27,7 @@ const Cart = props => {
           heading={SELECT_MEMBER}
           primaryText={MYSELF}
           endText={ADD_MEMBER}
-          data={[]}
+          data={data}
           onCheckBoxPress={onPressCheckBox}
           checkBoxStatus={checkBoxStatus}
           showAddMembersButton
