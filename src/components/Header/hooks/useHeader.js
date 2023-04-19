@@ -24,7 +24,7 @@ export const useHeader = (props) => {
     navigation.navigate('CartScreen');
   };
   const onRightPress = () => {
-    isLoggedIn ? onToggleDrawer() : navigation.navigate('LoginScreen');
+    isLoggedIn ? onToggleDrawer() : navigation.navigate('Home',{screen:'LoginScreen'});
   };
 
   const onToggleDrawer = () => {
