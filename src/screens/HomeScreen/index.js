@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
       }
 
     }
-  }, [focused]);
+  }, [focused,loggedIn]);
 
   if (appointmentLoading || servicesLoading) return null;
   return (
