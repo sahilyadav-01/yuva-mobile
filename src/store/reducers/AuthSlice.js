@@ -119,8 +119,11 @@ export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
   async ({email, password,type}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/login?emailOrNumber=${email}&password=${password}`;
-      const response = await YuvaService.post(endpoint, {});
+      const endpoint = `/login`;
+      const response = await YuvaService.post(endpoint, {
+        emailOrNumber: email,
+        password: password
+      });
       return {...response.data,type};
     } catch (error) {
       handleNetworkError(
