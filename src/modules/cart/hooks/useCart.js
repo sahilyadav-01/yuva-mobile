@@ -7,7 +7,7 @@ import {
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
-import { profileThunk } from '../../../store/reducers/ProfileSlice';
+import { getActiveRelations, getRelations, profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 
@@ -98,6 +98,8 @@ export const useCart = (args) => {
       setStartConsultation(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
   }, [focused]);
   useEffect(() => {

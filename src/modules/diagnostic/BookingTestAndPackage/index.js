@@ -105,7 +105,7 @@ const BookingTestAndPackage = () => {
                                 </Text>
                                 <Text style={styles.color}>{packageDetails?.prerequisites}</Text></>}
                             {packageDetails?.parameterCount >= 0 && <Text style={styles.totalLabDetails}>
-                                {packageDetails?.parameterCount} {LAB}
+                             {packageDetails?.parameterCount === 0 ? 1 : packageDetails.parameterCount} {LAB}
                             </Text>}
                             {packageList &&
                                 <FlatList
