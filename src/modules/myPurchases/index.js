@@ -61,7 +61,8 @@ const MyPurchases = ({plan}) => {
       <View style={container}>
         <FlatList
           data={tabIndex === 0 ? planList : purchasesList}
-          keyExtractor={index => index}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
           renderItem={renderItem}
           ItemSeparatorComponent={ItemSeparator}
           onEndReached={onEndReached}

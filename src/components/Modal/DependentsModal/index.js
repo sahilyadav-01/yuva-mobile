@@ -12,7 +12,7 @@ function DependentsModal(props) {
     styles();
   const listData = [0, ...data, 0];
   const renderDependent = ({item, index}) => (
-    <Dependent item={item} index={index} length={listData.length} />
+    <Dependent item={item} index={index} key={index} length={listData.length} />
   );
   return (
     <Modal visible={visible} transparent={true}>
@@ -26,11 +26,12 @@ function DependentsModal(props) {
       </View>
       {data.length > 0 && <FlatList
         data={listData}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={renderDependent}
         ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
         style={listStyle}
         bounces={false}
+        nestedScrollEnabled={true}
       />}
       {showAddMembersButton && <TouchableOpacity onPress={onAddMembersPress} style={addMemberContainer}>
           <Text style={addMemberText}>{buttonText}</Text>

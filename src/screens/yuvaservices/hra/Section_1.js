@@ -2,7 +2,7 @@ import React from 'react'
 import {SafeAreaView } from 'react-native'
 import Section1 from '../../../modules/hra/Section1';
 
-const section_1 = (props) => {
+const Section_1 = (props) => {
   return (
     <SafeAreaView >
       <Section1 userData={props?.route?.params?.userData ?? null} name={props?.route?.params?.name} id={props?.route?.params?.id}/>
@@ -10,4 +10,4 @@ const section_1 = (props) => {
   )
 }
 
-export default section_1;
+export default Section_1;

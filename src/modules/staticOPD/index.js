@@ -11,6 +11,7 @@ const CashlessOPD = ({navigation}) => {
     <View>
       <Header showBackButton={true} title={OPD_CONSULTATION_PROGRAM}/>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
         showsVerticalScrollIndicator={false}>

@@ -17,7 +17,7 @@ const OurPlanDetails = () => {
             <View key={index}>
                 <View style={styles.starIcon}>
                     <Image style={styles.ImageStyle}source={PNG.dot} />
-                    <Text style={styles.details}> {item}</Text>
+                    <Text style={styles.details}>{item}</Text>
                 </View>
             </View>
         )
@@ -25,7 +25,7 @@ const OurPlanDetails = () => {
     return (
         <View>
             <Header showBackButton={true} title={OURPLAN_DETAILS} />
-            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+            <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <OurPlan isHomeScreen={false} />
                 <View style={styles.planDetailsCard}>
                     <View style={styles.headerView}>
@@ -47,14 +47,16 @@ const OurPlanDetails = () => {
                         <FlatList
                             renderItem={renderItem}
                             data={planDetails}
-                            keyExtractor={(item) => item?.id}
+                            keyExtractor={(item, index) => `${index}`}
+                            nestedScrollEnabled={true}
                             showsHorizontalScrollIndicator={false}
                         />}
                     <Text style={styles.termsCondition}>{TERMS_AND_CONDITION}</Text>
                     <FlatList
                         renderItem={renderItem}
                         data={termsAndCondition}
-                        keyExtractor={(item) => item?.id}
+                        keyExtractor={(item, index) => `${index}`}
+                        nestedScrollEnabled={true}
                         showsHorizontalScrollIndicator={false}
                     />
                     <Text style={styles.PricePerMonth}>As low as<Text style={styles.rupee}>{"  "}{RUPEE_SYMOL} {pricePerMonth} {'/'}month</Text></Text>

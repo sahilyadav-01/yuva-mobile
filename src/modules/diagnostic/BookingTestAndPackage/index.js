@@ -30,7 +30,7 @@ const BookingTestAndPackage = () => {
         const RenderParameters = ({ item, index }) => {
             return (
 
-                <View>
+                <View key={index}>
                     <Text style={styles.dropDownText}>
                         {item.parameterName}
                     </Text>
@@ -68,8 +68,9 @@ const BookingTestAndPackage = () => {
                                     <FlatList
                                         renderItem={RenderParameters}
                                         data={item.parameters}
-                                        keyExtractor={(item) => item.id}
+                                        keyExtractor={(item, index) => `${index}`}
                                         showsHorizontalScrollIndicator={false}
+                                        nestedScrollEnabled={true}
                                     />}
                             </View>
                         </View>
@@ -103,15 +104,16 @@ const BookingTestAndPackage = () => {
                                     {INSTRUCTIONS}
                                 </Text>
                                 <Text style={styles.color}>{packageDetails?.prerequisites}</Text></>}
-                            {packageDetails?.parameterCount && <Text style={styles.totalLabDetails}>
-                                {packageDetails?.parameterCount} {LAB}
+                            {packageDetails?.parameterCount >= 0 && <Text style={styles.totalLabDetails}>
+                             {packageDetails?.parameterCount === 0 ? 1 : packageDetails.parameterCount} {LAB}
                             </Text>}
                             {packageList &&
                                 <FlatList
                                     renderItem={renderItem}
                                     data={packageList}
-                                    keyExtractor={(item) => item.id}
+                                    keyExtractor={(item, index) => `${index}`}
                                     showsHorizontalScrollIndicator={false}
+                                    nestedScrollEnabled={true}
                                 />
 
                             }

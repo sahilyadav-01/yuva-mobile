@@ -17,7 +17,7 @@ export const useCart = (args) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { cart } = useSelector(state => state.cart);
+  const { cart,loading } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved, amountToBePaid, processingCharge} = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
@@ -237,6 +237,7 @@ export const useCart = (args) => {
     onRelationModalCrossPress,
     onAddRelativePress,
     onSaveRelationsPress,
-    relativesData: activeRelations.map((item,index)=>{return {key:index.toString(),value:item?.name,relation:item?.id}})
+    relativesData: activeRelations.map((item,index)=>{return {key:index.toString(),value:item?.name,relation:item?.id}}),
+    loading,
   };
 };

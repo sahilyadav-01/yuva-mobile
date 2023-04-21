@@ -48,6 +48,7 @@ const Cart = props => {
     onAddRelativePress,
     onSaveRelationsPress,
     relativesData,
+    loading
   } = useCart();
   const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
   const {
@@ -84,7 +85,7 @@ const Cart = props => {
           relationsData={relationsData}
           buttonText={SAVE_DETAILS}
         />
-        <AddMembersModal
+         <AddMembersModal
           heading={ADD_RELATIVE}
           onCrossPress={onRelationModalCrossPress}
           modalVisible={relationsModalVisible}
@@ -93,43 +94,25 @@ const Cart = props => {
           buttonText={SAVE_DETAILS}
           headingText={RELATIONSHIP}
         />
-        {itemDtoList.length === 0 && (
-          <View style={styles.emptyCartContainer}>
-            <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
-          </View>
-        )}
-        {itemDtoList.length > 0 && (
-          <View style={styles.bodyContainer}>
-            <CartDetails
-              data={itemDtoList}
-              heading={CART_DETAILS}
-              onRemove={onRemove}
-            />
-            <PriceDetails
-              heading={PRICE_DETAILS}
-              totalCost={totalCost}
-              totalDiscount={totalDiscount}
-              amountToBePaid={amountToBePaid}
-              coupon={{
-                couponView,
-                appliedAmountToBePaid,
-                appliedTotalCost,
-                appliedTotalDiscount,
-                couponDiscount,
-              }}
-            />
-            {userData !== null && (
-              <Dependents hideShadow={true} dependents={[userData]} />
-            )}
-            <CardButton
-              text={buttonText}
-              onPress={onPressCardButton}
-              containerStyle={styles.containerStyle}
-              textStyle={styles.textStyle}
-            />
-          </View>
-        )}
-        {itemDtoList.length > 0 && <CouponCard />}
+        {itemDtoList.length === 0 && !loading && <View style={styles.emptyCartContainer}>
+          <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
+          </View>}
+        {itemDtoList.length > 0 &&  !loading && <View style={styles.bodyContainer}>
+          <CartDetails
+            data={itemDtoList}
+            heading={CART_DETAILS}
+            onRemove={onRemove}
+          />
+          <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
+          {userData !== null && <Dependents hideShadow={true} dependents={[userData]} />}
+          <CardButton
+            text={buttonText}
+            onPress={onPressCardButton}
+            containerStyle={styles.containerStyle}
+            textStyle={styles.textStyle}
+          />
+        </View>}
+        {itemDtoList.length > 0 &&  !loading && <CouponCard />}
       </ScrollView>
     </>
   );

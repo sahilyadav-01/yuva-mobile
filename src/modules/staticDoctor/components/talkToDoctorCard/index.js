@@ -14,9 +14,9 @@ const TalkToDoctorCard = () => {
   const onLogin = () => {
     navigation.navigate('LoginScreen');
   };
-  const renderItem = ({key, item}) => {
+  const renderItem = ({item, index}) => {
     return (
-      <View>
+      <View key={index}>
         <View style={styles.container}>
           <View style={styles.imageView}>
             <Image source={item.iconName} style={styles.imageStyle} />
@@ -43,7 +43,8 @@ const TalkToDoctorCard = () => {
         <FlatList
           horizontal
           data={HEALTH_CONDITION}
-          keyExtractor={index => `${index}`}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
           renderItem={renderItem}
         />
       </View>

@@ -26,7 +26,7 @@ const AddMembersModal = props => {
     buttonContainer,
     buttonTextStyle,
   } = styles();
-  const RenderItem = ({item}) => {
+  const RenderItem = ({item, index}) => {
     const value = getTextInputValue(item.heading)?.value;
     const type = getTextInputValue(item.heading)?.type;
     const keyboardType =
@@ -34,6 +34,7 @@ const AddMembersModal = props => {
     const listItem = {...item, value, type, keyboardType};
     return (
       <MemberDetails
+        key={index}
         item={listItem}
         onChangeText={onTextChange}
         relationsData={relationsData}
@@ -50,11 +51,12 @@ const AddMembersModal = props => {
       <FlatList
         style={listStyle}
         data={data}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => `${index}`}
         bounces={false}
         ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
         renderItem={RenderItem}
         keyboardShouldPersistTaps="handled"
+        nestedScrollEnabled={true}
       />
       <TouchableOpacity onPress={onSaveDetails} style={buttonContainer}>
         <Text style={buttonTextStyle}>{buttonText}</Text>

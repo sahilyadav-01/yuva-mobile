@@ -38,7 +38,7 @@ const RescheduleAndCancel = () => {
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
-            <View style={styles.TestList}>
+            <View key={index} style={styles.TestList}>
                 <Text style={styles.testItems}>{item}</Text>
 
             </View>
@@ -46,7 +46,7 @@ const RescheduleAndCancel = () => {
     }
     const renderPackage = ({ item, index }) => {
         return (
-            <View style={styles.details}>
+            <View key={index} style={styles.details}>
                 <Text style={styles.packageName}>{item.name}</Text>
                 <TouchableOpacity onPress={onDetailsScreen}>
                     <Text style={styles.packageDetails}>{DETAILS}</Text>
@@ -91,8 +91,9 @@ const RescheduleAndCancel = () => {
                         <FlatList
                             renderItem={renderTest}
                             data={reschedule.testName}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                         />}
                 </View>
                 <View style={styles.PackageHeader}>
@@ -103,8 +104,9 @@ const RescheduleAndCancel = () => {
                         <FlatList
                             renderItem={renderPackage}
                             data={reschedule.packageNameDescriptionDtoList}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                         />}
                 </View>
                 {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED' || reschedule?.bookingStatus==='CANCELLED') &&

@@ -32,13 +32,14 @@ const Section8 = () => {
             showsVerticalScrollIndicator={false}>
             <FlatList
               data={questionData}
-              keyExtractor={item => item.questionId}
-              renderItem={({ item }) => {
+              keyExtractor={(item, index) => `${index}`}
+              nestedScrollEnabled={true}
+              renderItem={({ item, index }) => {
                 switch (true) {
                   case item.questionType.includes(QUESTION_TYPE_PICKER):
                     return (
                       <SectionPicker
-                        key={item.questionId}
+                        key={index}
                         text={item.question}
                         data={PickerData[item.questionType]}
                         defaultAnswer={answers[item.questionId] === undefined ? '' : PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
@@ -49,7 +50,7 @@ const Section8 = () => {
                   case item.questionType.includes(QUESTION_TYPE_INPUT):
                     return (
                       <SectionInput
-                        key={item.questionId}
+                        key={index}
                         defValue={answers[item.questionId] === undefined ? '' : PickerData[item.questionType][answers[item.questionId]]?.value ?? ''}
                         text={item.question}
                         dispatcher={dispatch_option}
