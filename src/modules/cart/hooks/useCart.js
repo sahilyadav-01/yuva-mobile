@@ -16,13 +16,14 @@ export const useCart = (args) => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
+  const focused = useIsFocused();
   const { cart } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved, amountToBePaid, processingCharge} = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView } = useSelector(state => state.coupon);
-  /**/
+  const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [data, setData] = useState([]);
@@ -32,7 +33,6 @@ export const useCart = (args) => {
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
   const [relationsModalVisible, setRelationsModalVisible] = useState(false);
-  const focused = useIsFocused();
   const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   const buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   const relationsData = [
@@ -43,6 +43,7 @@ export const useCart = (args) => {
 
   const onPressCardButton = () => {
     if (isLoggedIn) {
+      setAddButtonPress(true);
       dispatch(getCartUserThunk());
       if (userData == null) {
         openModal();
@@ -66,7 +67,6 @@ export const useCart = (args) => {
   }
 
   const onSaveRelationsPress = (arg) => {
-    //arg?.name, arg?.age, arg?.selectedRelationEnum
     dispatch(
       addRelation({
         name: arg?.name,
@@ -129,7 +129,7 @@ export const useCart = (args) => {
     }
   }, [focused]);
   useEffect(() => {
-    if (relations.length > 0 && route?.name === 'Cart') {
+    if (relations.length > 0 && route?.name === 'Cart' && addButtonPress) {
       dispatch(getActiveRelations());
       setData(
         relations.map((item, index) => {
@@ -146,8 +146,9 @@ export const useCart = (args) => {
       );
       setRelationsModalVisible(false);
       setModalVisible(true);
+      setAddButtonPress(false);
     }
-  }, [relations,checkBoxFlag]);
+  }, [relations,checkBoxFlag,addButtonPress]);
 
   useEffect(() => {
     if (activeIndex !== null) {

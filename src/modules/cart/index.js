@@ -15,6 +15,8 @@ import {
   SAVE_DETAILS,
   MYSELF,
   EMPTY_CART,
+  ADD_RELATIVE,
+  RELATIONSHIP,
 } from './constants';
 import {useCart} from './hooks/useCart';
 import {styles} from './styles';
@@ -45,7 +47,7 @@ const Cart = props => {
     onRelationModalCrossPress,
     onAddRelativePress,
     onSaveRelationsPress,
-    relativesData
+    relativesData,
   } = useCart();
   const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
   const {
@@ -71,7 +73,7 @@ const Cart = props => {
           buttonText={ADD_NEW_MEMBER}
           onAddMembersPress={onAddMembersPress}
           showRelatives={true}
-          relativesText='Add Relative'
+          relativesText={ADD_RELATIVE}
           onAddRelative={onAddRelativePress}
         />
         <AddMembersModal
@@ -83,12 +85,13 @@ const Cart = props => {
           buttonText={SAVE_DETAILS}
         />
         <AddMembersModal
-          heading={'Add Relative'}
+          heading={ADD_RELATIVE}
           onCrossPress={onRelationModalCrossPress}
           modalVisible={relationsModalVisible}
           onSaveDetailsPress={onSaveRelationsPress}
           relationsData={relativesData}
           buttonText={SAVE_DETAILS}
+          headingText={RELATIONSHIP}
         />
         {itemDtoList.length === 0 && (
           <View style={styles.emptyCartContainer}>
