@@ -121,7 +121,6 @@ import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
 import PlanCard from './PlanCard.png';
-import {PlanCard64} from './PlanCard64';
 import Lock from './Lock';
 const PNG = {
   AMICO,
@@ -252,6 +251,6 @@ const SVG = {
   Lock
 };
 
-const BASE_64 = {DoctorsImage,PlanCard64}
+const BASE_64 = {DoctorsImage}
 
 export {PNG, SVG, BASE_64};

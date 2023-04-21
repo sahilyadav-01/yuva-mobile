@@ -29,5 +29,6 @@ export const styles = () => {
       lineHeight: 16,
       color: CYAN_BLUE,
     },
+    footerColumnStyle: {borderRightWidth: 0}
   });
 };

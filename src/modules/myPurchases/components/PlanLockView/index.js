@@ -1,24 +1,30 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {PLAN_MEMBERS} from './constants';
+import {ADD_MEMBERS, LOCK_PLAN, PLAN_MEMBERS} from './constants';
 import Dependents from '../../../profile/components/dependents';
 import {Checkbox} from 'react-native-paper';
-import { SVG } from '../../../../../assets';
+import {SVG} from '../../../../../assets';
 
 const PlanLockView = props => {
-  const {onAddMembersPress,dependents,onCheckboxPress, onLockPlan, item:planDetails} = props;
+  const {
+    onAddMembersPress,
+    dependents,
+    onCheckboxPress,
+    onLockPlan,
+    item: planDetails,
+  } = props;
   const style = styles();
-  const renderCheckbox = (props) => {
-    const {item,index} = props;
-    if(planDetails?.locked) return null;
+  const renderCheckbox = props => {
+    const {item, index} = props;
+    if (planDetails?.locked) return null;
     return (
-      <View style={{marginTop:10}}>
+      <View style={style.checkboxContainer}>
         <Checkbox
           status={item?.status ? 'checked' : 'unchecked'}
-          onPress={()=>onCheckboxPress(index)}
+          onPress={() => onCheckboxPress(index)}
         />
-        </View>
+      </View>
     );
   };
   return (
@@ -29,18 +35,22 @@ const PlanLockView = props => {
           CheckboxComponent={renderCheckbox}
           showCheckbox={true}
           dependents={dependents}
-          extraContainerStyle={{paddingTop:0}}
-          extraDetailsContainer={{marginTop:20}}
+          extraContainerStyle={style.dependentContainerStyle}
+          extraDetailsContainer={style.dependentDetailStyle}
         />
       </View>
-      <TouchableOpacity onPress={onAddMembersPress} style={style.buttonContainer}>
-        <SVG.PlusIcon/>
-        <Text style={style.buttonText}>Add Members</Text>
+      <TouchableOpacity
+        onPress={onAddMembersPress}
+        style={style.buttonContainer}>
+        <SVG.PlusIcon />
+        <Text style={style.buttonText}>{ADD_MEMBERS}</Text>
       </TouchableOpacity>
-      <View style={{height:24}}/>
-      <TouchableOpacity onPress={()=>onLockPlan(planDetails)} style={style.buttonContainer}>
-        <SVG.Lock/>
-        <Text style={style.buttonText}>Lock Plan</Text>
+      <View style={style.separatorStyle} />
+      <TouchableOpacity
+        onPress={() => onLockPlan(planDetails)}
+        style={style.buttonContainer}>
+        <SVG.Lock />
+        <Text style={style.buttonText}>{LOCK_PLAN}</Text>
       </TouchableOpacity>
     </View>
   );

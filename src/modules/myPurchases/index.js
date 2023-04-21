@@ -19,7 +19,11 @@ const MyPurchases = ({plan}) => {
   } = usePurchase(plan);
   const {container, separatorStyle, emptyContainer, emptyText} = styles();
   const renderItem = ({item, index}) => {
-    return tabIndex === 0 ? <PlanItem item={item} index={index}/> : <ListItem item={item} index={index} renderList={tabIndex === 0} />;
+    return tabIndex === 0 ? (
+      <PlanItem item={item} index={index} />
+    ) : (
+      <ListItem item={item} index={index} renderList={tabIndex === 0} />
+    );
   };
   const ItemSeparator = () => {
     return <View style={separatorStyle} />;

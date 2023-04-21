@@ -27,6 +27,10 @@ export const styles = () => {
       lineHeight: 21,
       color: WHITE,
       marginLeft: 12
-    }
+    },
+    dependentContainerStyle: {paddingTop:0},
+    dependentDetailStyle: {marginTop:20},
+    separatorStyle: {height:24},
+    checkboxContainer: {marginTop:10}
   });
 };

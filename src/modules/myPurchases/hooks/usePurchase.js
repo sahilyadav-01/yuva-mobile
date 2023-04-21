@@ -4,8 +4,14 @@ import _ from 'lodash';
 import {getPlans, getPurchases} from '../../../store/reducers/PurchasesSlice';
 
 export const usePurchase = plan => {
-  const {purchasesTab, plans, plansError, purchases, purchasesError, lockedPlan} =
-    useSelector(state => state.purchases);
+  const {
+    purchasesTab,
+    plans,
+    plansError,
+    purchases,
+    purchasesError,
+    lockedPlan,
+  } = useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
   const [plansPageNo, setPlansPageNo] = useState(1);

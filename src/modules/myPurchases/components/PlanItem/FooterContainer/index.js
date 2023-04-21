@@ -1,6 +1,13 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {styles} from './style';
+import {
+  ADD_MEMBER,
+  ADD_NEW_MEMBER,
+  PLAN_DETAILS,
+  PLAN_MEMBERS,
+  RELATIONSHIP,
+} from './constants';
 import {SVG} from '../../../../../../assets';
 import {useItem} from '../../ListItem/hooks/useItem';
 import DetailsView from '../../DetailsView';
@@ -22,7 +29,7 @@ export const FooterContainer = props => {
     onSaveDetailsPress,
     onLockPlan,
     activeRelations,
-    onCheckboxPress
+    onCheckboxPress,
   } = useFooter(item);
   const style = styles();
 
@@ -31,9 +38,23 @@ export const FooterContainer = props => {
       <View style={[style.itemContainer, extraStyles]}>
         <Text style={style.textStyle}>{text}</Text>
         <TouchableOpacity
-          onPress={() =>
-            planDetails ? onArrowPress(item?.orderNumber) : onToggle(item)
-          }
+          onPress={() => {
+            if (planDetails && !expanded && !planLockView) {
+              onArrowPress(item?.orderNumber);
+            } else if (!planDetails && !expanded && !planLockView) {
+              onToggle(item);
+            } else if (!planDetails && expanded && !planLockView) {
+              onArrowPress(item?.orderNumber);
+              onToggle(item);
+            } else if (planDetails && !expanded && planLockView) {
+              onToggle(item);
+              onArrowPress(item?.orderNumber);
+            } else if (!planDetails && planLockView && !expanded) {
+              onToggle(item);
+            } else if (planDetails && expanded && !planLockView) {
+              onArrowPress(item?.orderNumber);
+            }
+          }}
           style={style.arrowContainer}>
           <SVG.ExpandArrow />
         </TouchableOpacity>
@@ -44,11 +65,11 @@ export const FooterContainer = props => {
     <>
       <View style={style.footerContainer}>
         <FooterItem
-          text="Plan Details"
-          extraStyles={{borderRightWidth: 0}}
+          text={PLAN_DETAILS}
+          extraStyles={style.footerColumnStyle}
           planDetails={true}
         />
-        <FooterItem text="Plan Members" planDetails={false} />
+        <FooterItem text={PLAN_MEMBERS} planDetails={false} />
       </View>
       {expanded && (
         <DetailsView
@@ -68,15 +89,15 @@ export const FooterContainer = props => {
         />
       )}
       <AddMembersModal
-        heading={'Add New Member'}
+        heading={ADD_NEW_MEMBER}
         onCrossPress={onCrossPress}
         modalVisible={modalVisible}
         onSaveDetailsPress={onSaveDetailsPress}
         relationsData={activeRelations.map((item, index) => {
-          return {key: index.toString(), value: item.name, relation:item.id};
+          return {key: index.toString(), value: item.name, relation: item.id};
         })}
-        buttonText="Add Member"
-        headingText="Relationship"
+        buttonText={ADD_MEMBER}
+        headingText={RELATIONSHIP}
       />
     </>
   );
