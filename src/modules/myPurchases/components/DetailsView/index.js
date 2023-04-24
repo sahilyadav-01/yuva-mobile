@@ -9,10 +9,8 @@ import {
   DISCOUNT_APPLIED,
   DOWNLOAD_INVOICE,
   ORDER_DETAILS,
-  ORDER_SUMMARY,
   PRICE_BREAK_UP,
   PURCHASED_BY,
-  REORDER,
   SPACE,
   TOTAL_AMOUNT,
 } from './constants';
@@ -28,7 +26,6 @@ const DetailsView = props => {
     planDetailsContainer,
     amountDetailsContainer,
     priceText,
-    reorderText,
     summaryContainer,
     personText,
     planText,
@@ -45,7 +42,6 @@ const DetailsView = props => {
     priceBreakupContainer,
     listExpandContainer,
     itemSeparatorStyle,
-    reorderContainer,
   } = styles();
 
   const renderPlans = ({item, index}) => {
@@ -140,13 +136,8 @@ const DetailsView = props => {
           <Text style={totalAmountText}>{TOTAL_AMOUNT}</Text>
           <Text style={priceText}>{`₹${Math.ceil(item?.amountPaid)}/-`}</Text>
         </View>
-        <View style={[rowView, reorderContainer]}>
-          <Text style={reorderText}>{REORDER}</Text>
-          <SVG.Reorder />
-        </View>
         <View style={summaryContainer}>
           <Text style={invoiceText}>{DOWNLOAD_INVOICE}</Text>
-          <Text style={invoiceText}>{ORDER_SUMMARY}</Text>
         </View>
       </View>
     </>

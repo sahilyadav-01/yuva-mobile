@@ -56,7 +56,7 @@ export const FooterContainer = props => {
             }
           }}
           style={style.arrowContainer}>
-          <SVG.ExpandArrow />
+          <SVG.ExpandArrow expanded={(planDetails && expanded) || (!planDetails && planLockView)} />
         </TouchableOpacity>
       </View>
     );

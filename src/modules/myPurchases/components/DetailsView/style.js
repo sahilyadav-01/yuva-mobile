@@ -45,14 +45,7 @@ export const styles = () => {
       lineHeight: 21,
       color: CYAN_BLUE,
     },
-    reorderText: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize14,
-      lineHeight: 17,
-      color: CYAN_BLUE,
-      marginRight: 8
-    },
-    summaryContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
+    summaryContainer: {flexDirection: ROW, justifyContent: CENTER},
     personText: {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize14,
@@ -105,6 +98,5 @@ export const styles = () => {
     priceBreakUpContainer: {marginBottom:12},
     listExpandContainer: {marginVertical: 20},
     itemSeparatorStyle: {height: 24},
-    reorderContainer: {alignItems:CENTER, marginBottom: 26},
   });
 };
