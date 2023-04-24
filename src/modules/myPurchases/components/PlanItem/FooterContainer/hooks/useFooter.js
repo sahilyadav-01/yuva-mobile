@@ -7,6 +7,21 @@ import {
   getRelations,
 } from '../../../../../../store/reducers/ProfileSlice';
 import {programAndPlanLockThunk} from '../../../../../../store/reducers/PurchasesSlice';
+import {
+  ALERT,
+  CANCEL,
+  CANNOT_ADD_MEMBERS,
+  CHILDREN_ALERT,
+  DAUGHTER,
+  ERROR_TEXT,
+  LOCK_PLAN,
+  NO_RELATIONS,
+  OK,
+  PLAN_LOCKED,
+  PLEASE_SELECT_MEMBERS,
+  SON,
+  TRY_AGAIN,
+} from '../constants';
 
 export const useFooter = planDetails => {
   const dispatch = useDispatch();
@@ -62,24 +77,21 @@ export const useFooter = planDetails => {
 
   const onAddMembersPress = () => {
     if (planDetails?.locked) {
-      Alert.alert(
-        'Alert',
-        'Cannot add any further members as plan has been locked',
-      );
+      Alert.alert(ALERT, CANNOT_ADD_MEMBERS);
     } else if (
       activeRelationsLoading &&
       !activeRelationsError &&
       activeRelations
     ) {
-      Alert.alert('Alert', 'Relations being fetched. Please try again');
+      Alert.alert(ALERT, TRY_AGAIN);
     } else if (
       !activeRelationsLoading &&
       !activeRelationsError &&
       activeRelations.length === 0
     ) {
-      Alert.alert('Alert', 'No Active relations left for this plan');
+      Alert.alert(ALERT, NO_RELATIONS);
     } else if (!activeRelationsLoading && activeRelationsError) {
-      Alert.alert('Alert', 'Network Error. Unable to fetch relatives');
+      Alert.alert(ALERT, ERROR_TEXT);
     } else if (
       !activeRelationsLoading &&
       !activeRelationsError &&
@@ -117,16 +129,16 @@ export const useFooter = planDetails => {
       if (item?.status) return item;
     });
     if (planDetails?.locked) {
-      Alert.alert('Alert', 'Plan has been locked');
+      Alert.alert(ALERT, PLAN_LOCKED);
     } else if (dependentsList.length === 0) {
-      Alert.alert('Alert', 'Please select members');
+      Alert.alert(ALERT, PLEASE_SELECT_MEMBERS);
     } else {
-      Alert.alert('Alert', 'Are you sure want to lock the plan?', [
+      Alert.alert(ALERT, LOCK_PLAN, [
         {
-          text: 'OK',
+          text: OK,
           onPress: () => lockPlan(item),
         },
-        {text: 'Cancel'},
+        {text: CANCEL},
       ]);
     }
   };
@@ -138,13 +150,10 @@ export const useFooter = planDetails => {
     const relationId = checkedList.map(item => item.id);
     const relations = checkedList.map(item => item.relation);
     const childrenCount = relations.filter(item => {
-      if (item === 'Son' || item === 'Daughter') return item;
+      if (item === SON || item === DAUGHTER) return item;
     }).length;
     if (childrenCount > planDetails?.childrenCount)
-      Alert.alert(
-        'Alert',
-        `Plan only supports ${planDetails?.childrenCount} children`,
-      );
+      Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
     else {
       dispatch(
         programAndPlanLockThunk({
