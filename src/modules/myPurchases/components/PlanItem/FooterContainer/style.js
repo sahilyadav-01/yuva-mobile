@@ -29,6 +29,16 @@ export const styles = () => {
       lineHeight: 16,
       color: CYAN_BLUE,
     },
-    footerColumnStyle: {borderRightWidth: 0}
+    footerColumnStyle: {
+      borderRightWidth: 0,
+      borderTopLeftRadius: 6,
+      borderBottomLeftRadius: 6,
+      borderColor: CYAN_BLUE,
+    },
+    rightView: {
+      borderTopRightRadius: 6,
+      borderBottomRightRadius: 6,
+      borderColor: CYAN_BLUE,
+    },
   });
 };
