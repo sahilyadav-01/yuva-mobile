@@ -98,6 +98,7 @@ export const usePackage = (initialIndex) => {
       index === 0 ? popularPackageNameThunk : popularTestsSliceThunk;
     if (isMoreData) {
       dispatch(dispatcher({pageNo: currentPageNo, pageSize: 10, search}));
+      setIsMoreData(false);
     }
   }, [isMoreData]);
 
@@ -237,7 +238,7 @@ export const usePackage = (initialIndex) => {
     setPackageData([]);
     setTestData([]);
     if (text.trim().length === 0) setSearch('');
-    else if (text.trim().length > 3) setSearch(text);
+    else if (text.trim().length >= 3) setSearch(text);
   };
 
   const onContinuePress = () => navigation.navigate('CartScreen')
