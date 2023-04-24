@@ -58,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
       dispatch(allAppointmentThunk({ isActive }));
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
-      dispatch(lifeStyleSliceThunk({ isActive }));
+      dispatch(lifeStyleSliceThunk({}));
       if (loggedIn === 'loggedIn') {
         dispatch(getCartUserThunk());
       } else {
@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
       }
 
     }
-  }, [focused]);
+  }, [focused,loggedIn]);
 
   if (appointmentLoading || servicesLoading) return null;
   return (
