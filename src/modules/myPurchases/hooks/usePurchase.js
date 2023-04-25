@@ -10,7 +10,7 @@ export const usePurchase = plan => {
     plansError,
     purchases,
     purchasesError,
-    lockedPlan,
+    lockedState,
   } = useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
@@ -97,6 +97,28 @@ export const usePurchase = plan => {
       setPurchasesLoader(false);
     }
   }, [purchases, purchasesError]);
+
+  useEffect(() => {
+    if (planList.length > 0 && !loading) {
+      let listUpdated = false;
+      const updatedList = planList.map((item) => {
+        let listItem = item;
+        lockedState.forEach(i => {
+          if (
+            i?.uuid === item?.uuid &&
+            i?.version === item?.version &&
+            i?.userVersion === item?.userVersion
+          ) {
+            listItem = {...listItem, locked: i?.locked};
+            listUpdated = true;
+          }
+        });
+        return listItem;
+      });
+      listUpdated && setPlanList(updatedList);
+      listUpdated = false;
+    }
+  }, [lockedState, loading]);
 
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {

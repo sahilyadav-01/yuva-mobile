@@ -43,7 +43,7 @@ export const useFooter = planDetails => {
   useEffect(() => {
     if (details === '') setPlanLockView(false);
     else {
-      dispatch(getRelations({uuid: details?.uuid, version: details?.version}));
+      dispatch(getRelations({uuid: details?.uuid, version: details?.version, userVersion: details?.userVersion}));
       dispatch(
         getActiveRelations({uuid: details?.uuid, version: details?.version}),
       );
@@ -64,7 +64,7 @@ export const useFooter = planDetails => {
   useEffect(() => {
     if (relationAdded && details !== '') {
       setAddMember(true);
-      dispatch(getRelations({uuid: details?.uuid, version: details?.version}));
+      dispatch(getRelations({uuid: details?.uuid, version: details?.version, userVersion: details?.userVersion}));
       dispatch(
         getActiveRelations({uuid: details?.uuid, version: details?.version}),
       );

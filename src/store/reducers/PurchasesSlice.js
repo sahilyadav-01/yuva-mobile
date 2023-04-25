@@ -1,10 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 
 export const getPlans = createAsyncThunk(
   'myPurchases/plan',
-  async ({pageNo,pageSize,orderStatus}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {pageNo, pageSize, orderStatus},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
       const endpoint = `/order/user/plan/subscription?pageNo=${pageNo}&pageSize=${pageSize}`;
       const reqBody = {orderStatus};
@@ -18,7 +21,10 @@ export const getPlans = createAsyncThunk(
 
 export const getPurchases = createAsyncThunk(
   'myPurchases/getPurchases',
-  async ({pageNo,pageSize,orderStatus}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {pageNo, pageSize, orderStatus},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
       const endpoint = `/order/order-history/user?pageNo=${pageNo}&pageSize=${pageSize}`;
       const reqBody = {orderStatus};
@@ -36,7 +42,7 @@ export const getPurchaseItemDetails = createAsyncThunk(
     try {
       const endpoint = `/order/details/user?id=${orderId}`;
       const response = await YuvaService.get(endpoint);
-      return {...response.data,orderId};
+      return {...response.data, orderId};
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -45,11 +51,17 @@ export const getPurchaseItemDetails = createAsyncThunk(
 
 export const programAndPlanLockThunk = createAsyncThunk(
   'plan/lock',
-  async ({programOrPlanUuid,relationId,version,userVersion}, {fulfillWithValue, rejectWithValue}) => {
+  async (
+    {programOrPlanUuid, relationId, version, userVersion},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
-      const requestDto = {programOrPlanUuid,relationId,version,userVersion}
-      const response = await YuvaService.post('/programAndPlan/lock',requestDto);
-      return {...response,programOrPlanUuid};
+      const requestDto = {programOrPlanUuid, relationId, version, userVersion};
+      const response = await YuvaService.post(
+        '/programAndPlan/lock',
+        requestDto,
+      );
+      return {...response, programOrPlanUuid};
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -64,8 +76,9 @@ const initialState = {
   purchasesLoading: false,
   purchases: null,
   purchasesError: false,
-  purchasesItemDetails:null,
+  purchasesItemDetails: null,
   purchasesDetailLoading: false,
+  lockedState: [],
 };
 
 const purchasesSlice = createSlice({
@@ -83,11 +96,16 @@ const purchasesSlice = createSlice({
       state.plansError = false;
     },
     [getPlans.fulfilled]: (state, {payload}) => {
+      state.lockedState = payload.data.userPlanOrderHistoryResponseDtoList.map(
+        item => {
+          return {uuid: item?.uuid, locked: item?.locked, version: item?.version, userVersion: item?.userVersion};
+        },
+      );
       state.plansLoading = false;
       state.plans = payload.data;
       state.plansError = false;
     },
-    [getPlans.rejected]: (state) => {
+    [getPlans.rejected]: state => {
       state.plansLoading = false;
       state.plans = null;
       state.plansError = true;
@@ -102,7 +120,7 @@ const purchasesSlice = createSlice({
       state.purchases = payload.data;
       state.purchasesError = false;
     },
-    [getPurchases.rejected]: (state) => {
+    [getPurchases.rejected]: state => {
       state.purchasesLoading = false;
       state.purchases = null;
       state.purchasesError = true;
@@ -112,29 +130,43 @@ const purchasesSlice = createSlice({
     },
     [getPurchaseItemDetails.fulfilled]: (state, {payload}) => {
       state.purchasesDetailLoading = false;
-      if(state.purchasesItemDetails === null) {
-       state.purchasesItemDetails = {[`${payload.orderId}`]:payload.data};
-      }
-      else {
-        state.purchasesItemDetails = {...state.purchasesItemDetails,[`${payload.orderId}`]:payload.data}
+      if (state.purchasesItemDetails === null) {
+        state.purchasesItemDetails = {[`${payload.orderId}`]: payload.data};
+      } else {
+        state.purchasesItemDetails = {
+          ...state.purchasesItemDetails,
+          [`${payload.orderId}`]: payload.data,
+        };
       }
     },
-    [getPurchaseItemDetails.rejected]: (state) => {
+    [getPurchaseItemDetails.rejected]: state => {
       state.purchasesDetailLoading = false;
     },
-    [programAndPlanLockThunk.fulfilled]: (state,{payload}) => {
-      state.plans = {...state.plans,userPlanOrderHistoryResponseDtoList:state.plans.userPlanOrderHistoryResponseDtoList.map(item=>{
-        if(item.uuid === payload.programOrPlanUuid){
-          return {...item,locked:true}
-        }
-        return item
-      })}
+    [programAndPlanLockThunk.fulfilled]: (state, {payload}) => {
+      state.plans = {
+        ...state.plans,
+        userPlanOrderHistoryResponseDtoList:
+          state.plans.userPlanOrderHistoryResponseDtoList.map(item => {
+            if (item.uuid === payload.programOrPlanUuid) {
+              return {...item, locked: true};
+            }
+            return item;
+          }),
+      };
+      state.lockedState = state.lockedState.map(item => {
+        if (item?.uuid === payload?.programOrPlanUuid)
+          return {...item, locked: true};
+        else return item;
+      });
     },
-    [programAndPlanLockThunk.rejected]: (state,{payload}) => {
-      if(payload?.response?.status === 400) {
-        Alert.alert('Alert',payload?.response?.data?.errorMessage ?? 'Plan already locked')
+    [programAndPlanLockThunk.rejected]: (state, {payload}) => {
+      if (payload?.response?.status === 400) {
+        Alert.alert(
+          'Alert',
+          payload?.response?.data?.errorMessage ?? 'Plan already locked',
+        );
       }
-    }
+    },
   },
 });
 

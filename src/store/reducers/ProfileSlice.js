@@ -38,7 +38,7 @@ export const getRelations = createAsyncThunk(
   'profile/getRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}` : ''
+      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}&userVersion=${params?.userVersion}` : ''
       const response = await YuvaService.get(`/relation${queryParams}`);
       return response;
     } catch (error) {
