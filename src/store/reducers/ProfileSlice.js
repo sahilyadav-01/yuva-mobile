@@ -25,7 +25,8 @@ export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await YuvaService.get('/relation/active');
+      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}` : ''
+      const response = await YuvaService.get(`/relation/dropdown${queryParams}`);
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -37,7 +38,8 @@ export const getRelations = createAsyncThunk(
   'profile/getRelations',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const response = await YuvaService.get('/relation');
+      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}&userVersion=${params?.userVersion}` : ''
+      const response = await YuvaService.get(`/relation${queryParams}`);
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -133,6 +135,10 @@ const initialState = {
   addressListing:null,
   isSubscribed:false,
   userAddress:[],
+  activeRelationsError: false,
+  relationsError: false,
+  activeRelationsLoading: false,
+  relationsLoading: false,
 };
 
 const profileSlice = createSlice({
@@ -152,6 +158,9 @@ const profileSlice = createSlice({
     AddressListing(state,{payload}){
       state.addressListing=payload;
     },
+    resetRelations(state){
+      state.relations = [];
+    }
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -179,12 +188,16 @@ const profileSlice = createSlice({
     },
     [getRelations.pending]: state => {
       state.loading = true;
+      state.relationsError = false;
+      state.relationsLoading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
-      state.relations = payload.data.data.relativeResponseDto;
+      state.relations = payload.data.data;
       state.apiError = false;
+      state.relationsError = false;
       state.apiErrorMessage = '';
       state.loading = false;
+      state.relationsLoading = false;
       state.relationAdded = false;
       state.relationId = payload?.data.data || [];
       state.relationsErrorMessage = '';
@@ -192,7 +205,9 @@ const profileSlice = createSlice({
     },
     [getRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
+      state.relationsError = true;
       state.loading = false;
+      state.relationsLoading = false;
       state.relationAdded = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
@@ -200,17 +215,23 @@ const profileSlice = createSlice({
     },
     [getActiveRelations.pending]: state => {
       state.loading = true;
+      state.activeRelationsError = false;
+      state.activeRelationsLoading = true;
     },
     [getActiveRelations.fulfilled]: (state, {payload}) => {
       state.activeRelations = payload.data.data;
       state.apiError = false;
+      state.activeRelationsError = false;
       state.apiErrorMessage = '';
       state.loading = false;
+      state.activeRelationsLoading = false;
       state.activeRelationsErrorMessage = '';
     },
     [getActiveRelations.rejected]: (state, {payload}) => {
       state.apiError = true;
+      state.activeRelationsError = true;
       state.loading = false;
+      state.relationsLoading = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
       state.activeRelationsErrorMessage = payload.message;
@@ -300,6 +321,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const {updateProfileStatus,saveCheckedAddress,AddressListing} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

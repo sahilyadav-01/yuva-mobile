@@ -22,7 +22,7 @@ export const styles = () => {
     },
     headingContainer: {
       marginTop: 8,
-      marginHorizontal: 6,
+      marginHorizontal: 22,
       flexDirection: ROW,
       justifyContent: SPACE_BETWEEN,
     },
@@ -47,13 +47,12 @@ export const styles = () => {
     buttonContainer: {
       borderTopLeftRadius: 12,
       borderTopRightRadius: 12,
-      position: 'absolute',
-      bottom: 0,
       paddingVertical: 12,
       width: windowWidth,
       alignItems: CENTER,
       justifyContent: CENTER,
       backgroundColor: ORANGE,
+      marginHorizontal: 0
     },
     buttonTextStyle: {
       fontFamily: fonts.family.rubik600,
@@ -61,5 +60,6 @@ export const styles = () => {
       lineHeight: 24,
       color: WHITE,
     },
+    itemContainer: {marginHorizontal: 16}
   });
 };

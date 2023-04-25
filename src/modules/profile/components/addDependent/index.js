@@ -42,7 +42,7 @@ const AddDependentCard = ({
           <SelectList
             setSelected={setSelectedRelation}
             search={false}
-            data={relationsData}
+            data={relationsData.map(item=>{return {...item,value:item?.value?.name}})}
             placeholder={RELATIONSHIP}
             boxStyles={dropdownBoxStyle}
             inputStyles={{color: relationSelected ? DARK_BLUE : undefined}}

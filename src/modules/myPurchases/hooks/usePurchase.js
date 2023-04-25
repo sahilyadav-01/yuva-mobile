@@ -4,8 +4,14 @@ import _ from 'lodash';
 import {getPlans, getPurchases} from '../../../store/reducers/PurchasesSlice';
 
 export const usePurchase = plan => {
-  const {purchasesTab, plans, plansError, purchases, purchasesError} =
-    useSelector(state => state.purchases);
+  const {
+    purchasesTab,
+    plans,
+    plansError,
+    purchases,
+    purchasesError,
+    lockedState,
+  } = useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
   const [plansPageNo, setPlansPageNo] = useState(1);
@@ -91,6 +97,28 @@ export const usePurchase = plan => {
       setPurchasesLoader(false);
     }
   }, [purchases, purchasesError]);
+
+  useEffect(() => {
+    if (planList.length > 0 && !loading) {
+      let listUpdated = false;
+      const updatedList = planList.map((item) => {
+        let listItem = item;
+        lockedState.forEach(i => {
+          if (
+            i?.uuid === item?.uuid &&
+            i?.version === item?.version &&
+            i?.userVersion === item?.userVersion
+          ) {
+            listItem = {...listItem, locked: i?.locked};
+            listUpdated = true;
+          }
+        });
+        return listItem;
+      });
+      listUpdated && setPlanList(updatedList);
+      listUpdated = false;
+    }
+  }, [lockedState, loading]);
 
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
