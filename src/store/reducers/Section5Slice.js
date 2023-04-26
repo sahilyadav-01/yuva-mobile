@@ -31,6 +31,7 @@ const initialState = {
     Q37: '',
     Q38: '',
   },
+  smoke: false,
 };
 
 const section5Slice = createSlice({
@@ -41,6 +42,9 @@ const section5Slice = createSlice({
     dispatch_option(state, {payload}) {
       state.answers[payload.key] = payload.value;
     },
+    dispatch_condition_1(state,{payload}) {
+      state.smoke = payload;
+    }
   },
 
   extraReducers: {
@@ -61,6 +65,6 @@ const section5Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option} = section5Slice.actions;
+export const {init, dispatch_option, dispatch_condition_1} = section5Slice.actions;
 export const section5Init = section5Slice.getInitialState();
 export default section5Slice.reducer;

@@ -43,7 +43,8 @@ const Section1 = props => {
     setQuestion5,
     next,
     data,
-    renderData
+    renderData,
+    onChangeText
   } = useSection1(props?.userData ?? null);
   
   if(!renderData){
@@ -101,9 +102,14 @@ const Section1 = props => {
               <TextInput
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
-                placeholder={answers?.Q3.trim().length>0 ? answers?.Q3 : SECTION_1_PLACEHOLDER_Q2}
+                placeholder={SECTION_1_PLACEHOLDER_Q2}
+                //placeholder={answers?.Q3.trim().length>0 ? answers?.Q3 : SECTION_1_PLACEHOLDER_Q2}
+                value={answers?.Q3.trim().length>0 ? answers?.Q3 : ''}
                 onEndEditing={e =>
                   inputCheck(SECOND_QUESTION, e.nativeEvent.text)
+                }
+                onChangeText={e =>
+                  onChangeText(SECOND_QUESTION, e)
                 }
               />
             </View>
@@ -114,9 +120,13 @@ const Section1 = props => {
               <TextInput
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
-                placeholder={answers?.Q4.trim().length>0 ? answers?.Q4 : SECTION_1_PLACEHOLDER_Q3}
+                placeholder={SECTION_1_PLACEHOLDER_Q3}
+                value={answers?.Q4.trim().length>0 ? answers?.Q4 : ''}
                 onEndEditing={e =>
                   inputCheck(THIRD_QUESTION, e.nativeEvent.text)
+                }
+                onChangeText={e =>
+                  onChangeText(THIRD_QUESTION, e)
                 }
               />
             </View>
@@ -127,10 +137,13 @@ const Section1 = props => {
               <TextInput
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
-                placeholder={answers?.Q5.trim().length>0 ? answers?.Q5 : SECTION_1_PLACEHOLDER_Q4}
+                placeholder={SECTION_1_PLACEHOLDER_Q4}
+                value={answers?.Q5.trim().length>0 ? answers?.Q5 : ''}
                 onEndEditing={e =>
                   inputCheck(FOURTH_QUESTION, e.nativeEvent.text)
                 }
+                onChangeText={e =>
+                  onChangeText(FOURTH_QUESTION, e)}
               />
             </View>
             <View style={styles.questionViewContainer}>
