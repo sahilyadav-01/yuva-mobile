@@ -1,4 +1,4 @@
-package com.nineleaps.yuva.newarchitecture.components;
+package com.yuva.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

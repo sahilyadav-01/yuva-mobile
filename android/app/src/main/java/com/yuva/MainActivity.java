@@ -1,4 +1,4 @@
-package com.nineleaps.yuva;
+package com.yuva;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
