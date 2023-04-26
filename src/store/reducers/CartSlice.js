@@ -109,6 +109,9 @@ const cartSlice = createSlice({
     setTermsAndCondtionChecked(state, {payload}) {
       state.termsAndCondtionChecked = payload;
     },
+    clearExistingCartIds(state){
+      state.existingIds = [];
+    }
   },
   extraReducers: {
     [getCartUserThunk.pending]: state => {
@@ -146,7 +149,7 @@ const cartSlice = createSlice({
       };
       state.existingIds = [];
       state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
+      state.apiErrorMessage = payload?.response?.data?.errorMessage;
       state.loading = false;
     },
     [getCartGuestThunk.pending]: state => {
@@ -189,7 +192,7 @@ const cartSlice = createSlice({
       };
       state.existingIds = [];
       state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
+      state.apiErrorMessage = payload?.response?.data?.errorMessage;
       state.loading = false;
     },
     [deleteCartThunk.pending]: state => {
@@ -217,7 +220,7 @@ const cartSlice = createSlice({
     },
   },
 });
-export const {setTermsAndCondtionChecked} = cartSlice.actions;
+export const {setTermsAndCondtionChecked, clearExistingCartIds} = cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export const {removeCouponCart} = cartSlice.actions;
 export default cartSlice.reducer;
