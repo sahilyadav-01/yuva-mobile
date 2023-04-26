@@ -200,7 +200,7 @@ export const dignosticStatus = status => {
       retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
-      retStatus = 'Awaiting For Confirmation';
+      retStatus = 'Rescheduled';
       break;
     case 'COMPLETED':
       retStatus = 'Report Awaited';
