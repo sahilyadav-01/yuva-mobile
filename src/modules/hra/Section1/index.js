@@ -103,7 +103,6 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={SECTION_1_PLACEHOLDER_Q2}
-                //placeholder={answers?.Q3.trim().length>0 ? answers?.Q3 : SECTION_1_PLACEHOLDER_Q2}
                 value={answers?.Q3.trim().length>0 ? answers?.Q3 : ''}
                 onEndEditing={e =>
                   inputCheck(SECOND_QUESTION, e.nativeEvent.text)

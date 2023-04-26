@@ -104,7 +104,6 @@ export const useSection7 = () => {
                 dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
                 if (!validQ7) {
                     Alert.alert(ALERT, DEFAULT_ALERT_MESSAGE);
-                    // dispatch(dispatch_option({ key: questionData[6].questionId, value: value }));
                 } 
                 break;
 
