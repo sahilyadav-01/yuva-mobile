@@ -13,7 +13,7 @@ import Loader from '../../../components/Loader';
 
 const Section5 = () => {
 
-  const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData, q2Placeholder, q3Placeholder, onBlur } = useSection5();
+  const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData, onChangeText } = useSection5();
 
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
@@ -48,9 +48,9 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[1]?.questionId] ?? q2Placeholder ?? ''}
+                    value={answers[questionData[1]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
-                    onBlur={()=>onBlur('Q2')}
+                    onChangeText={(e) => onChangeText(SECOND_QUESTION, e)}
                   />
                 </View>
                 <View style={styles.questionViewContainer}>
@@ -58,9 +58,9 @@ const Section5 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[2]?.questionId] ?? q3Placeholder ?? ''}
+                    value={answers[questionData[2]?.questionId] ??  ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
-                    onBlur={()=>onBlur('Q3')}
+                    onChangeText={(e) => onChangeText(THIRD_QUESTION, e)}
                   />
                 </View>
               </View>
