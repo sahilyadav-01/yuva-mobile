@@ -45,7 +45,13 @@ const initialState = {
   },
   extra_questions_Q9A: '',
   extra_questions_Q10A: '',
-
+  medicalCondition: false,
+  medicalCondition1 :false,
+  medicalConditionDiabetes : false,
+  medicalConditionHypertension : false,
+  medicalConditionDoYouSufferFromAnyIllness : false,
+  medicalConditionAnyCancer : false,
+  medicalConditionChronicIllness : false,
 };
 
 const section7Slice = createSlice({
@@ -66,7 +72,27 @@ const section7Slice = createSlice({
       state.extra_questions_Q10A = payload.value;
       }
     },
-
+    dispatch_condition_1(state,{payload}){
+      state.medicalCondition = payload;
+    },
+    dispatch_condition_2(state,{payload}){
+      state.medicalCondition1 = payload;
+    },
+    dispatch_condition_3(state,{payload}){
+      state.medicalConditionDiabetes = payload;
+    },
+    dispatch_condition_4(state,{payload}){
+      state.medicalConditionHypertension = payload;
+    },
+    dispatch_condition_5(state,{payload}){
+      state.medicalConditionDoYouSufferFromAnyIllness = payload;
+    },
+    dispatch_condition_6(state,{payload}){
+      state.medicalCondition = payload;
+    },
+    dispatch_condition_7(state,{payload}){
+      state.medicalConditionChronicIllness = payload;
+    },
   },
 
   extraReducers: {
@@ -87,6 +113,6 @@ const section7Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option , dispatch_option_extra_questions} = section7Slice.actions;
+export const {init, dispatch_option , dispatch_option_extra_questions, dispatch_condition_1, dispatch_condition_2, dispatch_condition_3, dispatch_condition_4, dispatch_condition_5, dispatch_condition_6, dispatch_condition_7} = section7Slice.actions;
 export const section7Init = section7Slice.getInitialState();
 export default section7Slice.reducer;

@@ -31,6 +31,7 @@ const initialState = {
     Q33: '',
     Q34: '',
   },
+  alcohol: false,
 };
 
 const section4Slice = createSlice({
@@ -41,6 +42,9 @@ const section4Slice = createSlice({
     dispatch_option(state, {payload}) {
       state.answers[payload.key] = payload.value;
     },
+    dispatch_condition_1(state,{payload}) {
+      state.alcohol = payload;
+    }
   },
 
   extraReducers: {
@@ -61,6 +65,6 @@ const section4Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option} = section4Slice.actions;
+export const {init, dispatch_option, dispatch_condition_1} = section4Slice.actions;
 export const section4Init = section4Slice.getInitialState();
 export default section4Slice.reducer;
