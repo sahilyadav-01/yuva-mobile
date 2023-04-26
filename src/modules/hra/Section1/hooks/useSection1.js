@@ -85,6 +85,35 @@ export const useSection1 = userData => {
     }
   }, [answers]);
 
+  const onChangeText = (id, value) => {
+    const regAge = /^\d+$/;
+    switch (id) {
+      case FIRST_QUESTION:
+        dispatch(
+          dispatch_option({key: questionData[0].questionId, value: value}),
+        );
+        break;
+
+      case SECOND_QUESTION:
+        dispatch(
+          dispatch_option({key: questionData[1].questionId, value: value}),
+        );
+        break;
+
+      case THIRD_QUESTION:
+        dispatch(
+          dispatch_option({key: questionData[2].questionId, value: value}),
+        );
+        break;
+
+      case FOURTH_QUESTION:
+        dispatch(
+          dispatch_option({key: questionData[3].questionId, value: value}),
+        );
+        break;
+    }
+  };
+
   const inputCheck = (id, value) => {
     const regAge = /^\d+$/;
     switch (id) {
@@ -92,49 +121,33 @@ export const useSection1 = userData => {
         const validQ1 =
           regAge.test(value) === true && value >= 12 && value <= 100;
         setRequiredFieldQ1(validQ1);
-        if (validQ1) {
-          dispatch(
-            dispatch_option({key: questionData[0].questionId, value: value}),
-          );
-        } else {
+        if (!validQ1) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q1);
-        }
+        } 
         break;
 
       case SECOND_QUESTION:
         const validQ2 = value >= 120 && value <= 219;
         setRequiredFieldQ2(validQ2);
-        if (validQ2) {
-          dispatch(
-            dispatch_option({key: questionData[1].questionId, value: value}),
-          );
-        } else {
+        if (!validQ2) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q2);
-        }
+        } 
         break;
 
       case THIRD_QUESTION:
         const validQ3 = value >= 20 && value <= 200;
         setRequiredFieldQ3(validQ3);
-        if (validQ3) {
-          dispatch(
-            dispatch_option({key: questionData[2].questionId, value: value}),
-          );
-        } else {
+        if (!validQ3) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q3);
-        }
+        } 
         break;
 
       case FOURTH_QUESTION:
         const validQ4 = value >= 20 && value <= 47;
         setRequiredFieldQ4(validQ4);
-        if (validQ4) {
-          dispatch(
-            dispatch_option({key: questionData[3].questionId, value: value}),
-          );
-        } else {
+        if (!validQ4) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q4);
-        }
+        } 
         break;
 
       default:
@@ -197,6 +210,7 @@ export const useSection1 = userData => {
     setQuestion5,
     next,
     data:genderData,
-    renderData
+    renderData,
+    onChangeText
   };
 };
