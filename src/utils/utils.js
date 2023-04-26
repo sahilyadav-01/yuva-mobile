@@ -2,7 +2,7 @@ import validator from 'is_js';
 import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
-import { setProfileImage } from '../store/reducers/ProfileSlice';
+import { setProfileImage, uploadFamilyPic } from '../store/reducers/ProfileSlice';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useDispatch } from 'react-redux';
 export const handleNetworkError = (status, message) => {
@@ -42,20 +42,20 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 //DEVELOPMENT SERVER
-// export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-// export const PORT = ':8082';
-// export const PROTOCOL = 'http://';
-// export const PATH = ':8080/api/v1/yuva';
-
-//UAT Server
-export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
-export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-export const PORT = ':8081';
+export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
+export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+export const PORT = ':8082';
 export const PROTOCOL = 'http://';
 export const PATH = ':8080/api/v1/yuva';
+
+//UAT Server
+// export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+// export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
+// export const PATH = ':8080/api/v1/yuva';
 
 // Production Server
 // export const SERVER = 'yuvahealth.in';
@@ -284,7 +284,7 @@ export const ImageGallery=(props,coverPhoto,userPhoto)=>{
     cropping: true,
     includeBase64:true,
   }).then(image => {
-    props(setProfileImage(image?.path))
+    props(uploadFamilyPic(image?.path,"hii"))
   });
 }
 export const requestCameraPermission = async (props,coverPhoto,userPhoto) => {
@@ -299,7 +299,7 @@ export const requestCameraPermission = async (props,coverPhoto,userPhoto) => {
           cropping: true,
           includeBase64:true,
         }).then(image => {
-           props(setProfileImage(image?.path))
+           props(uploadFamilyPic(image?.path))
         });
     } else {
      Alert.alert("permission denied...!!!")

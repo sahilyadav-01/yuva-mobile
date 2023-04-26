@@ -7,8 +7,8 @@ class YuvaService {
   get = async endpoint => {
     return await axiosClient.get(`${baseUrl}${endpoint}`);
   };
-  post = async (endpoint, params) => {
-    return await axiosClient.post(`${baseUrl}${endpoint}`, params);
+  post = async (endpoint, params,headers) => {
+    return await axiosClient.post(`${baseUrl}${endpoint}`, params,headers);
   };
   put = async (endpoint, params) => {
     return await axiosClient.put(`${baseUrl}${endpoint}`, params);

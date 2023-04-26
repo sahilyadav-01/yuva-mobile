@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import RNFetchBlob from 'rn-fetch-blob';
 import { YuvaService } from '../../network/yuvaService';
 import { setProfileStatus } from '../LocalStore';
 import {
@@ -103,7 +104,25 @@ export const planIsSubscribedThunk = createAsyncThunk(
     }
   },
 );
-
+export const uploadFamilyPic = createAsyncThunk(
+  'familyPic',
+  async ( familyPic, { fulfillWithValue, rejectWithValue }) => {
+   const data=new FormData()
+    try {
+       console.log(familyPic,"familyyyy")
+      await YuvaService.post('/familyPic',
+      //  familyPic:`${familyPic};type=image/jpg`,
+      //  data.append('familyPic',`${familyPic};type=image/jpg`),
+      //  {headers:{'Content-Type': 'multipart/form-data',"accept":"*/*"}}
+      // );
+      // RNFetchBlob.fs.readStream(familyPic,"base64").then((response)=>{
+      //   console.log(response,"responseeee")
+      // }
+)} catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 const initialState = {
   profile: {
     companyName: '',
@@ -134,6 +153,7 @@ const initialState = {
   isSubscribed: false,
   userAddress: [],
   profileImageCamera:null,
+  messageFamilyPic:null,
 };
 
 const profileSlice = createSlice({
@@ -300,6 +320,21 @@ const profileSlice = createSlice({
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
+    },
+    [uploadFamilyPic.pending]: state => {
+      state.loading = true;
+    },
+    [uploadFamilyPic.fulfilled]: (state, { payload }) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = true;
+      state.messageFamilyPic = payload;
+    },
+    [uploadFamilyPic.rejected]: (state, { payload }) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload.message;
+      state.status = false;
     },
   },
 });
