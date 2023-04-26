@@ -170,15 +170,15 @@ export const useSection7 = () => {
         }
         else if ((answers.Q41 === ONE) && (((answers.Q42 === ZERO) || (answers.Q42 === ONE && (((answers.Q43 === ZERO) || (answers.Q43 === ONE && ((answers.Q44) && (requiredFieldQ4 == false)))))))) && ((answers.Q45 === ZERO) || (answers.Q45 === ONE && (((answers.Q46 === ZERO) || (answers.Q46 === ONE && (((answers.Q47) && (requiredFieldQ7 == false)) && ((answers.Q48) && (requiredFieldQ8 == false)))))))) && ((answers.Q49 === ZERO) || (answers.Q49 === ONE && answers9A)) && ((answers.Q50 === ZERO) || (answers.Q50 === ONE && answers10A))) {
             let obj = {Q41: parseInt(answers.Q41)};
-            obj = parseInt(answers.Q42)?{...obj,Q42: parseInt(answers.Q42)}:obj
-            obj = parseInt(answers.Q43)?{...obj,Q43: parseInt(answers.Q43)}:obj
-            obj = parseInt(answers.Q44)?{...obj,Q44: parseInt(answers.Q44)}:obj
-            obj = parseInt(answers.Q45)?{...obj,Q45: parseInt(answers.Q45)}:obj
-            obj = parseInt(answers.Q46)?{...obj,Q46: parseInt(answers.Q46)}:obj
-            obj = parseInt(answers.Q47)?{...obj,Q47: parseInt(answers.Q47)}:obj
-            obj = parseInt(answers.Q48)?{...obj,Q48: parseInt(answers.Q48)}:obj
-            obj = parseInt(answers.Q49)?{...obj,Q49: parseInt(answers.Q49)}:obj
-            obj = parseInt(answers.Q50)?{...obj,Q50: parseInt(answers.Q50)}:obj
+            obj = answers.Q42 !== ''?{...obj,Q42: parseInt(answers.Q42)}:obj
+            obj = answers.Q43 !== ''?{...obj,Q43: parseInt(answers.Q43)}:obj
+            obj = answers.Q44 !== ''?{...obj,Q44: parseInt(answers.Q44)}:obj
+            obj = answers.Q45 !== ''?{...obj,Q45: parseInt(answers.Q45)}:obj
+            obj = answers.Q46 !== ''?{...obj,Q46: parseInt(answers.Q46)}:obj
+            obj = answers.Q47 !== ''?{...obj,Q47: parseInt(answers.Q47)}:obj
+            obj = answers.Q48 !== ''?{...obj,Q48: parseInt(answers.Q48)}:obj
+            obj = answers.Q49 !== ''?{...obj,Q49: parseInt(answers.Q49)}:obj
+            obj = answers.Q50 !== ''?{...obj,Q50: parseInt(answers.Q50)}:obj
             dispatch(
                 saveHRAData({
                   answers: obj,
