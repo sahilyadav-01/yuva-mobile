@@ -1,6 +1,6 @@
 
 import React  from 'react'
-import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, FlatList, Alert } from 'react-native'
 import { styles } from './styles';
 import { PNG } from '../../assets';
 import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, NOT_AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
@@ -12,7 +12,7 @@ const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
     const renderItem = (plan) => {
         const onBookingTestandPackage = () => {
-          
+
             const params={
                 headerName:MY_TEST,
                 packageName: plan?.item?.id ,
@@ -22,7 +22,12 @@ const MyPlanCard = ({ item }) => {
                 plan:item?.plan,
              
             }
-            navigation.navigate(BOKINGTESTANDPACKAGE, params );
+            if(!item?.locked){
+                navigation.navigate('PurchaseScreen')
+            }
+            else{
+                navigation.navigate(BOKINGTESTANDPACKAGE, params );
+            }
           }
         const used = plan?.item?.used || 0;
         const available = plan?.item?.available || 0;

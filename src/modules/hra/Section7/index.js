@@ -13,7 +13,7 @@ import Loader from '../../../components/Loader';
 
 const Section7 = () => {
 
-  const { requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next, renderData } = useSection7();
+  const { requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next, renderData, onChangeText } = useSection7();
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
     <>
@@ -68,13 +68,14 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {((medicalCondition) || (answers[questionData[3]?.questionId] ?? false)) && (
+            {(medicalCondition) && (
               <View style={styles.questionViewContainer}>
                 <Text style={requiredFieldQ4 ? styles.textError : styles.text}>{questionData[3]?.question}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
                   keyboardType={KEYBOARD_TYPE_VALUE}
                   placeholderTextColor={PLACEHOLDER_COLOR}
-                  placeholder={answers[questionData[3]?.questionId] ?? ''}
+                  value={answers[questionData[3]?.questionId] ?? ''}
+                  onChangeText={(e) => onChangeText(FOURTH_QUESTION, e)}
                   onEndEditing={(e) => inputCheck(FOURTH_QUESTION, e.nativeEvent.text)}
                 />
               </View>
@@ -107,14 +108,15 @@ const Section7 = () => {
                 />
               </View>
             )}
-            {((medicalCondition1) || ((answers[questionData[6]?.questionId] ?? false) && (answers[questionData[7]?.questionId] ?? false))) && (
+            {medicalCondition1 && (
               <View>
                 <View style={styles.questionViewContainer}>
                   <Text style={requiredFieldQ7 ? styles.textError : styles.text} >{questionData[6]?.question}</Text>
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[6]?.questionId] ?? ''}
+                    value={answers[questionData[6]?.questionId] ?? ''}
+                    onChangeText={(e) => onChangeText(SEVENTH_QUESTION, e)}
                     onEndEditing={(e) => inputCheck(SEVENTH_QUESTION, e.nativeEvent.text)}
                   />
                 </View>
@@ -123,14 +125,15 @@ const Section7 = () => {
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
                     placeholderTextColor={PLACEHOLDER_COLOR}
-                    placeholder={answers[questionData[7]?.questionId] ?? ''}
+                    value={answers[questionData[7]?.questionId] ?? ''}
+                    onChangeText={(e) => onChangeText(EIGHTH_QUESTION, e)}
                     onEndEditing={(e) => inputCheck(EIGHTH_QUESTION, e.nativeEvent.text)}
 
                   />
                 </View>
               </View>
             )}
-            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[8]?.questionId] !== undefined) || (PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? false)) && (
+            {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[8]?.questionId] !== undefined)) && (
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>
                   {questionData[8]?.question}

@@ -1,0 +1,182 @@
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Alert} from 'react-native';
+import {
+  addRelation,
+  getActiveRelations,
+  getRelations,
+} from '../../../../../../store/reducers/ProfileSlice';
+import {programAndPlanLockThunk} from '../../../../../../store/reducers/PurchasesSlice';
+import {
+  ALERT,
+  CANCEL,
+  CANNOT_ADD_MEMBERS,
+  CHILDREN_ALERT,
+  DAUGHTER,
+  ERROR_TEXT,
+  LOCK_PLAN,
+  NO_RELATIONS,
+  OK,
+  PLAN_LOCKED,
+  PLEASE_SELECT_MEMBERS,
+  SON,
+  TRY_AGAIN,
+} from '../constants';
+
+export const useFooter = planDetails => {
+  const dispatch = useDispatch();
+  const {
+    relationsLoading,
+    activeRelationsLoading,
+    activeRelationsError,
+    relationsError,
+    activeRelations,
+    relations,
+    relationAdded,
+  } = useSelector(state => state.profile);
+  const [details, setDetails] = useState('');
+  const [planLockView, setPlanLockView] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [addMember, setAddMember] = useState(false);
+  const [dependents, setDependents] = useState([]);
+
+  useEffect(() => {
+    if (details === '') setPlanLockView(false);
+    else {
+      dispatch(getRelations({uuid: details?.uuid, version: details?.version, userVersion: details?.userVersion}));
+      dispatch(
+        getActiveRelations({uuid: details?.uuid, version: details?.version}),
+      );
+    }
+  }, [details]);
+
+  useEffect(() => {
+    if (!relationsLoading && !relationsError && details !== '' && !addMember) {
+      setDependents(relations);
+      setPlanLockView(!planLockView);
+    } else if (!relationsLoading && !relationsError && addMember) {
+      setAddMember(false);
+      setDependents(relations);
+      setModalVisible(false);
+    }
+  }, [relationsLoading, relations, relationsError]);
+
+  useEffect(() => {
+    if (relationAdded && details !== '') {
+      setAddMember(true);
+      dispatch(getRelations({uuid: details?.uuid, version: details?.version, userVersion: details?.userVersion}));
+      dispatch(
+        getActiveRelations({uuid: details?.uuid, version: details?.version}),
+      );
+    }
+  }, [relationAdded]);
+
+  const onToggle = item => {
+    details !== '' ? setDetails('') : setDetails(item);
+  };
+
+  const onAddMembersPress = () => {
+    if (planDetails?.locked) {
+      Alert.alert(ALERT, CANNOT_ADD_MEMBERS);
+    } else if (
+      activeRelationsLoading &&
+      !activeRelationsError &&
+      activeRelations
+    ) {
+      Alert.alert(ALERT, TRY_AGAIN);
+    } else if (
+      !activeRelationsLoading &&
+      !activeRelationsError &&
+      activeRelations.length === 0
+    ) {
+      Alert.alert(ALERT, NO_RELATIONS);
+    } else if (!activeRelationsLoading && activeRelationsError) {
+      Alert.alert(ALERT, ERROR_TEXT);
+    } else if (
+      !activeRelationsLoading &&
+      !activeRelationsError &&
+      activeRelations.length > 0
+    ) {
+      setModalVisible(true);
+    }
+  };
+
+  const onCrossPress = () => setModalVisible(false);
+
+  const onSaveDetailsPress = arg => {
+    dispatch(
+      addRelation({
+        name: arg?.name,
+        age: arg?.age,
+        relation: arg?.selectedRelationEnum,
+      }),
+    );
+  };
+
+  const onCheckboxPress = arrIndex => {
+    setDependents(
+      dependents.map((item, index) => {
+        if (index === arrIndex) {
+          return {...item, status: item?.status ? false : true};
+        }
+        return item;
+      }),
+    );
+  };
+
+  const onLockPlan = item => {
+    const dependentsList = dependents.filter(item => {
+      if (item?.status) return item;
+    });
+    if (planDetails?.locked) {
+      Alert.alert(ALERT, PLAN_LOCKED);
+    } else if (dependentsList.length === 0) {
+      Alert.alert(ALERT, PLEASE_SELECT_MEMBERS);
+    } else {
+      Alert.alert(ALERT, LOCK_PLAN, [
+        {
+          text: OK,
+          onPress: () => lockPlan(item),
+        },
+        {text: CANCEL},
+      ]);
+    }
+  };
+
+  const lockPlan = item => {
+    const checkedList = dependents.filter(item => {
+      if (item?.status) return item;
+    });
+    const relationId = checkedList.map(item => item.id);
+    const relations = checkedList.map(item => item.relation);
+    const childrenCount = relations.filter(item => {
+      if (item === SON || item === DAUGHTER) return item;
+    }).length;
+    if (childrenCount > planDetails?.childrenCount)
+      Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
+    else {
+      dispatch(
+        programAndPlanLockThunk({
+          programOrPlanUuid: item.uuid,
+          relationId,
+          version: item.version,
+          userVersion: item.userVersion,
+        }),
+      );
+    }
+  };
+
+  return {
+    planLockView,
+    onToggle,
+    onAddMembersPress,
+    modalVisible,
+    onCrossPress,
+    dependents,
+    onSaveDetailsPress,
+    relations,
+    activeRelations,
+    onCheckboxPress,
+    onLockPlan,
+  };
+};

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useSelector, useDispatch } from 'react-redux';
-import { section4QThunk } from '../../../../store/reducers/Section4Slice';
+import { dispatch_condition_1, section4QThunk } from '../../../../store/reducers/Section4Slice';
 import { dispatch_option } from '../../../../store/reducers/Section4Slice';
 import { getDimensions } from '../../../../utils/utils';
 import { ALERT, ALL_QUESTION_CHECK, SECTION_5, ZERO } from '../../constant';
@@ -12,14 +12,14 @@ export const useSection4 = () => {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const [alcohol, setAlochol] = useState(false);
     const [renderData, setRenderData] = useState(false);
+    const {alcohol} = useSelector(state => state.section4);
     const answers = useSelector(state => state.section4.answers);
     const questionData = useSelector(state => state.section4.rawQuestions);
     const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError} = useSelector(state => state.hra);
     const setQuestion1 = value => {
         {
-            value == 1 ? setAlochol(true) : setAlochol(false);
+            value == 1 ? dispatch(dispatch_condition_1(true)) : dispatch(dispatch_condition_1(false));
         }
         dispatch(dispatch_option({ key: questionData[0].questionId, value: value }));
     };
@@ -51,7 +51,7 @@ export const useSection4 = () => {
           dispatch( dispatch_option({key: questionData[1].questionId, value: sectionData.Q32.toString()}));
           dispatch( dispatch_option({key: questionData[2].questionId, value: sectionData.Q33.toString()}));
           dispatch( dispatch_option({key: questionData[3].questionId, value: sectionData.Q34.toString()}));
-          setAlochol(true);
+          dispatch(dispatch_condition_1(true));
           }
           setRenderData(true);
         }
