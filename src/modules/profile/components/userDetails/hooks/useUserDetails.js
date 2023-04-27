@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
 import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
-import { ERROR, HURRAY, MESSAGE } from '../constants';
+import { ALERT, ERROR, HURRAY, MESSAGE, UNSUCCESSFULL } from '../constants';
 
 export const useUserDetails=()=>{
     const [modalVisible, setModalVisible] = useState(false);
@@ -36,6 +36,9 @@ if(messageFamilyPic?.message || messageProfilePic?.message)
   Alert.alert(HURRAY,MESSAGE);
   dispatch(profileThunk())
   setModalVisible(false)
+}
+else{
+  Alert.alert(ALERT,UNSUCCESSFULL)
 }
 return () => dispatch(resetMesage())
 },[messageFamilyPic,messageProfilePic])
