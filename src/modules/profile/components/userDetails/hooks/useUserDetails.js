@@ -1,25 +1,50 @@
-import { useState } from 'react';
-import ImagePicker from 'react-native-image-crop-picker';
-import { useSelector } from 'react-redux';
-import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
 
-export const useUserDetails=(props)=>{
-    const {profileImageCamera}=useSelector(state=>state.profile)
+import { useState,useEffect } from 'react';
+import { Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
+import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
+import { ERROR, HURRAY, MESSAGE } from '../constants';
+
+export const useUserDetails=()=>{
     const [modalVisible, setModalVisible] = useState(false);
     const [coverPhoto, setCoverPhoto] = useState(false);
     const [userPhoto, setUserPhoto] = useState(false);
+    const {messageProfilePic,messageFamilyPic} = useSelector(state => state.profile);
+    const dispatch=useDispatch();
 const onCamera =  () => {
-    requestCameraPermission(props,coverPhoto,userPhoto);
+    requestCameraPermission(onSucess,onError,coverPhoto,userPhoto);
   };
 const onImage=()=>{
-  ImageGallery(props,coverPhoto,userPhoto)
+  ImageGallery(onSucess,onError,coverPhoto,userPhoto)
 }
+const onSucess=(image)=>{
+  if(coverPhoto){
+    dispatch(uploadFamilyPic(image))
+  }
+  else if(userPhoto){
+    dispatch(uploadProfilePic(image))
+  }
+  }
+const onError=(error)=>{
+ Alert.alert(ERROR)
+}
+
+useEffect(()=>{
+if(messageFamilyPic?.message || messageProfilePic?.message)
+{
+  Alert.alert(HURRAY,MESSAGE);
+  dispatch(profileThunk())
+  setModalVisible(false)
+}
+return () => dispatch(resetMesage())
+},[messageFamilyPic,messageProfilePic])
+
 return{
      onImage,
      onCamera,
-     profileImageCamera,
      modalVisible, setModalVisible,
      setCoverPhoto,
-     setUserPhoto
+     setUserPhoto,
 }
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, TextInput, Image, Text, Alert, Pressable, Modal } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity, TextInput, Image, Text, Pressable, Modal } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   DD_MM_YYYY,
@@ -9,12 +9,12 @@ import {
   PINCODE,
 } from '../../constant';
 import styles from './style';
-import { BLACK, BLUE_GRAY, DARK_BLUE, GREEN } from '../../../../styles/colors';
+import { BLACK, DARK_BLUE, GREEN, } from '../../../../styles/colors';
 import { getDateText } from '../../../../utils/utils';
 import { useUserDetails } from './hooks/useUserDetails';
-import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Cross from 'react-native-vector-icons/Entypo';
+import { CAMERA, GALLERY, SELECT } from './constants';
 const UserDetails = ({
   setSelectedGender,
   gender,
@@ -35,7 +35,7 @@ const UserDetails = ({
   cityNames,
 }) => {
   const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
-    modalView, modalTextView, modaltext, GalleryIcon,IconView,galleryTouch ,CrossIcon} = styles({
+    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon } = styles({
       disabled: false,
     });
   const mockData = {
@@ -47,11 +47,9 @@ const UserDetails = ({
     city: userDetails.city,
     pinCode: userDetails.pinCode,
   };
-  const dispatch = useDispatch();
   const { onImage,
-    onCamera, profileImageCamera,modalVisible, setModalVisible,
-       setCoverPhoto,setUserPhoto } = useUserDetails(dispatch);
-  
+    onCamera, modalVisible, setModalVisible,
+    setCoverPhoto, setUserPhoto } = useUserDetails();
 
   return (
     <>
@@ -63,20 +61,20 @@ const UserDetails = ({
         >
           <View style={modalView}>
             < View style={modalTextView}>
-              <Text style={modaltext}>Select</Text>
+              <Text style={modaltext}>{SELECT}</Text>
               <View style={IconView}>
                 <TouchableOpacity style={galleryTouch} onPress={onImage}>
-                  <Icon name="view-gallery" size={36} color={BLACK} style={galleryTouch}/>
-                  <Text style={GalleryIcon}>Gallery</Text>
+                  <Icon name="view-gallery" size={36} color={BLACK} style={galleryTouch} />
+                  <Text style={GalleryIcon}>{GALLERY}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={onCamera}>
-                  <Icon name="camera" size={36} color={BLACK} style={galleryTouch}/>
-                  <Text style={GalleryIcon}>Camera</Text>
+                  <Icon name="camera" size={36} color={BLACK} style={galleryTouch} />
+                  <Text style={GalleryIcon}>{CAMERA}</Text>
                 </TouchableOpacity>
                 <Pressable
-                onPress={() => setModalVisible(!modalVisible)}  style={CrossIcon}>
-             <Cross name="cross" size={20} color={BLACK}/>
-            </Pressable>
+                  onPress={() => setModalVisible(!modalVisible)} style={CrossIcon}>
+                  <Cross name="cross" size={20} color={BLACK} />
+                </Pressable>
               </View>
             </View>
           </View>
@@ -90,10 +88,11 @@ const UserDetails = ({
             setUserPhoto(false)
 
           }}
-        >{profileImageCamera &&
+        >{userDetails?.familyPicture &&
           <Image
-            source={{ uri: profileImageCamera }}
+            source={{ uri: userDetails?.familyPicture }}
             style={userCoverImage}
+            resizeMode="cover"
           />}
           <Icon name="image-plus" size={26} color={GREEN} style={coverIcon} />
 
@@ -107,10 +106,11 @@ const UserDetails = ({
               setUserPhoto(true)
             }}
           >
-            {profileImageCamera &&
+            {userDetails?.profilePicture &&
               <Image
-                source={{ uri: profileImageCamera }}
+                source={{ uri: userDetails?.profilePicture }}
                 style={userPicture}
+                resizeMode="cover"
               />}
             <Icon name="image-plus" size={20} color={GREEN} style={UserIcon} />
           </TouchableOpacity>

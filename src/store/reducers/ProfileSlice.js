@@ -106,19 +106,48 @@ export const planIsSubscribedThunk = createAsyncThunk(
 );
 export const uploadFamilyPic = createAsyncThunk(
   'familyPic',
-  async ( familyPic, { fulfillWithValue, rejectWithValue }) => {
-   const data=new FormData()
+  async (familyPic, { fulfillWithValue, rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append("familyPic", {
+      name:familyPic?.path?.split('/')?.pop(),
+      type:familyPic?.mime,
+      uri:familyPic?.path
+    });
     try {
-       console.log(familyPic,"familyyyy")
-      await YuvaService.post('/familyPic',
-      //  familyPic:`${familyPic};type=image/jpg`,
-      //  data.append('familyPic',`${familyPic};type=image/jpg`),
-      //  {headers:{'Content-Type': 'multipart/form-data',"accept":"*/*"}}
-      // );
-      // RNFetchBlob.fs.readStream(familyPic,"base64").then((response)=>{
-      //   console.log(response,"responseeee")
-      // }
-)} catch (error) {
+    const response=  await YuvaService.post('/familyPic',
+      formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',Accept:"application/json"
+          }
+        }
+      )
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+export const uploadProfilePic = createAsyncThunk(
+  'profilePic',
+  async (ProfilePic, { fulfillWithValue, rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append("profilePic", {
+      name:ProfilePic?.path?.split('/')?.pop(),
+      type:ProfilePic?.mime,
+      uri:ProfilePic?.path
+    });
+    try {
+    const response= await YuvaService.post('/profilePic',
+      formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',Accept:"application/json"
+          }
+        }
+      )
+      return response;
+    } catch (error) {
       return rejectWithValue(error);
     }
   },
@@ -152,8 +181,8 @@ const initialState = {
   addressListing: null,
   isSubscribed: false,
   userAddress: [],
-  profileImageCamera:null,
-  messageFamilyPic:null,
+  messageFamilyPic: null,
+  messageProfilePic:null,
 };
 
 const profileSlice = createSlice({
@@ -173,9 +202,10 @@ const profileSlice = createSlice({
     AddressListing(state, { payload }) {
       state.addressListing = payload;
     },
-    setProfileImage(state, { payload }) {
-      state.profileImageCamera =payload;
-    }
+    resetMesage(state) {
+      state.messageProfilePic = null;
+      state.messageFamilyPic=null;
+    },
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -327,18 +357,33 @@ const profileSlice = createSlice({
     [uploadFamilyPic.fulfilled]: (state, { payload }) => {
       state.apiError = false;
       state.apiErrorMessage = '';
-      state.loading = true;
-      state.messageFamilyPic = payload;
+      state.loading = false;
+      state.messageFamilyPic = payload?.data;
     },
     [uploadFamilyPic.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = payload.message;
+      state.apiErrorMessage = payload?.message;
+      state.status = false;
+    },
+    [uploadProfilePic.pending]: state => {
+      state.loading = true;
+    },
+    [uploadProfilePic.fulfilled]: (state, { payload }) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.messageProfilePic = payload?.data;
+    },
+    [uploadProfilePic.rejected]: (state, { payload }) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload?.message;
       state.status = false;
     },
   },
 });
 
-export const { updateProfileStatus, saveCheckedAddress, AddressListing, setProfileImage } = profileSlice.actions;
+export const { updateProfileStatus, saveCheckedAddress, AddressListing ,resetMesage} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

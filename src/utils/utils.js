@@ -277,17 +277,15 @@ const processTime = time => {
 //     let tstring = slot.split(".")[0];
 //     return new Date(tstring)
 // }
-export const ImageGallery=(props,coverPhoto,userPhoto)=>{
+export const ImageGallery=(onSuccess,onError)=>{
   ImagePicker.openPicker({
     width: 300,
     height: 400,
     cropping: true,
     includeBase64:true,
-  }).then(image => {
-    props(uploadFamilyPic(image?.path,"hii"))
-  });
+  }).then(onSuccess).catch(onError);
 }
-export const requestCameraPermission = async (props,coverPhoto,userPhoto) => {
+export const requestCameraPermission = async (onSuccess,onError) => {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -298,9 +296,7 @@ export const requestCameraPermission = async (props,coverPhoto,userPhoto) => {
           height: 400,
           cropping: true,
           includeBase64:true,
-        }).then(image => {
-           props(uploadFamilyPic(image?.path))
-        });
+        }).then(onSuccess).catch(onError);
     } else {
      Alert.alert("permission denied...!!!")
     }
