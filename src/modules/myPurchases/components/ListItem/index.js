@@ -30,7 +30,6 @@ import {
 } from './constants';
 
 const ListItem = ({renderList, item, index}) => {
-  console.log('Item',item)
   const {expanded, onArrowPress, priceBreakUpArray, purchasesTab} =
     useItem(item);
   const {
