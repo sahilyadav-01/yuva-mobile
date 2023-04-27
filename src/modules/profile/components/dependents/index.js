@@ -7,7 +7,7 @@ const Dependents = ({dependents,hideShadow}) => {
   const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender} = styles({
     disabled: false,hideShadow,
   });
-  return dependents?.map((item,index) => {
+  return dependents?.map((item, index) => {
     return (
       <View style={dependentsContainer}>
         <View style={dependentNameGenderContainer}>
