@@ -10,7 +10,7 @@ export const useUserDetails=()=>{
     const [modalVisible, setModalVisible] = useState(false);
     const [coverPhoto, setCoverPhoto] = useState(false);
     const [userPhoto, setUserPhoto] = useState(false);
-    const {messageProfilePic,messageFamilyPic} = useSelector(state => state.profile);
+    const {messageProfilePic,messageFamilyPic,apiErrorMessage} = useSelector(state => state.profile);
     const dispatch=useDispatch();
 const onCamera =  () => {
     requestCameraPermission(onSucess,onError,coverPhoto,userPhoto);
@@ -37,7 +37,7 @@ if(messageFamilyPic?.message || messageProfilePic?.message)
   dispatch(profileThunk())
   setModalVisible(false)
 }
-else{
+else if(apiErrorMessage){
   Alert.alert(ALERT,UNSUCCESSFULL)
 }
 return () => dispatch(resetMesage())
