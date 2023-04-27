@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, SILVER_CHALICE, CATSKILL_WHITE } from '../../../../styles/colors';
+import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE } from '../../../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
@@ -9,7 +9,7 @@ const styles = ({ disabled }) => {
       minHeight: 85,
       width: 85,
       borderRadius: 42.5,
-      backgroundColor: SILVER_CHALICE,
+      backgroundColor: FLASH_WHITE,
       alignSelf: CENTER,
       marginTop: -42,
       marginBottom: 20,
