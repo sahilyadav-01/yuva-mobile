@@ -62,7 +62,7 @@ const Login = props => {
             </View>
             <TouchableOpacity
               style={[buttonContainer, buttonStyle]}
-              onPress={() => login?.onLoginPress(props?.from)}>
+              onPress={() => login?.onLoginPress(props)}>
               <Text style={buttonText}>Login</Text>
             </TouchableOpacity>
             <LoginTextContainer

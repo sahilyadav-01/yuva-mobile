@@ -69,7 +69,8 @@ export const useLogin = () => {
     } else {
       if (loggedIn == 'loggedIn' && status) {
         dispatch(profileThunk());
-        if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
+        if (from?.from == 'OurPlanDetailsGuest') navigation.navigate('Home',{screen:'OurPlan',params:{screen:'OurPlanDetailsGuest',params:{data:from?.data}}});
+        else if (from?.from !== 'Home') navigation.navigate('Home',{screen:'HomeService'}); 
         else navigation.navigate('HomeService');
       }
     }
