@@ -10,13 +10,14 @@ const Stack = createStackNavigator();
 
 const Authentication = (props) => {
   const from = props?.route?.params?.from ?? null;
+  const data = props?.route?.params?.data ?? null;
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Login"
         component={LoginScreen}
         options={{headerShown: false}}
-        initialParams={{from}}
+        initialParams={{from,data}}
       />
       <Stack.Screen
         name="ForgotPassword"
