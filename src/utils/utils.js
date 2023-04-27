@@ -41,20 +41,20 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 //DEVELOPMENT SERVER
-// export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-// export const PORT = ':8082';
-// export const PROTOCOL = 'http://';
-// export const PATH = ':8080/api/v1/yuva';
-
-//UAT Server
-export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
-export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-export const PORT = ':8081';
+export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
+export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+export const PORT = ':8082';
 export const PROTOCOL = 'http://';
 export const PATH = ':8080/api/v1/yuva';
+
+//UAT Server
+// export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+// export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
+// export const PATH = ':8080/api/v1/yuva';
 
 // Production Server
 // export const SERVER = 'yuvahealth.in';
@@ -389,7 +389,7 @@ export const getDateInFormat = (date, format) => {
         date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       );
     case 'dd mm':
-      return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+      return date && `${date.getDate()} ${/*getMonthInText(date.getMonth())*/''}`;
     case 'mm/yy':
       const year = date.getFullYear().toString();
       return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
@@ -411,9 +411,20 @@ export const getTimeInFormat = (date, format) => {
 };
 
 export const getDaysOfMonth = () => {
+  let nextMonth = new Date().getMonth() + 1;
+  const year = nextMonth > 11 ? new Date().getFullYear() + 1 : new Date().getFullYear();
+  nextMonth = nextMonth > 11 ? nextMonth % 12 : nextMonth;
+  const monthEnd = moment(
+    new Date(
+      year,
+      nextMonth,
+      1
+    ),
+  );
+  const gap = parseInt(moment().diff(monthEnd, 'days')) * -1;
   let arr = [];
-  for(let i = 1;i<=5;i++){
-    arr.push(moment().add(i,'days').format('DD-MM-yyyy'))
+  for(let i = 0;i<=gap;i++){
+    arr.push(moment().add(i,'days'))
   }
   return arr;
 }
@@ -429,7 +440,8 @@ export const getSlots = () => {
       59,
     ),
   );
-  const gap = parseInt(moment().diff(dayEnd, 'hours')) * -1;
+  let gap = parseInt(moment().diff(dayEnd, 'hours')) * -1
+  gap = gap> 24 ? 24 : gap
   let arr = [];
   for (let i = 1; i <= gap; i++) {
     arr.push(`${moment().add(i, 'hours').format('h')}`);
@@ -439,15 +451,14 @@ export const getSlots = () => {
     return arg === '12';
   });
   const morningSlots = arr.filter((item, index) => {
-    if (parseInt(item) <= 12 && index <= noonIndex) return item;
+    if (parseInt(item) <= 12 && index <= noonIndex && noonIndex < arr.length -1) return item;
   });
-  const afternoonSlots = ['12'].concat(arr.filter((item, index) => {
-    if ((parseInt(item) <= 5 && index >= noonIndex)) return item;
+  const afternoonSlots = (arr.filter((item, index) => {
+    if((noonIndex === arr.length -1 && parseInt(item) <= 5) || (noonIndex < arr.length -1 && parseInt(item) <= 5 && index >= noonIndex)) return item
   }));
   const eveningSlots = arr.filter((item, index) => {
-    if (parseInt(item) > 5 && index > noonIndex) return item;
+    if((noonIndex === arr.length -1 && parseInt(item) > 5) || (noonIndex < arr.length -1 && parseInt(item) > 5 && index >= noonIndex)) return item;
   });
-
   const {morning, afternoon, evening} = {
     morning: () => {
       let slots = [];

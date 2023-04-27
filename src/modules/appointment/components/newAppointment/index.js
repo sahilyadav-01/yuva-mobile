@@ -27,9 +27,10 @@ import {
 } from './constant';
 import {useRoute} from '@react-navigation/native';
 import {PNG, SVG} from '../../../../../assets';
-import { getDaysOfMonth, getSlots } from '../../../../utils/utils';
+import { getDateInFormat, getDaysOfMonth, getSlots } from '../../../../utils/utils';
 import { BLACK_LIGHT_OPACITY } from '../../../../styles/colors';
 import { BLACK_OPACITY } from '../../../../styles/colors';
+import CustomDatePicker from '../../../../components/CustomDatePicker';
 
 const NewAppointments = () => {
   const days = getDaysOfMonth();
@@ -108,39 +109,7 @@ const NewAppointments = () => {
             />
           </View> */}
         </View>
-        <FlatList contentContainerStyle={{paddingHorizontal:24,marginBottom:32}} ItemSeparatorComponent={()=><View style={{width:20}}/>} horizontal={true} keyExtractor={(item,index)=>index} data={getDaysOfMonth()} renderItem={({item,index})=>{
-          return (
-            <View style={{paddingTop:12,backgroundColor:'white',borderRadius:12,borderWidth:1,borderColor:'white'}}>
-              {/* <Text style={{marginHorizontal:40}}>Icon</Text> */}
-              <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-              <SVG.Calender/>
-              </View>
-              <Text style={{marginHorizontal:40,textAlign:'center',marginTop:6}}>14 Apr</Text>
-              <Text style={{marginHorizontal:44,textAlign:'center',marginTop:2}}>Fri</Text>
-              <View style={{backgroundColor:CITRINE_WHITE,flex:1,borderBottomLeftRadius:12,borderBottomRightRadius:12,borderTopLeftRadius:6,borderTopRightRadius:6,paddingVertical:4,alignItems:'center',justifyContent:'center',marginTop:4}}>
-            <Text style={{color:GREEN}}>Available</Text>
-              </View>
-            </View>
-          );
-        }}/>
-        <FlatList contentContainerStyle={{backgroundColor:WHITE}} keyExtractor={(index)=>index} data={getSlots().filter(item=>{if(typeof item?.length === 'number') return item})} renderItem={({item})=>{
-          return  <View style={{marginHorizontal:16,paddingHorizontal:16}}>
-          <Text>{item[0]?.type}</Text>
-          <View style={{marginVertical:16}}>
-              {<FlatList numColumns={2}  keyExtractor={(index)=>index} data={item} renderItem={({i,index})=>{
-                return <View style={{flex:1,alignItems:index%2 === 0 ? 'flex-start' : 'flex-end'}}>
-                 <TouchableOpacity onPress={()=>{
-                  const startTime = parseInt(item[index]?.from.replace(':00',''));
-                  const after12 = item[index]?.type === 'Morning' ? false : true;
-                  console.log('Item',after12 ? startTime + 12 : startTime)
-                 }} style={{paddingHorizontal:20,paddingVertical:4,borderRadius:12,borderWidth:2,marginBottom:12,borderColor:BLACK_OPACITY}}>
-                  <Text>{`${item[index]?.from}:00`}-{`${item[index]?.to}:00`}</Text>
-                 </TouchableOpacity>
-                </View>
-              }}/>}
-            </View>
-            </View>
-        }}/>
+        <CustomDatePicker/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.borderSelect}>

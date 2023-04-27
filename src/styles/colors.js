@@ -87,3 +87,4 @@ export const CITRINE_WHITE = '#FCF4E8';
 export const ALTO_OPACITY = '#D9D9D9FF';
 export const ROSE_WHITE = '#FFFCFC';
 export const NAVAJO_WHITE = '#FFDDAA';
+export const CURIOUS_BLUE = '#1882EB';
