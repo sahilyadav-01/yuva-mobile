@@ -12,13 +12,15 @@ import {
 import {SVG} from '../../../assets';
 import {usePatient} from './hooks/usePatient';
 import {getPlanDate} from '../../utils/utils';
+import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../styles/colors';
+import { NOT_AVAILABLE } from '../../components/constants';
 
 const MyPlans = () => {
   const {programAndPlan, onSelectMember} = usePatient();
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
-        <ScrollView>
+        <ScrollView key={index} nestedScrollEnabled={true}>
           <View style={styles.viewContainer}>
           <View style={styles.headViewContainer}>
             <View style={styles.headView}>
@@ -38,8 +40,11 @@ const MyPlans = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.buttonStyle} onPress={() => onSelectMember(item)}>
-            <Text style={styles.textStyle}>{CHAT_NOW}</Text>
+            <View>
+              <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : CYAN_BLUE }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
+            </View>
+            <TouchableOpacity   style={[styles.buttonStyle,{backgroundColor: i.available===0 ?AMBER :ORANGE}]} onPress={() => onSelectMember(item)} disabled={!i.available}>
+            <Text style={[styles.textStyle, { color: i.available === 0 ? CYAN_BLUE : WHITE }]}>{CHAT_NOW}</Text>
           </TouchableOpacity>
           </View>
   
@@ -58,8 +63,9 @@ const MyPlans = () => {
     <FlatList
       data={programAndPlan}
       renderItem={renderItem}
-      keyExtractor={index => `${index}`}
-    />
+      keyExtractor={(item, index) => `${index}`}
+      nestedScrollEnabled={true}
+      />
   );
 };
 

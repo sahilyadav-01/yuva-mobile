@@ -88,6 +88,7 @@ const initialState = {
     couponViewCart: null,
     discountBeforeCoupon:0,
     orderAmount:0,
+    processingCharge: 0,
   },
   loading: false,
   apiError: false,
@@ -108,6 +109,9 @@ const cartSlice = createSlice({
     setTermsAndCondtionChecked(state, {payload}) {
       state.termsAndCondtionChecked = payload;
     },
+    clearExistingCartIds(state){
+      state.existingIds = [];
+    }
   },
   extraReducers: {
     [getCartUserThunk.pending]: state => {
@@ -125,6 +129,7 @@ const cartSlice = createSlice({
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
       state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
+      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
       if(typeof payload?.data?.data?.itemDtoList === 'object' && payload?.data?.data?.itemDtoList.length >= 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
@@ -144,7 +149,7 @@ const cartSlice = createSlice({
       };
       state.existingIds = [];
       state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
+      state.apiErrorMessage = payload?.response?.data?.errorMessage;
       state.loading = false;
     },
     [getCartGuestThunk.pending]: state => {
@@ -162,6 +167,7 @@ const cartSlice = createSlice({
       state.cart.totalCost = payload?.data?.data?.totalCost || 0;
       state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;
       state.cart.totalDiscount = payload?.data?.data?.totalDiscount || 0;
+      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
       if (
         typeof payload?.data?.data?.itemDtoList === 'object' &&
         payload?.data?.data?.itemDtoList.length >= 0
@@ -186,7 +192,7 @@ const cartSlice = createSlice({
       };
       state.existingIds = [];
       state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
+      state.apiErrorMessage = payload?.response?.data?.errorMessage;
       state.loading = false;
     },
     [deleteCartThunk.pending]: state => {
@@ -214,7 +220,7 @@ const cartSlice = createSlice({
     },
   },
 });
-export const {setTermsAndCondtionChecked} = cartSlice.actions;
+export const {setTermsAndCondtionChecked, clearExistingCartIds} = cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export const {removeCouponCart} = cartSlice.actions;
 export default cartSlice.reducer;

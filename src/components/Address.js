@@ -15,14 +15,15 @@ const AddressList = (isNavScreen) => {
             return null;
         }
         return (
-            <View style={[styles.border, { backgroundColor: checked === index ? VERY_LIGHT_GREY : WHITE }]}>
+            <View key={index} style={[styles.border, { backgroundColor: (checked === index || isNavScreen?.isNavScreen?.booked) ? VERY_LIGHT_GREY : WHITE }]}>
 
-                <View style={styles.checkboxAddress} >
-                    <View>
+                <View style={styles.checkboxAddress} disabled={isNavScreen?.isNavScreen?.booked}>
+                    <View style={styles.addressTextField}>
                         <Text style={styles.adressName}>{item?.address}</Text>
                         <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
                     </View>
                     <Checkbox
+                        disabled={isNavScreen?.isNavScreen?.booked}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
                             checked !== index ? setChecked(index) : setChecked(null);
@@ -45,8 +46,8 @@ const AddressList = (isNavScreen) => {
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
-                <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length} onPress={AddNewAddress} >
-                    <View style={[styles.AddNewAdd, { opacity: userAddress?.[checked] && 0.5 }]} >
+                <TouchableOpacity disabled={userAddress?.[checked] || !userAddressListing?.length ||isNavScreen?.isNavScreen?.booked} onPress={AddNewAddress} >
+                    <View style={[styles.AddNewAdd, { opacity: (userAddress?.[checked] ||isNavScreen?.isNavScreen?.booked) && 0.5 }]} >
                         <SVG.AddNewAdress style={styles.svg} />
                         <Text style={styles.addNew}>
                             {ADD_NEW}
@@ -59,7 +60,8 @@ const AddressList = (isNavScreen) => {
                 <FlatList
                     renderItem={renderAddress}
                     data={userAddressListing}
-                    keyExtractor={(item) => item?.id}
+                    nestedScrollEnabled={true}
+                    keyExtractor={(item, index) => `${index}`}
                     showsHorizontalScrollIndicator={false}
                 />:<AddNewAddressContainer isScreen={isNavScreen?.isNavScreen}/>}
             </View>

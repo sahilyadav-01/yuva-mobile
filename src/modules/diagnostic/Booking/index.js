@@ -29,8 +29,10 @@ const {bookedData}=useBooking();
                             <FlatList
                                 renderItem={renderItem}
                                 data={bookedData?.data}
-                                keyExtractor={(item) => item.id}
+                                keyExtractor={(item, index) => `${index}`}
                                 showsHorizontalScrollIndicator={false}
+                                nestedScrollEnabled={true}
+
                             />
                         }
                     </ScrollView>

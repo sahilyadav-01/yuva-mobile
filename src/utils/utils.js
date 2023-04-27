@@ -1,5 +1,5 @@
 import validator from 'is_js';
-import {Alert, Dimensions, PermissionsAndroid, Platform} from 'react-native';
+import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
 import moment from 'moment';
@@ -58,8 +58,8 @@ export const PATH = ':8080/api/v1/yuva';
 
 // Production Server
 // export const SERVER = 'yuvahealth.in';
-// export const REDIRECT_URL = 'https://yuvahealth.in';
-// export const CANCEL_URL = 'https://yuvahealth.in';
+// export const REDIRECT_URL = 'https://yuvahealth.in/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'https://yuvahealth.in/api/v1/yuva/paymentGateway/response';
 // export const PORT = '';
 // export const PROTOCOL = 'https://';
 // export const PATH = '/api/v1/yuva';
@@ -201,7 +201,7 @@ export const dignosticStatus = status => {
       retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
-      retStatus = 'Awaiting For Confirmation';
+      retStatus = 'Rescheduled';
       break;
     case 'COMPLETED':
       retStatus = 'Report Awaited';
@@ -390,6 +390,9 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
     default:
       getDateText(date);
   }
@@ -492,3 +495,37 @@ export const getDeviceId = async () => {
   const deviceId = await DeviceInfo.getUniqueId();
   return deviceId || '';
 };
+
+export const onTermsConditionsPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/TermsAndConditions');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL('https://www.yuvahealth.in/TermsAndConditions');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+
+export const onPrivacyPolicyPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/PrivacyPolicy');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL(storeUrl);
+  }
+  else {
+    Linking.openURL('market://details?id=com.android.chrome');
+  }
+}
+
+export const onNeedHelpPress = async () => {
+  const canOpen = await Linking.canOpenURL('https://yuvahealth.in/ContactUs');
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome';
+  if(canOpen){
+    Linking.openURL('https://yuvahealth.in/ContactUs');
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }
+}
+

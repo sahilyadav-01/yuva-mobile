@@ -39,6 +39,15 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const goBack = () => {
     navigation.goBack();
   };
+useEffect(()=>{
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() +1);
+  tomorrow.setHours(7);
+  tomorrow.setMinutes(0);
+  tomorrow.setSeconds(0);
+  setTime(tomorrow);
+  setDate(tomorrow);
+},[])
 
   const {
     newMessage,
@@ -123,5 +132,6 @@ export const useEdit = (plan, userVersion, uuid, version) => {
     Doctor,
     Specialization,
     Description,
+   
   };
 };

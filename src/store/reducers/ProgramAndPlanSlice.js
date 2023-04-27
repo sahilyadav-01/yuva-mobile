@@ -40,7 +40,7 @@ export const planPopularThunk = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, { fulfillWithValue, rejectWithValue }) => {
@@ -52,7 +52,7 @@ export const planDetailsThunk = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 export const planAmountThunk = createAsyncThunk(
   'plan/amount',
@@ -65,7 +65,7 @@ export const planAmountThunk = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 export const requestCallThunk = createAsyncThunk(
   'plan/call',
@@ -78,7 +78,7 @@ export const requestCallThunk = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 const initialState = {
   loading: false,
@@ -88,10 +88,10 @@ const initialState = {
   popularPackageName: null,
   popularPlan: [],
   planDetails: '',
-  planAmountToBePaid: null,
-  planCostAfterDiscount: null,
-  planDiscountBeforeCoupon: null,
-  planPrice: null,
+  planAmountToBePaid: 0,
+  planCostAfterDiscount: 0,
+  planDiscountBeforeCoupon: 0,
+  planPrice: 0,
   planDetails:'',
   requestCall:'',
 }

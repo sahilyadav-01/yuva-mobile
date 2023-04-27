@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect } from 'react';
-import { getDateInFormat, getTimeInFormat } from '../../../utils/utils';
+import { getDateInFormat, getTime } from '../../../utils/utils';
 import Header from '../../../components/Header';
 import OrderDetails from '../../../components/OrderDetails';
 import ProgressBar from '../../../components/ProgressBar';
@@ -13,10 +13,10 @@ import { usePaymentReconfirm } from './hooks/usePaymentReconfirm';
 import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 
 const PaymentReconfirmList = props => {
-  const { onPayPress } = usePaymentReconfirm();
+  const { onPayPress,processingCharge } = usePaymentReconfirm();
   const { scheduleDate } = useSelector(state => state.checkOut);
   const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
-  const renderTime = getTimeInFormat(new Date(scheduleDate.time), 'hh:mm:ss');
+  const renderTime = getTime(new Date(scheduleDate.time), 'hh:mm');
   const { cart } = useSelector(state => state.cart);
   const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
   const { coupon } = useSelector(state => state.coupon);
@@ -48,7 +48,7 @@ const PaymentReconfirmList = props => {
           <Text style={styles.timeSlotStyle}>{renderTime}</Text>
         </View>
         <View style={styles.PriceDetails}>
-          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount }} />
+          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount, processingCharge }} />
         </View>
 
         <TouchableOpacity onPress={onPayPress} style={styles.touchableButton}>

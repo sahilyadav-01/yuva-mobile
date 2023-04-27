@@ -15,6 +15,6 @@ export const styles = params => {
       borderTopLeftRadius: params?.modalTopRadius ?? 10,
       borderTopRightRadius: params?.modalTopRadius ?? 10,
     },
-    innerContainer: {flex: 1, padding: 16},
+    innerContainer: {flex: 1, paddingBottom: 0, paddingTop: 16},
   });
 };

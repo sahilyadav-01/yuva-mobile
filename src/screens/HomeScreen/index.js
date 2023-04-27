@@ -38,6 +38,7 @@ import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSl
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
+  const { isSubscribed } = useSelector(state => state.profile);
   const { loggedIn } = useSelector(state => state.auth);
   const { loading: appointmentLoading } = useSelector(state => state.appointment);
   const { loading: servicesLoading } = useSelector(state => state.attribute);
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
       dispatch(allAppointmentThunk({ isActive }));
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
-      dispatch(lifeStyleSliceThunk({ isActive }));
+      dispatch(lifeStyleSliceThunk({}));
       if (loggedIn === 'loggedIn') {
         dispatch(getCartUserThunk());
       } else {
@@ -65,19 +66,22 @@ const HomeScreen = ({ navigation }) => {
       }
 
     }
-  }, [focused]);
+  }, [focused,loggedIn]);
 
   if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <Header showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER} />
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}
         showsVerticalScrollIndicator={false}>
-        <View style={styles.planContainer}>
-          <OurPlan isHomeScreen={true}/>
-        </View>
-        { userAppointments.length > 0 && <CarouselContainer
+        {!isSubscribed && (
+          <View style={styles.planContainer}>
+            <OurPlan isHomeScreen={true} />
+          </View>
+        )}
+        {userAppointments.length > 0 && <CarouselContainer
           data={userAppointments}
           isIndexed={true}
           includeMockData={false}>
@@ -87,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT0} </Text>
           <View style={styles.line1} />
         </View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer serviceCard={true} />
         </View>
@@ -140,7 +144,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT4} </Text>
           <View style={styles.line2} />
         </View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <ServiceContainer
             lifeStyleCard={true}
@@ -149,6 +153,11 @@ const HomeScreen = ({ navigation }) => {
           />
         </View>
         </ScrollView>
+        {isSubscribed && (
+          <View style={styles.planContainer}>
+            <OurPlan isHomeScreen={true} />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

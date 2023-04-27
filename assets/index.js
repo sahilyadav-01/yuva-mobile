@@ -121,6 +121,8 @@ import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
 import Calender from './Calender';
+import PlanCard from './PlanCard.png';
+import Lock from './Lock';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -184,7 +186,8 @@ const PNG = {
   ambulance,
   PharmacyDiscount,
   insuranceClaim,
-  dot
+  dot,
+  PlanCard
 };
 
 const SVG = {
@@ -247,6 +250,7 @@ const SVG = {
   ExpandArrow,
   Reorder,
   Calender,
+  Lock
 };
 
 const BASE_64 = {DoctorsImage}

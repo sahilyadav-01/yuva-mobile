@@ -119,8 +119,11 @@ export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
   async ({email, password,type}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/login?emailOrNumber=${email}&password=${password}`;
-      const response = await YuvaService.post(endpoint, {});
+      const endpoint = `/login`;
+      const response = await YuvaService.post(endpoint, {
+        emailOrNumber: email,
+        password: password
+      });
       return {...response.data,type};
     } catch (error) {
       handleNetworkError(
@@ -255,6 +258,12 @@ const authSlice = createSlice({
     resetHash(state) {
       state.verifyLinkSuccessOtp = '';
     },
+    resetExistingNumber(state) {
+      state.numberExisting = null;
+    },
+    resetExistingEmail(state) {
+      state.emailExisting = null;
+    }
   },
   extraReducers: {
     [loginThunk.pending]: (state, {payload}) => {
@@ -507,6 +516,8 @@ export const {
   resetVerifyEmail,
   resetVerifySms,
   resetHash,
+  resetExistingNumber,
+  resetExistingEmail,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

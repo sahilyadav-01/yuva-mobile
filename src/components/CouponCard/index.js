@@ -26,7 +26,7 @@ const CouponCard = (props) => {
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
     const onSuccess = () => {
       let couponCode = item.couponCode
       dispatch(selectedCoupon({ couponCode }));
@@ -43,7 +43,7 @@ const CouponCard = (props) => {
       }
     };
     return (
-      <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess}>
+      <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess} key={index}>
         <View style={[styles.couponContainer, { borderColor: item.couponName === couponName ? ((couponView||planeCouponCode) ? GREEN : SLATE_BLUE) : SLATE_BLUE }]}>
           <View style={styles.viewStyles}>
             {item.maxDiscount ? <Text style={styles.textStyle1}>{DISCOUNT_PERCENTAGE(item.discountAmountOrPercentage)}</Text> : <Text style={styles.textStyle1}>{DISCOUNT(item.discountAmountOrPercentage)}</Text>}
@@ -80,8 +80,9 @@ const CouponCard = (props) => {
       <Text style={styles.couponLabelStyles}>{COUPON_LABEL}</Text>
       <FlatList
         data={coupon}
-        keyExtractor={index => `${index}`}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={renderItem}
+        nestedScrollEnabled={true}
       />
     </View>
   );

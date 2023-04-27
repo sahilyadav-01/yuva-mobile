@@ -38,7 +38,7 @@ const RescheduleAndCancel = () => {
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
-            <View style={styles.TestList}>
+            <View key={index} style={styles.TestList}>
                 <Text style={styles.testItems}>{item}</Text>
 
             </View>
@@ -46,7 +46,7 @@ const RescheduleAndCancel = () => {
     }
     const renderPackage = ({ item, index }) => {
         return (
-            <View style={styles.details}>
+            <View key={index} style={styles.details}>
                 <Text style={styles.packageName}>{item.name}</Text>
                 <TouchableOpacity onPress={onDetailsScreen}>
                     <Text style={styles.packageDetails}>{DETAILS}</Text>
@@ -59,7 +59,9 @@ const RescheduleAndCancel = () => {
             <Header showBackButton={true} title={MY_TESTS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
-                    <Text style={textStyle(reschedule?.bookingStatus)}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}..</Text>
+                    <View style={styles.bookingText}>
+                    <Text style={textStyle(reschedule?.bookingStatus)} numberOfLines={1}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}</Text>
+                    </View>
                     <View style={styles.timeSlot}>
                         <View style={styles.direction}>
                             <Icon name={CALENDER} size={24} color={WHITE} />
@@ -89,8 +91,9 @@ const RescheduleAndCancel = () => {
                         <FlatList
                             renderItem={renderTest}
                             data={reschedule.testName}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                         />}
                 </View>
                 <View style={styles.PackageHeader}>
@@ -101,11 +104,12 @@ const RescheduleAndCancel = () => {
                         <FlatList
                             renderItem={renderPackage}
                             data={reschedule.packageNameDescriptionDtoList}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                         />}
                 </View>
-                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED') &&
+                {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED' || reschedule?.bookingStatus==='CANCELLED') &&
                 <View style={styles.buttonView}>
                     <AppointmentButton
                      extraStyles={styles.button}

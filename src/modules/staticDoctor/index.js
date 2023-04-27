@@ -14,6 +14,7 @@ const TalkToDoctor = ({navigation}) => {
     <View>
       <Header showBackButton={true} title={DOCTOR}/>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}
         style={styles.containerStyle}
         showsVerticalScrollIndicator={false}>

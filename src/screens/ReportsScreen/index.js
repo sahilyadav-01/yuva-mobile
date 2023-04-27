@@ -5,12 +5,13 @@ import { useReport } from './hooks/useReport';
 import { styles } from './styles';
 
 const Reports = () => {
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
     return (
       <MyReports
         bookingId={item?.bookingId}
         title={item?.name}
         data={item?.attachmentResponseDtoList}
+        key={index}
       />
     );
   };
@@ -19,7 +20,8 @@ const Reports = () => {
     <View style={styles.contentContainerStyle}>
         <FlatList
           data={downloadDiagnosticReport}
-          keyExtractor={index => `${index}`}
+          keyExtractor={(item, index) => `${index}`}
+          nestedScrollEnabled={true}
           renderItem={renderItem}
         />
     </View>

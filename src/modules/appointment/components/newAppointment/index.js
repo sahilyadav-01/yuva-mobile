@@ -18,6 +18,7 @@ import {
   DATE,
   DESC,
   MESSAGE,
+  MYSELF,
   PATIENT_CONTACT_NUMBER,
   SELECT_DATE_TIME,
   SELECT_MEMBER,
@@ -150,7 +151,7 @@ const NewAppointments = () => {
                   ? styles.boxStyles
                   : [styles.boxStyles, styles.backGroundStyle]
               }
-              defaultOption={{key: 'null', value: SELECT_MEMBER_HERE}}
+              defaultOption={{key:"null", value: MYSELF}}
               setSelected={setSelected}
               data={dataRelation}
               dropdownStyles={styles.dropStyles}
