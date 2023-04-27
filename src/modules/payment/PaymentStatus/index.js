@@ -45,7 +45,7 @@ const PaymentStatus = ({paymentProps}) => {
         </Text>
         {!paymentSuccess && <Text style={paymentText}>{PLEASE_TRY_AGAIN}</Text>}
         <View style={timer}>
-          <Timer interval={10} resetEnable={() => {}} HRA={true} />
+          <Timer interval={10} resetEnable={() => {}} HRA={true} resetCart={true} />
         </View>
       </View>
     </View>

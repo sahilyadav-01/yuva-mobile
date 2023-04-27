@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK_LIGHT_OPACITY, CYAN_BLUE, GALLERY, WHITE} from '../../../../styles/colors';
+import {BLACK_LIGHT_OPACITY, CYAN_BLUE, GALLERY} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -27,21 +27,8 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
     },
-    buttonContainer: {
-      borderBottomLeftRadius: 6,
-      borderBottomRightRadius: 6,
-      alignItems: CENTER,
-      backgroundColor: CYAN_BLUE,
-      paddingVertical: 12,
-    },
     rowContainer: {flexDirection: ROW},
     iconContainer: {marginLeft: 16},
-    buttonText: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize12,
-      lineHeight: 18,
-      color: WHITE,
-    },
     inputStyles: {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,

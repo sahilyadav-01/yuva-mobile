@@ -1,5 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
+import { Alert } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   resetHRA,
@@ -11,7 +12,7 @@ import {
   profileThunk,
 } from '../../../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../../../utils/utils';
-import {SECTION_1} from '../constant';
+import {ALERT, MIN_AGE, SECTION_1} from '../constant';
 
 export const useHRASectionContainer = () => {
   const navigation = useNavigation();
@@ -87,7 +88,7 @@ export const useHRASectionContainer = () => {
         gender,
         genderId: gender === 'Male' ? 0 : 1,
       });
-      setNavigateToSection(true);
+      parseInt(getAge(new Date(dob))) >=12 ? setNavigateToSection(true) : Alert.alert(ALERT,MIN_AGE);
     } else if (
       checkBoxFlag.length > 0 &&
       checkBoxFlag.filter(item => item.status === 'checked').length > 0
@@ -95,7 +96,7 @@ export const useHRASectionContainer = () => {
       const {id, name, age, gender} =
         relations[checkBoxFlag.find(item => item.status === 'checked').index];
       setUserData({id, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
-      setNavigateToSection(true);
+      parseInt(age) >=12 ? setNavigateToSection(true) :  Alert.alert(ALERT,MIN_AGE);
     }
   }, [checkBoxStatus, checkBoxFlag]);
 

@@ -40,5 +40,6 @@ export const fonts = {
     rubik600: 'Rubik-SemiBold',
     rubik700: 'Rubik-Bold',
     nunito600: 'Nunito-SemiBold',
+    raleway800: 'Raleway-ExtraBold',
   }
 };

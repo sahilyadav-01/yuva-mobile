@@ -20,6 +20,7 @@
 		1EE4443FBCE0465584536DDA /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF8731CB18804C27A0069787 /* Rubik-Medium.ttf */; };
 		FD248DD34C0746019427FCD2 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */; };
 		8711A2E496734BE3839CBACA /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC57322A2838466B80CD3184 /* Rubik-Bold.ttf */; };
+		D1410992168E4176BE477278 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1348FC7BC5A84C2CB9E9595F /* Raleway-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		DF8731CB18804C27A0069787 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; name = "Rubik-Medium.ttf"; path = "../assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; name = "Rubik-SemiBold.ttf"; path = "../assets/fonts/Rubik-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AC57322A2838466B80CD3184 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; name = "Rubik-Bold.ttf"; path = "../assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1348FC7BC5A84C2CB9E9595F /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Raleway-ExtraBold.ttf"; path = "../assets/fonts/Raleway-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				DF8731CB18804C27A0069787 /* Rubik-Medium.ttf */,
 				F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */,
 				AC57322A2838466B80CD3184 /* Rubik-Bold.ttf */,
+				1348FC7BC5A84C2CB9E9595F /* Raleway-ExtraBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				1EE4443FBCE0465584536DDA /* Rubik-Medium.ttf in Resources */,
 				FD248DD34C0746019427FCD2 /* Rubik-SemiBold.ttf in Resources */,
 				8711A2E496734BE3839CBACA /* Rubik-Bold.ttf in Resources */,
+				D1410992168E4176BE477278 /* Raleway-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

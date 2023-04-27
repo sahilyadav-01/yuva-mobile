@@ -202,7 +202,7 @@ export const dignosticStatus = status => {
       retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
-      retStatus = 'Awaiting For Confirmation';
+      retStatus = 'Rescheduled';
       break;
     case 'COMPLETED':
       retStatus = 'Report Awaited';
@@ -417,6 +417,9 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
     default:
       getDateText(date);
   }
