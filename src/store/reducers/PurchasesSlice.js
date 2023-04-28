@@ -61,7 +61,7 @@ export const programAndPlanLockThunk = createAsyncThunk(
         '/programAndPlan/lock',
         requestDto,
       );
-      return {...response, programOrPlanUuid};
+      return {...response, programOrPlanUuid,version,userVersion};
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -79,6 +79,8 @@ const initialState = {
   purchasesItemDetails: null,
   purchasesDetailLoading: false,
   lockedState: [],
+  planLockLoading: false,
+  planLockError: false,
 };
 
 const purchasesSlice = createSlice({
@@ -96,11 +98,6 @@ const purchasesSlice = createSlice({
       state.plansError = false;
     },
     [getPlans.fulfilled]: (state, {payload}) => {
-      state.lockedState = payload.data.userPlanOrderHistoryResponseDtoList.map(
-        item => {
-          return {uuid: item?.uuid, locked: item?.locked, version: item?.version, userVersion: item?.userVersion};
-        },
-      );
       state.plansLoading = false;
       state.plans = payload.data;
       state.plansError = false;
@@ -142,7 +139,13 @@ const purchasesSlice = createSlice({
     [getPurchaseItemDetails.rejected]: state => {
       state.purchasesDetailLoading = false;
     },
+    [programAndPlanLockThunk.pending]: (state) => {
+      state.planLockLoading = true;
+      state.planLockError = false;
+    },
     [programAndPlanLockThunk.fulfilled]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = false;
       state.plans = {
         ...state.plans,
         userPlanOrderHistoryResponseDtoList:
@@ -153,13 +156,11 @@ const purchasesSlice = createSlice({
             return item;
           }),
       };
-      state.lockedState = state.lockedState.map(item => {
-        if (item?.uuid === payload?.programOrPlanUuid)
-          return {...item, locked: true};
-        else return item;
-      });
+      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid,version:payload.version,userVersion:payload.userVersion}]
     },
     [programAndPlanLockThunk.rejected]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = true;
       if (payload?.response?.status === 400) {
         Alert.alert(
           'Alert',
