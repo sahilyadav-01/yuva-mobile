@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { WHITE, DARK_BLUE, ORANGE, RED } from "../../../styles/colors";
+import { WHITE, DARK_BLUE, ORANGE, RED, CYAN_BLUE } from "../../../styles/colors";
 import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         backgroundColor: WHITE,
         borderWidth: 1,
+        color: CYAN_BLUE,
     },
     boxStylesContainer: {
         backgroundColor: WHITE,

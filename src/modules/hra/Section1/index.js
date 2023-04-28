@@ -26,7 +26,7 @@ import {
 } from '../constant';
 import {useSection1} from './hooks/useSection1';
 import {styles} from './styles';
-import {GREEN, PALE_GOLDENROD} from '../../../styles/colors';
+import {DARK_GRAY, GREEN, PALE_GOLDENROD} from '../../../styles/colors';
 import Loader from '../../../components/Loader';
 import { styles as hraStyles } from '../HRAHome/styles';
 
@@ -78,6 +78,7 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={props?.name}
+                placeholderTextColor={DARK_GRAY}
                 editable={false}
               />
             </View>
@@ -89,6 +90,7 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={answers?.Q2.toString() !== '' ? answers?.Q2.toString() : props?.userData?.age.toString() ?? SECTION_1_PLACEHOLDER_Q1}
+                placeholderTextColor={DARK_GRAY}
                 onEndEditing={e =>
                   inputCheck(FIRST_QUESTION, e.nativeEvent.text)
                 }
@@ -103,6 +105,7 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={SECTION_1_PLACEHOLDER_Q2}
+                placeholderTextColor={DARK_GRAY}
                 value={answers?.Q3.trim().length>0 ? answers?.Q3 : ''}
                 onEndEditing={e =>
                   inputCheck(SECOND_QUESTION, e.nativeEvent.text)
@@ -120,6 +123,7 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={SECTION_1_PLACEHOLDER_Q3}
+                placeholderTextColor={DARK_GRAY}
                 value={answers?.Q4.trim().length>0 ? answers?.Q4 : ''}
                 onEndEditing={e =>
                   inputCheck(THIRD_QUESTION, e.nativeEvent.text)
@@ -137,6 +141,7 @@ const Section1 = props => {
                 style={styles.questionViewContainerTextInput}
                 keyboardType={KEYBOARD_TYPE_VALUE}
                 placeholder={SECTION_1_PLACEHOLDER_Q4}
+                placeholderTextColor={DARK_GRAY}
                 value={answers?.Q5.trim().length>0 ? answers?.Q5 : ''}
                 onEndEditing={e =>
                   inputCheck(FOURTH_QUESTION, e.nativeEvent.text)
@@ -156,6 +161,7 @@ const Section1 = props => {
                   ? answers[questionData[4]?.questionId] === ''
                   : data[answers?.Q58] ?? props?.userData?.gender ?? ''}
                 editable={false}
+                placeholderTextColor={DARK_GRAY}
               />
             </View>
             <View style={styles.touchableOpacityViewContainer}>

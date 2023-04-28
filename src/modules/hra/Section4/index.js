@@ -7,7 +7,7 @@ import Header from '../../../components/Header';
 import { useSection4 } from './hooks/useSection4';
 import { styles } from './styles';
 import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, SECTION_4_HEADING } from '../constant';
-import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { DARK_BLUE, DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
@@ -36,9 +36,12 @@ const Section4 = () => {
               <SelectList
                 boxStyles={styles.boxStylesContainer}
                 placeholder={answers[questionData[0]?.questionId] === undefined ? '' :PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholderTextColor={DARK_GRAY}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
+                inputStyles={{color: SLATE_GRAY}}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
             </View>
             {alcohol && (
@@ -48,9 +51,12 @@ const Section4 = () => {
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
                     placeholder={answers[questionData[1]?.questionId] === undefined ? '' : PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? ''}
+                    placeholderTextColor={DARK_GRAY}
                     setSelected={setQuestion2}
                     data={PickerData[questionData[1]?.questionType]}
                     search={false}
+                    dropdownTextStyles={{color:DARK_GRAY}}
+                    inputStyles={{color: DARK_BLUE}}
                   />
                 </View>
 
@@ -59,9 +65,12 @@ const Section4 = () => {
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
                     placeholder={answers[questionData[2]?.questionId] === undefined ? '' : PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? ''}
+                    placeholderTextColor={DARK_GRAY}
                     setSelected={setQuestion3}
                     data={PickerData[questionData[2]?.questionType]}
                     search={false}
+                    dropdownTextStyles={{color:DARK_GRAY}}
+                    inputStyles={{color: DARK_BLUE}}
                   />
                 </View>
                 <View style={styles.questionViewContainer}>
@@ -71,9 +80,12 @@ const Section4 = () => {
                   <SelectList
                     boxStyles={styles.boxStylesContainer}
                     placeholder={answers[questionData[3]?.questionId] === undefined ? '' : PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
+                    placeholderTextColor={DARK_GRAY}
                     setSelected={setQuestion4}
                     data={PickerData[questionData[3]?.questionType]}
                     search={false}
+                    dropdownTextStyles={{color:DARK_GRAY}}
+                    inputStyles={{color: DARK_BLUE}}
                   />
                 </View>
               </View>

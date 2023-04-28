@@ -14,7 +14,7 @@ import {
   USE_COUPON,
   COUPON_CODE,
 } from './constant';
-import { GREEN, SLATE_BLUE, WHITE } from '../../styles/colors';
+import { GREEN, SLATE_BLUE, WHITE,DARK_GRAY } from '../../styles/colors';
 import { redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } from '../../store/reducers/CouponSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -70,6 +70,7 @@ const CouponCard = (props) => {
         <TextInput
           style={styles.textInputStyles}
           placeholder={PLACEHOLDER_TEXT}
+          placeholderTextColor={DARK_GRAY}
           onChangeText={onCouponValue}
           autoCapitalize={CAPITALIZE_TEXT}
         />

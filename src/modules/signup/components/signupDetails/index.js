@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import {ORANGE, ORANGE_GREY, SILVER_CHALICE} from '../../../../styles/colors';
+import {ORANGE, ORANGE_GREY, SILVER_CHALICE, CYAN_BLUE, GREEN} from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
@@ -104,6 +104,8 @@ const SignUpDetailsCard = props => {
         )}
         <View style={style.termsAndConditionsContainer}>
           <Checkbox
+            color={GREEN}
+            uncheckedColor={CYAN_BLUE}
             onPress={signUp?.toggleTerms}
             status={signUp?.terms ? 'checked' : 'unchecked'}
           />

@@ -68,6 +68,7 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         backgroundColor: WHITE,
         borderWidth: 1,
+        color:SLATE_GRAY,
     },
     boxStylesContainer: {
         backgroundColor: WHITE,
