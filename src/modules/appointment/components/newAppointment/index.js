@@ -8,7 +8,7 @@ import {styles} from './styles';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
-import {DARK_BLUE, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
+import {DARK_BLUE, DARK_GRAY, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
@@ -20,6 +20,7 @@ import {
   MESSAGE,
   MYSELF,
   PATIENT_CONTACT_NUMBER,
+  PLACEHOLDER,
   SELECT_DATE_TIME,
   SELECT_MEMBER,
   SELECT_MEMBER_HERE,
@@ -75,6 +76,8 @@ const NewAppointments = () => {
             style={styles.textInputStyle}
             multiline={true}
             onChangeText={onChangeDescription}
+            placeholder={PLACEHOLDER}
+            placeholderTextColor={DARK_GRAY}
           />
         </View>
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
@@ -118,6 +121,7 @@ const NewAppointments = () => {
               data={dataRelation}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
+              dropdownTextStyles={{color:DARK_GRAY}}
             />
           </View>
         </View>
@@ -127,6 +131,7 @@ const NewAppointments = () => {
             <TextInput
               style={styles.textInputStyle}
               placeholder={CONTACT_NUMBER}
+              placeholderTextColor={DARK_GRAY}
               keyboardType={'numeric'}
               onChangeText={onChaneNumber}
             />

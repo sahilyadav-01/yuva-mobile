@@ -19,6 +19,7 @@ import {
   TESTS,
 } from './constants';
 import EmptyList from './EmptyList';
+import { DARK_GRAY } from '../../styles/colors';
 
 const LifestyleTestsAndPackages = props => {
   const {
@@ -75,9 +76,11 @@ const LifestyleTestsAndPackages = props => {
                 search={false}
                 data={packages}
                 placeholder={placeholder}
+                placeholderTextColor={DARK_GRAY}
                 boxStyles={boxStyles}
                 inputStyles={dropdownInputStyles}
                 dropdownStyles={dropdownStyles}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
               {packageData.length > 0 && (
                 <Packages

@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
     textAlignVertical: TOP,
+    color: CYAN_BLUE,
   },
   buttonView: {
     marginVertical: 16,
