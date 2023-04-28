@@ -10,7 +10,6 @@ export const usePurchase = plan => {
     plansError,
     purchases,
     purchasesError,
-    lockedState,
   } = useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
@@ -18,6 +17,8 @@ export const usePurchase = plan => {
   const [purchasesPageNo, setPurchasesPageNo] = useState(1);
   const [loading, setLoading] = useState(true);
   const [purchasesLoader, setPurchasesLoader] = useState(true);
+  const [planListLoading, setPlanListLoading] = useState(false);
+  const [purchasesListLoading, setPurchasesListLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     if (purchasesTab === 0 && plansPageNo === 1 && plan) {
@@ -30,7 +31,7 @@ export const usePurchase = plan => {
   }, [purchasesTab]);
 
   useEffect(() => {
-    if (plansPageNo > 1 && purchasesTab === 0) {
+    if (plansPageNo > 1 && purchasesTab === 0) { 
       dispatch(getPlans({pageNo: plansPageNo, pageSize: 3, orderStatus: ''}));
     }
   }, [plansPageNo]);
@@ -53,17 +54,20 @@ export const usePurchase = plan => {
           'dateOfPurchase',
         ),
       );
+      setPlanListLoading(false);
       setLoading(false);
     } else if (
       plans &&
       typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' &&
       plans?.userPlanOrderHistoryResponseDtoList.length === 0
     ) {
+      setPurchasesListLoading(false);
       setLoading(false);
     } else if (plans === null && plansError) {
       setLoading(false);
     }
   }, [plans, plansError]);
+
 
   useEffect(() => {
     if (
@@ -98,32 +102,13 @@ export const usePurchase = plan => {
     }
   }, [purchases, purchasesError]);
 
-  useEffect(() => {
-    if (planList.length > 0 && !loading) {
-      let listUpdated = false;
-      const updatedList = planList.map((item) => {
-        let listItem = item;
-        lockedState.forEach(i => {
-          if (
-            i?.uuid === item?.uuid &&
-            i?.version === item?.version &&
-            i?.userVersion === item?.userVersion
-          ) {
-            listItem = {...listItem, locked: i?.locked};
-            listUpdated = true;
-          }
-        });
-        return listItem;
-      });
-      listUpdated && setPlanList(updatedList);
-      listUpdated = false;
-    }
-  }, [lockedState, loading]);
 
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
+      setPlanListLoading(true);
       setPlansPageNo(plansPageNo + 1);
     } else if (purchasesTab === 1 && purchasesPageNo < purchases?.totalPages) {
+      setPurchasesListLoading(true);
       setPurchasesPageNo(purchasesPageNo + 1);
     }
   };
@@ -137,5 +122,7 @@ export const usePurchase = plan => {
     purchasesLoader,
     purchasesList,
     purchasesError,
+    planListLoading,
+    purchasesListLoading
   };
 };

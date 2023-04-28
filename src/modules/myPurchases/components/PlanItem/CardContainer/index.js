@@ -20,7 +20,7 @@ export const CardContainer = props => {
         <Text style={style.planText}>{item?.planName?.toUpperCase()}</Text>
         <Text style={style.nameText}>{item?.customerName?.toUpperCase()}</Text>
         <View style={style.orderDetailsContainer}>
-          <Text style={style.orderNumber}>{item?.orderNumber}</Text>
+          <Text style={style.orderNumber}>{item?.cardNumber}</Text>
           <View>
             <Text style={style.validText}>{VALID_THROUGH}</Text>
             <Text style={style.orderNumber}>{getDateInFormat(new Date(item?.dateOfPurchase),'mm/yy')}</Text>
