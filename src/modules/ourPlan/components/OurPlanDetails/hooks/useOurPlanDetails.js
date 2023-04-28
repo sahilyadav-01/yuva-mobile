@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { planDetailsThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { ADDRESS, LOGIN_SCREEN } from "../constants";
@@ -9,6 +9,9 @@ export const useOurPlanDetails = () => {
     const {loggedIn} = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const data = {
+        PlanIndex: mainItem,
+    }
     useEffect(() => {
         let Uuid = mainItem?.planUuid;
         dispatch(planDetailsThunk(Uuid))
@@ -18,7 +21,7 @@ export const useOurPlanDetails = () => {
         if(loggedIn === 'loggedIn') {
             navigation.navigate('Home',{screen:'OurPlan',params: {screen:ADDRESS,params:{...mainItem,plan:true}}})
         } else {
-            navigation.navigate('Home',{screen:LOGIN_SCREEN})
+            navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetailsGuest', data: data } });
         }
     }
     const pricePerMonth=Math.ceil(mainItem?.yearlyFinalCost/12);
