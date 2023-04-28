@@ -1,12 +1,13 @@
 import React from 'react';
 import {Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import { FLEX_END, FLEX_START } from '../../styles/constants';
+import {FLEX_END, FLEX_START} from '../../styles/constants';
+import {CURIOUS_BLUE} from '../../styles/colors';
 
-const Slots = (props) => {
-  const {item, onTimeSlotPress} = props;
+const Slots = props => {
+  const {item, onTimeSlotPress, slotIndex, selectedItem} = props;
   const style = styles();
-  const RenderTime = ({i, index}) => {
+  const RenderTime = ({itemm, index}) => {
     return (
       <View
         style={[
@@ -14,9 +15,17 @@ const Slots = (props) => {
           {alignItems: index % 2 === 0 ? FLEX_START : FLEX_END},
         ]}>
         <TouchableOpacity
-          onPress={() => onTimeSlotPress(item, index)}
-          style={style.itemView}>
-          <Text>
+          onPress={() => onTimeSlotPress(item, index, slotIndex)}
+          style={[
+            style.itemView,
+            {
+              borderColor:
+                JSON.stringify(item[index]) === JSON.stringify(selectedItem)
+                  ? CURIOUS_BLUE
+                  : style.itemView.borderColor,
+            },
+          ]}>
+          <Text style={style.slotText}>
             {`${item[index]?.from}:00`}-{`${item[index]?.to}:00`}
           </Text>
         </TouchableOpacity>
@@ -25,17 +34,20 @@ const Slots = (props) => {
   };
   return (
     <View style={style.timeContainer}>
-      <Text>{item[0]?.type}</Text>
+      {item?.length > 0 && 
+      <>
+      <Text style={{...style.slotText,marginBottom:16}}>{item[0]?.type}</Text>
       <View style={style.itemContainer}>
         <FlatList
           numColumns={2}
-          keyExtractor={index => index}
+          keyExtractor={(item,index) => index}
           data={item}
           renderItem={RenderTime}
         />
       </View>
+      </>}
     </View>
   );
-}
+};
 
 export default Slots;

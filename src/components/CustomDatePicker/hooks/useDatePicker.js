@@ -1,14 +1,46 @@
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
+import _ from 'lodash';
 
-export const useDatePicker = () => {
+export const useDatePicker = onDateTimeSelect => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedDateObj, setSelectedDateObj] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [dates, setDates] = useState([]);
+  const [slots,setSlots] = useState([]);
+
+  useEffect(() => {
+    if (selectedTime === null)
+      onDateTimeSelect({
+        status: false,
+        message: 'Please select a time slot',
+        value: null,
+      });
+    else {
+      const unixTime = Date.parse(
+        new Date(
+          selectedDateObj.getFullYear(),
+          selectedDateObj.getMonth(),
+          selectedDateObj.getDate(),
+          selectedTime,
+        ),
+      ).toString();
+      onDateTimeSelect({
+        status: true,
+        message: 'Date and time selected',
+        value: unixTime,
+      });
+    }
+  }, [selectedDateObj, selectedTime]);
 
   useEffect(()=>{
-    console.log('Selected',selectedDateObj,selectedTime)
-  },[selectedDateObj,selectedTime])
+    setDates(_.uniqBy(getDaysOfMonth(),JSON.stringify));
+    setSlots(_.uniqBy(getSlots().filter(item => {
+      if (typeof item?.length === 'number') return item;
+    })),JSON.stringify);
+    setSelectedItem(null);
+  },[activeIndex])
 
   const getDaysOfMonth = () => {
     let nextMonth = new Date().getMonth() + 1;
@@ -29,17 +61,23 @@ export const useDatePicker = () => {
       new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
-        new Date().getDate(),
+        selectedDateObj.getDate(),
         23,
         59,
         59,
       ),
     );
+    let arr = [];
     let gap = parseInt(moment().diff(dayEnd, 'hours')) * -1;
     gap = gap > 24 ? 24 : gap;
-    let arr = [];
+    let dayGap = selectedDateObj.getDate() - new Date().getDate();
     for (let i = 1; i <= gap; i++) {
-      arr.push(`${moment().add(i, 'hours').format('h')}`);
+      if(dayGap === 0) {
+        arr.push(`${moment().add(i, 'hours').format('h')}`);
+      }
+      else {
+        arr.push(`${moment().add(dayGap,'day').startOf('day').add(i, 'hours').format('h')}`);
+      }
     }
     arr.push('12');
     const noonIndex = arr.findIndex(arg => {
@@ -80,6 +118,13 @@ export const useDatePicker = () => {
               type: 'Morning',
             });
           }
+          else if(index === morningSlots.length - 1) {
+            slots.push({
+              from: '12',
+              to: '1',
+              type: 'Morning',
+            });
+          }
         });
         return slots;
       },
@@ -90,6 +135,13 @@ export const useDatePicker = () => {
             slots.push({
               from: afternoonSlots[index],
               to: afternoonSlots[index + 1],
+              type: 'Afternoon',
+            });
+          }
+          else if(index === afternoonSlots.length - 1) {
+            slots.push({
+              from: '5',
+              to: '6',
               type: 'Afternoon',
             });
           }
@@ -113,17 +165,26 @@ export const useDatePicker = () => {
     return [morning(), afternoon(), evening()];
   };
 
-  const onSelectDay = (item,index) => {
-    console.log('Item', item.toDate());
-    setSelectedDateObj(item.toDate())
+  const onSelectDay = (item, index) => {
+    setSelectedTime(null);
+    setSelectedDateObj(item.toDate());
     setActiveIndex(index);
   };
 
-  const onTimeSlotPress = (item, index) => {
+  const onTimeSlotPress = (item, index, slotIndex) => {
+    setSelectedItem(item[index]);
     const startTime = parseInt(item[index]?.from.replace(':00', ''));
     const after12 = item[index]?.type === 'Morning' ? false : true;
-    console.log('Item', after12 ? startTime + 12 : startTime);
     setSelectedTime(after12 ? startTime + 12 : startTime);
   };
-  return {getDaysOfMonth, getSlots, onSelectDay, onTimeSlotPress, activeIndex};
+  return {
+    getDaysOfMonth,
+    getSlots,
+    onSelectDay,
+    onTimeSlotPress,
+    activeIndex,
+    selectedItem,
+    dates,
+    slots
+  };
 };

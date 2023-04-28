@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {BLACK_OPACITY, CITRINE_WHITE, GREEN, WHITE} from '../../styles/colors';
+import {BLACK_OPACITY, CITRINE_WHITE, CYAN_BLUE, GREEN, WHITE} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    dateContainer: {paddingHorizontal: 24, marginBottom: 32},
+    dateContainer: {paddingHorizontal: 24,backgroundColor:WHITE},
     horizontalSeparator: {width: 20},
     dateItem: {
       paddingTop: 12,
@@ -31,7 +32,7 @@ export const styles = () => {
     availableText: {color: GREEN},
     timeContentContainer: {backgroundColor: WHITE},
     timeContainer: {marginHorizontal: 16, paddingHorizontal: 16},
-    itemContainer: {marginVertical: 16},
+    itemContainer: {marginBottom: 16},
     item: {flex: 1},
     itemView: {
       paddingHorizontal: 20,
@@ -41,5 +42,15 @@ export const styles = () => {
       marginBottom: 12,
       borderColor: BLACK_OPACITY,
     },
+    slotText: {
+      fontFamily: fonts.family.rubik400,
+      fontSize:fonts.size.fontSize12,
+      lineHeight: 18,
+      color: CYAN_BLUE
+    },
+    separatorContainer: {
+      backgroundColor: WHITE,
+      height:8
+    }
   });
 };

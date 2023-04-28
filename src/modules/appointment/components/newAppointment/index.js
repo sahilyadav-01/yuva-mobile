@@ -57,6 +57,7 @@ const NewAppointments = () => {
     setSelected,
     dataRelation,
     selected,
+    handleDateTime
   } = useNew(plan, userVersion, uuid, version);
   return (
     <View>
@@ -109,7 +110,7 @@ const NewAppointments = () => {
             />
           </View> */}
         </View>
-        <CustomDatePicker/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime}/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.borderSelect}>
