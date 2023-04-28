@@ -166,9 +166,6 @@ export const useFooter = planDetails => {
   };
 
   const onLockPlan = item => {
-    const dependentsList = dependents.filter(item => {
-      if (item?.status) return item;
-    });
     if (
       planDetails?.locked ||
       lockedState.filter(item => {
