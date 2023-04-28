@@ -17,6 +17,8 @@ export const usePurchase = plan => {
   const [purchasesPageNo, setPurchasesPageNo] = useState(1);
   const [loading, setLoading] = useState(true);
   const [purchasesLoader, setPurchasesLoader] = useState(true);
+  const [planListLoading, setPlanListLoading] = useState(false);
+  const [purchasesListLoading, setPurchasesListLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     if (purchasesTab === 0 && plansPageNo === 1 && plan) {
@@ -29,7 +31,7 @@ export const usePurchase = plan => {
   }, [purchasesTab]);
 
   useEffect(() => {
-    if (plansPageNo > 1 && purchasesTab === 0) {
+    if (plansPageNo > 1 && purchasesTab === 0) { 
       dispatch(getPlans({pageNo: plansPageNo, pageSize: 3, orderStatus: ''}));
     }
   }, [plansPageNo]);
@@ -52,12 +54,14 @@ export const usePurchase = plan => {
           'dateOfPurchase',
         ),
       );
+      setPlanListLoading(false);
       setLoading(false);
     } else if (
       plans &&
       typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' &&
       plans?.userPlanOrderHistoryResponseDtoList.length === 0
     ) {
+      setPurchasesListLoading(false);
       setLoading(false);
     } else if (plans === null && plansError) {
       setLoading(false);
@@ -101,8 +105,10 @@ export const usePurchase = plan => {
 
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
+      setPlanListLoading(true);
       setPlansPageNo(plansPageNo + 1);
     } else if (purchasesTab === 1 && purchasesPageNo < purchases?.totalPages) {
+      setPurchasesListLoading(true);
       setPurchasesPageNo(purchasesPageNo + 1);
     }
   };
@@ -116,5 +122,7 @@ export const usePurchase = plan => {
     purchasesLoader,
     purchasesList,
     purchasesError,
+    planListLoading,
+    purchasesListLoading
   };
 };
