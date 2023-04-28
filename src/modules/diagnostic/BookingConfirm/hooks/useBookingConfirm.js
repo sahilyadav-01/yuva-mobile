@@ -14,7 +14,7 @@ export const useBookingConfirm = () => {
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
-    const [dataRelation, setDataRelation] = useState();
+    const [dataRelation, setDataRelation] = useState("");
     const [city, setCity] = useState(null);
     const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { selectedCityId } = useSelector(state => state.diagnostic);
