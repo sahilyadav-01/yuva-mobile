@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
   boxStyle: {
     paddingTop: 0,
     borderWidth: 0,
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     minWidth: 75,
   },
   inputStyles: {
