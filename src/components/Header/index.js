@@ -4,7 +4,7 @@ import { styles } from './styles';
 import { SVG } from '../../../assets';
 import { LOGIN_TEXT } from './constant';
 import { useHeader } from './hooks/useHeader';
-import { CYAN_BLUE } from '../../styles/colors';
+import { CYAN_BLUE, DARK_GRAY } from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
 
@@ -36,6 +36,7 @@ const Header = (props) => {
            <SelectList 
              data={cityList}
              placeholder={placeholder}
+             placeholderTextColor={DARK_GRAY}
              search={false}
              setSelected={setSelected}
              boxStyles={styles.boxStyle}
@@ -81,6 +82,7 @@ const Header = (props) => {
          {showSearch && 
           <Search 
             placeholder={searchPlaceholder} 
+            placeholderTextColor={DARK_GRAY}
             onChangeText={onChangeSearch} 
             value={query}
           />

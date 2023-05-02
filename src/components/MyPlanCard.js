@@ -6,7 +6,7 @@ import { PNG } from '../../assets';
 import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, NOT_AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 import { useNavigation } from '@react-navigation/native';
-import { AMBER, CYAN_BLUE, ORANGE, DEEP_RED, WHITE } from '../styles/colors';
+import { AMBER, CYAN_BLUE, ORANGE, DEEP_RED, WHITE, GREY } from '../styles/colors';
 
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
@@ -42,7 +42,7 @@ const MyPlanCard = ({ item }) => {
                         <Text style={styles.textColor}>{plan?.item?.name}</Text>
 
                         <View style={styles.available}>
-                            <Text >
+                            <Text style={{ color: GREY }}>
                                 {`${USED} ${used}`}
 
                             </Text>

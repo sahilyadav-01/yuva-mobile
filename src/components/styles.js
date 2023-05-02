@@ -139,6 +139,7 @@ export const styles = StyleSheet.create({
   },
   textSpacing: {
     marginHorizontal: 5,
+    color: GREY,
   },
   BookingCard: {
     marginTop: 28,

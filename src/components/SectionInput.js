@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { useDispatch } from 'react-redux'
+import { CYAN_BLUE, DARK_GRAY } from '../styles/colors'
 
 const SectionInput = ({text, defValue,  questionId, dispatcher}) => {
     const dispatch = useDispatch()
@@ -13,10 +14,10 @@ const SectionInput = ({text, defValue,  questionId, dispatcher}) => {
             <Text className="text-base">{text}</Text>
             <TextInput
                 defaultValue={defValue}
-                style={{backgroundColor:"#ffffff", borderWidth:1}} 
+                style={{backgroundColor:"red", borderWidth:1, color: CYAN_BLUE}} 
                 className="h-[40px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm"
                 keyboardType='numeric'
-                placeholderTextColor={'black'} 
+                placeholderTextColor={DARK_GRAY}
                 placeholder=''
                 onChangeText={setSelected}
                 maxLength={3}

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { View, Text, TextInput } from 'react-native'
+import { DARK_GRAY } from '../styles/colors'
 
 const AppointmentInput = ({defValue, text}) => {
 
@@ -11,8 +12,8 @@ const AppointmentInput = ({defValue, text}) => {
                 defaultValue={defValue}
                 style={{backgroundColor:"#ffffff", borderWidth:1}} 
                 className="h-[45px] rounded-lg shadow-2xl pl-5 mt-[8px] text-sm mx-[15px]"
-                placeholderTextColor={'black'} 
                 placeholder={defValue}
+                placeholderTextColor={DARK_GRAY}
                 onChangeText={setInput}
                 editable={false}
             />
