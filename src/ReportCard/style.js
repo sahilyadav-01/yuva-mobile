@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { CYAN_BLUE } from '../styles/colors';
 import {ABSOLUTE, CENTER, ROW} from '../styles/constants';
 import {fonts} from '../styles/fonts';
 
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
   },
   reportTextStyle: {
     marginHorizontal: 15,
+    color:CYAN_BLUE,
   },
   downloadReportStyle:{
     paddingHorizontal:12,

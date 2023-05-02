@@ -5,6 +5,7 @@ import Modal from '../index';
 import Dependent from './Dependent';
 import {styles} from './style';
 import BackCross from '../../GoBackCross';
+import { CYAN_BLUE, GREEN } from '../../../styles/colors';
 
 function DependentsModal(props) {
   const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress, showAddMembersButton, onAddMembersPress, buttonText, relativesText,showRelatives,onAddRelative} = props;
@@ -22,7 +23,7 @@ function DependentsModal(props) {
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
-        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
+        <Checkbox color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
       </View>
       {data.length > 0 && <FlatList
         data={listData}

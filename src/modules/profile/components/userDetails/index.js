@@ -9,7 +9,7 @@ import {
   PINCODE,
 } from '../../constant';
 import styles from './style';
-import { BLACK, DARK_BLUE, GREEN, } from '../../../../styles/colors';
+import { BLACK, DARK_BLUE, GREEN, DARK_GRAY } from '../../../../styles/colors';
 import { getDateText } from '../../../../utils/utils';
 import { useUserDetails } from './hooks/useUserDetails';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -132,6 +132,7 @@ const UserDetails = ({
           editable={false}
           style={textInputStyle}
           placeholder={SELECT_GENDER}
+          placeholderTextColor={DARK_GRAY}
         />
       ) : (
         <>
@@ -141,7 +142,8 @@ const UserDetails = ({
             data={data}
             placeholder={gender ?? SELECT_GENDER}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? { color: DARK_BLUE } : undefined}
+            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            dropdownTextStyles={{color:DARK_GRAY}}
           />
           <View style={separatorStyle} />
         </>
@@ -152,11 +154,13 @@ const UserDetails = ({
           editable={false}
           style={textInputStyle}
           placeholder={DD_MM_YYYY}
+          placeholderTextColor={DARK_GRAY}
         />
       ) : (
         <TouchableOpacity onPress={openPicker}>
           <TextInput
             placeholder={DD_MM_YYYY}
+            placeholderTextColor={DARK_GRAY}
             value={getDateText(date)}
             editable={false}
             style={textInputStyle}
@@ -178,6 +182,7 @@ const UserDetails = ({
       )}
       <TextInput
         placeholder={ADDRESS_1}
+        placeholderTextColor={DARK_GRAY}
         value={mockData.address ?? addressLine1}
         editable={edit}
         style={textInputStyle}
@@ -190,6 +195,7 @@ const UserDetails = ({
             editable={false}
             style={textInputStyle}
             placeholder={CITY}
+            placeholderTextColor={DARK_GRAY}
           />
         ) : (
           <>
@@ -202,14 +208,17 @@ const UserDetails = ({
                 return { ...item, value: JSON.parse(item.value).name };
               })}
               placeholder={CITY}
+              placeholderTextColor={DARK_GRAY}
               boxStyles={dropdownBoxStyle}
-              inputStyles={cityNames ? { color: DARK_BLUE } : undefined}
+              inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
+              dropdownTextStyles={{color:DARK_GRAY}}
             />
             <View style={separatorStyle} />
           </>
         ))}
       <TextInput
         placeholder={PINCODE}
+        placeholderTextColor={DARK_GRAY}
         value={mockData.pinCode ?? pinCode}
         editable={edit}
         style={{ ...textInputStyle, marginBottom: 32 }}

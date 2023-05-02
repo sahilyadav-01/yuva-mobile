@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import { useDispatch } from 'react-redux';
+import { DARK_GRAY, SLATE_GRAY } from '../styles/colors';
 
 const SectionPicker = ({
   dispatcher,
@@ -29,12 +30,15 @@ const SectionPicker = ({
           borderWidth: 1,
           borderColor: '#1D2334',
         }}
+        inputStyles={{color: SLATE_GRAY}}
         //placeholder={(defaultAnswer === undefined ||  defaultAnswer === '') ? '' : data[defaultAnswer].value}
         placeholder={defaultAnswer ?? ''}
+        placeholderTextColor={DARK_GRAY}
         setSelected={setSelected}
         data={data}
         search={false}
         onSelect={onSelect}
+        dropdownTextStyles={{color:DARK_GRAY}}
       />
     </View>
   );
