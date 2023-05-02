@@ -14,7 +14,7 @@ const CartAddressList = props => {
 
   return (
     <>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} />
+      <Header title={'Checkout'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
       <ScrollView style={styles.container} nestedScrollEnabled>
         <OrderDetails />
         <View style={styles.bodyContainer}>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 import { PLACEHOLDER_TEXT } from "../constant";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu } = props;
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu, showCart } = props;
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -78,5 +78,6 @@ export const useHeader = (props) => {
     count,
     hideMenu: hideMenu ?? false,
     placeholder,
+    showCart,
   };
 }
