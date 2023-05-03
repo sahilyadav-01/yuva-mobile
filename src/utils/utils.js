@@ -416,7 +416,7 @@ export const getDateInFormat = (date, format) => {
         date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       );
     case 'dd mm':
-      return date && `${date.getDate()} ${/*getMonthInText(date.getMonth())*/''}`;
+      return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
     case 'mm/yy':
       const year = date.getFullYear().toString();
       return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
