@@ -8,7 +8,6 @@ import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
 import {DARK_GRAY} from '../../../../styles/colors';
-import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
