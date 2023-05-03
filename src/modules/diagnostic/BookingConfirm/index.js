@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-import SelectList from 'react-native-dropdown-select-list'
+import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header'
 import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, MY_TESTS, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
@@ -85,16 +85,20 @@ const BookingConfirm = () => {
                                     defaultOption={{ key: NULL, value: MYSELF }}
                                     setSelected={setSelected}
                                     data={dataRelation}
+                                    dropdownStyles={styles.dropStyles}
+                                    inputStyles={styles.valueStyle}
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>
                             ) : (<View style={styles.border} pointerEvents="none">
                                 <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                                 <SelectList
-                                    boxStyles={styles.boxStyles}
+                                    boxStyles={[styles.boxStyles,styles.backGroundStyle]}
                                     defaultOption={{ key: NULL, value: MYSELF }}
                                     setSelected={setSelected}
                                     data={dataRelation}
+                                    dropdownStyles={styles.dropStyles}
+                                    inputStyles={styles.valueStyle}
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>)}
