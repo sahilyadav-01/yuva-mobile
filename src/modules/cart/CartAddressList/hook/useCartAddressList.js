@@ -33,7 +33,6 @@ export const useCartAddressList = () => {
   };
 
   const handleDateTime = (arg) => {
-    console.log('Arg',arg);
     if(arg?.status)
     setEpochTime(arg?.value);
   }
