@@ -1,4 +1,4 @@
-package com.nineleaps.yuva.newarchitecture.modules;
+package com.yuva.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
