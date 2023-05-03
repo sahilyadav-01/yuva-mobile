@@ -21,8 +21,8 @@ const checkOutSlice = createSlice({
     dispatch_addressData(state, payload) {
       state.addressData = payload?.payload?.selectedAddress;
     },
-    dispatch_scheduleData(state, payload) {
-       state.scheduleDate= payload?.payload;
+    dispatch_scheduleData(state, {payload}) {
+       state.scheduleDate= payload;
     },
     dispatch_processingCharge(state, {payload}) {
       state.processingCharge= payload;

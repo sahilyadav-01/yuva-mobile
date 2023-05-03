@@ -5,14 +5,11 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../../../store/reducers/DiagnosticsSlice';
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
-import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
 import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
     const [selected, setSelected] = useState("");
     const [dataRelation, setDataRelation] = useState("");
     const [city, setCity] = useState(null);
@@ -20,30 +17,19 @@ export const useBookingConfirm = () => {
     const { selectedCityId } = useSelector(state => state.diagnostic);
     const { relationId, userAddress, selectedAddress,addressListing } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
+    const [epochTime, setEpochTime] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation()
-    useEffect(()=>{
-        const tomorrow = new Date()
-        tomorrow.setDate(tomorrow.getDate() +1);
-        tomorrow.setHours(7);
-        tomorrow.setMinutes(0);
-        tomorrow.setSeconds(0);
-        setTime(tomorrow);
-        setDate(tomorrow);
-      },[])
-
+    
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
         }
     }, [route])
-    const handleDate = date => {
-        setDate(date);
-    };
-    const handleTime = time => {
-        setTime(time);
-
-    };
+    const handleDateTime = (arg) => {
+        if(arg?.status)
+        setEpochTime(arg?.value);
+    }
     useEffect(() => {
         dispatch(getRelations())
         dispatch(getUserAddress())
@@ -86,7 +72,7 @@ export const useBookingConfirm = () => {
             programOrPlanUuid: userAttribute?.Uuid,
             relationId: selected,
             testId: [],
-            timeSlot: getEpoch(date, time) ,
+            timeSlot: epochTime,
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
@@ -114,7 +100,7 @@ export const useBookingConfirm = () => {
     }, [testBooked, apiErrorMessage])
 
     const rescheduleBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: getEpoch(date, time) }))
+        dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: epochTime }))
     }
     useEffect(() => {
         if (reschedule?.message && !apiErrorMessage) {
@@ -135,10 +121,6 @@ export const useBookingConfirm = () => {
 
     return {
         packageDetails,
-        handleDate,
-        handleTime,
-        date,
-        time,
         setSelected,
         checked,
         setChecked,
@@ -147,6 +129,7 @@ export const useBookingConfirm = () => {
         bookTestScreen,
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
-        addressListing
+        addressListing,
+        handleDateTime
     }
 }

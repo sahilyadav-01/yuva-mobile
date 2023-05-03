@@ -87,7 +87,6 @@ export const useSection7 = () => {
     };
     
     const inputCheck = (id, value) => {
-        console.log('Ival',id,value)
         const reg = /^\d*\.?\d*$/;
         switch (id) {
             case 'Q4':

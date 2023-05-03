@@ -15,8 +15,8 @@ import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/Car
 const PaymentReconfirmList = props => {
   const { onPayPress,processingCharge } = usePaymentReconfirm();
   const { scheduleDate } = useSelector(state => state.checkOut);
-  const renderDate = getDateInFormat(new Date(scheduleDate.date), 'dd/mm/yyyy');
-  const renderTime = getTime(new Date(scheduleDate.time), 'hh:mm');
+  const renderDate = getDateInFormat(new Date(parseInt(scheduleDate)), 'dd/mm/yyyy');
+  const renderTime = getTime(new Date(parseInt(scheduleDate)), 'hh:mm');
   const { cart } = useSelector(state => state.cart);
   const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
   const { coupon } = useSelector(state => state.coupon);

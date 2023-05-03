@@ -120,6 +120,7 @@ import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
+import Calender from './Calender';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
 const PNG = {
@@ -248,6 +249,7 @@ const SVG = {
   CheckUpIcon,
   ExpandArrow,
   Reorder,
+  Calender,
   Lock
 };
 

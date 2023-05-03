@@ -30,4 +30,5 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
   },
+  separator: {height:24}
 });
