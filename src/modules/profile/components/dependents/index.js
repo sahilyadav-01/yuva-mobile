@@ -8,7 +8,7 @@ const Dependents = ({dependents,hideShadow,showCheckbox,CheckboxComponent,extraC
   const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender, rowView} = styles({
     disabled: false,hideShadow,
   });
-  return dependents.map((item,index) => {
+  return dependents?.map((item, index) => {
     return (
       <View style={[dependentsContainer,extraContainerStyle]}>
         <View style={dependentNameGenderContainer}>

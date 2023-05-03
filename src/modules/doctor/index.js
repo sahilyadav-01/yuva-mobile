@@ -6,6 +6,7 @@ import {styles} from './styles';
 import {SEARCH} from './constant';
 import {useRoute} from '@react-navigation/native';
 import Search from '../../components/Search';
+import { DARK_GRAY } from '../../styles/colors';
 
 const Doctor = () => {
   const {params} = useRoute();
@@ -37,6 +38,7 @@ const Doctor = () => {
         <View style={styles.search}>
           <Search
             placeholder={SEARCH}
+            placeholderTextColor={DARK_GRAY}
             onChangeText={onChangeSearch}
             value={searchQuery}
           />

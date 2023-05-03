@@ -26,11 +26,18 @@ export const styles = () => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: WHITE,
-      marginLeft: 12
+      marginLeft: 12,
     },
-    dependentContainerStyle: {paddingTop:0},
-    dependentDetailStyle: {marginTop:20},
-    separatorStyle: {height:24},
-    checkboxContainer: {marginTop:10}
+    dependentContainerStyle: {paddingTop: 0},
+    dependentDetailStyle: {marginTop: 20},
+    separatorStyle: {height: 24},
+    checkboxContainer: {marginTop: 10},
+    emptyText: {
+      alignSelf: CENTER,
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      lineHeight: 18,
+      color: CYAN_BLUE,
+    },
   });
 };

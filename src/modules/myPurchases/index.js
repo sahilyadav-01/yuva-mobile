@@ -16,8 +16,11 @@ const MyPurchases = ({plan}) => {
     purchasesLoader,
     purchasesList,
     purchasesError,
+    planListLoading,
+    purchasesListLoading,
   } = usePurchase(plan);
-  const {container, separatorStyle, emptyContainer, emptyText} = styles();
+  const {container, separatorStyle, emptyContainer, emptyText, footerLoader} =
+    styles();
   const renderItem = ({item, index}) => {
     return tabIndex === 0 ? (
       <PlanItem item={item} index={index} />
@@ -25,8 +28,17 @@ const MyPurchases = ({plan}) => {
       <ListItem item={item} index={index} renderList={tabIndex === 0} />
     );
   };
+
   const ItemSeparator = () => {
     return <View style={separatorStyle} />;
+  };
+
+  const ListFooterComponent = () => {
+    if (
+      (tabIndex === 0 && planListLoading) ||
+      (tabIndex === 1 && purchasesListLoading)
+    )
+      return <ActivityIndicator size={'small'} style={footerLoader} />;
   };
 
   if ((tabIndex === 0 && loading) || (tabIndex === 1 && purchasesLoader)) {
@@ -70,6 +82,7 @@ const MyPurchases = ({plan}) => {
           renderItem={renderItem}
           ItemSeparatorComponent={ItemSeparator}
           onEndReached={onEndReached}
+          ListFooterComponent={ListFooterComponent}
         />
       </View>
     );

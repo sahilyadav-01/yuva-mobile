@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { WHITE, DARK_BLUE, ORANGE, RED } from "../../../styles/colors";
+import { WHITE, DARK_BLUE, ORANGE, RED, CYAN_BLUE } from "../../../styles/colors";
 import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
@@ -61,6 +61,7 @@ export const styles = StyleSheet.create({
         fontfamily: fonts.family.fontFamilyRubix,
         backgroundColor: WHITE,
         borderWidth: 1,
+        color:CYAN_BLUE,
     },
     touchableOpacityViewContainer: {
         marginTop: 30,

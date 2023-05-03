@@ -27,7 +27,7 @@ const CheckoutOurPlan = () => {
     const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
     return (
         <View>
-            <Header showBackButton={true} title={CHECKOUT} />
+            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
             <ScrollView
                 nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>

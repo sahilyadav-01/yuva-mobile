@@ -7,6 +7,8 @@ import ActionButton from '../../../../components/ActionButton';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
+import {DARK_GRAY} from '../../../../styles/colors';
+import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -16,6 +18,7 @@ import {
   MESSAGE,
   MYSELF,
   PATIENT_CONTACT_NUMBER,
+  PLACEHOLDER,
   SELECT_DATE_TIME,
   SELECT_MEMBER
 } from './constant';
@@ -28,17 +31,12 @@ const NewAppointments = () => {
     route.params;
 
   const {
-    goBack,
     signupFlag,
     signupMessage,
     newAppointment,
     onChangeDescription,
     onChaneNumber,
     closeMessageBox,
-    handleDate,
-    handleTime,
-    date,
-    time,
     setSelected,
     dataRelation,
     selected,
@@ -67,6 +65,8 @@ const NewAppointments = () => {
             style={styles.textInputStyle}
             multiline={true}
             onChangeText={onChangeDescription}
+            placeholder={PLACEHOLDER}
+            placeholderTextColor={DARK_GRAY}
           />
         </View>
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
@@ -86,6 +86,7 @@ const NewAppointments = () => {
               data={dataRelation}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
+              dropdownTextStyles={{color:DARK_GRAY}}
             />
           </View>
         </View>
@@ -95,6 +96,7 @@ const NewAppointments = () => {
             <TextInput
               style={styles.textInputStyle}
               placeholder={CONTACT_NUMBER}
+              placeholderTextColor={DARK_GRAY}
               keyboardType={'numeric'}
               onChangeText={onChaneNumber}
             />

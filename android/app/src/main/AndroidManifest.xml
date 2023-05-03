@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.nineleaps.yuva">
+  package="com.yuva">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -25,7 +27,7 @@
       </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.nineleaps.yuva.provider"
+            android:authorities="com.yuva.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -6,7 +6,7 @@ import { ENTER_PHONE_NUMBER,  FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN,
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useViewAllOurPlan } from './hooks/useViewAllOurPlan';
-import { BLACK } from '../../../../styles/colors';
+import { BLACK, DARK_GRAY } from '../../../../styles/colors';
 
 const ViewAllOurPlan = () => {
     const { onUpdate, packageList,errorState,onRequestCall,onChangeContact } = useViewAllOurPlan();
@@ -55,6 +55,7 @@ const ViewAllOurPlan = () => {
                     <View>
                         <TextInput
                             placeholder={ENTER_PHONE_NUMBER}
+                            placeholderTextColor={DARK_GRAY}
                             keyboardType="number-pad"
                             onChangeText={onChangeContact}
                             style={styles.textInputStyle}

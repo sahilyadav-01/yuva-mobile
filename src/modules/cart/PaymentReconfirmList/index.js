@@ -34,7 +34,7 @@ const PaymentReconfirmList = props => {
 
   return (
     <>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} />
+      <Header title={'Checkout'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true} />
       <ScrollView>
         <OrderDetails />
         <View style={styles.bodyContainer}>

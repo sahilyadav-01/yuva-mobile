@@ -14,5 +14,6 @@ export const styles = () => {
       lineHeight: 21,
       color: CYAN_BLUE,
     },
+    footerLoader: {alignSelf: CENTER},
   });
 };
