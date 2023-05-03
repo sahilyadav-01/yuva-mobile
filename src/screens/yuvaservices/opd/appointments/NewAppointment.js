@@ -6,7 +6,7 @@ import { styles } from '../../../styles';
 const NewAppointment = () => {
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.homeScreenContainer}>
       <NewAppointments />
     </SafeAreaView>
 

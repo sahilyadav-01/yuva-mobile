@@ -9,6 +9,7 @@ export const useCartAddressList = () => {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
+  const [epochTime, setEpochTime] = useState(null);
   const navigation = useNavigation();
   const { selectedAddress,addressListing} = useSelector(state => state.profile);
   const currentDate = new Date();
@@ -30,6 +31,12 @@ export const useCartAddressList = () => {
     setTime(arg);
   };
 
+  const handleDateTime = (arg) => {
+    console.log('Arg',arg);
+    if(arg?.status)
+    setEpochTime(arg?.value);
+  }
+
   const ConfirmAddress = () => {
 
     if (selectedAddress.address !== undefined) {
@@ -40,12 +47,8 @@ export const useCartAddressList = () => {
     }
   };
   const ConfirmDateAndTime = () => {
-    if (date > currentDate) {
-      dispatch(dispatch_scheduleData({ date, time }));
-      navigation.navigate(PAYMENT_PAGE_NAVIGATION);
-    }
-    else if (time > twoHoursCheck) {
-      dispatch(dispatch_scheduleData({ date, time }));
+    if(epochTime!==null) {
+      dispatch(dispatch_scheduleData(epochTime));
       navigation.navigate(PAYMENT_PAGE_NAVIGATION);
     }
     else {
@@ -60,6 +63,7 @@ export const useCartAddressList = () => {
     handleTime,
     date,
     time,
-    addressListing
+    addressListing,
+    handleDateTime
   };
 };

@@ -29,7 +29,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {newMessage, appointmentDescription} = useSelector(
     state => state.appointment,
   );
-  const {doctorId, name, specialization} = useSelector(
+  const {doctorId} = useSelector(
     state => state.appointment.appointment,
   );
   useEffect(()=>{

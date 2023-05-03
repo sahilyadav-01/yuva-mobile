@@ -1,46 +1,31 @@
 import React from 'react';
-import {View, Text, TextInput, ScrollView, Image, FlatList, TouchableOpacity} from 'react-native';
-import GoBackCross from '../../../../components/GoBackCross';
-import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
-import ActionButton from '../../../../components/ActionButton';
-import {useSelector} from 'react-redux';
+import {View, Text, TextInput, ScrollView, Image} from 'react-native';
+import SelectList from 'react-native-dropdown-select-list';
+import {useRoute} from '@react-navigation/native';
 import {styles} from './styles';
+import ActionButton from '../../../../components/ActionButton';
 import MessageBox from '../../../../components/MessageBox';
 import {useNew} from './hooks/useNew';
 import {BOOK_AN_APPOINTMENT} from '../../constant';
-import {CITRINE_WHITE, DARK_BLUE, GREEN, LIGHT_MERCURY, WHITE} from '../../../../styles/colors';
-import SelectList from 'react-native-dropdown-select-list';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
   BOOK_APPOINTMENT,
   CONTACT_NUMBER,
-  DATE,
   DESC,
   MESSAGE,
   MYSELF,
   PATIENT_CONTACT_NUMBER,
   SELECT_DATE_TIME,
-  SELECT_MEMBER,
-  SELECT_MEMBER_HERE,
-  TIME,
+  SELECT_MEMBER
 } from './constant';
-import {useRoute} from '@react-navigation/native';
-import {PNG, SVG} from '../../../../../assets';
-import { getDateInFormat, getDaysOfMonth, getSlots } from '../../../../utils/utils';
-import { BLACK_LIGHT_OPACITY } from '../../../../styles/colors';
-import { BLACK_OPACITY } from '../../../../styles/colors';
+import {PNG} from '../../../../../assets';
 import CustomDatePicker from '../../../../components/CustomDatePicker';
 
 const NewAppointments = () => {
-  const days = getDaysOfMonth();
-  console.log('Days',days);
   const route = useRoute();
   const {Doctor, Specialization, plan, userVersion, uuid, version} =
     route.params;
-  const {doctorId, name, specialization} = useSelector(
-    state => state.appointment.appointment,
-  );
 
   const {
     goBack,
@@ -57,7 +42,7 @@ const NewAppointments = () => {
     setSelected,
     dataRelation,
     selected,
-    handleDateTime
+    handleDateTime,
   } = useNew(plan, userVersion, uuid, version);
   return (
     <View>
@@ -85,32 +70,7 @@ const NewAppointments = () => {
           />
         </View>
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
-        <View style={styles.border}>
-          {/* <View style={styles.dateAndTime}>
-            <Text style={styles.dateTimeStyles}>{DATE}</Text>
-            <DateTimePicker
-              type="date"
-              value={date}
-              onChangeDate={handleDate}
-              style={styles.dateTimePicker}
-              selectionColor={LIGHT_MERCURY}
-              theme={styles.theme}
-              minimumDate={new Date()}
-            />
-          </View> */}
-          {/* <View style={styles.dateAndTime}>
-            <Text style={styles.dateTimeStyles}>{TIME}</Text>
-            <DateTimePicker
-              type="time"
-              value={time}
-              onChangeDate={handleTime}
-              style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
-              theme={styles.theme}
-            />
-          </View> */}
-        </View>
-        <CustomDatePicker onDateTimeSelect={handleDateTime}/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.borderSelect}>

@@ -100,6 +100,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
+    paddingVertical:8,
   },
   borderSelect: {
     marginLeft: '3%',

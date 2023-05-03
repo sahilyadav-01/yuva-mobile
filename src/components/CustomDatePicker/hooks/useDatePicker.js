@@ -2,13 +2,11 @@ import moment from 'moment';
 import {useEffect, useState} from 'react';
 import _ from 'lodash';
 
-export const useDatePicker = onDateTimeSelect => {
+export const useDatePicker = (onDateTimeSelect,OPD) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedDateObj, setSelectedDateObj] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [dates, setDates] = useState([]);
-  const [slots,setSlots] = useState([]);
 
   useEffect(() => {
     if (selectedTime === null)
@@ -34,13 +32,9 @@ export const useDatePicker = onDateTimeSelect => {
     }
   }, [selectedDateObj, selectedTime]);
 
-  useEffect(()=>{
-    setDates(_.uniqBy(getDaysOfMonth(),JSON.stringify));
-    setSlots(_.uniqBy(getSlots().filter(item => {
-      if (typeof item?.length === 'number') return item;
-    })),JSON.stringify);
+  useEffect(() => {
     setSelectedItem(null);
-  },[activeIndex])
+  }, [activeIndex]);
 
   const getDaysOfMonth = () => {
     let nextMonth = new Date().getMonth() + 1;
@@ -71,12 +65,17 @@ export const useDatePicker = onDateTimeSelect => {
     let gap = parseInt(moment().diff(dayEnd, 'hours')) * -1;
     gap = gap > 24 ? 24 : gap;
     let dayGap = selectedDateObj.getDate() - new Date().getDate();
-    for (let i = 1; i <= gap; i++) {
-      if(dayGap === 0) {
+    for (let i = dayGap === 0 ? 3 : 1; i <= gap; i++) {
+      if (dayGap === 0) {
         arr.push(`${moment().add(i, 'hours').format('h')}`);
-      }
-      else {
-        arr.push(`${moment().add(dayGap,'day').startOf('day').add(i, 'hours').format('h')}`);
+      } else {
+        arr.push(
+          `${moment()
+            .add(dayGap, 'day')
+            .startOf('day')
+            .add(i, 'hours')
+            .format('h')}`,
+        );
       }
     }
     arr.push('12');
@@ -102,8 +101,11 @@ export const useDatePicker = onDateTimeSelect => {
     });
     const eveningSlots = arr.filter((item, index) => {
       if (
-        (noonIndex === arr.length - 1 && parseInt(item) > 5) ||
-        (noonIndex < arr.length - 1 && parseInt(item) > 5 && index >= noonIndex)
+        ((noonIndex === arr.length - 1 && parseInt(item) > 5) ||
+          (noonIndex < arr.length - 1 &&
+            parseInt(item) > 5 &&
+            index > noonIndex)) &&
+        OPD
       )
         return item;
     });
@@ -117,8 +119,7 @@ export const useDatePicker = onDateTimeSelect => {
               to: morningSlots[index + 1],
               type: 'Morning',
             });
-          }
-          else if(index === morningSlots.length - 1) {
+          } else if (index === morningSlots.length - 1) {
             slots.push({
               from: '12',
               to: '1',
@@ -135,14 +136,13 @@ export const useDatePicker = onDateTimeSelect => {
             slots.push({
               from: afternoonSlots[index],
               to: afternoonSlots[index + 1],
-              type: 'Afternoon',
+              type: 'Afternoon Slot',
             });
-          }
-          else if(index === afternoonSlots.length - 1) {
+          } else if (index === afternoonSlots.length - 1) {
             slots.push({
               from: '5',
               to: '6',
-              type: 'Afternoon',
+              type: 'Afternoon Slot',
             });
           }
         });
@@ -155,7 +155,7 @@ export const useDatePicker = onDateTimeSelect => {
             slots.push({
               from: eveningSlots[index],
               to: eveningSlots[index + 1],
-              type: 'Evening',
+              type: 'Evening Slot',
             });
           }
         });
@@ -184,7 +184,5 @@ export const useDatePicker = onDateTimeSelect => {
     onTimeSlotPress,
     activeIndex,
     selectedItem,
-    dates,
-    slots
   };
 };

@@ -6,17 +6,15 @@ import DateItem from './DateItem';
 import Slots from './Slots';
 
 function CustomDatePicker(props) {
-  const {onDateTimeSelect} = props;
+  const {onDateTimeSelect, OPD} = props;
   const {
     getSlots,
     getDaysOfMonth,
     onSelectDay,
     onTimeSlotPress,
     activeIndex,
-    selectedItem,
-    dates,
-    slots
-  } = useDatePicker(onDateTimeSelect);
+    selectedItem
+  } = useDatePicker(onDateTimeSelect, OPD);
   const style = styles();
   const RenderDateItem = ({item, index}) => (
     <DateItem
@@ -47,7 +45,6 @@ function CustomDatePicker(props) {
         horizontal={true}
         keyExtractor={(item, index) => index}
         data={getDaysOfMonth()}
-        // data={dates}
         renderItem={RenderDateItem}
       />
       <View style={style.separatorContainer}/>
@@ -57,7 +54,6 @@ function CustomDatePicker(props) {
         data={getSlots().filter(item => {
           if (typeof item?.length === 'number') return item;
         })}
-        // data={slots}
         renderItem={RenderSlots}
       />
     </>

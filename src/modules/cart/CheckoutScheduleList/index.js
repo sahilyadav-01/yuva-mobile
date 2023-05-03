@@ -5,11 +5,11 @@ import Header from '../../../components/Header';
 import OrderDetails from '../../../components/OrderDetails';
 import ProgressBar from '../../../components/ProgressBar';
 import {styles} from './styles';
-import DateAndTime from '../../../components/DateAndTime';
+import CustomDatePicker from '../../../components/CustomDatePicker';
 import FinalAddress from '../../../components/FinalAddress';
 import {CONFIRM_DATE_TIME} from './constant';
 const CheckoutScheduleList = () => {
-  const {ConfirmDateAndTime, handleDate, handleTime, date, time} = useCartAddressList();
+  const {ConfirmDateAndTime, handleDateTime} = useCartAddressList();
 
   return (
     <>
@@ -19,12 +19,8 @@ const CheckoutScheduleList = () => {
         <View style={styles.bodyContainer}>
           <ProgressBar progress="0.65" showDateTimeSection={true} />
         </View>
-        <DateAndTime
-          handleDate={handleDate}
-          handleTime={handleTime}
-          date={date}
-          time={time}
-        />
+        <View style={styles.separator}/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={false}/>
         <FinalAddress />
         <TouchableOpacity
           onPress={ConfirmDateAndTime}

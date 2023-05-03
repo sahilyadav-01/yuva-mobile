@@ -18,6 +18,7 @@ import {
   SELECT_MEMBER,
   TIME,
 } from './constant';
+import CustomDatePicker from '../../../../components/CustomDatePicker';
 
 const EditAppointments = () => {
   const {
@@ -34,6 +35,7 @@ const EditAppointments = () => {
     Doctor,
     Specialization,
     Description,
+    handleDateTime
   } = useEdit();
   return (
     <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
@@ -58,33 +60,7 @@ const EditAppointments = () => {
         </View>
 
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
-        <View style={styles.border}>
-          <View style={styles.dateAndTime}>
-            <Text style={styles.dateTimeStyles}>{DATE}</Text>
-            <DateTimePicker
-              type="date"
-              value={date}
-              onChangeDate={handleDate}
-              style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
-              theme={styles.theme}
-              minimumDate={new Date()}
-            />
-          </View>
-
-          <View style={styles.dateAndTime}>
-            <Text tyle={styles.dateTimeStyles}>{TIME}</Text>
-            <DateTimePicker
-              type="time"
-              value={time}
-              onChangeDate={handleTime}
-              style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
-              theme={styles.theme}
-            />
-          </View>
-        </View>
-
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.border} pointerEvents="none">
