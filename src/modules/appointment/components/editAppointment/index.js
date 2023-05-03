@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView, TextInput, Image} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import {useEdit} from './hooks/useEdit';
 import SelectList from 'react-native-dropdown-select-list';
 import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
-import {DARK_BLUE, DARK_GRAY, ORANGE} from '../../../../styles/colors';
+import {DARK_GRAY, ORANGE} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -23,13 +22,8 @@ import CustomDatePicker from '../../../../components/CustomDatePicker';
 const EditAppointments = () => {
   const {
     saveAppointment,
-    handleDate,
-    handleTime,
-    date,
     setSelected,
     dataRelation,
-    onChaneNumber,
-    time,
     getAppointment,
     memberName,
     Doctor,
