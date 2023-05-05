@@ -35,8 +35,8 @@ export const useBookingConfirm = () => {
         dispatch(getUserAddress())
     }, [])
     useEffect(() => {
-        if (relationId?.relativeResponseDto?.length > 0) {
-            let newArray = relationId?.relativeResponseDto?.map((item) => {
+        if (relationId?.length > 0) {
+            let newArray = relationId?.map((item) => {
                 return { key: item.id, value: item.name + "  -  " + item.relation + "  (" + item.age + ")" }
             }
             )
