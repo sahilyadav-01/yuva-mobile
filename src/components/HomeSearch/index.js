@@ -11,9 +11,12 @@ import { styles } from './styles';
 
 const HomeSearch = () => {
     const renderItem4 = ({ item }) => {
+        const navigate=()=>{
+            onNavigate(item)
+        }
         return <View style={styles.textList}>
             <TouchableOpacity
-                onPress={()=>{onNavigate(item)}}
+                onPress={navigate}
                 style={styles.touchableOpactiy}
             ><Text style={styles.textColor}>{item?.name}</Text>
                 <Text style={styles.textColorEnum}>{item?.productTypeEnum}</Text>
