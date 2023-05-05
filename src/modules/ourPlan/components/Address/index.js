@@ -13,7 +13,7 @@ const OurPlanAddress = () => {
 
     return (
         <View>
-            <Header showBackButton={true} title={CHECKOUT} />
+            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <View style={styles.progressBar}>
                     <ProgressBar progress={0} />

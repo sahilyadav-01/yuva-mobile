@@ -18,6 +18,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const [time, setTime] = useState(new Date());
   const [selected, setSelected] = useState('');
   const [dataRelation, setDataRelation] = useState();
+  const [epochTime, setEpochTime] = useState(null);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {newMessage, appointmentDescription} = useSelector(
     state => state.appointment,
   );
-  const {doctorId, name, specialization} = useSelector(
+  const {doctorId} = useSelector(
     state => state.appointment.appointment,
   );
   useEffect(()=>{
@@ -54,6 +55,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
     return () => dispatch(resetMessage());
   }, [newMessage, appointmentDescription]);
   const newAppointment = () => {
+    if(typeof epochTime === 'string')
     dispatch(
       newAppointmentThunk({
         alternateContactNumber,
@@ -62,11 +64,14 @@ export const useNew = (plan, userVersion, uuid, version) => {
         plan,
         programOrPlanUuid: uuid,
         selected,
-        epoch: getEpoch(date, time),
+        epoch: epochTime,
         userPlanVersion: userVersion,
         version: version,
       }),
     );
+    else {
+      Alert.alert('Alert','Please select a time slot')
+    }
   };
   const onChangeDescription = txt => {
     setDesciption(txt);
@@ -89,6 +94,11 @@ export const useNew = (plan, userVersion, uuid, version) => {
     setTime(time);
     getEpoch(date, time);
   };
+
+  const handleDateTime = (arg) => {
+    if(arg?.status)
+    setEpochTime(arg?.value);
+  }
   useEffect(() => {
     dispatch(getRelations());
   }, []);
@@ -128,5 +138,6 @@ export const useNew = (plan, userVersion, uuid, version) => {
     selected,
     setSelected,
     dataRelation,
+    handleDateTime
   };
 };

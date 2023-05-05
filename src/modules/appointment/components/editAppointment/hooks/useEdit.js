@@ -23,6 +23,7 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const [alternateContactNumber, setAlternateContactNumber] =
     useState(patientNumber);
   const [navAppointment, setNavAppoinment] = useState(false);
+  const [epochTime, setEpochTime] = useState(null);
   const route = useRoute();
   const {
     Doctor,
@@ -61,7 +62,7 @@ useEffect(()=>{
   const saveAppointment = () => {
     dispatch(
       rescheduleAppointmentThunk({
-        timeSlot: getEpoch(date, time),
+        timeSlot: epochTime,
         id,
         doctorId,
         plan,
@@ -114,6 +115,11 @@ useEffect(()=>{
   const handleTime = time => {
     setTime(time);
   };
+
+  const handleDateTime = (arg) => {
+    if(arg?.status)
+    setEpochTime(arg?.value);
+  }
   return {
     goBack,
     saveAppointment,
@@ -132,6 +138,6 @@ useEffect(()=>{
     Doctor,
     Specialization,
     Description,
-   
+    handleDateTime
   };
 };

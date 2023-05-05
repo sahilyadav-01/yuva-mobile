@@ -3,6 +3,7 @@ import {
   PLATINUM,
   WHITE,
   BLACK,
+  ORANGE,
   CYAN_BLUE,
   LIGHT_GREYISH_RED,
   LIGHT_MERCURY,
@@ -22,8 +23,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 13,
   },
   boxStyles: {
-    marginLeft: '3%',
-    marginRight: '3%',
+    marginHorizontal:12,
     borderColor: LIGHT_MERCURY,
     color: LIGHT_GREYISH_RED,
     backgroundColor: LIGHT_GREYISH_RED,
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     alignSelf: CENTER,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-    color: CYAN_BLUE,
+    color: ORANGE,
   },
   ContentHeading: {
     marginTop: '5%',
@@ -100,6 +100,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
+    paddingVertical:8,
   },
   borderSelect: {
     marginLeft: '3%',

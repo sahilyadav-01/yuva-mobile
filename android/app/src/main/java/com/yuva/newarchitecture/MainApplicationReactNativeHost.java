@@ -1,4 +1,4 @@
-package com.nineleaps.yuva.newarchitecture;
+package com.yuva.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.nineleaps.yuva.BuildConfig;
-import com.nineleaps.yuva.newarchitecture.components.MainComponentsRegistry;
-import com.nineleaps.yuva.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.yuva.BuildConfig;
+import com.yuva.newarchitecture.components.MainComponentsRegistry;
+import com.yuva.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

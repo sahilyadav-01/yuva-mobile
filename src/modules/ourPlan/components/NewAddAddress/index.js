@@ -9,7 +9,7 @@ const NewAddress = () => {
 
     return (
         <View>
-            <Header showBackButton={true} title={CHECK_OUT} />
+            <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={true} />
             <ScrollView
                 nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>
