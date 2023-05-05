@@ -122,6 +122,7 @@ import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
+import NurseComponent from './Nurse'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -248,7 +249,8 @@ const SVG = {
   CheckUpIcon,
   ExpandArrow,
   Reorder,
-  Lock
+  Lock,
+  NurseComponent:NurseComponent,
 };
 
 const BASE_64 = {DoctorsImage}
