@@ -79,7 +79,7 @@ export const useHeader = (props) => {
     count,
     hideMenu: hideMenu ?? false,
     placeholder,
-    isScreen
+    isScreen,
     showCart,
 
   };
