@@ -18,7 +18,7 @@ const Search = (props) => {
         placeholderTextColor={PALE_ORANGE}
         style={styles.textInputStyles}
         value={value}
-        onFocus={() => {
+        onPressIn={() => {
           if (isScreen) {
             navigation.navigate('HomeSearch')
           }
