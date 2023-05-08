@@ -82,7 +82,7 @@ const HomeSearch = () => {
     const { onNavigate, data, onChangeContact, errorState, onRequestCall, onChangeSearch, filteredData, testPackageSearch } = useHomeSearch();
     return (
         <View>
-            <Header title={SEARCH} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_TEST_PACKAGE} onSearch={onChangeSearch} />
+            <Header title={SEARCH} hideMenu={false} showCart={true} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_TEST_PACKAGE} onSearch={onChangeSearch} />
             {filteredData.length > 2 &&
                 <View style={styles.dropDown}>
                     <FlatList
