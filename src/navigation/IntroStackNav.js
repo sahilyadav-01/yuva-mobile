@@ -13,6 +13,8 @@ import MyPrescription from '../screens/MyPrescriptionScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import PaymentNavigation from './PaymentNav';
 import PurchaseNav from './PurchaseNav';
+import HomeSearch from '../components/HomeSearch';
+import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +46,16 @@ const IntroStackNav = () => {
         name="HomeScreen"
         component={DrawerNav}
         options={{headerShown: false}}
+      />
+         <Stack.Screen
+        name="HomeSearch"
+        component={HomeSearch}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="BookingTestAndPackage"
+        component={BookingTestAndPackageScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="IntroScreen"

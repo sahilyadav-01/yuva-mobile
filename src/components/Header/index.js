@@ -27,7 +27,9 @@ const Header = (props) => {
     count,
     hideMenu,
     placeholder,
+    isScreen,
     showCart,
+
   } = useHeader(props);
   return (
     <View style={styles.headerContainer}>
@@ -86,6 +88,7 @@ const Header = (props) => {
             placeholderTextColor={DARK_GRAY}
             onChangeText={onChangeSearch} 
             value={query}
+            isScreen={isScreen}
           />
         }
       </View>

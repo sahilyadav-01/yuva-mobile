@@ -123,6 +123,7 @@ import {DoctorsImage} from './DoctorsImage';
 import Calender from './Calender';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
+import NurseComponent from './Nurse'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -249,8 +250,10 @@ const SVG = {
   CheckUpIcon,
   ExpandArrow,
   Reorder,
+  Lock,
+  NurseComponent:NurseComponent,
   Calender,
-  Lock
+
 };
 
 const BASE_64 = {DoctorsImage}

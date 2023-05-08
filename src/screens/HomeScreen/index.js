@@ -71,7 +71,7 @@ const HomeScreen = ({ navigation }) => {
   if (appointmentLoading || servicesLoading) return null;
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
-      <Header showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER} />
+      <Header showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER} isScreen={true} />
       <ScrollView
         nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}
