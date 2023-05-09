@@ -59,7 +59,7 @@ const Cart = props => {
   } = coupon || {};
   return (
     <>
-      <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
+      <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={false}/>
       <ScrollView style={styles.container}>
         <DependentsModal
           visible={modalVisible}
