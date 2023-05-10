@@ -51,6 +51,8 @@ export const styles = () => {
     separatorContainer: {
       backgroundColor: WHITE,
       height:8
-    }
+    },
+    rowContainer: {flexDirection: ROW},
+    slotTextExtraStyles: {marginBottom:16,marginRight:13}
   });
 };
