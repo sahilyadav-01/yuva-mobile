@@ -19,7 +19,7 @@ const Cart = props => {
   const { totalCost: appliedTotalCost, amountToBePaid: appliedAmountToBePaid, totalDiscount: appliedTotalDiscount, couponDiscount } = coupon || {};
   return (
     <>
-      <Header title={MY_CART} showSearch={false} showBackButton={true} />
+      <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={false} />
       <ScrollView style={styles.container}>
         <DependentsModal
           visible={modalVisible}
