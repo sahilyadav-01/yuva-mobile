@@ -27,6 +27,7 @@ const Header = (props) => {
     count,
     hideMenu,
     placeholder,
+    showCart,
   } = useHeader(props);
   return (
     <View style={styles.headerContainer}>
@@ -46,14 +47,14 @@ const Header = (props) => {
            />
          </View>
         <View style={styles.rightView}>
-          <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
-            { showCount && 
+        { showCart===undefined && <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
+            {showCount &&
               <View style={styles.badgeView}>
                 <Text style={styles.badgeText}>{count}</Text>
               </View>
             }
             <SVG.ShoppingCart />
-          </TouchableOpacity>
+          </TouchableOpacity>}
           <TouchableOpacity style={styles.rightIcon} onPress={onRightPress}>
             {isLoggedIn && !hideMenu ?
               <SVG.MenuIcon /> : isLoggedIn && hideMenu ? null
