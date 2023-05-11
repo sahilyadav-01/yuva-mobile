@@ -9,6 +9,7 @@ import {
 import {getEpoch} from '../../../../../utils/utils';
 import {Alert} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import { ALERT, SELECT_DATE_TIME } from '../constant';
 export const useEdit = (plan, userVersion, uuid, version) => {
   const {id} = useSelector(state => state.appointment.currentAppointment);
   const {rescheduleAppointment, errorAppointment} = useSelector(
@@ -60,6 +61,10 @@ useEffect(()=>{
   const {doctorId, name, specialization} = appointment;
   const {relationId} = useSelector(state => state.profile);
   const saveAppointment = () => {
+    if(epochTime === null){
+      Alert.alert(ALERT,SELECT_DATE_TIME)
+    }
+    else {
     dispatch(
       rescheduleAppointmentThunk({
         timeSlot: epochTime,
@@ -70,6 +75,7 @@ useEffect(()=>{
         selected,
       }),
     );
+    }
   };
   useEffect(() => {
     if (rescheduleAppointment?.message) {

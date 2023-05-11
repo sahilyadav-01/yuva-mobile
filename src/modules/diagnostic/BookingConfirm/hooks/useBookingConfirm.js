@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../../../store/reducers/DiagnosticsSlice';
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
 import { useNavigation } from '@react-navigation/core'
-import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
+import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, SELECT_DATE, UPDATEDBOOKED } from '../constants';
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
@@ -76,7 +76,10 @@ export const useBookingConfirm = () => {
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
-        if (packageDetails && address && Object.keys(address).length !== 0) {
+        if(epochTime === null) {
+            Alert.alert(ALERT, SELECT_DATE);
+        }
+        else if (packageDetails && address && Object.keys(address).length !== 0) {
             dispatch(bookTestThunk({ data }))
         } else {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);

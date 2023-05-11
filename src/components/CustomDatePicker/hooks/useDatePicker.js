@@ -1,6 +1,7 @@
 import moment from 'moment';
 import {useEffect, useState} from 'react';
 import _ from 'lodash';
+import { SVG } from '../../../../assets';
 
 export const useDatePicker = (onDateTimeSelect,OPD) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -117,13 +118,15 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
             slots.push({
               from: morningSlots[index],
               to: morningSlots[index + 1],
-              type: 'Morning',
+              type: 'Morning (AM)',
+              Icon: () => null
             });
           } else if (index === morningSlots.length - 1) {
             slots.push({
               from: '12',
               to: '1',
-              type: 'Morning',
+              type: 'Morning (AM)',
+              Icon: () => null,
             });
           }
         });
@@ -136,13 +139,15 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
             slots.push({
               from: afternoonSlots[index],
               to: afternoonSlots[index + 1],
-              type: 'Afternoon Slot',
+              type: 'Afternoon Slot (PM)',
+              Icon: SVG.AfternoonSlot,
             });
           } else if (index === afternoonSlots.length - 1) {
             slots.push({
               from: '5',
               to: '6',
-              type: 'Afternoon Slot',
+              type: 'Afternoon Slot (PM)',
+              Icon: SVG.AfternoonSlot,
             });
           }
         });
@@ -155,7 +160,8 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
             slots.push({
               from: eveningSlots[index],
               to: eveningSlots[index + 1],
-              type: 'Evening Slot',
+              type: 'Evening Slot (PM)',
+              Icon: SVG.EveningSlot,
             });
           }
         });
