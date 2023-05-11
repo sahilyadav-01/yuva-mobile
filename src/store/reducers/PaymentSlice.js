@@ -60,6 +60,7 @@ const initialState = {
   paymentStatusLoading: false,
   paymentError: false,
   paymentStatus: null,
+  order:null,
 };
 
 const paymentSlice = createSlice({
@@ -86,6 +87,7 @@ const paymentSlice = createSlice({
     },
     [createOrderThunk.fulfilled]: (state, {payload}) => {
       state.orderId = payload.data.id;
+      state.order=payload?.data;
       state.createOrderLoading = false;
       state.createOrderError = false;
     },
