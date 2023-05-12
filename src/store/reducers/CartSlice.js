@@ -97,6 +97,7 @@ const initialState = {
   addToCartLoad: false,
   termsAndCondtionChecked:false,
   cartCouponDiscount:0,
+  addToCartItem: false,
 };
 
 const cartSlice = createSlice({
@@ -124,7 +125,8 @@ const cartSlice = createSlice({
         isRemoved: false,
       };
     },
-    [getCartUserThunk.fulfilled]: (state, {payload}) => {
+    [getCartUserThunk.fulfilled]: (state, {payload}) => {   
+      console.log("lllll",payload?.data?.data?.couponCode);
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
@@ -163,6 +165,7 @@ const cartSlice = createSlice({
       };
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
+      console.log('lolol ',payload)
       state.cart.itemDtoList = payload?.data?.data?.itemDtoList || [];
       state.cart.totalCost = payload?.data?.data?.totalCost || 0;
       state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;
@@ -194,6 +197,43 @@ const cartSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = payload?.response?.data?.errorMessage;
       state.loading = false;
+    },
+    [createCartUserThunk.pending]: state => {
+      state.loading = true;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.addToCartItem = false;
+    },
+    [createCartUserThunk.fulfilled]: (state, {payload}) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.addToCartItem = true;
+    },
+    [createCartUserThunk.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
+      state.addToCartItem = false;
+    },
+    [createCartGuestThunk.pending]: state => {
+      state.loading = true;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.addToCartItem = false;
+    },
+    [createCartGuestThunk.fulfilled]: (state, {payload}) => {
+      
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.addToCartItem = true;
+    },
+    [createCartGuestThunk.rejected]: (state, {payload}) => {
+      state.apiError = true;
+      state.apiErrorMessage = payload.data.message;
+      state.loading = false;
+      state.addToCartItem = false;
     },
     [deleteCartThunk.pending]: state => {
       state.loading = true;

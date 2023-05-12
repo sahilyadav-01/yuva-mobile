@@ -80,7 +80,7 @@ const initialState = {
   redeemCoupons: '',
   couponView: null,
   totalCost: 0,
-  amountToBePaid: 0,
+  amountToBePaidCoupon: 0,
   totalDiscount: 0,
   couponMessage: false,
   selectedCouponCode: '',
@@ -132,7 +132,7 @@ const couponSlice = createSlice({
       state.loading = true;
       state.couponView = null;
       state.totalCost = 0;
-      state.amountToBePaid = 0;
+      state.amountToBePaidCoupon = 0;
       state.totalDiscount = 0;
       state.couponMessage = false;
       state.apiErrorMessage = '';
@@ -141,9 +141,8 @@ const couponSlice = createSlice({
     [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.apiErrorMessage = '';
-      state.redeemCoupons = action?.payload?.message || '';
       state.totalCost = action?.payload?.data?.totalCost || 0;
-      state.amountToBePaid = action?.payload?.data?.amountToBePaid || 0;
+      state.amountToBePaidCoupon = action?.payload?.data?.amountToBePaid || 0;
       state.totalDiscount = action?.payload?.data?.totalDiscount || 0;
       state.couponMessage = true;
       state.couponView = action?.payload?.data?.couponCode || null;

@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk } from '../../../store/reducers/CouponSlice';
 
 export const useCouponCard = (isPlan ,planUuid,planType) => {
     const [couponCode, setCouponCode] = useState('');
+    const [alertCheck, setAlertCheck] = useState(false);
+
     const dispatch = useDispatch();
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
-    const { coupon, couponView, planeCouponCode } = useSelector(state => state.coupon);
+    const { coupon, couponView, planeCouponCode, redeemCoupons } = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
+
+  const {  couponViewCart} = cart || {};
+  console.log('couponViewCart',couponViewCart);
+  console.log('couponView',couponView);
+
     const onCouponValue = (value) => {
 
         setCouponCode(value)
     }
-    const [couponName, setCouponName] = useState('');
     const onApply = () => {
+
         if (isPlan) {
             dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
           } else {
@@ -26,7 +34,24 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
           } else {
             dispatch(getCartGuestThunk());
           }
+       
+          setAlertCheck(true) 
     }
+ 
+    useEffect(() => {
+        if(couponViewCart || couponView){
+
+             Alert.alert('ALERT', 'Applied Successfully');
+          setAlertCheck(false) ;
+
+          }
+          else if(couponViewCart==null && alertCheck)
+        {
+             Alert.alert('ALERT', redeemCoupons);
+          }
+    }, [couponView, couponViewCart]);
+        
+
     useEffect(() => {
         if(isPlan){
             if (isLoggedIn) {
@@ -46,8 +71,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     }, []);
 
     return {
-        couponName,
-        setCouponName,
         coupon,
         couponView,
         onApply,
