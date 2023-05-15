@@ -126,7 +126,6 @@ const cartSlice = createSlice({
       };
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {   
-      console.log("lllll",payload?.data?.data?.couponCode);
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
       state.cart.totalCost= payload?.data?.data?.totalCost || 0
       state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
@@ -165,7 +164,6 @@ const cartSlice = createSlice({
       };
     },
     [getCartGuestThunk.fulfilled]: (state, {payload}) => {
-      console.log('lolol ',payload)
       state.cart.itemDtoList = payload?.data?.data?.itemDtoList || [];
       state.cart.totalCost = payload?.data?.data?.totalCost || 0;
       state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;

@@ -106,6 +106,12 @@ const couponSlice = createSlice({
     selectedPlaneCouponCode(state, payload) {
       state.planeCouponCode = payload?.payload?.couponCode;
     },
+    removePlaneCoupon(state) {
+      state.planeCouponCode = null;
+    },
+    clearApiErrorMessage(state, payload) {
+      state.apiErrorMessage = payload?.payload;
+    },
   },
   extraReducers: {
     /**
@@ -119,7 +125,6 @@ const couponSlice = createSlice({
     [couponSliceThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.coupon = action.payload?.data?.userCouponResponseDtoList || [];
-      state.apiErrorMessage = '';
     },
     [couponSliceThunk.rejected]: (state, action) => {
       state.apiError = true;
@@ -154,7 +159,7 @@ const couponSlice = createSlice({
       state.apiError = true;
       state.couponMessage = true;
       state.couponView = null;
-      state.apiErrorMessage = action?.payload?.message;
+      state.apiErrorMessage = action?.payload?.errorMessage;
     },
      /** redeemCoupons For Plane*/
      [redeemCouponsPlanSliceThunk.pending]: (state, { payload }) => {
@@ -172,12 +177,12 @@ const couponSlice = createSlice({
     [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-      state.apiErrorMessage = action?.payload?.message;
+      state.apiErrorMessage = action?.payload?.errorMessage;
     },
 
   },
 });
 
 export const { couponInit } = couponSlice.getInitialState();
-export const { coupon, removeCoupon, selectedCoupon, selectedPlaneCouponCode } = couponSlice.actions;
+export const { coupon, removeCoupon, selectedCoupon, selectedPlaneCouponCode, removePlaneCoupon, clearApiErrorMessage } = couponSlice.actions;
 export default couponSlice.reducer;

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { profileThunk } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
-import { redeemCouponsSliceThunk, removeCoupon } from '../../../store/reducers/CouponSlice';
+import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
@@ -106,6 +106,8 @@ export const useCart = (args) => {
       setStartConsultation(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      dispatch(removePlaneCoupon());
+      dispatch(clearApiErrorMessage(''));
     }
   }, [focused]);
   useEffect(() => {
