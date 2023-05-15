@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {Alert} from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { removeCouponCart } from "../../../../../store/reducers/CartSlice";
-import { redeemCouponsSliceThunk, removeCoupon } from "../../../../../store/reducers/CouponSlice";
+import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon } from "../../../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
@@ -74,6 +74,7 @@ export const useCheckout = () => {
             dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
             dispatch(removeCoupon());
             dispatch(removeCouponCart());
+            dispatch(clearApiErrorMessage(''));
         }
       }, []);
     return {
