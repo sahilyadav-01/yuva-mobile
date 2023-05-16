@@ -36,7 +36,10 @@ const Slots = props => {
     <View style={style.timeContainer}>
       {item?.length > 0 && 
       <>
-      <Text style={{...style.slotText,marginBottom:16}}>{item[0]?.type}</Text>
+      <View style={style.rowContainer}>
+      <Text style={[style.slotText,style.slotTextExtraStyles]}>{item[0]?.type}</Text>
+      {item[0]?.Icon()}
+      </View>
       <View style={style.itemContainer}>
         <FlatList
           numColumns={2}

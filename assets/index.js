@@ -124,6 +124,8 @@ import Calender from './Calender';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
 import NurseComponent from './Nurse'
+import AfternoonSlot from './AfternoonSlot';
+import EveningSlot from './EveningSlot';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -253,7 +255,8 @@ const SVG = {
   Lock,
   NurseComponent:NurseComponent,
   Calender,
-
+  AfternoonSlot,
+  EveningSlot
 };
 
 const BASE_64 = {DoctorsImage}
