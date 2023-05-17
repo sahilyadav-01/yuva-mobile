@@ -49,7 +49,10 @@ export const usePayment = paymentProps => {
       );
     }
     else if (createOrder && !createOrderLoading && orderId && order?.amountZero){
-      navigation.navigate("HomeService");
+      navigation.navigate('Payment', {
+        screen: 'PaymentStatus',
+        params: {zeroPayment:true},
+      });
     }
   }, [createOrderLoading, orderId, createOrder]);
 

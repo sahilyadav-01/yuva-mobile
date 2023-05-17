@@ -120,6 +120,8 @@ import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
+import PaymentSuccessful from './success_payment.png'
+import PaymentFail from './failed_payment.png'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -183,7 +185,9 @@ const PNG = {
   ambulance,
   PharmacyDiscount,
   insuranceClaim,
-  dot
+  dot,
+  PaymentSuccessful,
+  PaymentFail
 };
 
 const SVG = {
