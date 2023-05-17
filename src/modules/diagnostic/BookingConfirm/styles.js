@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
         backgroundColor: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
-        marginBottom: 23
+        marginBottom: 23,
+        color: CYAN_BLUE,
     },
     contentContainerStyle: {
         flexGrow: 1,

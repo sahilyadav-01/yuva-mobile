@@ -71,8 +71,9 @@ const UserDetails = ({
             search={false}
             data={data}
             placeholder={gender ?? SELECT_GENDER}
+            placeholderTextColor={DARK_GRAY}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            inputStyles={{color: DARK_BLUE} }
             dropdownTextStyles={{color:DARK_GRAY}}
           />
           <View style={separatorStyle} />

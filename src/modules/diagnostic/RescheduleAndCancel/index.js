@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
-const RescheduleAndCancel = () => {
+const RescheduleAndCancel = ({params}) => {  
     const cancelMessage = ARE_YOU_SURE;
     const textStyle = (status) => {
         switch (status) {
@@ -110,7 +110,7 @@ const RescheduleAndCancel = () => {
                         />}
                 </View>
                 {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED' || reschedule?.bookingStatus==='CANCELLED') &&
-                <View style={styles.buttonView}>
+                <View style={params?.cannotCancel ? styles.updatedButtonView : styles.buttonView} >
                     <AppointmentButton
                      extraStyles={styles.button}
                      textStyles={styles.buttonTextStyle}
@@ -119,13 +119,14 @@ const RescheduleAndCancel = () => {
                         action={rescheduleBooking}
                         reschedule={true}
                     />
+                    {!params?.cannotCancel &&
                     <AppointmentButton
                     extraStyles={styles.button}
                     textStyles={styles.buttonTextStyle}
                         name={CANCEL}
                         color={RED_SHADE}
                         action={cancelBookingButton}
-                    />
+                    />}
                 </View>}
                 <View>
                     <MessageBox

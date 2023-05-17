@@ -13,6 +13,12 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     marginHorizontal: '4%',
     justifyContent: SPACE_BETWEEN,
+    alignItems:CENTER,
+  },
+  updatedButtonView:{
+    marginHorizontal: '4%',
+    justifyContent: SPACE_BETWEEN,
+    alignItems:CENTER,
   },
   buttonTextStyle: {
     color: WHITE,

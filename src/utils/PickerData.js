@@ -54,7 +54,7 @@ PickerData["pickeralcohol4"]=[
     {key:'3',value:'occasionally'}, 
 ]
 PickerData["pickeryesnomedication"] = [
-    {key:'1',value:'Yes'}, 
+    {key:'2',value:'Yes'}, 
     {key:'1',value:'Yes on Medication'},
     {key:'0',value:'No'}, 
 ]
