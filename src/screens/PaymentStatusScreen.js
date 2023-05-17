@@ -10,6 +10,7 @@ const PaymentStatusScreen = props => {
         paymentProps={{
           token: props?.route?.params?.token ?? '',
           email: props?.route?.params?.email ?? '',
+          zeroPayment: props?.route?.params?.zeroPayment ?? false,
         }}
       />
     </SafeAreaView>
