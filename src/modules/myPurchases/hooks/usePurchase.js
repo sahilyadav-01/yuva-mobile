@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import _ from 'lodash';
 import {getPlans, getPurchases} from '../../../store/reducers/PurchasesSlice';
+import { BackHandler } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export const usePurchase = plan => {
   const {purchasesTab, plans, plansError, purchases, purchasesError} =
@@ -13,6 +15,11 @@ export const usePurchase = plan => {
   const [loading, setLoading] = useState(true);
   const [purchasesLoader, setPurchasesLoader] = useState(true);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  useEffect(()=>{
+    BackHandler.addEventListener('hardwareBackPress',()=>navigation.goBack());
+    return () => BackHandler.removeEventListener('hardwareBackPress',()=>{});
+  },[])
   useEffect(() => {
     if (purchasesTab === 0 && plansPageNo === 1 && plan) {
       dispatch(getPlans({pageNo: plansPageNo, pageSize: 3, orderStatus: ''}));
