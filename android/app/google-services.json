@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608257465220",
+    "project_id": "yuva-369010",
+    "storage_bucket": "yuva-369010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608257465220:android:27a0471eeb50a37e781bd1",
+        "android_client_info": {
+          "package_name": "com.yuva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608257465220-96bmqtdmd6c79pgh92tbd297n7flf0id.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ5rat--SeLXDvtOLhbMIN7GLgYnsV6Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608257465220-96bmqtdmd6c79pgh92tbd297n7flf0id.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
