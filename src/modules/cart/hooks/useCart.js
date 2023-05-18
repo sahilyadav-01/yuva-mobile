@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
   createCartUserThunk,
+  removeCouponCart,
 } from '../../../store/reducers/CartSlice';
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
@@ -10,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
+import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
@@ -17,12 +19,12 @@ export const useCart = (args) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { cart,loading } = useSelector(state => state.cart);
+  const { cart, loading, addToCartItem } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved, amountToBePaid, processingCharge} = cart || {};
+  const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
-  const { redeemCoupons, couponView } = useSelector(state => state.coupon);
+  const { redeemCoupons, couponView, amountToBePaidCoupon } = useSelector(state => state.coupon);
   const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -33,8 +35,15 @@ export const useCart = (args) => {
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
   const [relationsModalVisible, setRelationsModalVisible] = useState(false);
-  const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
-  const buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
+  const { userDetails, relations, activeRelations, relationAdded } = useSelector(state => state.profile);
+  
+  let buttonText='';
+  if(amountToBePaidCoupon===0){
+     buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
+  }
+  else{
+     buttonText = userData !== null ? TO_BE_PAID(amountToBePaidCoupon) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
+  }
   const relationsData = [
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
@@ -126,6 +135,8 @@ export const useCart = (args) => {
       setCheckBoxPress(0);
       setActiveIndex(null);
       route?.name === 'Cart' ? dispatch(resetRelations()) : null;
+      dispatch(removePlaneCoupon());
+      dispatch(clearApiErrorMessage(''));
     }
   }, [focused]);
   useEffect(() => {
@@ -188,6 +199,13 @@ export const useCart = (args) => {
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
+  useEffect(() => {
+    if((couponViewCart || couponView) && (isRemoved || addToCartItem)){
+    dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
+    dispatch(removeCoupon());
+    dispatch(removeCouponCart());
+  }
+  }, [isRemoved,addToCartItem]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());

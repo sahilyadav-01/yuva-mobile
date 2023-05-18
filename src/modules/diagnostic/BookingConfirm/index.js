@@ -74,7 +74,7 @@ const BookingConfirm = () => {
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>)}
-                        <AddressList isNavScreen={{BOOKINGCONFIRM,booked:bookedDetails}}/>
+                        <AddressList isNavScreen={BOOKINGCONFIRM}/>
                     </View>
                     <View>
                         {!bookedDetails && addressListing?.length>0 ? (

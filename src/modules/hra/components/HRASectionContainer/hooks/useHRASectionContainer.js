@@ -1,6 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-import { Alert } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   resetHRA,
@@ -29,6 +29,14 @@ export const useHRASectionContainer = () => {
   const focused = useIsFocused();
   const {userDetails, relations} = useSelector(state => state.profile);
 
+  useEffect(()=>{
+    const appStateListener = AppState.addEventListener('change',()=>{
+      setModalVisible(modalVisible);
+    });
+    return () => {
+      appStateListener.remove()
+    }
+  },[])
   useEffect(() => {
     if (focused) {
       setModalVisible(false);

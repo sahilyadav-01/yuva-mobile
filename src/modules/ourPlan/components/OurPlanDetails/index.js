@@ -24,7 +24,7 @@ const OurPlanDetails = () => {
     }
     return (
         <View>
-           <Header  title={OURPLAN_DETAILS} hideMenu={false} showCart={true} showBackButton={false}/>
+           <Header  title={OURPLAN_DETAILS} hideMenu={false} showCart={true} showBackButton={true}/>
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <OurPlan isHomeScreen={false} />
                 <View style={styles.planDetailsCard}>

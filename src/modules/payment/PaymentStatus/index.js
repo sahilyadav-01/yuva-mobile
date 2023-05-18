@@ -1,29 +1,34 @@
 import React from 'react';
-import {Text, View, ActivityIndicator} from 'react-native';
-import {SVG} from '../../../../assets';
-import Timer from '../../../components/Timer';
+import {Text, View, ActivityIndicator, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {PNG, SVG} from '../../../../assets';
 import {
+  NUMBER,
   PAYMENT_FAILURE,
   PAYMENT_FAILURE_STATUS,
   PAYMENT_SUCCESS,
   PAYMENT_SUCCESS_STATUS,
-  PLEASE_TRY_AGAIN,
+  ZERO_PAYMENT,
+  ZERO_PAYMENT_STATUS,
 } from './constants';
 import {usePaymentStatus} from './hooks/usePaymentStatus';
 import {styles} from './style';
+import { WHITE } from '../../../styles/colors';
 
 const PaymentStatus = ({paymentProps}) => {
-  const {paymentSuccess, loading} = usePaymentStatus(paymentProps);
+  const {paymentSuccess, loading, onCrossPress} = usePaymentStatus(paymentProps);
   const {
     paymentStatus,
     paymentText,
-    timer,
     separator,
     imageContainer,
     screenContainer,
     container,
-    indicatorStyle
-  } = styles(paymentSuccess);
+    indicatorStyle,
+    numberText,
+    crossContainer,
+    scrollContainer,
+    imageStyle
+  } = styles(paymentSuccess || (paymentProps?.zeroPayment ?? false));
   if (loading)
     return (
       <View style={indicatorStyle}>
@@ -31,24 +36,25 @@ const PaymentStatus = ({paymentProps}) => {
       </View>
     );
   return (
+    <ScrollView style={scrollContainer}>
     <View style={container}>
       <View style={screenContainer}>
         <View style={imageContainer}>
-          {paymentSuccess ? <SVG.PaymentSuccess /> : <SVG.PaymentFailure />}
+          <Image source={paymentProps?.zeroPayment || paymentSuccess ? PNG.PaymentSuccessful : PNG.PaymentFail} resizeMode='contain' style={imageStyle}/>
         </View>
         <Text style={paymentStatus}>
-          {paymentSuccess ? PAYMENT_SUCCESS_STATUS : PAYMENT_FAILURE_STATUS}
+          {paymentProps?.zeroPayment ? ZERO_PAYMENT_STATUS :  paymentSuccess ? PAYMENT_SUCCESS_STATUS : PAYMENT_FAILURE_STATUS}
         </Text>
         <View style={separator} />
         <Text style={paymentText}>
-          {paymentSuccess ? PAYMENT_SUCCESS : PAYMENT_FAILURE}
+          {paymentProps?.zeroPayment ? ZERO_PAYMENT  : paymentSuccess ? PAYMENT_SUCCESS : PAYMENT_FAILURE} <Text style={numberText}>{NUMBER}</Text>
         </Text>
-        {!paymentSuccess && <Text style={paymentText}>{PLEASE_TRY_AGAIN}</Text>}
-        <View style={timer}>
-          <Timer interval={10} resetEnable={() => {}} HRA={true} resetCart={true} />
-        </View>
+        <TouchableOpacity onPress={onCrossPress} style={crossContainer}>
+        <SVG.Cross color={WHITE}/>
+      </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
   );
 };
 

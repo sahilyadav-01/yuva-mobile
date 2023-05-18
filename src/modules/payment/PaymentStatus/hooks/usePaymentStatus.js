@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {paymentStatus as paymentStatusThunk} from '../../../../store/reducers/PaymentSlice';
 
 export const usePaymentStatus = params => {
+  console.log('Params',params)
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
@@ -14,21 +15,26 @@ export const usePaymentStatus = params => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (navigation.isFocused()) {
+    if (navigation.isFocused() && !params?.zeroPayment) {
       BackHandler.addEventListener('hardwareBackPress', () => true);
       dispatch(paymentStatusThunk({token: params?.token, email: params?.email}));
     }
   }, [focused]);
 
   useEffect(() => {
-    if (!paymentStatusLoading && !paymentError && paymentStatus === 'ABORTED') {
+    if(params?.zeroPayment) setLoading(false);
+    else if (!paymentStatusLoading && !paymentError && paymentStatus === 'ABORTED' && !params?.zeroPayment) {
       navigation.navigate('HomeService');
     }
-    else if (!paymentStatusLoading && !paymentError && paymentStatus !== null) {
+    else if (!paymentStatusLoading && !paymentError && paymentStatus !== null && !params?.zeroPayment) {
       paymentStatus === 'PAID' ? setPaymentSuccess(true) : setPaymentSuccess(false);
       setLoading(false);
     }
   }, [paymentStatusLoading]);
 
-  return {paymentSuccess, loading};
+  const onCrossPress = () => {
+    navigation.navigate('HomeService');
+  }
+
+  return {paymentSuccess, loading, onCrossPress};
 };
