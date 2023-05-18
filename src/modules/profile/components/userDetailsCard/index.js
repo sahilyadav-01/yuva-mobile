@@ -26,6 +26,7 @@ const UserDetailsCard = ({
   changePincode,
   setSelectedCity,
   cityNames,
+  profileGender
 }) => {
   const {scrollViewContainer} = styles({disabled: false});
   return (
@@ -51,6 +52,7 @@ const UserDetailsCard = ({
         changePincode={changePincode}
         setSelectedCity={setSelectedCity}
         cityNames={cityNames}
+        profileGender={profileGender}
       />
       <ButtonContainer
         edit={edit}
