@@ -21,7 +21,12 @@ export const useOurPlanDetails = () => {
             navigation.navigate('Home',{screen:LOGIN_SCREEN})
         }
     }
-    const pricePerMonth=Math.ceil(mainItem?.yearlyFinalCost/12);
+    const plansPricing = [{value:mainItem?.quarterlyFinalCost,multiplier:3},{value:mainItem?.yearlyFinalCost,multiplier:12},{value:mainItem?.halfYearlyFinalCost,multiplier:6}]
+    const maxPrice = Math.max(mainItem?.quarterlyFinalCost,mainItem?.yearlyFinalCost,mainItem?.halfYearlyFinalCost);
+    const maxPriceObj = plansPricing.find(item=>{if(item?.value === maxPrice){
+        return item
+    }});
+    const pricePerMonth = Math.ceil(maxPriceObj?.value/maxPriceObj?.multiplier);
     return {
         planDetails,
         bookOurPlan,

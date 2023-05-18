@@ -238,6 +238,7 @@ export const useProfile = () => {
       profile.relationsErrorMessage ||
       profile.activeRelationsErrorMessage,
     profileLocked: profile.profileUpdated,
-    enableLockButton
+    enableLockButton,
+    profileGender: profile?.userDetails?.gender
   };
 };
