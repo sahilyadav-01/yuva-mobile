@@ -100,7 +100,6 @@ export const usePurchase = plan => {
   }, [purchases, purchasesError]);
 
   const onEndReached = () => {
-    console.log('Reached')
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
       setPlansPageNo(plansPageNo + 1);
     } else if (purchasesTab === 1 && purchasesPageNo < purchases?.totalPages) {
