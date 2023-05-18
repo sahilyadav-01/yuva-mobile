@@ -167,7 +167,7 @@ const ListItem = ({renderList, item, index}) => {
                   <View style={planDetailsContainer}>
                     <Text style={planText}>{item?.name}</Text>
                     <View style={rowView}>
-                      {item?.discount && (
+                      {item?.discount && item?.totalAmount > item?.amountPaid && (
                         <Text
                           style={[amountText, regularPriceText]}>{`₹${Math.ceil(
                           item?.totalAmount,
