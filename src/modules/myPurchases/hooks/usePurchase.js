@@ -22,23 +22,23 @@ export const usePurchase = plan => {
   },[])
   useEffect(() => {
     if (purchasesTab === 0 && plansPageNo === 1 && plan) {
-      dispatch(getPlans({pageNo: plansPageNo, pageSize: 3, orderStatus: ''}));
+      dispatch(getPlans({pageNo: plansPageNo, pageSize: 10, orderStatus: ''}));
     } else if (purchasesPageNo === 1 && purchasesTab === 1 && !plan) {
       dispatch(
-        getPurchases({pageNo: purchasesPageNo, pageSize: 3, orderStatus: ''}),
+        getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''}),
       );
     }
   }, [purchasesTab]);
 
   useEffect(() => {
     if (plansPageNo > 1 && purchasesTab === 0) {
-      dispatch(getPlans({pageNo: plansPageNo, pageSize: 3, orderStatus: ''}));
+      dispatch(getPlans({pageNo: plansPageNo, pageSize: 10, orderStatus: ''}));
     }
   }, [plansPageNo]);
 
   useEffect(() => {
     if (purchasesPageNo > 1 && purchasesTab === 1) {
-      getPurchases({pageNo: purchasesPageNo, pageSize: 3, orderStatus: ''});
+      getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''});
     }
   }, [purchasesPageNo]);
 
