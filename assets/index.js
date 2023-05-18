@@ -126,6 +126,8 @@ import Lock from './Lock';
 import NurseComponent from './Nurse'
 import AfternoonSlot from './AfternoonSlot';
 import EveningSlot from './EveningSlot';
+import PaymentSuccessful from './success_payment.png'
+import PaymentFail from './failed_payment.png'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -190,7 +192,9 @@ const PNG = {
   PharmacyDiscount,
   insuranceClaim,
   dot,
-  PlanCard
+  PlanCard,
+  PaymentSuccessful,
+  PaymentFail
 };
 
 const SVG = {

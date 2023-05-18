@@ -19,10 +19,12 @@ export const useItem = item => {
   }, [purchasesDetailLoading, arrowPress]);
   const onArrowPress = orderId => {
     if (purchasesTab === 0) setExpanded(!expanded);
-    else if (purchasesTab === 1 && expanded === true) setExpanded(false);
+    else if (purchasesTab === 1 && expanded === true) {setExpanded(false);
+    setArrowPress(false);
+    }
     else if (purchasesTab === 1 && expanded === false) {
       dispatch(getPurchaseItemDetails({orderId}));
-      setArrowPress(true);
+      item?.orderNumber === orderId.toString() && setArrowPress(true);
     }
   };
   const priceBreakUpArray = item?.plan

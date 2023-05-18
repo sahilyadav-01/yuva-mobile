@@ -11,7 +11,7 @@ const Cross = (props) => (
   >
     <Path
       d="M15 15 3 3m12 0L3 15"
-      stroke="#BE3E3E"
+      stroke={props?.color ?? "#BE3E3E"}
       strokeWidth={4.402}
       strokeLinecap="round"
     />

@@ -24,7 +24,7 @@ const BookingsCard = ({ item }) => {
     }
     const onViewBooking = () => {
         dispatch(bookedDetailsByIdThunk({ id: item?.id }));
-        navigation.navigate(RESCHEDULEANDCANCEL,);
+        navigation.navigate(RESCHEDULEANDCANCEL, item);
 
     }
     if (!item) {

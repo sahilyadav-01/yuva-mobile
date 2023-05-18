@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
         color: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
-        marginBottom: 23
+        marginBottom: 23,
+        color: CYAN_BLUE,
     },
     backGroundStyle: {backgroundColor: WHITE},
     dropStyles: {

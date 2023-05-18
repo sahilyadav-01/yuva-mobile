@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/core';
+import {useIsFocused, useNavigation} from '@react-navigation/core';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getEpoch} from '../../../../../utils/utils';
@@ -9,6 +9,7 @@ import {
   resetMessage,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {getRelations} from '../../../../../store/reducers/ProfileSlice';
+import { setTabBarVisible } from '../../../../../store/reducers/DoctorSlice';
 export const useNew = (plan, userVersion, uuid, version) => {
   const [signupFlag, setSignupFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
@@ -22,6 +23,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const focused = useIsFocused();
 
   const goBack = () => {
     navigation.goBack();
@@ -122,6 +124,11 @@ export const useNew = (plan, userVersion, uuid, version) => {
       setDataRelation(newArray);
     }
   }, [relationId]);
+  useEffect(() => {
+    if (navigation.isFocused()) {
+      dispatch(setTabBarVisible(false));
+    } 
+  }, [focused]);
   return {
     goBack,
     signupFlag,

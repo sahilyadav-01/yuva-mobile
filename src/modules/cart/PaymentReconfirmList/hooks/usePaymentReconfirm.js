@@ -60,7 +60,7 @@ export const usePaymentReconfirm = () => {
           packageUuid,
           pinCode: addressData?.pincode,
           plan: false,
-          programOrPlanUuid: '',
+          programOrPlanUuid: null,
           relationId: null,
           testId,
           timeSlot: scheduleDate,

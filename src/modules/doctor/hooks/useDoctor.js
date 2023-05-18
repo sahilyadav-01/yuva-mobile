@@ -36,9 +36,7 @@ export const useDoctor=()=>{
     useEffect(() => {
       if (navigation.isFocused()) {
         dispatch(setTabBarVisible(false));
-      } else if (!navigation.isFocused()) {
-        dispatch(setTabBarVisible(true));
-      }
+      } 
     }, [focused]);
     const onChangeSearch = (query) => {
         setSearchQuery(query)

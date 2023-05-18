@@ -126,7 +126,7 @@ const UserDetails = ({
         editable={false}
         style={textInputStyle}
       />
-      {!edit ? (
+      {!edit || (edit && gender !== null) ? (
         <TextInput
           value={gender}
           editable={false}
@@ -141,14 +141,15 @@ const UserDetails = ({
             search={false}
             data={data}
             placeholder={gender ?? SELECT_GENDER}
+            placeholderTextColor={DARK_GRAY}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            inputStyles={{color: DARK_BLUE} }
             dropdownTextStyles={{color:DARK_GRAY}}
           />
           <View style={separatorStyle} />
         </>
       )}
-      {!edit ? (
+      {!edit || (edit && userDetails?.dob) ? (
         <TextInput
           value={getDateText(new Date(userDetails.dob))}
           editable={false}
@@ -183,7 +184,7 @@ const UserDetails = ({
       <TextInput
         placeholder={ADDRESS_1}
         placeholderTextColor={DARK_GRAY}
-        value={mockData.address ?? addressLine1}
+        value={!edit ? mockData.address ?? addressLine1 : addressLine1}
         editable={edit}
         style={textInputStyle}
         onChangeText={changeAddress}
@@ -207,7 +208,7 @@ const UserDetails = ({
               data={cityNames.map(item => {
                 return { ...item, value: JSON.parse(item.value).name };
               })}
-              placeholder={CITY}
+              placeholder={city ?? CITY}
               placeholderTextColor={DARK_GRAY}
               boxStyles={dropdownBoxStyle}
               inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
@@ -219,7 +220,7 @@ const UserDetails = ({
       <TextInput
         placeholder={PINCODE}
         placeholderTextColor={DARK_GRAY}
-        value={mockData.pinCode ?? pinCode}
+        value={!edit ? mockData.pinCode ?? pinCode : pinCode}
         editable={edit}
         style={{ ...textInputStyle, marginBottom: 32 }}
         onChangeText={changePincode}
