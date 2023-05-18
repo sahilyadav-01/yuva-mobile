@@ -2,11 +2,11 @@ import React from 'react';
 import {SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import RescheduleAndCancel from '../../../modules/diagnostic/RescheduleAndCancel';
-const RescheduleTestAndPackage = (props) => {
+const RescheduleTestAndPackage = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-        <RescheduleAndCancel params={props?.route?.params}/>
+        <RescheduleAndCancel/>
         </SafeAreaView>
     );
 };

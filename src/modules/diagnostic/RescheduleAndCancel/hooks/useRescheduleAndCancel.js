@@ -4,11 +4,18 @@ import { BOKINGCONFIRM, MYPLAN, TRUE } from "../constants";
 import { rescheduleCancelBookingThunk } from "../../../../store/reducers/DiagnosticsSlice";
 import { useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
+import { iteratorSymbol } from "immer/dist/internal";
+import { Item } from "react-native-paper/lib/typescript/components/List/List";
 
 
 
 export const useRescheduleAndCancel = () => {
-    const { cancelled, bookedDetailsById } = useSelector(state => state.diagnostic)
+    const { cancelled, bookedDetailsById, bookedData } = useSelector(state => state.diagnostic);
+    const filteredData = bookedData?.data.filter((item) => item?.id === bookedDetailsById?.data?.id);
+    var itemCannotCancel
+    if (filteredData && filteredData.length > 0) {
+     itemCannotCancel = filteredData[0]?.cannotCancel;
+    }
     const route = useRoute();
     const {data:reschedule } = route?.params || bookedDetailsById;
     const dispatch = useDispatch();
@@ -42,6 +49,7 @@ export const useRescheduleAndCancel = () => {
         cancelFlag,
         reschedule,
         rescheduleBooking,
-        onDetailsScreen
+        onDetailsScreen,
+        itemCannotCancel
     }
 }

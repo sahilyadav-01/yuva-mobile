@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DIAGNOSTIC_HEALTH_PACKAGE } from '../constants';
 
 
-const RescheduleAndCancel = ({params}) => {  
+const RescheduleAndCancel = () => {  
     const cancelMessage = ARE_YOU_SURE;
     const textStyle = (status) => {
         switch (status) {
@@ -34,7 +34,8 @@ const RescheduleAndCancel = ({params}) => {
         cancelFlag,
         reschedule,
         rescheduleBooking,
-        onDetailsScreen
+        onDetailsScreen,
+        itemCannotCancel
     } = useRescheduleAndCancel();
     const renderTest = ({ item, index }) => {
         return (
@@ -100,7 +101,7 @@ const RescheduleAndCancel = ({params}) => {
                     <Text style={styles.package}>{PACKAGE}</Text>
                 </View>
                 <View>
-                    {reschedule?.packageNameDescriptionDtoList?.length &&
+                    {reschedule?.packageNameDescriptionDtoList?.length > 0 &&
                         <FlatList
                             renderItem={renderPackage}
                             data={reschedule.packageNameDescriptionDtoList}
@@ -110,7 +111,7 @@ const RescheduleAndCancel = ({params}) => {
                         />}
                 </View>
                 {!(reschedule?.bookingStatus==='COMPLETED'|| reschedule?.bookingStatus==='FINISHED' || reschedule?.bookingStatus==='CANCELLED') &&
-                <View style={params?.cannotCancel ? styles.updatedButtonView : styles.buttonView} >
+                <View style={ itemCannotCancel ? styles.updatedButtonView : styles.buttonView} >
                     <AppointmentButton
                      extraStyles={styles.button}
                      textStyles={styles.buttonTextStyle}
@@ -119,8 +120,7 @@ const RescheduleAndCancel = ({params}) => {
                         action={rescheduleBooking}
                         reschedule={true}
                     />
-                    {!params?.cannotCancel &&
-                    <AppointmentButton
+                   {!itemCannotCancel &&<AppointmentButton
                     extraStyles={styles.button}
                     textStyles={styles.buttonTextStyle}
                         name={CANCEL}
