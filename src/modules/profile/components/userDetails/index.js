@@ -118,6 +118,7 @@ const UserDetails = ({
         editable={edit}
         style={textInputStyle}
         onChangeText={changeAddress}
+        multiline={true}
       />
       {cityNames &&
         (!edit ? (
