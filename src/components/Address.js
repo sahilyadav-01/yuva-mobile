@@ -43,7 +43,7 @@ const AddressList = (isNavScreen) => {
     }
     return (
         <View>
-            <View style={styles.AddressCheck} >
+            {userAddressListing.length>0 && <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
@@ -55,7 +55,7 @@ const AddressList = (isNavScreen) => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </View>}
             <View >
                 {userAddressListing?.length > 0 ?
                 <FlatList
