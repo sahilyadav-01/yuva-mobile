@@ -62,12 +62,14 @@ const BookingsCard = ({ item }) => {
                                     text={RESCHEDULED}
                                     iconName="clock-outline"
                                     iconColor={GREEN}
+                                    disablePress={true}
                                 />
                                 {!item?.cannotCancel &&
                                     <CardButton
                                         text={CANCELLED}
                                         iconName="close"
                                         iconColor={RED_SHADE}
+                                        disablePress={true}
                                     />
                                 }
                             </View>}

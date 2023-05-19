@@ -26,10 +26,10 @@ const UserDetails = ({
   pinCode,
   changeName,
   changeAddress,
-  changeCity,
   changePincode,
   setSelectedCity,
   cityNames,
+  profileGender
 }) => {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,
@@ -56,7 +56,7 @@ const UserDetails = ({
         editable={false}
         style={textInputStyle}
       />
-      {!edit || (edit && gender !== null) ? (
+      {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput
           value={gender}
           editable={false}
@@ -118,6 +118,7 @@ const UserDetails = ({
         editable={edit}
         style={textInputStyle}
         onChangeText={changeAddress}
+        multiline={true}
       />
       {cityNames &&
         (!edit ? (

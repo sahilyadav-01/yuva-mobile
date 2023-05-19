@@ -67,6 +67,7 @@ const CarouselItem = props => {
               iconColor={CYAN_BLUE}
               textStyle={styles.CancelReschedule}
               containerStyle={styles.RescheduleCancel}
+              disablePress={true}
             />
             <CardButton
               text={CANCEL_APPOINTMENT}
@@ -74,6 +75,7 @@ const CarouselItem = props => {
               iconColor={CYAN_BLUE}
               textStyle={styles.CancelReschedule}
               containerStyle={styles.RescheduleCancel}
+              disablePress={true}
             />
           </View>
         </View>

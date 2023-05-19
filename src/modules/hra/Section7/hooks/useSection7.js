@@ -60,7 +60,7 @@ export const useSection7 = () => {
     };
     const setQuestion2 = value => {
         {
-            value == 1 ? dispatch(dispatch_condition_3(true)) : dispatch(dispatch_condition_3(false));
+            value == 1 || value == 2 ? dispatch(dispatch_condition_3(true)) : dispatch(dispatch_condition_3(false));
         }
         dispatch(dispatch_option({ key: questionData[1].questionId, value: value }));
     };
