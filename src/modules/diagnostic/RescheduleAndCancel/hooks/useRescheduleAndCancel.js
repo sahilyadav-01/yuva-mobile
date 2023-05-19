@@ -4,8 +4,6 @@ import { BOKINGCONFIRM, MYPLAN, TRUE } from "../constants";
 import { rescheduleCancelBookingThunk } from "../../../../store/reducers/DiagnosticsSlice";
 import { useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
-import { iteratorSymbol } from "immer/dist/internal";
-import { Item } from "react-native-paper/lib/typescript/components/List/List";
 
 
 
