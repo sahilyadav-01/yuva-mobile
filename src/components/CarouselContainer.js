@@ -39,7 +39,7 @@ const CarouselContainer = (props) => {
     );
   };
   return (
-    <View className="flex items-center justify-center mt-2 mx-4 my-4">
+    <View className="flex justify-center mt-2 mx-4 my-4">
       <FlatList
         renderItem={renderItem}
         data={data}
