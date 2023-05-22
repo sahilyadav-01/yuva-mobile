@@ -20,6 +20,12 @@ export const styles = () => {
       lineHeight: 16,
       marginHorizontal: 6,
     },
+    valueStyle: {
+      alignSelf: CENTER,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+      color: CYAN_BLUE,
+    },
     headingContainer: {
       marginTop: 8,
       marginHorizontal: 6,
