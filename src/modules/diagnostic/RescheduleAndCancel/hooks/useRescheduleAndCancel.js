@@ -9,8 +9,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 export const useRescheduleAndCancel = () => {
     const { cancelled, bookedDetailsById, bookedData } = useSelector(state => state.diagnostic);
-    const filteredData = bookedData?.data.filter((item) => item?.id === bookedDetailsById?.data?.id);
-    var itemCannotCancel
+    if(bookedData){
+     var filteredData = bookedData?.data?.filter((item) => item?.id === bookedDetailsById?.data?.id);
+    }
+    var itemCannotCancel;
     if (filteredData && filteredData.length > 0) {
      itemCannotCancel = filteredData[0]?.cannotCancel;
     }
