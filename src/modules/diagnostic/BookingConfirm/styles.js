@@ -14,6 +14,13 @@ export const styles = StyleSheet.create({
         minHeight: 42,
         borderRadius: 0,
         marginBottom: 23,
+        color: LIGHT_GREYISH_RED,
+        borderColor:LIGHT_MERCURY,
+    },
+    valueStyle: {
+        alignSelf: CENTER,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize12,
         color: CYAN_BLUE,
     },
     contentContainerStyle: {

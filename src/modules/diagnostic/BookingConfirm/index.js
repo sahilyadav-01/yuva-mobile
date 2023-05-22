@@ -82,8 +82,10 @@ const BookingConfirm = () => {
                                 <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                                 <SelectList
                                     boxStyles={styles.boxStyles}
+                                    search={false}
                                     defaultOption={{ key: NULL, value: MYSELF }}
                                     setSelected={setSelected}
+                                    inputStyles={styles.valueStyle}
                                     data={dataRelation}
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />

@@ -5,7 +5,7 @@ import { DARK_GRAY } from '../../../styles/colors';
 import {styles} from './style';
 
 const MemberDetails = props => {
-  const {listHeadingText, textInputStyle} = styles();
+  const {listHeadingText, textInputStyle, valueStyle} = styles();
   const {item, onChangeText, relationsData, onItemSelect} = props;
   if (item?.type === 'input')
     return (
@@ -27,6 +27,7 @@ const MemberDetails = props => {
         <Text style={listHeadingText}>{item?.heading}</Text>
         <SelectList
           setSelected={onItemSelect}
+          inputStyles={valueStyle}
           search={false}
           data={relationsData}
           boxStyles={textInputStyle}
