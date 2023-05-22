@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: '50%',
+    paddingBottom: 16,
   },
   Header: {
     color: CYAN_BLUE,
