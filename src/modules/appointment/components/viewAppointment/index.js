@@ -32,6 +32,7 @@ import {
   MYSELF,
   OPD_CONSULTATION,
   CANCEL_MESSAGE,
+  RESCHEDULED,
 } from './constant';
 import {PNG} from '../../../../../assets';
 import {useRoute} from '@react-navigation/native';
@@ -186,7 +187,7 @@ const ViewAppointments = () => {
                 checkIn={true}
               />
             )}
-            {status === INITIATED && (
+            {(status === INITIATED || status === RESCHEDULED) && (
               <AppointmentButton
                 name={RESCHEDULE}
                 color={GREEN}
@@ -196,7 +197,7 @@ const ViewAppointments = () => {
                 reschedule={true}
               />
             )}
-            {(status === CONFIRMED || status === INITIATED) && (
+            {(status === CONFIRMED || status === INITIATED || status === RESCHEDULED) && (
               <AppointmentButton
                 name={CANCEL}
                 color={LIGHT_PINK}

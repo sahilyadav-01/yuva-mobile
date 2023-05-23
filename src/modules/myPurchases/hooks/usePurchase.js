@@ -45,7 +45,7 @@ export const usePurchase = plan => {
 
   useEffect(() => {
     if (purchasesPageNo > 1 && purchasesTab === 1) {
-      getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''});
+      dispatch(getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''}));
     }
   }, [purchasesPageNo]);
 
