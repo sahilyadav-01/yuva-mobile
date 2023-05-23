@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {paymentStatus as paymentStatusThunk} from '../../../../store/reducers/PaymentSlice';
 
 export const usePaymentStatus = params => {
-  console.log('Params',params)
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();

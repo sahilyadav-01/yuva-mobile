@@ -1,14 +1,14 @@
 import React from 'react';
-import { View} from 'react-native';
+import { SafeAreaView } from 'react-native';
 import EditAppointments from '../../../../modules/appointment/components/editAppointment';
 import { styles } from '../../../styles';
 
 const EditAppointment = () => {
  
   return (
-    <View style={styles.homeScreenContainer}>
+    <SafeAreaView>
      <EditAppointments/>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -59,11 +59,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
   },
-  ScrollViewContainerStyle: {
-    paddingBottom: '20%',
-  },
   buttonStyles: {
-    marginVertical: '20%',
+    marginVertical: 24,
     marginHorizontal: '4%',
     height: 48,
     borderRadius: 8,

@@ -147,6 +147,9 @@ const diagnosticSlice = createSlice({
       state.apiErrorMessage =null;
       state.reschedule=null;
     },
+    resetState(state) {
+      state.cancelled= '';
+    },
   },
   extraReducers: {
     /**
@@ -255,6 +258,6 @@ const diagnosticSlice = createSlice({
     },
   },
 });
-export const {hideErrorBox,resetMesage,setCityId} = diagnosticSlice.actions;
+export const {hideErrorBox,resetMesage,setCityId,resetState} = diagnosticSlice.actions;
 export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;

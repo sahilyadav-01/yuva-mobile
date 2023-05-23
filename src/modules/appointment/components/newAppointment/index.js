@@ -80,6 +80,7 @@ const NewAppointments = () => {
                   ? styles.boxStyles
                   : [styles.boxStyles, styles.backGroundStyle]
               }
+              search={false}
               defaultOption={{key:"null", value: MYSELF}}
               setSelected={setSelected}
               data={dataRelation}

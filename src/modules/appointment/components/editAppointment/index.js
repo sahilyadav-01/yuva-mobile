@@ -32,7 +32,7 @@ const EditAppointments = () => {
     handleDateTime
   } = useEdit();
   return (
-    <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+    <ScrollView>
       <View>
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 

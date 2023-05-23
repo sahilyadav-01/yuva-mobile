@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {Alert} from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { removeCouponCart } from "../../../../../store/reducers/CartSlice";
-import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon } from "../../../../../store/reducers/CouponSlice";
+import { clearApiErrorMessage, removeCoupon } from "../../../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
@@ -70,13 +70,15 @@ export const useCheckout = () => {
     }
       useEffect(()=> {
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
+      }, []);
+
+      useEffect(()=> {
         if(focused){
-            dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
             dispatch(removeCoupon());
             dispatch(removeCouponCart());
             dispatch(clearApiErrorMessage(''));
         }
-      }, []);
+      }, [focused]);
     return {
         address,
         pincode,
