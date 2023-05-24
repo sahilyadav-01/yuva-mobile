@@ -5,15 +5,22 @@ import OurPlanDetails from '../modules/ourPlan/components/OurPlanDetails'
 import OurPlanAddress from '../modules/ourPlan/components/Address';
 import NewAddress from '../modules/ourPlan/components/NewAddAddress';
 import CheckoutOurPlan from '../modules/ourPlan/components/CheckoutScreen';
+import OurPlanDetailsGuest from '../modules/ourPlan/components/OurPlanDetailsGuest';
 
 const Stack = createStackNavigator();
 
-const OurPlanNav = props => {
+const OurPlanNav = (props) => {
+  const data = props?.route?.params?.params?.data ?? null;  
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="OurPlanDetails"
         component={OurPlanDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OurPlanDetailsGuest"
+        component={()=><OurPlanDetailsGuest data={data}/>}
         options={{ headerShown: false }}
       />
       <Stack.Screen
