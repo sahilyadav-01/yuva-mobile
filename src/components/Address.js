@@ -22,7 +22,7 @@ const AddressList = (isNavScreen) => {
                         <Text style={styles.adressName}>{item?.address}</Text>
                         <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
                     </View>
-                    <Checkbox
+                    <Checkbox.Android
                         color={GREEN} uncheckedColor={CYAN_BLUE}
                         disabled={isNavScreen?.isNavScreen?.booked}
                         status={checked === index ? 'checked' : 'unchecked'}
