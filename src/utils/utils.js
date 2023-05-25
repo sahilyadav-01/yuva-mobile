@@ -459,3 +459,8 @@ export const onNeedHelpPress = async () => {
   }
 }
 
+export const getPlatform = () => {
+  if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
+  else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
+}
+

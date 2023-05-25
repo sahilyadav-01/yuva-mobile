@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity, SafeAreaView } from 'react-native'
 import CheckoutPriceDetails from '../../../../components/CheckoutPriceDetails'
 import CouponCard from '../../../../components/CouponCard'
 import Header from '../../../../components/Header'
@@ -26,7 +26,7 @@ const CheckoutOurPlan = () => {
         planCouponFinalAmount } = useCheckout();
     const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
     return (
-        <View>
+        <SafeAreaView>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
             <ScrollView
                 nestedScrollEnabled={true}
@@ -56,7 +56,7 @@ const CheckoutOurPlan = () => {
                 </View>
                 <CouponCard isPlan={true} planType={planType} planUuid={planUuid} />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 

@@ -5,7 +5,7 @@ import MyPlansNav from './MyPlansNav';
 import {useSelector} from 'react-redux';
 import {DARK_BLUE, ORANGE} from '../styles/colors';
 import Header from '../components/Header';
-import {Dimensions, Text} from 'react-native';
+import {Dimensions, Text, SafeAreaView} from 'react-native';
 import {styles} from '../screens/styles';
 import {CENTER} from '../styles/constants';
 import {OPD_CONSULTATION} from './constants';
@@ -15,7 +15,7 @@ const Tab = createMaterialTopTabNavigator();
 const OPDNavigation = () => {
   const {tabBarVisible} = useSelector(state => state.doctor);
   return (
-    <>
+    <SafeAreaView style={{flex:1}}>
       <Header title={OPD_CONSULTATION} showBackButton={true} />
       <Tab.Navigator
         tabBarOptions={{
@@ -57,7 +57,7 @@ const OPDNavigation = () => {
           }}
         />
       </Tab.Navigator>
-    </>
+    </SafeAreaView>
   );
 };
 

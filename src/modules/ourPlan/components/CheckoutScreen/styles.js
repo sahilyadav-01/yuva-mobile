@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
         minHeight: "12%",
         marginRight: 16,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 12,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,

@@ -95,6 +95,7 @@ const UserDetails = ({
             value={getDateText(date)}
             editable={false}
             style={textInputStyle}
+            onPressOut={openPicker}
           />
         </TouchableOpacity>
       )}

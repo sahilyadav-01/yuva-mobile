@@ -103,7 +103,7 @@ const SignUpDetailsCard = props => {
           </View>
         )}
         <View style={style.termsAndConditionsContainer}>
-          <Checkbox
+          <Checkbox.Android
             color={GREEN}
             uncheckedColor={CYAN_BLUE}
             onPress={signUp?.toggleTerms}

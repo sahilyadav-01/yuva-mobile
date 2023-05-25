@@ -1,4 +1,4 @@
-import {View, ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import React from 'react';
 import Header from '../../components/Header/index';
 import {styles} from './styles';
@@ -11,7 +11,7 @@ import { DOCTOR } from './constant';
 const TalkToDoctor = ({navigation}) => {
 
   return (
-    <View>
+    <SafeAreaView>
       <Header showBackButton={true} title={DOCTOR}/>
       <ScrollView
         nestedScrollEnabled={true}
@@ -24,7 +24,7 @@ const TalkToDoctor = ({navigation}) => {
         <Consultation />
         <BestDoctors />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

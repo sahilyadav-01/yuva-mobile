@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import Header from '../../../../components/Header';
 import { CHECK_OUT, ADDRESS } from './constants';
 import { styles } from './styles';
@@ -8,7 +8,7 @@ import AddNewAddressContainer from '../../../../components/AddNewAddressContaine
 const NewAddress = () => {
 
     return (
-        <View>
+        <SafeAreaView>
             <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={true} />
             <ScrollView
                 nestedScrollEnabled={true}
@@ -17,7 +17,7 @@ const NewAddress = () => {
                     <AddNewAddressContainer isScreen={ADDRESS} />
                 </View>
             </ScrollView >
-        </View >
+        </SafeAreaView>
     )
 }
 export default NewAddress;
