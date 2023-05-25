@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '3%',
     shadowColor: WHITE,
-    shadowOpacity: '15%',
+    shadowOpacity: 0.25,
     borderRadius: 10,
     backgroundColor: WHITE,
   },

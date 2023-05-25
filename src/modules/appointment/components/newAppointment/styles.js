@@ -95,22 +95,26 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '3%',
     shadowColor: WHITE,
-    shadowOpacity: '15%',
+    shadowOpacity: 0.25,
     shadowColor: BLACK,
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
+    zIndex:10,
+    shadowOffset: {width:0,height:0}
   },
   borderSelect: {
     marginLeft: '3%',
     marginRight: '3%',
     shadowColor: WHITE,
-    shadowOpacity: '15%',
+    shadowOpacity: 0.25,
     shadowColor: BLACK,
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
     paddingBottom: 10,
+    zIndex:10,
+    shadowOffset: {width:0,height:0}
   },
   dateTimePicker: {
     backgroundColor: WHITE,
