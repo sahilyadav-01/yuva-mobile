@@ -13,7 +13,7 @@ const SignUpDetailsCard = props => {
   const style = styles();
   const signUp = useSignUp();
   return (
-    <>
+    <View>
       <View style={style.textInputCardContainer}>
         <TextInput
           style={style.textInputContainer}
@@ -142,7 +142,7 @@ const SignUpDetailsCard = props => {
         primaryText="Already a member, "
         pressableText="Login Here"
       />
-    </>
+    </View>
   );
 };
 
