@@ -22,6 +22,10 @@ export const styles = () => {
     },
     logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
     separator: {height: 32},
-    rowContainer: {flexDirection:ROW,alignItems:CENTER}
+    rowContainer: {flexDirection:ROW,alignItems:CENTER},
+    contentContainerStyle: {
+      flexGrow: 1,
+       paddingBottom: 100,
+    }
   });
 };

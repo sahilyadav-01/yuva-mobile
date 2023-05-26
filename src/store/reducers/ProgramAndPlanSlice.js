@@ -80,6 +80,18 @@ export const requestCallThunk = createAsyncThunk(
   }
 );
 
+export const myProgramThunk = createAsyncThunk(
+  'my/program',
+  async ({pageNo, pageSize}, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/my/program?pageNo=${pageNo}&pageSize=${pageSize}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 const initialState = {
   loading: false,
   apiError: false,
@@ -94,6 +106,7 @@ const initialState = {
   planPrice: 0,
   planDetails:'',
   requestCall:'',
+  myProgramUserData:{}
 }
 
 const programAndPlanSlice = createSlice({
@@ -178,6 +191,19 @@ const programAndPlanSlice = createSlice({
       state.loading = false;
     },
     [requestCallThunk.rejected]: (state, {payload}) => {
+      state.loading = false;
+    },
+
+    /***** programLock */
+
+    [myProgramThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [myProgramThunk.fulfilled]: (state, { payload }) => {
+      state.myProgramUserData = payload;
+      state.loading = false;
+    },
+    [myProgramThunk.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

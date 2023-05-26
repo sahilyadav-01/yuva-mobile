@@ -100,6 +100,7 @@ import Logout from './Logout';
 import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
+import CorporateProgram from './CorporateProgram';
 import Bookings from './Bookings';
 import PaymentSuccess from './PaymentSuccess';
 import PaymentFailure from './PaymentFailure';
@@ -128,6 +129,8 @@ import AfternoonSlot from './AfternoonSlot';
 import EveningSlot from './EveningSlot';
 import PaymentSuccessful from './success_payment.png'
 import PaymentFail from './failed_payment.png'
+import programCard from './programCard.png';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -194,7 +197,8 @@ const PNG = {
   dot,
   PlanCard,
   PaymentSuccessful,
-  PaymentFail
+  PaymentFail,
+  programCard,
 };
 
 const SVG = {
@@ -260,7 +264,8 @@ const SVG = {
   NurseComponent:NurseComponent,
   Calender,
   AfternoonSlot,
-  EveningSlot
+  EveningSlot,
+  CorporateProgram,
 };
 
 const BASE_64 = {DoctorsImage}
