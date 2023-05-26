@@ -7,7 +7,7 @@ import Header from '../../../components/Header';
 import { useSection5 } from './hooks/useSection5';
 import { BUTTON_TEXT, KEYBOARD_TYPE_VALUE, SECOND_QUESTION, SECTION_5_HEADING, PLACEHOLDER_COLOR, THIRD_QUESTION, HEALTH_RISK_ASSESSMENT } from '../constant';
 import { styles } from './styles';
-import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
@@ -36,9 +36,12 @@ const Section5 = () => {
               <SelectList
                 boxStyles={styles.boxStylesContainer}
                 placeholder={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholderTextColor={DARK_GRAY}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
+                inputStyles={{color: SLATE_GRAY}}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
             </View>
             {smoke && (
@@ -47,7 +50,8 @@ const Section5 = () => {
                   <Text style={requiredFieldQ2 ? styles.textError : styles.text}>{questionData[1]?.question}</Text>
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
-                    placeholderTextColor={PLACEHOLDER_COLOR}
+                    placeholderTextColor={SLATE_GRAY}
+                    placeholder={'Enter your age'}
                     value={answers[questionData[1]?.questionId] ?? ''}
                     onEndEditing={(e) => inputCheck(SECOND_QUESTION, e.nativeEvent.text)}
                     onChangeText={(e) => onChangeText(SECOND_QUESTION, e)}
@@ -57,7 +61,8 @@ const Section5 = () => {
                   <Text style={requiredFieldQ3 ? styles.textError : styles.text}>{questionData[2]?.question}</Text>
                   <TextInput style={styles.questionViewContainerTextInput}
                     keyboardType={KEYBOARD_TYPE_VALUE}
-                    placeholderTextColor={PLACEHOLDER_COLOR}
+                    placeholderTextColor={SLATE_GRAY}
+                    placeholder={'Enter smoke count'}
                     value={answers[questionData[2]?.questionId] ??  ''}
                     onEndEditing={(e) => inputCheck(THIRD_QUESTION, e.nativeEvent.text)}
                     onChangeText={(e) => onChangeText(THIRD_QUESTION, e)}
@@ -72,9 +77,12 @@ const Section5 = () => {
               <SelectList
                 boxStyles={styles.boxStylesContainer}
                 placeholder={answers[questionData[3]?.questionId] === undefined ? '' : PickerData[questionData[3]?.questionType][answers[questionData[3]?.questionId]]?.value ?? ''}
+                placeholderTextColor={DARK_GRAY}
                 setSelected={setQuestion4}
                 data={PickerData[questionData[3]?.questionType]}
                 search={false}
+                inputStyles={{color: SLATE_GRAY}}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
             </View>
             <View style={styles.touchableOpacityViewContainer}>

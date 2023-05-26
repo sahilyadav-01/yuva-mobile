@@ -6,7 +6,7 @@ import { styles } from "./styles";
 import { useOurAddress } from "./hooks/useAddress";
 import { SVG } from "../../assets";
 import { Checkbox } from 'react-native-paper';
-import { VERY_LIGHT_GREY, WHITE } from "../styles/colors";
+import { CYAN_BLUE, GREEN, VERY_LIGHT_GREY, WHITE } from "../styles/colors";
 import AddNewAddressContainer from './AddNewAddressContainer'
 const AddressList = (isNavScreen) => {
     const { userAddress, checked, setChecked, AddNewAddress, userAttribute, userAddressListing } = useOurAddress(isNavScreen);
@@ -23,6 +23,7 @@ const AddressList = (isNavScreen) => {
                         <Text style={styles.CityName}>{item?.cityName}-{item?.pinCode}</Text>
                     </View>
                     <Checkbox
+                        color={GREEN} uncheckedColor={CYAN_BLUE}
                         disabled={isNavScreen?.isNavScreen?.booked}
                         status={checked === index ? 'checked' : 'unchecked'}
                         onPress={() => {
@@ -42,7 +43,7 @@ const AddressList = (isNavScreen) => {
     }
     return (
         <View>
-            <View style={styles.AddressCheck} >
+            {userAddressListing.length>0 && <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}
                 </Text>
@@ -54,7 +55,7 @@ const AddressList = (isNavScreen) => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </View>}
             <View >
                 {userAddressListing?.length > 0 ?
                 <FlatList

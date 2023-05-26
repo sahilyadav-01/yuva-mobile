@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {Checkbox} from 'react-native-paper';
+import { CYAN_BLUE, GREEN } from '../../../styles/colors';
 import {styles} from './style';
 
 const Dependent = props => {
@@ -13,7 +14,7 @@ const Dependent = props => {
     <View style={dependentItemContainer}>
       <View style={dependentNameContainer}>
         <Text style={primaryText}>{detailsText}</Text>
-        <Checkbox onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'} />
+        <Checkbox color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'} />
       </View>
       <Text style={secondaryText}>{relation}</Text>
     </View>

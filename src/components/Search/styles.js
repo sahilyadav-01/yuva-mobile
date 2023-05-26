@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BLACK, ORANGE_GREY, VERY_LIGHT_ORANGE } from "../../styles/colors";
+import { BLACK, CYAN_BLUE, ORANGE_GREY, VERY_LIGHT_ORANGE } from "../../styles/colors";
 import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 
@@ -29,5 +29,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik500,
+    color:CYAN_BLUE,
   }
 });

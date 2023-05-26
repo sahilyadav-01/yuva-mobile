@@ -14,7 +14,7 @@ export const usePayment = paymentProps => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const navigation = useNavigation();
-  const {encReqLoading, encReq, createOrderLoading, orderId} = useSelector(
+  const {encReqLoading, encReq, createOrderLoading, orderId,order} = useSelector(
     state => state.payment,
   );
   const [createOrder, setCreateOrder] = useState(false);
@@ -38,7 +38,7 @@ export const usePayment = paymentProps => {
   }, [focused]);
 
   useEffect(() => {
-    if (createOrder && !createOrderLoading && orderId) {
+    if (createOrder && !createOrderLoading && orderId && !order?.amountZero) {
       dispatch(
         encReqThunk({
           plan,
@@ -47,6 +47,12 @@ export const usePayment = paymentProps => {
           cancelUrl: CANCEL_URL,
         }),
       );
+    }
+    else if (createOrder && !createOrderLoading && orderId && order?.amountZero){
+      navigation.navigate('Payment', {
+        screen: 'PaymentStatus',
+        params: {zeroPayment:true},
+      });
     }
   }, [createOrderLoading, orderId, createOrder]);
 

@@ -125,6 +125,17 @@ export const loginThunk = createAsyncThunk(
         password: password
       });
       return {...response.data,type};
+
+      // if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
+      //   return {...response.data,type};
+      // }
+      // const error = {error: {message: 'Unauthorize User'}};
+      // handleNetworkError(
+      //   response.status,
+      //   error.error.message ?? null,
+      // );
+      // return rejectWithValue(error);
+      
     } catch (error) {
       handleNetworkError(
         error.response.status,

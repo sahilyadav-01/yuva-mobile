@@ -75,6 +75,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowColor: BLACK,
     elevation: 3,
+    width:'150%',
   },
   sectionBottom: {
     flexDirection: ROW,

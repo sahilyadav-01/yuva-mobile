@@ -6,7 +6,7 @@ import Header from '../../../components/Header'
 import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, MY_TESTS, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
 import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
-import { DARK_BLUE } from '../../../styles/colors';
+import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
 import AddressList from '../../../components/Address';
 
 
@@ -82,9 +82,12 @@ const BookingConfirm = () => {
                                 <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                                 <SelectList
                                     boxStyles={styles.boxStyles}
+                                    search={false}
                                     defaultOption={{ key: NULL, value: MYSELF }}
                                     setSelected={setSelected}
+                                    inputStyles={styles.valueStyle}
                                     data={dataRelation}
+                                    dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>
                             ) : (<View style={styles.border} pointerEvents="none">
@@ -94,9 +97,10 @@ const BookingConfirm = () => {
                                     defaultOption={{ key: NULL, value: MYSELF }}
                                     setSelected={setSelected}
                                     data={dataRelation}
+                                    dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>)}
-                        <AddressList isNavScreen={{BOOKINGCONFIRM,booked:bookedDetails}}/>
+                        <AddressList isNavScreen={BOOKINGCONFIRM}/>
                     </View>
                     <View>
                         {!bookedDetails && addressListing?.length>0 ? (

@@ -7,7 +7,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
-import {DARK_BLUE, ORANGE} from '../../../../styles/colors';
+import {DARK_BLUE, DARK_GRAY, ORANGE} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -36,7 +36,7 @@ const EditAppointments = () => {
     Description,
   } = useEdit();
   return (
-    <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+    <ScrollView>
       <View>
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
@@ -94,6 +94,7 @@ const EditAppointments = () => {
               defaultOption={{key: 'null', value: memberName || null}}
               setSelected={setSelected}
               data={dataRelation}
+              dropdownTextStyles={{color:DARK_GRAY}}
             />
           </View>
         </View>

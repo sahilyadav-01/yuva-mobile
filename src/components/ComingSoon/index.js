@@ -8,7 +8,7 @@ import {SVG} from '../../../assets';
 const ComingSoon = () => {
   return (
     <View>
-      <Header showBackButton={false} />
+      <Header title={COMING_SOON} showBackButton={true} hideMenu={true} showCart={true} />
       <View style={styles.containerView1}>
         <View style={styles.containerView}>
           <View style={styles.notchDotStyle}>

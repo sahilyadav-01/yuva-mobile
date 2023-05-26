@@ -1,19 +1,23 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import {Alert} from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
+import { removeCouponCart } from "../../../../../store/reducers/CartSlice";
+import { clearApiErrorMessage, removeCoupon } from "../../../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
 
 export const useCheckout = () => {
+    const focused = useIsFocused();
     const { termsAndCondtionChecked } = useSelector(state => state.cart);
     const route = useRoute();
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const { mainItem,planPrice,planAmountToBePaid} = useSelector(state => state.programAndPlan);
     const { planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
-
+    const { loggedIn } = useSelector(state => state.auth);
+    const isLoggedIn = loggedIn === 'loggedIn';
     const planName = mainItem.name;
     const { address,
         pincode,
@@ -65,8 +69,16 @@ export const useCheckout = () => {
         else onPayPress();
     }
       useEffect(()=> {
-        dispatch(planAmountThunk({planUuid: mainItem?.planUuid}))
+        dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
       }, []);
+
+      useEffect(()=> {
+        if(focused){
+            dispatch(removeCoupon());
+            dispatch(removeCouponCart());
+            dispatch(clearApiErrorMessage(''));
+        }
+      }, [focused]);
     return {
         address,
         pincode,

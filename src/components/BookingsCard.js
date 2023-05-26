@@ -24,7 +24,7 @@ const BookingsCard = ({ item }) => {
     }
     const onViewBooking = () => {
         dispatch(bookedDetailsByIdThunk({ id: item?.id }));
-        navigation.navigate(RESCHEDULEANDCANCEL,);
+        navigation.navigate(RESCHEDULEANDCANCEL);
 
     }
     if (!item) {
@@ -62,12 +62,14 @@ const BookingsCard = ({ item }) => {
                                     text={RESCHEDULED}
                                     iconName="clock-outline"
                                     iconColor={GREEN}
+                                    disablePress={true}
                                 />
                                 {!item?.cannotCancel &&
                                     <CardButton
                                         text={CANCELLED}
                                         iconName="close"
                                         iconColor={RED_SHADE}
+                                        disablePress={true}
                                     />
                                 }
                             </View>}

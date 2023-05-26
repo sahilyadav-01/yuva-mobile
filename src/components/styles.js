@@ -139,6 +139,7 @@ export const styles = StyleSheet.create({
   },
   textSpacing: {
     marginHorizontal: 5,
+    color: GREY,
   },
   BookingCard: {
     marginTop: 28,
@@ -379,6 +380,7 @@ export const styles = StyleSheet.create({
     minHeight: 42,
     borderRadius: 8,
     marginBottom: 31,
+    color: CYAN_BLUE,
   },
   touchableButton: {
     justifyContent: CENTER,

@@ -4,6 +4,7 @@ import { ADDRESSLINE, ADDRESSLINE2, ADD_ADDRESS, ADD_NEW_ADDRESS, CITY, CITYNAME
 import { useAddNewAddress } from './hooks/useAddNewAddress';
 import { styles } from './styles';
 import {Picker} from '@react-native-picker/picker';
+import { DARK_GRAY } from '../styles/colors';
 
 const AddNewAddressContainer = (isScreen) => {
     const {selected,
@@ -24,6 +25,7 @@ const AddNewAddressContainer = (isScreen) => {
                             multiline={true}
                             style={styles.textInputStyle}
                             placeholder={LOCATION}
+                            placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangeLocation}
                         />
                         {errorAddress && (
@@ -34,6 +36,7 @@ const AddNewAddressContainer = (isScreen) => {
                             multiline={true}
                             style={styles.textInputStyle}
                             placeholder={LOCATION}
+                            placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangeLocation2}
                         />
                         <Text style={styles.AddAddressLine}>{CITY}</Text>
@@ -41,6 +44,7 @@ const AddNewAddressContainer = (isScreen) => {
                             multiline={true}
                             style={styles.textInputStyle}
                             placeholder={CITYNAME}
+                            placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangeCity}
                         />
                         <Text style={styles.AddAddressLine}>{PINCODE}</Text>
@@ -50,6 +54,7 @@ const AddNewAddressContainer = (isScreen) => {
                             maxLength={6}
                             style={styles.textInputStyle}
                             placeholder={PINCODE}
+                            placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangePincode}
                         />
                         {errorPincode && (
@@ -62,6 +67,7 @@ const AddNewAddressContainer = (isScreen) => {
                             maxLength={10}
                             style={styles.textInputStyle}
                             placeholder={CONTACT}
+                            placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangeContact}
 
                         />

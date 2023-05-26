@@ -9,7 +9,7 @@ import {
   PINCODE,
 } from '../../constant';
 import styles from './style';
-import {DARK_BLUE} from '../../../../styles/colors';
+import {DARK_BLUE, DARK_GRAY} from '../../../../styles/colors';
 import {getDateText} from '../../../../utils/utils';
 
 const UserDetails = ({
@@ -26,10 +26,10 @@ const UserDetails = ({
   pinCode,
   changeName,
   changeAddress,
-  changeCity,
   changePincode,
   setSelectedCity,
   cityNames,
+  profileGender
 }) => {
   const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
     disabled: false,
@@ -56,12 +56,13 @@ const UserDetails = ({
         editable={false}
         style={textInputStyle}
       />
-      {!edit ? (
+      {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput
           value={gender}
           editable={false}
           style={textInputStyle}
           placeholder={SELECT_GENDER}
+          placeholderTextColor={DARK_GRAY}
         />
       ) : (
         <>
@@ -70,23 +71,27 @@ const UserDetails = ({
             search={false}
             data={data}
             placeholder={gender ?? SELECT_GENDER}
+            placeholderTextColor={DARK_GRAY}
             boxStyles={dropdownBoxStyle}
-            inputStyles={gender ? {color: DARK_BLUE} : undefined}
+            inputStyles={{color: DARK_BLUE} }
+            dropdownTextStyles={{color:DARK_GRAY}}
           />
           <View style={separatorStyle} />
         </>
       )}
-      {!edit ? (
+      {!edit || (edit && userDetails?.dob) ? (
         <TextInput
           value={getDateText(new Date(userDetails.dob))}
           editable={false}
           style={textInputStyle}
           placeholder={DD_MM_YYYY}
+          placeholderTextColor={DARK_GRAY}
         />
       ) : (
         <TouchableOpacity onPress={openPicker}>
           <TextInput
             placeholder={DD_MM_YYYY}
+            placeholderTextColor={DARK_GRAY}
             value={getDateText(date)}
             editable={false}
             style={textInputStyle}
@@ -108,10 +113,12 @@ const UserDetails = ({
       )}
       <TextInput
         placeholder={ADDRESS_1}
-        value={mockData.address ?? addressLine1}
+        placeholderTextColor={DARK_GRAY}
+        value={!edit ? mockData.address ?? addressLine1 : addressLine1}
         editable={edit}
         style={textInputStyle}
         onChangeText={changeAddress}
+        multiline={true}
       />
       {cityNames &&
         (!edit ? (
@@ -120,6 +127,7 @@ const UserDetails = ({
             editable={false}
             style={textInputStyle}
             placeholder={CITY}
+            placeholderTextColor={DARK_GRAY}
           />
         ) : (
           <>
@@ -131,16 +139,19 @@ const UserDetails = ({
               data={cityNames.map(item => {
                 return {...item, value: JSON.parse(item.value).name};
               })}
-              placeholder={CITY}
+              placeholder={city ?? CITY}
+              placeholderTextColor={DARK_GRAY}
               boxStyles={dropdownBoxStyle}
               inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
+              dropdownTextStyles={{color:DARK_GRAY}}
             />
             <View style={separatorStyle} />
           </>
         ))}
       <TextInput
         placeholder={PINCODE}
-        value={mockData.pinCode ?? pinCode}
+        placeholderTextColor={DARK_GRAY}
+        value={!edit ? mockData.pinCode ?? pinCode : pinCode}
         editable={edit}
         style={{...textInputStyle, marginBottom: 32}}
         onChangeText={changePincode}

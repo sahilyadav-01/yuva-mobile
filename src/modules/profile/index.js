@@ -51,7 +51,8 @@ const Profile = () => {
     changeCity,
     changePincode,
     setSelectedCity,
-    enableLockButton
+    enableLockButton,
+    profileGender
   } = useProfile();
 
   const {container, addMembersButton, saveButtonText, addIconStyle} = styles({
@@ -67,7 +68,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header title={USER_PROFILE} showBackButton={true} />
+      <Header title={USER_PROFILE} showBackButton={false} hideMenu={false} showCart={true}/>
       <ScrollView style={container} nestedScrollEnabled={true}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}
@@ -91,6 +92,7 @@ const Profile = () => {
           changeCity={changeCity}
           changePincode={changePincode}
           setSelectedCity={setSelectedCity}
+          profileGender={profileGender}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard

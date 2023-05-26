@@ -7,7 +7,7 @@ import Header from '../../../components/Header';
 import { useSection7 } from './hooks/useSection7';
 import { styles } from './styles';
 import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, HEALTH_RISK_ASSESSMENT, KEYBOARD_TYPE_VALUE, KEYBOARD_TYPE_VALUE_TEXT, LOGGEDIN, PLACEHOLDER_COLOR, SECTION_7_HEADING, SECTION_7_QUESTION, SEVENTH_QUESTION } from '../constant';
-import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
@@ -35,9 +35,12 @@ const Section7 = () => {
               <SelectList
                 boxStyles={styles.boxStylesContainer}
                 placeholder={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
+                placeholderTextColor={DARK_GRAY}
                 setSelected={setQuestion1}
                 data={PickerData[questionData[0]?.questionType]}
                 search={false}
+                inputStyles={{color: SLATE_GRAY}}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
             </View>
             {((medicalConditionDoYouSufferFromAnyIllness && answers[questionData[1]?.questionId] !== undefined) || (PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? false)) && (
@@ -48,9 +51,12 @@ const Section7 = () => {
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
                   placeholder={answers[questionData[1]?.questionId] === undefined ? '' : PickerData[questionData[1]?.questionType][answers[questionData[1]?.questionId]]?.value ?? ''}
+                  placeholderTextColor={DARK_GRAY}
                   setSelected={setQuestion2}
                   data={PickerData[questionData[1]?.questionType]}
                   search={false}
+                  inputStyles={{color: SLATE_GRAY}}
+                  dropdownTextStyles={{color:DARK_GRAY}}
                 />
               </View>
             )}
@@ -62,9 +68,12 @@ const Section7 = () => {
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
                   placeholder={answers[questionData[2]?.questionId] === undefined ? '' : PickerData[questionData[2]?.questionType][answers[questionData[2]?.questionId]]?.value ?? ''}
+                  placeholderTextColor={DARK_GRAY}
                   setSelected={setQuestion3}
                   data={PickerData[questionData[2]?.questionType]}
                   search={false}
+                  inputStyles={{color: SLATE_GRAY}}
+                  dropdownTextStyles={{color:DARK_GRAY}}
                 />
               </View>
             )}
@@ -88,9 +97,12 @@ const Section7 = () => {
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
                   placeholder={answers[questionData[4]?.questionId] === undefined ? '' : PickerData[questionData[4]?.questionType][answers[questionData[4]?.questionId]]?.value ?? ''}
+                  placeholderTextColor={DARK_GRAY}
                   setSelected={setQuestion5}
                   data={PickerData[questionData[4]?.questionType]}
                   search={false}
+                  inputStyles={{color: SLATE_GRAY}}
+                  dropdownTextStyles={{color:DARK_GRAY}}
                 />
               </View>
             )}
@@ -102,9 +114,12 @@ const Section7 = () => {
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
                   placeholder={answers[questionData[5]?.questionId] === undefined ? '' : PickerData[questionData[5]?.questionType][answers[questionData[5]?.questionId]]?.value ?? ''}
+                  placeholderTextColor={DARK_GRAY}
                   setSelected={setQuestion6}
                   data={PickerData[questionData[5]?.questionType]}
                   search={false}
+                  inputStyles={{color: SLATE_GRAY}}
+                  dropdownTextStyles={{color:DARK_GRAY}}
                 />
               </View>
             )}
@@ -141,9 +156,12 @@ const Section7 = () => {
                 <SelectList
                   boxStyles={styles.boxStylesContainer}
                   placeholder={answers[questionData[8]?.questionId] === undefined ? '' : PickerData[questionData[8]?.questionType][answers[questionData[8]?.questionId]]?.value ?? ''}
+                  placeholderTextColor={DARK_GRAY}
                   setSelected={setQuestion9}
                   data={PickerData[questionData[8]?.questionType]}
                   search={false}
+                  inputStyles={{color: SLATE_GRAY}}
+                  dropdownTextStyles={{color:DARK_GRAY}}
                 />
               </View>
             )}
@@ -165,9 +183,12 @@ const Section7 = () => {
               <SelectList
                 boxStyles={styles.boxStylesContainer}
                 placeholder={answers[questionData[9]?.questionId] === undefined ? '' : PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.value ?? ''}
+                placeholderTextColor={DARK_GRAY}
                 setSelected={setQuestion10}
                 data={PickerData[questionData[9]?.questionType]}
                 search={false}
+                inputStyles={{color: SLATE_GRAY}}
+                dropdownTextStyles={{color:DARK_GRAY}}
               />
             </View>
             {((medicalConditionChronicIllness) || (answers[questionData[9]?.questionId] !==undefined && PickerData[questionData[9]?.questionType][answers[questionData[9]?.questionId]]?.key === '1')) && (
