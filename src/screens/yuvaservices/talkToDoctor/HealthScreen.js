@@ -6,7 +6,7 @@ import {styles} from '../../styles';
 const HealthScreen = () => {
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.homeScreenContainer}>
       <Health />
     </SafeAreaView>
   )

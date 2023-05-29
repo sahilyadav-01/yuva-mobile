@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import {View, Text, ScrollView, TextInput} from 'react-native';
+import {View, Text, ScrollView, TextInput, KeyboardAvoidingView} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import CardButton from '../../components/CardButton';
 import Header from '../../components/Header';
@@ -35,8 +35,9 @@ const Health = () => {
     );
   };
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <Header title={TALK_TO_DOCTOR} showBackButton={true} />
+      <KeyboardAvoidingView behavior='position' style={styles.screenContainer}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.headerView}>
           <Text style={styles.headerText}>{SELECT_HEALTH_CONCERN}</Text>
@@ -79,6 +80,7 @@ const Health = () => {
           </>
         )}
       </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 };
