@@ -300,28 +300,38 @@ const downloadFile = (filePath, fileName) => {
   let ext = getExtention(file_Url);
   ext = fileName;
   const {config, fs} = RNFetchBlob;
-  let DownloadDir = fs.dirs.DownloadDir;
-  let options = {
-    fileCache: true,
-    addAndroidDownloads: {
-      useDownloadManager: true,
-      notification: true,
-      path: DownloadDir + '/yuva/' + ext,
-      description: 'File',
-      mime: 'application/pdf',
-      showNotification: true,
-    },
-  };
+  const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+  let options;
+  if(Platform.OS === 'android') {
+    options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: directory + '/yuva/' + ext,
+        description: 'File',
+        mime: 'application/pdf',
+        showNotification: true,
+      },
+    };
+  }
+  else if(Platform.OS === 'ios') {
+    options = {path:`${directory}/${fileName}`}
+  }
   config(options)
     .fetch('GET', file_Url)
     .then(res => {
       // Alert after successful downloading;
+      if(Platform.OS === 'android')
       alert('File Downloaded Successfully.', JSON.stringify(res));
+      else if(Platform.OS === 'ios') 
+        RNFetchBlob.ios.previewDocument(res.path());
     })
     .catch(err => {
       alert('Download Failed');
     });
 };
+
 export const checkPermission = async (filePath, fileName) => {
   if(Platform.OS === 'android'){
   PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
@@ -342,6 +352,7 @@ export const checkPermission = async (filePath, fileName) => {
     })
   })
 }
+else if(Platform.OS === 'ios') downloadFile(filePath, fileName);
 };
 
 const getExtention = filename => {
