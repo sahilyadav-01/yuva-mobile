@@ -227,7 +227,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -478,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D4AA0489825FDB8032ECB9B /* Pods-yuva-yuvaTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -510,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E6D8B839DDD6CEC98CD01E6 /* Pods-yuva-yuvaTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -547,6 +550,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = AM7SBGY4FS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = yuva/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
