@@ -92,6 +92,25 @@ export const myProgramThunk = createAsyncThunk(
     }
   }
 );
+
+export const programAndPlanLockUserThunk = createAsyncThunk(
+  'program/lock',
+  async (
+    {programOrPlanUuid, relationId, version, userVersion},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
+    try {
+      const requestDto = {programOrPlanUuid, relationId, version, userVersion};
+      const response = await YuvaService.post(
+        '/programAndPlan/lock',
+        requestDto,
+      );
+      return {...response, programOrPlanUuid,version,userVersion};
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 const initialState = {
   loading: false,
   apiError: false,
@@ -106,7 +125,13 @@ const initialState = {
   planPrice: 0,
   planDetails:'',
   requestCall:'',
-  myProgramUserData:{}
+  myProgramUserData:{},
+  plansLoading: false,
+  plans: null,
+  plansError: false,
+  planLockError: false,
+  lockedState: [],
+  planLockLoading: false,
 }
 
 const programAndPlanSlice = createSlice({
@@ -205,6 +230,36 @@ const programAndPlanSlice = createSlice({
     },
     [myProgramThunk.rejected]: (state, { payload }) => {
       state.loading = false;
+    },
+
+    [programAndPlanLockUserThunk.pending]: (state) => {
+      state.planLockLoading = true;
+      state.planLockError = false;
+    },
+    [programAndPlanLockUserThunk.fulfilled]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = false;
+      state.plans = {
+        ...state.plans,
+        userPlanOrderHistoryResponseDtoList:
+          state.plans.userPlanOrderHistoryResponseDtoList.map(item => {
+            if (item.uuid === payload.programOrPlanUuid) {
+              return {...item, locked: true};
+            }
+            return item;
+          }),
+      };
+      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid,version:payload.version,userVersion:payload.userVersion}]
+    },
+    [programAndPlanLockUserThunk.rejected]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = true;
+      if (payload?.response?.status === 400) {
+        Alert.alert(
+          'Alert',
+          payload?.response?.data?.errorMessage ?? 'Program already locked',
+        );
+      }
     },
   },
 });

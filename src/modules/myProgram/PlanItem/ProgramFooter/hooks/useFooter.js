@@ -5,8 +5,7 @@ import {
   addRelation,
   getActiveRelations,
   getRelations,
-} from '../../../../../../store/reducers/ProfileSlice';
-import {programAndPlanLockThunk} from '../../../../../../store/reducers/PurchasesSlice';
+} from '../../../../../store/reducers/ProfileSlice';
 import {
   ALERT,
   CANCEL,
@@ -22,6 +21,7 @@ import {
   SON,
   TRY_AGAIN,
 } from '../constants';
+import { programAndPlanLockUserThunk } from '../../../../../store/reducers/ProgramAndPlanSlice';
 
 export const useFooter = planDetails => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export const useFooter = planDetails => {
     relations,
     relationAdded,
   } = useSelector(state => state.profile);
-  const {lockedState,planLockLoading,planLockError} = useSelector(state => state.purchases);
+  const {lockedState,planLockLoading,planLockError} = useSelector(state => state.programAndPlan);
   const [details, setDetails] = useState('');
   const [planLockView, setPlanLockView] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -47,13 +47,12 @@ export const useFooter = planDetails => {
     else {
       dispatch(
         getRelations({
-          uuid: details?.uuid,
-          version: details?.version,
-          userVersion: details?.userVersion,
+          uuid: details?.uuid,check:'program'
         }),
       );
       dispatch(
-        getActiveRelations({uuid: details?.uuid, version: details?.version}),
+        getActiveRelations({uuid: details?.uuid, check:'program'
+        }),
       );
     }
   }, [details]);
@@ -203,7 +202,7 @@ export const useFooter = planDetails => {
       Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
     else {
       dispatch(
-        programAndPlanLockThunk({
+        programAndPlanLockUserThunk({
           programOrPlanUuid: item.uuid,
           relationId,
           version: item.version,

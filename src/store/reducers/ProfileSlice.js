@@ -25,8 +25,13 @@ export const profileThunk = createAsyncThunk(
 export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
   async (params = {}, { fulfillWithValue, rejectWithValue }) => {
+    let queryParams;
     try {
-      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}` : ''
+      if(params?.check){
+      queryParams = params?.uuid ? `?uuid=${params?.uuid}` : ''
+     }else{
+       queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}` : ''
+     }
       const response = await YuvaService.get(`/relation/dropdown${queryParams}`);
       return response;
     } catch (error) {
@@ -38,8 +43,13 @@ export const getActiveRelations = createAsyncThunk(
 export const getRelations = createAsyncThunk(
   'profile/getRelations',
   async (params = {}, { fulfillWithValue, rejectWithValue }) => {
+    let queryParams;
     try {
-      const queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}&userVersion=${params?.userVersion}` : ''
+      if(params?.check){
+         queryParams = params?.uuid ? `?uuid=${params?.uuid}` : ''
+      }else{
+         queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}&userVersion=${params?.userVersion}` : ''
+      }
       const response = await YuvaService.get(`/relation${queryParams}`);
       return response;
     } catch (error) {

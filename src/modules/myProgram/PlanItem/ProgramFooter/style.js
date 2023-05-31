@@ -22,7 +22,7 @@ export const styles = () => {
       lineHeight: 18,
     },
     arrowContainer: {padding: 4, justifyContent: CENTER, alignSelf: CENTER},
-    footerContainer: {flexDirection: ROW},
+    footerContainer: {flexDirection: ROW, paddingBottom:10},
     headingText: {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize14,

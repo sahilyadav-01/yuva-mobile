@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK_LIGHT_OPACITY, CYAN_BLUE, GALLERY} from '../../../../styles/colors';
+import {BLACK_LIGHT_OPACITY, GALLERY, INDIGO} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -17,7 +17,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       marginBottom: 5,
-      color: CYAN_BLUE,
+      color: INDIGO,
       marginLeft: 16,
     },
     usageText: {
@@ -26,6 +26,7 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
+      color:INDIGO,
     },
     rowContainer: {flexDirection: ROW},
     iconContainer: {marginLeft: 16},
@@ -33,7 +34,7 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
-      color: CYAN_BLUE,
+      color: INDIGO,
     },
     boxStyles: {
       paddingVertical: 4,

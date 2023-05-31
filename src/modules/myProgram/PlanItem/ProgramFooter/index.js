@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {
-  ADD_MEMBER,
-  ADD_NEW_MEMBER,
-  PLAN_DETAILS,
-  PLAN_MEMBERS,
-  RELATIONSHIP,
-} from './constants';
+import {ADD_MEMBER,ADD_NEW_MEMBER,PLAN_DETAILS,PLAN_MEMBERS,RELATIONSHIP} from './constants';
 import { SVG } from '../../../../../assets';
-// import {useFooter} from './hooks/useFooter';
-// import PlanLockView from '../../PlanLockView';
-// import AddMembersModal from '../../../../../components/Modal/AddMembersModal';
-// import DetailsView from '../../components/DetailsView';
-// import { useItem } from '../../components/ListItem/hooks/useItem';
+import PlanLockView from '../../components/PlanLockView';
+import AddMembersModal from '../../../../components/Modal/AddMembersModal';
+import DetailsView from '../../components/DetailsView';
+import { useFooter } from './hooks/useFooter';
 
 export const ProgramFooter = props => {
   const {item} = props;
-  // const {expanded, onArrowPress, priceBreakUpArray, purchasesTab} =
-  //   useItem(item);
-  // const {
-  //   planLockView,
-  //   onToggle,
-  //   onAddMembersPress,
-  //   modalVisible,
-  //   onCrossPress,
-  //   dependents,
-  //   onSaveDetailsPress,
-  //   onLockPlan,
-  //   activeRelations,
-  //   onCheckboxPress,
-  // } = useFooter(item);
+  const {
+    onToggle,
+    onAddMembersPress,
+    modalVisible,
+    onCrossPress,
+    dependents,
+    onSaveDetailsPress,
+    onLockPlan,
+    activeRelations,
+    onCheckboxPress,
+  } = useFooter(item);
   const style = styles();
+  const [expanded, setExpanded] = useState(false);
+  const [planLockView, setPlanLockView] = useState(false);
 
   const FooterItem = ({extraStyles, text, planDetails}) => {
     return (
@@ -39,26 +31,26 @@ export const ProgramFooter = props => {
         <Text style={style.textStyle}>{text}</Text>
         <TouchableOpacity
           onPress={() => {
-            // if (planDetails && !expanded && !planLockView) {
-            //   onArrowPress(item?.orderNumber);
-            // } else if (!planDetails && !expanded && !planLockView) {
-            //   onToggle(item);
-            // } else if (!planDetails && expanded && !planLockView) {
-            //   onArrowPress(item?.orderNumber);
-            //   onToggle(item);
-            // } else if (planDetails && !expanded && planLockView) {
-            //   onToggle(item);
-            //   onArrowPress(item?.orderNumber);
-            // } else if (!planDetails && planLockView && !expanded) {
-            //   onToggle(item);
-            // } else if (planDetails && expanded && !planLockView) {
-            //   onArrowPress(item?.orderNumber);
-            // }
+            if (planDetails && !expanded && !planLockView) {
+              setExpanded(true);
+            }else if (!planDetails && !expanded && !planLockView) {
+              setPlanLockView(true);
+              onToggle(item);
+            } else if (!planDetails && expanded && !planLockView) {
+              setExpanded(false);
+              setPlanLockView(true);
+              onToggle(item);
+            } else if (planDetails && !expanded && planLockView) {
+              setPlanLockView(false);
+              setExpanded(true);
+            } else if (!planDetails && planLockView && !expanded) {
+              setPlanLockView(false);
+            } else if (planDetails && expanded && !planLockView) {
+              setExpanded(false);
+            }
           }}
           style={style.arrowContainer}>
-          <SVG.ExpandArrow  />
-          {/* <SVG.ExpandArrow expanded={(planDetails && expanded) || (!planDetails && planLockView)} /> */}
-        
+          <SVG.ExpandArrow expanded={(planDetails && expanded) || (!planDetails && planLockView)}   />
         </TouchableOpacity>
       </View>
     );
@@ -73,15 +65,13 @@ export const ProgramFooter = props => {
         />
         <FooterItem text={PLAN_MEMBERS} planDetails={false} extraStyles={style.rightView} />
       </View>
-      {/* {expanded && (
+       {expanded && (
         <DetailsView
           item={item}
-          purchasesTab={purchasesTab}
-          priceBreakUpArray={priceBreakUpArray}
           renderList={true}
         />
-      )} */}
-      {/* {planLockView && (
+     )} 
+       {planLockView && (
         <PlanLockView
           dependents={dependents}
           onAddMembersPress={onAddMembersPress}
@@ -89,8 +79,8 @@ export const ProgramFooter = props => {
           onLockPlan={onLockPlan}
           item={item}
         />
-      )} */}
-      {/* <AddMembersModal
+      )} 
+      <AddMembersModal
         heading={ADD_NEW_MEMBER}
         onCrossPress={onCrossPress}
         modalVisible={modalVisible}
@@ -100,7 +90,7 @@ export const ProgramFooter = props => {
         })}
         buttonText={ADD_MEMBER}
         headingText={RELATIONSHIP}
-      /> */}
+      />
     </>
   );
 };
