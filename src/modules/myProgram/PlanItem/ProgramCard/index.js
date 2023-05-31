@@ -17,7 +17,7 @@ export const ProgramCard = props => {
         <View style={style.boxStyle}>
         <Text style={style.cardText}>{YUVA_HEALTH_CARD}</Text>
         </View>
-        <Text style={style.planText}>{item?.programName?.toUpperCase()}</Text>
+        <Text numberOfLines={2} style={style.planText}>{item?.programName?.toUpperCase()}</Text>
         <Text style={style.nameText}>{item?.customerName?.toUpperCase()}</Text>
         <View style={style.orderDetailsContainer}>
           <Text style={style.orderNumber}>{item?.cardNumber}</Text>
