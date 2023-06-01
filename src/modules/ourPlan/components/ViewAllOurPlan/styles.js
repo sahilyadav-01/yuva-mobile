@@ -26,12 +26,13 @@ export const styles = StyleSheet.create({
     },
     textInputStyle: {
         borderWidth: 1,
-        borderColor: PLATINUM,
         marginHorizontal: 24,
         color: DARK_BLUE,
         borderColor: GREY,
         textAlign: CENTER,
         borderRadius: 6,
+        minHeight:44,
+        backgroundColor:WHITE
     },
     touchableOpacityStyle: {
         display: FLEX,
