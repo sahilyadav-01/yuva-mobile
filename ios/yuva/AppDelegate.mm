@@ -1,10 +1,14 @@
 #import "AppDelegate.h"
+#import <Firebase.h>
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
 #import <React/RCTAppSetupUtils.h>
+#import <UserNotifications/UserNotifications.h>
+#import <RNCPushNotificationIOS.h>
+#import <FreshchatSDK/FreshchatSDK.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -31,6 +35,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
   RCTAppSetupPrepareApp(application);
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
@@ -57,7 +62,35 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  UNUserNotificationCenter *notifcenter = [UNUserNotificationCenter currentNotificationCenter];
+  [notifcenter setDelegate: self];
+  [notifcenter requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionAlert |UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+  }];
+
   return YES;
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    [[Freshchat sharedInstance] setPushRegistrationToken:devToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  if ([[Freshchat sharedInstance]isFreshchatNotification:userInfo]) {
+      [[Freshchat sharedInstance]handleRemoteNotification:userInfo andAppstate:[UIApplication sharedApplication].applicationState];
+  }
+  completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+ [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+  if ([[Freshchat sharedInstance]isFreshchatNotification:response.notification.request.content.userInfo]) {
+    [[Freshchat sharedInstance]handleRemoteNotification:response.notification.request.content.userInfo andAppstate:[UIApplication sharedApplication].applicationState];
+    }
 }
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
