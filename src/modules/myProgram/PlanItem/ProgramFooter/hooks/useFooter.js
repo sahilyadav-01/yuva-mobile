@@ -51,7 +51,7 @@ export const useFooter = planDetails => {
         }),
       );
       dispatch(
-        getActiveRelations({uuid: details?.uuid, check:'program'
+        getActiveRelations({uuid: details?.uuid,check:'program'
         }),
       );
     }
@@ -73,13 +73,11 @@ export const useFooter = planDetails => {
       setAddMember(true);
       dispatch(
         getRelations({
-          uuid: details?.uuid,
-          version: details?.version,
-          userVersion: details?.userVersion,
+          uuid: details?.uuid,check:'program'
         }),
       );
       dispatch(
-        getActiveRelations({uuid: details?.uuid, version: details?.version}),
+        getActiveRelations({uuid: details?.uuid,check:'program'}),
       );
     }
   }, [relationAdded]);
@@ -89,9 +87,7 @@ export const useFooter = planDetails => {
       setPlanLockPress(false);
       dispatch(
         getRelations({
-          uuid: planDetails?.uuid,
-          version: planDetails?.version,
-          userVersion: planDetails?.userVersion,
+          uuid: planDetails?.uuid,check:'program'
         }),
       );
     }
@@ -109,9 +105,7 @@ export const useFooter = planDetails => {
       planDetails?.locked ||
       lockedState.filter(item => {
         if (
-          item?.uuid === planDetails?.uuid &&
-          item?.version === planDetails?.version &&
-          item?.userVersion === planDetails?.userVersion
+          item?.uuid === planDetails?.uuid 
         ) {
           return item;
         }
@@ -169,9 +163,7 @@ export const useFooter = planDetails => {
       planDetails?.locked ||
       lockedState.filter(item => {
         if (
-          item?.uuid === planDetails?.uuid &&
-          item?.version === planDetails?.version &&
-          item?.userVersion === planDetails?.userVersion
+          item?.uuid === planDetails?.uuid
         ) {
           return item;
         }
@@ -204,9 +196,7 @@ export const useFooter = planDetails => {
       dispatch(
         programAndPlanLockUserThunk({
           programOrPlanUuid: item.uuid,
-          relationId,
-          version: item.version,
-          userVersion: item.userVersion,
+          relationId
         }),
       );
       setPlanLockPress(true);

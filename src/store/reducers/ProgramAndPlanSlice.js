@@ -249,7 +249,7 @@ const programAndPlanSlice = createSlice({
             return item;
           }),
       };
-      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid,version:payload.version,userVersion:payload.userVersion}]
+      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid}]
     },
     [programAndPlanLockUserThunk.rejected]: (state, {payload}) => {
       state.planLockLoading = false;

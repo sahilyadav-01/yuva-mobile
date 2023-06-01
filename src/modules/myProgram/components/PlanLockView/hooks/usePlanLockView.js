@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 
 export const usePlanLockView = planDetails => {
-  const {lockedState} = useSelector(state => state.purchases);
+  const {lockedState} = useSelector(state => state.programAndPlan);
   const [lock, setLock] = useState(false);
   useEffect(() => {
     if (

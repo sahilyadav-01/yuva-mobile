@@ -11,6 +11,7 @@ import { useFooter } from './hooks/useFooter';
 export const ProgramFooter = props => {
   const {item} = props;
   const {
+    planLockView,
     onToggle,
     onAddMembersPress,
     modalVisible,
@@ -23,7 +24,6 @@ export const ProgramFooter = props => {
   } = useFooter(item);
   const style = styles();
   const [expanded, setExpanded] = useState(false);
-  const [planLockView, setPlanLockView] = useState(false);
 
   const FooterItem = ({extraStyles, text, planDetails}) => {
     return (
@@ -34,17 +34,15 @@ export const ProgramFooter = props => {
             if (planDetails && !expanded && !planLockView) {
               setExpanded(true);
             }else if (!planDetails && !expanded && !planLockView) {
-              setPlanLockView(true);
               onToggle(item);
             } else if (!planDetails && expanded && !planLockView) {
               setExpanded(false);
-              setPlanLockView(true);
               onToggle(item);
             } else if (planDetails && !expanded && planLockView) {
-              setPlanLockView(false);
               setExpanded(true);
+              onToggle(item);
             } else if (!planDetails && planLockView && !expanded) {
-              setPlanLockView(false);
+              onToggle(item);
             } else if (planDetails && expanded && !planLockView) {
               setExpanded(false);
             }

@@ -25,7 +25,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 15,
       letterSpacing: 3,
-      maxWidth:"70%",
+      maxWidth:"60%",
     },
     nameText: {
       marginBottom: 36,
