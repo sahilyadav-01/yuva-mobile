@@ -186,7 +186,7 @@ const profileSlice = createSlice({
       state.apiErrorMessage = '';
       state.loading = false;
       state.relationAdded = false;
-      state.relationId = payload?.data.data || [];
+      state.relationId = payload?.data?.data || [];
       state.relationsErrorMessage = '';
       state.enableAddMember = payload.data.data.enableAddMember;
     },

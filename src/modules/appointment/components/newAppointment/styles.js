@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     margin: '3%',
     borderRadius: 6,
     paddingLeft: 13,
+    minHeight:50,
   },
   boxStyles: {
     marginLeft: '3%',
