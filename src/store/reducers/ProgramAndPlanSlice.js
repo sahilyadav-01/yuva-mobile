@@ -127,7 +127,6 @@ const initialState = {
   requestCall:'',
   myProgramUserData:{},
   plansLoading: false,
-  plans: null,
   plansError: false,
   planLockError: false,
   lockedState: [],
@@ -239,16 +238,6 @@ const programAndPlanSlice = createSlice({
     [programAndPlanLockUserThunk.fulfilled]: (state, {payload}) => {
       state.planLockLoading = false;
       state.planLockError = false;
-      state.plans = {
-        ...state.plans,
-        userPlanOrderHistoryResponseDtoList:
-          state.plans.userPlanOrderHistoryResponseDtoList.map(item => {
-            if (item.uuid === payload.programOrPlanUuid) {
-              return {...item, locked: true};
-            }
-            return item;
-          }),
-      };
       state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid}]
     },
     [programAndPlanLockUserThunk.rejected]: (state, {payload}) => {

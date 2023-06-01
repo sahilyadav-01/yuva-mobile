@@ -7,11 +7,7 @@ export const usePlanLockView = planDetails => {
   useEffect(() => {
     if (
       lockedState.filter(item => {
-        if (
-          item?.uuid === planDetails?.uuid &&
-          item?.version === planDetails?.version &&
-          item?.userVersion === planDetails?.userVersion
-        ) {
+        if (item?.uuid === planDetails?.uuid) {
           return item;
         }
       }).length > 0
