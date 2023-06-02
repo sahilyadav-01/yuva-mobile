@@ -60,7 +60,6 @@ const BookingConfirm = () => {
                                     inputStyles={styles.valueStyle}
                                     data={dataRelation}
                                     dropdownStyles={styles.dropStyles}
-                                    inputStyles={styles.valueStyle}
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>

@@ -94,6 +94,27 @@ export const getJwt = async () => {
   } catch (error) {}
 };
 
+export const setRole = async (role) => {
+  try {
+    const userRole = await AsyncStorage.setItem('userRole',role ? 'corporate': 'retail');
+    return userRole;
+  } catch (error) {}
+};
+
+export const getRole = async () => {
+  try {
+    const userRole = await AsyncStorage.getItem('userRole');
+    return userRole;
+  } catch (error) {}
+};
+
+export const clearRole = async () => {
+  try {
+    await AsyncStorage.removeItem('userRole');
+  } catch (error) {
+    
+  }
+}
 export const getProfileStatus = async () => {
   try {
     const jwtToken = await AsyncStorage.getItem('profileUpdated');
