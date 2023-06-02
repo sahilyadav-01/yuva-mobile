@@ -19,8 +19,8 @@ export const ProgramFooter = props => {
     dependents,
     onSaveDetailsPress,
     onLockPlan,
-    activeRelations,
     onCheckboxPress,
+    filteredRelation,
   } = useFooter(item);
   const style = styles();
   const [expanded, setExpanded] = useState(false);
@@ -83,9 +83,7 @@ export const ProgramFooter = props => {
         onCrossPress={onCrossPress}
         modalVisible={modalVisible}
         onSaveDetailsPress={onSaveDetailsPress}
-        relationsData={activeRelations.map((item, index) => {
-          return {key: index.toString(), value: item.name, relation: item.id};
-        })}
+        relationsData={filteredRelation}
         buttonText={ADD_MEMBER}
         headingText={RELATIONSHIP}
       />

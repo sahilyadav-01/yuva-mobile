@@ -202,6 +202,9 @@ export const useFooter = planDetails => {
       setPlanLockPress(true);
     }
   };
+  const filteredRelation  = activeRelations.map((item, index) => {
+    return {key: index.toString(), value: item.name, relation: item.id};
+  });
 
   return {
     planLockView,
@@ -212,8 +215,8 @@ export const useFooter = planDetails => {
     dependents,
     onSaveDetailsPress,
     relations,
-    activeRelations,
     onCheckboxPress,
     onLockPlan,
+    filteredRelation,
   };
 };
