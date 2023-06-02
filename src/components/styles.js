@@ -525,6 +525,7 @@ export const styles = StyleSheet.create({
   dateAndTimeStyle: {
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik500,
+    color: CYAN_BLUE,
   },
   containerView: {
     width: '100%',
