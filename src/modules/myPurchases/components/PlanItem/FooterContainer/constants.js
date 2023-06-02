@@ -16,3 +16,4 @@ export const OK = 'Ok';
 export const CANCEL = 'Cancel';
 export const SON = 'Son';
 export const DAUGHTER = 'Daughter';
+export const HRA_SUBTEXT_PLAN = 'Unlimited';

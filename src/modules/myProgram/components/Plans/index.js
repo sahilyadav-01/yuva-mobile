@@ -5,6 +5,7 @@ import {SVG} from '../../../../../assets';
 import {ORANGE} from '../../../../styles/colors';
 import {styles} from './style';
 import {usePlan} from './hooks/usePlan';
+import { HRA_SUBTEXT } from '../../PlanItem/ProgramFooter/constants';
 
 const RenderPlans = ({item}) => {
   const {plans, getTests} = usePlan();
@@ -41,9 +42,10 @@ const RenderPlans = ({item}) => {
         ) : (
           <View>
             <Text style={serviceText}>{item?.serviceName}</Text>
-            <Text style={usageText}>{`Used -${
+            {item?.serviceUuid === '1dbcc55e-3dec-4e07-8c2a-e222631afebb' ? (   
+            <Text style={usageText}>{HRA_SUBTEXT}</Text>) :( <Text style={usageText}>{`Used -${
               getTests(item)[0]?.used
-            } Available -${getTests(item)[0]?.available}`}</Text>
+            } Available -${getTests(item)[0]?.available}`}</Text>)}
           </View>
         )}
       </View>
