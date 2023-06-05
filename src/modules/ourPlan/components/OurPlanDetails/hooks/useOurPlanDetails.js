@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { planDetailsThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { ADDRESS, LOGIN_SCREEN } from "../constants";
@@ -7,6 +7,7 @@ import { ADDRESS, LOGIN_SCREEN } from "../constants";
 export const useOurPlanDetails = () => {
     const { mainItem, planDetails } = useSelector(state => state.programAndPlan);
     const {loggedIn} = useSelector(state => state.auth);
+    const [selected, setSelected] = useState('');
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const data = {
@@ -30,9 +31,19 @@ export const useOurPlanDetails = () => {
         return item
     }});
     const pricePerMonth = Math.ceil(maxPriceObj?.value/maxPriceObj?.multiplier);
+    const dataRender = [
+        {key:'1', value:'2'},
+        {key:'2', value:'3'},
+        {key:'3', value:'4'},
+    ]
+    
     return {
         planDetails,
         bookOurPlan,
         pricePerMonth,
+        mainItem,
+        dataRender,
+        selected, 
+        setSelected
     }
 }

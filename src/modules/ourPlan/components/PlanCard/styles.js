@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     elevation: 15,
     zIndex: 15,
     shadowColor: BLACK,
+    marginHorizontal:4,
   },
   containerView: {
     paddingLeft: 16,
