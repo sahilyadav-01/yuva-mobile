@@ -6,19 +6,18 @@ import { MY_CORPORATE_PROGRAM } from './constants';
 import { useMyCorporateProgram } from './hooks/useMyCorporateProgram';
 
 const MyCorporateProgram = () => {
-  const { myProgramUserData, renderItem } = useMyCorporateProgram();
-
+  const { programList, renderItem, onEndReached } = useMyCorporateProgram();
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title={MY_CORPORATE_PROGRAM} showBackButton hideMenu />
       <ScrollView>
         <View style={styles.container}>
           <FlatList
-            data={myProgramUserData?.data?.userProgramResponseDtoList}
+            data={programList}
             keyExtractor={(item, index) => `${index}`}
+            onEndReached={onEndReached}
             renderItem={renderItem}
-            showsHorizontalScrollIndicator={false}
-            nestedScrollEnabled
+            nestedScrollEnabled={true}
           />
         </View>
       </ScrollView>

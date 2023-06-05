@@ -2,9 +2,13 @@ import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 const PharmacyIcon = (props) => (
   <Svg
-    width={48}
-    height={48}
-    {...props} xmlns="http://www.w3.org/2000/svg" fill="none">
+    xmlns="http://www.w3.org/2000/svg"
+    width={40}
+    height={42}
+    fill="none"
+    viewBox="0 0 24 26"
+    {...props}
+  >
     <Path
       fill="#E68D36"
       fillRule="evenodd"
