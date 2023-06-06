@@ -8,6 +8,9 @@ import { getDateInFormat } from '../../../../utils/utils';
 export const ProgramCard = props => {
   const {item} = props;
   const style = styles();
+  if (!item) {
+    return null; 
+  }
   return (
     <ImageBackground
       source={PNG.programCard}

@@ -130,6 +130,7 @@ import EveningSlot from './EveningSlot';
 import PaymentSuccessful from './success_payment.png'
 import PaymentFail from './failed_payment.png'
 import programCard from './programCard.png';
+import PharmacyIcon from './PharmacyIcon';
 import PHARMACY from './pharmacy.png';
 import PHARMA_CARD_ICON from './trolly.png';
 
@@ -270,6 +271,7 @@ const SVG = {
   AfternoonSlot,
   EveningSlot,
   CorporateProgram,
+  PharmacyIcon:PharmacyIcon,
 };
 
 const BASE_64 = {DoctorsImage}

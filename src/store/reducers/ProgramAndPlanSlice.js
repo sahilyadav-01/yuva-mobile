@@ -125,7 +125,7 @@ const initialState = {
   planPrice: 0,
   planDetails:'',
   requestCall:'',
-  myProgramUserData:{},
+  myProgramUserData:null,
   plansLoading: false,
   plansError: false,
   planLockError: false,
