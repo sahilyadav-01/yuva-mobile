@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
   },
   imageContainerStyle: {
-    height: 32,
+    height: 37,
     width: 37,
   },
   bottomContainerStyle: {

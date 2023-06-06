@@ -131,6 +131,8 @@ import PaymentSuccessful from './success_payment.png'
 import PaymentFail from './failed_payment.png'
 import programCard from './programCard.png';
 import PharmacyIcon from './PharmacyIcon';
+import PHARMACY from './pharmacy.png';
+import PHARMA_CARD_ICON from './trolly.png';
 
 const PNG = {
   AMICO,
@@ -200,6 +202,8 @@ const PNG = {
   PaymentSuccessful,
   PaymentFail,
   programCard,
+  PHARMACY,
+  PHARMA_CARD_ICON,
 };
 
 const SVG = {
