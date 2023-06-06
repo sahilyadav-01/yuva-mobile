@@ -5,6 +5,7 @@ import {fonts} from '../../styles/fonts';
 
 const styles = () => {
   return StyleSheet.create({
+    container: {flex:1},
     needHelpText: {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize16,

@@ -269,7 +269,7 @@ const profileSlice = createSlice({
       state.loading = false;
       state.relationsLoading = false;
       state.relationAdded = false;
-      state.relationId = payload?.data.data || [];
+      state.relationId = payload?.data?.data || [];
       state.relationsErrorMessage = '';
       state.enableAddMember = payload.data.data.enableAddMember;
     },

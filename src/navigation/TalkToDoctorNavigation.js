@@ -1,4 +1,5 @@
 import React from 'react';
+import {SafeAreaView} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HealthScreen from '../screens/yuvaservices/talkToDoctor/HealthScreen';
 import ChatScreen from '../screens/yuvaservices/talkToDoctor/ChatScreen';
@@ -9,6 +10,7 @@ const Stack = createStackNavigator();
 
 const TalkToDoctorNavigation = () => {
   return (
+    <SafeAreaView style={{flex:1}}>
     <Stack.Navigator>
       <Stack.Screen
         name="TalkToDoctor"
@@ -31,6 +33,7 @@ const TalkToDoctorNavigation = () => {
         options={{headerShown: false}}
       />
     </Stack.Navigator>
+    </SafeAreaView>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
 } from 'react-native';
 import * as Progress from 'react-native-progress';
 import PickerData from '../../../utils/PickerData';
@@ -29,6 +30,7 @@ import {styles} from './styles';
 import {DARK_GRAY, GREEN, PALE_GOLDENROD} from '../../../styles/colors';
 import Loader from '../../../components/Loader';
 import { styles as hraStyles } from '../HRAHome/styles';
+import { getDimensions, getPlatform } from '../../../utils/utils';
 
 const Section1 = props => {
   const {
@@ -46,13 +48,16 @@ const Section1 = props => {
     renderData,
     onChangeText
   } = useSection1(props?.userData ?? null);
+
+  const Container = getPlatform().isIOS ? KeyboardAvoidingView : View 
   
   if(!renderData){
     return <Loader extraStyles={hraStyles.loaderContainer}/>
   }
   return (
-    <>
+    <Container behavior='padding' style={styles.screenContainer}>
       <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
+      <ScrollView>
       <View style={styles.progressBarContainer}>
         <Progress.Bar
           color={GREEN}
@@ -64,12 +69,6 @@ const Section1 = props => {
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle}>{SECTION_1_HEADING}</Text>
-
-        <View style={styles.scrollViewContainer}>
-          <ScrollView
-            bounces={false}
-            contentContainerStyle={styles.scrollViewContentContainerStyle}
-            showsVerticalScrollIndicator={false}>
             <View style={styles.questionViewContainer}>
               <Text style={requiredFieldQ1 ? styles.text : styles.textError}>
                 Name
@@ -173,10 +172,9 @@ const Section1 = props => {
                 </Text>
               </TouchableOpacity>
             </View>
-          </ScrollView>
-        </View>
-      </View>
-    </>
+            </View>
+    </ScrollView>
+    </Container>
   );
 };
 

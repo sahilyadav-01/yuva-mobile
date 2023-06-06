@@ -131,5 +131,6 @@ export const styles = StyleSheet.create({
     width: 118,
   },
   planContainer: {marginTop:0},
-  textContainer: {flex:1,flexDirection:ROW_REVERSE,justifyContent:SPACE_BETWEEN,alignItems:CENTER,overflow:HIDDEN}
+  textContainer: {flex:1,flexDirection:ROW_REVERSE,justifyContent:SPACE_BETWEEN,alignItems:CENTER,overflow:HIDDEN},
+  keyboardAvoidViewStyle: {flex:1}
 });

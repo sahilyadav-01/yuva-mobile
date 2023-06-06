@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import { ScrollView, View, Text, KeyboardAvoidingView } from 'react-native';
 import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
@@ -60,6 +60,7 @@ const Cart = props => {
   return (
     <>
       <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
+      <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}>
       <ScrollView style={styles.container}>
         <DependentsModal
           visible={modalVisible}
@@ -114,6 +115,7 @@ const Cart = props => {
         </View>}
         {itemDtoList.length > 0 &&  !loading && <CouponCard />}
       </ScrollView>
+      </KeyboardAvoidingView>
     </>
   );
 };

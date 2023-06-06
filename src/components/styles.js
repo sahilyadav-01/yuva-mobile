@@ -461,7 +461,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
     shadowColor: WHITE,
-    shadowOpacity: '5%',
+    shadowOpacity: 0.5,
     borderRadius: 6,
   },
   checkboxAddress: {

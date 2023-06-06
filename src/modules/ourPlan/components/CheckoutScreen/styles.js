@@ -2,11 +2,13 @@ import { StyleSheet } from 'react-native';
 import { BOX_SHADOW, CYAN_BLUE, GREEN, GREY70, ORANGE, VERY_LIGHT_GREY, V_LIGHT_GREY, WHITE } from '../../../../styles/colors'
 import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts'
+import { getDimensions } from '../../../../utils/utils';
 
 export const styles = StyleSheet.create({
+    container: {flex:1},
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        paddingBottom: 16,
+        height:getDimensions().height
     },
     circle: {
         marginLeft: 41,
@@ -59,7 +61,7 @@ export const styles = StyleSheet.create({
         minHeight: "12%",
         marginRight: 16,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 12,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,
