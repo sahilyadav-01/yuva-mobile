@@ -49,7 +49,7 @@ const Header = (props) => {
            />
          </View>
         <View style={styles.rightView}>
-        { showCart===undefined && <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
+        {(showCart || showCart===undefined) && <TouchableOpacity style={styles.rightIcon} onPress={onCartPress}>
             {showCount &&
               <View style={styles.badgeView}>
                 <Text style={styles.badgeText}>{count}</Text>
