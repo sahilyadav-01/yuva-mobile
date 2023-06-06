@@ -6,14 +6,14 @@ import PharmacyListing from '../screens/yuvaservices/pharmacy/PharmacyListing';
 const Stack = createStackNavigator();
 const PharmacyNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName='HRAHome'>
+    <Stack.Navigator>
       <Stack.Screen
         name="PHARMACY"
         component={PharmacyListing}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="pharmacyDescription"
+        name="PharmacyDescription"
         component={DetialsScreen}
         options={{ headerShown: false }}
       />

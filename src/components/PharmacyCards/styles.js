@@ -64,12 +64,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
   },
-  HospitalStyle: {
-    marginBottom: 13,
-    marginLeft: '3%',
-    fontSize: fonts.size.fontSize10,
-    fontFamily: fonts.family.rubik400,
-  },
   addressView: {
     marginBottom: 21,
     marginLeft: '3%',

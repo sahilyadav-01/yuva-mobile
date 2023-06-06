@@ -10,7 +10,7 @@ const PharmacyCards = ({
 }) => {
   const navigation = useNavigation();
   const bookAppointment = () => {
-    navigation.navigate('pharmacyDescription');
+    navigation.navigate('PharmacyDescription');
   };
 
   return (
