@@ -43,7 +43,7 @@ const CouponCard = (props) => {
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess} key={index}>
-        <View style={[styles.couponContainer, { borderColor: (item.couponCode === selectedCouponCode ) ? GREEN : SLATE_BLUE }]}>
+        <View style={[styles.couponContainer, { borderColor: (item.couponCode === selectedCouponCode && couponView||planeCouponCode ) ? GREEN : SLATE_BLUE }]}>
           <View style={styles.viewStyles}>
             {item.maxDiscount ? <Text style={styles.textStyle1}>{DISCOUNT_PERCENTAGE(item.discountAmountOrPercentage)}</Text> : <Text style={styles.textStyle1}>{DISCOUNT(item.discountAmountOrPercentage)}</Text>}
             {item.maxDiscount != null && (<Text style={styles.textStyle2}>{DISCOUNT_UPTO(item.maxDiscount)}</Text>)}
