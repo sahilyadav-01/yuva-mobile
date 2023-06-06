@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import {useState} from 'react';
 import {Alert} from 'react-native';
 
-export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading) => {
+export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading, modalVisible) => {
   const data = [
     {heading: 'Name', placeholder: 'Name'},
     {heading: 'Age', placeholder: 'Age'},
@@ -13,6 +14,13 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading) =>
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedRelationEnum, setSelectedRelationEnum] = useState('');
 
+  useEffect(()=>{
+    if(modalVisible){
+        setName('');
+        setAge('');
+    }
+  },[modalVisible])
+  
   const getTextInputValue = key => {
     switch (key) {
       case 'Name':
