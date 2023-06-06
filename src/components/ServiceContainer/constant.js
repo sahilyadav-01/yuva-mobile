@@ -19,3 +19,5 @@ export const SMOKING_AND_ALCOHOL = 'SMOKING_AND_ALCOHOL';
 export const DIABETES = 'DIABETES';
 export const HYPER_TENSION = 'HYPER_TENSION';
 export const HEALTH_CHECKUP = 'HealthCheckupsTests';
+export const PHARMACY = 'PHARMACY';
+export const PHARMACY_NAME = 'Go to Pharmacy';
