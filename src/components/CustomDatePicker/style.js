@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {BLACK_OPACITY, CITRINE_WHITE, CYAN_BLUE, GREEN, WHITE} from '../../styles/colors';
-import {CENTER} from '../../styles/constants';
+import {CENTER, ROW} from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = () => {
