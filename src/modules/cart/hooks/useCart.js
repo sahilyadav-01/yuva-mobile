@@ -140,7 +140,7 @@ export const useCart = (args) => {
     }
   }, [focused]);
   useEffect(() => {
-    if (relations.length > 0 && route?.name === 'Cart' && addButtonPress) {
+    if (relations.length >= 0 && route?.name === 'Cart' && addButtonPress) {
       dispatch(getActiveRelations());
       setData(
         relations.map((item, index) => {

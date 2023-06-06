@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, KeyboardAvoidingView } from 'react-native';
+import { ScrollView, View, Text, KeyboardAvoidingView} from 'react-native';
 import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
@@ -23,8 +23,10 @@ import {styles} from './styles';
 import DependentsModal from '../../components/Modal/DependentsModal';
 import Dependents from '../profile/components/dependents';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
+import { getPlatform } from '../../utils/utils';
 
 const Cart = props => {
+  const Platform = getPlatform();
   const {
     cart,
     coupon,
