@@ -22,7 +22,7 @@ import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSl
 
 const CouponCard = (props) => {
   const { isPlan, planType ,planUuid } = props;
-  const { coupon, couponView, onApply, onCouponValue, planeCouponCode } = useCouponCard( isPlan, planUuid,planType );
+  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const CouponCard = (props) => {
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess} key={index}>
-        <View style={[styles.couponContainer, { borderColor:(couponView||planeCouponCode) ? GREEN : SLATE_BLUE }]}>
+        <View style={[styles.couponContainer, { borderColor: (item.couponCode === selectedCouponCode && couponView||planeCouponCode ) ? GREEN : SLATE_BLUE }]}>
           <View style={styles.viewStyles}>
             {item.maxDiscount ? <Text style={styles.textStyle1}>{DISCOUNT_PERCENTAGE(item.discountAmountOrPercentage)}</Text> : <Text style={styles.textStyle1}>{DISCOUNT(item.discountAmountOrPercentage)}</Text>}
             {item.maxDiscount != null && (<Text style={styles.textStyle2}>{DISCOUNT_UPTO(item.maxDiscount)}</Text>)}
@@ -52,10 +52,10 @@ const CouponCard = (props) => {
           <View style={[styles.useCouponStyle]}>
             <Text style={[
               styles.useCouponTextStyle3,
-               (couponView||planeCouponCode) ? GREEN : null,
-               (couponView||planeCouponCode) ? styles.useCouponTextStyle1 : null,
+              (item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? GREEN : null,
+              (item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? styles.useCouponTextStyle1 : null,
             ]}>
-              {(couponView||planeCouponCode) ? COUPON_APPLIED : USE_COUPON}
+              {(item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? COUPON_APPLIED : USE_COUPON}
             </Text>
           </View>
         </View>
