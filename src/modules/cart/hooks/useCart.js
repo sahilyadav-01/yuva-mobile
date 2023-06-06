@@ -125,7 +125,12 @@ export const useCart = (args) => {
     }
   }, [isRemoved]);
 
-  /** */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+    setModalVisible(false);
+  });
+  return unsubscribe;
+}, [navigation]);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -139,6 +144,7 @@ export const useCart = (args) => {
       dispatch(clearApiErrorMessage(''));
     }
   }, [focused]);
+
   useEffect(() => {
     if (relations.length >= 0 && route?.name === 'Cart' && addButtonPress) {
       dispatch(getActiveRelations());
@@ -227,8 +233,6 @@ export const useCart = (args) => {
     setRelationsModalVisible(false);
   };
 
-
-  /** */
 
   return {
     cart,
