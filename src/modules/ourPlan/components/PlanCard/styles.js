@@ -31,6 +31,16 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     width: width - 32,
   },
+  detailsCont:{
+    borderRadius: 12,
+    elevation: 10,
+    zIndex: 10,
+    shadowColor: BLACK,
+    marginBottom: 12,
+    marginTop: 8,
+    width: width - 32,
+    marginHorizontal:8
+  },
   imgBackground: {
     width: '100%',
     height: '100%',

@@ -73,7 +73,7 @@ const OurPlanDetails = (props) => {
       </View>
       {isHealthPlan ? 
               <OurPlan isHomeScreen={false} isHealthPlan={true} />:
-        <PlanCard item={mainItem} isHomeScreen={false}/>}
+        <PlanCard item={mainItem} isHomeScreen={false} isDetailScreen={true}/>}
         <Text style={styles.PricePerYear}>
           {RUPEE_SYMOL}
           {mainItem?.yearlyFinalCost}/- <Text style={styles.oneYear}>{ONE_YEAR_SUB}</Text>
