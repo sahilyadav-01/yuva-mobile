@@ -13,7 +13,7 @@ const PlanCard = (props) => {
   const {name} = item || {};
   const RenderedIcon = ({index,colorProp}) => {
     const Icons = [{index:0,icon:()=><SVG.OPDIcon color={colorProp}/>},{index:1,icon:()=><SVG.CheckUpIcon color={colorProp}/>},{index:2,icon:()=><SVG.HraSvg color={colorProp}/>},{index:3,icon:()=><SVG.TalkToDoctorSvg color={colorProp}/>}]
-    const renderIcon = Icons.find((item,i)=>{if(i===index) return item}).icon();
+    const renderIcon = Icons.find((item,i)=>{if(i===index) return item})?.icon();
     return renderIcon;
   }
   if(!item) {
