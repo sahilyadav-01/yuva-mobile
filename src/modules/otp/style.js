@@ -70,8 +70,9 @@ const styles = (enableResendOtp) => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
       color: CYAN_BLUE,
-      alignSelf:CENTER,
-      paddingVertical: Platform.isIOS ? 20 : undefined
+      textAlign:CENTER,
+      paddingVertical: Platform.isIOS ? 20 : undefined,
+      width:'100%'
     },
   });
 };

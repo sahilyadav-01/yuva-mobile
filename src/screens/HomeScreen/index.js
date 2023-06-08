@@ -93,11 +93,15 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
+          <View style={{flex:1}}>
           <ServiceContainer serviceCard={true} />
+          </View>
         </View>
         </ScrollView>
         <View style={styles.bannerContainer}>
-          <SVG.landingPageBanner1 />
+          <View style={{flex:1}}>
+          <Image source={PNG.HealthBanner} style={{flex:1,width:'100%'}} resizeMode='cover'/>
+          </View>
         </View>
         <View style={styles.PopularHealthCheckups}>
           <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
@@ -146,11 +150,13 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
+          <View style={{flex:1}}>
           <ServiceContainer
             lifeStyleCard={true}
             data={lifestylePackage}
             onPackagePress={onPackagePress}
           />
+          </View>
         </View>
         </ScrollView>
         {isSubscribed && (
