@@ -623,7 +623,7 @@ export const styles = StyleSheet.create({
     maxWidth:155,
   },
   direction: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
     marginTop: '2%',
     flexDirection: ROW,
     alignSelf: FLEX_END,

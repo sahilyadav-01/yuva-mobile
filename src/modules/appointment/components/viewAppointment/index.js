@@ -103,7 +103,7 @@ const ViewAppointments = () => {
                     </Text>
                     <Text style={styles.waitStyle}>{WAITING}</Text>
                   </View>
-                  <View>
+                  <View style={styles.appointmentId}>
                     <Text style={styles.AppointmentIdText}>
                       {APPOINTMENT_ID}
                     </Text>
