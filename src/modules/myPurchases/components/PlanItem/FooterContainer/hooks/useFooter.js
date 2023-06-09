@@ -18,7 +18,6 @@ import {
   NO_RELATIONS,
   OK,
   PLAN_LOCKED,
-  PLEASE_SELECT_MEMBERS,
   SON,
   TRY_AGAIN,
 } from '../constants';
@@ -34,17 +33,20 @@ export const useFooter = planDetails => {
     relations,
     relationAdded,
   } = useSelector(state => state.profile);
-  const {lockedState,planLockLoading,planLockError} = useSelector(state => state.purchases);
+  const {lockedState, planLockLoading, planLockError} = useSelector(
+    state => state.purchases,
+  );
   const [details, setDetails] = useState('');
   const [planLockView, setPlanLockView] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addMember, setAddMember] = useState(false);
   const [dependents, setDependents] = useState([]);
   const [planLockPress, setPlanLockPress] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
+  const [toggleCount, setToggleCount] = useState(0);
 
   useEffect(() => {
-    if (details === '') setPlanLockView(false);
-    else {
+    if (details !== '' && !planLockView) {
       dispatch(
         getRelations({
           uuid: details?.uuid,
@@ -56,10 +58,22 @@ export const useFooter = planDetails => {
         getActiveRelations({uuid: details?.uuid, version: details?.version}),
       );
     }
-  }, [details]);
+  }, [toggleCount]);
 
   useEffect(() => {
-    if (!relationsLoading && !relationsError && details !== '' && !addMember) {
+    if (
+      !relationsLoading &&
+      !relationsError &&
+      details !== '' &&
+      !addMember &&
+      !planLockView
+    ) {
+      setCurrentItem(details);
+    }
+  }, [relationsLoading, relations, relationsError]);
+
+  useEffect(() => {
+    if (currentItem !== null) {
       setDependents(relations);
       !planLockView && setPlanLockView(true);
     } else if (!relationsLoading && !relationsError && addMember) {
@@ -67,7 +81,7 @@ export const useFooter = planDetails => {
       setDependents(relations);
       setModalVisible(false);
     }
-  }, [relationsLoading, relations, relationsError]);
+  }, [currentItem]);
 
   useEffect(() => {
     if (relationAdded && details !== '') {
@@ -85,8 +99,8 @@ export const useFooter = planDetails => {
     }
   }, [relationAdded]);
 
-  useEffect(()=>{
-    if(planLockPress && !planLockLoading && !planLockError){
+  useEffect(() => {
+    if (planLockPress && !planLockLoading && !planLockError) {
       setPlanLockPress(false);
       dispatch(
         getRelations({
@@ -95,14 +109,19 @@ export const useFooter = planDetails => {
           userVersion: planDetails?.userVersion,
         }),
       );
-    }
-    else if(planLockPress && !planLockLoading && planLockError) {
+    } else if (planLockPress && !planLockLoading && planLockError) {
       setPlanLockPress(false);
     }
-  },[planLockPress,planLockLoading,planLockError])
+  }, [planLockPress, planLockLoading, planLockError]);
 
   const onToggle = item => {
-    details !== '' ? setDetails('') : setDetails(item);
+    if (!planLockView) {
+      setDetails(item);
+      setToggleCount(toggleCount + 1);
+    } else if (details !== '') {
+      setPlanLockView(false);
+      setCurrentItem(null);
+    }
   };
 
   const onAddMembersPress = () => {
