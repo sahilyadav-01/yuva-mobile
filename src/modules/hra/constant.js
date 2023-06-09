@@ -59,6 +59,7 @@ export const SECTION_4_HEADING = 'Section Four - Alcoholic Risk';
 /*section5*/
 export const SECTION_5_HEADING = 'Section Five - Smoking Risk';
 export const AGE_ALERT = "The age at which you started smoking cannot be before you turned 12 years old or after your current age.";
+export const WORNG_AGE_ALERT = "The age at which you started smoking cannot be greater than your present age.";
 
 /*section6*/
 export const SECTION_6_HEADING = 'Section Six - Safety';
