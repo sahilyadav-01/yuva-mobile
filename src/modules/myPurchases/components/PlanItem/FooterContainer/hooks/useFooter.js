@@ -44,6 +44,8 @@ export const useFooter = planDetails => {
   const [planLockPress, setPlanLockPress] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
   const [toggleCount, setToggleCount] = useState(0);
+  const [addedPlanDetails, setAddedPlanDetails] = useState('');
+  const [planLocked, setPlanLocked] = useState(false);
 
   useEffect(() => {
     if (details !== '' && !planLockView) {
@@ -67,8 +69,27 @@ export const useFooter = planDetails => {
       details !== '' &&
       !addMember &&
       !planLockView
-    ) {
+    )
       setCurrentItem(details);
+    else if (
+      addMember &&
+      planLockView &&
+      !relationsLoading &&
+      !relationsError &&
+      addedPlanDetails !== ''
+    ) {
+      setCurrentItem(addedPlanDetails);
+      setAddMember(false);
+      setModalVisible(false);
+    } else if (
+      planLocked &&
+      planLockView &&
+      !relationsLoading &&
+      !relationsError &&
+      addedPlanDetails !== ''
+    ) {
+      setCurrentItem(addedPlanDetails);
+      setPlanLocked(false);
     }
   }, [relationsLoading, relations, relationsError]);
 
@@ -76,25 +97,30 @@ export const useFooter = planDetails => {
     if (currentItem !== null) {
       setDependents(relations);
       !planLockView && setPlanLockView(true);
-    } else if (!relationsLoading && !relationsError && addMember) {
-      setAddMember(false);
-      setDependents(relations);
-      setModalVisible(false);
     }
+    // else if (!relationsLoading && !relationsError && addMember) {
+    //   setAddMember(false);
+    //   setDependents(relations);
+    //   setModalVisible(false);
+    // }
   }, [currentItem]);
 
   useEffect(() => {
-    if (relationAdded && details !== '') {
+    if (relationAdded) {
+      setCurrentItem(null);
       setAddMember(true);
       dispatch(
         getRelations({
-          uuid: details?.uuid,
-          version: details?.version,
-          userVersion: details?.userVersion,
+          uuid: addedPlanDetails?.uuid,
+          version: addedPlanDetails?.version,
+          userVersion: addedPlanDetails?.userVersion,
         }),
       );
       dispatch(
-        getActiveRelations({uuid: details?.uuid, version: details?.version}),
+        getActiveRelations({
+          uuid: addedPlanDetails?.uuid,
+          version: addedPlanDetails?.version,
+        }),
       );
     }
   }, [relationAdded]);
@@ -102,6 +128,7 @@ export const useFooter = planDetails => {
   useEffect(() => {
     if (planLockPress && !planLockLoading && !planLockError) {
       setPlanLockPress(false);
+      setCurrentItem(null);
       dispatch(
         getRelations({
           uuid: planDetails?.uuid,
@@ -164,6 +191,7 @@ export const useFooter = planDetails => {
   const onCrossPress = () => setModalVisible(false);
 
   const onSaveDetailsPress = arg => {
+    setAddedPlanDetails(details);
     dispatch(
       addRelation({
         name: arg?.name,
@@ -221,6 +249,8 @@ export const useFooter = planDetails => {
     if (childrenCount > planDetails?.childrenCount)
       Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
     else {
+      setPlanLocked(true);
+      setAddedPlanDetails(item);
       dispatch(
         programAndPlanLockThunk({
           programOrPlanUuid: item.uuid,
