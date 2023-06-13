@@ -98,11 +98,6 @@ export const useFooter = planDetails => {
       setDependents(relations);
       !planLockView && setPlanLockView(true);
     }
-    // else if (!relationsLoading && !relationsError && addMember) {
-    //   setAddMember(false);
-    //   setDependents(relations);
-    //   setModalVisible(false);
-    // }
   }, [currentItem]);
 
   useEffect(() => {
