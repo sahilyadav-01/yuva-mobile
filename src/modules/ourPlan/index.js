@@ -6,7 +6,7 @@ import { useOurPlan } from './hooks/useOurPlan';
 import { styles } from './styles';
 
 const OurPlan = (props) => {
-  const {isHomeScreen} = props;
+  const {isHomeScreen,isHealthPlan } = props;
   const {
     viewabilityConfigCallbackPairs,
     viewabilityConfig,
@@ -42,9 +42,10 @@ const OurPlan = (props) => {
           </TouchableOpacity>
         }
       </View>
+      {isHomeScreen &&
       <View style={styles.subHeadingView}>
         <Text style={styles.subHeadingText}>{SUB_HEADING}</Text>
-      </View>
+      </View>}
       <FlatList 
         data={popularPlan}
         renderItem={renderItem}
@@ -58,6 +59,7 @@ const OurPlan = (props) => {
         viewabilityConfig={viewabilityConfig}
         ItemSeparatorComponent={() => <View style={styles.separatorStyle}/>}
       />
+      {(isHomeScreen || isHealthPlan) &&
       <FlatList
         data={new Array(popularPlan.length)}
         renderItem={renderItemIndex}
@@ -66,7 +68,7 @@ const OurPlan = (props) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.indexContainer}
-      />
+      />}
     </View>
   );
 };

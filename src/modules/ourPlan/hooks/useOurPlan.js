@@ -10,7 +10,7 @@ export const useOurPlan = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const onViewableItemsChanged = ({ viewableItems }) => {
     if (viewableItems.length === 3){
       setActiveIndex(viewableItems[1]?.index);

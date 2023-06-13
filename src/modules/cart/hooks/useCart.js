@@ -35,7 +35,7 @@ export const useCart = (args) => {
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
   const [relationsModalVisible, setRelationsModalVisible] = useState(false);
-  const { userDetails, relations, activeRelations, relationAdded } = useSelector(state => state.profile);
+  const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   
   let buttonText='';
   if(amountToBePaidCoupon===0){
@@ -114,6 +114,8 @@ export const useCart = (args) => {
   useEffect(()=>{
     if(relationsModalVisible && route?.name === 'Cart'){
     dispatch(getRelations());
+    setRelationsModalVisible(false);
+    setAddButtonPress(true);
     }
   },[relationAdded])
 
@@ -146,9 +148,9 @@ export const useCart = (args) => {
   }, [focused]);
 
   useEffect(() => {
-    if (relations.length >= 0 && route?.name === 'Cart' && addButtonPress) {
+    if (!relationsLoading && !relationsError && route?.name === 'Cart' && (addButtonPress || checkBoxFlag.length > 0)) {
       dispatch(getActiveRelations());
-      setData(
+      relations.length > 0 && setData(
         relations.map((item, index) => {
           return {
             detailsText: `${item.name}  |  ${item.gender}  |  Age - ${item.age}`,
@@ -165,7 +167,7 @@ export const useCart = (args) => {
       setModalVisible(true);
       setAddButtonPress(false);
     }
-  }, [relations,checkBoxFlag,addButtonPress]);
+  }, [relationsLoading,checkBoxFlag]);
 
   useEffect(() => {
     if (activeIndex !== null) {

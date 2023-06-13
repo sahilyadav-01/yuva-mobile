@@ -24,7 +24,9 @@ export const ProgramFooter = props => {
   } = useFooter(item);
   const style = styles();
   const [expanded, setExpanded] = useState(false);
-
+  if (!item) {
+    return null; 
+  }
   const FooterItem = ({extraStyles, text, planDetails}) => {
     return (
       <View style={[style.itemContainer, extraStyles]}>

@@ -13,8 +13,8 @@ import {useSelector} from 'react-redux';
 import ComingSoon from '../components/ComingSoon';
 import HealthPlanNav from './HealthPlanNav';
 import OurOfferNav from './OurOffersNav';
-import OurPlanDetails from '../modules/ourPlan/components/OurPlanDetails';
 import { getPlatform } from '../utils/utils';
+import HealthPlanScreen from '../screens/HealthPlans';
 
 const Tab = createBottomTabNavigator();
 
@@ -74,7 +74,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={OurPlanDetails}
+        component={HealthPlanScreen}
         options={{
           tabBarIcon: ({focused}) => {
             return (
