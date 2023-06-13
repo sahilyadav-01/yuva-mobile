@@ -19,6 +19,8 @@ import {
   INCLUDES,
   SUB_HEADING,
   ONE_YEAR_SUB,
+  PLAN_COST,
+  PER_MONTH,
 } from './constants';
 import OurPlan from "../..";
 import {useOurPlanDetails} from './hooks/useOurPlanDetails';
@@ -79,10 +81,9 @@ const OurPlanDetails = (props) => {
           {mainItem?.yearlyFinalCost}/- <Text style={styles.oneYear}>{ONE_YEAR_SUB}</Text>
         </Text>
         <Text style={styles.PricePerMonth}>
-          As low as
+          {PLAN_COST}
           <Text style={styles.rupee}>
-            {'  '}
-            {RUPEE_SYMOL} {pricePerMonth} {'/'}month
+            {RUPEE_SYMOL}{pricePerMonth} {PER_MONTH}
           </Text>
         </Text>
         <TouchableOpacity onPress={bookOurPlan} style={styles.touchableButton}>

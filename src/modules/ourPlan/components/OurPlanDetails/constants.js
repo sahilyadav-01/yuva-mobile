@@ -26,3 +26,5 @@ export const Carouselt=[
 ];
 export const SUB_HEADING = 'Affordable and Accessible: Our Plans for Everyone';
 export const ONE_YEAR_SUB="One Year Subscription.";
+export const PLAN_COST = 'Plan cost @ ';
+export const PER_MONTH = 'Per Month.';
