@@ -257,7 +257,12 @@ export const getTime = timestamp => {
 export const getEpoch = (date, time) => {
   const dtString = date.toISOString().slice(0, 10);
   const timeString = processTime(time);
-  return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  if(Platform.OS === 'ios'){
+    return Date.parse(dtString + 'T' + timeString)
+  }
+  else if(Platform.OS==='android'){
+    return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  } 
 };
 
 const getOffsetTime = time => {
