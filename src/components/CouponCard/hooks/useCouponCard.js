@@ -68,6 +68,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         onCouponValue,
         cart,
         planeCouponCode,
-        selectedCouponCode
+        selectedCouponCode,
     };
 }
