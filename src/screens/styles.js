@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {CENTER, SPACE_BETWEEN, FLEX, ROW, ROW_REVERSE, HIDDEN} from '../styles/constants';
 import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
 import {fonts} from '../styles/fonts';
+import { getDimensions } from '../utils/utils';
 
 export const styles = StyleSheet.create({
   homeScreenContainer: {
@@ -19,6 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     alignItems: CENTER,
     justifyContent: CENTER,
+    width:getDimensions()?.width
   },
   tabNavigation: {
     marginTop: 0,
@@ -92,10 +94,9 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   bannerContainer: {
-    marginTop: 13,
-    flexDirection: ROW,
-    justifyContent: CENTER,
-    marginHorizontal: 13,
+    width:getDimensions()?.width,
+    paddingHorizontal:12,
+    paddingVertical:8
   },
   bannerImage: {
     width: '100%',
