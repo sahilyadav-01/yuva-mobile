@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, DARK_BLUE, LIGHT_MERCURY, ORANGE, RED, WHITE } from "../../styles/colors";
+import { BLACK, CYAN_BLUE, DARK_BLUE, GREY70, LIGHT_GREY, LIGHT_GREYISH_RED, LIGHT_MERCURY, ORANGE, RED, RED_SHADE, V_LIGHT_GREY, WHITE } from "../../styles/colors";
 import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
 import { fonts } from "../../styles/fonts";
 
@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     },
     nurse: {
         flexDirection: ROW,
+        paddingBottom:17
     },
     nurseImage: {
         marginHorizontal: "5%",
@@ -38,33 +39,36 @@ export const styles = StyleSheet.create({
 
     },
     textInputStyle: {
-        marginVertical: "3%",
-        height: "50%",
-        marginLeft: "5%",
-        width: "45%",
-        shadowOpacity: 5,
-        shadowColor: WHITE,
-        shadowOpacity: '15%',
-        shadowColor: BLACK,
+        borderWidth:0.5,
+        height:30,
+        width:"100%",
+        textAlign:CENTER,
+        paddingVertical:3,
         backgroundColor: WHITE,
         elevation: 3,
-        textAlign: CENTER,
+        marginLeft:20,
+        borderColor:WHITE,
+        shadowOpacity: '15%',
+       borderTopLeftRadius:3,
+       borderBottomLeftRadius:3,
     },
     Button: {
+        borderWidth:0.5,
+        height:30,
+        width:"100%",
+        textAlign:CENTER,
+        paddingVertical:3,
         backgroundColor: ORANGE,
-        marginVertical: "3%",
-        height: "50%",
-        width: "45%",
-        shadowOpacity: 5,
-        shadowColor: WHITE,
-        shadowOpacity: '15%',
-        shadowColor: BLACK,
         elevation: 3,
+        marginLeft:20,
+        borderColor:WHITE,
+        shadowOpacity: '15%',
+        borderTopRightRadius:3,
+        borderBottomRightRadius:3,
     },
     touchableOpacityTextStyle: {
         textAlign: CENTER,
         color: WHITE,
-        marginVertical: "3%",
     },
     testView: {
         marginTop: "8%",
@@ -95,7 +99,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: "5%",
     },
     ScrollViewContainerStyle: {
-        paddingBottom: '50%',
+        paddingBottom: '100%',
     },
     listText: {
         fontFamily: fonts.family.rubik400,
@@ -109,7 +113,7 @@ export const styles = StyleSheet.create({
     dropDown: {
         flexDirection: ROW,
         alignItems: CENTER,
-        backgroundColor: WHITE,
+        backgroundColor:LIGHT_GREYISH_RED,
         borderRadius: 5,
         marginHorizontal: "3.5%",
         position: ABSOLUTE,
@@ -136,5 +140,13 @@ export const styles = StyleSheet.create({
         marginVertical:"1.5%",
         marginHorizontal:"8%",
         opacity:0.7
+    },
+    errorContact:{
+        color:RED_SHADE,
+        marginTop:5,
+        marginLeft:25,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize10,
+        fontWeight: fonts.weight.fontWeight400,
     }
 });

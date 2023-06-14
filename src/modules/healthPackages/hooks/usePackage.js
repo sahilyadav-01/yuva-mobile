@@ -197,7 +197,7 @@ export const usePackage = (initialIndex) => {
 
   const onPackagePress = arg => {
     navigation.navigate('ProductDetails', {
-      headerName:HEALTH,
+      headerName:"details",
       packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
       uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
       showCartButton: true,
