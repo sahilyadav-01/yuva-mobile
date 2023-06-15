@@ -31,7 +31,7 @@ export const usePatient = () => {
   }
   const onSelectMember=(data)=>{
     if(!data?.locked){
-      navigation.navigate('PurchaseScreen')
+      navigation.navigate(data?.plan ? 'PurchaseScreen' : 'MyCorporateProgram');
     }
     else {
     dispatch(programOrPlanData(data))

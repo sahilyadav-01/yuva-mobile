@@ -20,7 +20,7 @@ const PackageCard = () => {
   const navigation = useNavigation();
   const bookNow = (plan, userVersion, uuid, version, locked) => {
     if(!locked) {
-      navigation.navigate('PurchaseScreen')
+      navigation.navigate(plan ? 'PurchaseScreen' : 'MyCorporateProgram');
     }
     else {
     navigation.navigate('Doctor', {
