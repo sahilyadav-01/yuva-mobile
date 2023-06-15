@@ -159,5 +159,6 @@ export const useHomeSearchDetails = props => {
     onPackageSelect,
     testData,
     onTestSelect,
+    addToCartLoad
   };
 };

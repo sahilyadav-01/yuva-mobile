@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View,ActivityIndicator} from 'react-native';
 import Header from '../../../Header';
 import {SEARCH, SEARCH_RESULT} from './constants';
 import {useRoute} from '@react-navigation/native';
@@ -17,7 +17,17 @@ const HomeSearchDetails = () => {
     onPackageSelect,
     testData,
     onTestSelect,
+    addToCartLoad
   } = useHomeSearchDetails(route);
+  const{
+    ScrollViewContainerStyle,
+    SearchText,
+    SearchTextView,
+    packageContainerStyle,
+    screenContainer,
+    childContainerStyle,
+    addToCartLoader
+  }=styles(addToCartLoad)
   return (
     <View>
       <Header
@@ -30,14 +40,21 @@ const HomeSearchDetails = () => {
         editable={false}
       />
       <ScrollView
-        contentContainerStyle={styles.ScrollViewContainerStyle}
+        contentContainerStyle={ScrollViewContainerStyle}
         nestedScrollEnabled={true}>
-        <View style={styles.SearchTextView}>
-          <Text style={styles.SearchText}>{SEARCH_RESULT}</Text>
+        <View style={SearchTextView}>
+          <Text style={SearchText}>{SEARCH_RESULT}</Text>
         </View>
+        <View style={[screenContainer, childContainerStyle]}>
+        {addToCartLoad ? (
+            <View style={[childContainerStyle, addToCartLoader]}>
+              <ActivityIndicator size={'small'} />
+            </View>
+          ) : (
+            <>
         <View>
           <Packages
-            extraStyles={styles.packageContainerStyle}
+            extraStyles={packageContainerStyle}
             onPackageSelect={arg => onPackageSelect(arg)}
             onPackagePress={obj => onPackagePress(obj)}
             data={packageData || []}
@@ -49,7 +66,7 @@ const HomeSearchDetails = () => {
         {(testData && testData.length >0) &&
         <View>
           <Packages
-            extraStyles={styles.packageContainerStyle}
+            extraStyles={packageContainerStyle}
             onPackageSelect={arg => onTestSelect(arg)}
             onPackagePress={obj => onPackagePress(obj)}
             data={testData || []}
@@ -57,7 +74,8 @@ const HomeSearchDetails = () => {
             showHeading={true}
             heading={'Tests'}
           />
-        </View>}
+        </View>}</>)}
+        </View>
       </ScrollView>
     </View>
   );
