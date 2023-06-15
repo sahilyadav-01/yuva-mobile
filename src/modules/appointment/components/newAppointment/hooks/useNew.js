@@ -105,8 +105,8 @@ export const useNew = (plan, userVersion, uuid, version) => {
     dispatch(getRelations());
   }, []);
   useEffect(() => {
-    if (relationId?.relativeResponseDto?.length >= 0) {
-      let newArray = relationId?.relativeResponseDto?.map(item => {
+    if (relationId?.length >= 0) {
+      let newArray = relationId?.map(item => {
         return {
           key: item.id,
           value:
