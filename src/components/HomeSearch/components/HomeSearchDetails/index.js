@@ -9,7 +9,15 @@ import Packages from '../../../PackagesList/packages';
 
 const HomeSearchDetails = () => {
   const route = useRoute();
-  const {name, item, packageData,onPackagePress} = useHomeSearchDetails(route);
+  const {
+    name,
+    item,
+    packageData,
+    onPackagePress,
+    onPackageSelect,
+    testData,
+    onTestSelect,
+  } = useHomeSearchDetails(route);
   return (
     <View>
       <Header
@@ -30,12 +38,26 @@ const HomeSearchDetails = () => {
         <View>
           <Packages
             extraStyles={styles.packageContainerStyle}
-            // onPackageSelect={arg => onPackageSelect(arg)}
+            onPackageSelect={arg => onPackageSelect(arg)}
             onPackagePress={obj => onPackagePress(obj)}
             data={packageData || []}
             emptyText="No data found"
+            showHeading={true}
+            heading={'Package'}
           />
         </View>
+        {(testData && testData.length >0) &&
+        <View>
+          <Packages
+            extraStyles={styles.packageContainerStyle}
+            onPackageSelect={arg => onTestSelect(arg)}
+            onPackagePress={obj => onPackagePress(obj)}
+            data={testData || []}
+            emptyText="No data found"
+            showHeading={true}
+            heading={'Tests'}
+          />
+        </View>}
       </ScrollView>
     </View>
   );

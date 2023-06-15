@@ -112,13 +112,21 @@ const HomeSearch = () => {
         onSearch={onChangeSearch}
         onSubmitEditing={filteredData}
       />
-      {filteredData.length > 2 && (
+      {filteredData.length > 2 && testPackageSearch.length > 0 ? (
         <View style={styles.dropDown}>
           <FlatList
             data={testPackageSearch}
             renderItem={renderItem4}
             keyExtractor={item => item.id}
           />
+        </View>
+      ) : (
+        <View style={styles.dropDown}>
+          {filteredData.length > 2 && (
+            <View style={styles.textList}>
+              <Text style={styles.textColor}>{'No data Found'}</Text>
+            </View>
+          )}
         </View>
       )}
       <ScrollView

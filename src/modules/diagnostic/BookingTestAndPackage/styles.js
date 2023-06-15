@@ -257,4 +257,10 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
     },
+    somethingWentWrong:{
+        textAlign:CENTER,
+        marginVertical:"40%",
+        fontFamily: fonts.family.rubik500,
+        fontSize: fonts.size.fontSize16,
+    }
 })
