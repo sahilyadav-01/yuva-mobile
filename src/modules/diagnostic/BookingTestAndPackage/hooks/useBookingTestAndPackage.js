@@ -5,7 +5,7 @@ import {
 } from '../../../../store/reducers/DiagnosticsSlice';
 import { useIsFocused, useNavigation } from '@react-navigation/core'
 import { useRoute } from '@react-navigation/native';
-import { BOOKINGCONFIRM, HEALTH_CHECKUP_DIAGNOSTIC, LIFE_STYLE, MY_TESTS } from '../constants';
+import { BOOKINGCONFIRM, DETAILS, HEALTH_CHECKUP_DIAGNOSTIC, LIFE_STYLE, MY_TESTS } from '../constants';
 import { useCart } from '../../../cart/hooks/useCart';
 
 export const useBookingTestAndPackage = () => {
@@ -90,6 +90,7 @@ export const useBookingTestAndPackage = () => {
             case "health": return HEALTH_CHECKUP_DIAGNOSTIC;
             case "myTest":return MY_TESTS;
             case "lifestyle": return LIFE_STYLE;
+            case "details": return DETAILS;
             default: return ""
         }
     }

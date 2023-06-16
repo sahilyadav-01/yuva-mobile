@@ -29,7 +29,8 @@ const Header = (props) => {
     placeholder,
     isScreen,
     showCart,
-
+    editable,
+    onSubmitEditing
   } = useHeader(props);
   return (
     <View style={styles.headerContainer}>
@@ -89,6 +90,8 @@ const Header = (props) => {
             onChangeText={onChangeSearch} 
             value={query}
             isScreen={isScreen}
+            editable={editable}
+            onSubmitEditing={onSubmitEditing}
           />
         }
       </View>
