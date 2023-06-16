@@ -1,10 +1,9 @@
-
 import { useState,useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
 import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
-import { ALERT, ERROR, HURRAY, MESSAGE, UNSUCCESSFULL } from '../constants';
+import { ALERT, COVER_MESSAGE, ERROR, HURRAY, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
 
 export const useUserDetails=()=>{
     const [modalVisible, setModalVisible] = useState(false);
@@ -31,9 +30,15 @@ const onError=(error)=>{
 }
 
 useEffect(()=>{
-if(messageFamilyPic?.message || messageProfilePic?.message)
+if(messageFamilyPic?.message)
 {
-  Alert.alert(HURRAY,MESSAGE);
+  Alert.alert(HURRAY,COVER_MESSAGE);
+  dispatch(profileThunk())
+  setModalVisible(false)
+}
+ else if(messageProfilePic?.message)
+{
+  Alert.alert(HURRAY,PROFILE_MESSAGE);
   dispatch(profileThunk())
   setModalVisible(false)
 }
