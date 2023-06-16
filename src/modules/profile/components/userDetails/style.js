@@ -74,9 +74,9 @@ const styles = ({ disabled }) => {
       backgroundColor:CATSKILL_WHITE,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
-      padding: 75,
+      padding: 70,
       marginBottom: 5,
-      marginHorizontal: 6,
+      marginHorizontal:10,
       alignItems: 'center',
       shadowColor: '#000', shadowOpacity: 0.25,
       shadowRadius: 4,
@@ -97,7 +97,7 @@ const styles = ({ disabled }) => {
     },
     CrossIcon:{
       position:ABSOLUTE,
-      right:-30,
+      right:10,
       top:-55,
     
 
