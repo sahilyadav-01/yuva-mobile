@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView} from 'react-native'
-import HomeSearchDetails from '../../components/HomeSearch/components/HomeSearchDetails';
+import HomeSearchDetails from '../../modules/HomeSearch/components/HomeSearchDetails';
 const HomeSearchDetailsScreen = () => {
     return (
         <SafeAreaView >

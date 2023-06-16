@@ -8,11 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 const Search = (props) => {
   const { onChangeText, placeholder, value, isScreen ,  editable,onSubmitEditing} = props;
   const navigation = useNavigation();
+  const onSubmit=()=>{
+    navigation.navigate('HomeSearchDetails',{item:onSubmitEditing})
+  }
   return (
     <View style={styles.conatiner}>
       <SVG.SearchIcon />
       <TextInput 
-        onSubmitEditing={()=>{ navigation.navigate('HomeSearchDetails',{item:onSubmitEditing})}}
+        onSubmitEditing={onSubmit}
         editable={editable}
         multiline={false}
         onChangeText={onChangeText}

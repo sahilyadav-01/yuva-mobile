@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {useDispatch, useSelector} from 'react-redux';
 import {getElasticSearchResult} from '../../../../../store/reducers/PopularTestsSlice ';
 import {useCart} from '../../../../../modules/cart/hooks/useCart';
+import {DETAILS} from '../constants';
 
 export const useHomeSearchDetails = props => {
   const {name, attributeUuid, item} = props?.params;
@@ -44,8 +45,6 @@ export const useHomeSearchDetails = props => {
         ),
       );
     }
-  }, [elasticResult]);
-  useEffect(() => {
     if (elasticResult && elasticResult?.popularTestResponseDtoList.length > 0) {
       setTestData(
         _.uniqBy(
@@ -75,8 +74,6 @@ export const useHomeSearchDetails = props => {
         }),
       );
     }
-  }, [existingIds]);
-  useEffect(() => {
     if (
       elasticResult &&
       elasticResult?.popularTestResponseDtoList?.length >= 0
@@ -142,7 +139,7 @@ export const useHomeSearchDetails = props => {
   };
   const onPackagePress = obj => {
     navigation.navigate('ProductDetails', {
-      headerName: 'details',
+      headerName: DETAILS,
       packageName: obj?.item?.packageUuid ?? obj?.item?.testId,
       uuid: obj?.item?.packageUuid ?? obj?.item?.testId,
       showCartButton: true,
@@ -159,6 +156,6 @@ export const useHomeSearchDetails = props => {
     onPackageSelect,
     testData,
     onTestSelect,
-    addToCartLoad
+    addToCartLoad,
   };
 };

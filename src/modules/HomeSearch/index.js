@@ -8,10 +8,8 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import {SVG} from '../../../assets';
-import {DARK_GRAY} from '../../styles/colors';
-import Header from '../Header';
-import Search from '../Search';
+import { SVG } from '../../../assets';
+import { DARK_GRAY } from '../../styles/colors';
 import {
   ENTER_MOBILE,
   NURSE_TEXT,
@@ -22,7 +20,7 @@ import {
 } from './constants';
 import {useHomeSearch} from './hooks/useHomeSearch';
 import {styles} from './styles';
-
+import Header from '../../components/Header';
 const HomeSearch = () => {
   const renderItem4 = ({item}) => {
     const navigate = () => {
