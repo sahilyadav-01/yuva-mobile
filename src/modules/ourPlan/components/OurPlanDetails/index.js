@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity, FlatList, Image } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList, Image, SafeAreaView } from "react-native";
 import OurPlan from "../..";
 import Header from "../../../../components/Header";
 import { OURPLAN_DETAILS, PLAN_DETAILS, TERMS_AND_CONDITION, termsAndCondition, BUY_NOW, Carouselt, PLAN, INCLUDES } from "./constants";
@@ -23,7 +23,7 @@ const OurPlanDetails = () => {
         )
     }
     return (
-        <View>
+        <SafeAreaView>
            <Header  title={OURPLAN_DETAILS} hideMenu={false} showCart={true} showBackButton={true}/>
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <OurPlan isHomeScreen={false} />
@@ -69,7 +69,7 @@ const OurPlanDetails = () => {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 };
 export default OurPlanDetails;

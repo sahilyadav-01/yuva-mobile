@@ -122,6 +122,7 @@ import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
 import PaymentSuccessful from './success_payment.png'
 import PaymentFail from './failed_payment.png'
+import HealthBanner from './HealthBanner.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -187,7 +188,8 @@ const PNG = {
   insuranceClaim,
   dot,
   PaymentSuccessful,
-  PaymentFail
+  PaymentFail,
+  HealthBanner
 };
 
 const SVG = {

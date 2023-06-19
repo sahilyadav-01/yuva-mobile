@@ -96,7 +96,12 @@ export const useCart = (args) => {
     }
   }, [isRemoved]);
 
-  /** */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+    setModalVisible(false);
+  });
+  return unsubscribe;
+}, [navigation]);
 
   useEffect(() => {
     if (focused) {

@@ -208,7 +208,7 @@ export const dignosticStatus = status => {
       retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
-      retStatus = 'Awaiting For Confirmation';
+      retStatus = 'Rescheduled';
       break;
     case 'COMPLETED':
       retStatus = 'Report Awaited';
@@ -257,7 +257,12 @@ export const getTime = timestamp => {
 export const getEpoch = (date, time) => {
   const dtString = date.toISOString().slice(0, 10);
   const timeString = processTime(time);
-  return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  if(Platform.OS === 'ios'){
+    return Date.parse(dtString + 'T' + timeString)
+  }
+  else if(Platform.OS==='android'){
+    return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  } 
 };
 
 const getOffsetTime = time => {
@@ -300,28 +305,38 @@ const downloadFile = (filePath, fileName) => {
   let ext = getExtention(file_Url);
   ext = fileName;
   const {config, fs} = RNFetchBlob;
-  let DownloadDir = fs.dirs.DownloadDir;
-  let options = {
-    fileCache: true,
-    addAndroidDownloads: {
-      useDownloadManager: true,
-      notification: true,
-      path: DownloadDir + '/yuva/' + ext,
-      description: 'File',
-      mime: 'application/pdf',
-      showNotification: true,
-    },
-  };
+  const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+  let options;
+  if(Platform.OS === 'android') {
+    options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: directory + '/yuva/' + ext,
+        description: 'File',
+        mime: 'application/pdf',
+        showNotification: true,
+      },
+    };
+  }
+  else if(Platform.OS === 'ios') {
+    options = {path:`${directory}/${fileName}`}
+  }
   config(options)
     .fetch('GET', file_Url)
     .then(res => {
       // Alert after successful downloading;
+      if(Platform.OS === 'android')
       alert('File Downloaded Successfully.', JSON.stringify(res));
+      else if(Platform.OS === 'ios') 
+        RNFetchBlob.ios.previewDocument(res.path());
     })
     .catch(err => {
       alert('Download Failed');
     });
 };
+
 export const checkPermission = async (filePath, fileName) => {
   if(Platform.OS === 'android'){
   PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
@@ -342,6 +357,7 @@ export const checkPermission = async (filePath, fileName) => {
     })
   })
 }
+else if(Platform.OS === 'ios') downloadFile(filePath, fileName);
 };
 
 const getExtention = filename => {
@@ -457,5 +473,10 @@ export const onNeedHelpPress = async () => {
   else {
     Linking.openURL(storeUrl);
   }
+}
+
+export const getPlatform = () => {
+  if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
+  else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
 }
 

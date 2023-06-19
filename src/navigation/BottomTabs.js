@@ -14,11 +14,13 @@ import ComingSoon from '../components/ComingSoon';
 import HealthPlanNav from './HealthPlanNav';
 import OurOfferNav from './OurOffersNav';
 import OurPlanDetails from '../modules/ourPlan/components/OurPlanDetails';
+import { getPlatform } from '../utils/utils';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
   const {loggedIn} = useSelector(state => state.auth);
+  const Platform = getPlatform();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -29,6 +31,7 @@ const BottomTabs = () => {
         tabBarActiveTintColor: ORANGE,
         tabBarStyle: {
           height: 72,
+          paddingBottom:Platform.isIOS ? 8 : undefined,
           shadowOffset: {
             width: 0,
             height: 2,

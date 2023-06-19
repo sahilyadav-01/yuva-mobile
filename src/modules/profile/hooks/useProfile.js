@@ -218,7 +218,6 @@ export const useProfile = () => {
     addMembers,
     dependents: profile.relations,
     date,
-    picker,
     userDetails,
     name,
     loading: profile.loading,
