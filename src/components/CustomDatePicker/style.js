@@ -53,6 +53,8 @@ export const styles = () => {
       height:8
     },
     rowContainer: {flexDirection: ROW},
-    slotTextExtraStyles: {marginBottom:16,marginRight:13}
+    slotTextExtraStyles: {marginBottom:16,marginRight:13},
+    emptyView: {paddingHorizontal:16,marginVertical:4,alignItems:CENTER},
+    emptyText: {color:CYAN_BLUE,fontWeight:fonts.weight.fontWeight500,fontSize:fonts.size.fontSize14}
   });
 };
