@@ -35,7 +35,7 @@ import { lifeStyleSliceThunk } from '../../store/reducers/LifeStyleSlice';
 import OurPlan from '../../modules/ourPlan';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const { isSubscribed } = useSelector(state => state.profile);
@@ -53,6 +53,9 @@ const HomeScreen = ({ navigation }) => {
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index })
   useEffect(() => {
     if (navigation.isFocused()) {
+      if(route?.params?.navigateToDetails) {
+        navigation?.navigate('OurPlan',{screen:'OurPlanDetails',params:route?.params?.screenParams})
+      }
       const isActive = 'true';
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
