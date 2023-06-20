@@ -21,7 +21,7 @@ export const styles = () => {
       color: ORANGE,
       lineHeight: 18,
     },
-    arrowContainer: {padding: 4, justifyContent: CENTER, alignSelf: CENTER},
+    arrowContainer: {padding: 12, justifyContent: CENTER, alignSelf: CENTER},
     footerContainer: {flexDirection: ROW},
     headingText: {
       fontFamily: fonts.family.rubik500,
