@@ -180,7 +180,7 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
   const onTimeSlotPress = (item, index, slotIndex) => {
     setSelectedItem(item[index]);
     const startTime = parseInt(item[index]?.from.replace(':00', ''));
-    const after12 = item[index]?.type === 'Morning' ? false : true;
+    const after12 = item[index]?.type.includes('Morning') ? false : true;
     setSelectedTime(after12 ? startTime + 12 : startTime);
   };
   return {

@@ -31,7 +31,10 @@ export const useBookingConfirm = () => {
         setEpochTime(arg?.value);
     }
     useEffect(() => {
-        dispatch(getRelations())
+        if(route?.params?.plan && route?.params?.Uuid)
+        dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version}))
+        else if(!route?.params?.plan && route?.params?.Uuid)
+        dispatch(getRelations({uuid:route?.params?.Uuid,check:true}))
         dispatch(getUserAddress())
     }, [])
     useEffect(() => {
@@ -42,7 +45,7 @@ export const useBookingConfirm = () => {
             )
             setDataRelation(newArray)
         } else {
-            dispatch(getRelations())
+            route?.params?.Uuid && dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version})) && dispatch(getRelations())
         }
     }, [relationId])
 

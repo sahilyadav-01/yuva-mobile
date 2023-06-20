@@ -102,7 +102,8 @@ export const useNew = (plan, userVersion, uuid, version) => {
     setEpochTime(arg?.value);
   }
   useEffect(() => {
-    dispatch(getRelations());
+    if(!plan) dispatch(getRelations({uuid,check:true}));
+    else if(plan) dispatch(getRelations({uuid,version,userVersion}));
   }, []);
   useEffect(() => {
     if (relationId?.length >= 0) {

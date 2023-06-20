@@ -1,9 +1,10 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View, Text} from 'react-native';
 import {useDatePicker} from './hooks/useDatePicker';
 import {styles} from './style';
 import DateItem from './DateItem';
 import Slots from './Slots';
+import { NO_SLOTS } from './constants';
 
 function CustomDatePicker(props) {
   const {onDateTimeSelect, OPD} = props;
@@ -15,6 +16,10 @@ function CustomDatePicker(props) {
     activeIndex,
     selectedItem
   } = useDatePicker(onDateTimeSelect, OPD);
+  const availableSlots = getSlots().filter(item => {
+    if (typeof item?.length === 'number') return item;
+  })
+  const unavailable = availableSlots[0]?.length === 0 && availableSlots[0]?.length === 0 && availableSlots[0]?.length === 0 
   const style = styles();
   const RenderDateItem = ({item, index}) => (
     <DateItem
@@ -48,14 +53,12 @@ function CustomDatePicker(props) {
         renderItem={RenderDateItem}
       />
       <View style={style.separatorContainer}/>
-      <FlatList
+      {!unavailable ? <FlatList
         contentContainerStyle={style.timeContentContainer}
         keyExtractor={(item, index) => index}
-        data={getSlots().filter(item => {
-          if (typeof item?.length === 'number') return item;
-        })}
+        data={availableSlots}
         renderItem={RenderSlots}
-      />
+      /> : <View style={style.emptyView}><Text style={style.emptyText}>{NO_SLOTS}</Text></View>}
     </>
   );
 }
