@@ -11,7 +11,7 @@ import { RUPEE_SYMOL } from "../../constant";
 import CarouselItem from '../../../../components/CarouselItem';
 import CarouselContainer from '../../../../components/CarouselContainer';
 const OurPlanDetails = () => {
-    const { planDetails, bookOurPlan, pricePerMonth } = useOurPlanDetails();
+    const { planDetails, bookOurPlan, pricePerMonth, onBackPress } = useOurPlanDetails();
     const renderItem = ({ item, index }) => {
         return (
             <View key={index}>
@@ -24,7 +24,7 @@ const OurPlanDetails = () => {
     }
     return (
         <SafeAreaView>
-           <Header  title={OURPLAN_DETAILS} hideMenu={false} showCart={true} showBackButton={true}/>
+           <Header onBackPress={onBackPress}  title={OURPLAN_DETAILS} hideMenu={false} showCart={true} showBackButton={true}/>
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <OurPlan isHomeScreen={false} />
                 <View style={styles.planDetailsCard}>
