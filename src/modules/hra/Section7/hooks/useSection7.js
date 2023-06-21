@@ -153,7 +153,6 @@ export const useSection7 = () => {
     }
 
     const next = () => {
-        console.log('A',answers,answers10A)
         if ((answers.Q41 === ZERO) && ((answers.Q50 === ZERO) || (answers.Q50 === ONE && answers10A))) {
             dispatch(
                 saveHRAData({
