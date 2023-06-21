@@ -153,7 +153,6 @@ export const useSection7 = () => {
     }
 
     const next = () => {
-
         if ((answers.Q41 === ZERO) && ((answers.Q50 === ZERO) || (answers.Q50 === ONE && answers10A))) {
             dispatch(
                 saveHRAData({
@@ -166,7 +165,7 @@ export const useSection7 = () => {
               );
             navigation.navigate(SECTION_8)
         }
-        else if ((answers.Q41 === ONE) && (((answers.Q42 === ZERO) || (answers.Q42 === ONE && (((answers.Q43 === ZERO) || (answers.Q43 === ONE && ((answers.Q44) && (requiredFieldQ4 == false)))))))) && ((answers.Q45 === ZERO) || (answers.Q45 === ONE && (((answers.Q46 === ZERO) || (answers.Q46 === ONE && (((answers.Q47) && (requiredFieldQ7 == false)) && ((answers.Q48) && (requiredFieldQ8 == false)))))))) && ((answers.Q49 === ZERO) || (answers.Q49 === ONE && answers9A)) && ((answers.Q50 === ZERO) || (answers.Q50 === ONE && answers10A))) {
+        else if ((answers.Q41 === ONE) && (((answers.Q42 === ZERO) || answers.Q42 === '2' || (answers.Q42 === ONE && (((answers.Q43 === ZERO) || (answers.Q43 === ONE && ((answers.Q44) && (requiredFieldQ4 == false)))))))) && ((answers.Q45 === ZERO) || (answers.Q45 === ONE && (((answers.Q46 === ZERO) || (answers.Q46 === ONE && (((answers.Q47) && (requiredFieldQ7 == false)) && ((answers.Q48) && (requiredFieldQ8 == false)))))))) && ((answers.Q49 === ZERO) || (answers.Q49 === ONE && answers9A)) && ((answers.Q50 === ZERO) || (answers.Q50 === ONE && answers10A))) {
             let obj = {Q41: parseInt(answers.Q41)};
             obj = answers.Q42 !== ''?{...obj,Q42: parseInt(answers.Q42)}:obj
             obj = answers.Q43 !== ''?{...obj,Q43: parseInt(answers.Q43)}:obj
