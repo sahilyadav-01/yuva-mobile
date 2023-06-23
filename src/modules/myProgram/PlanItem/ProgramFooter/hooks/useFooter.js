@@ -128,10 +128,12 @@ export const useFooter = planDetails => {
     }
   }, [planLockPress, planLockLoading, planLockError]);
   const onToggle = item => {
+    setAddMember(false);
     if (!planLockView) {
       setDetails(item);
       setToggleCount(toggleCount + 1);
     } else if (details !== '') {
+      setDetails('');
       setPlanLockView(false);
       setCurrentItem(null);
     }
