@@ -23,7 +23,7 @@ const MyPlanCard = ({ item }) => {
              
             }
             if(!item?.locked){
-                navigation.navigate('PurchaseScreen')
+                navigation.navigate(item?.plan ? 'PurchaseScreen' : 'MyCorporateProgram');
             }
             else{
                 navigation.navigate(BOKINGTESTANDPACKAGE, params );

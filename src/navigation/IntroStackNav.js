@@ -14,8 +14,10 @@ import MyCorporateProgram from '../screens/MyCorporateProgramScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import PaymentNavigation from './PaymentNav';
 import PurchaseNav from './PurchaseNav';
-import HomeSearch from '../components/HomeSearch';
+;
 import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
+import HomeSearchScreen from '../screens/HomeSearchScreen/HomeSearchScreen';
+import HomeSearchDetailsScreen from '../screens/HomeSearchScreen/HomeSearchDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -55,7 +57,12 @@ const IntroStackNav = () => {
       />
          <Stack.Screen
         name="HomeSearch"
-        component={HomeSearch}
+        component={HomeSearchScreen}
+        options={{headerShown: false}}
+      />
+           <Stack.Screen
+        name="HomeSearchDetails"
+        component={HomeSearchDetailsScreen}
         options={{headerShown: false}}
       />
             <Stack.Screen

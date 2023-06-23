@@ -50,16 +50,11 @@ export const useHomeSearch = () => {
   }, [requestCall])
 
   const onChangeSearch = text => {
-    dispatch(testPackageSearchThunk({ search: '&search=' + text }))
+    dispatch(testPackageSearchThunk({ search:text }))
     setFilteredData(text)
   };
   const onNavigate = (item) => {
-    if (item?.productTypeEnum === "PACKAGE") {
-      navigation.navigate(BOKINGTESTANDPACKAGE, { packageName: item?.attributeUuid })
-    }
-    else if (item?.productTypeEnum === "TEST") {
-      navigation.navigate(BOKINGTESTANDPACKAGE, { isTest: true, uuid: item?.attributeUuid })
-    }
+    navigation.navigate("HomeSearchDetails",item)
   }
   return {
     data,

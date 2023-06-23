@@ -102,11 +102,12 @@ export const useNew = (plan, userVersion, uuid, version) => {
     setEpochTime(arg?.value);
   }
   useEffect(() => {
-    dispatch(getRelations());
+    if(!plan) dispatch(getRelations({uuid,check:true}));
+    else if(plan) dispatch(getRelations({uuid,version,userVersion}));
   }, []);
   useEffect(() => {
-    if (relationId?.relativeResponseDto?.length >= 0) {
-      let newArray = relationId?.relativeResponseDto?.map(item => {
+    if (relationId?.length >= 0) {
+      let newArray = relationId?.map(item => {
         return {
           key: item.id,
           value:
