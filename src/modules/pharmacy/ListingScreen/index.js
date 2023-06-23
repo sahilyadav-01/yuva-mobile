@@ -3,28 +3,32 @@ import { ScrollView, View, FlatList } from 'react-native';
 import { styles } from './style';
 import Header from '../../../components/Header';
 import { HEADER_TITLE, SEARCH_PLACEHOLDER_PHARMACY } from '../constants';
-import PharmacyCards from '../../../components/PharmacyCards/PharmacyCards';
+import PharmacyCards from '../../../components/PharmacyCards';
 import Search from '../../../components/Search';
 import { DARK_GRAY } from '../../../styles/colors';
 import { useListingScreen } from './hooks/useListingScreen';
+import { useRoute } from '@react-navigation/native';
 
 const ListingScreen = () => {
-  const { search } = styles();
+  const route= useRoute();
+  const {prescriptionId}= route?.params;
+  const { search, scrollViewContainer } = styles();
   const { data } = useListingScreen();
   const renderItem = ({ item, index }) => {
     return (
       <PharmacyCards
         key={index}
-        name={item.name}
-        address={item.address}
+        name={item?.pharmacyName}
+        address={item?.address}
+        number={item?.contactPersonNumber}
+        available={item?.available}
+        id={prescriptionId}
       />
     );
   };
   return (
     <>
       <Header showBackButton={true} isScreen={false} title={HEADER_TITLE} hideMenu={false} />
-      <View >
-        <View>
           <View style={search}>
             <Search
               placeholder={SEARCH_PLACEHOLDER_PHARMACY}
@@ -33,10 +37,8 @@ const ListingScreen = () => {
             // value={searchQuery}
             />
           </View>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            nestedScrollEnabled={true}
-            bounces={false}>
+           <View style={scrollViewContainer}>
+          <ScrollView>
             <View>
               <FlatList
                 renderItem={renderItem}
@@ -47,8 +49,7 @@ const ListingScreen = () => {
               />
             </View>
           </ScrollView>
-        </View>
-      </View>
+          </View>
     </>
   );
 };

@@ -1,17 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { PNG, SVG } from '../../../assets';
 import { styles } from './styles';
+import { usePharmacyCards } from './hooks/usePharmacyCards';
+import { TEXT1, TEXT2, TEXT3, TEXT4 } from './constant';
 
 const PharmacyCards = ({
   name,
   address,
+  number,
+  available,
+  id,
 }) => {
-  const navigation = useNavigation();
-  const bookAppointment = () => {
-    navigation.navigate('PharmacyDescription');
-  };
+  const { getMedicine } = usePharmacyCards(id, name);
 
   return (
     <View style={styles.CompleteView}>
@@ -24,16 +25,16 @@ const PharmacyCards = ({
             <Text style={styles.NameStyle}>
               {name}
             </Text>
-            <View style={styles.subCont}>
+            {available && <View style={styles.subCont}>
               <Text style={styles.Year}>
-                {'Chemist Remark:'}
+                {TEXT1}
               </Text>
               <Text style={styles.subText}>
-                {'Medicine Available'}
+                {TEXT2}
               </Text>
-            </View>
+            </View>}
           </View>
-          <Text style={styles.ContentStyle}>{'(+91) 7606036942'}</Text>
+          <Text style={styles.ContentStyle}>{number}</Text>
           <View style={styles.addressView}>
             <SVG.LocationOn />
             <Text style={styles.Address}>
@@ -42,8 +43,8 @@ const PharmacyCards = ({
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.Button} onPress={bookAppointment}>
-        <Text style={styles.ButtonText}>{'Get Medicine'}</Text>
+      <TouchableOpacity style={styles.Button} onPress={getMedicine}>
+        <Text style={styles.ButtonText}>{TEXT3}</Text>
       </TouchableOpacity>
     </View>
   );
