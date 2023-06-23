@@ -35,7 +35,8 @@ export const useHeader = (props) => {
 
   const canGoBack = showBackButton && navigation?.canGoBack();
   const onBackPress = () => {
-    navigation.goBack();
+    if(typeof props?.onBackPress === 'function') props?.onBackPress()
+    else navigation.goBack();
   }
   const setSelected = (city) => {
     setSelectedCity(city);

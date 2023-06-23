@@ -23,7 +23,7 @@ export const usePaymentStatus = params => {
   useEffect(() => {
     if(params?.zeroPayment) setLoading(false);
     else if (!paymentStatusLoading && !paymentError && paymentStatus === 'ABORTED' && !params?.zeroPayment) {
-      navigation.navigate('HomeService');
+      navigation.reset({index:0,routes:[{name:'HomeScreen'}]})
     }
     else if (!paymentStatusLoading && !paymentError && paymentStatus !== null && !params?.zeroPayment) {
       paymentStatus === 'PAID' ? setPaymentSuccess(true) : setPaymentSuccess(false);
@@ -32,7 +32,7 @@ export const usePaymentStatus = params => {
   }, [paymentStatusLoading]);
 
   const onCrossPress = () => {
-    navigation.navigate('HomeService');
+    navigation.reset({index:0,routes:[{name:'HomeScreen'}]})
   }
 
   return {paymentSuccess, loading, onCrossPress};

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import Header from '../../../../components/Header';
 import {
@@ -33,7 +34,7 @@ import PlanCard from '../PlanCard';
 import SelectList from 'react-native-dropdown-select-list';
 import { DARK_GRAY } from '../../../../styles/colors';
 const OurPlanDetails = (props) => {
-  const {planDetails, bookOurPlan, pricePerMonth,mainItem,dataRender,selected, setSelected} = useOurPlanDetails();
+  const {planDetails, bookOurPlan, pricePerMonth,mainItem,dataRender,selected, setSelected, onBackPress} = useOurPlanDetails();
   const {isHealthPlan}=props;
   const renderItem = ({item, index}) => {
     return (
@@ -46,12 +47,13 @@ const OurPlanDetails = (props) => {
     );
   };
   return (
-    <View>
+    <SafeAreaView>
       <Header
         title={OURPLAN_DETAILS}
         hideMenu={false}
         showCart={true}
         showBackButton={true}
+        onBackPress={onBackPress}
       />
       <ScrollView
         contentContainerStyle={styles.contentContainerStyle}
@@ -121,7 +123,7 @@ const OurPlanDetails = (props) => {
           />
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 export default OurPlanDetails;
