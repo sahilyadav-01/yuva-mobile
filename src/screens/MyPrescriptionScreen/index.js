@@ -1,4 +1,4 @@
-import { View, FlatList} from 'react-native';
+import { FlatList, SafeAreaView, View} from 'react-native';
 import React from 'react';
 import ReportCard from '../../ReportCard';
 import { styles } from './styles';
@@ -13,15 +13,17 @@ const MyPrescription = () => {
   const {myPrescriptionReport}=useMyPrescription();
 
   return (
-    <View style={styles.contentContainerStyle}>
+    <SafeAreaView style={styles.contentContainerStyle}>
        <Header title={MY_PRESCRIPTIONS} showBackButton={true} hideMenu={true}/>
         <FlatList
           data={myPrescriptionReport}
           keyExtractor={(item, index) => `${index}`}
           nestedScrollEnabled={true}
           renderItem={renderItem}
+          ItemSeparatorComponent={()=><View style={styles.itemSeparator}/>}
+          contentContainerStyle={styles.listContainer}
         />
-    </View>
+    </SafeAreaView>
   );
 };
 

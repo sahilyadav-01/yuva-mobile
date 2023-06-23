@@ -2,8 +2,10 @@ import {StyleSheet} from 'react-native';
 import {CYAN_BLUE, CYAN_BLUE_OPACITY, FLASH_WHITE, LIGHT_MERCURY, ORANGE, WHITE} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
+import { getPlatform } from '../../utils/utils';
 
 const styles = (enableResendOtp) => {
+  const Platform = getPlatform();
   return StyleSheet.create({
     scrollViewContainer: {paddingHorizontal: 13, marginTop: 1},
     signUpCard: {
@@ -68,7 +70,9 @@ const styles = (enableResendOtp) => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
       color: CYAN_BLUE,
-      alignSelf:CENTER,
+      textAlign:CENTER,
+      paddingVertical: Platform.isIOS ? 20 : undefined,
+      width:'100%'
     },
   });
 };

@@ -134,6 +134,7 @@ import PharmacyIcon from './PharmacyIcon';
 import PHARMACY from './pharmacy.png';
 import PHARMA_CARD_ICON from './trolly.png';
 
+import HealthBanner from './HealthBanner.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -204,6 +205,7 @@ const PNG = {
   programCard,
   PHARMACY,
   PHARMA_CARD_ICON,
+  HealthBanner
 };
 
 const SVG = {

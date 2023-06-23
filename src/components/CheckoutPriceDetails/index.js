@@ -59,7 +59,7 @@ const CheckoutPriceDetails = (props) => {
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>
-                    <Checkbox
+                    <Checkbox.Android
                         color={GREEN} uncheckedColor={CYAN_BLUE}
                         status={checked === true ? 'checked' : 'unchecked'}
                         onPress={() => {

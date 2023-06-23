@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, KeyboardAvoidingView } from 'react-native'
 import CheckoutPriceDetails from '../../../../components/CheckoutPriceDetails'
 import CouponCard from '../../../../components/CouponCard'
 import Header from '../../../../components/Header'
@@ -7,6 +7,7 @@ import ProgressBar from '../../../../components/ProgressBar'
 import { useCheckout } from './hooks/useCheckout'
 import { styles } from './styles'
 import { CHECKOUT, RUPEE, TO_BE_PAID } from './constants'
+import { getPlatform } from '../../../../utils/utils'
 
 const CheckoutOurPlan = () => {
     const { address,
@@ -25,9 +26,11 @@ const CheckoutOurPlan = () => {
         planeCouponCode,
         planCouponFinalAmount } = useCheckout();
     const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
+    const Platform = getPlatform();
     return (
-        <View>
+        <SafeAreaView style={styles.container}>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
+            <KeyboardAvoidingView style={styles.container} behavior={Platform.isIOS ? 'padding' : null}>
             <ScrollView
                 nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>
@@ -56,7 +59,8 @@ const CheckoutOurPlan = () => {
                 </View>
                 <CouponCard isPlan={true} planType={planType} planUuid={planUuid} />
             </ScrollView>
-        </View>
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     )
 }
 

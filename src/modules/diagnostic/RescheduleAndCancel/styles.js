@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     marginTop: 14,
     marginHorizontal:16,
     shadowColor: WHITE,
-    shadowOpacity: "50%",
+    shadowOpacity: 0.5,
     borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,

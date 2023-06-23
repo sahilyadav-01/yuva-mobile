@@ -50,6 +50,7 @@ const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
       color: CYAN_BLUE,
+      paddingHorizontal:8
     },
     termsAndConditionsContainer: {
       marginTop: 32,

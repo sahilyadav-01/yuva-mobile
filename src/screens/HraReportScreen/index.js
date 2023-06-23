@@ -16,6 +16,7 @@ const HraReport = () => {
           keyExtractor={(item, index) => `${index}`}
           nestedScrollEnabled={true}
           renderItem={renderItem}
+          ItemSeparatorComponent={()=><View style={styles.itemSeparator}/>}
         />
     </View>
   );

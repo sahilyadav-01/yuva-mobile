@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import * as Progress from 'react-native-progress';
 import PickerData from '../../../utils/PickerData';
 import SelectList from 'react-native-dropdown-select-list';
@@ -10,24 +10,22 @@ import { BUTTON_TEXT, EIGHTH_QUESTION, FOURTH_QUESTION, HEALTH_RISK_ASSESSMENT, 
 import { DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
+import { getPlatform } from '../../../utils/utils';
 
 const Section7 = () => {
 
   const { requiredFieldQ4, setQuestion1, setQuestion2, setQuestion3, setQuestion5, setQuestion6, requiredFieldQ7, requiredFieldQ8, setQuestion9, setQuestion10, setQuestion9A, setQuestion10A, medicalConditionDoYouSufferFromAnyIllness, medicalConditionDiabetes, medicalCondition, medicalConditionHypertension, medicalCondition1, medicalConditionAnyCancer, medicalConditionChronicIllness, inputCheck, progressWidth, questionData, answers, next, renderData, onChangeText } = useSection7();
+  const Container = getPlatform().isIOS ? KeyboardAvoidingView : View;
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
-    <>
+    <Container behavior='padding' style={styles.container}>
       <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
+      <ScrollView>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.7} width={progressWidth} height={12} />
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle}>{SECTION_7_HEADING}</Text>
-        <View style={styles.scrollViewContainer}>
-          <ScrollView
-            bounces={false}
-            contentContainerStyle={styles.scrollViewContentContainerStyle}
-            showsVerticalScrollIndicator={false}>
             <View style={styles.questionViewContainer}>
               <Text style={styles.questionViewContainerText}>
                 {questionData[0]?.question}
@@ -169,7 +167,7 @@ const Section7 = () => {
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
-                  keyboardType={KEYBOARD_TYPE_VALUE_TEXT}
+                  keyboardType='default'
                   placeholderTextColor={PLACEHOLDER_COLOR}
                   placeholder=""
                   onChangeText={setQuestion9A}
@@ -195,7 +193,7 @@ const Section7 = () => {
               <View style={styles.questionViewContainer}>
                 <Text style={styles.questionViewContainerText}>{SECTION_7_QUESTION}</Text>
                 <TextInput style={styles.questionViewContainerTextInput}
-                  keyboardType={KEYBOARD_TYPE_VALUE_TEXT}
+                  keyboardType='default'
                   placeholderTextColor={PLACEHOLDER_COLOR}
                   placeholder=""
                   onChangeText={setQuestion10A}
@@ -207,10 +205,9 @@ const Section7 = () => {
                 <Text style={styles.touchableOpacityTextStyle}>{BUTTON_TEXT}</Text>
               </TouchableOpacity>
             </View>
-          </ScrollView>
         </View>
-      </View>
-    </>
+        </ScrollView>
+      </Container>
   );
 };
 

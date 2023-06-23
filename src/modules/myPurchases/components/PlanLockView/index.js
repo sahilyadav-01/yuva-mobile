@@ -29,7 +29,7 @@ const PlanLockView = props => {
     if (planDetails?.locked || lock) return null;
     return (
       <View style={style.checkboxContainer}>
-        <Checkbox color={GREEN} uncheckedColor={CYAN_BLUE}
+        <Checkbox.Android color={GREEN} uncheckedColor={CYAN_BLUE}
           status={item?.status ? 'checked' : 'unchecked'}
           onPress={() => onCheckboxPress(index)}
         />

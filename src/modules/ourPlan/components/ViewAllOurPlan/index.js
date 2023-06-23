@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Header from '../../../../components/Header';
 import OurPlan from "../../index"
 import { ENTER_PHONE_NUMBER,  FREQUENT_ASKED_QUES, GET_EXPERT_GUIDANCE, OURPLAN, PLEASE_ENTER_CORRECT_NUMBER, SPEAK_TO } from './constants';
@@ -42,7 +42,7 @@ const ViewAllOurPlan = () => {
     }
 
     return (
-        <View>
+        <SafeAreaView>
             <Header showBackButton={true} title={OURPLAN} />
             <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle} nestedScrollEnabled={true}>
                 <View style={styles.OurplanView}>
@@ -89,7 +89,7 @@ const ViewAllOurPlan = () => {
                     </ScrollView>
                 </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }
 export default ViewAllOurPlan;
