@@ -10,26 +10,32 @@ import Search from '../../../components/Search';
 const PrescriptionListingScreen = () => {
   const { prescriptionData, onPress } = usePrescriptionListingScreen();
   const renderPatient = (item, index) => {
+    if (!item || !item?.item) {
+      return null; 
+    }
+    const onItemPress =()=>{
+      onPress(item)
+    }
     return (
-      <TouchableOpacity onPress={() => onPress(item)}>
+      <TouchableOpacity onPress={onItemPress}>
         <View style={styles.CardView} key={index}>
           <View style={styles.HeadingTextContainer}>
-            <Text style={styles.HeadingText}>{item.item.patientName}</Text>
+            <Text style={styles.HeadingText}>{item?.item?.patientName}</Text>
             <Text style={styles.PincodeText}>
               {PATIENT_PINCODE}
-              {item.item.pinCode}
+              {item?.item?.pinCode}
             </Text>
           </View>
           <Text style={styles.SubText}>
             {PRESCRIPTION_ID}
-            {item.item.prescriptionId}
+            {item?.item?.prescriptionId}
           </Text>
           <View style={styles.NameView}>
-            <Text style={styles.SubText}>{item.item.doctorName}</Text>
-            <Text style={styles.SubText}>{item.item.hospitalName}</Text>
+            <Text style={styles.SubText}>{item?.item?.doctorName}</Text>
+            <Text style={styles.SubText}>{item?.item?.hospitalName}</Text>
           </View>
           <View>
-            <TouchableOpacity style={styles.Button} onPress={() => onPress(item)}>
+            <TouchableOpacity style={styles.Button} onPress={onItemPress}>
               <Text style={styles.ButtonText}>{BUTTON_TEXT}</Text>
             </TouchableOpacity>
           </View>
