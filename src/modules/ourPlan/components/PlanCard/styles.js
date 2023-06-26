@@ -30,6 +30,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     marginTop: 8,
     width: width - 32,
+    shadowOpacity:0.3,
+    shadowOffset:{
+      width: 0,
+      height:0
+    },
+    shadowRadius:5
   },
   detailsCont:{
     borderRadius: 12,

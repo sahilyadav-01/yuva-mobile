@@ -4,6 +4,9 @@ import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
+    screenContainer: {
+        flex:1,
+    },
     progressBarContainer: {
         width: '100%',
     },

@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
 import Header from "../../../../components/Header";
 import { CHECKOUT, CONFIRM_DETAILS, OUR_PLAN_ADDRESS } from "./constants";
 import { styles } from "./styles";
@@ -12,7 +12,7 @@ const OurPlanAddress = () => {
     const { AddressAdded,addressListing } = useOurPlanAddress();
 
     return (
-        <View>
+        <SafeAreaView>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <View style={styles.progressBar}>
@@ -31,7 +31,7 @@ const OurPlanAddress = () => {
             } 
             </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 };
 export default OurPlanAddress;

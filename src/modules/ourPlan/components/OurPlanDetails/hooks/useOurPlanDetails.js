@@ -18,9 +18,14 @@ export const useOurPlanDetails = () => {
         dispatch(planDetailsThunk(Uuid))
 
     }, [mainItem])
+
+    const onBackPress = () => {
+        navigation.navigate('Home',{screen:'HomeService',params:{navigateToDetails:false}})
+    }
+
     const bookOurPlan = () => {
         if(loggedIn === 'loggedIn') {
-            navigation.navigate('Home',{screen:'OurPlan',params: {screen:ADDRESS,params:{...mainItem,plan:true}}})
+            navigation.navigate(ADDRESS,{...mainItem,plan:true})
         } else {
             navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetailsGuest', data: data } });
         }
@@ -44,6 +49,7 @@ export const useOurPlanDetails = () => {
         mainItem,
         dataRender,
         selected, 
-        setSelected
+        setSelected,
+        onBackPress
     }
 }

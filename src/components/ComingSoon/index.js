@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {COMING_SOON} from './constant';
@@ -7,7 +7,7 @@ import {SVG} from '../../../assets';
 
 const ComingSoon = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Header title={COMING_SOON} showBackButton={true} hideMenu={true} showCart={true} />
       <View style={styles.containerView1}>
         <View style={styles.containerView}>
@@ -20,7 +20,7 @@ const ComingSoon = () => {
           <Text style={styles.textStyle}>{COMING_SOON}</Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>608257465220-cqktnsae695cum7n9v2u36fikubru3ua.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.608257465220-cqktnsae695cum7n9v2u36fikubru3ua</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD1XrhbGte-IbdtTm1OHx72qIXwz_inrL4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>608257465220</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yuvahealth</string>
+	<key>PROJECT_ID</key>
+	<string>yuva-369010</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yuva-369010.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:608257465220:ios:27df71bf9a344b40781bd1</string>
+</dict>
+</plist>

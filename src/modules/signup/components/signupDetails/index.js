@@ -13,7 +13,7 @@ const SignUpDetailsCard = props => {
   const style = styles();
   const signUp = useSignUp();
   return (
-    <>
+    <View>
       <View style={style.textInputCardContainer}>
         <TextInput
           style={style.textInputContainer}
@@ -103,7 +103,7 @@ const SignUpDetailsCard = props => {
           </View>
         )}
         <View style={style.termsAndConditionsContainer}>
-          <Checkbox
+          <Checkbox.Android
             color={GREEN}
             uncheckedColor={CYAN_BLUE}
             onPress={signUp?.toggleTerms}
@@ -142,7 +142,7 @@ const SignUpDetailsCard = props => {
         primaryText="Already a member, "
         pressableText="Login Here"
       />
-    </>
+    </View>
   );
 };
 

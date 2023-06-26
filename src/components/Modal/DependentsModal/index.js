@@ -6,12 +6,14 @@ import Dependent from './Dependent';
 import {styles} from './style';
 import BackCross from '../../GoBackCross';
 import { CYAN_BLUE, GREEN } from '../../../styles/colors';
+import { getPlatform } from '../../../utils/utils';
 
 function DependentsModal(props) {
   const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress, showAddMembersButton, onAddMembersPress, buttonText, relativesText,showRelatives,onAddRelative} = props;
   const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText, headingContainer, addMemberContainer, addMemberText} =
     styles();
   const listData = [0, ...data, 0];
+  const Platform = getPlatform();
   const renderDependent = ({item, index}) => (
     <Dependent item={item} index={index} key={index} length={listData.length} />
   );
@@ -23,7 +25,7 @@ function DependentsModal(props) {
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
-        <Checkbox color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
+        <Checkbox.Android color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
       </View>
       {data.length > 0 && <FlatList
         data={listData}
@@ -40,6 +42,7 @@ function DependentsModal(props) {
       {showRelatives && <TouchableOpacity onPress={onAddRelative} style={addMemberContainer}>
           <Text style={addMemberText}>{relativesText}</Text>
         </TouchableOpacity>}
+        {Platform.isIOS && <View style={{height:16}}/>}
     </Modal>
   );
 }

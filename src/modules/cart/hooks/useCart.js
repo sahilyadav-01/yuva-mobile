@@ -127,7 +127,12 @@ export const useCart = (args) => {
     }
   }, [isRemoved]);
 
-  /** */
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+    setModalVisible(false);
+  });
+  return unsubscribe;
+}, [navigation]);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -141,6 +146,7 @@ export const useCart = (args) => {
       dispatch(clearApiErrorMessage(''));
     }
   }, [focused]);
+
   useEffect(() => {
     if (!relationsLoading && !relationsError && route?.name === 'Cart' && (addButtonPress || checkBoxFlag.length > 0)) {
       dispatch(getActiveRelations());
@@ -229,8 +235,6 @@ export const useCart = (args) => {
     setRelationsModalVisible(false);
   };
 
-
-  /** */
 
   return {
     cart,

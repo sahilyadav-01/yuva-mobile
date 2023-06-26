@@ -40,12 +40,15 @@ const MyReports = props => {
 
       {isReportVisible && (
         <View style={styles.reportContainer}>
+          <View style={styles.listContainer}>
           <FlatList
             data={data}
             keyExtractor={(item, index) => `${index}`}
             renderItem={renderItem}
             nestedScrollEnabled={true}
+            ItemSeparatorComponent={()=><View style={styles.itemSeparator}/>}
           />
+          </View>
         </View>
       )}
     </View>

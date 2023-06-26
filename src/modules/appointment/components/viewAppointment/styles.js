@@ -236,6 +236,10 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize10,
     color: DARK_BLUE,
   },
+  appointmentId:{
+    position:ABSOLUTE, 
+    right:14
+  },
   customId: {
     marginTop: 5,
     marginLeft: 36,
