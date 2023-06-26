@@ -9,7 +9,7 @@ import { CYAN_BLUE, GREEN } from '../../../styles/colors';
 import { getPlatform } from '../../../utils/utils';
 
 function DependentsModal(props) {
-  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress, showAddMembersButton, onAddMembersPress, buttonText} = props;
+  const {visible,heading,primaryText:primary,data,checkBoxStatus,onCheckBoxPress, onCrossPress, showAddMembersButton, onAddMembersPress, buttonText, relativesText,showRelatives,onAddRelative} = props;
   const {selectText, dependentContainer, listStyle, itemSeparatorStyle, primaryText, headingContainer, addMemberContainer, addMemberText} =
     styles();
   const listData = [0, ...data, 0];
@@ -38,6 +38,9 @@ function DependentsModal(props) {
       />}
       {showAddMembersButton && <TouchableOpacity onPress={onAddMembersPress} style={addMemberContainer}>
           <Text style={addMemberText}>{buttonText}</Text>
+        </TouchableOpacity>}
+      {showRelatives && <TouchableOpacity onPress={onAddRelative} style={addMemberContainer}>
+          <Text style={addMemberText}>{relativesText}</Text>
         </TouchableOpacity>}
         {Platform.isIOS && <View style={{height:16}}/>}
     </Modal>

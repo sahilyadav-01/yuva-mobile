@@ -1,16 +1,26 @@
+import { useEffect } from 'react';
 import {useState} from 'react';
 import {Alert} from 'react-native';
 
-export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
+export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading, modalVisible) => {
   const data = [
     {heading: 'Name', placeholder: 'Name'},
     {heading: 'Age', placeholder: 'Age'},
-    {heading: 'Gender', placeholder: 'Gender'},
+    {heading: heading ?? 'Gender', placeholder: 'Gender'},
   ];
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [selectedRelation, setSelectedRelation] = useState('');
+  const [selectedGender, setSelectedGender] = useState('');
+  const [selectedRelationEnum, setSelectedRelationEnum] = useState('');
 
+  useEffect(()=>{
+    if(modalVisible){
+        setName('');
+        setAge('');
+    }
+  },[modalVisible])
+  
   const getTextInputValue = key => {
     switch (key) {
       case 'Name':
@@ -18,6 +28,7 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
       case 'Age':
         return {value: age, func: setAge,type:'input',keyboardType:'numeric'};
       case 'Gender':
+      case 'Relationship':
         return {value: '0',type:'picker'};
     }
   };
@@ -29,7 +40,15 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
     const item = relationsData.find(
       item => item.key === index.toString(),
     )?.value;
+    const relationEnum = relationsData.find(
+      item => item.key === index.toString(),
+    )?.relation;
+    const gender = relationsData.find(
+      item => item.key === index.toString(),
+    )?.gender;
     setSelectedRelation(item);
+    setSelectedGender(gender);
+    setSelectedRelationEnum(relationEnum);
   };
   const onSaveDetails = () => {
     const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi
@@ -37,13 +56,10 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress) => {
     if(!(name && age && selectedRelation)) Alert.alert('Alert', 'Please fill all the details');
     else if(reg.test(age)) Alert.alert('Alert', 'Please enter a proper age');
     else if(!nameReg.test(name)) Alert.alert('Alert', 'Please enter a proper name');
-    else onSaveDetailsPress({name, age, selectedRelation});
+    else onSaveDetailsPress({name, age, selectedRelation,selectedGender,selectedRelationEnum});
   };
   return {
     data,
-    name,
-    age,
-    selectedRelation,
     onItemSelect,
     getTextInputValue,
     onTextChange,

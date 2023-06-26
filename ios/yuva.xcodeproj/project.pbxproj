@@ -20,6 +20,7 @@
 		957CFFFB97614D6D95C21928 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 612AC94B836D499FAA24EF73 /* Rubik-Light.ttf */; };
 		9F7CEB9F067A41DF85C7065E /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91DED50858E14EDB81BBDECD /* Rubik-Regular.ttf */; };
 		E82626B72A2887C1007959D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82626B62A2887C1007959D6 /* GoogleService-Info.plist */; };
+		E89AC6E32A2F0EFA001A783D /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */; };
 		FD248DD34C0746019427FCD2 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		DF8731CB18804C27A0069787 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../assets/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		E82626B62A2887C1007959D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8751A2D2A2756F200B25101 /* yuva.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = yuva.entitlements; path = yuva/yuva.entitlements; sourceTree = "<group>"; };
+		E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraBold.ttf"; path = "../assets/fonts/Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBold.ttf"; path = "../assets/fonts/Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */,
 				13B07FAE1A68108700A75B9A /* yuva */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* yuvaTests */,
@@ -275,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E89AC6E32A2F0EFA001A783D /* Raleway-ExtraBold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E82626B72A2887C1007959D6 /* GoogleService-Info.plist in Resources */,

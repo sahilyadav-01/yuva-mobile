@@ -33,7 +33,7 @@ const Doctor = () => {
     );
   };
   return (
-    <ScrollView>
+  
       <View>
         <View style={styles.search}>
           <Search
@@ -43,6 +43,7 @@ const Doctor = () => {
             value={searchQuery}
           />
         </View>
+        <ScrollView>
         <View>
           <FlatList
             renderItem={renderItem}
@@ -52,8 +53,8 @@ const Doctor = () => {
             nestedScrollEnabled={true}
           />
         </View>
+        </ScrollView>
       </View>
-    </ScrollView>
   );
 };
 

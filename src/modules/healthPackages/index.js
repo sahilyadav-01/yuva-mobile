@@ -60,6 +60,7 @@ const HealthPackages = props => {
           showBackButton={true}
           title={TITLE}
           onSearch={onSearch}
+          showCart={true}
         />
         <View style={[screenContainer, childContainerStyle]}>
           {addToCartLoad ? (

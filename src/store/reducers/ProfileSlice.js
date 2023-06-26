@@ -1,6 +1,7 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
-import {setProfileStatus} from '../LocalStore';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import RNFetchBlob from 'rn-fetch-blob';
+import { YuvaService } from '../../network/yuvaService';
+import { setProfileStatus } from '../LocalStore';
 import {
   loginThunk,
   signupThunk,
@@ -11,7 +12,7 @@ import {
 
 export const profileThunk = createAsyncThunk(
   'profile/profileThunk',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await YuvaService.get('/profile');
       return response;
@@ -23,9 +24,15 @@ export const profileThunk = createAsyncThunk(
 
 export const getActiveRelations = createAsyncThunk(
   'profile/getActiveRelations',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, { fulfillWithValue, rejectWithValue }) => {
+    let queryParams;
     try {
-      const response = await YuvaService.get('/relation/active');
+      if(params?.check){
+      queryParams = params?.uuid ? `?uuid=${params?.uuid}` : ''
+     }else{
+       queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}` : ''
+     }
+      const response = await YuvaService.get(`/relation/dropdown${queryParams}`);
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -35,9 +42,15 @@ export const getActiveRelations = createAsyncThunk(
 
 export const getRelations = createAsyncThunk(
   'profile/getRelations',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, { fulfillWithValue, rejectWithValue }) => {
+    let queryParams;
     try {
-      const response = await YuvaService.get('/relation');
+      if(params?.check){
+         queryParams = params?.uuid ? `?uuid=${params?.uuid}` : ''
+      }else{
+         queryParams = params?.uuid ? `?uuid=${params?.uuid}&version=${params?.version}&userVersion=${params?.userVersion}` : ''
+      }
+      const response = await YuvaService.get(`/relation${queryParams}`);
       return response;
     } catch (error) {
       return rejectWithValue(error);
@@ -48,8 +61,8 @@ export const getRelations = createAsyncThunk(
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
   async (
-    {dob, gender, address, cityId, pinCode},
-    {fulfillWithValue, rejectWithValue},
+    { dob, gender, address, cityId, pinCode },
+    { fulfillWithValue, rejectWithValue },
   ) => {
     try {
       await YuvaService.put('/profile', {
@@ -68,7 +81,7 @@ export const updateProfile = createAsyncThunk(
 
 export const addRelation = createAsyncThunk(
   'profile/addRelation',
-  async ({age, name, relation}, {fulfillWithValue, rejectWithValue}) => {
+  async ({ age, name, relation }, { fulfillWithValue, rejectWithValue }) => {
     try {
       await YuvaService.post('/relation', {
         age,
@@ -82,7 +95,7 @@ export const addRelation = createAsyncThunk(
 );
 export const getUserAddress = createAsyncThunk(
   'user/address',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await YuvaService.get('/user/address');
       return response;
@@ -94,7 +107,7 @@ export const getUserAddress = createAsyncThunk(
 
 export const planIsSubscribedThunk = createAsyncThunk(
   'plan/isSubscribed',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async (params = {}, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await YuvaService.get('/plan/isSubscribed');
       return response;
@@ -103,7 +116,54 @@ export const planIsSubscribedThunk = createAsyncThunk(
     }
   },
 );
-
+export const uploadFamilyPic = createAsyncThunk(
+  'familyPic',
+  async (familyPic, { fulfillWithValue, rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append("familyPic", {
+      name:familyPic?.path?.split('/')?.pop(),
+      type:familyPic?.mime,
+      uri:familyPic?.path
+    });
+    try {
+    const response=  await YuvaService.post('/familyPic',
+      formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',Accept:"application/json"
+          }
+        }
+      )
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+export const uploadProfilePic = createAsyncThunk(
+  'profilePic',
+  async (ProfilePic, { fulfillWithValue, rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append("profilePic", {
+      name:ProfilePic?.path?.split('/')?.pop(),
+      type:ProfilePic?.mime,
+      uri:ProfilePic?.path
+    });
+    try {
+    const response= await YuvaService.post('/profilePic',
+      formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',Accept:"application/json"
+          }
+        }
+      )
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 const initialState = {
   profile: {
     companyName: '',
@@ -129,29 +189,48 @@ const initialState = {
   relationsErrorMessage: '',
   enableAddMember: null,
   profileUpdated: false,
+  selectedAddress: null,
+  addressListing: null,
+  isSubscribed: false,
+  userAddress: [],
+  messageFamilyPic: null,
+  messageProfilePic:null,
   selectedAddress:null,
   addressListing:null,
   isSubscribed:false,
   userAddress:[],
+  activeRelationsError: false,
+  relationsError: false,
+  activeRelationsLoading: false,
+  relationsLoading: false,
+  messageFamilyPic: null,
+  messageProfilePic:null,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    updateProfileStatus(state, {payload}) {
+    updateProfileStatus(state, { payload }) {
       let profileStatus = payload === 'Y' ? true : false;
       state.profileUpdated = profileStatus;
     },
-    saveCheckedAddress(state,{payload}){
-      state.selectedAddress=payload;
+    saveCheckedAddress(state, { payload }) {
+      state.selectedAddress = payload;
     },
-    resetAddress(state){
-      state.selectedAddress=null;
+    resetAddress(state) {
+      state.selectedAddress = null;
     },
-    AddressListing(state,{payload}){
-      state.addressListing=payload;
+    AddressListing(state, { payload }) {
+      state.addressListing = payload;
     },
+    resetMesage(state) {
+      state.messageProfilePic = null;
+      state.messageFamilyPic=null;
+    },
+    resetRelations(state){
+      state.relations = [];
+    }
   },
   extraReducers: {
     [profileThunk.pending]: state => {
@@ -159,7 +238,7 @@ const profileSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
     },
-    [profileThunk.fulfilled]: (state, {payload}) => {
+    [profileThunk.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.profile = payload.data;
       state.userDetails = payload.data.data;
@@ -168,7 +247,7 @@ const profileSlice = createSlice({
       state.dataUpdated = false;
       state.userDetailsErrorMessage = '';
     },
-    [profileThunk.rejected]: (state, {payload}) => {
+    [profileThunk.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
@@ -179,20 +258,26 @@ const profileSlice = createSlice({
     },
     [getRelations.pending]: state => {
       state.loading = true;
+      state.relationsError = false;
+      state.relationsLoading = true;
     },
     [getRelations.fulfilled]: (state, {payload}) => {
-      state.relations = payload.data.data.relativeResponseDto;
+      state.relations = payload.data.data;
       state.apiError = false;
+      state.relationsError = false;
       state.apiErrorMessage = '';
       state.loading = false;
+      state.relationsLoading = false;
       state.relationAdded = false;
       state.relationId = payload?.data?.data || [];
       state.relationsErrorMessage = '';
       state.enableAddMember = payload.data.data.enableAddMember;
     },
-    [getRelations.rejected]: (state, {payload}) => {
+    [getRelations.rejected]: (state, { payload }) => {
       state.apiError = true;
+      state.relationsError = true;
       state.loading = false;
+      state.relationsLoading = false;
       state.relationAdded = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
@@ -200,17 +285,23 @@ const profileSlice = createSlice({
     },
     [getActiveRelations.pending]: state => {
       state.loading = true;
+      state.activeRelationsError = false;
+      state.activeRelationsLoading = true;
     },
-    [getActiveRelations.fulfilled]: (state, {payload}) => {
+    [getActiveRelations.fulfilled]: (state, { payload }) => {
       state.activeRelations = payload.data.data;
       state.apiError = false;
+      state.activeRelationsError = false;
       state.apiErrorMessage = '';
       state.loading = false;
+      state.activeRelationsLoading = false;
       state.activeRelationsErrorMessage = '';
     },
-    [getActiveRelations.rejected]: (state, {payload}) => {
+    [getActiveRelations.rejected]: (state, { payload }) => {
       state.apiError = true;
+      state.activeRelationsError = true;
       state.loading = false;
+      state.relationsLoading = false;
       state.apiErrorMessage = payload.message;
       state.status = false;
       state.activeRelationsErrorMessage = payload.message;
@@ -228,7 +319,7 @@ const profileSlice = createSlice({
       state.profileUpdated = true;
       setProfileStatus('Y');
     },
-    [updateProfile.rejected]: (state, {payload}) => {
+    [updateProfile.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
@@ -244,7 +335,7 @@ const profileSlice = createSlice({
       state.loading = true;
       state.relationAdded = true;
     },
-    [addRelation.rejected]: (state, {payload}) => {
+    [addRelation.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
@@ -254,27 +345,27 @@ const profileSlice = createSlice({
     [getUserAddress.pending]: state => {
       state.loading = true;
     },
-    [getUserAddress.fulfilled]: (state, {payload}) => {
+    [getUserAddress.fulfilled]: (state, { payload }) => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.userAddress = payload?.data?.data || [];
     },
-    [getUserAddress.rejected]: (state, {payload}) => {
+    [getUserAddress.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
     },
-    [loginThunk.fulfilled]: (state, {payload}) => {
+    [loginThunk.fulfilled]: (state, { payload }) => {
       if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
-    [signupThunk.fulfilled]: (state, {payload}) => {
+    [signupThunk.fulfilled]: (state, { payload }) => {
       if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
-    [verifyThunk.fulfilled]: (state, {payload}) => {
+    [verifyThunk.fulfilled]: (state, { payload }) => {
       if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
-    [resetPassword.fulfilled]: (state, {payload}) => {
+    [resetPassword.fulfilled]: (state, { payload }) => {
       if (payload.data) state.profileUpdated = payload.data.profileUpdated;
     },
     [logoutThunk.fulfilled]: state => {
@@ -286,20 +377,49 @@ const profileSlice = createSlice({
     [planIsSubscribedThunk.pending]: state => {
       state.loading = true;
     },
-    [planIsSubscribedThunk.fulfilled]: (state, {payload}) => {
+    [planIsSubscribedThunk.fulfilled]: (state, { payload }) => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.isSubscribed = payload?.data?.data;
     },
-    [planIsSubscribedThunk.rejected]: (state, {payload}) => {
+    [planIsSubscribedThunk.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
       state.apiErrorMessage = payload.message;
     },
+    [uploadFamilyPic.pending]: state => {
+      state.loading = true;
+    },
+    [uploadFamilyPic.fulfilled]: (state, { payload }) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.messageFamilyPic = payload?.data;
+    },
+    [uploadFamilyPic.rejected]: (state, { payload }) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload?.message;
+      state.status = false;
+    },
+    [uploadProfilePic.pending]: state => {
+      state.loading = true;
+    },
+    [uploadProfilePic.fulfilled]: (state, { payload }) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.loading = false;
+      state.messageProfilePic = payload?.data;
+    },
+    [uploadProfilePic.rejected]: (state, { payload }) => {
+      state.apiError = true;
+      state.loading = false;
+      state.apiErrorMessage = payload?.message;
+      state.status = false;
+    },
   },
 });
-
-export const {updateProfileStatus,saveCheckedAddress,AddressListing} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations,resetMesage} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

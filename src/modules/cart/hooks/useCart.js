@@ -1,4 +1,4 @@
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartGuestThunk,
@@ -8,7 +8,7 @@ import {
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
-import { profileThunk } from '../../../store/reducers/ProfileSlice';
+import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
@@ -16,26 +16,28 @@ import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlan
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
   const navigation = useNavigation();
+  const route = useRoute();
   const dispatch = useDispatch();
-  const { cart,loading, addToCartItem } = useSelector(state => state.cart);
+  const focused = useIsFocused();
+  const { cart, loading, addToCartItem } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
-  const { redeemCoupons, couponView, amountToBePaidCoupon} = useSelector(state => state.coupon);
-  /**/
+  const { redeemCoupons, couponView, amountToBePaidCoupon } = useSelector(state => state.coupon);
+  const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [startConsultation, setStartConsultation] = useState(false);
   const [data, setData] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
   const [checkBoxFlag, setCheckBoxFlag] = useState([]);
   const [checkBoxPress, setCheckBoxPress] = useState(0);
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
-  const focused = useIsFocused();
-  const { userDetails, relations } = useSelector(state => state.profile);
-  var buttonText='';
+  const [relationsModalVisible, setRelationsModalVisible] = useState(false);
+  const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
+  
+  let buttonText='';
   if(amountToBePaidCoupon===0){
      buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   }
@@ -47,8 +49,10 @@ export const useCart = (args) => {
     { key: KEY_VALUE2, value: FEMALE },
   ]
   /** */
+
   const onPressCardButton = () => {
     if (isLoggedIn) {
+      setAddButtonPress(true);
       dispatch(getCartUserThunk());
       if (userData == null) {
         openModal();
@@ -70,6 +74,17 @@ export const useCart = (args) => {
     })
     setAddModalVisible(false);
   }
+
+  const onSaveRelationsPress = (arg) => {
+    dispatch(
+      addRelation({
+        name: arg?.name,
+        age: arg?.age,
+        relation: arg?.selectedRelationEnum,
+      }),
+    );
+  }
+
   const addToCart = ({ name, cost, productId }, productType) => {
     const dToObj = { name, count: 1, cost, productId, productType };
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
@@ -88,6 +103,22 @@ export const useCart = (args) => {
     setModalVisible(false);
     setAddModalVisible(true)
   }
+
+  const onAddRelativePress = () => {
+    if(activeRelations.length > 0){
+    setModalVisible(false);
+    setRelationsModalVisible(true);
+    }
+  }
+  
+  useEffect(()=>{
+    if(relationsModalVisible && route?.name === 'Cart'){
+    dispatch(getRelations());
+    setRelationsModalVisible(false);
+    setAddButtonPress(true);
+    }
+  },[relationAdded])
+
   useEffect(() => {
     if (isLoggedIn && isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
@@ -104,20 +135,22 @@ export const useCart = (args) => {
 }, [navigation]);
 
   useEffect(() => {
-    if (focused) {
+    if (navigation.isFocused()) {
       setModalVisible(false);
       setCheckBoxStatus('unchecked');
       setCheckBoxFlag([]);
-      setStartConsultation(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      route?.name === 'Cart' ? dispatch(resetRelations()) : null;
       dispatch(removePlaneCoupon());
       dispatch(clearApiErrorMessage(''));
     }
   }, [focused]);
+
   useEffect(() => {
-    if (startConsultation && userDetails && relations.length >= 0) {
-      setData(
+    if (!relationsLoading && !relationsError && route?.name === 'Cart' && (addButtonPress || checkBoxFlag.length > 0)) {
+      dispatch(getActiveRelations());
+      relations.length > 0 && setData(
         relations.map((item, index) => {
           return {
             detailsText: `${item.name}  |  ${item.gender}  |  Age - ${item.age}`,
@@ -130,9 +163,11 @@ export const useCart = (args) => {
           };
         }),
       );
+      setRelationsModalVisible(false);
       setModalVisible(true);
+      setAddButtonPress(false);
     }
-  }, [userDetails, relations, startConsultation, checkBoxFlag]);
+  }, [relationsLoading,checkBoxFlag]);
 
   useEffect(() => {
     if (activeIndex !== null) {
@@ -181,25 +216,25 @@ export const useCart = (args) => {
   }, [isRemoved,addToCartItem]);
   const openModal = () => {
     dispatch(profileThunk());
-    setStartConsultation(true);
+    dispatch(getRelations());
   };
   const onPressCheckBox = () => {
     setCheckBoxStatus('checked');
     setCheckBoxFlag([]);
     setModalVisible(false);
-    setStartConsultation(false);
   };
 
   const onModalCrossPress = () => {
     setModalVisible(false);
-    setStartConsultation(false);
   };
   const onAddModalCrossPress = () => {
     setAddModalVisible(false);
   };
 
+  const onRelationModalCrossPress = () => {
+    setRelationsModalVisible(false);
+  };
 
-  /** */
 
   return {
     cart,
@@ -222,6 +257,11 @@ export const useCart = (args) => {
     relationsData,
     onAddModalCrossPress,
     onSaveDetailsPress,
+    relationsModalVisible,
+    onRelationModalCrossPress,
+    onAddRelativePress,
+    onSaveRelationsPress,
+    relativesData: activeRelations.map((item,index)=>{return {key:index.toString(),value:item?.name,relation:item?.id}}),
     loading,
   };
 };

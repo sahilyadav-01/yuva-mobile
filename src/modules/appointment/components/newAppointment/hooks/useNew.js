@@ -19,6 +19,8 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const [time, setTime] = useState(new Date());
   const [selected, setSelected] = useState('');
   const [dataRelation, setDataRelation] = useState();
+  const [epochTime, setEpochTime] = useState(null);
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const focused = useIsFocused();
@@ -29,7 +31,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {newMessage, appointmentDescription} = useSelector(
     state => state.appointment,
   );
-  const {doctorId, name, specialization} = useSelector(
+  const {doctorId} = useSelector(
     state => state.appointment.appointment,
   );
   useEffect(()=>{
@@ -55,6 +57,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
     return () => dispatch(resetMessage());
   }, [newMessage, appointmentDescription]);
   const newAppointment = () => {
+    if(typeof epochTime === 'string')
     dispatch(
       newAppointmentThunk({
         alternateContactNumber,
@@ -63,11 +66,14 @@ export const useNew = (plan, userVersion, uuid, version) => {
         plan,
         programOrPlanUuid: uuid,
         selected,
-        epoch: getEpoch(date, time),
+        epoch: epochTime,
         userPlanVersion: userVersion,
         version: version,
       }),
     );
+    else {
+      Alert.alert('Alert','Please select a time slot')
+    }
   };
   const onChangeDescription = txt => {
     setDesciption(txt);
@@ -90,12 +96,18 @@ export const useNew = (plan, userVersion, uuid, version) => {
     setTime(time);
     getEpoch(date, time);
   };
+
+  const handleDateTime = (arg) => {
+    if(arg?.status)
+    setEpochTime(arg?.value);
+  }
   useEffect(() => {
-    dispatch(getRelations());
+    if(!plan) dispatch(getRelations({uuid,check:true}));
+    else if(plan) dispatch(getRelations({uuid,version,userVersion}));
   }, []);
   useEffect(() => {
-    if (relationId?.relativeResponseDto?.length >= 0) {
-      let newArray = relationId?.relativeResponseDto?.map(item => {
+    if (relationId?.length >= 0) {
+      let newArray = relationId?.map(item => {
         return {
           key: item.id,
           value:
@@ -134,5 +146,6 @@ export const useNew = (plan, userVersion, uuid, version) => {
     selected,
     setSelected,
     dataRelation,
+    handleDateTime
   };
 };

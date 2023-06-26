@@ -2,7 +2,9 @@ import validator from 'is_js';
 import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
-
+import { setProfileImage, uploadFamilyPic } from '../store/reducers/ProfileSlice';
+import ImagePicker from 'react-native-image-crop-picker';
+import { useDispatch } from 'react-redux';
 export const handleNetworkError = (status, message) => {
   if (!message) {
     if (status >= 500) Alert.alert('Error', 'Internal Server Error');
@@ -288,7 +290,33 @@ const processTime = time => {
 //     let tstring = slot.split(".")[0];
 //     return new Date(tstring)
 // }
-
+export const ImageGallery=(onSuccess,onError)=>{
+  ImagePicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true,
+    includeBase64:true,
+  }).then(onSuccess).catch(onError);
+}
+export const requestCameraPermission = async (onSuccess,onError) => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      ImagePicker.openCamera({
+          width: 300,
+          height: 400,
+          cropping: true,
+          includeBase64:true,
+        }).then(onSuccess).catch(onError);
+    } else {
+     Alert.alert("permission denied...!!!")
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
 export const granted = () => {
   PermissionsAndroid.request(
     PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -413,6 +441,9 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
     default:
       getDateText(date);
   }

@@ -8,7 +8,6 @@ const handleUserForbidden = () => {
 };
 
 let axiosClient = axios.create();
-
 axiosClient.interceptors.request.use(
   async config => {
     const loginUrls = [
@@ -27,9 +26,11 @@ axiosClient.interceptors.request.use(
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;
     });
+
     if (isLoginApi.length === 0) {
       const jwt = await getJwt();
       config['headers'] = {
+        ...config['headers'],
         Authorization: `Bearer ${jwt ?? ''}`,
       };
       return config;

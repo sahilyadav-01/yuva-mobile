@@ -8,7 +8,7 @@ import { usePlanCard } from './hooks/usePlanCard';
 import { styles } from './styles';
 
 const PlanCard = (props) => {
-  const {item, isHomeScreen} = props;
+  const {item, isHomeScreen,isDetailScreen} = props;
   const { onDetailsScreen, priceObj, planService } = usePlanCard(item);
   const {name} = item || {};
   const RenderedIcon = ({index,colorProp}) => {
@@ -36,7 +36,7 @@ const PlanCard = (props) => {
     );
   }
   return (
-    <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
+    <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={isDetailScreen ?styles.detailsCont  :styles.container }>
       <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
         <View style={styles.containerView}>
           <View style={styles.headingView}>

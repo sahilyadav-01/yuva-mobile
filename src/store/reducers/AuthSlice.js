@@ -8,6 +8,8 @@ import {
   clearJwt,
   setProfileStatus,
   clearProfileStatus,
+  setRole,
+  clearRole,
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
 import {YuvaService} from '../../network/yuvaService';
@@ -256,7 +258,8 @@ const authSlice = createSlice({
     changePasswordApiError: false,
     changePasswordApiErrorMessage: '',
     changePasswordSuccess: false,
-    type:''
+    type:'',
+    isEmployee:null,
   },
   reducers: {
     hideErrorBox(state) {
@@ -274,6 +277,9 @@ const authSlice = createSlice({
     },
     resetExistingEmail(state) {
       state.emailExisting = null;
+    },
+    checkRole(state, {payload}) {
+      state.isEmployee = payload;
     }
   },
   extraReducers: {
@@ -287,7 +293,9 @@ const authSlice = createSlice({
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
         setJwt(action.payload.data.jwt);
+        setRole(action.payload.data.roles.includes('EMPLOYEE'));
         setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N')
+        state.isEmployee = action.payload.data.roles.includes('EMPLOYEE');
         state.loading = false;
         const userData = {
           name: action.payload.data.name,
@@ -342,7 +350,9 @@ const authSlice = createSlice({
       state.user.name = '';
       state.user.jwt = '';
       state.isAppReady = true;
+      state.isEmployee = null;
       clearJwt();
+      clearRole();
       clearProfileStatus();
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
@@ -355,7 +365,9 @@ const authSlice = createSlice({
     [signupThunk.fulfilled]: (state, {payload}) => {
       if (payload.data) {
       setJwt(payload.data.jwt);
+      setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
+      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.loading = false;
       state.signUpLoading = false;
       const userData = {
@@ -407,7 +419,9 @@ const authSlice = createSlice({
     [verifyThunk.fulfilled]: (state, {payload}) => {
       if(payload.data){
       setJwt(payload.data.jwt);
+      setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
+      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.signUpLoading = false;
       const userData = {
         name: payload.data.name,
@@ -498,7 +512,9 @@ const authSlice = createSlice({
         id: payload.data.id,
       };
       setJwt(payload.data.jwt);
+      setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
+      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.user.jwt = payload.data.jwt;
       payload.jwt && setObject('user', userData);
       state.user.name = payload.data.name || 'User';
@@ -529,6 +545,7 @@ export const {
   resetHash,
   resetExistingNumber,
   resetExistingEmail,
+  checkRole,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

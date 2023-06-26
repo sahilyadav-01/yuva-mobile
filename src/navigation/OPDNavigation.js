@@ -54,6 +54,7 @@ const OPDNavigation = () => {
           name="Appointments"
           component={AppointmentNav}
           options={{
+            swipeEnabled:false,
             tabBarLabel: () => (
               <Text style={styles.textColor}>Appointments</Text>
             ),

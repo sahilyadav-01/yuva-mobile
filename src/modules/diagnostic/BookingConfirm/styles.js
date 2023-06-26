@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
-import { BOLD, COLUMN, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { ORANGE, WHITE, CYAN_BLUE, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
+import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         marginTop:5,
         borderWidth: 0.1,
         backgroundColor: LIGHT_GREYISH_RED,
+        color: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
         marginBottom: 23,
@@ -23,6 +24,17 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         color: CYAN_BLUE,
     },
+    backGroundStyle: {backgroundColor: WHITE},
+    dropStyles: {
+        marginHorizontal: 13,
+        borderColor: LIGHT_MERCURY,
+      },
+      valueStyle: {
+        alignSelf: CENTER,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize12,
+        color: ORANGE,
+      },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 400,

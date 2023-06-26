@@ -1,0 +1,75 @@
+import React from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {styles} from './style';
+import {
+  ADD_MEMBERS,
+  LOCK_PLAN,
+  NO_RELATIONS,
+  PLAN_LOCKED,
+  PLAN_MEMBERS,
+} from './constants';
+import Dependents from '../../../profile/components/dependents';
+import {Checkbox} from 'react-native-paper';
+import {SVG} from '../../../../../assets';
+import {usePlanLockView} from './hooks/usePlanLockView';
+import { CYAN_BLUE, GREEN } from '../../../../styles/colors';
+
+const PlanLockView = props => {
+  const {
+    onAddMembersPress,
+    dependents,
+    onCheckboxPress,
+    onLockPlan,
+    item: planDetails,
+  } = props;
+  const {lock} = usePlanLockView(planDetails);
+  const style = styles();
+  const renderCheckbox = props => {
+    const {item, index} = props;
+    if (planDetails?.locked || lock) return null;
+    return (
+      <View style={style.checkboxContainer}>
+        <Checkbox
+          color={GREEN} uncheckedColor={CYAN_BLUE}
+          status={item?.status ? 'checked' : 'unchecked'}
+          onPress={() => onCheckboxPress(index)}
+        />
+      </View>
+    );
+  };
+  return (
+    <View style={style.container}>
+      <Text style={style.headingText}>{PLAN_MEMBERS}</Text>
+      <View style={style.membersContainer}>
+        {dependents?.length === 0 ? (
+          <Text style={style.emptyText}>
+            {planDetails?.locked || lock ? PLAN_LOCKED : NO_RELATIONS}
+          </Text>
+        ) : (
+          <Dependents
+            CheckboxComponent={renderCheckbox}
+            showCheckbox={true}
+            dependents={dependents}
+            extraContainerStyle={style.dependentContainerStyle}
+            extraDetailsContainer={style.dependentDetailStyle}
+          />
+        )}
+      </View>
+      <TouchableOpacity
+        onPress={onAddMembersPress}
+        style={style.buttonContainer}>
+        <SVG.PlusIcon />
+        <Text style={style.buttonText}>{ADD_MEMBERS}</Text>
+      </TouchableOpacity>
+      <View style={style.separatorStyle} />
+      <TouchableOpacity
+        onPress={() => onLockPlan(planDetails)}
+        style={style.buttonContainer}>
+        <SVG.Lock />
+        <Text style={style.buttonText}>{LOCK_PLAN}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default PlanLockView;

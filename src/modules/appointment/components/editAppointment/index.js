@@ -1,13 +1,12 @@
 import React from 'react';
-import {View, Text, ScrollView, TextInput, Image} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import AppointmentButton from '../../../../components/AppointmentButton';
-import {DateTimePicker} from '@hashiprobr/react-native-paper-datetimepicker';
 import {useEdit} from './hooks/useEdit';
 import SelectList from 'react-native-dropdown-select-list';
 import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
-import {DARK_BLUE, DARK_GRAY, ORANGE} from '../../../../styles/colors';
+import {DARK_GRAY, ORANGE} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -18,22 +17,19 @@ import {
   SELECT_MEMBER,
   TIME,
 } from './constant';
+import CustomDatePicker from '../../../../components/CustomDatePicker';
 
 const EditAppointments = () => {
   const {
     saveAppointment,
-    handleDate,
-    handleTime,
-    date,
     setSelected,
     dataRelation,
-    onChaneNumber,
-    time,
     getAppointment,
     memberName,
     Doctor,
     Specialization,
     Description,
+    handleDateTime
   } = useEdit();
   return (
     <ScrollView>
@@ -58,33 +54,7 @@ const EditAppointments = () => {
         </View>
 
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
-        <View style={styles.border}>
-          <View style={styles.dateAndTime}>
-            <Text style={styles.dateTimeStyles}>{DATE}</Text>
-            <DateTimePicker
-              type="date"
-              value={date}
-              onChangeDate={handleDate}
-              style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
-              theme={styles.theme}
-              minimumDate={new Date()}
-            />
-          </View>
-
-          <View style={styles.dateAndTime}>
-            <Text tyle={styles.dateTimeStyles}>{TIME}</Text>
-            <DateTimePicker
-              type="time"
-              value={time}
-              onChangeDate={handleTime}
-              style={styles.dateTimePicker}
-              selectionColor={DARK_BLUE}
-              theme={styles.theme}
-            />
-          </View>
-        </View>
-
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.border} pointerEvents="none">
