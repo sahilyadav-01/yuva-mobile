@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { popularTestsSliceThunk, testPackageSearchThunk } from '../../../store/reducers/PopularTestsSlice ';
-import { planPopularThunk, popularPackageNameThunk, requestCallThunk, resetPackages } from '../../../store/reducers/ProgramAndPlanSlice';
+import { planPopularThunk, popularPackageNameThunk, requestCallThunk, resetPackages, setIndex } from '../../../store/reducers/ProgramAndPlanSlice';
+import { HEALTH } from '../../healthPackages/constants';
 import { BOKINGTESTANDPACKAGE, THANKS_FOR_CONTACTING, WE_WILL_CONTACT } from '../constants';
 
 export const useHomeSearch = () => {
@@ -56,6 +57,25 @@ export const useHomeSearch = () => {
   const onNavigate = (item) => {
     navigation.navigate("HomeSearchDetails",item)
   }
+
+  const onPressPlan = (item) => {
+    const {item: plan} = item;
+    dispatch(setIndex(plan));
+    navigation?.navigate('OurPlan');
+  }
+
+  const onPackagePress = arg => {
+    navigation.navigate('ProductDetails', {
+      headerName:HEALTH,
+      packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
+      uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
+      showCartButton: true,
+      isTest: arg?.item?.testId ? true : false,
+      name:arg?.item.packageName ?? arg?.item.testName ?? null,
+      cost: arg?.item?.cost ?? null
+    });
+  };
+
   return {
     data,
     onChangeContact,
@@ -64,6 +84,8 @@ export const useHomeSearch = () => {
     onChangeSearch,
     filteredData,
     testPackageSearch,
-    onNavigate
+    onNavigate,
+    onPressPlan,
+    onPackagePress,
   };
 };
