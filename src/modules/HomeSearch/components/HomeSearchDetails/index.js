@@ -49,17 +49,6 @@ const HomeSearchDetails = () => {
             </View>
           ) : (
             <>
-              <View>
-                <Packages
-                  extraStyles={packageContainerStyle}
-                  onPackageSelect={arg => onPackageSelect(arg)}
-                  onPackagePress={obj => onPackagePress(obj)}
-                  data={packageData || []}
-                  emptyText={NO_DATA_FOUND}
-                  showHeading={true}
-                  heading={PACKAGE}
-                />
-              </View>
               {testData && testData.length > 0 && (
                 <View>
                   <Packages
@@ -71,8 +60,18 @@ const HomeSearchDetails = () => {
                     showHeading={true}
                     heading={TEST}
                   />
-                </View>
-              )}
+                </View>)}
+              <View>
+                <Packages
+                  extraStyles={packageContainerStyle}
+                  onPackageSelect={arg => onPackageSelect(arg)}
+                  onPackagePress={obj => onPackagePress(obj)}
+                  data={packageData || []}
+                  emptyText={NO_DATA_FOUND}
+                  showHeading={true}
+                  heading={PACKAGE}
+                />
+              </View>
             </>
           )}
         </View>
