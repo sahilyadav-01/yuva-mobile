@@ -30,12 +30,10 @@ const HomeSearchDetails = () => {
   return (
     <View>
       <Header
-        title={SEARCH}
+        title={name || item}
         hideMenu={false}
         showCart={true}
         showBackButton={true}
-        showSearch={true}
-        searchPlaceholder={name || item}
         editable={false}
       />
       <ScrollView
