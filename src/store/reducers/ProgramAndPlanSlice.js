@@ -45,7 +45,7 @@ export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/plan/details?planUuid=${Uuid}`;
+      const endpoint = `/plan/user/details?planUuid=${Uuid}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
