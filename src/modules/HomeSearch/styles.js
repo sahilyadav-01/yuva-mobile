@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 14,
         minHeight: 122,
         borderRadius: 4,
-        marginTop: "11%",
+        marginTop: "8%",
         shadowOpacity: 5,
         shadowOpacity: '15%',
         shadowColor: BLACK,
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
         color: WHITE,
     },
     testView: {
-        marginTop: "8%",
+        marginTop: "12%",
         marginHorizontal: 14,
         minHeight: 102,
         shadowOpacity: 2,
