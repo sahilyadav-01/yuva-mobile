@@ -38,24 +38,27 @@ const HomeSearch = () => {
   };
   const renderView = item => {
     const renderList = item => {
+      const onPackPress= () => onPackagePress(item)
       return (
-        <View>
+        <TouchableOpacity onPress={onPackPress}>
           <Text style={styles.listText}>{item?.item?.packageName}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     const renderList2 = item => {
+      const onTestPress = () => onPackagePress(item);
       return (
-        <View>
+        <TouchableOpacity onPress={onTestPress}>
           <Text style={styles.listText}>{item?.item?.testName}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     const renderList3 = item => {
+      const onPress = () => onPressPlan(item);
       return (
-        <View>
+        <TouchableOpacity onPress={onPress}>
           <Text style={styles.listText}>{item?.item?.name}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     return (
@@ -98,6 +101,8 @@ const HomeSearch = () => {
     onChangeSearch,
     filteredData,
     testPackageSearch,
+    onPressPlan,
+    onPackagePress,
   } = useHomeSearch();
   return (
     <View>
