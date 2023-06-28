@@ -51,12 +51,12 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
     return arr;
   };
 
-  const getSlots = () => {
+  const getSlots = (year,month,date) => {
     const dayEnd = moment(
       new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        selectedDateObj.getDate(),
+        year ?? new Date().getFullYear(),
+        month ?? new Date().getMonth(),
+        date ?? selectedDateObj.getDate(),
         23,
         59,
         59,
