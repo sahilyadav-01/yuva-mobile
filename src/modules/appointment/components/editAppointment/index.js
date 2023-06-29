@@ -64,6 +64,8 @@ const EditAppointments = () => {
               defaultOption={{key: 'null', value: memberName || null}}
               setSelected={setSelected}
               data={dataRelation}
+              dropdownStyles={styles.dropStyles}
+              inputStyles={styles.valueStyle}
               dropdownTextStyles={{color:DARK_GRAY}}
             />
           </View>

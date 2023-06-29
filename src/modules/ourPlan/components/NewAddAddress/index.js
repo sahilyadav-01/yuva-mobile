@@ -10,7 +10,7 @@ const NewAddress = () => {
     const Platform = getPlatform();
     return (
         <SafeAreaView style={styles.contentContainerStyle}>
-            <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={true} />
+            <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={false} />
             <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={styles.contentContainerStyle}>
             <ScrollView
                 nestedScrollEnabled={true}
