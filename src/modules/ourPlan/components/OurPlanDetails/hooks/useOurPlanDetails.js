@@ -1,10 +1,12 @@
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { removeCouponCart } from "../../../../../store/reducers/CartSlice";
 import { planDetailsThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { ADDRESS, LOGIN_SCREEN } from "../constants";
 
 export const useOurPlanDetails = () => {
+    const focused = useIsFocused();
     const { mainItem, planDetails } = useSelector(state => state.programAndPlan);
     const {loggedIn} = useSelector(state => state.auth);
     const [selected, setSelected] = useState('');
@@ -16,8 +18,13 @@ export const useOurPlanDetails = () => {
     useEffect(() => {
         let Uuid = mainItem?.planUuid;
         dispatch(planDetailsThunk(Uuid))
-
     }, [mainItem])
+    
+    useEffect(()=> {
+        if(focused){
+            dispatch(removeCouponCart());
+        }
+      }, [focused]);
 
     const onBackPress = () => {
         navigation.navigate('Home',{screen:'HomeService',params:{navigateToDetails:false}})

@@ -13,7 +13,7 @@ const OurPlanAddress = () => {
 
     return (
         <SafeAreaView>
-            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
+            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={false} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
                 <View style={styles.progressBar}>
                     <ProgressBar progress={0} />
