@@ -16,5 +16,6 @@ export const styles = StyleSheet.create({
         fontWeight: BOLD,
         marginLeft: 17,
     },
-    emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER}
+    emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
+    loaderContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER}
 })

@@ -5,7 +5,7 @@ import { fonts } from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    dateContainer: {paddingHorizontal: 24,backgroundColor:WHITE},
+    dateContainer: {paddingHorizontal: 24,width:'100%'},
     horizontalSeparator: {width: 20},
     dateItem: {
       paddingTop: 12,
