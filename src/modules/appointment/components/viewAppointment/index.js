@@ -61,9 +61,9 @@ const ViewAppointments = () => {
 
   const {headerShown} = route.params;
   return (
-    <SafeAreaView>
+    <View style={styles.container}>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
-      <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+      <ScrollView style={styles.ScrollViewContainerStyle}>
         <View>
           <View
             style={
@@ -217,7 +217,7 @@ const ViewAppointments = () => {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
