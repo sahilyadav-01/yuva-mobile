@@ -8,7 +8,7 @@ import {
   ORANGE,
   LIGHT_MERCURY,
 } from '../../../../styles/colors';
-import {CENTER, ROW} from '../../../../styles/constants';
+import {ABSOLUTE, CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -136,5 +136,18 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     color: LIGHT_GREYISH_RED,
     paddingLeft: 13,
+    backgroundColor: WHITE,
+  },
+  dropStyles: {
+    paddingHorizontal: 10,
+    borderColor: CYAN_BLUE,
+    backgroundColor: WHITE,
+    position:ABSOLUTE,
+  },
+  valueStyle: {
+    alignSelf: CENTER,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    color: CYAN_BLUE,
   },
 });

@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
   ScrollViewContainerStyle: {
     paddingBottom: 16,
   },
+  ScrollViewAppointmentStyle: {
+    paddingBottom: '60%',
+  },
   Header: {
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,

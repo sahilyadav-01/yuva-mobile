@@ -13,6 +13,7 @@ import {useSelector} from 'react-redux';
 import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
+  CYAN_BLUE,
   GREEN,
   LIGHT_PINK,
   ORANGE,
@@ -63,7 +64,7 @@ const ViewAppointments = () => {
   return (
     <View>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
-      <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+      <ScrollView contentContainerStyle={styles.ScrollViewAppointmentStyle}>
         <View>
           <View
             style={
@@ -145,7 +146,7 @@ const ViewAppointments = () => {
                 : [styles.familyView, styles.childView]
             }>
             <Text
-              style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
+              style={[styles.FamilyName, {color: memberName ? CYAN_BLUE : ORANGE}]}>
               {memberName || MYSELF}
             </Text>
             {relation && <Text style={styles.RelationStyle}>{relation}</Text>}
