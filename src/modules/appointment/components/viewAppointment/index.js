@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, Image, ScrollView} from 'react-native';
+import {View, Text, TextInput, Image, ScrollView, SafeAreaView} from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
@@ -61,7 +61,7 @@ const ViewAppointments = () => {
 
   const {headerShown} = route.params;
   return (
-    <View>
+    <SafeAreaView>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
       <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
         <View>
@@ -217,7 +217,7 @@ const ViewAppointments = () => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

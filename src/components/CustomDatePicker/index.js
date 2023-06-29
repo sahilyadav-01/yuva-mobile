@@ -17,12 +17,10 @@ function CustomDatePicker(props) {
     selectedItem,
   } = useDatePicker(onDateTimeSelect, OPD);
   const date = new Date().getDate();
-  const month = new Date().getMonth();
-  const year = new Date().getFullYear();
   const availableSlots = getSlots().filter(item => {
     if (typeof item?.length === 'number') return item;
   });
-  const availableDaySlots = getSlots(date, month, year).filter(item => {
+  const availableDaySlots = getSlots(date).filter(item => {
     if (typeof item?.length === 'number') return item;
   });
   const unavailable =
