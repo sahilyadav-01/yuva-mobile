@@ -22,6 +22,7 @@ const CarouselItem = props => {
   const viewAppointment = () => {
     dispatch(
       currentAppointment({
+        id: item?.id,
         doctorName: item?.doctorName,
         address: item?.address,
         status: item?.status,
