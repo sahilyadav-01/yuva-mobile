@@ -21,9 +21,9 @@ const DateItem = props => {
       </View>
       <Text style={[style.dateText,{color: index === activeIndex ? WHITE : CYAN_BLUE}]}>{item.format('DD MMM')}</Text>
       <Text style={[style.dayText,{color: index === activeIndex ? WHITE : CYAN_BLUE}]}>{item.format('ddd')}</Text>
-      <View style={[style.statusContainer,{backgroundColor:emptySlots?undefined:CITRINE_WHITE}]}>
+      {(index > 0 || emptySlots ) ? <View style={[style.statusContainer,{backgroundColor:emptySlots?undefined:CITRINE_WHITE}]}>
         <Text style={style.availableText}>{emptySlots ? '' : AVAILABLE}</Text>
-      </View>
+      </View> : <View style={style.emptyContainer}/>}
     </TouchableOpacity>
   );
 };
