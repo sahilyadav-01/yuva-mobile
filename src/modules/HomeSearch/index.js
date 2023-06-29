@@ -147,7 +147,9 @@ const HomeSearch = () => {
         </View>
         <View style={styles.expert}>
           <View style={styles.nurse}>
-            <SVG.NurseComponent style={styles.nurseImage} />
+            <View style={styles.nurseImage}>
+            <SVG.NurseComponent />
+            </View>
             <Text style={styles.nurseText}>{NURSE_TEXT}</Text>
           </View>
           <View style={styles.nurse}>
