@@ -129,6 +129,8 @@ const initialState = {
   cancelled: '',
   cityId: [],
   selectedCityId:'',
+  bookingListLoading:false,
+  bookingListError: false
 };
 
 const diagnosticSlice = createSlice({
@@ -177,13 +179,19 @@ const diagnosticSlice = createSlice({
     },
     [bookingTestAndPackageThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.bookingListLoading = true;
+      state.bookingListError = false;
     },
     [bookingTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
+      state.bookingListLoading = false;
+      state.bookingListError = false;
       state.bookedData = action.payload ;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;
+      state.bookingListLoading = false;
+      state.bookingListError = true;
       state.apiError = true;
       //state.apiErrorMessage = action.payload.errorMessage;
     },

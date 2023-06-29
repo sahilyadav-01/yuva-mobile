@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, Image, ScrollView} from 'react-native';
+import {View, Text, TextInput, Image, ScrollView, SafeAreaView} from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
@@ -62,9 +62,9 @@ const ViewAppointments = () => {
 
   const {headerShown} = route.params;
   return (
-    <View>
+    <View style={styles.container}>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
-      <ScrollView contentContainerStyle={styles.ScrollViewAppointmentStyle}>
+      <ScrollView style={styles.ScrollViewContainerStyle}>
         <View>
           <View
             style={

@@ -88,3 +88,4 @@ export const ALTO_OPACITY = '#D9D9D9FF';
 export const ROSE_WHITE = '#FFFCFC';
 export const NAVAJO_WHITE = '#FFDDAA';
 export const CURIOUS_BLUE = '#1882EB';
+export const CURIOUS_BLUE_DISABLE = '#1882EB80';

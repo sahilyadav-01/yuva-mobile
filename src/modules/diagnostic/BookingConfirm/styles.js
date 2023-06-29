@@ -24,10 +24,11 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         color: CYAN_BLUE,
     },
-    backGroundStyle: {backgroundColor: WHITE},
+    backGroundStyle: {backgroundColor: WHITE, marginBottom: 0},
     dropStyles: {
         marginHorizontal: 13,
         borderColor: LIGHT_MERCURY,
+        marginBottom: 8
       },
       valueStyle: {
         alignSelf: CENTER,
