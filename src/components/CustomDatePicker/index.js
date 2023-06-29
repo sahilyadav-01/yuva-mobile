@@ -16,11 +16,13 @@ function CustomDatePicker(props) {
     activeIndex,
     selectedItem,
   } = useDatePicker(onDateTimeSelect, OPD);
+  const year = new Date().getFullYear();
+  const month = new Date().getMonth();
   const date = new Date().getDate();
   const availableSlots = getSlots().filter(item => {
     if (typeof item?.length === 'number') return item;
   });
-  const availableDaySlots = getSlots(date).filter(item => {
+  const availableDaySlots = getSlots(year,month,date).filter(item => {
     if (typeof item?.length === 'number') return item;
   });
   const unavailable =

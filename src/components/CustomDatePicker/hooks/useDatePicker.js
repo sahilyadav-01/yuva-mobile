@@ -38,25 +38,19 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
   }, [activeIndex]);
 
   const getDaysOfMonth = () => {
-    let nextMonth = new Date().getMonth() + 1;
-    const year =
-      nextMonth > 11 ? new Date().getFullYear() + 1 : new Date().getFullYear();
-    nextMonth = nextMonth > 11 ? nextMonth % 12 : nextMonth;
-    const monthEnd = moment(new Date(year, nextMonth, 1));
-    const gap = parseInt(moment().diff(monthEnd, 'days')) * -1;
     let arr = [];
-    for (let i = 0; i <= gap; i++) {
+    for (let i = 0; i <= 15; i++) {
       arr.push(moment().add(i, 'days'));
     }
     return arr;
   };
 
-  const getSlots = (date) => {
+  const getSlots = (year,month,date) => {
     const dayEnd = moment(
       new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        date ?? selectedDateObj.getDate(),
+        year === undefined ? selectedDateObj.getFullYear() : year,
+        month === undefined ? selectedDateObj.getMonth() : month,
+        date === undefined ? selectedDateObj.getDate() : date,
         23,
         59,
         59,

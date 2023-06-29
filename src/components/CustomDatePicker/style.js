@@ -5,7 +5,7 @@ import { fonts } from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    dateContainer: {paddingHorizontal: 24,width:'100%'},
+    dateContainer: {paddingHorizontal: 24},
     horizontalSeparator: {width: 20},
     dateItem: {
       paddingTop: 12,
@@ -29,7 +29,7 @@ export const styles = () => {
       justifyContent: CENTER,
       marginTop: 4,
     },
-    availableText: {color: GREEN},
+    availableText: {color: GREEN, lineHeight: 16},
     timeContentContainer: {backgroundColor: WHITE},
     timeContainer: {marginHorizontal: 16, paddingHorizontal: 16},
     itemContainer: {marginBottom: 16},
@@ -55,6 +55,7 @@ export const styles = () => {
     rowContainer: {flexDirection: ROW},
     slotTextExtraStyles: {marginBottom:16,marginRight:13},
     emptyView: {paddingHorizontal:16,marginVertical:4,alignItems:CENTER},
-    emptyText: {color:CYAN_BLUE,fontWeight:fonts.weight.fontWeight500,fontSize:fonts.size.fontSize14}
+    emptyText: {color:CYAN_BLUE,fontWeight:fonts.weight.fontWeight500,fontSize:fonts.size.fontSize14},
+    emptyContainer: {height: 24}
   });
 };
