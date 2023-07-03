@@ -24,7 +24,7 @@ export const useCart = (args) => {
   const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
-  const { redeemCoupons, couponView, amountToBePaidCoupon } = useSelector(state => state.coupon);
+  const { redeemCoupons, couponView, amountToBePaidCoupon, couponId } = useSelector(state => state.coupon);
   const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -38,7 +38,7 @@ export const useCart = (args) => {
   const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   
   let buttonText='';
-  if(amountToBePaidCoupon===0){
+  if(couponId === null){
      buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
   }
   else{
