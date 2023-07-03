@@ -8,7 +8,8 @@ import { getPlatform } from './src/utils/utils';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const [showContent, setShowContent] = useState(false);
+  const checkVersion = false;
+  const [showContent, setShowContent] = useState(!checkVersion);
   try {
     const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
     freshchatConfig.domain = DOMAIN;
@@ -34,12 +35,13 @@ export const useApp = () => {
     else if (Platform?.isAndroid) {
       VersionCheck.needUpdate().then((obj)=>{
         if(obj && obj?.isNeeded) handleVersionUpdate(obj?.latestVersion,obj?.storeUrl)
+        else setShowContent(true);
       })
     }
   }
 
   useEffect(()=> {
-    if(Platform?.isIOS){
+    if(Platform?.isIOS && checkVersion){
     const packageName = VersionCheck?.getPackageName();
     const latestVersion = VersionCheck?.getCurrentVersion();
    VersionCheck?.getCountry().then(countryCode=>{
@@ -48,7 +50,7 @@ export const useApp = () => {
     .then((result) => checkVersionUpdate(result?.results[0]?.version,latestVersion))})
    })
     }
-    else checkVersionUpdate()
+    else if(Platform?.isAndroid && checkVersion) checkVersionUpdate()
     SplashScreen.hide();
   }, []);
   
