@@ -16,7 +16,7 @@ export const useAddNewAddress = (isScreen) => {
     const [errorPincode, setErrorPincode] = useState(false);
     const [errorAddress,setErrorAddress]=useState(false);
     const navigation = useNavigation();
-let address=`${location}`+' '+`${location2}`+' '+`${city}`
+let address=`${location} ${location2} ${city}`
     const DATA = [{
         address: address,
         pinCode: pincode,
