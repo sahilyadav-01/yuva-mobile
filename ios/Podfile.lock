@@ -367,6 +367,8 @@ PODS:
     - ReactCommon/turbomodule/core
   - react-native-splash-screen (3.3.0):
     - React-Core
+  - react-native-version-check (3.4.7):
+    - React-Core
   - react-native-webview (11.18.1):
     - React-Core
   - React-perflogger (0.69.1)
@@ -564,6 +566,7 @@ DEPENDENCIES:
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
+  - react-native-version-check (from `../node_modules/react-native-version-check`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -673,6 +676,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
+  react-native-version-check:
+    :path: "../node_modules/react-native-version-check"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -784,6 +789,7 @@ SPEC CHECKSUMS:
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
+  react-native-version-check: 6cd36aad4e30b8e3216747e3b4ddeb09e0647af8
   react-native-webview: 0b7bd2bffced115aefd393e1841babd9b9a557b1
   React-perflogger: c9161ff0f1c769993cd11d2751e4331ff4ceb7cd
   React-RCTActionSheet: 2d885b0bea76a5254ef852939273edd8de116180
