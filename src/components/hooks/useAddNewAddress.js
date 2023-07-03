@@ -16,9 +16,9 @@ export const useAddNewAddress = (isScreen) => {
     const [errorPincode, setErrorPincode] = useState(false);
     const [errorAddress,setErrorAddress]=useState(false);
     const navigation = useNavigation();
-
+let address=`${location} ${location2} ${city}`
     const DATA = [{
-        address: location,
+        address: address,
         pinCode: pincode,
         cityName: city,
         contactNumber: contact,
@@ -31,12 +31,12 @@ export const useAddNewAddress = (isScreen) => {
             setErrorAddress(true)
         }
         else {errorState
-            setPincode(text);
+            setLocation(text);
             setErrorAddress(false)
         }
     };
     const onChangeLocation2 = text => {
-        setLocation(text);
+        setLocation2(text);
     };
     const onChangePincode = text => { 
         if (!(text?.length === 6 || text?.length === 0)) {
