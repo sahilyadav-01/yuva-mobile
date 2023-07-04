@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { ADDED_SUCCESSFULLY, ALERT, BOOKING_CONFIRM, FIELD_MISSING, PINCODE_MUST_BE } from '../constants'
 import { useNavigation } from '@react-navigation/core';
 import { Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCity as setCityThunk } from '../../store/reducers/ProfileSlice';
 
 export const useAddNewAddress = (isScreen) => {
     const navScreen = isScreen?.isScreen;
@@ -15,6 +17,9 @@ export const useAddNewAddress = (isScreen) => {
     const [errorState, setErrorState] = useState(false)
     const [errorPincode, setErrorPincode] = useState(false);
     const [errorAddress,setErrorAddress]=useState(false);
+    const [dropdownCityId, setCityId] = useState(null);
+    const {cityId} = useSelector(state=>state.diagnostic);
+    const dispatch = useDispatch();
     const navigation = useNavigation();
 let address=`${location} ${location2} ${city}`
     const DATA = [{
@@ -38,6 +43,10 @@ let address=`${location} ${location2} ${city}`
     const onChangeLocation2 = text => {
         setLocation2(text);
     };
+    const setSelectedCity = (arg) => {
+        setCityId(parseInt(arg));
+        dispatch(setCityThunk(parseInt(arg)));
+    }
     const onChangePincode = text => { 
         if (!(text?.length === 6 || text?.length === 0)) {
             setErrorPincode(true)
@@ -48,7 +57,9 @@ let address=`${location} ${location2} ${city}`
         }
     };
     const onChangeCity = text => {
-        setCity(text)
+        if(dropdownCityId !== null) {
+            setCity(cityId.find(item=>{if(item?.id === dropdownCityId) return item})?.name)
+        }
     }
     const onChangeContact = number => {
         if (!(number?.length === 10 || number?.length ===0) || Number(number[0]) < 6) {
@@ -63,7 +74,7 @@ let address=`${location} ${location2} ${city}`
         if (!(pincode?.length === 6)) {
             Alert.alert(ALERT, PINCODE_MUST_BE)
         }
-        else if (location?.length && city?.length ) {
+        else if (location?.length && dropdownCityId !== null ) {
             navigation.navigate(navScreen, DATA);
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } else {
@@ -84,6 +95,8 @@ let address=`${location} ${location2} ${city}`
         errorState,
         errorPincode,
         errorAddress,
+        cityId: cityId?.map(item=>{return {...item,key:item?.id.toString(),value:item?.name}}),
+        setSelectedCity
     }
 
 

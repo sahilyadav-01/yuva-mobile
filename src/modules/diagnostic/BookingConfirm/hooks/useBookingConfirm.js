@@ -20,7 +20,10 @@ export const useBookingConfirm = () => {
     const [epochTime, setEpochTime] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    
+    const {selectedCity} = useSelector(
+        state => state.profile,
+      );
+
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
@@ -65,7 +68,7 @@ export const useBookingConfirm = () => {
     const bookTestScreen = () => {
         let data = {
             address: address,
-            cityId: city,
+            cityId: selectedCity,
             away:away,
             contactNumber: contact,
             packageUuid: [packageDetails?.packageUuid],
