@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import Authentication from './Authentication';
 import ComingSoon from '../components/ComingSoon';
+import OnMood9Screen from '../screens/OnMood9';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,7 @@ const OurOfferNav = () => {
     auth: {loggedIn},
   } = useSelector(state => state);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='MentalWellness'>
             <Stack.Screen
         name="ComingSoon"
         component={ComingSoon}
@@ -22,7 +23,11 @@ const OurOfferNav = () => {
         component={Authentication}
         options={{headerShown: false}}
       />
-
+      <Stack.Screen
+      name='MentalWellness'
+      component={OnMood9Screen}
+      options={{headerShown: false,animationEnabled:false}}
+      />
     </Stack.Navigator>
   );
 };
