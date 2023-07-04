@@ -44,7 +44,6 @@ let address=`${location} ${location2} ${city}`
         setLocation2(text);
     };
     const setSelectedCity = (arg) => {
-        console.log('Parse',parseInt(arg))
         setCityId(parseInt(arg));
         dispatch(setCityThunk(parseInt(arg)));
     }

@@ -23,7 +23,6 @@ export const usePayment = paymentProps => {
     if (navigation.isFocused()) {
       BackHandler.addEventListener('hardwareBackPress', () => true);
       setRenderData(false);
-      console.log('Create order api',plan,bookingRequestDto,subscriptionRequestDto,name,age,gender)
       dispatch(
         createOrderThunk({
           plan,

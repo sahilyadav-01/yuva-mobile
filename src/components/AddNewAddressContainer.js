@@ -5,7 +5,7 @@ import { ADDRESSLINE, ADDRESSLINE2, ADD_ADDRESS, ADD_NEW_ADDRESS, CITY, CITYNAME
 import { useAddNewAddress } from './hooks/useAddNewAddress';
 import { styles } from './styles';
 import {Picker} from '@react-native-picker/picker';
-import { DARK_GRAY } from '../styles/colors';
+import { DARK_BLUE, DARK_GRAY } from '../styles/colors';
 
 const AddNewAddressContainer = (isScreen) => {
     const {selected,
@@ -41,23 +41,15 @@ const AddNewAddressContainer = (isScreen) => {
                             onChangeText={onChangeLocation2}
                         />
                         <Text style={styles.AddAddressLine}>{CITY}</Text>
-                        {/* <TextInput
-                            multiline={true}
-                            style={styles.textInputStyle}
-                            placeholder={CITYNAME}
-                            placeholderTextColor={DARK_GRAY}
-                            onChangeText={onChangeCity}
-                        /> */}
                         <SelectList
-              setSelected={setSelectedCity}
-              search={false}
-              data={cityId}
-              placeholder={'City'}
-              placeholderTextColor={DARK_GRAY}
-            //   boxStyles={dropdownBoxStyle}
-            //   inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
-            //   dropdownTextStyles={{color:DARK_GRAY}}
-            />
+                            setSelected={setSelectedCity}
+                            search={false}
+                            data={cityId}
+                            placeholder={'City'}
+                            placeholderTextColor={DARK_GRAY}
+                            boxStyles={styles.textInputStyle}
+                            inputStyles={{color: DARK_BLUE}}
+                         />
                         <Text style={styles.AddAddressLine}>{PINCODE}</Text>
                         <TextInput
                             keyboardType='numeric'
