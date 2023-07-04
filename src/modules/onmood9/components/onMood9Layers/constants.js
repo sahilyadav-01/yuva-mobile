@@ -1,0 +1,1 @@
+export const HEADING_TEXT = 'THE 4-LAYERS';

@@ -1,0 +1,2 @@
+export const HEADING_TEXT = 'About Onmood9';
+export const DESCRIPTION_TEXT = 'Emotions make you happy and sad, motivate you for hard work and support you in failures, they make you enjoy your success and regret your losses. All your actions & behaviour are governed by your emotions and Moods.';

@@ -12,7 +12,7 @@ const OurOfferNav = () => {
     auth: {loggedIn},
   } = useSelector(state => state);
   return (
-    <Stack.Navigator initialRouteName='MentalWellness'>
+    <Stack.Navigator>
             <Stack.Screen
         name="ComingSoon"
         component={ComingSoon}
@@ -22,11 +22,6 @@ const OurOfferNav = () => {
         name="LoginScreen"
         component={Authentication}
         options={{headerShown: false}}
-      />
-      <Stack.Screen
-      name='MentalWellness'
-      component={OnMood9Screen}
-      options={{headerShown: false,animationEnabled:false}}
       />
     </Stack.Navigator>
   );
