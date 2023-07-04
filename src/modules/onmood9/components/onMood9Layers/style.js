@@ -29,8 +29,8 @@ export const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
     },
-    rowView: {flexDirection: ROW},
-    detailsContainer: {maxHeight: 48, marginLeft: 16},
+    rowView: {flexDirection: ROW, flex:1},
+    detailsContainer: {maxHeight: 48, marginLeft: 16, flex:1},
     separatorLine: {
       height: 56,
       width: 4,

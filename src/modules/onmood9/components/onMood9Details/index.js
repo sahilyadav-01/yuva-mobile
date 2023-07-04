@@ -10,7 +10,7 @@ import Footer from '../footer';
 const OnMood9Details = () => {
   const style = styles();
   return (
-    <View style={style.contentContainer}>
+    <View style={style.screenContainer}>
       <Header title={'Mental Wellness'} showBackButton={true} />
       <ScrollView>
         <View style={style.contentContainer}>

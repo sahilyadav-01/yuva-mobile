@@ -15,8 +15,8 @@ const OnMood9Layers = () => {
       heading: 'Energy',
     },
     {
-      text: 'Mindful movements & Gestures to control intense emotions and behaviour',
-      heading: 'Body',
+      text: 'Guided Meditation to manage Moods & reprogram the subconscious',
+      heading: 'Wisdom',
     },
     {text: 'Contemplation & Self-help Cognitive techniques to manage negative thoughts',
       heading: 'Mind'
@@ -30,7 +30,7 @@ const OnMood9Layers = () => {
         </View>
         <View style={style.detailsContainer}>
           <Text style={style.heading}>{item.heading}</Text>
-          <Text textBreakStrategy="balanced" style={style.body}>
+          <Text style={style.body}>
             {item.text}
           </Text>
         </View>

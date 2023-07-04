@@ -6,7 +6,7 @@ export const styles = () => {
     screenContainer: {flex: 1},
     contentContainer: {
       paddingVertical: 24,
-      paddingHorizontal: 12,
+      paddingHorizontal: 16,
       height: '100%',
       backgroundColor: LIGHT_GREY,
     },
