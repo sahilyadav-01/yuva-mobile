@@ -205,6 +205,7 @@ const initialState = {
   relationsLoading: false,
   messageFamilyPic: null,
   messageProfilePic:null,
+  selectedCity: null,
 };
 
 const profileSlice = createSlice({
@@ -230,6 +231,9 @@ const profileSlice = createSlice({
     },
     resetRelations(state){
       state.relations = [];
+    },
+    setCity(state,{payload}) {
+      state.selectedCity = payload;
     }
   },
   extraReducers: {
@@ -420,6 +424,6 @@ const profileSlice = createSlice({
     },
   },
 });
-export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations,resetMesage} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations,resetMesage, setCity} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

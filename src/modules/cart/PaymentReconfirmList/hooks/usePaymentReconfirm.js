@@ -12,6 +12,9 @@ export const usePaymentReconfirm = () => {
   const {scheduleDate, addressData, relationData, processingCharge} = useSelector(
     state => state.checkOut,
   );
+  const {selectedCity} = useSelector(
+    state => state.profile,
+  );
   const onPayPress = () => {
     if(!termsAndCondtionChecked){
       Alert.alert('Alert', TERMS_CONDITION)
@@ -55,7 +58,7 @@ export const usePaymentReconfirm = () => {
         bookingRequestDto: {
           address: addressData?.address,
           away: addressData?.away ?? false,
-          cityId: addressData?.cityId,
+          cityId: selectedCity,
           contactNumber: addressData?.contact,
           packageUuid,
           pinCode: addressData?.pincode,

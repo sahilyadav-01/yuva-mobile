@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import SelectList from 'react-native-dropdown-select-list';
 import { ADDRESSLINE, ADDRESSLINE2, ADD_ADDRESS, ADD_NEW_ADDRESS, CITY, CITYNAME, CONTACT, ERROR_TEXT_CONTACT_NUMBER, ERROR_TEXT_LOCATION, ERROR_TEXT_PINCODE, HOME, LOCATION, PINCODE, SAVE_AS } from './constants';
 import { useAddNewAddress } from './hooks/useAddNewAddress';
 import { styles } from './styles';
@@ -9,7 +10,7 @@ import { DARK_GRAY } from '../styles/colors';
 const AddNewAddressContainer = (isScreen) => {
     const {selected,
         setSelected, addAddress, onChangePincode,
-        onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2, errorState, errorPincode, errorAddress } = useAddNewAddress(isScreen);
+        onChangeLocation, onChangeContact, onChangeCity, onChangeLocation2, errorState, errorPincode, errorAddress, cityId, setSelectedCity } = useAddNewAddress(isScreen);
       
         return (
         <View>
@@ -40,13 +41,23 @@ const AddNewAddressContainer = (isScreen) => {
                             onChangeText={onChangeLocation2}
                         />
                         <Text style={styles.AddAddressLine}>{CITY}</Text>
-                        <TextInput
+                        {/* <TextInput
                             multiline={true}
                             style={styles.textInputStyle}
                             placeholder={CITYNAME}
                             placeholderTextColor={DARK_GRAY}
                             onChangeText={onChangeCity}
-                        />
+                        /> */}
+                        <SelectList
+              setSelected={setSelectedCity}
+              search={false}
+              data={cityId}
+              placeholder={'City'}
+              placeholderTextColor={DARK_GRAY}
+            //   boxStyles={dropdownBoxStyle}
+            //   inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
+            //   dropdownTextStyles={{color:DARK_GRAY}}
+            />
                         <Text style={styles.AddAddressLine}>{PINCODE}</Text>
                         <TextInput
                             keyboardType='numeric'
