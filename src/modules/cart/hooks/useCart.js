@@ -105,34 +105,43 @@ export const useCart = (args) => {
   }
 
   const onAddRelativePress = () => {
-    if(activeRelations.length > 0){
-    setModalVisible(false);
-    setRelationsModalVisible(true);
+    if (activeRelations.length > 0) {
+      setModalVisible(false);
+      setRelationsModalVisible(true);
     }
   }
-  
-  useEffect(()=>{
-    if(relationsModalVisible && route?.name === 'Cart'){
-    dispatch(getRelations());
-    setRelationsModalVisible(false);
-    setAddButtonPress(true);
+
+  useEffect(() => {
+    if (relationsModalVisible && route?.name === 'Cart') {
+      dispatch(getRelations());
+      setRelationsModalVisible(false);
+      setAddButtonPress(true);
     }
-  },[relationAdded])
+  }, [relationAdded])
+
+  useEffect(() => {
+    if (loggedIn === 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
+      dispatch(getCartUserThunk());
+    } else if(loggedIn !== 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved) {
+      dispatch(getCartGuestThunk());
+    }
+  }, [focused])
+
 
   useEffect(() => {
     if (isLoggedIn && isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
-    } else if(isRemoved && !fromHome) {
+    } else if (isRemoved && !fromHome) {
       dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
-    setModalVisible(false);
-  });
-  return unsubscribe;
-}, [navigation]);
+      setModalVisible(false);
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -167,7 +176,7 @@ export const useCart = (args) => {
       setModalVisible(true);
       setAddButtonPress(false);
     }
-  }, [relationsLoading,checkBoxFlag]);
+  }, [relationsLoading, checkBoxFlag]);
 
   useEffect(() => {
     if (activeIndex !== null) {
@@ -208,12 +217,12 @@ export const useCart = (args) => {
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
-    if((couponViewCart || couponView) && (isRemoved || addToCartItem)){
-    dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
-    dispatch(removeCoupon());
-    dispatch(removeCouponCart());
-  }
-  }, [isRemoved,addToCartItem]);
+    if ((couponViewCart || couponView) && (isRemoved || addToCartItem)) {
+      dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
+      dispatch(removeCoupon());
+      dispatch(removeCouponCart());
+    }
+  }, [isRemoved, addToCartItem]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
@@ -261,7 +270,7 @@ export const useCart = (args) => {
     onRelationModalCrossPress,
     onAddRelativePress,
     onSaveRelationsPress,
-    relativesData: activeRelations.map((item,index)=>{return {key:index.toString(),value:item?.name,relation:item?.id}}),
+    relativesData: activeRelations.map((item, index) => { return { key: index.toString(), value: item?.name, relation: item?.id } }),
     loading,
   };
 };
