@@ -21,7 +21,7 @@ export const useAddNewAddress = (isScreen) => {
     const {cityId} = useSelector(state=>state.diagnostic);
     const dispatch = useDispatch();
     const navigation = useNavigation();
-let address=`${location} ${location2} ${city}`
+let address=`${location} ${location2}`
     const DATA = [{
         address: address,
         pinCode: pincode,
@@ -46,6 +46,7 @@ let address=`${location} ${location2} ${city}`
     const setSelectedCity = (arg) => {
         setCityId(parseInt(arg));
         dispatch(setCityThunk(parseInt(arg)));
+        setCity(cityId.find(item=>{if(item?.id === parseInt(arg)) return item})?.name)
     }
     const onChangePincode = text => { 
         if (!(text?.length === 6 || text?.length === 0)) {
