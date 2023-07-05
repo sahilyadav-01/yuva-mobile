@@ -8,7 +8,7 @@ import { getPlatform } from './src/utils/utils';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const checkVersion = false;
+  const checkVersion = true;
   const [showContent, setShowContent] = useState(!checkVersion);
   try {
     const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
@@ -33,9 +33,12 @@ export const useApp = () => {
       })
     }
     else if (Platform?.isAndroid) {
-      VersionCheck.needUpdate().then((obj)=>{
-        if(obj && obj?.isNeeded) handleVersionUpdate(obj?.latestVersion,obj?.storeUrl)
-        else setShowContent(true);
+      VersionCheck.getLatestVersion().then(latestVersion=>{
+        const currentAndroidVersion = VersionCheck.getCurrentVersion()
+        VersionCheck.needUpdate({currentVersion:currentAndroidVersion,latestVersion}).then((obj)=>{
+          if(obj && obj?.isNeeded) handleVersionUpdate(obj?.latestVersion,obj?.storeUrl)
+          else setShowContent(true);
+        })
       })
     }
   }
@@ -43,11 +46,11 @@ export const useApp = () => {
   useEffect(()=> {
     if(Platform?.isIOS && checkVersion){
     const packageName = VersionCheck?.getPackageName();
-    const latestVersion = VersionCheck?.getCurrentVersion();
+    const currentIosVersion = VersionCheck?.getCurrentVersion();
    VersionCheck?.getCountry().then(countryCode=>{
     VersionCheck.getLatestVersion({provider:()=>fetch(`https://itunes.apple.com/${countryCode}/lookup?bundleId=${packageName}`)
     .then(r => r.json())
-    .then((result) => checkVersionUpdate(result?.results[0]?.version,latestVersion))})
+    .then((result) => checkVersionUpdate(currentIosVersion,result?.results[0]?.version))})
    })
     }
     else if(Platform?.isAndroid && checkVersion) checkVersionUpdate()
