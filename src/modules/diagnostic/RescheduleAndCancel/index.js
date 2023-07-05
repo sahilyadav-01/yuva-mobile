@@ -57,7 +57,7 @@ const RescheduleAndCancel = () => {
     }
     return (
         <View >
-            <Header showBackButton={true} title={MY_TESTS} />
+            <Header showBackButton={false} title={MY_TESTS} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
                     <View style={styles.bookingText}>

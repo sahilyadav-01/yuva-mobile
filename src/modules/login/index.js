@@ -5,6 +5,7 @@ import {
   TextInput,
   Text,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Heading from '../../components/Heading';
 import InputPassword from '../changePassword/passwordField';
@@ -14,7 +15,7 @@ import {SILVER_CHALICE} from '../../styles/colors';
 import {useLogin} from './hooks/useLogin';
 import LoginTextContainer from '../signup/components/loginTextContainer';
 import styles from './style';
-import { onNeedHelpPress } from '../../utils/utils';
+import { getPlatform, onNeedHelpPress } from '../../utils/utils';
 
 const Login = props => {
   const {
@@ -26,14 +27,16 @@ const Login = props => {
     separator,
   } = forgotPasswordStyles();
 
+  const Container = getPlatform().isIOS ? KeyboardAvoidingView : View;
+
   const {inputsContainer, buttonStyle } =
     changePasswordStyles();
 
-  const {needHelpText, signUpContainer} = styles();
+  const {needHelpText, signUpContainer, container} = styles();
 
   const login = useLogin();
   return (
-    <>
+    <Container behavior='padding' style={container}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
@@ -62,7 +65,7 @@ const Login = props => {
             </View>
             <TouchableOpacity
               style={[buttonContainer, buttonStyle]}
-              onPress={() => login?.onLoginPress(props?.from)}>
+              onPress={() => login?.onLoginPress(props)}>
               <Text style={buttonText}>Login</Text>
             </TouchableOpacity>
             <LoginTextContainer
@@ -80,7 +83,7 @@ const Login = props => {
           </View>
         </View>
       </ScrollView>
-    </>
+    </Container>
   );
 };
 

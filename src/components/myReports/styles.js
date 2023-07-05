@@ -56,4 +56,10 @@ export const styles = StyleSheet.create({
   reportTextStyle: {
     marginHorizontal: 15,
   },
+  listContainer: {
+    paddingVertical:36
+  },
+  itemSeparator: {
+    height:40
+  }
 });

@@ -5,7 +5,7 @@ import Section5 from '../../../modules/hra/Section5';
 const Section_5 = () => {
   
   return (
-    <SafeAreaView >
+    <SafeAreaView style={{flex:1}}>
       <Section5 />
     </SafeAreaView>
   )

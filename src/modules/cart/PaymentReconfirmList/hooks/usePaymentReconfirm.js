@@ -12,14 +12,16 @@ export const usePaymentReconfirm = () => {
   const {scheduleDate, addressData, relationData, processingCharge} = useSelector(
     state => state.checkOut,
   );
+  const {selectedCity} = useSelector(
+    state => state.profile,
+  );
   const onPayPress = () => {
     if(!termsAndCondtionChecked){
       Alert.alert('Alert', TERMS_CONDITION)
     }
     else if (
       termsAndCondtionChecked &&
-      scheduleDate?.date &&
-      scheduleDate?.time &&
+      scheduleDate !== null &&
       addressData?.address !== undefined &&
       addressData?.contact !== undefined &&
       addressData?.pincode !== undefined &&
@@ -42,11 +44,6 @@ export const usePaymentReconfirm = () => {
         .map(item => {
           return item?.productId;
         });
-      const hours = new Date(scheduleDate?.time).getHours();
-      const minutes = new Date(scheduleDate?.time).getMinutes();
-      const year = new Date(scheduleDate?.date).getFullYear();
-      const month = new Date(scheduleDate?.date).getMonth();
-      const date = new Date(scheduleDate?.date).getDate();
       const details =
         relationData?.id === null
           ? {age: 0, name: null, gender: null}
@@ -61,7 +58,7 @@ export const usePaymentReconfirm = () => {
         bookingRequestDto: {
           address: addressData?.address,
           away: addressData?.away ?? false,
-          cityId: addressData?.cityId,
+          cityId: selectedCity,
           contactNumber: addressData?.contact,
           packageUuid,
           pinCode: addressData?.pincode,
@@ -69,7 +66,7 @@ export const usePaymentReconfirm = () => {
           programOrPlanUuid: null,
           relationId: null,
           testId,
-          timeSlot: new Date(year, month, date, hours, minutes).getTime(),
+          timeSlot: scheduleDate,
         },
         subscriptionRequestDto: {},
       };

@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  Dimensions,
 } from 'react-native';
 import Header from '../../components/Header';
 import {
@@ -61,6 +60,7 @@ const HealthPackages = props => {
           showBackButton={true}
           title={TITLE}
           onSearch={onSearch}
+          showCart={true}
         />
         <View style={[screenContainer, childContainerStyle]}>
           {addToCartLoad ? (

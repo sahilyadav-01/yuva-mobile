@@ -111,6 +111,7 @@ export const useHRASectionContainer = () => {
   useEffect(() => {
     if (navigateToSection && userData) {
       dispatch(setCurrentHRAId(userData.id ? parseFloat(userData?.id) : null));
+      setModalVisible(false);
       navigation.navigate(SECTION_1, {
         userData,
         name: userData?.name,

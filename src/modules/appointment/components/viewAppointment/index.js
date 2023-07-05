@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, Image, ScrollView} from 'react-native';
+import {View, Text, TextInput, Image, ScrollView, SafeAreaView} from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppointmentButton from '../../../../components/AppointmentButton';
@@ -13,6 +13,7 @@ import {useSelector} from 'react-redux';
 import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
+  CYAN_BLUE,
   GREEN,
   LIGHT_PINK,
   ORANGE,
@@ -61,9 +62,9 @@ const ViewAppointments = () => {
 
   const {headerShown} = route.params;
   return (
-    <View>
+    <View style={styles.container}>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}
-      <ScrollView contentContainerStyle={styles.ScrollViewContainerStyle}>
+      <ScrollView style={styles.ScrollViewContainerStyle}>
         <View>
           <View
             style={
@@ -103,7 +104,7 @@ const ViewAppointments = () => {
                     </Text>
                     <Text style={styles.waitStyle}>{WAITING}</Text>
                   </View>
-                  <View>
+                  <View style={styles.appointmentId}>
                     <Text style={styles.AppointmentIdText}>
                       {APPOINTMENT_ID}
                     </Text>
@@ -145,7 +146,7 @@ const ViewAppointments = () => {
                 : [styles.familyView, styles.childView]
             }>
             <Text
-              style={[styles.FamilyName, {color: memberName ? null : ORANGE}]}>
+              style={[styles.FamilyName, {color: memberName ? CYAN_BLUE : ORANGE}]}>
               {memberName || MYSELF}
             </Text>
             {relation && <Text style={styles.RelationStyle}>{relation}</Text>}

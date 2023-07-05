@@ -5,8 +5,10 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'yuva' do
+  pod 'FreshchatSDK'
+  pod 'GoogleUtilities', :modular_headers => true;
+  pod 'FirebaseCore', :modular_headers => true;
   config = use_native_modules!
-
   # Flags change depending on the env values.
   flags = get_default_flags()
 

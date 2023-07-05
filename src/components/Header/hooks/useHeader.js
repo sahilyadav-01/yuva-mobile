@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 import { PLACEHOLDER_TEXT } from "../constant";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu, showCart } = props;
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing} = props;
+
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -34,7 +35,8 @@ export const useHeader = (props) => {
 
   const canGoBack = showBackButton && navigation?.canGoBack();
   const onBackPress = () => {
-    navigation.goBack();
+    if(typeof props?.onBackPress === 'function') props?.onBackPress()
+    else navigation.goBack();
   }
   const setSelected = (city) => {
     setSelectedCity(city);
@@ -78,6 +80,9 @@ export const useHeader = (props) => {
     count,
     hideMenu: hideMenu ?? false,
     placeholder,
+    isScreen,
     showCart,
+    editable,
+    onSubmitEditing
   };
 }

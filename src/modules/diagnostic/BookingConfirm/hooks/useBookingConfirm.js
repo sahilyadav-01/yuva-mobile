@@ -5,58 +5,50 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookTestThunk, rescheduleCancelBookingThunk, resetMesage } from '../../../../store/reducers/DiagnosticsSlice';
 import { getRelations, getUserAddress } from '../../../../store/reducers/ProfileSlice';
-import { getEpoch } from '../../../../utils/utils';
 import { useNavigation } from '@react-navigation/core'
-import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, UPDATEDBOOKED } from '../constants';
+import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRESS, RESCHEDULEANDCANCEL, SELECT_DATE, UPDATEDBOOKED } from '../constants';
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
-    const [selected, setSelected] = useState("");
-    const [dataRelation, setDataRelation] = useState("");
+    const [selected, setSelected] = useState(null);
+    const [dataRelation, setDataRelation] = useState([]);
     const [city, setCity] = useState(null);
     const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { selectedCityId } = useSelector(state => state.diagnostic);
     const { relationId, userAddress, selectedAddress,addressListing } = useSelector(state => state.profile);
     const [checked, setChecked] = useState(null);
+    const [epochTime, setEpochTime] = useState(null);
     const dispatch = useDispatch();
-    const navigation = useNavigation()
-    useEffect(()=>{
-        const tomorrow = new Date()
-        tomorrow.setDate(tomorrow.getDate() +1);
-        tomorrow.setHours(7);
-        tomorrow.setMinutes(0);
-        tomorrow.setSeconds(0);
-        setTime(tomorrow);
-        setDate(tomorrow);
-      },[])
+    const navigation = useNavigation();
+    const {selectedCity} = useSelector(
+        state => state.profile,
+      );
 
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
         }
     }, [route])
-    const handleDate = date => {
-        setDate(date);
-    };
-    const handleTime = time => {
-        setTime(time);
-
-    };
+    const handleDateTime = (arg) => {
+        if(arg?.status)
+        setEpochTime(arg?.value);
+    }
     useEffect(() => {
-        dispatch(getRelations())
+        if(route?.params?.plan && route?.params?.Uuid)
+        dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version}))
+        else if(!route?.params?.plan && route?.params?.Uuid)
+        dispatch(getRelations({uuid:route?.params?.Uuid,check:true}))
         dispatch(getUserAddress())
     }, [])
     useEffect(() => {
-        if (relationId?.relativeResponseDto?.length > 0) {
-            let newArray = relationId?.relativeResponseDto?.map((item) => {
-                return { key: item.id, value: item.name + "  -  " + item.relation + "  (" + item.age + ")" }
+        if (relationId?.length > 0) {
+            let newArray = relationId?.map((item,index) => {
+                return { key: index.toString(), value: item.name + "  -  " + item.relation + "  (" + item.age + ")", relationId:item?.id }
             }
             )
             setDataRelation(newArray)
         } else {
-            dispatch(getRelations())
+            route?.params?.Uuid ? dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version})) : dispatch(getRelations())
         }
     }, [relationId])
 
@@ -74,9 +66,9 @@ export const useBookingConfirm = () => {
     const contact = selectedAddress?.contact;
     const away    = selectedAddress?.away;
     const bookTestScreen = () => {
-        var data = {
+        let data = {
             address: address,
-            cityId: city,
+            cityId: selectedCity,
             away:away,
             contactNumber: contact,
             packageUuid: [packageDetails?.packageUuid],
@@ -84,13 +76,16 @@ export const useBookingConfirm = () => {
             pinCode: pincode,
             plan: userAttribute?.plan,
             programOrPlanUuid: userAttribute?.Uuid,
-            relationId: selected,
+            relationId: selected === null ? selected : selected?.relationId,
             testId: [],
-            timeSlot: getEpoch(date, time) ,
+            timeSlot: epochTime,
             userPlanVersion: userAttribute?.userVersion,
             version: userAttribute?.version
         };
-        if (packageDetails && address && Object.keys(address).length !== 0) {
+        if(epochTime === null) {
+            Alert.alert(ALERT, SELECT_DATE);
+        }
+        else if (packageDetails && address && Object.keys(address).length !== 0) {
             dispatch(bookTestThunk({ data }))
         } else {
             Alert.alert(ALERT, PLEASE_CHECK_ADDRESS);
@@ -114,7 +109,15 @@ export const useBookingConfirm = () => {
     }, [testBooked, apiErrorMessage])
 
     const rescheduleBooking = () => {
-        dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: getEpoch(date, time) }))
+        dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: epochTime }))
+    }
+
+    const setSelectedMember = (params) => {
+        if(dataRelation?.length > 0)
+       setSelected(dataRelation.find((item)=>{
+        if(item?.key === params?.toString()) return item;
+        else return null;
+    }))
     }
     useEffect(() => {
         if (reschedule?.message && !apiErrorMessage) {
@@ -135,11 +138,6 @@ export const useBookingConfirm = () => {
 
     return {
         packageDetails,
-        handleDate,
-        handleTime,
-        date,
-        time,
-        setSelected,
         checked,
         setChecked,
         dataRelation,
@@ -147,6 +145,8 @@ export const useBookingConfirm = () => {
         bookTestScreen,
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
-        addressListing
+        addressListing,
+        handleDateTime,
+        setSelectedMember
     }
 }

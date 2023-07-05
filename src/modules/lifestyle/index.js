@@ -63,6 +63,7 @@ const LifestyleTestsAndPackages = props => {
           showSearch={true}
           searchPlaceholder={SEARCH_PACKAGES_TESTS}
           onSearch={onSearch}
+          showCart={true}
         />
         <View style={[container, childContainerStyle]}>
           {addToCartLoad ? (

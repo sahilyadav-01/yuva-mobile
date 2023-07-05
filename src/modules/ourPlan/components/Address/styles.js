@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
         borderWidth: 0.1,
         marginTop: 18,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 3,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,
@@ -103,7 +103,7 @@ export const styles = StyleSheet.create({
         marginLeft: 16,
         marginRight: 16,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 6,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW

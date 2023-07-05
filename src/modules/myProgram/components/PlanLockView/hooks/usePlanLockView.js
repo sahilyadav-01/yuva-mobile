@@ -1,0 +1,19 @@
+import {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+
+export const usePlanLockView = planDetails => {
+  const {lockedState} = useSelector(state => state.programAndPlan);
+  const [lock, setLock] = useState(false);
+  useEffect(() => {
+    if (
+      lockedState.filter(item => {
+        if (item?.uuid === planDetails?.uuid) {
+          return item;
+        }
+      }).length > 0
+    ) {
+      setLock(true);
+    }
+  }, [lockedState]);
+  return {lock};
+};

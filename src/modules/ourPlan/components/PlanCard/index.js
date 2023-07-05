@@ -8,12 +8,12 @@ import { usePlanCard } from './hooks/usePlanCard';
 import { styles } from './styles';
 
 const PlanCard = (props) => {
-  const {item, isHomeScreen} = props;
+  const {item, isHomeScreen,isDetailScreen} = props;
   const { onDetailsScreen, priceObj, planService } = usePlanCard(item);
   const {name} = item || {};
   const RenderedIcon = ({index,colorProp}) => {
     const Icons = [{index:0,icon:()=><SVG.OPDIcon color={colorProp}/>},{index:1,icon:()=><SVG.CheckUpIcon color={colorProp}/>},{index:2,icon:()=><SVG.HraSvg color={colorProp}/>},{index:3,icon:()=><SVG.TalkToDoctorSvg color={colorProp}/>}]
-    const renderIcon = Icons.find((item,i)=>{if(i===index) return item}).icon();
+    const renderIcon = Icons.find((item,i)=>{if(i===index) return item})?.icon();
     return renderIcon;
   }
   if(!item) {
@@ -36,7 +36,7 @@ const PlanCard = (props) => {
     );
   }
   return (
-    <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={styles.container}>
+    <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={isDetailScreen ?styles.detailsCont  :styles.container }>
       <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
         <View style={styles.containerView}>
           <View style={styles.headingView}>
@@ -73,7 +73,7 @@ const PlanCard = (props) => {
             </View>
             <View style={styles.popularPlanImageContainer}>
               <View style={styles.imageContainer}>
-                <Image style={styles.imageStyle} source={BASE_64.DoctorsImage} resizeMode='cover'/>
+                <Image style={styles.imageStyle} source={BASE_64.DoctorsImage} resizeMode='contain'/>
               </View>
             </View>
           </View>}

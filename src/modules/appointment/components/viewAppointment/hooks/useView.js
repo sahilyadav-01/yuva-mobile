@@ -69,8 +69,9 @@ export const useView = () => {
       .then(() => navigation.navigate('AppointmentHome'));
   };
   useEffect(() => {
+    if(typeof id === 'number')
     dispatch(appointmentThunk({id}));
-  }, []);
+  }, [id]);
 
   return {
     cancelFlag,

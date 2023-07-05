@@ -4,9 +4,9 @@ import {CENTER, COLUMN, ROW, TOP, WRAP} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
+  screenContainer: {flex:1},
   container: {
     marginHorizontal: 12,
-    marginBottom: 182,
   },
   headerView: {
     marginVertical: 18,

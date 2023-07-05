@@ -2,7 +2,9 @@ import validator from 'is_js';
 import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
-
+import { setProfileImage, uploadFamilyPic } from '../store/reducers/ProfileSlice';
+import ImagePicker from 'react-native-image-crop-picker';
+import { useDispatch } from 'react-redux';
 export const handleNetworkError = (status, message) => {
   if (!message) {
     if (status >= 500) Alert.alert('Error', 'Internal Server Error');
@@ -208,7 +210,7 @@ export const dignosticStatus = status => {
       retStatus = 'Booking Confirmed';
       break;
     case 'RESCHEDULED':
-      retStatus = 'Awaiting For Confirmation';
+      retStatus = 'Rescheduled';
       break;
     case 'COMPLETED':
       retStatus = 'Report Awaited';
@@ -257,7 +259,12 @@ export const getTime = timestamp => {
 export const getEpoch = (date, time) => {
   const dtString = date.toISOString().slice(0, 10);
   const timeString = processTime(time);
-  return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  if(Platform.OS === 'ios'){
+    return Date.parse(dtString + 'T' + timeString)
+  }
+  else if(Platform.OS==='android'){
+    return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  } 
 };
 
 const getOffsetTime = time => {
@@ -283,7 +290,33 @@ const processTime = time => {
 //     let tstring = slot.split(".")[0];
 //     return new Date(tstring)
 // }
-
+export const ImageGallery=(onSuccess,onError)=>{
+  ImagePicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true,
+    includeBase64:true,
+  }).then(onSuccess).catch(onError);
+}
+export const requestCameraPermission = async (onSuccess,onError) => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      ImagePicker.openCamera({
+          width: 300,
+          height: 400,
+          cropping: true,
+          includeBase64:true,
+        }).then(onSuccess).catch(onError);
+    } else {
+     Alert.alert("permission denied...!!!")
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
 export const granted = () => {
   PermissionsAndroid.request(
     PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -300,28 +333,38 @@ const downloadFile = (filePath, fileName) => {
   let ext = getExtention(file_Url);
   ext = fileName;
   const {config, fs} = RNFetchBlob;
-  let DownloadDir = fs.dirs.DownloadDir;
-  let options = {
-    fileCache: true,
-    addAndroidDownloads: {
-      useDownloadManager: true,
-      notification: true,
-      path: DownloadDir + '/yuva/' + ext,
-      description: 'File',
-      mime: 'application/pdf',
-      showNotification: true,
-    },
-  };
+  const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+  let options;
+  if(Platform.OS === 'android') {
+    options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: directory + '/yuva/' + ext,
+        description: 'File',
+        mime: 'application/pdf',
+        showNotification: true,
+      },
+    };
+  }
+  else if(Platform.OS === 'ios') {
+    options = {path:`${directory}/${fileName}`}
+  }
   config(options)
     .fetch('GET', file_Url)
     .then(res => {
       // Alert after successful downloading;
+      if(Platform.OS === 'android')
       alert('File Downloaded Successfully.', JSON.stringify(res));
+      else if(Platform.OS === 'ios') 
+        RNFetchBlob.ios.previewDocument(res.path());
     })
     .catch(err => {
       alert('Download Failed');
     });
 };
+
 export const checkPermission = async (filePath, fileName) => {
   if(Platform.OS === 'android'){
   PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
@@ -342,6 +385,7 @@ export const checkPermission = async (filePath, fileName) => {
     })
   })
 }
+else if(Platform.OS === 'ios') downloadFile(filePath, fileName);
 };
 
 const getExtention = filename => {
@@ -397,6 +441,9 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
     default:
       getDateText(date);
   }
@@ -457,5 +504,10 @@ export const onNeedHelpPress = async () => {
   else {
     Linking.openURL(storeUrl);
   }
+}
+
+export const getPlatform = () => {
+  if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
+  else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
 }
 

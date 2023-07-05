@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Header from '../../../../components/Header';
 import { CHECK_OUT, ADDRESS } from './constants';
 import { styles } from './styles';
 import AddNewAddressContainer from '../../../../components/AddNewAddressContainer';
+import { getPlatform } from '../../../../utils/utils';
 
 const NewAddress = () => {
-
+    const Platform = getPlatform();
     return (
-        <View>
-            <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={true} />
+        <SafeAreaView style={styles.contentContainerStyle}>
+            <Header showBackButton={true} title={CHECK_OUT} hideMenu={true} showCart={false} />
+            <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={styles.contentContainerStyle}>
             <ScrollView
                 nestedScrollEnabled={true}
                 contentContainerStyle={styles.contentContainerStyle}>
@@ -17,7 +19,8 @@ const NewAddress = () => {
                     <AddNewAddressContainer isScreen={ADDRESS} />
                 </View>
             </ScrollView >
-        </View >
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     )
 }
 export default NewAddress;

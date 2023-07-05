@@ -1,31 +1,27 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-import SelectList from 'react-native-dropdown-select-list'
+import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header'
-import { BOOKINGCONFIRM, BOOKING_FOR, DATE, MYSELF, MY_TESTS, NULL, PHN, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER, SUDHIR, TIME } from './constants';
+import { BOOKINGCONFIRM, BOOKING_FOR, MYSELF, MY_TESTS, NULL, RESCHEDULEAPPOINTMENT, SCHEDULE_APPOINMENT, SELECT_DATE, SELECT_MEMBER } from './constants';
 import { useBookingConfirm } from './hooks/useBookingConfirm';
-import { DateTimePicker } from '@hashiprobr/react-native-paper-datetimepicker';
-import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
+import { DARK_GRAY } from '../../../styles/colors';
 import AddressList from '../../../components/Address';
+import CustomDatePicker from '../../../components/CustomDatePicker';
 
 
 
 const BookingConfirm = () => {
-
     const { packageDetails,
-        handleDate,
-        handleTime,
-        date,
-        time, setSelected,
         dataRelation,
         userAddress,
         bookTestScreen,
         bookedDetails,
         rescheduleBooking,
-        addressListing
+        addressListing,
+        handleDateTime,
+        setSelectedMember
     } = useBookingConfirm();
-
     if (userAddress) {
 
         return (
@@ -45,32 +41,7 @@ const BookingConfirm = () => {
                             <Text style={styles.selectDate}>
                                 {SELECT_DATE}
                             </Text>
-                            <View style={styles.border}>
-                                <View style={styles.dateAndTime}>
-                                    <Text style={styles.Date}>{DATE}</Text>
-                                    <DateTimePicker
-                                        type={DATE}
-                                        value={date}
-                                        onChangeDate={handleDate}
-                                        style={styles.dateTimePicker}
-                                        selectionColor={DARK_BLUE}
-                                        theme={styles.theme}
-                                        minimumDate={new Date()}
-                                    />
-                                </View>
-
-                                <View style={styles.dateAndTime}>
-                                    <Text style={styles.Time}>{TIME}</Text>
-                                    <DateTimePicker
-                                        type="time"
-                                        value={time}
-                                        onChangeDate={handleTime}
-                                        style={styles.dateTimePicker}
-                                        selectionColor={DARK_BLUE}
-                                        theme={styles.theme}
-                                    />
-                                </View>
-                            </View>
+                            <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={false}/>
                         </View>
                         <View>
                             <Text style={styles.selectDate}>
@@ -84,20 +55,24 @@ const BookingConfirm = () => {
                                     boxStyles={styles.boxStyles}
                                     search={false}
                                     defaultOption={{ key: NULL, value: MYSELF }}
-                                    setSelected={setSelected}
+                                    setSelected={setSelectedMember}
                                     inputStyles={styles.valueStyle}
                                     data={dataRelation}
+                                    dropdownStyles={styles.dropStyles}
                                     dropdownTextStyles={{color:DARK_GRAY}}
                                 />
                             </View>
                             ) : (<View style={styles.border} pointerEvents="none">
                                 <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                                 <SelectList
-                                    boxStyles={styles.boxStyles}
-                                    defaultOption={{ key: NULL, value: MYSELF }}
-                                    setSelected={setSelected}
+                                    boxStyles={[styles.boxStyles,styles.backGroundStyle]}
+                                    defaultOption={{key:'0',value:bookedDetails?.data?.relation === null ? MYSELF :`${bookedDetails?.data?.memberName}  -  ${bookedDetails?.data?.relation} (${bookedDetails?.data?.memberAge})`}}
+                                    setSelected={setSelectedMember}
                                     data={dataRelation}
+                                    dropdownStyles={styles.dropStyles}
+                                    inputStyles={styles.valueStyle}
                                     dropdownTextStyles={{color:DARK_GRAY}}
+                                    search={false}
                                 />
                             </View>)}
                         <AddressList isNavScreen={BOOKINGCONFIRM}/>

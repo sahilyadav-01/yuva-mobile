@@ -6,9 +6,10 @@ import {styles} from './style';
 const LoginScreen = ({route}) => {
   const {container} = styles();
   const from = route?.params?.from ?? null;
+  const data = route?.params?.data ?? null;
   return (
     <SafeAreaView style={container}>
-      <Login from={from} />
+      <Login from={from} data={data} />
     </SafeAreaView>
   );
 };

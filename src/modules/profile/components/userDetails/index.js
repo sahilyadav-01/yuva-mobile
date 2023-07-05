@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, TextInput} from 'react-native';
+import { View, TouchableOpacity, TextInput, Image, Text, Pressable, Modal } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {
   DD_MM_YYYY,
@@ -9,9 +9,12 @@ import {
   PINCODE,
 } from '../../constant';
 import styles from './style';
-import {DARK_BLUE, DARK_GRAY} from '../../../../styles/colors';
-import {getDateText} from '../../../../utils/utils';
-
+import { BLACK, DARK_BLUE, GREEN, DARK_GRAY } from '../../../../styles/colors';
+import { getDateText } from '../../../../utils/utils';
+import { useUserDetails } from './hooks/useUserDetails';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Cross from 'react-native-vector-icons/Entypo';
+import { CAMERA, GALLERY, SELECT } from './constants';
 const UserDetails = ({
   setSelectedGender,
   gender,
@@ -31,9 +34,10 @@ const UserDetails = ({
   cityNames,
   profileGender
 }) => {
-  const {userImage, textInputStyle, separatorStyle, dropdownBoxStyle} = styles({
-    disabled: false,
-  });
+  const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
+    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon } = styles({
+      disabled: false,
+    });
   const mockData = {
     email: userDetails.email,
     phoneNumber: userDetails.number,
@@ -43,9 +47,75 @@ const UserDetails = ({
     city: userDetails.city,
     pinCode: userDetails.pinCode,
   };
+  const { onImage,
+    onCamera, modalVisible, setModalVisible,
+    setCoverPhoto, setUserPhoto } = useUserDetails();
+
   return (
     <>
-      <View style={userImage}></View>
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <View style={modalView}>
+            < View style={modalTextView}>
+              <Text style={modaltext}>{SELECT}</Text>
+              <View style={IconView}>
+                <TouchableOpacity style={galleryTouch} onPress={onImage}>
+                  <Icon name="view-gallery" size={36} color={BLACK} style={galleryTouch} />
+                  <Text style={GalleryIcon}>{GALLERY}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onCamera}>
+                  <Icon name="camera" size={36} color={BLACK} style={galleryTouch} />
+                  <Text style={GalleryIcon}>{CAMERA}</Text>
+                </TouchableOpacity>
+                <Pressable
+                  onPress={() => setModalVisible(!modalVisible)} style={CrossIcon}>
+                  <Cross name="cross" size={20} color={BLACK} />
+                </Pressable>
+              </View>
+            </View>
+          </View>
+
+        </Modal>
+
+        <TouchableOpacity style={userCoverImage}
+          onPress={() => {
+            setModalVisible(true)
+            setCoverPhoto(true)
+            setUserPhoto(false)
+
+          }}
+        >{userDetails?.familyPicture &&
+          <Image
+            source={{ uri: userDetails?.familyPicture }}
+            style={userCoverImage}
+            resizeMode="cover"
+          />}
+          <Icon name="image-plus" size={26} color={GREEN} style={coverIcon} />
+
+        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            style={userImage}
+            onPress={() => {
+              setModalVisible(true)
+              setCoverPhoto(false)
+              setUserPhoto(true)
+            }}
+          >
+            {userDetails?.profilePicture &&
+              <Image
+                source={{ uri: userDetails?.profilePicture }}
+                style={userPicture}
+                resizeMode="cover"
+              />}
+            <Icon name="image-plus" size={20} color={GREEN} style={UserIcon} />
+          </TouchableOpacity>
+        </View>
+      </View>
       <TextInput
         value={mockData.email}
         editable={false}
@@ -95,6 +165,7 @@ const UserDetails = ({
             value={getDateText(date)}
             editable={false}
             style={textInputStyle}
+            onPressOut={openPicker}
           />
         </TouchableOpacity>
       )}
@@ -137,7 +208,7 @@ const UserDetails = ({
               }}
               search={false}
               data={cityNames.map(item => {
-                return {...item, value: JSON.parse(item.value).name};
+                return { ...item, value: JSON.parse(item.value).name };
               })}
               placeholder={city ?? CITY}
               placeholderTextColor={DARK_GRAY}
@@ -153,7 +224,7 @@ const UserDetails = ({
         placeholderTextColor={DARK_GRAY}
         value={!edit ? mockData.pinCode ?? pinCode : pinCode}
         editable={edit}
-        style={{...textInputStyle, marginBottom: 32}}
+        style={{ ...textInputStyle, marginBottom: 32 }}
         onChangeText={changePincode}
       />
     </>

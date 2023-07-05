@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { dispatch_condition_1, section5QThunk } from '../../../../store/reducers/Section5Slice';
 import { dispatch_option } from '../../../../store/reducers/Section5Slice';
 import { getDimensions } from '../../../../utils/utils';
-import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, ZERO } from '../../constant';
+import { AGE_ALERT, ALERT, ALL_QUESTION_CHECK, DEFAULT_ALERT_MESSAGE, ONE, SECOND_QUESTION, SECTION_6, THIRD_QUESTION, WORNG_AGE_ALERT, ZERO } from '../../constant';
 import { fetchSavedHRA, saveHRAData } from '../../../../store/reducers/HRASlice';
 
 export const useSection5 = () => {
@@ -60,7 +60,7 @@ export const useSection5 = () => {
                 const ageLimit = (value >= 12)
                 setRequiredFieldQ2(!validQ2);
                 if (!validQ2) {
-                    Alert.alert(ALERT, DEFAULT_ALERT_MESSAGE);
+                    Alert.alert(ALERT, WORNG_AGE_ALERT);
                 } 
                 else if(!ageLimit) {
                     Alert.alert(ALERT,AGE_ALERT)

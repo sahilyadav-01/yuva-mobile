@@ -20,6 +20,7 @@ const InputPassword = props => {
           secureTextEntry={props?.secureTextEntry}
           onEndEditing={props.onEndEditing}
           autoComplete={'off'}
+          textContentType='oneTimeCode'
         />
         <TouchableOpacity
           style={imageContainer}

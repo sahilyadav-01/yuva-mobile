@@ -14,7 +14,7 @@ const Dependent = props => {
     <View style={dependentItemContainer}>
       <View style={dependentNameContainer}>
         <Text style={primaryText}>{detailsText}</Text>
-        <Checkbox color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'} />
+        <Checkbox.Android color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'} />
       </View>
       <Text style={secondaryText}>{relation}</Text>
     </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import * as Progress from 'react-native-progress';
 import PickerData from '../../../utils/PickerData';
 import SelectList from 'react-native-dropdown-select-list';
@@ -10,25 +10,21 @@ import { styles } from './styles';
 import { DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
+import { getPlatform } from '../../../utils/utils';
 
 const Section5 = () => {
-
   const { inputCheck, setQuestion4, setQuestion1, requiredFieldQ2, requiredFieldQ3, smoke, progressWidth, questionData, answers, next, renderData, onChangeText } = useSection5();
-
+  const Container = getPlatform().isIOS ? KeyboardAvoidingView : View;
   if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>;
   return (
-    <>
+    <Container behavior='padding' style={styles.screenContainer}>
       <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
+      <ScrollView>
       <View style={styles.progressBarContainer}>
         <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.5} width={progressWidth} height={12} />
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle}>{SECTION_5_HEADING}</Text>
-        <View style={styles.scrollViewContainer}>
-          <ScrollView
-            bounces={false}
-            contentContainerStyle={styles.scrollViewContentContainerStyle}
-            showsVerticalScrollIndicator={false}>
             <View style={styles.questionViewContainer}>
               <Text style={styles.questionViewContainerText}>
                 {questionData[0]?.question}
@@ -89,11 +85,10 @@ const Section5 = () => {
               <TouchableOpacity style={styles.touchableOpacityStyle} onPress={next}>
                 <Text style={styles.touchableOpacityTextStyle}>{BUTTON_TEXT}</Text>
               </TouchableOpacity>
-            </View>
-          </ScrollView>
         </View>
       </View>
-    </>
+      </ScrollView>
+    </Container>
   );
 };
 

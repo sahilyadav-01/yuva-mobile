@@ -6,14 +6,21 @@ import { BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export const usePurchase = plan => {
-  const {purchasesTab, plans, plansError, purchases, purchasesError} =
-    useSelector(state => state.purchases);
+  const {
+    purchasesTab,
+    plans,
+    plansError,
+    purchases,
+    purchasesError,
+  } = useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
   const [plansPageNo, setPlansPageNo] = useState(1);
   const [purchasesPageNo, setPurchasesPageNo] = useState(1);
   const [loading, setLoading] = useState(true);
   const [purchasesLoader, setPurchasesLoader] = useState(true);
+  const [planListLoading, setPlanListLoading] = useState(false);
+  const [purchasesListLoading, setPurchasesListLoading] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   useEffect(()=>{
@@ -54,17 +61,20 @@ export const usePurchase = plan => {
           'dateOfPurchase',
         ),
       );
+      setPlanListLoading(false);
       setLoading(false);
     } else if (
       plans &&
       typeof plans?.userPlanOrderHistoryResponseDtoList === 'object' &&
       plans?.userPlanOrderHistoryResponseDtoList.length === 0
     ) {
+      setPurchasesListLoading(false);
       setLoading(false);
     } else if (plans === null && plansError) {
       setLoading(false);
     }
   }, [plans, plansError]);
+
 
   useEffect(() => {
     if (
@@ -99,10 +109,13 @@ export const usePurchase = plan => {
     }
   }, [purchases, purchasesError]);
 
+
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
+      setPlanListLoading(true);
       setPlansPageNo(plansPageNo + 1);
     } else if (purchasesTab === 1 && purchasesPageNo < purchases?.totalPages) {
+      setPurchasesListLoading(true);
       setPurchasesPageNo(purchasesPageNo + 1);
     }
   };
@@ -116,5 +129,7 @@ export const usePurchase = plan => {
     purchasesLoader,
     purchasesList,
     purchasesError,
+    planListLoading,
+    purchasesListLoading
   };
 };

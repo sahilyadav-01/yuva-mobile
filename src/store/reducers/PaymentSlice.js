@@ -12,7 +12,7 @@ export const createOrderThunk = createAsyncThunk(
       const reqBody =
         plan
           ? {bookingRequestDto, subscriptionRequestDto}
-          : {bookingRequestDto, subscriptionRequestDto, name, age, gender};
+          : {bookingRequestDto, subscriptionRequestDto, name, age, genderEnum:gender && gender.toUpperCase()};
       const response = await YuvaService.post(endpoint, reqBody);
       return response.data;
     } catch (error) {

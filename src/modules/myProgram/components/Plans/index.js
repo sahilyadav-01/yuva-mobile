@@ -1,0 +1,56 @@
+import React from 'react';
+import {View, Text} from 'react-native';
+import SelectList from 'react-native-dropdown-select-list';
+import {SVG} from '../../../../../assets';
+import {ORANGE} from '../../../../styles/colors';
+import {styles} from './style';
+import {usePlan} from './hooks/usePlan';
+import { HRA_SUBTEXT } from '../../PlanItem/ProgramFooter/constants';
+
+const RenderPlans = ({item}) => {
+  const {plans, getTests} = usePlan();
+  const {
+    itemContainer,
+    serviceText,
+    usageText,
+    rowContainer,
+    iconContainer,
+    inputStyles,
+    boxStyles,
+    dropdownItemStyles,
+    dropdownContainer,
+  } = styles();
+  return (
+    <View style={itemContainer}>
+      <View style={rowContainer}>
+        <View style={iconContainer}>
+          {SVG[plans[item?.serviceUuid]?.icon]({color: ORANGE, large: true})}
+        </View>
+        {item?.serviceUuid === 'ee5413dd-eb09-4a99-92d0-a4fc6d92a5e9' ? (
+          <View style={dropdownContainer}>
+            <SelectList
+              search={false}
+              setSelected={() => {}}
+              data={getTests(item)}
+              defaultOption={getTests(item)[0]}
+              boxStyles={boxStyles}
+              inputStyles={inputStyles}
+              dropdownTextStyles={inputStyles}
+              dropdownItemStyles={dropdownItemStyles}
+            />
+          </View>
+        ) : (
+          <View>
+            <Text style={serviceText}>{item?.serviceName}</Text>
+            {item?.serviceUuid === '1dbcc55e-3dec-4e07-8c2a-e222631afebb' ? (   
+            <Text style={usageText}>{HRA_SUBTEXT}</Text>) :( <Text style={usageText}>{`Used -${
+              getTests(item)[0]?.used
+            } Available -${getTests(item)[0]?.available}`}</Text>)}
+          </View>
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default RenderPlans;
