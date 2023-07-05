@@ -72,7 +72,7 @@ const PriceDetails = props => {
             <MaterialIcon name="local-offer" size={15} style={iconStyle} />
           </View>
           <View>
-            <Text style={appliedStyle}>{selectedCouponCode ? couponView : couponViewCart}</Text>
+            <Text style={appliedStyle}>{couponViewCart ?? couponView}</Text>
           </View>
           <View>
             <TouchableOpacity onPress={crossAction}>

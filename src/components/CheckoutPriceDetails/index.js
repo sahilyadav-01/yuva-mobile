@@ -55,7 +55,7 @@ const CheckoutPriceDetails = (props) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{amountToBePaid ? amountToBePaid : (planeCouponCode ? planCouponFinalAmount : planAmountToBePaid)}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{typeof amountToBePaid === 'number' ? amountToBePaid : (planeCouponCode ? planCouponFinalAmount : planAmountToBePaid)}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>
