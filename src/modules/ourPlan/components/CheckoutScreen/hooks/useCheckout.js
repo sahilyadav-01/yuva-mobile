@@ -14,6 +14,9 @@ export const useCheckout = () => {
     const route = useRoute();
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const {selectedCity} = useSelector(
+        state => state.profile,
+      );
     const { mainItem,planPrice,planAmountToBePaid} = useSelector(state => state.programAndPlan);
     const { planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     const { loggedIn } = useSelector(state => state.auth);
@@ -37,7 +40,7 @@ export const useCheckout = () => {
         const planTypeEnum = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
         const bookingRequestDto = {
             address,
-            cityId,
+            cityId:selectedCity,
             contactNumber: contact,
             packageUuid: [],
             patientId: 0,
@@ -52,7 +55,7 @@ export const useCheckout = () => {
         };
         const subscriptionRequestDto = {
             address,
-            cityId,
+            cityId:selectedCity,
             pinCode: pincode,
             number,
             planTypeEnum,

@@ -29,7 +29,7 @@ const CheckoutOurPlan = () => {
     const Platform = getPlatform();
     return (
         <SafeAreaView style={styles.container}>
-            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={true} />
+            <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={false} />
             <KeyboardAvoidingView style={styles.container} behavior={Platform.isIOS ? 'padding' : null}>
             <ScrollView
                 nestedScrollEnabled={true}

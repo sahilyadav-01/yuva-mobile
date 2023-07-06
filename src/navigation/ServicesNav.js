@@ -114,13 +114,13 @@ const ServicesNav = () => {
         component={ViewAllOurPlan}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="PHARMACY"
         component={
           loggedIn !== 'loggedIn' ? ComingSoon : PharmacyNavigation
         }
         options={{ headerShown: false }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

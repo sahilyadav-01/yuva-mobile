@@ -12,6 +12,7 @@ import { SVG } from '../../../assets';
 import { DARK_GRAY } from '../../styles/colors';
 import {
   ENTER_MOBILE,
+  NO_DATA_FOUND,
   NURSE_TEXT,
   PLEASE_ENTER_CORRECT_NUMBER,
   REQUEST,
@@ -37,24 +38,27 @@ const HomeSearch = () => {
   };
   const renderView = item => {
     const renderList = item => {
+      const onPackPress= () => onPackagePress(item)
       return (
-        <View>
+        <TouchableOpacity onPress={onPackPress}>
           <Text style={styles.listText}>{item?.item?.packageName}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     const renderList2 = item => {
+      const onTestPress = () => onPackagePress(item);
       return (
-        <View>
+        <TouchableOpacity onPress={onTestPress}>
           <Text style={styles.listText}>{item?.item?.testName}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     const renderList3 = item => {
+      const onPress = () => onPressPlan(item);
       return (
-        <View>
+        <TouchableOpacity onPress={onPress}>
           <Text style={styles.listText}>{item?.item?.name}</Text>
-        </View>
+        </TouchableOpacity>
       );
     };
     return (
@@ -97,6 +101,8 @@ const HomeSearch = () => {
     onChangeSearch,
     filteredData,
     testPackageSearch,
+    onPressPlan,
+    onPackagePress,
   } = useHomeSearch();
   return (
     <View>
@@ -110,7 +116,7 @@ const HomeSearch = () => {
         onSearch={onChangeSearch}
         onSubmitEditing={filteredData}
       />
-      {filteredData.length > 2 && testPackageSearch.length > 0 ? (
+      {filteredData?.length > 2 && testPackageSearch?.length > 0 ? (
         <View style={styles.dropDown}>
           <FlatList
             data={testPackageSearch}
@@ -120,9 +126,9 @@ const HomeSearch = () => {
         </View>
       ) : (
         <View style={styles.dropDown}>
-          {filteredData.length > 2 && (
+          {filteredData?.length > 2 && (
             <View style={styles.textList}>
-              <Text style={styles.textColor}>{'No data Found'}</Text>
+              <Text style={styles.textColor}>{NO_DATA_FOUND}</Text>
             </View>
           )}
         </View>
@@ -130,9 +136,20 @@ const HomeSearch = () => {
       <ScrollView
         contentContainerStyle={styles.ScrollViewContainerStyle}
         nestedScrollEnabled={true}>
+        <View>
+          <FlatList
+            renderItem={renderView}
+            data={data}
+            keyExtractor={(item, index) => `${index}`}
+            showsHorizontalScrollIndicator={false}
+            nestedScrollEnabled={true}
+          />
+        </View>
         <View style={styles.expert}>
           <View style={styles.nurse}>
-            <SVG.NurseComponent style={styles.nurseImage} />
+            <View style={styles.nurseImage}>
+            <SVG.NurseComponent />
+            </View>
             <Text style={styles.nurseText}>{NURSE_TEXT}</Text>
           </View>
           <View style={styles.nurse}>
@@ -157,15 +174,6 @@ const HomeSearch = () => {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
-        <View>
-          <FlatList
-            renderItem={renderView}
-            data={data}
-            keyExtractor={(item, index) => `${index}`}
-            showsHorizontalScrollIndicator={false}
-            nestedScrollEnabled={true}
-          />
         </View>
       </ScrollView>
     </View>

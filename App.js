@@ -10,14 +10,14 @@ import { useApp } from './useApp';
 
 export default function App() {
   
-  useApp();
+  const {showContent} = useApp();
 
   return (
     <Provider store={store}>
       <PaperProvider>
-        <NavigationContainer>
+        {showContent && <NavigationContainer>
           <IntroStackNav />
-        </NavigationContainer>
+        </NavigationContainer>}
       </PaperProvider>
     </Provider>
   );

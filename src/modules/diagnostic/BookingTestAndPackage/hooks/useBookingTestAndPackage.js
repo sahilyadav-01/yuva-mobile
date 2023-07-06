@@ -90,7 +90,7 @@ export const useBookingTestAndPackage = () => {
             case "health": return HEALTH_CHECKUP_DIAGNOSTIC;
             case "myTest":return MY_TESTS;
             case "lifestyle": return LIFE_STYLE;
-            case "details": return DETAILS;
+            case "Details": return HEALTH_CHECKUP_DIAGNOSTIC;
             default: return ""
         }
     }

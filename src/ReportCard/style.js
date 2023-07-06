@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   dateStyle: {
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+    color:CYAN_BLUE,
   },
   reportTextStyle: {
     marginLeft:12,

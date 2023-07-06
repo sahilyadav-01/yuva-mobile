@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react'
-import { View, Text, ScrollView, FlatList } from 'react-native'
+import React from 'react'
+import { View, Text, ScrollView, FlatList, ActivityIndicator } from 'react-native'
 import MyPlanCard from '../../../components/MyPlanCard'
 import { styles } from './styles'
 import { useMyPlan } from './hooks/useMyPlan';
 import { NO_PLAN } from './constants';
 
 const MyPlans = () => {
-  const { programAndPlan } = useMyPlan();
+  const { programAndPlan, bookingListError, bookingListLoading } = useMyPlan();
   const renderItem = ({ item, index }) => {
     return (<MyPlanCard
       key={index}
       item={item}
     />);
   }
+  if(bookingListLoading) return <View style={styles.loaderContainer}><ActivityIndicator size={'large'}/></View>
+  else if(!bookingListLoading && !bookingListError)
   return (
     <View>
       <View >

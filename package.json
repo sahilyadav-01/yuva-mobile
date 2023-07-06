@@ -60,6 +60,7 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-version-check": "^3.4.7",
     "react-native-webview": "11.18.1",
     "react-redux": "^8.0.2",
     "rn-fetch-blob": "^0.12.0",

@@ -6,8 +6,8 @@ import { HRA, MY_TEST, OPD, OURPLAN, services, TALK_TO_DOCTOR } from "../../../c
 export const usePlanCard = (item) => {
   const navigation = useNavigation();
   const [priceObj, setPriceObj] = useState({value: 0, duration: '', finalPrice: 0});
-  const {planServiceNameList} = item || {};
-  const planService = planServiceNameList.map(list => {
+  const {planServiceNameList} = item || [];
+  const planService = planServiceNameList?.map(list => {
     const {serviceName, shortDescription, serviceUuid, available, position} = list || {};
     let value = {};
     switch(serviceUuid) {
