@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTermsAndCondtionChecked } from "../../../store/reducers/CartSlice";
+import { setTermsAndCondtionChecked, removeCouponCart } from "../../../store/reducers/CartSlice";
 import { selectedPlaneCouponCode } from "../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../store/reducers/ProgramAndPlanSlice";
 
@@ -13,6 +13,7 @@ export const useCheckoutPriceDetails = (isPrice) => {
     const crossAction = () => {
         dispatch(selectedPlaneCouponCode({ couponCode: null }));
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
+        dispatch(removeCouponCart());
     }
     const { planCouponDiscount, planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     useEffect(() => {

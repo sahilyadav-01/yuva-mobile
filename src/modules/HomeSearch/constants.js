@@ -7,3 +7,4 @@ export const ENTER_MOBILE="Enter Mobile Number";
 export const SEARCH="Search";
 export const SEARCH_TEST_PACKAGE="Search for Test / Packages";
 export const BOKINGTESTANDPACKAGE = 'BookingTestAndPackage';
+export const NO_DATA_FOUND='No data Found';

@@ -13,16 +13,15 @@ import CustomDatePicker from '../../../components/CustomDatePicker';
 
 const BookingConfirm = () => {
     const { packageDetails,
-        setSelected,
         dataRelation,
         userAddress,
         bookTestScreen,
         bookedDetails,
         rescheduleBooking,
         addressListing,
-        handleDateTime
+        handleDateTime,
+        setSelectedMember
     } = useBookingConfirm();
-
     if (userAddress) {
 
         return (
@@ -56,7 +55,7 @@ const BookingConfirm = () => {
                                     boxStyles={styles.boxStyles}
                                     search={false}
                                     defaultOption={{ key: NULL, value: MYSELF }}
-                                    setSelected={setSelected}
+                                    setSelected={setSelectedMember}
                                     inputStyles={styles.valueStyle}
                                     data={dataRelation}
                                     dropdownStyles={styles.dropStyles}
@@ -67,12 +66,13 @@ const BookingConfirm = () => {
                                 <Text style={styles.SelectMember}>{SELECT_MEMBER}</Text>
                                 <SelectList
                                     boxStyles={[styles.boxStyles,styles.backGroundStyle]}
-                                    defaultOption={{ key: NULL, value: MYSELF }}
-                                    setSelected={setSelected}
+                                    defaultOption={{key:'0',value:bookedDetails?.data?.relation === null ? MYSELF :`${bookedDetails?.data?.memberName}  -  ${bookedDetails?.data?.relation} (${bookedDetails?.data?.memberAge})`}}
+                                    setSelected={setSelectedMember}
                                     data={dataRelation}
                                     dropdownStyles={styles.dropStyles}
                                     inputStyles={styles.valueStyle}
                                     dropdownTextStyles={{color:DARK_GRAY}}
+                                    search={false}
                                 />
                             </View>)}
                         <AddressList isNavScreen={BOOKINGCONFIRM}/>

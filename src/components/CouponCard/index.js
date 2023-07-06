@@ -19,10 +19,12 @@ import { redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } 
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
 import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
+import { useRoute } from '@react-navigation/native';
 
 const CouponCard = (props) => {
+  const route = useRoute();
   const { isPlan, planType ,planUuid } = props;
-  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode} = useCouponCard( isPlan, planUuid,planType );
+  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const CouponCard = (props) => {
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess} key={index}>
-        <View style={[styles.couponContainer, { borderColor: (item.couponCode === selectedCouponCode && couponView||planeCouponCode ) ? GREEN : SLATE_BLUE }]}>
+        <View style={[styles.couponContainer, { borderColor: ((item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) || (item.couponCode === couponViewCart && route.name === 'Cart') ) ? GREEN : SLATE_BLUE }]}>
           <View style={styles.viewStyles}>
             {item.maxDiscount ? <Text style={styles.textStyle1}>{DISCOUNT_PERCENTAGE(item.discountAmountOrPercentage)}</Text> : <Text style={styles.textStyle1}>{DISCOUNT(item.discountAmountOrPercentage)}</Text>}
             {item.maxDiscount != null && (<Text style={styles.textStyle2}>{DISCOUNT_UPTO(item.maxDiscount)}</Text>)}
@@ -52,10 +54,9 @@ const CouponCard = (props) => {
           <View style={[styles.useCouponStyle]}>
             <Text style={[
               styles.useCouponTextStyle3,
-              (item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? GREEN : null,
-              (item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? styles.useCouponTextStyle1 : null,
+              ((item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) || (item.couponCode === couponViewCart && route.name === 'Cart'))  ? styles.useCouponTextStyle1 : null,
             ]}>
-              {(item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) ? COUPON_APPLIED : USE_COUPON}
+              {((item.couponCode === selectedCouponCode && (couponView||planeCouponCode)) || (item.couponCode === couponViewCart && route.name === 'Cart')) ? COUPON_APPLIED : USE_COUPON}
             </Text>
           </View>
         </View>

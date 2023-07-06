@@ -15,11 +15,11 @@ export const styles = addToCartLoad => {
       marginTop: 5,
     },
     SearchTextView: {
-      marginTop: 38,
+      marginTop: 24,
       marginHorizontal: 14,
     },
     packageContainerStyle: {
-      marginVertical: 36,
+      marginVertical: 20,
       marginHorizontal: 16,
     },
     screenContainer: {paddingHorizontal: 14, paddingVertical: 24},

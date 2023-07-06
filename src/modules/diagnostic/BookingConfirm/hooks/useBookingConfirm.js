@@ -10,8 +10,8 @@ import {  ALERT, BOOKED, BOOKING, BOOKINGCONFIRM, FALSE, OK, PLEASE_CHECK_ADDRES
 export const useBookingConfirm = () => {
     const route = useRoute();
     const [userAttribute, setUserAttribute] = useState(null);
-    const [selected, setSelected] = useState("");
-    const [dataRelation, setDataRelation] = useState("");
+    const [selected, setSelected] = useState(null);
+    const [dataRelation, setDataRelation] = useState([]);
     const [city, setCity] = useState(null);
     const { packageDetails, testBooked, apiErrorMessage, cityId, reschedule } = useSelector(state => state.diagnostic);
     const { selectedCityId } = useSelector(state => state.diagnostic);
@@ -19,8 +19,11 @@ export const useBookingConfirm = () => {
     const [checked, setChecked] = useState(null);
     const [epochTime, setEpochTime] = useState(null);
     const dispatch = useDispatch();
-    const navigation = useNavigation()
-    
+    const navigation = useNavigation();
+    const {selectedCity} = useSelector(
+        state => state.profile,
+      );
+
     useEffect(() => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
@@ -39,13 +42,13 @@ export const useBookingConfirm = () => {
     }, [])
     useEffect(() => {
         if (relationId?.length > 0) {
-            let newArray = relationId?.map((item) => {
-                return { key: item.id, value: item.name + "  -  " + item.relation + "  (" + item.age + ")" }
+            let newArray = relationId?.map((item,index) => {
+                return { key: index.toString(), value: item.name + "  -  " + item.relation + "  (" + item.age + ")", relationId:item?.id }
             }
             )
             setDataRelation(newArray)
         } else {
-            route?.params?.Uuid && dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version})) && dispatch(getRelations())
+            route?.params?.Uuid ? dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version})) : dispatch(getRelations())
         }
     }, [relationId])
 
@@ -63,9 +66,9 @@ export const useBookingConfirm = () => {
     const contact = selectedAddress?.contact;
     const away    = selectedAddress?.away;
     const bookTestScreen = () => {
-        var data = {
+        let data = {
             address: address,
-            cityId: city,
+            cityId: selectedCity,
             away:away,
             contactNumber: contact,
             packageUuid: [packageDetails?.packageUuid],
@@ -73,7 +76,7 @@ export const useBookingConfirm = () => {
             pinCode: pincode,
             plan: userAttribute?.plan,
             programOrPlanUuid: userAttribute?.Uuid,
-            relationId: selected,
+            relationId: selected === null ? selected : selected?.relationId,
             testId: [],
             timeSlot: epochTime,
             userPlanVersion: userAttribute?.userVersion,
@@ -108,6 +111,14 @@ export const useBookingConfirm = () => {
     const rescheduleBooking = () => {
         dispatch(rescheduleCancelBookingThunk({ id: userAttribute?.bookedDetails?.data?.id, isCancelled: FALSE, timeSlot: epochTime }))
     }
+
+    const setSelectedMember = (params) => {
+        if(dataRelation?.length > 0)
+       setSelected(dataRelation.find((item)=>{
+        if(item?.key === params?.toString()) return item;
+        else return null;
+    }))
+    }
     useEffect(() => {
         if (reschedule?.message && !apiErrorMessage) {
             Alert.alert(ALERT, UPDATEDBOOKED, [{
@@ -127,7 +138,6 @@ export const useBookingConfirm = () => {
 
     return {
         packageDetails,
-        setSelected,
         checked,
         setChecked,
         dataRelation,
@@ -136,6 +146,7 @@ export const useBookingConfirm = () => {
         rescheduleBooking,
         bookedDetails: userAttribute?.bookedDetails,
         addressListing,
-        handleDateTime
+        handleDateTime,
+        setSelectedMember
     }
 }
