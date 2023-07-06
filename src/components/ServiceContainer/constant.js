@@ -21,3 +21,5 @@ export const HYPER_TENSION = 'HYPER_TENSION';
 export const HEALTH_CHECKUP = 'HealthCheckupsTests';
 export const PHARMACY = 'PHARMACY';
 export const PHARMACY_NAME = 'Go to Pharmacy';
+export const EMRM = 'EMRM';
+export const EMRM_SCREEN_NAME= 'EmrmHome';

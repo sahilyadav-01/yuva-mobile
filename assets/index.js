@@ -133,6 +133,9 @@ import programCard from './programCard.png';
 import PharmacyIcon from './PharmacyIcon';
 import PHARMACY from './pharmacy.png';
 import PHARMA_CARD_ICON from './trolly.png';
+import EMRM from './EMRM.png';
+import EmrmHomeImage from './EmrmHomeImage.png';
+import EmrmAddIcon from './EmrmAddIcon.png';
 
 import HealthBanner from './HealthBanner.png';
 const PNG = {
@@ -205,7 +208,10 @@ const PNG = {
   programCard,
   PHARMACY,
   PHARMA_CARD_ICON,
-  HealthBanner
+  HealthBanner,
+  EMRM,
+  EmrmHomeImage,
+  EmrmAddIcon,
 };
 
 const SVG = {
