@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import Header from '../../../components/Header';
 import { HEADER_TITLE } from '../EmrmHome/constants';
 import { SEARCH, SUB_HEADDING_TEXT } from './constants';
@@ -9,26 +9,17 @@ import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
 import { PNG } from '../../../../assets';
 import SelectList from 'react-native-dropdown-select-list';
 import { useEmrmListing } from './hooks/useEmrmListing';
+import MedicalReportCard from '../../../components/MedicalReportCard';
 
 const EmrmListing = () => {
-    const { cityId, renderData } = useEmrmListing();
+    const { cityId, medicalReport, onPressAddButton } = useEmrmListing();
     const renderItem = ({ item, index }) => {
         return (
             <MedicalReportCard
-                key={index}
-                doctorId={item.id}
-                name={item.name}
-                specialization={item.speciality}
-                address={item.address}
-                rating={item.rating}
-                exp={item.experience}
-                img={item.img}
-                qual={item.qual == undefined ? 'MBBS' : item.qual}
-                plan={plan}
-                userVersion={userVersion}
-                uuid={uuid}
-                version={version}
-                hospital={item.hospital}
+                hospitalName={item.hospitalName}
+                documuntType={item.documuntType}
+                DocumentDate={item.DocumentDate}
+                UploadDate={item.UploadDate}
             />
         );
     };
@@ -45,7 +36,7 @@ const EmrmListing = () => {
                     />
                 </View>
                 <View style={styles.middleContainer}>
-                    <Image source={PNG.EmrmAddIcon} style={styles.imageStyle} resizeMode='cover' />
+                    <TouchableOpacity onPress={onPressAddButton}><Image source={PNG.EmrmAddIcon} style={styles.imageStyle} resizeMode='cover' /></TouchableOpacity>
                     <Text style={styles.subHeadingTextStyle}>{SUB_HEADDING_TEXT}</Text>
                 </View>
                 <SelectList
@@ -58,17 +49,17 @@ const EmrmListing = () => {
                     inputStyles={{ color: DARK_BLUE }}
                     dropdownTextStyles={{ color: DARK_GRAY }}
                 />
-                {/* <ScrollView>
-                    <View>
+                <ScrollView>
+                    <View >
                         <FlatList
-                            renderItem={renderData}
-                            data={data}
+                            renderItem={renderItem}
+                            data={medicalReport}
                             keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
                             nestedScrollEnabled={true}
                         />
                     </View>
-                </ScrollView> */}
+                </ScrollView>
             </View>
         </>
     );

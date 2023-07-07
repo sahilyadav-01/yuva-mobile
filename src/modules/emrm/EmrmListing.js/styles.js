@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, DARK_BLUE, LIGHT_GREYISH_RED, LIGHT_MERCURY, WHITE } from '../../../styles/colors';
-import { CENTER, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { BLACK, CYAN_BLUE, DARK_BLUE, WHITE } from '../../../styles/colors';
+import { CENTER, ROW } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -45,14 +45,9 @@ export const styles = StyleSheet.create({
     minHeight: 42,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
-
-    // borderRadius: 12,
-    // borderWidth: 0.1,
-    // borderColor: '#000',
-    // backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    // shadowColor: '#000',
-
-
+  },
+  bottomContainer: {
+ flex:1
   },
 
 });

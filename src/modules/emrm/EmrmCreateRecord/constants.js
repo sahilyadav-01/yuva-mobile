@@ -1,0 +1,1 @@
+export const KEYBOARD_TYPE_VALUE = 'string';
