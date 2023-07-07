@@ -14,6 +14,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     const isLoggedIn = loggedIn === 'loggedIn';
     const { coupon, couponView, planeCouponCode, apiErrorMessage ,selectedCouponCode} = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
+    const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
 
         setCouponCode(value)
@@ -73,5 +74,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         cart,
         planeCouponCode,
         selectedCouponCode,
+        couponViewCart
     };
 }
