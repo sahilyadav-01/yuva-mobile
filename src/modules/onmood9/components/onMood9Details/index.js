@@ -6,18 +6,37 @@ import {styles} from './style';
 import DescriptionContainer from '../details';
 import OnMood9Layers from '../onMood9Layers';
 import Footer from '../footer';
+import {useOnMood9Details} from './hooks/useOnMood9Details';
+import DependentsModal from '../../../../components/Modal/DependentsModal';
 
 const OnMood9Details = () => {
+  const {
+    onConsult,
+    data,
+    modalVisible,
+    onModalCrossPress,
+    checkBoxStatus,
+    onPressCheckBox,
+  } = useOnMood9Details();
   const style = styles();
   return (
     <View style={style.screenContainer}>
+      <DependentsModal
+        visible={modalVisible}
+        onCrossPress={onModalCrossPress}
+        heading={'Select Member'}
+        primaryText={'Myself'}
+        data={data}
+        onCheckBoxPress={onPressCheckBox}
+        checkBoxStatus={checkBoxStatus}
+      />
       <Header title={'Mental Wellness'} showBackButton={true} />
       <ScrollView>
         <View style={style.contentContainer}>
-          <OnMood9Consult/>
-          <DescriptionContainer/>
-          <OnMood9Layers/>
-          <Footer/>
+          <OnMood9Consult onConsultation={onConsult} />
+          <DescriptionContainer />
+          <OnMood9Layers />
+          <Footer />
         </View>
       </ScrollView>
     </View>

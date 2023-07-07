@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import Aes from 'react-native-aes-crypto';
 import {subscriptionDetails} from '../../../store/reducers/PaymentSlice';
 
-export const useOnMood9 = () => {
+export const useOnMood9 = (onMood9Props) => {
+  const id = onMood9Props?.id === null ? '' : `#${onMood9Props?.id}`;
   const dispatch = useDispatch();
   const {
     subscriptionDetails: userSubscriptionDetails,
@@ -24,7 +25,7 @@ export const useOnMood9 = () => {
 
   useEffect(() => {
     if (userSubscriptionDetails !== null && fetchDetails) {
-      let queryString = `user_id=testuser12&status=${
+      let queryString = `user_id=testuser12${id}&status=${
         userSubscriptionDetails?.paymentStatus
       }${
         userSubscriptionDetails?.paymentStatus === 'Active'

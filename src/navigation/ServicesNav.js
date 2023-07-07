@@ -118,7 +118,12 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="MentalWellness"
-        component={loggedIn !== 'loggedIn' ? OnMood9Static : OnMood9Screen}
+        component={OnMood9Static}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OnMood9"
+        component={OnMood9Screen}
         options={{ headerShown: false }}
       />
       {/* <Stack.Screen

@@ -6,8 +6,9 @@ import {useOnMood9} from './hooks/useonmood9';
 import {styles} from './style';
 import { ERROR_TEXT } from './constants';
 
-const OnMood9 = () => {
-  const {encodedQueryString, onMood9Error, onMood9Loading, uri} = useOnMood9();
+const OnMood9 = (props) => {
+  const {onMood9Props} = props;
+  const {encodedQueryString, onMood9Error, onMood9Loading, uri} = useOnMood9(onMood9Props);
   const style = styles();
   const getContent = () => {
     if (onMood9Loading)
