@@ -56,6 +56,10 @@ export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws
 export const PORT = ':8081';
 export const PROTOCOL = 'http://';
 export const PATH = ':8080/api/v1/yuva';
+export const ONMOOD9_CORPORATE_ID = 'wT28b53UeY1gtN9d';
+export const ONMOOD9_KEY = '8a0976d5abc40274354b37fbf5c93eaa';
+export const ONMOOD9_IV = '9b110990b68db3670b86381893118bf9';
+export const ONMOOD9_BASE_URL = `https://onmood9.com/pwa/corporate_pwa.php?c=${ONMOOD9_CORPORATE_ID}`
 
 //PREPROD Server
 // export const SERVER = 'ec2-3-7-71-9.ap-south-1.compute.amazonaws.com';

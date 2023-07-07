@@ -1,38 +1,47 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {styles} from './style';
-import {HEADING_TEXT} from './constants';
+import {
+  DESCRIPTION_1,
+  DESCRIPTION_2,
+  DESCRIPTION_3,
+  DESCRIPTION_4,
+  HEADING_TEXT,
+  SUB_HEADING_1,
+  SUB_HEADING_2,
+  SUB_HEADING_3,
+  SUB_HEADING_4,
+} from './constants';
 
 const OnMood9Layers = () => {
   const style = styles();
   const data = [
     {
-      text: 'Mindful movements & Gestures to control intense emotions and behaviour',
-      heading: 'Body',
+      text: DESCRIPTION_1,
+      heading: SUB_HEADING_1,
     },
     {
-      text: 'Breathing exercises & Self-healing to cultivate positive energy and emotions',
-      heading: 'Energy',
+      text: DESCRIPTION_2,
+      heading: SUB_HEADING_2,
     },
     {
-      text: 'Guided Meditation to manage Moods & reprogram the subconscious',
-      heading: 'Wisdom',
+      text: DESCRIPTION_3,
+      heading: SUB_HEADING_3,
     },
-    {text: 'Contemplation & Self-help Cognitive techniques to manage negative thoughts',
-      heading: 'Mind'
-    }
+    {
+      text: DESCRIPTION_4,
+      heading: SUB_HEADING_4,
+    },
   ];
   const renderItem = ({item, index}) => {
     return (
       <View style={style.rowView}>
         <View style={style.indexContainer}>
-          <Text style={style.indexText}>{index+1}</Text>
+          <Text style={style.indexText}>{index + 1}</Text>
         </View>
         <View style={style.detailsContainer}>
           <Text style={style.heading}>{item.heading}</Text>
-          <Text style={style.body}>
-            {item.text}
-          </Text>
+          <Text style={style.body}>{item.text}</Text>
         </View>
       </View>
     );

@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {LIGHT_GREY} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -10,5 +11,6 @@ export const styles = () => {
       height: '100%',
       backgroundColor: LIGHT_GREY,
     },
+    loaderContainer: {flex: 1, alignItems: CENTER, justifyContent: CENTER},
   });
 };

@@ -9,6 +9,14 @@ import Footer from '../footer';
 import {useOnMood9Details} from './hooks/useOnMood9Details';
 import DependentsModal from '../../../../components/Modal/DependentsModal';
 import AddMembersModal from '../../../../components/Modal/AddMembersModal';
+import {
+  ADD_NEW_MEMBER,
+  MENTAL_WELLNESS,
+  MYSELF,
+  RELATIONSHIP,
+  SAVE_DETAILS,
+  SELECT_MEMBER,
+} from './constants';
 
 const OnMood9Details = () => {
   const {
@@ -30,25 +38,25 @@ const OnMood9Details = () => {
       <DependentsModal
         visible={modalVisible}
         onCrossPress={onModalCrossPress}
-        heading={'Select Member'}
-        primaryText={'Myself'}
+        heading={SELECT_MEMBER}
+        primaryText={MYSELF}
         data={data}
         onCheckBoxPress={onPressCheckBox}
         checkBoxStatus={checkBoxStatus}
         showAddMembersButton
-        buttonText={'Add New Member'}
+        buttonText={ADD_NEW_MEMBER}
         onAddMembersPress={onAddMembersPress}
       />
       <AddMembersModal
-        heading={'Add New Member'}
+        heading={ADD_NEW_MEMBER}
         onCrossPress={onAddModalCrossPress}
         modalVisible={activeRelationsModalVisible}
         onSaveDetailsPress={onSaveDetailsPress}
         relationsData={activeRelationsData}
-        buttonText={'Save Details'}
-        headingText={'Relationship'}
+        buttonText={SAVE_DETAILS}
+        headingText={RELATIONSHIP}
       />
-      <Header title={'Mental Wellness'} showBackButton={true} />
+      <Header title={MENTAL_WELLNESS} showBackButton={true} />
       <ScrollView>
         <View style={style.contentContainer}>
           <OnMood9Consult onConsultation={onConsult} />

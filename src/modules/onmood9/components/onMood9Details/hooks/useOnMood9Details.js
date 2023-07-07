@@ -16,7 +16,7 @@ export const useOnMood9Details = () => {
     activeRelations,
     activeRelationsLoading,
     activeRelationsError,
-    relationAdded
+    relationAdded,
   } = useSelector(state => state.profile);
   const navigation = useNavigation();
   const focused = useIsFocused();
@@ -50,7 +50,6 @@ export const useOnMood9Details = () => {
       activeRelations?.length > 0
     ) {
       setFetchActiveRelations(false);
-      console.log('Active relations', activeRelations);
       let activeRelationData = activeRelations.map((item, index) => {
         return {
           ...item,
@@ -89,7 +88,7 @@ export const useOnMood9Details = () => {
         };
       });
       setData(relationsData);
-      if(addButtonPress) {
+      if (addButtonPress) {
         setAddButtonPress(false);
         setActiveRelationsModalVisible(false);
         setModalVisible(true);

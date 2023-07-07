@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Aes from 'react-native-aes-crypto';
 import {subscriptionDetails} from '../../../store/reducers/PaymentSlice';
+import {ONMOOD9_BASE_URL, ONMOOD9_IV, ONMOOD9_KEY} from '../../../utils/utils';
 
-export const useOnMood9 = (onMood9Props) => {
+export const useOnMood9 = onMood9Props => {
   const id = onMood9Props?.id === null ? '' : `#${onMood9Props?.id}`;
   const dispatch = useDispatch();
   const {
@@ -13,11 +14,7 @@ export const useOnMood9 = (onMood9Props) => {
   } = useSelector(state => state?.payment);
   const [fetchDetails, setFetchDetails] = useState(false);
   const [encodedQueryString, setEncodedQueryString] = useState('');
-  const [uri,setUri] = useState('');
-  const corporateId = 'wT28b53UeY1gtN9d';
-  const key = '8a0976d5abc40274354b37fbf5c93eaa';
-  const iv = '9b110990b68db3670b86381893118bf9';
-  const queryString = `https://onmood9.com/pwa/corporate_pwa.php?c=${corporateId}`
+  const [uri, setUri] = useState('');
   useEffect(() => {
     dispatch(subscriptionDetails());
     setFetchDetails(true);
@@ -32,7 +29,7 @@ export const useOnMood9 = (onMood9Props) => {
           ? `&start_date=${userSubscriptionDetails?.startDate}&end_date=${userSubscriptionDetails?.endDate}`
           : ''
       }`;
-      Aes.encrypt(queryString, key, iv, 'aes-128-cbc')
+      Aes.encrypt(queryString, ONMOOD9_KEY, ONMOOD9_IV, 'aes-128-cbc')
         .then(cipher => {
           setEncodedQueryString(encodeURIComponent(cipher));
         })
@@ -42,11 +39,11 @@ export const useOnMood9 = (onMood9Props) => {
     }
   }, [userSubscriptionDetails]);
 
-  useEffect(()=>{
-    if(encodedQueryString.length > 0) {
-      setUri(`${queryString}&input=${encodedQueryString}`)
+  useEffect(() => {
+    if (encodedQueryString.length > 0) {
+      setUri(`${ONMOOD9_BASE_URL}&input=${encodedQueryString}`);
     }
-  },[encodedQueryString])
+  }, [encodedQueryString]);
 
   return {encodedQueryString, onMood9Error, onMood9Loading, uri};
 };
