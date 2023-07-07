@@ -1,45 +1,35 @@
-import { useNavigation } from '@react-navigation/native';
-import { useEffect } from 'react';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { documentTypeThunk } from '../../../../store/reducers/EmrmSlice';
+import { documentTypeThunk, getAllErmReportThunk } from '../../../../store/reducers/EmrmSlice';
 
 export const useEmrmListing = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const { documentType } = useSelector(state => state.Emrm);
-  console.log("documentType", documentType)
-  const medicalReport = [
-    {hospitalName:'Fortis , Shalimar Bagh',
-    documuntType:'Consultation ',
-    DocumentDate :'Document Date :01-Jun 2023',
-    UploadDate:'Upload Date : 20-Jun 2023'},
+  const focused = useIsFocused();
+  const { dropDownData, ermReportData } = useSelector(state => state.Emrm);
+  const medicalReportData = ermReportData?.ermResponseDtoList || [];
+  const [documentType, setDocumentType] = useState('')
 
-    {hospitalName:'Fortis , Shalimar Bagh',
-    documuntType:'Consultation ',
-    DocumentDate :'Document Date :01-Jun 2023',
-    UploadDate:'Upload Date : 20-Jun 2023'},
-
-    {hospitalName:'Fortis , Shalimar Bagh',
-    documuntType:'Consultation ',
-    DocumentDate :'Document Date :01-Jun 2023',
-    UploadDate:'Upload Date : 20-Jun 2023'},
-
-    {hospitalName:'Fortis , Shalimar Bagh',
-    documuntType:'Consultation ',
-    DocumentDate :'Document Date :01-Jun 2023',
-    UploadDate:'Upload Date : 20-Jun 2023'},
-  ];
+  const setSelectedDocumentType = (arg) => {
+    console.log("id",id);
+    setDocumentType(arg);
+    console.log("documentType",documentType);
+    dispatch(getAllErmReportThunk({ pageNo: 1, pageSize: 10, documentType, searchKey: '' }));
+  }
   useEffect(() => {
-    dispatch(documentTypeThunk())
-  }, []);
+    dispatch(documentTypeThunk());
+    dispatch(getAllErmReportThunk({ pageNo: 1, pageSize: 10, documentType, searchKey: '' }));
+  }, [focused]);
 
   const onPressAddButton = () => {
     navigation.navigate('EmrmCreateRecord');
   }
 
   return {
-    cityId: documentType?.map((documentType) => ({ label: documentType?.id, value: documentType?.name, })),
+    dropDownData: dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, })),
     onPressAddButton,
-    medicalReport,
+    medicalReportData,
+    setSelectedDocumentType
   };
 };

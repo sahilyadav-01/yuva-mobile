@@ -1,20 +1,8 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../network/yuvaService';
 
-// export const downloadHraReportThunk = createAsyncThunk(
-//   'hra-pdf-report',
-//   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
-//     try {
-//       const endpoint = '/hra-pdf-report';
-//       const response = await YuvaService.get(endpoint);
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   },
-// );
 export const documentTypeThunk = createAsyncThunk(
-  'reports',
+  'Emrm/getDocumentType',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/erms/documentType';
@@ -25,53 +13,61 @@ export const documentTypeThunk = createAsyncThunk(
     }
   },
 );
-// export const MyPrescriptionReportThunk = createAsyncThunk(
-//   'talkToDr/user',
-//   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
-//     try {
-//       const endpoint = '/talkToDr/user';
-//       const response = await YuvaService.get(endpoint);
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   },
-// );
+export const getAllErmReportThunk = createAsyncThunk(
+  'Emrm/getAllErm',
+  async ({ pageNo,pageSize, searchKey, documentType }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/erms/viewAll?pageNo=${pageNo}&pageSize=${pageSize}`;
+      const ermFilterDto = {searchKey,documentType};
+      const response = await YuvaService.post(endpoint, ermFilterDto);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 
 const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
-  documentType: [],
+  dropDownData: [],
+  ermReportData:{},
 };
 
 const EmrmSlice = createSlice({
   name: 'Emrm',
   initialState,
   extraReducers: {
+    /** getDocumentType Dropdown Data */
+
     [documentTypeThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
     [documentTypeThunk.fulfilled]: (state, action) => {
-      state.documentType = action.payload?.data || [];
+      state.dropDownData = action.payload?.data || [];
       state.loading = false;
     },
     [documentTypeThunk.rejected]: (state, action) => {
       state.apiError = true;
       state.loading = false;
     },
-    // [downloadDiagnosticReportThunk.pending]: (state, {payload}) => {
-    //   state.loading = true;
-    // },
-    // [downloadDiagnosticReportThunk.fulfilled]: (state, action) => {
-    //   state.downloadDiagnosticReport = action.payload?.data || [];
-    //   state.loading = false;
-    // },
-    // [downloadDiagnosticReportThunk.rejected]: (state, action) => {
-    //   state.apiError = true;
-    //   state.loading = false;
-    // },
+
+    /** getAllErmReport */
+
+    [getAllErmReportThunk.pending]: (state, {action}) => {
+      state.loading = true;
+    },
+    [getAllErmReportThunk.fulfilled]: (state, action) => {
+      state.ermReportData = action.payload?.data || {};
+      state.loading = false;
+    },
+    [getAllErmReportThunk.rejected]: (state, action) => {
+      state.apiError = true;
+      state.loading = false;
+    },
+
     // [MyPrescriptionReportThunk.pending]: (state, {payload}) => {
     //   state.loading = true;
     // },

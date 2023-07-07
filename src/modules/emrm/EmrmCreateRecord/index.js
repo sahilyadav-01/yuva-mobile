@@ -27,7 +27,6 @@ const EmrmCreateRecord = () => {
                     inputStyles={{ color: PALE_GRAY }}
                     dropdownTextStyles={{ color: DARK_GRAY }}
                     arrowicon={<DropDownIcon name="arrow-drop-down" style={styles.iconStyle} />}
-
                 />
                 <Text style={styles.inputTextStyle} >{'Date of Medical Document'}</Text>
                 <SelectList

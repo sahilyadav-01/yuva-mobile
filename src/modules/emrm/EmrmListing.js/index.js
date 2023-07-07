@@ -12,14 +12,15 @@ import { useEmrmListing } from './hooks/useEmrmListing';
 import MedicalReportCard from '../../../components/MedicalReportCard';
 
 const EmrmListing = () => {
-    const { cityId, medicalReport, onPressAddButton } = useEmrmListing();
+    const { dropDownData, setSelectedDocumentType, onPressAddButton, medicalReportData } = useEmrmListing();
     const renderItem = ({ item, index }) => {
         return (
             <MedicalReportCard
-                hospitalName={item.hospitalName}
-                documuntType={item.documuntType}
-                DocumentDate={item.DocumentDate}
-                UploadDate={item.UploadDate}
+                reportId={item.id}
+                hospitalName={item.healthCenter}
+                documuntType={item.documentType}
+                DocumentDate={item.documentDate}
+                UploadDate={item.uploadedDate}
             />
         );
     };
@@ -40,9 +41,9 @@ const EmrmListing = () => {
                     <Text style={styles.subHeadingTextStyle}>{SUB_HEADDING_TEXT}</Text>
                 </View>
                 <SelectList
-                    // setSelected={setSelectedCity}
+                    setSelected={setSelectedDocumentType}
                     search={false}
-                    data={cityId}
+                    data={dropDownData}
                     placeholder={'ALL'}
                     placeholderTextColor={DARK_GRAY}
                     boxStyles={styles.textInputStyle}
@@ -53,7 +54,7 @@ const EmrmListing = () => {
                     <View >
                         <FlatList
                             renderItem={renderItem}
-                            data={medicalReport}
+                            data={medicalReportData}
                             keyExtractor={(item, index) => `${index}`}
                             showsHorizontalScrollIndicator={false}
                             nestedScrollEnabled={true}
