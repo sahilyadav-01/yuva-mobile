@@ -140,6 +140,7 @@ import SelfTracking from './SelfTracking.png';
 import Handshake from './Handshake';
 import YuvaBanner from './YuvaBanner.png';
 import OnMood9Banner from './OnMood9Banner.png';
+import MentalWellness from './MentalWellness';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -284,7 +285,8 @@ const SVG = {
   EveningSlot,
   CorporateProgram,
   PharmacyIcon:PharmacyIcon,
-  Handshake
+  Handshake,
+  MentalWellness
 };
 
 const BASE_64 = {DoctorsImage}

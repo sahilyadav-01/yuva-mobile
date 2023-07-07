@@ -1,29 +1,73 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getRelations} from '../../../../../store/reducers/ProfileSlice';
+import {
+  addRelation,
+  getActiveRelations,
+  getRelations,
+} from '../../../../../store/reducers/ProfileSlice';
 
 export const useOnMood9Details = () => {
   const {loggedIn} = useSelector(state => state.auth);
-  const {relationsError, relations, relationsLoading} = useSelector(
-    state => state.profile,
-  );
+  const {
+    relationsError,
+    relations,
+    relationsLoading,
+    activeRelations,
+    activeRelationsLoading,
+    activeRelationsError,
+    relationAdded
+  } = useSelector(state => state.profile);
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
   const [fetchRelations, setFetchRelations] = useState(false);
+  const [fetchActiveRelations, setFetchActiveRelations] = useState(false);
   const [data, setData] = useState([]);
+  const [activeRelationsData, setActiveRelationsData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [activeRelationsModalVisible, setActiveRelationsModalVisible] =
+    useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [checkBoxFlag, setCheckBoxFlag] = useState([]);
   const [checkBoxPress, setCheckBoxPress] = useState(0);
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
+  const [addButtonPress, setAddButtonPress] = useState(false);
   useEffect(() => {
     if (navigation?.isFocused() && loggedIn === 'loggedIn') {
       setFetchRelations(true);
+      setFetchActiveRelations(true);
       dispatch(getRelations());
+      dispatch(getActiveRelations());
     }
   }, [focused]);
+
+  useEffect(() => {
+    if (
+      fetchActiveRelations &&
+      !activeRelationsLoading &&
+      !activeRelationsError &&
+      activeRelations?.length > 0
+    ) {
+      setFetchActiveRelations(false);
+      console.log('Active relations', activeRelations);
+      let activeRelationData = activeRelations.map((item, index) => {
+        return {
+          ...item,
+          key: index.toString(),
+          value: item.name,
+          relation: item.id,
+        };
+      });
+      setActiveRelationsData(activeRelationData);
+    }
+  }, [
+    activeRelationsLoading,
+    activeRelations,
+    activeRelationsError,
+    fetchActiveRelations,
+  ]);
+
   useEffect(() => {
     if (
       fetchRelations &&
@@ -45,6 +89,11 @@ export const useOnMood9Details = () => {
         };
       });
       setData(relationsData);
+      if(addButtonPress) {
+        setAddButtonPress(false);
+        setActiveRelationsModalVisible(false);
+        setModalVisible(true);
+      }
     }
   }, [relationsLoading, fetchRelations, relationsError, checkBoxFlag]);
 
@@ -102,6 +151,14 @@ export const useOnMood9Details = () => {
     }
   }, [checkBoxStatus]);
 
+  useEffect(() => {
+    if (activeRelationsModalVisible) {
+      dispatch(getRelations());
+      setAddButtonPress(true);
+      setFetchRelations(true);
+    }
+  }, [relationAdded]);
+
   const onModalCrossPress = () => setModalVisible(false);
 
   const onPressCheckBox = () => {
@@ -114,6 +171,24 @@ export const useOnMood9Details = () => {
       navigation.navigate('LoginScreen', {from: 'MentalWellness'});
     else if (loggedIn === 'loggedIn') setModalVisible(true);
   };
+
+  const onAddMembersPress = () => {
+    setModalVisible(false);
+    setActiveRelationsModalVisible(true);
+  };
+
+  const onAddModalCrossPress = () => setActiveRelationsModalVisible(false);
+
+  const onSaveDetailsPress = arg => {
+    dispatch(
+      addRelation({
+        name: arg?.name,
+        age: arg?.age,
+        relation: arg?.selectedRelationEnum,
+      }),
+    );
+  };
+
   return {
     onConsult,
     onModalCrossPress,
@@ -121,5 +196,10 @@ export const useOnMood9Details = () => {
     modalVisible,
     checkBoxStatus,
     onPressCheckBox,
+    onAddMembersPress,
+    activeRelationsData,
+    activeRelationsModalVisible,
+    onAddModalCrossPress,
+    onSaveDetailsPress,
   };
 };

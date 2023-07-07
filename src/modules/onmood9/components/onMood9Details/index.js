@@ -8,6 +8,7 @@ import OnMood9Layers from '../onMood9Layers';
 import Footer from '../footer';
 import {useOnMood9Details} from './hooks/useOnMood9Details';
 import DependentsModal from '../../../../components/Modal/DependentsModal';
+import AddMembersModal from '../../../../components/Modal/AddMembersModal';
 
 const OnMood9Details = () => {
   const {
@@ -17,6 +18,11 @@ const OnMood9Details = () => {
     onModalCrossPress,
     checkBoxStatus,
     onPressCheckBox,
+    activeRelationsData,
+    activeRelationsModalVisible,
+    onAddModalCrossPress,
+    onSaveDetailsPress,
+    onAddMembersPress,
   } = useOnMood9Details();
   const style = styles();
   return (
@@ -29,6 +35,18 @@ const OnMood9Details = () => {
         data={data}
         onCheckBoxPress={onPressCheckBox}
         checkBoxStatus={checkBoxStatus}
+        showAddMembersButton
+        buttonText={'Add New Member'}
+        onAddMembersPress={onAddMembersPress}
+      />
+      <AddMembersModal
+        heading={'Add New Member'}
+        onCrossPress={onAddModalCrossPress}
+        modalVisible={activeRelationsModalVisible}
+        onSaveDetailsPress={onSaveDetailsPress}
+        relationsData={activeRelationsData}
+        buttonText={'Save Details'}
+        headingText={'Relationship'}
       />
       <Header title={'Mental Wellness'} showBackButton={true} />
       <ScrollView>
