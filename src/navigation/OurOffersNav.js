@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import Authentication from './Authentication';
 import ComingSoon from '../components/ComingSoon';
-import OnMood9Screen from '../screens/OnMood9';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +22,7 @@ const OurOfferNav = () => {
         component={Authentication}
         options={{headerShown: false}}
       />
+      
     </Stack.Navigator>
   );
 };
