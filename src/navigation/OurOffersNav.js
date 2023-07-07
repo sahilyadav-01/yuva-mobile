@@ -22,7 +22,6 @@ const OurOfferNav = () => {
         component={Authentication}
         options={{headerShown: false}}
       />
-      
     </Stack.Navigator>
   );
 };
