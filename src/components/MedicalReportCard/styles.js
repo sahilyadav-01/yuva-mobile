@@ -23,7 +23,6 @@ export const styles = StyleSheet.create({
   },
   Top: {
     flexDirection: COLUMN,
-    paddingTop: 30,
     paddingLeft: 30,
   },
   hospitalNameStyle: {

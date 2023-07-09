@@ -10,17 +10,17 @@ export const useEmrmListing = () => {
   const { dropDownData, ermReportData } = useSelector(state => state.Emrm);
   const medicalReportData = ermReportData?.ermResponseDtoList || [];
   const [documentType, setDocumentType] = useState('')
-
   const setSelectedDocumentType = (arg) => {
-    console.log("id",id);
-    setDocumentType(arg);
-    console.log("documentType",documentType);
-    dispatch(getAllErmReportThunk({ pageNo: 1, pageSize: 10, documentType, searchKey: '' }));
+    setDocumentType( dropDownData.find(item => {
+      if (item.name.toString() === arg.toString()) return item;
+    }).id
+    );
   }
   useEffect(() => {
     dispatch(documentTypeThunk());
     dispatch(getAllErmReportThunk({ pageNo: 1, pageSize: 10, documentType, searchKey: '' }));
-  }, [focused]);
+  }, [focused, documentType]);
+
 
   const onPressAddButton = () => {
     navigation.navigate('EmrmCreateRecord');
@@ -30,6 +30,6 @@ export const useEmrmListing = () => {
     dropDownData: dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, })),
     onPressAddButton,
     medicalReportData,
-    setSelectedDocumentType
+    setSelectedDocumentType,
   };
 };

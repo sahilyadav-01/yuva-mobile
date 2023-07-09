@@ -5,7 +5,7 @@ export const documentTypeThunk = createAsyncThunk(
   'Emrm/getDocumentType',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = '/erms/documentType';
+      const endpoint = `/erms/documentType`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -26,6 +26,18 @@ export const getAllErmReportThunk = createAsyncThunk(
     }
   },
 );
+export const downloadMedicalReportThunk = createAsyncThunk(
+  'Emrm/getDocumentType',
+  async ({ recordId }, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/erms/download?recordId=${recordId}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 
 const initialState = {
@@ -34,6 +46,7 @@ const initialState = {
   apiErrorMessage: '',
   dropDownData: [],
   ermReportData:{},
+  downloadedReports:[],
 };
 
 const EmrmSlice = createSlice({
@@ -68,17 +81,19 @@ const EmrmSlice = createSlice({
       state.loading = false;
     },
 
-    // [MyPrescriptionReportThunk.pending]: (state, {payload}) => {
-    //   state.loading = true;
-    // },
-    // [MyPrescriptionReportThunk.fulfilled]: (state, action) => {
-    //   state.myPrescriptionReport = action.payload?.data || [];
-    //   state.loading = false;
-    // },
-    // [MyPrescriptionReportThunk.rejected]: (state, action) => {
-    //   state.apiError = true;
-    //   state.loading = false;
-    // },
+    /** Download Medical Report File */
+
+    [downloadMedicalReportThunk.pending]: (state, {payload}) => {
+      state.loading = true;
+    },
+    [downloadMedicalReportThunk.fulfilled]: (state, action) => {
+      state.downloadedReports = action.payload?.data || [];
+      state.loading = false;
+    },
+    [downloadMedicalReportThunk.rejected]: (state, action) => {
+      state.apiError = true;
+      state.loading = false;
+    },
   },
 });
 export const EmrmInit = EmrmSlice.getInitialState();

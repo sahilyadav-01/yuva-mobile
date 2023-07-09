@@ -6,7 +6,7 @@ import { fonts } from '../../../styles/fonts';
 export const styles = StyleSheet.create({
   mainContainer: {
     marginHorizontal: 15,
-    paddingBottom: 12,
+    flex:1
   },
   search: {
     marginBottom: '16%',
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   bottomContainer: {
- flex:1
+    flex:1
   },
 
 });
