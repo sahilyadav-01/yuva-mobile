@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BLACK, CYAN_BLUE, DARK_BLUE, ORANGE, WHITE } from '../../../styles/colors';
-import { CENTER } from '../../../styles/constants';
+import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -15,6 +15,30 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize20,
     lineHeight: 27,
   },
+  inputContainer:{
+    flexDirection: ROW,
+    alignItems:CENTER,
+    justifyContent:SPACE_BETWEEN,
+    marginVertical: 20,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    paddingLeft: 15,
+    borderWidth: 0.5,
+    borderColor: BLACK,
+    backgroundColor: WHITE,
+    borderRadius: 12,
+    color: DARK_BLUE,
+    minHeight: 42,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize14,
+    // flex:1
+  },
   inputTextStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
@@ -25,6 +49,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize24,
+    paddingRight: 15,
   },
   textInputStyle: {
     marginVertical: 20,
@@ -41,7 +66,7 @@ export const styles = StyleSheet.create({
     borderColor: BLACK,
     backgroundColor: WHITE,
     borderRadius: 12,
-    color: DARK_BLUE,
+    color: CYAN_BLUE,
     minHeight: 42,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,

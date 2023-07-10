@@ -47,7 +47,7 @@ const BookingsCard = ({ item }) => {
                                         {item?.labName === null && <Text>-</Text> || item?.labName}
                                     </Text>
                                     <View style={styles.direction}>
-                                        <Icon name={'calendar-blank-outline'} size={24} color={CYAN_BLUE} />
+                                        <Icon name={'-blank-outline'} size={24} color={CYAN_BLUE} />
                                         <View>
                                             <Text style={styles.dateStyle}>{getDate(item?.collectionTime)}</Text>
                                             <Text style={styles.timeStyle}>{getTime(item?.collectionTime)}</Text>

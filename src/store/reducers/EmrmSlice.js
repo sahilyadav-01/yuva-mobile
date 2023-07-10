@@ -27,7 +27,7 @@ export const getAllErmReportThunk = createAsyncThunk(
   },
 );
 export const downloadMedicalReportThunk = createAsyncThunk(
-  'Emrm/getDocumentType',
+  'Emrm/download',
   async ({ recordId }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const endpoint = `/erms/download?recordId=${recordId}`;
@@ -87,6 +87,7 @@ const EmrmSlice = createSlice({
       state.loading = true;
     },
     [downloadMedicalReportThunk.fulfilled]: (state, action) => {
+      console.log("payload",action.payload)
       state.downloadedReports = action.payload?.data || [];
       state.loading = false;
     },

@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import EmrmHomeScreen from '../screens/yuvaservices/EMRM/EmrmHomeScreen';
-import EmrmListingScreen from '../screens/yuvaservices/EMRM/EmrmListingScreen';
-import EmrmCreateRecordScreen from '../screens/yuvaservices/EMRM/EmrmCreateRecordScreen';
+import EmrmHomeScreen from '../screens/yuvaservices/emrm/EmrmHomeScreen';
+import EmrmListingScreen from '../screens/yuvaservices/emrm/EmrmListingScreen';
+import EmrmCreateRecordScreen from '../screens/yuvaservices/emrm/EmrmCreateRecordScreen';
 
 
 const Stack = createStackNavigator();
