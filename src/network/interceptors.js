@@ -2,13 +2,17 @@ import axios from 'axios';
 import { getJwt } from '../store/LocalStore';
 import { logoutThunk } from '../store/reducers/AuthSlice';
 import store from '../store/Store';
+import { maintainceThunk } from '../store/reducers/MaintainenceSlice';
 
 const handleUserForbidden = () => {
   store.dispatch(logoutThunk());
 };
 
-let axiosClient = axios.create();
+const handleMaintaince = (flag) => {
+  store.dispatch(maintainceThunk(flag));
+}
 
+let axiosClient = axios.create();
 axiosClient.interceptors.request.use(
   async config => {
     const loginUrls = [
@@ -27,9 +31,15 @@ axiosClient.interceptors.request.use(
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;
     });
+
+    config['headers'] = {
+      ...config['headers'], version: '1.0'
+    }
+
     if (isLoginApi.length === 0) {
       const jwt = await getJwt();
       config['headers'] = {
+        ...config['headers'],
         Authorization: `Bearer ${jwt ?? ''}`,
       };
       return config;
@@ -45,7 +55,10 @@ axiosClient.interceptors.response.use(
   resp => resp,
   async error => {
     const jwt = await getJwt();
-    if (jwt && error.response.status && error.response.status === 403) {
+    if(error.response.status === 503) {
+      handleMaintaince(true);
+    }
+    else if (jwt && error.response.status && error.response.status === 403) {
       handleUserForbidden();
     }
     return Promise.reject(error);

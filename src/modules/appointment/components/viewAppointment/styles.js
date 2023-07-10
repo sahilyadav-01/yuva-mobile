@@ -3,14 +3,11 @@ import {
   BLACK,
   CYAN_BLUE,
   DARK_BLUE,
-  GREEN,
   GREY,
-  LIGHT_MERCURY,
   LIGHT_ORANGE,
   LIGHT_RED,
   ORANGE,
   PLATINUM,
-  RED,
   RED_SHADE,
   VERY_PALE_WHITE,
   WHITE,
@@ -18,13 +15,16 @@ import {
 import {
   ABSOLUTE,
   CENTER,
-  FLEX_END,
   ROW,
   SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
+  container: {
+    flex:1
+  },
+  fullView: {},
   description: {
     marginTop: '5%',
     marginHorizontal: '4%',
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    paddingBottom: 16,
+    height:'100%',
   },
   Header: {
     color: CYAN_BLUE,
@@ -235,6 +235,10 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
     color: DARK_BLUE,
+  },
+  appointmentId:{
+    position:ABSOLUTE, 
+    right:14
   },
   customId: {
     marginTop: 5,

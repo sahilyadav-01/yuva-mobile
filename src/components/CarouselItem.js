@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, SafeAreaView} from 'react-native';
 import CardButton from './CardButton';
-import {getDimensions} from '../utils/utils';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {currentAppointment} from '../store/reducers/AppointmentSlice';
@@ -13,15 +12,17 @@ import {
 } from './constants';
 import {CYAN_BLUE} from '../styles/colors';
 import {styles} from './styles';
+import { getPlatform } from '../utils/utils';
 
 const CarouselItem = props => {
   const {item, index, totalItem,isScreen} = props;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
+  const Platform = getPlatform();
   const viewAppointment = () => {
     dispatch(
       currentAppointment({
+        id: item?.id,
         doctorName: item?.doctorName,
         address: item?.address,
         status: item?.status,
@@ -41,7 +42,7 @@ const CarouselItem = props => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       {isScreen!== "OurPlan" ?
     <TouchableOpacity onPress={viewAppointment}>
       <View
@@ -87,6 +88,7 @@ const CarouselItem = props => {
       {
         marginLeft: index === 0 ? 0 : 10,
         marginRight: index === totalItem - 1 ? 0 : 10,
+        shadowOpacity: Platform.isIOS ? undefined : styles.cartView.shadowOpacity
       },
     ]}><View>
            <Image
@@ -98,7 +100,7 @@ const CarouselItem = props => {
         <Text style={styles.OurplanText2}>{item?.Text2}</Text>
   </View>
   }
-    </View>
+    </SafeAreaView>
   );
 };
 

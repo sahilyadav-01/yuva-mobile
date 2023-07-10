@@ -4,9 +4,9 @@ import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styl
 import { fonts } from '../../../../styles/fonts'
 
 export const styles = StyleSheet.create({
+    container: {flex:1},
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        paddingBottom: 16,
     },
     circle: {
         marginLeft: 41,
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
         minHeight: "12%",
         marginRight: 16,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 12,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,

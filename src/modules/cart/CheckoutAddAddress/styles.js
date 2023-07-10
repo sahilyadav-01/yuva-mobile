@@ -6,4 +6,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 6,
     paddingHorizontal: 24,
   },
+  screenContainer: {flex:1},
+  fullViewContainer: {height:'100%'},
+  contentContainer: {flex:1,paddingBottom:16}
 });

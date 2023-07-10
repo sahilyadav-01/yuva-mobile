@@ -20,6 +20,11 @@ export const usePlan = () => {
       icon: 'OPDIcon',
       buttonText: 'Consult Now',
     },
+     'b5aaaf86-e1f3-4acb-97a2-d5198ee4e7bb': {
+      name: 'Pharmacy',
+      icon: 'PharmacyIcon',
+      buttonText: 'Get Medicine',
+    },
   };
   const getTests = item => {
     return item?.assignedAttributeResponseDtoList.map((item, index) => {

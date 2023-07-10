@@ -1,4 +1,4 @@
-export const OURPLAN = "Our Plan";
+export const OURPLAN = "Our Plans";
 export const GET_EXPERT_GUIDANCE = "Get expert guidance from a Health Advisor - Request a call back";
 export const ENTER_PHONE_NUMBER = "Enter Mobile Number";
 export const SPEAK_TO = "Speak To Our Advisor";

@@ -88,6 +88,7 @@ const initialState = {
   planCouponDiscount:null,
   planCouponFinalAmount:null,
   planeCouponCode:null,
+  couponId:null,
 }
 
 const couponSlice = createSlice({
@@ -152,6 +153,7 @@ const couponSlice = createSlice({
       state.couponMessage = true;
       state.couponView = action?.payload?.data?.couponCode || null;
       state.couponDiscount = action?.payload?.data?.discountForCoupon;
+      state.couponId = action?.payload?.data?.couponId || null;
     },
     [redeemCouponsSliceThunk.rejected]: (state, action) => {
       state.loading = false;

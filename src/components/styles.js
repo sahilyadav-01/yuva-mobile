@@ -461,7 +461,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
     shadowColor: WHITE,
-    shadowOpacity: '5%',
+    shadowOpacity: 0.5,
     borderRadius: 6,
   },
   checkboxAddress: {
@@ -525,6 +525,7 @@ export const styles = StyleSheet.create({
   dateAndTimeStyle: {
     fontSize: fonts.size.fontSize8,
     fontFamily: fonts.family.rubik500,
+    color: CYAN_BLUE,
   },
   containerView: {
     width: '100%',
@@ -622,7 +623,7 @@ export const styles = StyleSheet.create({
     maxWidth:155,
   },
   direction: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
     marginTop: '2%',
     flexDirection: ROW,
     alignSelf: FLEX_END,

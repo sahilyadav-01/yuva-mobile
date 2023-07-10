@@ -45,7 +45,7 @@ export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/plan/details?planUuid=${Uuid}`;
+      const endpoint = `/plan/user/details?planUuid=${Uuid}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -80,6 +80,37 @@ export const requestCallThunk = createAsyncThunk(
   }
 );
 
+export const myProgramThunk = createAsyncThunk(
+  'my/program',
+  async ({pageNo, pageSize}, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/my/program?pageNo=${pageNo}&pageSize=${pageSize}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const programAndPlanLockUserThunk = createAsyncThunk(
+  'program/lock',
+  async (
+    {programOrPlanUuid, relationId, version, userVersion},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
+    try {
+      const requestDto = {programOrPlanUuid, relationId, version, userVersion};
+      const response = await YuvaService.post(
+        '/programAndPlan/lock',
+        requestDto,
+      );
+      return {...response, programOrPlanUuid,version,userVersion};
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 const initialState = {
   loading: false,
   apiError: false,
@@ -94,6 +125,13 @@ const initialState = {
   planPrice: 0,
   planDetails:'',
   requestCall:'',
+  myProgramUserData:null,
+  plansLoading: false,
+  plansError: false,
+  planLockError: false,
+  lockedState: [],
+  planLockLoading: false,
+  guestPlanData:{},
 }
 
 const programAndPlanSlice = createSlice({
@@ -109,6 +147,9 @@ const programAndPlanSlice = createSlice({
     },
     setIndex(state, { payload }) {
       state.mainItem = payload;
+    },
+    saveGuestPlanData(state, { payload }) {
+      state.guestPlanData = payload;
     },
   },
   extraReducers: {
@@ -180,9 +221,42 @@ const programAndPlanSlice = createSlice({
     [requestCallThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
+
+    /***** programLock */
+
+    [myProgramThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
+    [myProgramThunk.fulfilled]: (state, { payload }) => {
+      state.myProgramUserData = payload;
+      state.loading = false;
+    },
+    [myProgramThunk.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+
+    [programAndPlanLockUserThunk.pending]: (state) => {
+      state.planLockLoading = true;
+      state.planLockError = false;
+    },
+    [programAndPlanLockUserThunk.fulfilled]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = false;
+      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid}]
+    },
+    [programAndPlanLockUserThunk.rejected]: (state, {payload}) => {
+      state.planLockLoading = false;
+      state.planLockError = true;
+      if (payload?.response?.status === 400) {
+        Alert.alert(
+          'Alert',
+          payload?.response?.data?.errorMessage ?? 'Program already locked',
+        );
+      }
+    },
   },
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName, setIndex, setPlanDetails, resetPackages } = programAndPlanSlice.actions;
+export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import { CYAN_BLUE } from '../styles/colors';
-import {ABSOLUTE, CENTER, ROW} from '../styles/constants';
+import {ABSOLUTE, CENTER, ROW, SPACE_BETWEEN} from '../styles/constants';
 import {fonts} from '../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -11,17 +11,29 @@ export const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   dateStyle: {
-    position: ABSOLUTE,
-    right: 0,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
-  },
-  reportTextStyle: {
-    marginHorizontal: 15,
     color:CYAN_BLUE,
   },
+  reportTextStyle: {
+    marginLeft:12,
+    marginRight:8,
+    color:CYAN_BLUE,
+    width:'80%'
+  },
   downloadReportStyle:{
-    paddingHorizontal:12,
-    paddingVertical:12,
+   position:ABSOLUTE,
+   right:0
+  },
+  container: {
+    flexDirection:ROW,
+    alignItems:CENTER,
+    justifyContent:SPACE_BETWEEN,
+    paddingHorizontal:12
+  },
+  innerContainer: {
+    width:'70%',
+    flexDirection:ROW,
+    alignItems:CENTER
   }
 });

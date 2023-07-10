@@ -100,6 +100,7 @@ import Logout from './Logout';
 import Pdf from './pdf';
 import Download from './download';
 import Prescriptions from './Prescriptions';
+import CorporateProgram from './CorporateProgram';
 import Bookings from './Bookings';
 import PaymentSuccess from './PaymentSuccess';
 import PaymentFailure from './PaymentFailure';
@@ -120,8 +121,20 @@ import PharmacyDiscount from './PharmacyDiscount.png';
 import dot from './dots.png'
 import Reorder from './Reorder';
 import {DoctorsImage} from './DoctorsImage';
+import Calender from './Calender';
+import PlanCard from './PlanCard.png';
+import Lock from './Lock';
+import NurseComponent from './Nurse'
+import AfternoonSlot from './AfternoonSlot';
+import EveningSlot from './EveningSlot';
 import PaymentSuccessful from './success_payment.png'
 import PaymentFail from './failed_payment.png'
+import programCard from './programCard.png';
+import PharmacyIcon from './PharmacyIcon';
+import PHARMACY from './pharmacy.png';
+import PHARMA_CARD_ICON from './trolly.png';
+
+import HealthBanner from './HealthBanner.png';
 const PNG = {
   AMICO,
   BACTERIA,
@@ -186,8 +199,13 @@ const PNG = {
   PharmacyDiscount,
   insuranceClaim,
   dot,
+  PlanCard,
   PaymentSuccessful,
-  PaymentFail
+  PaymentFail,
+  programCard,
+  PHARMACY,
+  PHARMA_CARD_ICON,
+  HealthBanner
 };
 
 const SVG = {
@@ -249,6 +267,13 @@ const SVG = {
   CheckUpIcon,
   ExpandArrow,
   Reorder,
+  Lock,
+  NurseComponent:NurseComponent,
+  Calender,
+  AfternoonSlot,
+  EveningSlot,
+  CorporateProgram,
+  PharmacyIcon:PharmacyIcon,
 };
 
 const BASE_64 = {DoctorsImage}

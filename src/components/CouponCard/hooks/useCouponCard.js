@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
-import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk } from '../../../store/reducers/CouponSlice';
+import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } from '../../../store/reducers/CouponSlice';
 import { ALERT, COUPON_MESSAGE } from '../constant';
 
 export const useCouponCard = (isPlan ,planUuid,planType) => {
@@ -12,8 +12,9 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     const dispatch = useDispatch();
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
-    const { coupon, couponView, planeCouponCode, apiErrorMessage } = useSelector(state => state.coupon);
+    const { coupon, couponView, planeCouponCode, apiErrorMessage ,selectedCouponCode} = useSelector(state => state.coupon);
     const { cart } = useSelector(state => state.cart);
+    const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
 
         setCouponCode(value)
@@ -22,7 +23,11 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         if (couponCode == '') {
             Alert.alert(ALERT, COUPON_MESSAGE);
 
-        } else {
+        } 
+        else {
+            if(couponCode){
+                dispatch(selectedCoupon({ couponCode }));
+            }
             if (isPlan) {
                 dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
             } else {
@@ -68,5 +73,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         onCouponValue,
         cart,
         planeCouponCode,
+        selectedCouponCode,
+        couponViewCart
     };
 }

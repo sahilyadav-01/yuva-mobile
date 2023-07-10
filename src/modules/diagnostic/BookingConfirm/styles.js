@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
-import { BOLD, COLUMN, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { ORANGE, WHITE, CYAN_BLUE, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
+import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         marginTop:5,
         borderWidth: 0.1,
         backgroundColor: LIGHT_GREYISH_RED,
+        color: LIGHT_GREYISH_RED,
         minHeight: 42,
         borderRadius: 0,
         marginBottom: 23,
@@ -23,6 +24,18 @@ export const styles = StyleSheet.create({
         fontSize: fonts.size.fontSize12,
         color: CYAN_BLUE,
     },
+    backGroundStyle: {backgroundColor: WHITE, marginBottom: 0},
+    dropStyles: {
+        marginHorizontal: 13,
+        borderColor: LIGHT_MERCURY,
+        marginBottom: 8
+      },
+      valueStyle: {
+        alignSelf: CENTER,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize12,
+        color: ORANGE,
+      },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 400,
@@ -103,7 +116,7 @@ export const styles = StyleSheet.create({
         minHeight: 28,
         borderWidth: 0.1,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 2,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,
@@ -168,7 +181,7 @@ export const styles = StyleSheet.create({
         marginTop: 14,
         marginHorizontal:16,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 6,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW
@@ -179,7 +192,7 @@ export const styles = StyleSheet.create({
         borderWidth: 0.1,
         marginTop: 18,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 3,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,
@@ -189,7 +202,7 @@ export const styles = StyleSheet.create({
         marginLeft: 5,
         borderWidth: 0.1,
         shadowColor: WHITE,
-        shadowOpacity: "5%",
+        shadowOpacity: 0.5,
         borderRadius: 2,
         backgroundColor: WHITE,
         dropShadow: BOX_SHADOW,

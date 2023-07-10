@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BIANCA, CYAN_BLUE, WHITE} from '../../styles/colors';
+import {BIANCA, BLACK, CYAN_BLUE, WHITE} from '../../styles/colors';
 import {ABSOLUTE, CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import {getWindowDimensions} from '../../utils/utils';
@@ -15,6 +15,13 @@ export const styles = () => {
       elevation: 10,
       zIndex: 10,
       maxHeight: windowHeight * 0.5,
+      shadowOffset: {
+        width: 0,
+        height: 0,
+      },
+      shadowColor: BLACK,
+      shadowOpacity: 0.5,
+      shadowRadius: 4
     },
     separatorStyle: {height: 16},
     headingTextContainer: {

@@ -1,6 +1,5 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Settings from '../screens/Settings';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
@@ -10,15 +9,15 @@ import {fonts} from '../styles/fonts';
 import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
-import ComingSoon from '../components/ComingSoon';
-import HealthPlanNav from './HealthPlanNav';
 import OurOfferNav from './OurOffersNav';
-import OurPlanDetails from '../modules/ourPlan/components/OurPlanDetails';
+import { getPlatform } from '../utils/utils';
+import OurPlanNav from './OurPlanNav';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
   const {loggedIn} = useSelector(state => state.auth);
+  const Platform = getPlatform();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -29,6 +28,7 @@ const BottomTabs = () => {
         tabBarActiveTintColor: ORANGE,
         tabBarStyle: {
           height: 72,
+          paddingBottom:Platform.isIOS ? 8 : undefined,
           shadowOffset: {
             width: 0,
             height: 2,
@@ -71,7 +71,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={OurPlanDetails}
+        component={OurPlanNav}
         options={{
           tabBarIcon: ({focused}) => {
             return (

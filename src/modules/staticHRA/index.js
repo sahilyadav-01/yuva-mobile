@@ -1,4 +1,4 @@
-import {View, Image, ScrollView} from 'react-native';
+import {SafeAreaView, Image, ScrollView} from 'react-native';
 import React from 'react';
 import Header from '../../components/Header/index';
 import {styles} from './styles';
@@ -9,7 +9,7 @@ import { HRA } from './constant';
 const StaticHra = ({navigation}) => {
 
   return (
-    <View>
+    <SafeAreaView>
       <Header showBackButton={true} title={HRA}/>
       <ScrollView
         nestedScrollEnabled={true}
@@ -20,7 +20,7 @@ const StaticHra = ({navigation}) => {
         <BenfitsCard />
         <Image source={PNG.CORONA} style={styles.imageStyle} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

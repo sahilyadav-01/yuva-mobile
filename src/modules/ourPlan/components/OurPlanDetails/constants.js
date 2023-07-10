@@ -23,4 +23,8 @@ export const Carouselt=[
     {Text:"Ambulance Service",Text2: "An event upto ₹ 5000/-",Image:PNG.ambulance},
     {Text:"Insurance claims advisory service-Service",Text2: "4 Claims in a year.",Image:PNG.PharmacyDiscount},
     {Text:"Pharmacy DiscountService",Text2: "10% Discount on every purchase.",Image:PNG.insuranceClaim}
-]
+];
+export const SUB_HEADING = 'Affordable and Accessible: Our Plans for Everyone';
+export const ONE_YEAR_SUB="One Year Subscription.";
+export const PLAN_COST = 'Plan cost @ ';
+export const PER_MONTH = 'Per Month.';

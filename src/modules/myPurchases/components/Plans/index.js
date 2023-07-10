@@ -1,21 +1,20 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {SVG} from '../../../../../assets';
-import {CYAN_BLUE} from '../../../../styles/colors';
+import {ORANGE} from '../../../../styles/colors';
 import {styles} from './style';
 import {usePlan} from './hooks/usePlan';
+import { HRA_SUBTEXT_PLAN } from '../PlanItem/FooterContainer/constants';
 
-const RenderPlans = ({item, index}) => {
+const RenderPlans = ({item}) => {
   const {plans, getTests} = usePlan();
   const {
     itemContainer,
     serviceText,
     usageText,
-    buttonContainer,
     rowContainer,
     iconContainer,
-    buttonText,
     inputStyles,
     boxStyles,
     dropdownItemStyles,
@@ -26,7 +25,7 @@ const RenderPlans = ({item, index}) => {
     <View style={itemContainer}>
       <View style={rowContainer}>
         <View style={iconContainer}>
-          {SVG[plans[item?.serviceUuid]?.icon]({color: CYAN_BLUE, large: true})}
+          {SVG[plans[item?.serviceUuid]?.icon]({color: ORANGE, large: true})}
         </View>
         {item?.serviceUuid === 'ee5413dd-eb09-4a99-92d0-a4fc6d92a5e9' ? (
           <View style={dropdownContainer}>
@@ -44,15 +43,13 @@ const RenderPlans = ({item, index}) => {
         ) : (
           <View>
             <Text style={serviceText}>{item?.serviceName}</Text>
-            <Text style={usageText}>{`Used -${
+            {item?.serviceUuid === '1dbcc55e-3dec-4e07-8c2a-e222631afebb' ? (   
+            <Text style={usageText}>{HRA_SUBTEXT_PLAN}</Text>) :( <Text style={usageText}>{`Used -${
               getTests(item)[0]?.used
-            } Available -${getTests(item)[0]?.available}`}</Text>
+            } Available -${getTests(item)[0]?.available}`}</Text>)}
           </View>
         )}
       </View>
-      <TouchableOpacity style={buttonContainer}>
-        <Text style={buttonText}>{plans[item?.serviceUuid]?.buttonText}</Text>
-      </TouchableOpacity>
     </View>
   );
 };
