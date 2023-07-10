@@ -22,6 +22,8 @@ const ServiceContainer = (props) => {
                   name={item.name}
                   screenName={item.screenName}
                   image={item.image}
+                  type={item?.type ?? null}
+                  icon={item?.icon ?? null}
                 />
               ) : (
                 <LifeStyleCard
