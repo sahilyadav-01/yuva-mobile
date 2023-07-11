@@ -5,7 +5,8 @@ import { DOCUMENT_DATE, UPLOAD_DATE } from './constants';
 import { useMedicalReportCard } from './hooks/useMedicalReportCard';
 import { styles } from './styles';
 const MedicalReportCard = ({
-  reportId,
+  fileName,
+  filePath,
   hospitalName,
   documuntType,
   DocumentDate,
@@ -20,7 +21,7 @@ const {onDownloadPress} = useMedicalReportCard();
         <Text style={styles.documentDateStyle}>{DOCUMENT_DATE}{getDateInFormat(new Date(DocumentDate), 'dd mm yy')}</Text>
         <Text style={styles.uploadDateStyle}>{UPLOAD_DATE}{getDateInFormat(new Date(UploadDate), 'dd mm yy')} </Text>
       </View>
-      <TouchableOpacity style={styles.Button} onPress={() => onDownloadPress(reportId)}>
+      <TouchableOpacity style={styles.Button} onPress={() => onDownloadPress(fileName,filePath)}>
         <Text style={styles.ButtonText}>{'Download Now'}</Text>
       </TouchableOpacity>
     </View>

@@ -1,7 +1,11 @@
-import { useIsFocused, useNavigation} from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { documentTypeThunk } from '../../../../store/reducers/EmrmSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addErmThunk, documentTypeThunk } from '../../../../store/reducers/EmrmSlice';
+import DocumentPicker from 'react-native-document-picker';
+import { getEpoch, getEpochEmrm } from '../../../../utils/utils';
+
+
 
 export const useEmrmCreateRecord = () => {
   const navigation = useNavigation();
@@ -10,50 +14,83 @@ export const useEmrmCreateRecord = () => {
   const dispatch = useDispatch();
   const { dropDownData } = useSelector(state => state.Emrm);
   const [documentType, setDocumentType] = useState('');
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(new Date());
   const [picker, setPicker] = useState(false);
   const [healthCenterName, setHealthCenterName] = useState('');
+  const [document, setDocument] = useState(null);
+  const [flieName, setFlieName] = useState('');
+
+  // const flieName ='';
+
 
 
   const setSelectedDocumentType = (arg) => {
-    setDocumentType( dropDownData.find(item => {
+    setDocumentType(dropDownData.find(item => {
       if (item.name.toString() === arg.toString()) return item;
     }).id
     );
   }
-// date
+  // date
   const onConfirmDate = date => {
     setDate(date);
     setPicker(false);
   };
 
   const onChangeTextInput = e => setHealthCenterName(e.toString());
-
+const ermRequest = {
+  medicalDocument: "DOCS",
+  date: Date.parse(date).toString(),
+  healthCentre: healthCenterName,
+  documentType: documentType.toString()
+}
   const handleDocumentPick = async () => {
-
+  
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
+        // allowMultiSelection: false 
       });
-      const fileUri = res.uri;
-      const fileName = res.name;
-      const fileType = res.type;
+      setFlieName(res.name);
+      setDocument(res);
+      // Create FormData
+    
   
-      const formData = new FormData();
-      formData.append('file', {
-        uri: fileUri,
-        name: fileName,
-        type: fileType,
-      });
+      // // Make the API call to upload the file
+      // const response = await RNFetchBlob.fetch('POST', `http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/erms`, {
+      //   'Content-Type': 'multipart/form-data',
+      // }, [
+      //   { name: 'file', data: res.data },
+      // ]);
+  
+      // Handle the response from the server
+      // console.log(emrmData);
+  
    
-    }
+  };
+  
+  // const emrmData=document?.map((item,index) => ( { name: item?.name, type: item?.type, uri: item?.uri }));
+  // const emrmData=document?.map((item,index) => {return item })
+  const emrmData = document?.map((item, index) => {
+    const newObj = item; // Save item in a different constant
+    return newObj;
+  });
+  console.log('document',document); 
+
+   const handleSubmit =  () => {
+    console.log('uploade data',emrmData); 
+    console.log('emrmData data',ermRequest); 
+
+
+    dispatch(addErmThunk(emrmData,ermRequest));
+
+   }
 
   useEffect(() => {
     dispatch(documentTypeThunk());
   }, [focused]);
 
-// console.log("epochTime",epochTime);
-const openPicker = () => setPicker(true);
-const closePicker = () => setPicker(false);
+  // console.log("epochTime",epochTime);
+  const openPicker = () => setPicker(true);
+  const closePicker = () => setPicker(false);
   return {
     dropDownData: dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, })),
     setSelectedDocumentType,
@@ -64,7 +101,9 @@ const closePicker = () => setPicker(false);
     date,
     onChangeTextInput,
     healthCenterName,
-    handleDocumentPick
-    
-};
+    handleDocumentPick,
+    handleSubmit,
+    flieName
+
+  };
 };

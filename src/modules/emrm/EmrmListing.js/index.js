@@ -20,7 +20,8 @@ const EmrmListing = () => {
         }
         return (
             <MedicalReportCard
-                reportId={item.id}
+                fileName={item.fileName}
+                filePath={item.filePath}
                 hospitalName={item.healthCenter}
                 documuntType={item.documentType}
                 DocumentDate={item.documentDate}

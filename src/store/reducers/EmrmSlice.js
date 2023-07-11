@@ -26,15 +26,43 @@ export const getAllErmReportThunk = createAsyncThunk(
     }
   },
 );
-export const downloadMedicalReportThunk = createAsyncThunk(
-  'Emrm/download',
-  async ({ recordId }, { fulfillWithValue, rejectWithValue }) => {
+// export const downloadMedicalReportThunk = createAsyncThunk(
+//   'Emrm/download',
+//   async ({ recordId }, { fulfillWithValue, rejectWithValue }) => {
+//     try {
+//       const endpoint = `/erms/download?recordId=${recordId}`;
+//       const response = await YuvaService.get(endpoint);
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   },
+// );
+
+export const addErmThunk = createAsyncThunk(
+  'Emrm/erms',
+  async ({document,ermRequest}, { fulfillWithValue, rejectWithValue }) => {
+    console.log(document,ermRequest);
+    const formData = new FormData();
+      formData.append('file', {
+        name: document.name,
+        type: document.type,
+        uri: document.uri,
+      });
+  
     try {
-      const endpoint = `/erms/download?recordId=${recordId}`;
-      const response = await YuvaService.get(endpoint);
-      return response.data;
+    const response= await YuvaService.post('/erms',
+    ermRequest,
+      formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',Accept:"application/json"
+          }
+        }
+      )
+      return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error);
     }
   },
 );
@@ -47,6 +75,7 @@ const initialState = {
   dropDownData: [],
   ermReportData:{},
   downloadedReports:[],
+  emrmUploadMessage:''
 };
 
 const EmrmSlice = createSlice({
@@ -83,17 +112,35 @@ const EmrmSlice = createSlice({
 
     /** Download Medical Report File */
 
-    [downloadMedicalReportThunk.pending]: (state, {payload}) => {
+    // [downloadMedicalReportThunk.pending]: (state, {payload}) => {
+    //   state.loading = true;
+    // },
+    // [downloadMedicalReportThunk.fulfilled]: (state, action) => {
+    //   console.log("payload",action.payload)
+    //   state.downloadedReports = action.payload?.data || [];
+    //   state.loading = false;
+    // },
+    // [downloadMedicalReportThunk.rejected]: (state, action) => {
+    //   state.apiError = true;
+    //   state.loading = false;
+    // },
+
+    /** Emrm Document upload*/
+
+    [addErmThunk.pending]: state => {
       state.loading = true;
     },
-    [downloadMedicalReportThunk.fulfilled]: (state, action) => {
-      console.log("payload",action.payload)
-      state.downloadedReports = action.payload?.data || [];
+    [addErmThunk.fulfilled]: (state, { payload }) => {
+      state.apiError = false;
+      state.apiErrorMessage = '';
       state.loading = false;
+      state.emrmUploadMessage = payload?.data;
     },
-    [downloadMedicalReportThunk.rejected]: (state, action) => {
+    [addErmThunk.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
+      state.apiErrorMessage = payload?.message;
+      // state.status = false;
     },
   },
 });

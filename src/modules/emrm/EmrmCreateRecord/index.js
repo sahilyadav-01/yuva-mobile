@@ -11,13 +11,12 @@ import { CYAN_BLUE, DARK_GRAY, PALE_GRAY } from '../../../styles/colors';
 import { DD_MM_YYYY, KEYBOARD_TYPE_VALUE } from './constants';
 import { useEmrmCreateRecord } from './hooks/useEmrmCreateRecord';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import DocumentPicker from 'react-native-document-picker';
 import { getDateText } from '../../../utils/utils';
 
 
 const EmrmCreateRecord = () => {
-    const { dropDownData, setSelectedDocumentType, picker, onConfirmDate, closePicker, openPicker, date, healthCenterName, onChangeTextInput, handleDocumentPick } = useEmrmCreateRecord();
-    console.log("picker", date)
+    const { dropDownData, setSelectedDocumentType, picker, onConfirmDate, closePicker, openPicker, date, healthCenterName,
+         onChangeTextInput, handleDocumentPick, handleSubmit, flieName } = useEmrmCreateRecord();
     return (
         <>
             <Header title={HEADER_TITLE} isScreen={true} hideMenu={false} showBackButton={true} />
@@ -74,7 +73,7 @@ const EmrmCreateRecord = () => {
                     placeholder={'Upload Documents '}
                     placeholderTextColor={DARK_GRAY}
                     // onChangeText={onChangeTextInput}
-                    // value={healthCenterName}
+                    value={flieName}
                     editable={false}
                 />
                 </TouchableOpacity>
@@ -91,7 +90,7 @@ const EmrmCreateRecord = () => {
                     arrowicon={<UploadIcon name="upload" style={styles.iconStyle} />}
 
                 /> */}
-                <TouchableOpacity style={styles.buttonContainer} >
+                <TouchableOpacity style={styles.buttonContainer} onPress={handleSubmit}>
                     <Text style={styles.buttonText}>{'Submit'}</Text>
                 </TouchableOpacity>
             </View>
