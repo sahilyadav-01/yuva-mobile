@@ -42,17 +42,16 @@ export const getAllErmReportThunk = createAsyncThunk(
 export const addErmThunk = createAsyncThunk(
   'Emrm/erms',
   async ({document,ermRequest}, { fulfillWithValue, rejectWithValue }) => {
-    console.log(document,ermRequest);
     const formData = new FormData();
-      formData.append('file', {
-        name: document.name,
-        type: document.type,
-        uri: document.uri,
+      formData.append('erms', {
+        name: document?.name,
+        type: document?.type,
+        uri: document?.uri,
       });
-  
+  console.log(formData,"fggggg")
     try {
     const response= await YuvaService.post('/erms',
-    ermRequest,
+     ermRequest,
       formData,
         {
           headers: {

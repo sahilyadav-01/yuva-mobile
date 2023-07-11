@@ -66,22 +66,16 @@ const ermRequest = {
   
    
   };
-  
+  console.log(document?.[0],"hiiiiii")
   // const emrmData=document?.map((item,index) => ( { name: item?.name, type: item?.type, uri: item?.uri }));
   // const emrmData=document?.map((item,index) => {return item })
-  const emrmData = document?.map((item, index) => {
-    const newObj = item; // Save item in a different constant
-    return newObj;
-  });
-  console.log('document',document); 
-
+  // const emrmData = document?.map((item, index) => {
+  //   const newObj = item; // Save item in a different constant
+  //   return newObj;
+  // });
    const handleSubmit =  () => {
-    console.log('uploade data',emrmData); 
-    console.log('emrmData data',ermRequest); 
 
-
-    dispatch(addErmThunk(emrmData,ermRequest));
-
+    dispatch(addErmThunk({document:document?.[0],ermRequest:ermRequest}));
    }
 
   useEffect(() => {
