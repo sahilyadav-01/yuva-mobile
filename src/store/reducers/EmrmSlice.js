@@ -133,7 +133,7 @@ const EmrmSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
-      state.emrmUploadMessage = payload?.data;
+      state.emrmUploadMessage = payload?.message;
     },
     [addErmThunk.rejected]: (state, { payload }) => {
       state.apiError = true;

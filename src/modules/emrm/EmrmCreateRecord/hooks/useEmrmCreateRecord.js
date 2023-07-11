@@ -17,6 +17,7 @@ export const useEmrmCreateRecord = () => {
   const [date, setDate] = useState(new Date());
   const [picker, setPicker] = useState(false);
   const [healthCenterName, setHealthCenterName] = useState('');
+  const [medicalDocumentName, setMedicalDocumentName] = useState('');
   const [document, setDocument] = useState(null);
   const [flieName, setFlieName] = useState('');
 
@@ -37,8 +38,9 @@ export const useEmrmCreateRecord = () => {
   };
 
   const onChangeTextInput = e => setHealthCenterName(e.toString());
+  const onChangeDocumentName = e => setMedicalDocumentName(e.toString());
 const ermRequest = {
-  medicalDocument: "DOCS",
+  medicalDocument: medicalDocumentName,
   date: Date.parse(date).toString(),
   healthCentre: healthCenterName,
   documentType: documentType.toString()
@@ -94,7 +96,9 @@ const ermRequest = {
     openPicker,
     date,
     onChangeTextInput,
+    onChangeDocumentName,
     healthCenterName,
+    medicalDocumentName,
     handleDocumentPick,
     handleSubmit,
     flieName
