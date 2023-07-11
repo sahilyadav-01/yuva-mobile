@@ -14,7 +14,7 @@ import { getDateText } from '../../../../utils/utils';
 import { useUserDetails } from './hooks/useUserDetails';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Cross from 'react-native-vector-icons/Entypo';
-import { CAMERA, GALLERY, SELECT } from './constants';
+import { CAMERA, GALLERY, SELECT, VERIFY } from './constants';
 const UserDetails = ({
   setSelectedGender,
   gender,
@@ -35,12 +35,10 @@ const UserDetails = ({
   profileGender
 }) => {
   const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
-    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon } = styles({
+    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon, verifyStyle } = styles({
       disabled: false,
     });
   const mockData = {
-    email: userDetails.email,
-    phoneNumber: userDetails.number,
     name: userDetails.name,
     organisation: userDetails.companyName,
     address: userDetails.address,
@@ -49,7 +47,7 @@ const UserDetails = ({
   };
   const { onImage,
     onCamera, modalVisible, setModalVisible,
-    setCoverPhoto, setUserPhoto } = useUserDetails();
+    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber } = useUserDetails(userDetails);
 
   return (
     <>
@@ -117,15 +115,19 @@ const UserDetails = ({
         </View>
       </View>
       <TextInput
-        value={mockData.email}
-        editable={false}
+        value={email}
+        editable={edit}
         style={textInputStyle}
+        onChangeText={onChangeEmail}
       />
+      {edit && !(userDetails?.email == email) && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
       <TextInput
-        value={mockData.phoneNumber}
-        editable={false}
+        value={phoneNumber}
+        editable={edit}
         style={textInputStyle}
+        onChangeText={onChangeNumber}
       />
+      {edit && !(userDetails?.number == phoneNumber) && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
       {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput
           value={gender}
