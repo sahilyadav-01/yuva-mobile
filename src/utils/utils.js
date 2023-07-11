@@ -267,6 +267,15 @@ export const getEpoch = (date, time) => {
   } 
 };
 
+export const getEpochEmrm = (date) => {
+  const dtString = date.toISOString().slice(0, 10);
+  if(Platform.OS === 'ios'){
+    return Date.parse(dtString)
+  }
+  else if(Platform.OS==='android'){
+    return Date.parse(dtString) - 5.5 * 60 * 60 * 1000;;
+  } 
+};
 const getOffsetTime = time => {
   let tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
   return new Date(time.valueOf() + tzoffset)
@@ -336,17 +345,26 @@ const downloadFile = (filePath, fileName) => {
   const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
   let options;
   if(Platform.OS === 'android') {
-    options = {
-      fileCache: true,
-      addAndroidDownloads: {
-        useDownloadManager: true,
-        notification: true,
-        path: directory + '/yuva/' + ext,
-        description: 'File',
-        mime: 'application/pdf',
-        showNotification: true,
-      },
-    };
+    if (Platform.OS === 'android') {
+      options = {
+        fileCache: true,
+        addAndroidDownloads: {
+          useDownloadManager: true,
+          notification: true,
+          path: directory + '/yuva/' + ext,
+          showNotification: true,
+        },
+      };
+    
+      if (ext === 'pdf') {
+        options.addAndroidDownloads.description = 'PDF File';
+        options.addAndroidDownloads.mime = 'application/pdf';
+      } else if (ext === 'png') {
+        options.addAndroidDownloads.description = 'PNG File';
+        options.addAndroidDownloads.mime = 'image/png';
+      }
+    }
+    
   }
   else if(Platform.OS === 'ios') {
     options = {path:`${directory}/${fileName}`}
