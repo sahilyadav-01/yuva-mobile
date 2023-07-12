@@ -182,10 +182,9 @@ export const signupThunk = createAsyncThunk(
     try {
       const endpoint = `/signup`;
       const response = await YuvaService.post(endpoint, {
-        email,
         name,
         number,
-        numberOtp,
+        otp: numberOtp,
         password,
       });
       return response.data;
