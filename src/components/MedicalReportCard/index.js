@@ -10,13 +10,15 @@ const MedicalReportCard = ({
   hospitalName,
   documuntType,
   DocumentDate,
-  UploadDate
+  UploadDate,
+  medicalDocument
 }) => {
 const {onDownloadPress} = useMedicalReportCard();
   return (
     <View style={styles.CompleteView}>
       <View style={styles.Top}>
         <Text style={styles.hospitalNameStyle}>{hospitalName}</Text>
+        <Text style={styles.medicalDocumentStyle}> {medicalDocument}</Text>
         <Text style={styles.documuntTypeStyle}> {documuntType}</Text>
         <Text style={styles.documentDateStyle}>{DOCUMENT_DATE}{getDateInFormat(new Date(DocumentDate), 'dd mm yy')}</Text>
         <Text style={styles.uploadDateStyle}>{UPLOAD_DATE}{getDateInFormat(new Date(UploadDate), 'dd mm yy')} </Text>

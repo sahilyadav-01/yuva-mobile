@@ -1,90 +1,90 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addErmThunk, documentTypeThunk } from '../../../../store/reducers/EmrmSlice';
+import { addErmThunk, documentTypeThunk, resetSuccessMessage } from '../../../../store/reducers/EmrmSlice';
 import DocumentPicker from 'react-native-document-picker';
-import { getEpoch, getEpochEmrm } from '../../../../utils/utils';
-
-
+import { Alert } from 'react-native';
+import { ALERT, VALIDATION_MESSAGE1, VALIDATION_MESSAGE2, VALIDATION_MESSAGE3, VALIDATION_MESSAGE4, VALIDATION_MESSAGE5 } from '../constants';
 
 export const useEmrmCreateRecord = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
-
   const dispatch = useDispatch();
-  const { dropDownData } = useSelector(state => state.Emrm);
+  const { dropDownData, emrmUploadMessage } = useSelector(state => state.Emrm);
   const [documentType, setDocumentType] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const [picker, setPicker] = useState(false);
   const [healthCenterName, setHealthCenterName] = useState('');
   const [medicalDocumentName, setMedicalDocumentName] = useState('');
   const [document, setDocument] = useState(null);
-  const [flieName, setFlieName] = useState('');
-
-  // const flieName ='';
-
-
-
+  const [fileName, setFileName] = useState('');
   const setSelectedDocumentType = (arg) => {
     setDocumentType(dropDownData.find(item => {
       if (item.name.toString() === arg.toString()) return item;
     }).id
     );
   }
-  // date
   const onConfirmDate = date => {
     setDate(date);
     setPicker(false);
   };
-
   const onChangeTextInput = e => setHealthCenterName(e.toString());
   const onChangeDocumentName = e => setMedicalDocumentName(e.toString());
-const ermRequest = {
-  medicalDocument: medicalDocumentName,
-  date: Date.parse(date).toString(),
-  healthCentre: healthCenterName,
-  documentType: documentType.toString()
-}
+  const ermRequest = {
+    medicalDocument: medicalDocumentName,
+    date: Date.parse(date).toString(),
+    healthCentre: healthCenterName,
+    documentType: documentType.toString()
+  }
   const handleDocumentPick = async () => {
-  
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-        // allowMultiSelection: false 
-      });
-      setFlieName(res.name);
-      setDocument(res);
-      // Create FormData
-    
-  
-      // // Make the API call to upload the file
-      // const response = await RNFetchBlob.fetch('POST', `http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/erms`, {
-      //   'Content-Type': 'multipart/form-data',
-      // }, [
-      //   { name: 'file', data: res.data },
-      // ]);
-  
-      // Handle the response from the server
-      // console.log(emrmData);
-  
-   
-  };
-  console.log(document?.[0],"hiiiiii")
-  // const emrmData=document?.map((item,index) => ( { name: item?.name, type: item?.type, uri: item?.uri }));
-  // const emrmData=document?.map((item,index) => {return item })
-  // const emrmData = document?.map((item, index) => {
-  //   const newObj = item; // Save item in a different constant
-  //   return newObj;
-  // });
-   const handleSubmit =  () => {
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+      allowMultiSelection: false
+    });
+    setDocument(res);
+    setFileName(res?.[0].name);
 
-    dispatch(addErmThunk({document:document?.[0],ermRequest:ermRequest}));
-   }
+  };
+  const handleSubmit = () => {
+    if (documentType === '') {
+      Alert.alert(ALERT, VALIDATION_MESSAGE1);
+    }
+    else if (medicalDocumentName === '') {
+      Alert.alert(ALERT, VALIDATION_MESSAGE2);
+    }
+    else if (date === undefined) {
+      Alert.alert(ALERT, VALIDATION_MESSAGE3);
+    }
+    else if (healthCenterName === '') {
+      Alert.alert(ALERT, VALIDATION_MESSAGE4);
+    }
+    else if (document === null) {
+      Alert.alert(ALERT, VALIDATION_MESSAGE5);
+    }
+    else {
+      dispatch(addErmThunk({ document: document?.[0], ermRequest: ermRequest }));
+    }
+  }
+  useEffect(() => {
+    if (emrmUploadMessage !== '' && navigation.isFocused()) {
+      Alert.alert(ALERT, emrmUploadMessage, [
+        {
+          text: 'Ok',
+          onPress: () => {
+            dispatch(resetSuccessMessage());
+
+          },
+        },
+      ]);
+    }
+  }, [emrmUploadMessage, focused]);
 
   useEffect(() => {
-    dispatch(documentTypeThunk());
+    if (navigation.isFocused()) {
+      dispatch(documentTypeThunk());
+    }
   }, [focused]);
 
-  // console.log("epochTime",epochTime);
   const openPicker = () => setPicker(true);
   const closePicker = () => setPicker(false);
   return {
@@ -101,7 +101,6 @@ const ermRequest = {
     medicalDocumentName,
     handleDocumentPick,
     handleSubmit,
-    flieName
-
+    fileName,
   };
 };

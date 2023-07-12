@@ -8,102 +8,89 @@ import UploadIcon from 'react-native-vector-icons/Feather';
 import DropDownIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
 import { CYAN_BLUE, DARK_GRAY, PALE_GRAY } from '../../../styles/colors';
-import { DD_MM_YYYY, KEYBOARD_TYPE_VALUE } from './constants';
+import { BUTTON_TEXT, HEADING_TEXT, INPUT_FIELD_HEADING1, INPUT_FIELD_HEADING2, INPUT_FIELD_HEADING3, INPUT_FIELD_HEADING4, INPUT_FIELD_HEADING5, KEYBOARD_TYPE_VALUE, PLACEHOLDER1, PLACEHOLDER2, PLACEHOLDER3, PLACEHOLDER4, PLACEHOLDER5 } from './constants';
 import { useEmrmCreateRecord } from './hooks/useEmrmCreateRecord';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getDateText } from '../../../utils/utils';
 
-
 const EmrmCreateRecord = () => {
     const { dropDownData, setSelectedDocumentType, picker, onConfirmDate, closePicker, openPicker, date, healthCenterName, medicalDocumentName,
-         onChangeTextInput, onChangeDocumentName, handleDocumentPick, handleSubmit, flieName } = useEmrmCreateRecord();
+        onChangeTextInput, onChangeDocumentName, handleDocumentPick, handleSubmit, fileName } = useEmrmCreateRecord();
     return (
         <>
             <Header title={HEADER_TITLE} isScreen={true} hideMenu={false} showBackButton={true} />
             <ScrollView>
-            <View style={styles.mainContainStyle}>
-                <Text style={styles.headingTextStyle} >{'Create  Medical Record'}</Text>
-                <Text style={styles.inputTextStyle} >{'Type of Medical  Document'}</Text>
-                <SelectList
-                    setSelected={setSelectedDocumentType}
-                    search={false}
-                    data={dropDownData}
-                    placeholder={'Consultation '}
-                    placeholderTextColor={PALE_GRAY}
-                    boxStyles={styles.textInputStyle}
-                    inputStyles={{ color: PALE_GRAY }}
-                    dropdownTextStyles={{ color: DARK_GRAY }}
-                    arrowicon={<DropDownIcon name="arrow-drop-down" style={styles.iconStyle} />}
-                />
-                 <Text style={styles.inputTextStyle} >{'Name of Medical Document'}</Text>
-                <TextInput
-                    style={styles.textInputStyle}
-                    keyboardType={KEYBOARD_TYPE_VALUE}
-                    placeholder={'Name of Medical Document'}
-                    placeholderTextColor={DARK_GRAY}
-                    onChangeText={onChangeDocumentName}
-                    value={medicalDocumentName}
-                />
-                <Text style={styles.inputTextStyle} >{'Date of Medical Document'}</Text>
-                <TouchableOpacity onPress={openPicker}>
-                    <View style={styles.inputContainer}>
-                        <TextInput
-                            placeholder={'Date of Medical Document '}
-                            placeholderTextColor={DARK_GRAY}
-                            value={getDateText(date)}
-                            editable={false}
-                            style={{ color: CYAN_BLUE }}
-                            onPressOut={openPicker}
-                        />
-                        {!date && <CalendarIcon name="calendar" style={styles.iconStyle} />}
-                    </View>
-                </TouchableOpacity>
-                <DateTimePickerModal
-                    date={new Date()}
-                    isVisible={picker}
-                    mode={'date'}
-                    onCancel={closePicker}
-                    onConfirm={onConfirmDate}
-                />
-
-                <Text style={styles.inputTextStyle} >{'Name of Health Center'}</Text>
-                <TextInput
-                    style={styles.textInputStyle}
-                    keyboardType={KEYBOARD_TYPE_VALUE}
-                    placeholder={'Hospital /Lab/ Clinic'}
-                    placeholderTextColor={DARK_GRAY}
-                    onChangeText={onChangeTextInput}
-                    value={healthCenterName}
-                />
-                <Text style={styles.inputTextStyle} >{'Upload Documents'}</Text>
-                <TouchableOpacity onPress={handleDocumentPick}>
-                <TextInput
-                    style={styles.textInputStyle}
-                    keyboardType={KEYBOARD_TYPE_VALUE}
-                    placeholder={'Upload Documents '}
-                    placeholderTextColor={DARK_GRAY}
-                    // onChangeText={onChangeTextInput}
-                    value={flieName}
-                    editable={false}
-                />
-                </TouchableOpacity>
-
-                {/* <SelectList
-                    // setSelected={setSelectedCity}
-                    search={false}
-                    // data={cityId}
-                    placeholder={'Upload Documents '}
-                    placeholderTextColor={PALE_GRAY}
-                    boxStyles={styles.textInputStyle}
-                    inputStyles={{ color: PALE_GRAY }}
-                    dropdownTextStyles={{ color: DARK_GRAY }}
-                    arrowicon={<UploadIcon name="upload" style={styles.iconStyle} />}
-
-                /> */}
-                <TouchableOpacity style={styles.buttonContainer} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>{'Submit'}</Text>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.mainContainStyle}>
+                    <Text style={styles.headingTextStyle} >{HEADING_TEXT}</Text>
+                    <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING1}</Text>
+                    <SelectList
+                        setSelected={setSelectedDocumentType}
+                        search={false}
+                        data={dropDownData}
+                        placeholder={PLACEHOLDER1}
+                        placeholderTextColor={PALE_GRAY}
+                        boxStyles={styles.textInputStyle}
+                        inputStyles={{ color: PALE_GRAY }}
+                        dropdownTextStyles={{ color: DARK_GRAY }}
+                        arrowicon={<DropDownIcon name="arrow-drop-down" style={styles.iconStyle} />}
+                    />
+                    <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING2}</Text>
+                    <TextInput
+                        style={styles.textInputStyle}
+                        keyboardType={KEYBOARD_TYPE_VALUE}
+                        placeholder={PLACEHOLDER2}
+                        placeholderTextColor={DARK_GRAY}
+                        onChangeText={onChangeDocumentName}
+                        value={medicalDocumentName}
+                    />
+                    <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING3}</Text>
+                    <TouchableOpacity onPress={openPicker}>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                placeholder={PLACEHOLDER3}
+                                placeholderTextColor={DARK_GRAY}
+                                value={getDateText(date)}
+                                editable={false}
+                                style={{ color: CYAN_BLUE }}
+                                onPressOut={openPicker}
+                            />
+                            {!date && <CalendarIcon name="calendar" style={styles.iconStyle} />}
+                        </View>
+                    </TouchableOpacity>
+                    <DateTimePickerModal
+                        date={new Date()}
+                        isVisible={picker}
+                        mode={'date'}
+                        onCancel={closePicker}
+                        onConfirm={onConfirmDate}
+                    />
+                    <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING4}</Text>
+                    <TextInput
+                        style={styles.textInputStyle}
+                        keyboardType={KEYBOARD_TYPE_VALUE}
+                        placeholder={PLACEHOLDER4}
+                        placeholderTextColor={DARK_GRAY}
+                        onChangeText={onChangeTextInput}
+                        value={healthCenterName}
+                    />
+                    <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING5}</Text>
+                    <TouchableOpacity onPress={handleDocumentPick}>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                style={{ color: DARK_GRAY }}
+                                keyboardType={KEYBOARD_TYPE_VALUE}
+                                placeholder={PLACEHOLDER5}
+                                placeholderTextColor={DARK_GRAY}
+                                value={fileName}
+                                editable={false}
+                            />
+                            {fileName === '' && <UploadIcon name="upload" style={styles.iconStyle} />}
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={handleSubmit}>
+                        <Text style={styles.buttonText}>{BUTTON_TEXT}</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         </>
     );

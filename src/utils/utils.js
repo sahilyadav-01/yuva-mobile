@@ -363,6 +363,10 @@ const downloadFile = (filePath, fileName) => {
         options.addAndroidDownloads.description = 'PNG File';
         options.addAndroidDownloads.mime = 'image/png';
       }
+      else if (ext === 'jpeg' || ext === 'jpg') {
+        options.addAndroidDownloads.description = 'JPEG File';
+        options.addAndroidDownloads.mime = 'image/jpeg';
+      }
     }
     
   }

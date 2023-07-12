@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../../../components/Header';
 import { HEADER_TITLE } from '../EmrmHome/constants';
 import { SEARCH, SUB_HEADDING_TEXT } from './constants';
@@ -13,7 +13,7 @@ import MedicalReportCard from '../../../components/MedicalReportCard';
 import EmptyList from './EmptyList';
 
 const EmrmListing = () => {
-    const { dropDownData, setSelectedDocumentType, onPressAddButton, medicalReportData } = useEmrmListing();
+    const { dropDownData, setSelectedDocumentType, onPressAddButton, medicalReportData, onChangeSearch, searchQuery, onEndReached } = useEmrmListing();
     const renderItem = ({ item, index }) => {
         if (!item) {
             return null;
@@ -26,6 +26,7 @@ const EmrmListing = () => {
                 documuntType={item.documentType}
                 DocumentDate={item.documentDate}
                 UploadDate={item.uploadedDate}
+                medicalDocument={item.medicalDocument}
             />
         );
     };
@@ -37,8 +38,8 @@ const EmrmListing = () => {
                     <Search
                         placeholder={SEARCH}
                         placeholderTextColor={DARK_GRAY}
-                    // onChangeText={onChangeSearch}
-                    // value={searchQuery}
+                        onChangeText={onChangeSearch}
+                        value={searchQuery}
                     />
                 </View>
                 <View style={styles.middleContainer}>
@@ -58,17 +59,15 @@ const EmrmListing = () => {
                 {medicalReportData.length === 0 ? (
                     <EmptyList emptyText={'No Reports'} />
                 ) : (
-                    <ScrollView>
-                        <View>
-                            <FlatList
-                                renderItem={renderItem}
-                                data={medicalReportData}
-                                keyExtractor={(item, index) => `${index}`}
-                                showsHorizontalScrollIndicator={false}
-                                nestedScrollEnabled={true}
-                            />
-                        </View>
-                    </ScrollView>
+                    <FlatList
+                        renderItem={renderItem}
+                        data={medicalReportData}
+                        keyExtractor={(item, index) => `${index}`}
+                        showsHorizontalScrollIndicator={false}
+                        nestedScrollEnabled={true}
+                        onEndReached={onEndReached}
+                        onEndReachedThreshold={0.1}
+                    />
                 )}
             </View>
         </>

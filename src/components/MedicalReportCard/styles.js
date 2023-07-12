@@ -32,6 +32,13 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     paddingTop: 13,
   },
+  medicalDocumentStyle:{
+    color: CYAN_BLUE,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize16,
+    lineHeight: 24,
+    paddingTop: 13
+  },
   documuntTypeStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,

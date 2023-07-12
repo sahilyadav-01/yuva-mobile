@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BLACK, CYAN_BLUE, DARK_BLUE, ORANGE, WHITE } from '../../../styles/colors';
-import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
+import { CENTER, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -37,7 +37,6 @@ export const styles = StyleSheet.create({
     minHeight: 42,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
-    // flex:1
   },
   inputTextStyle: {
     color: CYAN_BLUE,
