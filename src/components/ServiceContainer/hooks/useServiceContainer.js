@@ -8,6 +8,7 @@ export const useServiceContainer = (props) => {
     { name: MY_TESTS, screenName: DIAGNOSTICS, image: MY_HEALTH_CHECKUP_IMAGE },
     { name: TALK_TO_DOCTOR_NAME, screenName: Talk_TO_DOCTOR, image: TALK_TO_DOCTOR_IMAGE },
     { name: HEALTH_CHECKUP_PACKAGES, screenName: HEALTH_CHECKUP, image: HEALTH_CHECKUP_PACKAGES_IMAGE },
+    { name: 'Mental Wellness', screenName: 'MentalWellness', icon: 'MentalWellness', type:'icon' },
     // { name: PHARMACY_NAME, screenName: PHARMACY, image: PHARMACY },
     { name: EMRM, screenName: EMRM_SCREEN_NAME, image: EMRM },
 

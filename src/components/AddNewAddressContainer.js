@@ -49,6 +49,7 @@ const AddNewAddressContainer = (isScreen) => {
                             placeholderTextColor={DARK_GRAY}
                             boxStyles={styles.textInputStyle}
                             inputStyles={{color: DARK_BLUE}}
+                            dropdownTextStyles={{color:DARK_GRAY}}
                          />
                         <Text style={styles.AddAddressLine}>{PINCODE}</Text>
                         <TextInput

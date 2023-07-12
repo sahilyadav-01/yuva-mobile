@@ -31,6 +31,7 @@ import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
 import purchases, { purchasesInit } from './reducers/PurchasesSlice';
 import Emrm, { EmrmInit } from './reducers/EmrmSlice';
 
+import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
 const storeInitialState = {
   auth: authInit,
   section1: section1Init,
@@ -59,6 +60,7 @@ const storeInitialState = {
   checkOut:checkOutInit,
   purchases: purchasesInit,
   Emrm: EmrmInit,
+  maintainence: maintainenceInit
 };
 
 const appReducer = combineReducers({
@@ -89,6 +91,7 @@ const appReducer = combineReducers({
   checkOut,
   purchases,
   Emrm,
+  maintainence
 });
 
 const rootReducer = (state, action) => {
