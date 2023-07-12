@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     marginLeft: "5%",
   },
-  imageStyle: { width: 36, height: 36 },
   textInputStyle: {
     marginVertical: 30,
     elevation: 2,

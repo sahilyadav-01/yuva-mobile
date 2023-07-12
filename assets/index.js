@@ -134,7 +134,6 @@ import PharmacyIcon from './PharmacyIcon';
 import PHARMACY from './pharmacy.png';
 import PHARMA_CARD_ICON from './trolly.png';
 import EmrmHomeImage from './EmrmHomeImage.png';
-import EmrmAddIcon from './EmrmAddIcon.png';
 import SelfAssessment from './SelfAssessment.png'
 import HealthBanner from './HealthBanner.png';
 import SelfLearning from './SelfLearning.png';
@@ -144,6 +143,7 @@ import YuvaBanner from './YuvaBanner.png';
 import OnMood9Banner from './OnMood9Banner.png';
 import MentalWellness from './MentalWellness';
 import Emrm from './Emrm';
+import EmrmAddIcon from './EmrmAddIcon';
 
 const PNG = {
   AMICO,
@@ -217,7 +217,6 @@ const PNG = {
   PHARMA_CARD_ICON,
   HealthBanner,
   EmrmHomeImage,
-  EmrmAddIcon,
   SelfAssessment,
   SelfLearning,
   SelfTracking,
@@ -294,6 +293,7 @@ const SVG = {
   Handshake,
   MentalWellness,
   Emrm,
+  EmrmAddIcon
 };
 
 const BASE_64 = {DoctorsImage}

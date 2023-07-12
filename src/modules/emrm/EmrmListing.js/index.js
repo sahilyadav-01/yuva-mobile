@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../../../components/Header';
 import { HEADER_TITLE } from '../EmrmHome/constants';
 import { SEARCH, SUB_HEADDING_TEXT } from './constants';
 import { styles } from './styles';
 import Search from '../../../components/Search';
 import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
-import { PNG } from '../../../../assets';
+import { SVG } from '../../../../assets';
 import SelectList from 'react-native-dropdown-select-list';
 import { useEmrmListing } from './hooks/useEmrmListing';
 import MedicalReportCard from '../../../components/MedicalReportCard';
@@ -43,7 +43,9 @@ const EmrmListing = () => {
                     />
                 </View>
                 <View style={styles.middleContainer}>
-                    <TouchableOpacity onPress={onPressAddButton}><Image source={PNG.EmrmAddIcon} style={styles.imageStyle} resizeMode='cover' /></TouchableOpacity>
+                    <TouchableOpacity onPress={onPressAddButton}>
+                        <SVG.EmrmAddIcon />
+                    </TouchableOpacity>
                     <Text style={styles.subHeadingTextStyle}>{SUB_HEADDING_TEXT}</Text>
                 </View>
                 <SelectList
