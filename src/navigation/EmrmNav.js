@@ -4,7 +4,6 @@ import EmrmHomeScreen from '../screens/yuvaservices/emrm/EmrmHomeScreen';
 import EmrmListingScreen from '../screens/yuvaservices/emrm/EmrmListingScreen';
 import EmrmCreateRecordScreen from '../screens/yuvaservices/emrm/EmrmCreateRecordScreen';
 
-
 const Stack = createStackNavigator();
 const EmrmNavigation = () => {
   return (

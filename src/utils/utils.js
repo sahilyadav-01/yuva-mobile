@@ -42,20 +42,20 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 //DEVELOPMENT SERVER
-// export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
-// export const PORT = ':8082';
-// export const PROTOCOL = 'http://';
-// export const PATH = ':8080/api/v1/yuva';
-
-//UAT Server
-export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
-export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
-export const PORT = ':8081';
+export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
+export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+export const PORT = ':8082';
 export const PROTOCOL = 'http://';
 export const PATH = ':8080/api/v1/yuva';
+
+//UAT Server
+// export const SERVER = 'ec2-43-205-141-26.ap-south-1.compute.amazonaws.com';
+// export const REDIRECT_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'http://ec2-43-205-141-26.ap-south-1.compute.amazonaws.com:8081/cancelPayment';
+// export const PORT = ':8081';
+// export const PROTOCOL = 'http://';
+// export const PATH = ':8080/api/v1/yuva';
 
 //PREPROD Server
 // export const SERVER = 'ec2-3-7-71-9.ap-south-1.compute.amazonaws.com';
@@ -267,15 +267,6 @@ export const getEpoch = (date, time) => {
   } 
 };
 
-export const getEpochEmrm = (date) => {
-  const dtString = date.toISOString().slice(0, 10);
-  if(Platform.OS === 'ios'){
-    return Date.parse(dtString)
-  }
-  else if(Platform.OS==='android'){
-    return Date.parse(dtString) - 5.5 * 60 * 60 * 1000;;
-  } 
-};
 const getOffsetTime = time => {
   let tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
   return new Date(time.valueOf() + tzoffset)

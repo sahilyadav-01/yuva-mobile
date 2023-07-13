@@ -30,8 +30,8 @@ import payment,{paymentInit} from './reducers/PaymentSlice';
 import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
 import purchases, { purchasesInit } from './reducers/PurchasesSlice';
 import Emrm, { EmrmInit } from './reducers/EmrmSlice';
-
 import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
+
 const storeInitialState = {
   auth: authInit,
   section1: section1Init,
