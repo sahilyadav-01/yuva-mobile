@@ -72,7 +72,7 @@ export const useEmrmCreateRecord = () => {
           text: 'Ok',
           onPress: () => {
             dispatch(resetSuccessMessage());
-
+            navigation.navigate('EmrmListing');
           },
         },
       ]);
