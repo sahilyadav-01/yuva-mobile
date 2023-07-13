@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../../../components/Header';
 import { HEADER_TITLE } from '../EmrmHome/constants';
-import { SEARCH, SUB_HEADDING_TEXT } from './constants';
+import { DISPLAY_TEXT, PLACEHOLDER_TEXT, SEARCH, SUB_HEADDING_TEXT } from './constants';
 import { styles } from './styles';
 import Search from '../../../components/Search';
 import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
@@ -48,18 +48,20 @@ const EmrmListing = () => {
                     </TouchableOpacity>
                     <Text style={styles.subHeadingTextStyle}>{SUB_HEADDING_TEXT}</Text>
                 </View>
-                <SelectList
-                    setSelected={setSelectedDocumentType}
-                    search={false}
-                    data={dropDownData}
-                    placeholder={'ALL'}
-                    placeholderTextColor={DARK_GRAY}
-                    boxStyles={styles.textInputStyle}
-                    inputStyles={{ color: DARK_BLUE }}
-                    dropdownTextStyles={{ color: DARK_GRAY }}
-                />
+                {dropDownData.length > 0 && (
+                    <SelectList
+                        setSelected={setSelectedDocumentType}
+                        search={false}
+                        data={dropDownData}
+                        placeholder={PLACEHOLDER_TEXT}
+                        placeholderTextColor={DARK_GRAY}
+                        boxStyles={styles.textInputStyle}
+                        inputStyles={{ color: DARK_BLUE }}
+                        dropdownTextStyles={{ color: DARK_GRAY }}
+                    />
+                )}
                 {medicalReportData.length === 0 ? (
-                    <EmptyList emptyText={'No Reports'} />
+                    <EmptyList emptyText={DISPLAY_TEXT} />
                 ) : (
                     <FlatList
                         renderItem={renderItem}
