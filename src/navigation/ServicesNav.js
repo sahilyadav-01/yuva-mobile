@@ -23,6 +23,7 @@ import DoctorScreen from '../screens/yuvaservices/opd/doctors/Doctors';
 import ViewAllOurPlan from '../modules/ourPlan/components/ViewAllOurPlan';
 import PharmacyNavigation from './PharmacyNav';
 import ComingSoon from '../components/ComingSoon';
+import EmrmNavigation from './EmrmNav';
 import OnMood9Screen from '../screens/OnMood9';
 import OnMood9Static from '../screens/OnMood9/onMood9Static';
 
@@ -133,6 +134,11 @@ const ServicesNav = () => {
         }
         options={{ headerShown: false }}
       /> */}
+       <Stack.Screen
+        name="EmrmHome"
+        component={EmrmNavigation}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
