@@ -8,7 +8,7 @@ import UploadIcon from 'react-native-vector-icons/Feather';
 import DropDownIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
 import { CYAN_BLUE, DARK_GRAY, PALE_GRAY } from '../../../styles/colors';
-import { BUTTON_TEXT, HEADING_TEXT, INPUT_FIELD_HEADING1, INPUT_FIELD_HEADING2, INPUT_FIELD_HEADING3, INPUT_FIELD_HEADING4, INPUT_FIELD_HEADING5, KEYBOARD_TYPE_VALUE, PLACEHOLDER1, PLACEHOLDER2, PLACEHOLDER3, PLACEHOLDER4, PLACEHOLDER5 } from './constants';
+import { BUTTON_TEXT, HEADING_TEXT, INPUT_FIELD_HEADING1, INPUT_FIELD_HEADING2, INPUT_FIELD_HEADING3, INPUT_FIELD_HEADING4, INPUT_FIELD_HEADING5, PLACEHOLDER1, PLACEHOLDER2, PLACEHOLDER3, PLACEHOLDER4, PLACEHOLDER5 } from './constants';
 import { useEmrmCreateRecord } from './hooks/useEmrmCreateRecord';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getDateText } from '../../../utils/utils';
@@ -37,7 +37,6 @@ const EmrmCreateRecord = () => {
                     <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING2}</Text>
                     <TextInput
                         style={styles.textInputStyle}
-                        keyboardType={KEYBOARD_TYPE_VALUE}
                         placeholder={PLACEHOLDER2}
                         placeholderTextColor={DARK_GRAY}
                         onChangeText={onChangeDocumentName}
@@ -67,7 +66,6 @@ const EmrmCreateRecord = () => {
                     <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING4}</Text>
                     <TextInput
                         style={styles.textInputStyle}
-                        keyboardType={KEYBOARD_TYPE_VALUE}
                         placeholder={PLACEHOLDER4}
                         placeholderTextColor={DARK_GRAY}
                         onChangeText={onChangeTextInput}
@@ -78,7 +76,6 @@ const EmrmCreateRecord = () => {
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={{ color: DARK_GRAY }}
-                                keyboardType={KEYBOARD_TYPE_VALUE}
                                 placeholder={PLACEHOLDER5}
                                 placeholderTextColor={DARK_GRAY}
                                 value={fileName}

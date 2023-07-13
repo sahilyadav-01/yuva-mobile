@@ -1,4 +1,3 @@
-export const KEYBOARD_TYPE_VALUE = 'string';
 export const HEADING_TEXT = 'Create Medical Record';
 export const INPUT_FIELD_HEADING1 = 'Type of Medical Document';
 export const INPUT_FIELD_HEADING2 = 'Name of Medical Document';
