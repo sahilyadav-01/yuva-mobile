@@ -67,7 +67,7 @@ const OurPlanDetails = (props) => {
                   : [styles.boxStyles, styles.backGroundStyle]
               }
               search={false}
-              defaultOption={{key:"null", value: "MYSELF"}}
+              defaultOption={dataRender[0]}
               setSelected={setSelected}
               data={dataRender}
               dropdownStyles={styles.dropStyles}
