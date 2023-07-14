@@ -41,7 +41,7 @@ export const paymentStatus = createAsyncThunk(
   'payment/paymentStatus',
   async ({email,token}) => {
     try {
-      const endpoint = `/paymentGateway/status?email=${email}&token=${token}`;
+      const endpoint = `/paymentGateway/status?emailOrNumber=${email}&token=${token}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {

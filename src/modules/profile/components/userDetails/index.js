@@ -119,6 +119,7 @@ const UserDetails = ({
         editable={edit}
         style={textInputStyle}
         onChangeText={onChangeEmail}
+        placeholder={'Email'}
       />
       {edit && !(userDetails?.email == email) && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
       <TextInput
@@ -126,6 +127,7 @@ const UserDetails = ({
         editable={edit}
         style={textInputStyle}
         onChangeText={onChangeNumber}
+        placeholder={'Mobile Number'}
       />
       {edit && !(userDetails?.number == phoneNumber) && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
       {!edit || (edit && gender !== null && profileGender) ? (

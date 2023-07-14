@@ -3,14 +3,19 @@ import {useNavigation} from '@react-navigation/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   loginThunk,
+  resetEmailVerified,
   resetHash,
+  resetNumberVerified,
   signupThunk,
+  verifyChangeThunk,
   verifyOtp,
   verifySmsThunk,
   verifyThunk,
 } from '../../../store/reducers/AuthSlice';
+import { setNewEmail, setNewNumber } from '../../../store/reducers/ProfileSlice';
 
-export const useOtp = () => {
+export const useOtp = (otpProps) => {
+  const {email} = otpProps;
   let otpRef = useRef();
   const dispatch = useDispatch();
   const {
@@ -20,6 +25,8 @@ export const useOtp = () => {
     loggedIn,
     status,
     verifyLinkSuccessOtp,
+    numberVerified,
+    emailVerified,
   } = useSelector(state => state.auth);
   const navigation = useNavigation();
   const [otp, setOtp] = useState('');
@@ -35,10 +42,24 @@ export const useOtp = () => {
       else navigation.navigate('HomeService');
     }
     else if(!signUpLoading && loggedIn==='loggedIn' && status) {
-      if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
+     if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
       else navigation.navigate('HomeService');
     }
   }, [signUpLoading]);
+
+  useEffect(() => {
+    if(numberVerified) {
+      dispatch(setNewNumber(email), resetNumberVerified());
+      navigation.goBack();
+    }
+  }, [numberVerified]);
+
+  useEffect(() => {
+    if(emailVerified) {
+      dispatch(setNewEmail(email), resetEmailVerified());
+      navigation.goBack();
+    }
+  }, [emailVerified]);
 
   useEffect(() => {
     if (!verifyLinkLoading && verifyLinkSuccessOtp && enableNavigation) {
@@ -60,6 +81,8 @@ export const useOtp = () => {
     } else if (params?.verificationType === 'number' && params?.signUp) {
       const {number, email, name, password} = params;
       dispatch(signupThunk({email, name, number, numberOtp: otp, password}));
+    } else if (from === 'Profile'  && ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email')){
+      dispatch(verifyChangeThunk({emailOrNumber: params?.email, otp, verificationType: params?.verificationType}));
     } else if ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email') {
       dispatch(verifyThunk({emailOrNumber: params?.email, otp}));
     }
