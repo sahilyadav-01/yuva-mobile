@@ -6,12 +6,12 @@ import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
 import {HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE} from './constants';
 import {CENTER} from '../styles/constants';
 import {fonts} from '../styles/fonts';
-import ProfileScreen from '../screens/Profile';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
 import OurOfferNav from './OurOffersNav';
 import { getPlatform } from '../utils/utils';
 import OurPlanNav from './OurPlanNav';
+import ProfileNavigation from './ProfileNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -119,7 +119,7 @@ const BottomTabs = () => {
       ) : (
         <Tab.Screen
           name={PROFILE}
-          component={ProfileScreen}
+          component={ProfileNavigation}
           options={{
             tabBarIcon: ({focused}) => {
               return (

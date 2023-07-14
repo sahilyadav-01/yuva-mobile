@@ -7,7 +7,7 @@ import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
 import styles from './style';
 import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../../../utils/utils';
-import { EMAIL_EXISTS, EMAIL_NOT_VALID, NUMBER_EXISTS, NUMBER_NOT_VALID } from '../../constants';
+import { NUMBER_EXISTS, NUMBER_NOT_VALID } from '../../constants';
 
 const SignUpDetailsCard = props => {
   const style = styles();
@@ -47,28 +47,6 @@ const SignUpDetailsCard = props => {
           </View>
         )}
         <View style={{height: signUp?.checkNumber ? 40 : 48}} />
-        <TextInput
-          style={style.textInputContainer}
-          placeholder="Email"
-          keyboardType="email-address"
-          onChangeText={signUp?.onChangeEmail}
-          onEndEditing={signUp?.checkEmailText}
-          value={signUp?.email}
-          placeholderTextColor={SILVER_CHALICE}
-          autoComplete={'off'}
-        />
-        <View style={style.separator} />
-        {signUp?.checkEmail && (
-          <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>{EMAIL_NOT_VALID}</Text>
-          </View>
-        )}
-        {!signUp?.checkEmail && signUp.emailExisting && (
-          <View style={style.checkTextContainer}>
-            <Text style={style.warningText}>{EMAIL_EXISTS}</Text>
-          </View>
-        )}
-        <View style={{height: signUp?.checkEmail ? 40 : 48}} />
         <InputPassword
           placeholderText="Password"
           value={signUp?.password}

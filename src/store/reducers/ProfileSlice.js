@@ -61,17 +61,11 @@ export const getRelations = createAsyncThunk(
 export const updateProfile = createAsyncThunk(
   'profile/updateProfile',
   async (
-    { dob, gender, address, cityId, pinCode },
+    params,
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      await YuvaService.put('/profile', {
-        dob,
-        gender,
-        address,
-        cityId,
-        pinCode,
-      });
+      await YuvaService.put('/profile', params);
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -206,6 +200,8 @@ const initialState = {
   messageFamilyPic: null,
   messageProfilePic:null,
   selectedCity: null,
+  newNumber: '',
+  newEmail: '',
 };
 
 const profileSlice = createSlice({
@@ -234,6 +230,18 @@ const profileSlice = createSlice({
     },
     setCity(state,{payload}) {
       state.selectedCity = payload;
+    },
+    setNewEmail(state, {payload}) {
+      state.newEmail = payload; 
+    },
+    setNewNumber(state, {payload}){
+      state.newNumber = payload;
+    },
+    resetNumberChanged(state){
+      state.newNumber = '';
+    },
+    resetEmailChanged(state){
+      state.newEmail = '';
     }
   },
   extraReducers: {
@@ -314,7 +322,7 @@ const profileSlice = createSlice({
       state.loading = true;
       state.profileUpdated = false;
     },
-    [updateProfile.fulfilled]: state => {
+    [updateProfile.fulfilled]: (state, {payload}) => {
       state.userDetails = null;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -322,6 +330,9 @@ const profileSlice = createSlice({
       state.dataUpdated = true;
       state.profileUpdated = true;
       setProfileStatus('Y');
+      if(payload?.data?.jwt){
+        setJwt(payload.data.jwt);
+      }
     },
     [updateProfile.rejected]: (state, { payload }) => {
       state.apiError = true;
@@ -424,6 +435,6 @@ const profileSlice = createSlice({
     },
   },
 });
-export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations,resetMesage, setCity} = profileSlice.actions;
+export const {updateProfileStatus,saveCheckedAddress,AddressListing,resetRelations,resetMesage, setCity, setNewEmail, setNewNumber, resetEmailChanged, resetNumberChanged} = profileSlice.actions;
 export const profileInit = profileSlice.getInitialState();
 export default profileSlice.reducer;

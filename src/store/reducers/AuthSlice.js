@@ -54,7 +54,15 @@ export const resetPassword = createAsyncThunk(
         hash,
         password,
       });
-      return response.data;
+      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
+        return {...response.data};
+      }
+      const error = {error: {message: 'Unauthorized User'}};
+      handleNetworkError(
+        403, 
+        error.error.message ?? null,
+      );
+      return rejectWithValue(error);
     } catch (error) {
       handleNetworkError(
         error.response.status,
@@ -72,7 +80,7 @@ export const verifyThunk = createAsyncThunk(
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/validate-otp`;
+      const endpoint = `/validate-otp-login`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
       if (response?.data?.message === 'OTP_INVALID') {
         const errorMsg = {response: 'Invalid OTP'};
@@ -87,6 +95,22 @@ export const verifyThunk = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   },
+);
+
+export const verifyChangeThunk = createAsyncThunk(
+  'auth/verifyChangeThunk',
+  async (
+    {emailOrNumber, otp, verificationType},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
+    try {
+      const endpoint = `/validate-otp`;
+      const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
+      return {...response.data, verificationType};
+    } catch(e) {
+      return rejectWithValue(error.response.data);
+    }
+  }
 );
 
 export const verifyOtp = createAsyncThunk(
@@ -117,6 +141,22 @@ export const verifySmsThunk = createAsyncThunk(
     }
   },
 );
+export const verifyEmailThunk = createAsyncThunk(
+  'auth/verifyEmailThunk',
+  async ({email, name}, {fulfillWithValue, rejectWithValue}) => {
+    console.log(email, name);
+    try {
+      const endpoint = `/generate-email-otp`;
+      const response = await YuvaService.post(endpoint, {
+        email: email,
+        name: name
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
   async ({email, password,type}, {fulfillWithValue, rejectWithValue}) => {
@@ -126,17 +166,16 @@ export const loginThunk = createAsyncThunk(
         emailOrNumber: email,
         password: password
       });
-      return {...response.data,type};
 
-      // if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
-      //   return {...response.data,type};
-      // }
-      // const error = {error: {message: 'Unauthorize User'}};
-      // handleNetworkError(
-      //   response.status,
-      //   error.error.message ?? null,
-      // );
-      // return rejectWithValue(error);
+      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
+        return {...response.data,type};
+      }
+      const error = {error: {message: 'Unauthorized User'}};
+      handleNetworkError(
+        403, 
+        error.error.message ?? null,
+      );
+      return rejectWithValue(error);
       
     } catch (error) {
       handleNetworkError(
@@ -182,10 +221,9 @@ export const signupThunk = createAsyncThunk(
     try {
       const endpoint = `/signup`;
       const response = await YuvaService.post(endpoint, {
-        email,
         name,
         number,
-        numberOtp,
+        otp: numberOtp,
         password,
       });
       return response.data;
@@ -260,6 +298,14 @@ const authSlice = createSlice({
     changePasswordSuccess: false,
     type:'',
     isEmployee:null,
+    numberVerified: false,
+    numberError: false,
+    numberErrorMsg: '',
+    emailVerified: false,
+    emailError: false,
+    emailErrorMsg: '',
+    otpNumber: '',
+    otpEmail: '',
   },
   reducers: {
     hideErrorBox(state) {
@@ -280,6 +326,12 @@ const authSlice = createSlice({
     },
     checkRole(state, {payload}) {
       state.isEmployee = payload;
+    },
+    resetNumberVerified(state){
+      state.numberVerified = false;
+    },
+    resetEmailVerified(state){
+      state.emailVerified = false;
     }
   },
   extraReducers: {
@@ -397,19 +449,64 @@ const authSlice = createSlice({
       state.apiError = true;
       state.apiErrorMessage = action.payload.response;
     },
+    [verifyEmailThunk.pending]: (state, {payload}) => {
+      state.loading = true;
+      state.emailError = false;
+      state.emailErrorMsg = '';
+    },
+    [verifyEmailThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.emailError = false;
+      state.emailErrorMsg = '';
+    },
+    [verifyEmailThunk.rejected]: (state, action) => {
+      state.user.status = false;
+      state.loading = false;
+      state.emailError = true;
+      state.emailErrorMsg = action.payload.errorMessage;
+    },
     [verifySmsThunk.pending]: (state, {payload}) => {
       state.loading = true;
       state.apiError = false;
       state.apiErrorMessage = '';
+      state.numberError = false;
+      state.numberErrorMsg = '';
     },
     [verifySmsThunk.fulfilled]: (state, action) => {
       state.loading = false;
+      state.numberError = false;
+      state.numberErrorMsg = '';
     },
     [verifySmsThunk.rejected]: (state, action) => {
       state.user.status = false;
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
+      state.numberError = true;
+      state.numberErrorMsg = action.payload.errorMessage;
+    },
+    [verifyChangeThunk.pending]: (state, {meta}) => {
+      state.loading = true;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.numberVerified = meta?.arg?.verificationType === 'number' ? false: state.numberVerified;
+      state.emailVerified = meta?.arg?.verificationType === 'email' ? false: state.emailVerified;
+    },
+    [verifyChangeThunk.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.apiError = false;
+      state.apiErrorMessage = '';
+      state.numberVerified = action?.payload?.verificationType === 'number' ? action.payload.data: null;
+      state.emailVerified = action?.payload?.verificationType === 'email' ? action.payload.data: null;
+      state.otpNumber = action?.payload?.verificationType === 'number' ? action?.meta?.arg?.otp: state.otpNumber;
+      state.otpEmail = action?.payload?.verificationType === 'email'? action?.meta?.arg?.otp: state.otpEmail;
+    },
+    [verifyChangeThunk.rejected]: (state, action) => {
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.payload.errorMessage;
+      state.numberVerified = action?.meta?.arg?.verificationType === 'number'? false: state.numberVerified;
+      state.emailVerified = action?.meta?.arg?.verificationType === 'email'? false: state.emailVerified;
     },
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
@@ -546,6 +643,8 @@ export const {
   resetExistingNumber,
   resetExistingEmail,
   checkRole,
+  resetEmailVerified,
+  resetNumberVerified,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

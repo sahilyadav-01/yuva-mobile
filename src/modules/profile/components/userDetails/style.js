@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE } from '../../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import { ABSOLUTE, CENTER, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
 const styles = ({ disabled }) => {
@@ -101,6 +101,10 @@ const styles = ({ disabled }) => {
       top:-55,
     
 
+    },
+    verifyStyle: {
+      marginTop: -32,
+      textAlign: RIGHT,
     }
   });
 };

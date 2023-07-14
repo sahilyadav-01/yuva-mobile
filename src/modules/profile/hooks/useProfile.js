@@ -10,6 +10,8 @@ import {
   updateProfile,
   getRelations,
   profileLock,
+  resetEmailChanged,
+  resetNumberChanged,
 } from '../../../store/reducers/ProfileSlice';
 
 export const useProfile = () => {
@@ -185,14 +187,25 @@ export const useProfile = () => {
       Alert.alert('Alert', 'Please enter a valid Pin Code');
     else {
       setUserDetails(null);
+      const {otpNumber, otpEmail} = auth;
+      const {newNumber, newEmail} = profile;
+      let updatedProfile = {
+        dob,
+        gender,
+        address: addressLine1,
+        cityId: selectedCityId,
+        pinCode,
+      };
+      if(newEmail){
+        updatedProfile = {...updatedProfile, email: newEmail, emailOtp: otpEmail};
+      }
+      if(newNumber) {
+        updatedProfile = {...updatedProfile, number: newNumber, numberOtp: otpNumber};
+      }
       dispatch(
-        updateProfile({
-          dob,
-          gender,
-          address: addressLine1,
-          cityId: selectedCityId,
-          pinCode,
-        }),
+        updateProfile(updatedProfile),
+        resetEmailChanged(),
+        resetNumberChanged(),
       );
     }
   };
