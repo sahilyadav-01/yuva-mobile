@@ -16,6 +16,7 @@ export const useDrawer = () => {
     dispatch(logoutThunk());
     dispatch(resetAppointments());
     navigation.dispatch(DrawerActions.closeDrawer())
+    navigation.reset({index:0,routes:[{name:'HomeScreen'}]})
   };
   return {onSubscriptionPress, onReportsPress, onOrdersPress, onLogoutPress, onPrescriptionsPress, isEmployee, onCorporateProgramPress};
 };
