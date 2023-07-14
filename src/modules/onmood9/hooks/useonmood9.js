@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Aes from 'react-native-aes-crypto';
+import CryptoJS from 'crypto-js';
 import {subscriptionDetails} from '../../../store/reducers/PaymentSlice';
 import {ONMOOD9_BASE_URL, ONMOOD9_IV, ONMOOD9_KEY} from '../onMood9Config';
 
@@ -22,20 +22,22 @@ export const useOnMood9 = onMood9Props => {
 
   useEffect(() => {
     if (userSubscriptionDetails !== null && fetchDetails) {
-      let queryString = `user_id=testuser12${id}&status=${      // use ${userSubscriptionDetails?.userId} as user_id for production
+      let queryString = `user_id=testuser12${id}&status=${
+        // use ${userSubscriptionDetails?.userId} as user_id for production
         userSubscriptionDetails?.paymentStatus
       }${
         userSubscriptionDetails?.paymentStatus === 'Active'
           ? `&start_date=${userSubscriptionDetails?.startDate}&end_date=${userSubscriptionDetails?.endDate}`
           : ''
       }`;
-      Aes.encrypt(queryString, ONMOOD9_KEY, ONMOOD9_IV, 'aes-128-cbc')
-        .then(cipher => {
-          setEncodedQueryString(encodeURIComponent(cipher));
-        })
-        .catch(e => {
-          setEncodedQueryString('');
-        });
+      const key = CryptoJS.enc.Hex.parse(ONMOOD9_KEY);
+      const iv = CryptoJS.enc.Hex.parse(ONMOOD9_IV);
+      const cipher = CryptoJS.AES.encrypt(queryString, key, {
+        iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.ZeroPadding,
+      });
+      setEncodedQueryString(encodeURIComponent(cipher.toString()));
     }
   }, [userSubscriptionDetails]);
 

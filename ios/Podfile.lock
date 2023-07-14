@@ -357,8 +357,6 @@ PODS:
   - React-jsinspector (0.69.1)
   - React-logger (0.69.1):
     - glog
-  - react-native-aes (2.0.0):
-    - React-Core
   - react-native-document-picker (9.0.1):
     - React-Core
   - react-native-pager-view (5.4.25):
@@ -567,7 +565,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
-  - react-native-aes (from `../node_modules/react-native-aes-crypto`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -676,8 +673,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
-  react-native-aes:
-    :path: "../node_modules/react-native-aes-crypto"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
   react-native-pager-view:
@@ -796,7 +791,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 758e70947c232828a66b5ddc42d02b4d010fa26e
   React-jsinspector: 55605caf04e02f9b0e05842b786f1c12dde08f4b
   React-logger: ca970551cb7eea2fd814d0d5f6fc1a471eb53b76
-  react-native-aes: c75c46aa744bef7c2415fdf7f5b2dcb75ca4364d
   react-native-document-picker: 2b8f18667caee73a96708a82b284a4f40b30a156
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
