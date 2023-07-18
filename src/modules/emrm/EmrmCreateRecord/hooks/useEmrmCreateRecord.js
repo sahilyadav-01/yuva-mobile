@@ -38,12 +38,14 @@ export const useEmrmCreateRecord = () => {
   }
   const handleDocumentPick = async () => {
     const res = await DocumentPicker.pick({
-      type: [DocumentPicker.types.allFiles],
+      type: [
+        DocumentPicker.types.pdf,
+        DocumentPicker.types.images,
+      ],
       allowMultiSelection: false
     });
     setDocument(res);
     setFileName(res?.[0].name);
-
   };
   const handleSubmit = () => {
     if (documentType === '') {

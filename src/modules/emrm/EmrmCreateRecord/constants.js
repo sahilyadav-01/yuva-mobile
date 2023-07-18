@@ -15,4 +15,4 @@ export const VALIDATION_MESSAGE1 = 'Please select the medical document type.';
 export const VALIDATION_MESSAGE2 = 'Please enter the name of the medical document.';
 export const VALIDATION_MESSAGE3 = 'Please select date of the medical document.';
 export const VALIDATION_MESSAGE4 = 'Please enter the name of the health center.';
-export const VALIDATION_MESSAGE5 = 'Please uploade the document.';
+export const VALIDATION_MESSAGE5 = 'Please upload the document.';
