@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import RNFetchBlob from 'rn-fetch-blob';
 import { YuvaService } from '../../network/yuvaService';
-import { setProfileStatus } from '../LocalStore';
+import { setProfileStatus, setJwt } from '../LocalStore';
 import {
   loginThunk,
   signupThunk,
@@ -65,7 +65,8 @@ export const updateProfile = createAsyncThunk(
     { fulfillWithValue, rejectWithValue },
   ) => {
     try {
-      await YuvaService.put('/profile', params);
+      const response = await YuvaService.put('/profile', params);
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -330,8 +331,8 @@ const profileSlice = createSlice({
       state.dataUpdated = true;
       state.profileUpdated = true;
       setProfileStatus('Y');
-      if(payload?.data?.jwt){
-        setJwt(payload.data.jwt);
+      if(payload?.data?.data?.jwt){
+        setJwt(payload.data.data.jwt);
       }
     },
     [updateProfile.rejected]: (state, { payload }) => {
