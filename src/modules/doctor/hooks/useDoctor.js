@@ -41,7 +41,7 @@ export const useDoctor=()=>{
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         if(query.length >  2 && cityId!==null){
-            dispatch(searchDoctorThunk({search:'&search='+query,cityId}))
+            dispatch(searchDoctorThunk({search:'&search='+query.trim(),cityId}))
         } else if(query == "" && cityId!==null){
             dispatch(searchDoctorThunk({search:"",cityId}))
         }
