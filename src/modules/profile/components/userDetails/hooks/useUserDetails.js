@@ -44,6 +44,14 @@ const onVerifyPhone = () => {
 };
 
 useEffect(() => {
+  setEmail(userDetails?.email);
+}, [userDetails?.email])
+
+useEffect(() => {
+  setPhoneNumber(userDetails?.number);
+}, [userDetails?.number])
+
+useEffect(() => {
     if(numberError && numberLoading) {
       Alert.alert(numberErrorMsg);
     } else if (numberLoading) {
