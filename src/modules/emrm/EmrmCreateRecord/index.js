@@ -62,6 +62,7 @@ const EmrmCreateRecord = () => {
                         mode={'date'}
                         onCancel={closePicker}
                         onConfirm={onConfirmDate}
+                        maximumDate={new Date()}
                     />
                     <Text style={styles.inputTextStyle} >{INPUT_FIELD_HEADING4}</Text>
                     <TextInput
