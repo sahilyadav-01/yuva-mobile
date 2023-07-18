@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { getDateInFormat } from '../../utils/utils';
-import { BUTTON_TEXT, DOCUMENT_DATE } from './constants';
+import { BUTTON_TEXT, DOCUMENT_DATE, UPLOAD_DATE } from './constants';
 import { useMedicalReportCard } from './hooks/useMedicalReportCard';
 import { styles } from './styles';
 const MedicalReportCard = ({
@@ -21,7 +21,7 @@ const {onDownloadPress} = useMedicalReportCard();
         <Text style={styles.medicalDocumentStyle}> {medicalDocument}</Text>
         <Text style={styles.documuntTypeStyle}> {documuntType}</Text>
         <Text style={styles.documentDateStyle}>{DOCUMENT_DATE}{getDateInFormat(new Date(DocumentDate), 'dd mm yy')}</Text>
-        <Text style={styles.uploadDateStyle}>{DOCUMENT_DATE}{getDateInFormat(new Date(UploadDate), 'dd mm yy')} </Text>
+        <Text style={styles.uploadDateStyle}>{UPLOAD_DATE}{getDateInFormat(new Date(UploadDate), 'dd mm yy')} </Text>
       </View>
       <TouchableOpacity style={styles.Button} onPress={() => onDownloadPress(fileName,filePath)}>
         <Text style={styles.ButtonText}>{BUTTON_TEXT}</Text>
