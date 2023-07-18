@@ -9,17 +9,23 @@ export const useEmrmListing = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const [medicalReportData, setMedicalReportData] = useState([]);
+  const [mainDropDownData, setMainDropDownData] = useState([]);
+  const defaultOption = { label: "", value: "ALL" };
   const { dropDownData, ermReportData } = useSelector(state => state.Emrm);
   const [documentType, setDocumentType] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
   const setSelectedDocumentType = (arg) => {
     setPageNumber(1);
-    setDocumentType(dropDownData.find(item => {
-      if (item.name.toString() === arg.toString()) return item;
-    }).id
+    setDocumentType(mainDropDownData.find(item => {
+      if (item.value.toString() === arg.toString()) return item;
+    }).label
     );
   }
+  useEffect(() => {
+    const modifiedData =  dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, }));
+    setMainDropDownData([defaultOption, ...modifiedData]);
+  }, [dropDownData])
   useEffect(() => {
     if (
       ermReportData &&
@@ -57,7 +63,7 @@ export const useEmrmListing = () => {
     setSearchQuery(query)
     setMedicalReportData([]);
     let searchKey = "";
-    if (query.length > 1) {
+    if ((query.length > 1) && !(/^\s*$/.test(query))) {
       searchKey = query;
     }
     dispatch(
@@ -70,7 +76,7 @@ export const useEmrmListing = () => {
     }
   };
   return {
-    dropDownData: dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, })),
+    dropDownData: mainDropDownData,
     onPressAddButton,
     medicalReportData,
     setSelectedDocumentType,
