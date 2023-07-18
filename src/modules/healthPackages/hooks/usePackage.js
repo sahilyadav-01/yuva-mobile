@@ -238,7 +238,7 @@ export const usePackage = (initialIndex) => {
     setPackageData([]);
     setTestData([]);
     if (text.trim().length === 0) setSearch('');
-    else if (text.trim().length >= 3) setSearch(text);
+    else if (text.trim().length >= 3) setSearch(text.trim());
   };
 
   const onContinuePress = () => navigation.navigate('CartScreen')
