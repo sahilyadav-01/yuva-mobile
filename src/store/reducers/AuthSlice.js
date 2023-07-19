@@ -433,7 +433,7 @@ const authSlice = createSlice({
         id: payload.data.id,
       };
       state.user.jwt = payload.data.jwt;
-      payload.jwt && setObject('user', userData);
+      payload.data.jwt && setObject('user', userData);
       state.user.name = payload.data.name || 'User';
       state.user.roles = payload.data.roles[0];
       state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
