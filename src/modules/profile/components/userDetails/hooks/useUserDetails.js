@@ -6,9 +6,11 @@ import { resetEmailVerified, resetNumberVerified, verifyEmailThunk, verifySmsThu
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
 import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
 import { ALERT, COVER_MESSAGE, ERROR, HURRAY, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
+import { getRole } from '../../../../../store/LocalStore';
 
 export const useUserDetails=(userDetails, edit)=>{
     const [email, setEmail] = useState(userDetails?.email);
+    const [role, setRole] = useState();
     const [phoneNumber, setPhoneNumber] = useState(userDetails?.number);
     const [modalVisible, setModalVisible] = useState(false);
     const [coverPhoto, setCoverPhoto] = useState(false);
@@ -119,6 +121,12 @@ useEffect(() => {
 useEffect(() => {
   dispatch(resetNumberVerified());
 }, [edit])
+useEffect(()=>{
+  getRole().then(role => {
+    setRole(role);
+  });
+},[role])
+let editable=edit && role!='corporate';
 return{
      onImage,
      onCamera,
@@ -132,6 +140,7 @@ return{
      onChangeEmail,
      onChangeNumber,
      emailVerified,
-     numberVerified
+     numberVerified,
+     editable
 }
 }
