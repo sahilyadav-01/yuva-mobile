@@ -336,6 +336,9 @@ const authSlice = createSlice({
     },
     resetEmailOtp(state){
       state.otpEmail = '';
+    },
+    setLoginState(state){
+      state.loggedIn = 'loggedIn';
     }
   },
   extraReducers: {
@@ -651,6 +654,7 @@ export const {
   resetNumberVerified,
   resetEmailOtp,
   resetNumberOtp,
+  setLoginState
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;
