@@ -2,6 +2,7 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import { resetEmailOtp, resetNumberOtp } from '../../../store/reducers/AuthSlice';
 import {cityIdThunk} from '../../../store/reducers/DiagnosticsSlice';
 import {
   addRelation,
@@ -202,11 +203,11 @@ export const useProfile = () => {
       if(newNumber) {
         updatedProfile = {...updatedProfile, number: newNumber, numberOtp: otpNumber};
       }
-      dispatch(
-        updateProfile(updatedProfile),
-        resetEmailChanged(),
-        resetNumberChanged(),
-      );
+      dispatch(updateProfile(updatedProfile));
+      dispatch(resetEmailChanged());
+      dispatch(resetNumberChanged());
+      dispatch(resetEmailOtp());
+      dispatch(resetNumberOtp());
     }
   };
 
