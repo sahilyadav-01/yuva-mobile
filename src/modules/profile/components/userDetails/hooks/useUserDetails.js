@@ -2,12 +2,12 @@ import { useNavigation } from '@react-navigation/native';
 import { useState,useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { verifyEmailThunk, verifySmsThunk } from '../../../../../store/reducers/AuthSlice';
+import { resetEmailVerified, resetNumberVerified, verifyEmailThunk, verifySmsThunk } from '../../../../../store/reducers/AuthSlice';
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
 import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
 import { ALERT, COVER_MESSAGE, ERROR, HURRAY, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
 
-export const useUserDetails=(userDetails)=>{
+export const useUserDetails=(userDetails, edit)=>{
     const [email, setEmail] = useState(userDetails?.email);
     const [phoneNumber, setPhoneNumber] = useState(userDetails?.number);
     const [modalVisible, setModalVisible] = useState(false);
@@ -16,7 +16,7 @@ export const useUserDetails=(userDetails)=>{
     const [numberLoading, setNumberLoading] = useState(false);
     const [emailLoading, setEmailLoading] = useState(false);
     const {messageProfilePic,messageFamilyPic,apiErrorMessage} = useSelector(state => state.profile);
-    const {numberErrorMsg, numberError, emailErrorMsg, emailError} = useSelector(state => state.auth);
+    const {numberErrorMsg, numberError, emailErrorMsg, emailError, emailVerified, numberVerified } = useSelector(state => state.auth);
     const dispatch=useDispatch();
     const navigation = useNavigation();
 const onCamera =  () => {
@@ -111,7 +111,12 @@ else if(apiErrorMessage){
 }
 return () => dispatch(resetMesage())
 },[messageFamilyPic,messageProfilePic])
-
+useEffect(() => {
+  dispatch(resetEmailVerified());
+}, [edit])
+useEffect(() => {
+  dispatch(resetNumberVerified());
+}, [edit])
 return{
      onImage,
      onCamera,
@@ -124,5 +129,7 @@ return{
      phoneNumber,
      onChangeEmail,
      onChangeNumber,
+     emailVerified,
+     numberVerified
 }
 }
