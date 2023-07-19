@@ -87,10 +87,12 @@ const onVerifyEmail = () => {
 }
 const onChangeEmail = (text) => {
   setEmail(text);
+  dispatch(resetEmailVerified());
 };
 
 const onChangeNumber = (text) => {
   setPhoneNumber(text);
+  dispatch(resetNumberVerified());
 };
 
 useEffect(()=>{
