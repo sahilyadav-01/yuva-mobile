@@ -43,7 +43,7 @@ export const useOnMood9 = onMood9Props => {
 
   useEffect(() => {
     if (encodedQueryString.length > 0) {
-      setUri(`${ONMOOD9_BASE_URL}&input=${encodedQueryString}`);
+      setUri(`${ONMOOD9_BASE_URL}/${encodedQueryString}`);
     }
   }, [encodedQueryString]);
 
