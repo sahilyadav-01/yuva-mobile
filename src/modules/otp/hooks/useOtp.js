@@ -3,9 +3,7 @@ import {useNavigation} from '@react-navigation/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   loginThunk,
-  resetEmailVerified,
   resetHash,
-  resetNumberVerified,
   signupThunk,
   verifyChangeThunk,
   verifyOtp,
@@ -15,7 +13,7 @@ import {
 import { setNewEmail, setNewNumber } from '../../../store/reducers/ProfileSlice';
 
 export const useOtp = (otpProps) => {
-  const {email} = otpProps;
+  const {email, verificationType} = otpProps;
   let otpRef = useRef();
   const dispatch = useDispatch();
   const {
@@ -48,15 +46,15 @@ export const useOtp = (otpProps) => {
   }, [signUpLoading]);
 
   useEffect(() => {
-    if(numberVerified) {
-      dispatch(setNewNumber(email), resetNumberVerified());
+    if(numberVerified && verificationType === 'number') {
+      dispatch(setNewNumber(email));
       navigation.goBack();
     }
   }, [numberVerified]);
 
   useEffect(() => {
-    if(emailVerified) {
-      dispatch(setNewEmail(email), resetEmailVerified());
+    if(emailVerified && verificationType === 'email') {
+      dispatch(setNewEmail(email));
       navigation.goBack();
     }
   }, [emailVerified]);

@@ -144,7 +144,6 @@ export const verifySmsThunk = createAsyncThunk(
 export const verifyEmailThunk = createAsyncThunk(
   'auth/verifyEmailThunk',
   async ({email, name}, {fulfillWithValue, rejectWithValue}) => {
-    console.log(email, name);
     try {
       const endpoint = `/generate-email-otp`;
       const response = await YuvaService.post(endpoint, {
@@ -331,6 +330,12 @@ const authSlice = createSlice({
     },
     resetEmailVerified(state){
       state.emailVerified = false;
+    },
+    resetNumberOtp(state){
+      state.otpNumber = ''
+    },
+    resetEmailOtp(state){
+      state.otpEmail = '';
     }
   },
   extraReducers: {
@@ -495,8 +500,8 @@ const authSlice = createSlice({
       state.loading = false;
       state.apiError = false;
       state.apiErrorMessage = '';
-      state.numberVerified = action?.payload?.verificationType === 'number' ? action.payload.data: null;
-      state.emailVerified = action?.payload?.verificationType === 'email' ? action.payload.data: null;
+      state.numberVerified = action?.payload?.verificationType === 'number' ? action.payload.data: state.numberVerified;
+      state.emailVerified = action?.payload?.verificationType === 'email' ? action.payload.data: state.emailVerified;
       state.otpNumber = action?.payload?.verificationType === 'number' ? action?.meta?.arg?.otp: state.otpNumber;
       state.otpEmail = action?.payload?.verificationType === 'email'? action?.meta?.arg?.otp: state.otpEmail;
     },
@@ -644,6 +649,8 @@ export const {
   checkRole,
   resetEmailVerified,
   resetNumberVerified,
+  resetEmailOtp,
+  resetNumberOtp,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;
