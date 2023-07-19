@@ -47,7 +47,7 @@ const UserDetails = ({
   };
   const { onImage,
     onCamera, modalVisible, setModalVisible,
-    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified } = useUserDetails(userDetails, edit);
+    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified,editable } = useUserDetails(userDetails, edit);
   return (
     <>
       <View>
@@ -115,7 +115,7 @@ const UserDetails = ({
       </View>
       <TextInput
         value={email}
-        editable={edit}
+        editable={editable}
         style={textInputStyle}
         onChangeText={onChangeEmail}
         placeholder={'Email'}
