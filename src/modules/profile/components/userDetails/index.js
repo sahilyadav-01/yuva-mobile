@@ -118,6 +118,7 @@ const UserDetails = ({
         editable={editable}
         style={textInputStyle}
         onChangeText={onChangeEmail}
+        placeholderTextColor={DARK_GRAY}
         placeholder={'Email'}
       />
       {edit && !(userDetails?.email == email) && !emailVerified && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
@@ -127,6 +128,7 @@ const UserDetails = ({
         editable={edit}
         style={textInputStyle}
         onChangeText={onChangeNumber}
+        placeholderTextColor={DARK_GRAY}
         placeholder={'Mobile Number'}
       />
       {edit && !(userDetails?.number == phoneNumber) && !numberVerified && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
