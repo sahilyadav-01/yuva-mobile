@@ -105,6 +105,7 @@ const styles = ({ disabled }) => {
     verifyStyle: {
       marginTop: -32,
       textAlign: RIGHT,
+      color: DARK_BLUE,
     }
   });
 };
