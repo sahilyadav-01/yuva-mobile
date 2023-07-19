@@ -134,7 +134,7 @@ export const useLifestyle = (initialEnum,initialName) => {
   const onSearch = (arg) => {
     setSearchText(arg.trim());
     if(arg.trim().length >= 3){
-      dispatch(lifeStyleEnumData({enumName: selectedEnum, search:arg}));
+      dispatch(lifeStyleEnumData({enumName: selectedEnum, search:arg.trim()}));
     }
   }
 

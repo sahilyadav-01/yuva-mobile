@@ -336,17 +336,30 @@ const downloadFile = (filePath, fileName) => {
   const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
   let options;
   if(Platform.OS === 'android') {
-    options = {
-      fileCache: true,
-      addAndroidDownloads: {
-        useDownloadManager: true,
-        notification: true,
-        path: directory + '/yuva/' + ext,
-        description: 'File',
-        mime: 'application/pdf',
-        showNotification: true,
-      },
-    };
+    if (Platform.OS === 'android') {
+      options = {
+        fileCache: true,
+        addAndroidDownloads: {
+          useDownloadManager: true,
+          notification: true,
+          path: directory + '/yuva/' + ext,
+          showNotification: true,
+        },
+      };
+    
+      if (ext === 'pdf') {
+        options.addAndroidDownloads.description = 'PDF File';
+        options.addAndroidDownloads.mime = 'application/pdf';
+      } else if (ext === 'png') {
+        options.addAndroidDownloads.description = 'PNG File';
+        options.addAndroidDownloads.mime = 'image/png';
+      }
+      else if (ext === 'jpeg' || ext === 'jpg') {
+        options.addAndroidDownloads.description = 'JPEG File';
+        options.addAndroidDownloads.mime = 'image/jpeg';
+      }
+    }
+    
   }
   else if(Platform.OS === 'ios') {
     options = {path:`${directory}/${fileName}`}
@@ -441,6 +454,8 @@ export const getDateInFormat = (date, format) => {
       );
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'dd mm yy':
+      return date && `${date.getDate()}-${getMonthInText(date.getMonth())} ${date.getFullYear()}`;
     case 'mm/yy':
       const year = date.getFullYear().toString();
       return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;

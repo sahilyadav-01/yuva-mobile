@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
-import {checkRole, initialLoad} from '../store/reducers/AuthSlice';
+import {checkRole, initialLoad, setLoginState} from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
-import {getExistingUser, getProfileStatus, getRole} from '../store/LocalStore';
+import {getExistingUser, getJwt, getProfileStatus, getRole} from '../store/LocalStore';
 import {
   profileThunk,
   updateProfileStatus,
@@ -33,6 +33,11 @@ const IntroStackNav = () => {
     dispatch(cityIdThunk());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
   }, []);
+  getJwt().then(jwt => {
+    if (jwt) {
+      dispatch(setLoginState());
+    }
+  });
   getRole().then(role => {
     if (role && role === 'corporate') {
       dispatch(checkRole(true));
