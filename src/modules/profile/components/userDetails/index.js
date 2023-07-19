@@ -14,7 +14,7 @@ import { getDateText } from '../../../../utils/utils';
 import { useUserDetails } from './hooks/useUserDetails';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Cross from 'react-native-vector-icons/Entypo';
-import { CAMERA, GALLERY, SELECT, VERIFY } from './constants';
+import { CAMERA, GALLERY, SELECT, VERIFIED, VERIFY } from './constants';
 const UserDetails = ({
   setSelectedGender,
   gender,
@@ -47,8 +47,7 @@ const UserDetails = ({
   };
   const { onImage,
     onCamera, modalVisible, setModalVisible,
-    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber } = useUserDetails(userDetails);
-
+    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified } = useUserDetails(userDetails, edit);
   return (
     <>
       <View>
@@ -121,7 +120,8 @@ const UserDetails = ({
         onChangeText={onChangeEmail}
         placeholder={'Email'}
       />
-      {edit && !(userDetails?.email == email) && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
+      {edit && !(userDetails?.email == email) && !emailVerified && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
+      {edit && emailVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       <TextInput
         value={phoneNumber}
         editable={edit}
@@ -129,7 +129,8 @@ const UserDetails = ({
         onChangeText={onChangeNumber}
         placeholder={'Mobile Number'}
       />
-      {edit && !(userDetails?.number == phoneNumber) && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
+      {edit && !(userDetails?.number == phoneNumber) && !numberVerified && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
+      {edit && numberVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput
           value={gender}
