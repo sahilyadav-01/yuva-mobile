@@ -1,2 +1,2 @@
 export const HEADING_TEXT = 'LEARN & PRACTICE EMOTIONAL SELFCARE';
-export const BUTTON_TEXT = 'Consult Now';
+export const BUTTON_TEXT = 'Self Care';
