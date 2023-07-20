@@ -2,6 +2,7 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import { resetEmailOtp, resetNumberOtp } from '../../../store/reducers/AuthSlice';
 import {cityIdThunk} from '../../../store/reducers/DiagnosticsSlice';
 import {
   addRelation,
@@ -10,6 +11,8 @@ import {
   updateProfile,
   getRelations,
   profileLock,
+  resetEmailChanged,
+  resetNumberChanged,
 } from '../../../store/reducers/ProfileSlice';
 
 export const useProfile = () => {
@@ -185,15 +188,26 @@ export const useProfile = () => {
       Alert.alert('Alert', 'Please enter a valid Pin Code');
     else {
       setUserDetails(null);
-      dispatch(
-        updateProfile({
-          dob,
-          gender,
-          address: addressLine1,
-          cityId: selectedCityId,
-          pinCode,
-        }),
-      );
+      const {otpNumber, otpEmail} = auth;
+      const {newNumber, newEmail} = profile;
+      let updatedProfile = {
+        dob,
+        gender,
+        address: addressLine1,
+        cityId: selectedCityId,
+        pinCode,
+      };
+      if(newEmail){
+        updatedProfile = {...updatedProfile, email: newEmail, emailOtp: otpEmail};
+      }
+      if(newNumber) {
+        updatedProfile = {...updatedProfile, number: newNumber, numberOtp: otpNumber};
+      }
+      dispatch(updateProfile(updatedProfile));
+      dispatch(resetEmailChanged());
+      dispatch(resetNumberChanged());
+      dispatch(resetEmailOtp());
+      dispatch(resetNumberOtp());
     }
   };
 

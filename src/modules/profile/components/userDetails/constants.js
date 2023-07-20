@@ -7,3 +7,5 @@ export const CAMERA="Camera";
 export const ALERT="Alert Unsuccessfull...!!!";
 export const UNSUCCESSFULL="Please Try Again...!!!";
 export const PROFILE_MESSAGE="Profile image uploaded successfully";
+export const VERIFY = 'Verify';
+export const VERIFIED = 'Verified';

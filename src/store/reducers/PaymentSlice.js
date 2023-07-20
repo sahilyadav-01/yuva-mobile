@@ -41,7 +41,7 @@ export const paymentStatus = createAsyncThunk(
   'payment/paymentStatus',
   async ({email,token}) => {
     try {
-      const endpoint = `/paymentGateway/status?email=${email}&token=${token}`;
+      const endpoint = `/paymentGateway/status?emailOrNumber=${email}&token=${token}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -49,6 +49,19 @@ export const paymentStatus = createAsyncThunk(
     }
   }
 )
+
+export const subscriptionDetails = createAsyncThunk(
+  'payment/subscriptionDetails',
+  async () => {
+    try {
+      const endpoint = `/onmood9`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;   
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
 
 const initialState = {
   encReqLoading: false,
@@ -61,6 +74,9 @@ const initialState = {
   paymentError: false,
   paymentStatus: null,
   order:null,
+  subscriptionDetails: null,
+  onMood9Loading: false,
+  onMood9Error:false,
 };
 
 const paymentSlice = createSlice({
@@ -110,6 +126,21 @@ const paymentSlice = createSlice({
       state.paymentStatusLoading = false;
       state.paymentError = true;
       state.paymentStatus = null;
+    },
+    [subscriptionDetails.pending]: (state) => {
+      state.onMood9Loading = true;
+      state.onMood9Error = false;
+      state.subscriptionDetails = null;
+    },
+    [subscriptionDetails.fulfilled]: (state,{payload}) => {
+      state.onMood9Loading = false;
+      state.onMood9Error = false;
+      state.subscriptionDetails = payload?.data;
+    },
+    [subscriptionDetails.rejected]: (state) => {
+      state.onMood9Loading = false;
+      state.onMood9Error = true;
+      state.subscriptionDetails = null;
     }
   },
 });
