@@ -51,8 +51,8 @@ export const useHomeSearch = () => {
   }, [requestCall])
 
   const onChangeSearch = text => {
-    dispatch(testPackageSearchThunk({ search:text }))
-    setFilteredData(text)
+    dispatch(testPackageSearchThunk({ search:text.trim() }))
+    setFilteredData(text.trim())
   };
   const onNavigate = (item) => {
     navigation.navigate("HomeSearchDetails",item)

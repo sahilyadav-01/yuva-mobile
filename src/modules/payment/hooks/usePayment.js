@@ -64,9 +64,9 @@ export const usePayment = paymentProps => {
 
   const postPaymentNavigation = (url,key) => {
     const params = url?.split(key)[1];
-    const tokenString = params?.split('&email=')[0];
+    const tokenString = params?.split('&emailOrNumber=')[0];
     const token = tokenString?.substring(6, tokenString?.length);
-    const email = params?.split('&email=')[1];
+    const email = params?.split('&emailOrNumber=')[1];
     navigation.navigate('Payment', {
       screen: 'PaymentStatus',
       params: {token, email},

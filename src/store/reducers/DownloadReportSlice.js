@@ -43,6 +43,9 @@ const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
+  downloadHraReport:[],
+  downloadDiagnosticReport:[],
+  myPrescriptionReport:[]
 };
 
 const downlodReportSlice = createSlice({

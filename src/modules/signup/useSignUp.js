@@ -49,7 +49,6 @@ export const useSignUp = () => {
     const enable =
       name.length &&
       number.length &&
-      email.length &&
       password.length &&
       confirmPassword.length &&
       password === confirmPassword &&
@@ -115,7 +114,6 @@ export const useSignUp = () => {
     dispatch(verifySmsThunk({number}));
     navigation.navigate('EnterOTP', {
       number,
-      email,
       name,
       password,
       verificationType: 'number',
