@@ -42,9 +42,9 @@ export const isEmpty = password => (validator.empty(password) ? true : false);
 //export const  SERVER ="ec2-35-154-255-122.ap-south-1.compute.amazonaws.com"
 
 //DEVELOPMENT SERVER
-export const SERVER = 'ec2-3-111-222-20.ap-south-1.compute.amazonaws.com';
-export const REDIRECT_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-export const CANCEL_URL = 'http://ec2-3-111-222-20.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
+export const SERVER = 'ec2-13-127-160-250.ap-south-1.compute.amazonaws.com';
+export const REDIRECT_URL = 'http://ec2-13-127-160-250.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
+export const CANCEL_URL = 'http://ec2-13-127-160-250.ap-south-1.compute.amazonaws.com:8082/cancelPayment'
 export const PORT = ':8082';
 export const PROTOCOL = 'http://';
 export const PATH = ':8080/api/v1/yuva';
