@@ -2,10 +2,15 @@ import axios from 'axios';
 import { getJwt } from '../store/LocalStore';
 import { logoutThunk } from '../store/reducers/AuthSlice';
 import store from '../store/Store';
+import { maintainceThunk } from '../store/reducers/MaintainenceSlice';
 
 const handleUserForbidden = () => {
   store.dispatch(logoutThunk());
 };
+
+const handleMaintaince = (flag) => {
+  store.dispatch(maintainceThunk(flag));
+}
 
 let axiosClient = axios.create();
 axiosClient.interceptors.request.use(
@@ -27,6 +32,10 @@ axiosClient.interceptors.request.use(
       if (config.url.includes(item)) return item;
     });
 
+    config['headers'] = {
+      ...config['headers']
+    }
+
     if (isLoginApi.length === 0) {
       const jwt = await getJwt();
       config['headers'] = {
@@ -46,7 +55,10 @@ axiosClient.interceptors.response.use(
   resp => resp,
   async error => {
     const jwt = await getJwt();
-    if (jwt && error.response.status && error.response.status === 403) {
+    if(error.response.status === 503) {
+      handleMaintaince(true);
+    }
+    else if (jwt && error.response.status && error.response.status === 403) {
       handleUserForbidden();
     }
     return Promise.reject(error);

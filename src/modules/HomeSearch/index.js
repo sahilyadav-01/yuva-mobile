@@ -115,6 +115,7 @@ const HomeSearch = () => {
         searchPlaceholder={SEARCH_TEST_PACKAGE}
         onSearch={onChangeSearch}
         onSubmitEditing={filteredData}
+        isSearch={true}
       />
       {filteredData?.length > 2 && testPackageSearch?.length > 0 ? (
         <View style={styles.dropDown}>

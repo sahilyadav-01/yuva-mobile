@@ -44,9 +44,8 @@ export const useOurPlanDetails = () => {
     }});
     const pricePerMonth = Math.ceil(maxPriceObj?.value/maxPriceObj?.multiplier);
     const dataRender = [
-        {key:'1', value:'2'},
-        {key:'2', value:'3'},
-        {key:'3', value:'4'},
+        {key:'1', value:'4'},
+        {key:'2', value:'6'},
     ]
     
     return {

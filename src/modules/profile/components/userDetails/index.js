@@ -14,7 +14,7 @@ import { getDateText } from '../../../../utils/utils';
 import { useUserDetails } from './hooks/useUserDetails';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Cross from 'react-native-vector-icons/Entypo';
-import { CAMERA, GALLERY, SELECT } from './constants';
+import { CAMERA, GALLERY, SELECT, VERIFIED, VERIFY } from './constants';
 const UserDetails = ({
   setSelectedGender,
   gender,
@@ -35,12 +35,10 @@ const UserDetails = ({
   profileGender
 }) => {
   const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
-    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon } = styles({
+    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon, verifyStyle } = styles({
       disabled: false,
     });
   const mockData = {
-    email: userDetails.email,
-    phoneNumber: userDetails.number,
     name: userDetails.name,
     organisation: userDetails.companyName,
     address: userDetails.address,
@@ -49,8 +47,7 @@ const UserDetails = ({
   };
   const { onImage,
     onCamera, modalVisible, setModalVisible,
-    setCoverPhoto, setUserPhoto } = useUserDetails();
-
+    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified,editable } = useUserDetails(userDetails, edit);
   return (
     <>
       <View>
@@ -117,15 +114,25 @@ const UserDetails = ({
         </View>
       </View>
       <TextInput
-        value={mockData.email}
-        editable={false}
+        value={email}
+        editable={editable}
         style={textInputStyle}
+        onChangeText={onChangeEmail}
+        placeholderTextColor={DARK_GRAY}
+        placeholder={'Email'}
       />
+      {edit && !(userDetails?.email == email) && !emailVerified && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
+      {edit && emailVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       <TextInput
-        value={mockData.phoneNumber}
-        editable={false}
+        value={phoneNumber}
+        editable={edit}
         style={textInputStyle}
+        onChangeText={onChangeNumber}
+        placeholderTextColor={DARK_GRAY}
+        placeholder={'Mobile Number'}
       />
+      {edit && !(userDetails?.number == phoneNumber) && !numberVerified && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
+      {edit && numberVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput
           value={gender}

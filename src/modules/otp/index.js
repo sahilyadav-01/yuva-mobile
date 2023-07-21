@@ -18,7 +18,7 @@ const OTP = props => {
     otpRef,
     enableResendOtp,
     onEnableResend,
-  } = useOtp();
+  } = useOtp(otpProps);
   const {
     signUpCard,
     scrollViewContainer,
