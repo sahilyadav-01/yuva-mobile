@@ -127,13 +127,13 @@ const ServicesNav = () => {
         component={OnMood9Screen}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="PHARMACY"
         component={
           loggedIn !== 'loggedIn' ? ComingSoon : PharmacyNavigation
         }
         options={{ headerShown: false }}
-      /> */}
+      />
        <Stack.Screen
         name="EmrmHome"
         component={EmrmNavigation}
