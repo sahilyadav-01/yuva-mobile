@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, LIGHT_GREY, ORANGE, WHITE } from '../../../styles/colors';
+import { CYAN_BLUE, ORANGE, WHITE } from '../../../styles/colors';
 import { CENTER } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -28,18 +28,18 @@ export const styles = StyleSheet.create({
         backgroundColor: ORANGE,
     },
     buttonText: {
-        fontFamily: fonts.family.rubik400,
-        fontWeight: fonts.weight.fontWeight500,
+        fontFamily: fonts.family.rubik600,
+        fontWeight: fonts.weight.fontWeight600,
         color: WHITE,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
+        fontSize: fonts.size.fontSize16,
+        lineHeight: 24,
     },
     subHeadingTextStyle: {
         fontFamily: fonts.family.rubik400,
         fontWeight: fonts.weight.fontWeight400,
         color: ORANGE,
-        fontSize: fonts.size.fontSize20,
-        lineHeight: 30,
+        fontSize: fonts.size.fontSize14,
+        lineHeight: 21,
     },
     subHeadingTextContainerStyle: {
 
@@ -51,10 +51,7 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.rubik400,
         fontWeight: fonts.weight.fontWeight400,
         color: CYAN_BLUE,
-        fontSize: fonts.size.fontSize20,
-        lineHeight: 30,
+        fontSize: fonts.size.fontSize14,
+        lineHeight: 21,
     },
-
-
-
 });
