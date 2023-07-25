@@ -17,16 +17,12 @@ export const styles = () => {
       color: DARK_BLUE,
     },
     container: {
-      marginTop: 4,
-      paddingTop: 16,
-      paddingBottom: 20,
-      flexDirection: ROW,
-      justifyContent: SPACE_BETWEEN,
+      marginVertical: 36
     },
-    itemContainer: {width: '30%'},
-    imageStyle: {width: '100%', height: 100},
+    itemContainer: {marginRight: 24},
+    imageStyle: {height: 100},
     imageText: {
-      marginTop: 4,
+      marginTop: 12,
       textAlign: CENTER,
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik400,

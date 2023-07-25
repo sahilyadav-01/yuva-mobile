@@ -3,3 +3,4 @@ export const DESCRIPTION_TEXT = 'Emotions make you happy and sad, motivate you f
 export const SELF_ASSESSMENT = 'Self Assessment';
 export const SELF_LEARNING = 'Self Learning';
 export const SELF_TRACKING = 'Self Tracking';
+export const SELF_HEALING = 'Self Healing';
