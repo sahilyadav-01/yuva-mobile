@@ -77,14 +77,15 @@ export const styles = StyleSheet.create({
   },
   Button: {
     backgroundColor: CYAN_BLUE,
-    height: 31,
+    marginTop: 12,
+    height: 40,
     borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
   },
   ButtonText: {
     color: WHITE,
     fontFamily: fonts.family.rubik500,
-    fontSize: fonts.size.fontSize10,
+    fontSize: fonts.size.fontSize14,
     alignSelf: CENTER,
     marginTop: '3%',
   },

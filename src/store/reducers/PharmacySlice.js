@@ -5,7 +5,7 @@ export const patientPrescriptionThunk = createAsyncThunk(
     'pharmacy/prescriptions',
     async ({ pageNo, pageSize, search }, { fulfillWithValue, rejectWithValue }) => {
         try {
-            const endpoint = `/prescription/view-all?pageNo=${pageNo}&pageSize=${pageSize}`;
+            const endpoint = `/prescription/view-all?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}`;
             const response = await YuvaService.post(endpoint);
             return response.data;
         } catch (error) {
@@ -52,13 +52,18 @@ const initialState = {
 const pharmacySlice = createSlice({
     name: 'pharmacy',
     initialState,
+    reducers: {
+    resetPrescriptionData(state){
+      state.prescriptionData=[];
+    },  
+    },
     extraReducers: {
         [patientPrescriptionThunk.pending]: (state, { payload }) => {
             state.loading = true;
             state.apiError = false;
         },
         [patientPrescriptionThunk.fulfilled]: (state, { payload }) => {
-            state.prescriptionData = payload?.data?.prescriptionResponseDto;
+            state.prescriptionData = payload?.data;
             state.loading = false;
             state.apiError = false;
         },
@@ -102,5 +107,5 @@ const pharmacySlice = createSlice({
     },
 });
 export const pharmacyInit = pharmacySlice.getInitialState();
-export const { } = pharmacySlice.actions;
+export const {resetPrescriptionData } = pharmacySlice.actions;
 export default pharmacySlice.reducer;

@@ -1,14 +1,17 @@
 import {StyleSheet} from 'react-native';
+import { CYAN_BLUE } from '../../../styles/colors';
+import { CENTER } from '../../../styles/constants';
+import { fonts } from '../../../styles/fonts';
 
-export const styles = () => {
-  return StyleSheet.create({
-    search: {
-      marginHorizontal: 14,
-      marginVertical: 10,
+export const styles = StyleSheet.create({
+    CardViewContainerStyle:{
+      marginTop:'10%',
     },
-    scrollViewContainer:{
-      height: '70%',
-      marginTop: 50
-    }
+    NoOrderText:{
+      textAlign:CENTER,
+      marginVertical:"40%",
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize16,
+      color:CYAN_BLUE,
+  },
   });
-};
