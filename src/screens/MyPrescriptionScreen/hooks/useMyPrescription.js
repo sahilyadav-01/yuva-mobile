@@ -35,9 +35,6 @@ export const useMyPrescription = () => {
           'filePath',
         ),
       );
-      setListData(
-        listData.concat(myPrescriptionReport?.prescriptionResponseDto),
-      );
       setFetchError(false);
       setDataAvailable(false);
     } else if (!prescriptionLoading && prescriptionError) {
