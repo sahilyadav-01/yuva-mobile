@@ -1,7 +1,7 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllPharmacyForUserThunk, patientPrescriptionThunk, resetPrescriptionData } from "../../../../store/reducers/PharmacySlice";
+import { patientPrescriptionThunk, resetPrescriptionData } from "../../../../store/reducers/PharmacySlice";
 import _ from 'lodash';
 
 export const usePrescriptionListingScreen = () => {
@@ -21,22 +21,24 @@ export const usePrescriptionListingScreen = () => {
       typeof prescriptionData?.prescriptionResponseDto === 'object' &&
       prescriptionData?.prescriptionResponseDto.length > 0 && search.length === 0
     ) {
-      setprescriptionDataList(
-        _.uniqBy(
-          prescriptionDataList.concat(prescriptionData?.prescriptionResponseDto),
-          // 'name',
-        ),
-      );
+      setprescriptionDataList(prevData => {
+        const mergedData = _.uniqBy(
+          [...prevData, ...prescriptionData.prescriptionResponseDto],
+          'prescriptionId',
+        );
+        return mergedData;
+      });
     }
     else if (prescriptionData &&
       typeof prescriptionData?.prescriptionResponseDto === 'object' &&
       prescriptionData?.prescriptionResponseDto.length > 0 && search.length > 0) {
-      setprescriptionDataListSearch(
-        _.uniqBy(
-          prescriptionDataListSearch.concat(prescriptionData?.prescriptionResponseDto),
-          // 'name',
-        ),
-      );
+      setprescriptionDataListSearch(prevData => {
+        const mergedData = _.uniqBy(
+          [...prevData, ...prescriptionData.prescriptionResponseDto],
+          'prescriptionId',
+        );
+        return mergedData;
+      });
     }
   }, [prescriptionData]);
 
@@ -73,9 +75,6 @@ export const usePrescriptionListingScreen = () => {
     sanitizedText.test(arg.trim()) && setSearch(arg.trim());
   };
   const onPress = (item) => {
-    if (item?.item?.prescriptionId) {
-      dispatch(getAllPharmacyForUserThunk({ pageNo: pageNumber, pageSize: 10, prescriptionId: item?.item?.prescriptionId }));
-    }
     navigation.navigate('PharmacyListing', { prescriptionId: item?.item?.prescriptionId });
   };
   const onEndReached = () => {
@@ -91,7 +90,6 @@ export const usePrescriptionListingScreen = () => {
     onPress,
     onSearch,
     onEndReached,
-    search,
     prescriptionDataListSearch,
     isSearch: search.length > 0
   }

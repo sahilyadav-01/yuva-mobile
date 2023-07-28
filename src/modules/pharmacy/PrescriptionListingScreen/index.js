@@ -45,11 +45,12 @@ const PrescriptionListingScreen = () => {
   };
 
   return (
-    <View>
+     <View style={styles.mainContainerStyle}>
       <Header title={PRESCRIPTION} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} />
       {prescriptionDataList?.length > 0 ? (
        <View style={styles.CardViewContainerStyle}>
           <FlatList
+            style={styles.mainContainerStyle}
             renderItem={renderPatient}
             data={isSearch ? prescriptionDataListSearch : prescriptionDataList}
             keyExtractor={(item, index) => `${index}`}
@@ -64,7 +65,7 @@ const PrescriptionListingScreen = () => {
           <Text style={styles.NoOrderText}>{NO_PRESCRIPTION_FOUND}</Text>
         </View>
       )}
-    </View>
+     </View>
   );
 };
 export default PrescriptionListingScreen;

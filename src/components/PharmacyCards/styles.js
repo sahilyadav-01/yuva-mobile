@@ -10,9 +10,7 @@ export const styles = StyleSheet.create({
     marginRight: '5%',
     marginVertical: 12,
     minHeight: 143,
-    width: '90%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderRadius: (10, 10, 6, 6),
   },
   Top: {
     flexDirection: ROW,

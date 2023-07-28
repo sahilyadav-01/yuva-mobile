@@ -5,7 +5,7 @@ export const patientPrescriptionThunk = createAsyncThunk(
     'pharmacy/prescriptions',
     async ({ pageNo, pageSize, search }, { fulfillWithValue, rejectWithValue }) => {
         try {
-            const endpoint = `/prescription/view-all?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}`;
+            const endpoint = `/prescription/view-all?pageNo=${pageNo}&pageSize=${pageSize}&search=${search ? `${search}` : ''}`;
             const response = await YuvaService.post(endpoint);
             return response.data;
         } catch (error) {
@@ -16,9 +16,9 @@ export const patientPrescriptionThunk = createAsyncThunk(
 
 export const getAllPharmacyForUserThunk = createAsyncThunk(
     'pharmacy/view-all',
-    async ({ pageNo, pageSize, prescriptionId }, { fulfillWithValue, rejectWithValue }) => {
+    async ({ pageNo, pageSize, prescriptionId, search }, { fulfillWithValue, rejectWithValue }) => {
         try {
-            const endpoint = `/pharmacy/user/view-all?pageNo=${pageNo}&pageSize=${pageSize}&prescriptionId=${prescriptionId}`;
+            const endpoint = `/pharmacy/user/view-all?pageNo=${pageNo}&pageSize=${pageSize}&prescriptionId=${prescriptionId}&search=${search ? `${search}` : ''}`;
             const response = await YuvaService.get(endpoint);
             return response.data;
         } catch (error) {
@@ -55,7 +55,10 @@ const pharmacySlice = createSlice({
     reducers: {
     resetPrescriptionData(state){
       state.prescriptionData=[];
-    },  
+    }, 
+    resetPharmacyDataList(state){
+        state.pharmacyDataList=[];
+      }, 
     },
     extraReducers: {
         [patientPrescriptionThunk.pending]: (state, { payload }) => {
@@ -79,7 +82,7 @@ const pharmacySlice = createSlice({
             state.apiError = false;
         },
         [getAllPharmacyForUserThunk.fulfilled]: (state, { payload }) => {
-            state.pharmacyDataList = payload?.data?.pharmacyResponseDtoList;
+            state.pharmacyDataList = payload?.data;
             state.loading = false;
             state.apiError = false;
         },
@@ -107,5 +110,5 @@ const pharmacySlice = createSlice({
     },
 });
 export const pharmacyInit = pharmacySlice.getInitialState();
-export const {resetPrescriptionData } = pharmacySlice.actions;
+export const {resetPrescriptionData, resetPharmacyDataList } = pharmacySlice.actions;
 export default pharmacySlice.reducer;
