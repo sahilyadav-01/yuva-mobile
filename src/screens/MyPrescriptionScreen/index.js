@@ -1,28 +1,24 @@
-import { FlatList, SafeAreaView, View} from 'react-native';
+import {
+  FlatList,
+  SafeAreaView,
+  View,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
+import SelectList from 'react-native-dropdown-select-list';
 import ReportCard from '../../ReportCard';
-import { styles } from './styles';
-import { useMyPrescription } from './hooks/useMyPrescription';
+import {styles} from './styles';
+import {useMyPrescription} from './hooks/useMyPrescription';
 import Header from '../../components/Header';
-import { MY_PRESCRIPTIONS } from './constants';
+import {EMPTY_TEXT, ERROR_TEXT, MY_PRESCRIPTIONS} from './constants';
+import { PrescriptionContent } from './components/PrescriptionContent';
 
 const MyPrescription = () => {
-  const renderItem = ({ item, index }) => {
-    return <ReportCard name={item?.customerName} date={item?.createdAt} filePath={item?.filePath} key={index}/>;
-  };
-  const {myPrescriptionReport}=useMyPrescription();
-
   return (
     <SafeAreaView style={styles.contentContainerStyle}>
-       <Header title={MY_PRESCRIPTIONS} showBackButton={true} hideMenu={true}/>
-        <FlatList
-          data={myPrescriptionReport}
-          keyExtractor={(item, index) => `${index}`}
-          nestedScrollEnabled={true}
-          renderItem={renderItem}
-          ItemSeparatorComponent={()=><View style={styles.itemSeparator}/>}
-          contentContainerStyle={styles.listContainer}
-        />
+      <Header title={MY_PRESCRIPTIONS} showBackButton={true} hideMenu={true} />
+      <PrescriptionContent/>
     </SafeAreaView>
   );
 };

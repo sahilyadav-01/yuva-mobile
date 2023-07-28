@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { downloadHraReportThunk } from "../../../store/reducers/DownloadReportSlice";
 
 export const useReportCard = () => {
-    const { downloadHraReport } = useSelector(state => state.downloadReport);
+    const { downloadHraReport, hraLoading, hraError } = useSelector(state => state.downloadReport);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(downloadHraReportThunk())
@@ -11,6 +11,8 @@ export const useReportCard = () => {
 
 
     return {
-        downloadHraReport
+        downloadHraReport,
+        hraLoading,
+        hraError
     }
 }
