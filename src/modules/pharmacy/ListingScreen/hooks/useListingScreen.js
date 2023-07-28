@@ -14,7 +14,6 @@ export const useListingScreen = (prescriptionId) => {
   const [pharmacyData, setPharmacyData] = useState([]);
   const [pharmacyDataSearch, setPharmacyDataSearch] = useState([]);
   const { pharmacyDataList } = useSelector(state => state.pharmacy);
-console.log("pharmacyDataList",pharmacyDataList);
   useEffect(() => {
     if (
       pharmacyDataList &&
