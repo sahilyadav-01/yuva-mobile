@@ -77,7 +77,7 @@ export const PrescriptionContent = props => {
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.listContainer}>
       <SelectList
         boxStyles={styles.boxStyles}
         inputStyles={styles.inputStyles}
