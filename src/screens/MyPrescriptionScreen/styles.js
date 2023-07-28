@@ -9,8 +9,6 @@ export const styles = StyleSheet.create({
   },
   listContainer: {
     flex:1,
-    paddingTop: 36,
-    paddingBottom: 12,
   },
   itemSeparator: {
     height: 40,
@@ -39,5 +37,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14
-  }
+  },
+  listOffset: {height: 16}
 });
