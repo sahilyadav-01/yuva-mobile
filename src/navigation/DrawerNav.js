@@ -9,7 +9,7 @@ const DrawerNav = props => {
   const width = getWindowDimensions()?.width;
   const Platform = getPlatform();
   return (
-      <Drawer.Navigator defaultStatus='open' useLegacyImplementation={Platform.isIOS ?? undefined} drawerContent={DrawerContent} initialRouteName="HomeDrawer" screenOptions={{drawerStyle:{width},headerShown:false,drawerPosition:'right',swipeEnabled:false}}>
+      <Drawer.Navigator useLegacyImplementation={Platform.isIOS ?? undefined} drawerContent={DrawerContent} initialRouteName="HomeDrawer" screenOptions={{drawerStyle:{width},headerShown:false,drawerPosition:'right',swipeEnabled:false}}>
         <Drawer.Screen
           name="HomeDrawer"
           component={BottomTabs}

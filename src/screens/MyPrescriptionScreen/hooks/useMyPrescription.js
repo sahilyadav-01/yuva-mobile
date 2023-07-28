@@ -30,10 +30,7 @@ export const useMyPrescription = () => {
     if (!prescriptionLoading && !prescriptionError && fetchData) {
       setFetchData(false);
       setListData(
-        _.uniqBy(
-          listData.concat(myPrescriptionReport?.prescriptionResponseDto),
-          'filePath',
-        ),
+        listData.concat(myPrescriptionReport?.prescriptionResponseDto),
       );
       setFetchError(false);
       setDataAvailable(false);
@@ -45,11 +42,12 @@ export const useMyPrescription = () => {
 
   useEffect(() => {
     if (pageNo > 1)
-      dispatch(MyPrescriptionReportThunk({uuid, pageSize: 5, pageNo}));
+      dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo}));
+    setFetchData(true);
   }, [pageNo]);
 
   useEffect(() => {
-    dispatch(MyPrescriptionReportThunk({uuid, pageSize: 5, pageNo}));
+    dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo}));
     setFetchData(true);
   }, [uuid]);
 
@@ -77,5 +75,6 @@ export const useMyPrescription = () => {
     listData,
     onEndReached,
     dataAvailable,
+    pageNo,
   };
 };
