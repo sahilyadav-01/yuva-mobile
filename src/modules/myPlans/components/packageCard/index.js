@@ -11,27 +11,12 @@ import React from 'react';
 import {styles} from './styles';
 import {PNG} from '../../../../../assets';
 import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, USED} from './constant';
-import {useNavigation} from '@react-navigation/native';
 import {usePackageCard} from './hooks/usePackageCard';
 import {getPlanDate} from '../../../../utils/utils';
 import { NOT_AVAILABLE } from '../../../../components/constants';
 import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../../../styles/colors';
 const PackageCard = () => {
-  const navigation = useNavigation();
-  const bookNow = (plan, userVersion, uuid, version, locked) => {
-    if(!locked) {
-      navigation.navigate(plan ? 'PurchaseScreen' : 'MyCorporateProgram');
-    }
-    else {
-    navigation.navigate('Doctor', {
-      plan: plan,
-      userVersion: userVersion,
-      uuid: uuid,
-      version: version,
-    });
-  }
-  };
-  const {programAndPlan} = usePackageCard();
+  const {programAndPlan, bookNow} = usePackageCard();
   const renderItem = ({item, index}) => {
     return item.assignedAttributeResponseDto.map(i => {
       return (
