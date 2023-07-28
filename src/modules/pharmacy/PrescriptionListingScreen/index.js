@@ -1,78 +1,71 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { usePrescriptionListingScreen } from './hooks/usePrescriptionListingScreen';
 import { styles } from './style';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, PATIENT, PATIENT_PINCODE, PRESCRIPTION_ID, SEARCH_PLACEHOLDER_PHARMACY } from './constants';
-import { DARK_GRAY } from '../../../styles/colors';
-import Search from '../../../components/Search';
+import { BUTTON_TEXT, PRESCRIPTION, PATIENT_PINCODE, PRESCRIPTION_ID, SEARCH_PLACEHOLDER_PHARMACY, NO_PRESCRIPTION_FOUND } from './constants';
 
 const PrescriptionListingScreen = () => {
-  const { prescriptionData, onPress } = usePrescriptionListingScreen();
+  const { prescriptionDataList, prescriptionDataListSearch, onPress, onSearch, onEndReached, isSearch } = usePrescriptionListingScreen();
   const renderPatient = (item, index) => {
     if (!item || !item?.item) {
-      return null; 
+      return null;
     }
-    const onItemPress =()=>{
+    const onItemPress = () => {
       onPress(item)
     }
     return (
-      <TouchableOpacity onPress={onItemPress}>
-        <View style={styles.CardView} key={index}>
-          <View style={styles.HeadingTextContainer}>
-            <Text style={styles.HeadingText}>{item?.item?.patientName}</Text>
-            <Text style={styles.PincodeText}>
-              {PATIENT_PINCODE}
-              {item?.item?.pinCode}
+      <View style={styles.CompleteView}>
+        <TouchableOpacity onPress={onItemPress}>
+          <View style={styles.CardView} key={index}>
+            <View style={styles.NameView}>
+              <Text style={styles.NameText}>{item?.item?.patientName}</Text>
+              <Text style={styles.PincodeText}>
+                {PATIENT_PINCODE}
+                {item?.item?.pinCode}
+              </Text>
+            </View>
+            <Text style={styles.PresText}>
+              {PRESCRIPTION_ID}
+              {item?.item?.prescriptionId}
             </Text>
+            <View style={styles.NameView}>
+              <Text style={styles.PresText}>{item?.item?.doctorName}</Text>
+              <Text style={styles.PresText}>{item?.item?.hospitalName}</Text>
+            </View>
+            <View>
+              <TouchableOpacity style={styles.Button} onPress={onItemPress}>
+                <Text style={styles.ButtonText}>{BUTTON_TEXT}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <Text style={styles.SubText}>
-            {PRESCRIPTION_ID}
-            {item?.item?.prescriptionId}
-          </Text>
-          <View style={styles.NameView}>
-            <Text style={styles.SubText}>{item?.item?.doctorName}</Text>
-            <Text style={styles.SubText}>{item?.item?.hospitalName}</Text>
-          </View>
-          <View>
-            <TouchableOpacity style={styles.Button} onPress={onItemPress}>
-              <Text style={styles.ButtonText}>{BUTTON_TEXT}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   return (
-    <>
-      <Header showBackButton={true} />
-      <View style={styles.search}>
-        <Search
-          placeholder={SEARCH_PLACEHOLDER_PHARMACY}
-          placeholderTextColor={DARK_GRAY}
-        // onChangeText={onChangeSearch}
-        // value={searchQuery}
-        />
-      </View>
-      <View style={styles.PatientHeader}>
-        <Text style={styles.PatientText}>{PATIENT}</Text>
-        <View style={styles.line}></View>
-      </View>
-      <View style={styles.scrollViewContainer}>
-      <ScrollView>
-        <View>
+     <View style={styles.mainContainerStyle}>
+      <Header title={PRESCRIPTION} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} />
+      {prescriptionDataList?.length > 0 ? (
+       <View style={styles.CardViewContainerStyle}>
           <FlatList
+            style={styles.mainContainerStyle}
             renderItem={renderPatient}
-            data={prescriptionData}
-            nestedScrollEnabled={true}
+            data={isSearch ? prescriptionDataListSearch : prescriptionDataList}
             keyExtractor={(item, index) => `${index}`}
             showsHorizontalScrollIndicator={false}
+            nestedScrollEnabled={true}
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.1}
           />
         </View>
-      </ScrollView>
-      </View>
-    </>
+      ) : (
+        <View>
+          <Text style={styles.NoOrderText}>{NO_PRESCRIPTION_FOUND}</Text>
+        </View>
+      )}
+     </View>
   );
 };
 export default PrescriptionListingScreen;
