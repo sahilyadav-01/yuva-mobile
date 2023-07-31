@@ -37,7 +37,6 @@ const PlanCard = (props) => {
     );
     }
   }
-  console.log('Plan service',planService)
   return (
     <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={isDetailScreen ?styles.detailsCont  :styles.container }>
       <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
