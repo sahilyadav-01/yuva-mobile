@@ -22,6 +22,7 @@ const PlanCard = (props) => {
 
   const renderItem = ({item: serviceItem, index}) => {
     const { serviceName, shortDescription, image, available } = serviceItem || {};
+    if(Object.keys(serviceItem)?.length > 0) {
     return (
       <View style={{...styles.itemContainer,marginRight:index%2===0? 36 : 28}} key={index}>
         <View style={{...styles.iconContainer,backgroundColor:available ? CYAN_BLUE : ALTO}}>
@@ -34,7 +35,9 @@ const PlanCard = (props) => {
         </View>
       </View>
     );
+    }
   }
+  console.log('Plan service',planService)
   return (
     <TouchableOpacity onPress={onDetailsScreen} disabled={!isHomeScreen} style={isDetailScreen ?styles.detailsCont  :styles.container }>
       <Image source={PNG.OurPlanBackground} style={styles.imgBackground} resizeMode={'cover'}/>
