@@ -9,7 +9,7 @@ export const useServiceContainer = (props) => {
     { name: TALK_TO_DOCTOR_NAME, screenName: Talk_TO_DOCTOR, image: TALK_TO_DOCTOR_IMAGE },
     { name: HEALTH_CHECKUP_PACKAGES, screenName: HEALTH_CHECKUP, image: HEALTH_CHECKUP_PACKAGES_IMAGE },
     { name: 'Mental Wellness', screenName: 'MentalWellness', icon: 'MentalWellness', type:'icon' },
-    { name: PHARMACY_NAME, screenName: PHARMACY, image: PHARMACY },
+    { name: PHARMACY_NAME, screenName: PHARMACY, icon: PHARMACY , type:ICON },
     { name: EMRM, screenName: EMRM_SCREEN_NAME, icon: EMRM_ICON , type:ICON },
 
   ];
