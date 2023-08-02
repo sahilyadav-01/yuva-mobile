@@ -13,7 +13,7 @@ export const usePrescriptionListingScreen = () => {
   const [prescriptionDataList, setprescriptionDataList] = useState([]);
   const [prescriptionDataListSearch, setprescriptionDataListSearch] = useState([]);
   const [pageNumberSearch, setPageNumberSearch] = useState(1);
-  const { prescriptionData } = useSelector(state => state.pharmacy);
+  const { prescriptionData, pharmacyDataLoading } = useSelector(state => state.pharmacy);
 
   useEffect(() => {
     if (
@@ -86,6 +86,7 @@ export const usePrescriptionListingScreen = () => {
     }
   };
   return {
+    pharmacyDataLoading,
     prescriptionDataList,
     onPress,
     onSearch,

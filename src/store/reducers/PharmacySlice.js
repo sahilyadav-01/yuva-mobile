@@ -47,6 +47,7 @@ const initialState = {
     otpData: ' ',
     apiError: false,
     apiErrorMessage: '',
+    pharmacyDataLoading: false,
 };
 
 const pharmacySlice = createSlice({
@@ -64,15 +65,18 @@ const pharmacySlice = createSlice({
         [patientPrescriptionThunk.pending]: (state, { payload }) => {
             state.loading = true;
             state.apiError = false;
+            state.pharmacyDataLoading = true;
         },
         [patientPrescriptionThunk.fulfilled]: (state, { payload }) => {
             state.prescriptionData = payload?.data;
             state.loading = false;
             state.apiError = false;
+            state.pharmacyDataLoading = false;
         },
         [patientPrescriptionThunk.rejected]: (state, { payload }) => {
             state.loading = false;
             state.apiError = true;
+            state.pharmacyDataLoading = false;
         },
 
         /** view-all Pharmacy For User*/

@@ -6,7 +6,7 @@ import Header from '../../../components/Header';
 import { BUTTON_TEXT, PRESCRIPTION, PATIENT_PINCODE, PRESCRIPTION_ID, SEARCH_PLACEHOLDER_PHARMACY, NO_PRESCRIPTION_FOUND } from './constants';
 
 const PrescriptionListingScreen = () => {
-  const { prescriptionDataList, prescriptionDataListSearch, onPress, onSearch, onEndReached, isSearch } = usePrescriptionListingScreen();
+  const { pharmacyDataLoading, prescriptionDataList, prescriptionDataListSearch, onPress, onSearch, onEndReached, isSearch } = usePrescriptionListingScreen();
   const renderPatient = (item, index) => {
     if (!item || !item?.item) {
       return null;
@@ -45,10 +45,14 @@ const PrescriptionListingScreen = () => {
   };
 
   return (
-     <View style={styles.mainContainerStyle}>
+    <View style={styles.mainContainerStyle}>
       <Header title={PRESCRIPTION} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} />
-      {prescriptionDataList?.length > 0 ? (
-       <View style={styles.CardViewContainerStyle}>
+      {!pharmacyDataLoading && prescriptionDataList?.length === 0 ? (
+        <View>
+          <Text style={styles.NoOrderText}>{NO_PRESCRIPTION_FOUND}</Text>
+        </View>
+      ) : (
+        <View style={styles.CardViewContainerStyle}>
           <FlatList
             style={styles.mainContainerStyle}
             renderItem={renderPatient}
@@ -60,12 +64,8 @@ const PrescriptionListingScreen = () => {
             onEndReachedThreshold={0.1}
           />
         </View>
-      ) : (
-        <View>
-          <Text style={styles.NoOrderText}>{NO_PRESCRIPTION_FOUND}</Text>
-        </View>
       )}
-     </View>
+    </View>
   );
 };
 export default PrescriptionListingScreen;
