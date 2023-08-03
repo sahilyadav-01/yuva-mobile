@@ -28,7 +28,7 @@ export const useBookingConfirm = () => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
         }
-    }, [route])
+    }, [])
     const handleDateTime = (arg) => {
         if(arg?.status)
         setEpochTime(arg?.value);
