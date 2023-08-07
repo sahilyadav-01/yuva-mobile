@@ -1,11 +1,14 @@
-import { View, FlatList } from 'react-native';
+import {View, FlatList, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import MyReports from '../../components/myReports';
-import { useReport } from './hooks/useReport';
-import { styles } from './styles';
+import {useReport} from './hooks/useReport';
+import {styles} from './styles';
+import {EMPTY_TEXT, ERROR_TEXT} from './constants';
 
 const Reports = () => {
-  const renderItem = ({ item, index }) => {
+  const {downloadDiagnosticReport, diagnosticLoading, diagnosticError} =
+    useReport();
+  const renderItem = ({item, index}) => {
     return (
       <MyReports
         bookingId={item?.bookingId}
@@ -15,17 +18,35 @@ const Reports = () => {
       />
     );
   };
-  const { downloadDiagnosticReport } = useReport();
-  return (
-    <View style={styles.contentContainerStyle}>
+
+  if (diagnosticLoading)
+    return (
+      <View style={styles.emptyView}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+  else if (diagnosticError)
+    return (
+      <View style={styles.emptyView}>
+        <Text style={styles.emptyText}>{ERROR_TEXT}</Text>
+      </View>
+    );
+  else {
+    return downloadDiagnosticReport?.length === 0 ? (
+      <View style={styles.emptyView}>
+        <Text style={styles.emptyText}>{EMPTY_TEXT}</Text>
+      </View>
+    ) : (
+      <View style={styles.contentContainerStyle}>
         <FlatList
           data={downloadDiagnosticReport}
           keyExtractor={(item, index) => `${index}`}
           nestedScrollEnabled={true}
           renderItem={renderItem}
         />
-    </View>
-  );
+      </View>
+    );
+  }
 };
 
 export default Reports;

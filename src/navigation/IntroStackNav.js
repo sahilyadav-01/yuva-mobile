@@ -26,13 +26,16 @@ const Stack = createStackNavigator();
 const IntroStackNav = () => {
   const dispatch = useDispatch();
   const [initialRouteName, setInitialRouteName] = useState(null);
+  const {loggedIn, isAppReady} = useSelector(state => state.auth);
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute));
     dispatch(profileThunk());
     dispatch(initialLoad());
-    dispatch(cityIdThunk());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
   }, []);
+  useEffect(()=>{
+    if(loggedIn === 'loggedIn') dispatch(cityIdThunk());
+  },[loggedIn])
   getJwt().then(jwt => {
     if (jwt) {
       dispatch(setLoginState());
@@ -43,7 +46,6 @@ const IntroStackNav = () => {
       dispatch(checkRole(true));
     }
   });
-  const {loggedIn, isAppReady} = useSelector(state => state.auth);
   const {maintainence: maintainenceState} = useSelector(
     state => state?.maintainence,
   );

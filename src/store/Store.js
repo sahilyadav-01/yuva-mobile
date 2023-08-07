@@ -29,6 +29,7 @@ import downloadReport,{downloadInit} from './reducers/DownloadReportSlice';
 import payment,{paymentInit} from './reducers/PaymentSlice';
 import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
 import purchases, { purchasesInit } from './reducers/PurchasesSlice';
+import pharmacy, {pharmacyInit} from './reducers/PharmacySlice';
 import Emrm, { EmrmInit } from './reducers/EmrmSlice';
 import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
 
@@ -59,8 +60,9 @@ const storeInitialState = {
   payment: paymentInit,
   checkOut:checkOutInit,
   purchases: purchasesInit,
+  pharmacy:pharmacyInit,
   Emrm: EmrmInit,
-  maintainence: maintainenceInit
+  maintainence: maintainenceInit,
 };
 
 const appReducer = combineReducers({
@@ -90,6 +92,7 @@ const appReducer = combineReducers({
   payment,
   checkOut,
   purchases,
+  pharmacy,
   Emrm,
   maintainence
 });

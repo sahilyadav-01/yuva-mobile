@@ -8,3 +8,4 @@ export const DISCOUNT = 'Discount';
 export const TOTAL_AMOUNT = 'Total Amount';
 export const DOWNLOAD_INVOICE = 'Download Invoice';
 export const COLLECTION_CHARGES = 'Collection Charges';
+export const DOWNLOAD_INVOICE_ERROR = 'Cannot Download Invoice for this order'

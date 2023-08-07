@@ -27,9 +27,9 @@ export const downloadDiagnosticReportThunk = createAsyncThunk(
 );
 export const MyPrescriptionReportThunk = createAsyncThunk(
   'talkToDr/user',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+  async ({uuid,pageNo,pageSize}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = '/talkToDr/user';
+      const endpoint = `/my/prescription?pageNo=${pageNo}&pageSize=${pageSize}&serviceUuid=${uuid}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -45,7 +45,13 @@ const initialState = {
   apiErrorMessage: '',
   downloadHraReport:[],
   downloadDiagnosticReport:[],
-  myPrescriptionReport:[]
+  myPrescriptionReport:[],
+  hraLoading: false,
+  hraError: false,
+  prescriptionLoading: false,
+  prescriptionError: false,
+  diagnosticLoading: false,
+  disagnosticError: false,
 };
 
 const downlodReportSlice = createSlice({
@@ -54,36 +60,51 @@ const downlodReportSlice = createSlice({
   extraReducers: {
     [downloadHraReportThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.hraLoading = true;
+      state.hraError = false;
     },
     [downloadHraReportThunk.fulfilled]: (state, action) => {
       state.downloadHraReport = action.payload?.data || [];
       state.loading = false;
+      state.hraLoading = false;
     },
     [downloadHraReportThunk.rejected]: (state, action) => {
       state.apiError = true;
       state.loading = false;
+      state.hraLoading = false;
+      state.hraError = true;
     },
     [downloadDiagnosticReportThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.diagnosticLoading = true;
+      state.diagnosticError = false;
     },
     [downloadDiagnosticReportThunk.fulfilled]: (state, action) => {
       state.downloadDiagnosticReport = action.payload?.data || [];
       state.loading = false;
+      state.diagnosticLoading = false;
     },
     [downloadDiagnosticReportThunk.rejected]: (state, action) => {
       state.apiError = true;
       state.loading = false;
+      state.diagnosticLoading = false;
+      state.diagnosticError = true;
     },
     [MyPrescriptionReportThunk.pending]: (state, {payload}) => {
       state.loading = true;
+      state.prescriptionLoading = true;
+      state.prescriptionError = false;
     },
     [MyPrescriptionReportThunk.fulfilled]: (state, action) => {
       state.myPrescriptionReport = action.payload?.data || [];
       state.loading = false;
+      state.prescriptionLoading = false;
     },
     [MyPrescriptionReportThunk.rejected]: (state, action) => {
       state.apiError = true;
       state.loading = false;
+      state.prescriptionLoading = false;
+      state.prescriptionError = true;
     },
   },
 });

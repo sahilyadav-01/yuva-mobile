@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {ORANGE, WHITE} from '../../styles/colors';
-import {CENTER, FLEX_END} from '../../styles/constants';
+import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: CENTER,
     alignContent: CENTER,
+    marginVertical: 24,
   },
   textStyle: {
     color: WHITE,
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
   },
   buttonView: {
     flex: 1,
-    justifyContent: FLEX_END,
+    justifyContent: CENTER,
+    marginHorizontal: 8,
   },
 });

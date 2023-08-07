@@ -43,7 +43,7 @@ const NewAppointments = () => {
   } = useNew(plan, userVersion, uuid, version);
   return (
     <View>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps='handled'>
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
         <View style={styles.border}>
