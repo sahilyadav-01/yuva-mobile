@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, ScrollView} from 'react-native';
+import {View, FlatList} from 'react-native';
 import DoctorCard from '../../components/DoctorCard';
 import {useDoctor} from './hooks/useDoctor';
 import {styles} from './styles';
@@ -34,7 +34,7 @@ const Doctor = () => {
   };
   return (
   
-      <View>
+      <View style={styles.contentContainerStyle}>
         <View style={styles.search}>
           <Search
             placeholder={SEARCH}
@@ -43,8 +43,6 @@ const Doctor = () => {
             value={searchQuery}
           />
         </View>
-        <ScrollView>
-        <View>
           <FlatList
             renderItem={renderItem}
             data={data}
@@ -52,8 +50,6 @@ const Doctor = () => {
             showsHorizontalScrollIndicator={false}
             nestedScrollEnabled={true}
           />
-        </View>
-        </ScrollView>
       </View>
   );
 };

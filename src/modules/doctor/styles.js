@@ -4,7 +4,6 @@ import {DARK_MAROON} from '../../styles/colors';
 export const styles = StyleSheet.create({
   contentContainerStyle: {
     flex: 1,
-    paddingBottom: 60,
   },
   theme: {colors: {text: DARK_MAROON}},
   search: {
