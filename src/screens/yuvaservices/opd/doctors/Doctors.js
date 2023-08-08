@@ -5,7 +5,7 @@ import Doctor from '../../../../modules/doctor';
 
 const DoctorScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.homeScreenContainer}>
       <Doctor />
     </SafeAreaView>
   );
