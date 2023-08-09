@@ -145,6 +145,7 @@ import Emrm from './Emrm';
 import EmrmAddIcon from './EmrmAddIcon';
 import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
+import Our_Plan_Banner from './Our_Plan_Banner.png'
 
 const PNG = {
   AMICO,
@@ -222,7 +223,8 @@ const PNG = {
   SelfTracking,
   YuvaBanner,
   OnMood9Banner,
-  SelfHealing
+  SelfHealing,
+  Our_Plan_Banner,
 };
 
 const SVG = {

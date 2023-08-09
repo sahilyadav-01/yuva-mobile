@@ -4,6 +4,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import { styles as style } from './style';
 import { SVG } from '../../../assets';
 import { CYAN_BLUE, DARK_GRAY } from '../../styles/colors';
+import OurPlan from './Components/OurPlan';
 
 export const HomeScreen = () => {
   const styles = style();
@@ -27,6 +28,9 @@ export const HomeScreen = () => {
     <SVG.SearchIcon/>
     </View>
      </View>
+     <View>
+        <OurPlan/>
+      </View>
     </SafeAreaView>
   );
 };
