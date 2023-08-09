@@ -45,7 +45,8 @@ export const useItem = item => {
           discount: `${purchasesItemDetails[`${item.orderNumber}`]?.couponAmount}`,
           couponName:purchasesItemDetails[`${item.orderNumber}`]?.couponName ?? null,
           totalDiscount: `${purchasesItemDetails[`${item.orderNumber}`]?.discount}`,
-          processingCharge:purchasesItemDetails[`${item.orderNumber}`]?.processingCharge
+          processingCharge:purchasesItemDetails[`${item.orderNumber}`]?.processingCharge,
+          invoiceFilePath: purchasesItemDetails[`${item.orderNumber}`]?.invoiceFilePath,
         };
       })
     : null;

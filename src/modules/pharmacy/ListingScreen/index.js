@@ -1,55 +1,50 @@
 import React from 'react';
-import { ScrollView, View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { styles } from './style';
 import Header from '../../../components/Header';
-import { HEADER_TITLE, SEARCH_PLACEHOLDER_PHARMACY } from '../constants';
-import PharmacyCards from '../../../components/PharmacyCards/PharmacyCards';
-import Search from '../../../components/Search';
-import { DARK_GRAY } from '../../../styles/colors';
+import { HEADER_TITLE, SEARCH_PLACEHOLDER_PHARMACY, NO_PHARMACY_FOUND } from '../constants';
+import PharmacyCards from '../../../components/PharmacyCards';
 import { useListingScreen } from './hooks/useListingScreen';
+import { useRoute } from '@react-navigation/native';
 
 const ListingScreen = () => {
-  const { search } = styles();
-  const { data } = useListingScreen();
+  const route = useRoute();
+  const { prescriptionId } = route?.params;
+  const { pharmacyData, onSearch, isSearch, onEndReached, pharmacyDataSearch } = useListingScreen(prescriptionId);
   const renderItem = ({ item, index }) => {
     return (
       <PharmacyCards
         key={index}
-        name={item.name}
-        address={item.address}
+        name={item?.pharmacyName}
+        address={item?.address}
+        number={item?.contactPersonNumber}
+        available={item?.available}
+        id={prescriptionId}
       />
     );
   };
   return (
-    <>
-      <Header showBackButton={true} isScreen={false} title={HEADER_TITLE} hideMenu={false} />
-      <View >
-        <View>
-          <View style={search}>
-            <Search
-              placeholder={SEARCH_PLACEHOLDER_PHARMACY}
-              placeholderTextColor={DARK_GRAY}
-            // onChangeText={onChangeSearch}
-            // value={searchQuery}
-            />
-          </View>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
+    <View style={styles.mainViewContainerStyle}>
+      <Header title={HEADER_TITLE} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} hideMenu={false} />
+      {pharmacyData?.length > 0 ? (
+        <View style={styles.CardViewContainerStyle}>
+          <FlatList 
+            style={styles.mainViewContainerStyle}
+            renderItem={renderItem}
+            data={isSearch ? pharmacyDataSearch : pharmacyData}
+            keyExtractor={(item, index) => `${index}`}
+            showsHorizontalScrollIndicator={false}
             nestedScrollEnabled={true}
-            bounces={false}>
-            <View>
-              <FlatList
-                renderItem={renderItem}
-                data={data}
-                keyExtractor={(item, index) => `${index}`}
-                showsHorizontalScrollIndicator={false}
-                nestedScrollEnabled={true}
-              />
-            </View>
-          </ScrollView>
+            onEndReached={onEndReached}
+            onEndReachedThreshold={0.1}
+          />
         </View>
-      </View>
-    </>
+      ) : (
+        <View>
+          <Text style={styles.NoOrderText}>{NO_PHARMACY_FOUND}</Text>
+        </View>
+      )}
+    </View>
   );
 };
 export default ListingScreen;

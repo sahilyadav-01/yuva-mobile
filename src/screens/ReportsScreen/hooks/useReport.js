@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { downloadDiagnosticReportThunk } from "../../../store/reducers/DownloadReportSlice";
 
 export const useReport = () => {
-    const { downloadDiagnosticReport } = useSelector(state => state.downloadReport);
+    const { downloadDiagnosticReport, diagnosticLoading, diagnosticError } = useSelector(state => state.downloadReport);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(downloadDiagnosticReportThunk())
@@ -11,6 +11,8 @@ export const useReport = () => {
 
 
     return {
+        diagnosticLoading,
+        diagnosticError,
         downloadDiagnosticReport
     }
 }

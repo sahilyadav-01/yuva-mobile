@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {CYAN_BLUE, ORANGE, SHUTTLE_GREY, WHITE} from '../../../../styles/colors';
+import {ORANGE, SHUTTLE_GREY, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
 export const styles = () => {
@@ -25,7 +25,7 @@ export const styles = () => {
       height: 48,
       width: 48,
       borderRadius: 24,
-      backgroundColor: SHUTTLE_GREY,
+      backgroundColor: ORANGE,
       alignItems: CENTER,
       justifyContent: CENTER,
     },
@@ -34,7 +34,7 @@ export const styles = () => {
     separatorLine: {
       height: 56,
       width: 4,
-      backgroundColor: CYAN_BLUE,
+      backgroundColor: ORANGE,
       marginLeft: 22,
     },
     indexText: {

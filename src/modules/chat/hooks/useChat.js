@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Linking } from "react-native";
 import { Alert } from "react-native";
 import {Freshchat, FreshchatUser} from 'react-native-freshchat-sdk';
 import { useSelector } from "react-redux";
-import { ERROR_MESSAGE } from "../constant";
+import { CONTACT_NUMBER, ERROR_MESSAGE } from "../constant";
 
 export const useChat = () => {
   const [error, setError] = useState(false);
@@ -16,10 +17,9 @@ export const useChat = () => {
     if(error) {
       Alert.alert(ERROR_MESSAGE);
       setError(!error);
-    } else {
-      onPressChat();
-    };
+    }
   }, [error]);
+  
   const onInitChat = () => {
     var freshchatUser = new FreshchatUser();
     freshchatUser.firstName = userDetails?.name;
@@ -36,7 +36,12 @@ export const useChat = () => {
     Freshchat.showConversations();
   };
 
+  const onPressTalk = () => {
+    Linking.openURL(`tel:${CONTACT_NUMBER}`);
+  }
+
   return {
     onPressChat,
+    onPressTalk,
   };
 };

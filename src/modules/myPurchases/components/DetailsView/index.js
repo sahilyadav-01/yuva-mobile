@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, FlatList, Text} from 'react-native';
-import {SVG} from '../../../../../assets';
+import {View, FlatList, Text, TouchableOpacity} from 'react-native';
 import {styles} from './style';
 import {
   COLLECTION_CHARGES,
@@ -15,9 +14,12 @@ import {
   TOTAL_AMOUNT,
 } from './constants';
 import RenderPlans from '../Plans';
+import { useDetailsView } from './hooks/useDetailsView';
 
 const DetailsView = props => {
   const {item, purchasesTab, priceBreakUpArray, renderList} = props;
+  const path = purchasesTab === 0 ? item?.invoiceFilePath : priceBreakUpArray[0]?.invoiceFilePath;
+  const {downloadInvoice} = useDetailsView(path)
   const {
     purchaseContainer,
     purchaseText,
@@ -136,9 +138,9 @@ const DetailsView = props => {
           <Text style={totalAmountText}>{TOTAL_AMOUNT}</Text>
           <Text style={priceText}>{`₹${Math.ceil(item?.amountPaid)}/-`}</Text>
         </View>
-        <View style={summaryContainer}>
+        <TouchableOpacity onPress={downloadInvoice} style={summaryContainer}>
           <Text style={invoiceText}>{DOWNLOAD_INVOICE}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </>
   );

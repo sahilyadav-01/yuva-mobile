@@ -40,7 +40,7 @@ const OPDNavigation = () => {
             elevation: 0,
             backgroundColor: 'transparent',
           },
-          swipeEnabled: true,
+          swipeEnabled: false,
           lazy: false,
         }}>
         <Tab.Screen

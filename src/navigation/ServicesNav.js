@@ -19,13 +19,12 @@ import ViewAppointment from '../screens/yuvaservices/opd/appointments/ViewAppoin
 import CheckInAppointment from '../screens/yuvaservices/opd/appointments/CheckInAppointment';
 import EditAppointment from '../screens/yuvaservices/opd/appointments/EditAppointment';
 import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
-import DoctorScreen from '../screens/yuvaservices/opd/doctors/Doctors';
 import ViewAllOurPlan from '../modules/ourPlan/components/ViewAllOurPlan';
 import PharmacyNavigation from './PharmacyNav';
-import ComingSoon from '../components/ComingSoon';
 import EmrmNavigation from './EmrmNav';
 import OnMood9Screen from '../screens/OnMood9';
 import OnMood9Static from '../screens/OnMood9/onMood9Static';
+import LoginScreen from '../screens/login/LoginScreen';
 
 const Stack = createStackNavigator();
 
@@ -127,13 +126,11 @@ const ServicesNav = () => {
         component={OnMood9Screen}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="PHARMACY"
-        component={
-          loggedIn !== 'loggedIn' ? ComingSoon : PharmacyNavigation
-        }
+        component={loggedIn !== 'loggedIn' ? LoginScreen : PharmacyNavigation}
         options={{ headerShown: false }}
-      /> */}
+      />
        <Stack.Screen
         name="EmrmHome"
         component={EmrmNavigation}
