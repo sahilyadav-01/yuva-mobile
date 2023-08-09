@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DiagnosticNav from './Diagnosticnavigation';
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
 import HomeScreen from '../screens/HomeScreen/index';
+import NewHomeScreen from '../screens/NewHomeScreen/index';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
@@ -33,7 +34,12 @@ const ServicesNav = () => {
     auth: {loggedIn},
   } = useSelector(state => state);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='NewHome'>
+      <Stack.Screen
+        name="NewHome"
+        component={NewHomeScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="HomeService"
         component={HomeScreen}
