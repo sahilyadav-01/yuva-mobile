@@ -1,13 +1,25 @@
 import {StyleSheet} from 'react-native';
-import { AUTO, CENTER, CONTAIN, FLEX_START, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { CYAN_BLUE, GREY, GREY70, LIGHT_GREY, LIGHT_GREYISH_RED, ORANGE, ORANGE_RED, SEASHELL, WHITE } from '../../../../styles/colors';
-import { fonts } from '../../../../styles/fonts';
-import { getDimensions } from '../../../../utils/utils';
+import {
+  ABSOLUTE,
+  AUTO,
+  CENTER,
+  CONTAIN,
+  FLEX_START,
+  ROW,
+  SPACE_AROUND,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
+import {
+  BLACK,
+  CYAN_BLUE,
+  ORANGE,
+  ORANGE_RED,
+  WHITE,
+} from '../../../../styles/colors';
+import {fonts} from '../../../../styles/fonts';
 
-
-const { width,height } = getDimensions();
 export const styles = StyleSheet.create({
-  container:{
+  container: {
     paddingVertical: 4,
   },
   OurPlansHeaderStyle: {
@@ -30,13 +42,13 @@ export const styles = StyleSheet.create({
   line: {
     borderBottomColor: ORANGE_RED,
     borderBottomWidth: 1,
-    flex:1
+    flex: 1,
   },
   subHeadingView: {
     marginVertical: 6,
     marginHorizontal: 16,
-    flexDirection:ROW,
-    zIndex:999
+    flexDirection: ROW,
+    zIndex: 999,
   },
   subHeadingText: {
     fontFamily: fonts.family.rubik400,
@@ -44,78 +56,88 @@ export const styles = StyleSheet.create({
     color: ORANGE,
   },
   ImageBanner: {
-    width:'95%',
-    height:AUTO,
-    aspectRatio: 19/9,
-    borderRadius:14,
-    resizeMode:CONTAIN,
+    width: '95%',
+    height: AUTO,
+    aspectRatio: 19 / 9,
+    borderRadius: 14,
+    resizeMode: CONTAIN,
   },
   ImageView: {
-    alignItems:CENTER,
+    alignItems: CENTER,
     justifyContent: FLEX_START,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: 'center',
-  },
-  label: {
-    margin: 8,
-  },
-  radioButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
   },
   radioOuterCircle: {
     width: 20,
     height: 20,
     borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 8,
+    borderWidth: 1.5,
+    borderColor: BLACK,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    marginLeft: 40,
+    marginTop: 8,
   },
   radioOuterCircleSelected: {
-    borderColor: '#007bff',
+    borderColor: BLACK,
   },
   radioInnerCircle: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#007bff',
+    backgroundColor: ORANGE,
   },
   radioButtonText: {
-    fontSize: 16,
+    color: BLACK,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.rubik400,
   },
   expandedContent: {
-    marginHorizontal:10,
-    borderRadius:12,
-    padding:6,
-    justifyContent:CENTER,
-    alignSelf:CENTER,
-    backgroundColor:ORANGE,
+    marginTop: 10,
+    marginHorizontal: 10,
+    borderRadius: 12,
+    padding: 8,
+    justifyContent: CENTER,
+    alignSelf: CENTER,
+    backgroundColor: ORANGE,
   },
-  expandedContentText:{
-    color:WHITE,
+  expandedContentText: {
+    color: WHITE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
   },
-  PlanView:{
-    marginHorizontal:5,
-    marginVertical:12,
-    borderWidth:1,
-    borderRadius:10,
-    borderColor:GREY70,
+  PlanView: {
+    marginVertical: 18,
+    width: '95%',
+    height: AUTO,
+    aspectRatio: 19 / 9,
+    borderRadius: 12,
+    marginHorizontal: 6,
   },
-  PlanClickView:{
-    marginHorizontal:12,
-    marginVertical:12,
-    borderWidth:1,
-    borderRadius:10,
-    borderColor:GREY70
-  }
+  PlanClickView: {
+    marginVertical:6,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: BLACK,
+    backgroundColor: WHITE,
+    paddingBottom: 6,
+    marginRight: 5,
+  },
+  ImageBanner2: {
+    width: '100%',
+    height: AUTO,
+    aspectRatio: 19 / 9,
+    borderRadius: 12,
+  },
+  TextImage: {
+    position: ABSOLUTE,
+    top: 12,
+    left: 20,
+    alignItems: FLEX_START,
+    justifyContent: FLEX_START,
+    paddingBottom:5,
+  },
+  PlanContainer:{flexDirection:ROW, justifyContent:SPACE_AROUND,alignItems:CENTER,paddingBottom:2},
+  DetailsContainer:{flexDirection:ROW,justifyContent:SPACE_AROUND,marginLeft:40},
+  PlanYear:{width: '30%'},
+  PlanText:{width: '45%'}
 });

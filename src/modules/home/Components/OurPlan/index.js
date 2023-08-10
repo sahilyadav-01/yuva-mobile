@@ -1,14 +1,52 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, SUB_HEADING, VIEW_ALL} from './Constant';
+import {OUR_PLANS, SUB_HEADING, VIEW_ALL, VIEW_DETAILS} from './constant';
 import {PNG} from '../../../../../assets';
+import {useOurPlan} from './hooks/useOurPlan';
 
 const OurPlan = props => {
-  const [selected, setSelected] = useState(false);
+  const {handlePress, DATA, selectedItems} = useOurPlan();
 
-  const handlePress = () => {
-    setSelected(!selected);
+  const renderItem = (item, index) => {
+    const onPress=()=>{
+      handlePress(item?.index);
+  }
+    return (
+      <View style={selectedItems.includes(item.index) && styles.PlanClickView} key={index}>
+        <View style={styles.PlanContainer}>
+          <TouchableOpacity
+            style={[
+              styles.radioOuterCircle,
+              selectedItems.includes(item.index) &&
+                styles.radioOuterCircleSelected,
+            ]}
+            onPress={onPress}>
+            {selectedItems.includes(item.index) && (
+              <View style={styles.radioInnerCircle} />
+            )}
+          </TouchableOpacity>
+          <View style={styles.DetailsContainer}>
+            <View style={styles.PlanText}>
+              <Text style={styles.radioButtonText}>{item?.item?.title}</Text>
+            </View>
+            <View style={styles.PlanYear}>
+              <Text style={styles.radioButtonText}>{item?.item?.year}</Text>
+            </View>
+            <View style={styles.PlanYear}>
+              <Text style={styles.radioButtonText}>{item?.item?.rupee}</Text>
+            </View>
+          </View>
+        </View>
+        {selectedItems.includes(item.index) && (
+          <TouchableOpacity>
+            <View style={styles.expandedContent}>
+              <Text style={styles.expandedContentText}>{VIEW_DETAILS}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
+    );
   };
   return (
     <View style={styles.container}>
@@ -27,22 +65,13 @@ const OurPlan = props => {
         <Image style={styles.ImageBanner} source={PNG.Our_Plan_Banner} />
       </View>
       <View style={styles.PlanView}>
-        <View style={styles.PlanClickView}>
-          <TouchableOpacity style={styles.radioButton} onPress={handlePress}>
-            <View
-              style={[
-                styles.radioOuterCircle,
-                selected && styles.radioOuterCircleSelected,
-              ]}>
-              {selected && <View style={styles.radioInnerCircle} />}
-            </View>
-            <Text style={styles.radioButtonText}>Radio Button</Text>
-          </TouchableOpacity>
-          {selected && (
-            <View style={styles.expandedContent}>
-              <Text style={styles.expandedContentText}>View Details</Text>
-            </View>
-          )}
+        <Image style={styles.ImageBanner2} source={PNG.OurPlanRadioButton} />
+        <View style={styles.TextImage}>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
         </View>
       </View>
     </View>
