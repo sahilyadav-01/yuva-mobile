@@ -506,7 +506,7 @@ export const onPrivacyPolicyPress = async () => {
     Linking.openURL('https://www.yuvahealth.in/privacy-policy');
   }
   else {
-    Linking.openURL('market://details?id=com.android.chrome');
+    Linking.openURL(storeUrl);
   }
 }
 
