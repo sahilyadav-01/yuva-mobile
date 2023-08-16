@@ -16,6 +16,7 @@ export const useHome = () => {
   const route = useRoute();
   const dispatch = useDispatch();
   const {loggedIn} = useSelector(state => state.auth);
+  const {userDetails:{name}} = useSelector(state => state.profile);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -39,5 +40,5 @@ export const useHome = () => {
       }
     }
   }, [focused, loggedIn]);
-  return {};
+  return {name};
 };

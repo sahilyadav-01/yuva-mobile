@@ -22,7 +22,6 @@ const ProfileDetails = () => {
     <View style={container}>
       <Header
         showSearch={false}
-        hideLocation={true}
         hideTitle={true}
         hideMenu={true}
         showBackButton={true}

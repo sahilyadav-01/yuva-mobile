@@ -1,13 +1,11 @@
-import {DrawerActions, useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {resetAppointments} from '../../../store/reducers/AppointmentSlice';
-import {logoutThunk} from '../../../store/reducers/AuthSlice';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import {SVG} from '../../../../assets';
 
 export const useDrawer = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
   const {isEmployee} = useSelector(state => state.auth);
+  const {userDetails:{name}} = useSelector(state => state.profile);
   const data = [
     {
       Icon: SVG.Profile,
@@ -20,47 +18,29 @@ export const useDrawer = () => {
       Icon: SVG.Reports,
       heading: 'My Reports',
       description: 'HRA Report and Diagnostic Report',
-      onPress: () => {},
+      onPress: () => navigation.navigate('ReportsScreen'),
     },
     {
       Icon: SVG.Prescriptions,
-      heading: 'My Prescription',
+      heading: 'My Prescriptions',
       description: 'Download all your Prescription',
       onPress: () => navigation.navigate('MyPrescription'),
     },
     {
       Icon: SVG.Bookings,
-      heading: 'My Purchase',
+      heading: 'My Purchases',
       description: 'History of all test and plan purchase',
-      onPress: () => {},
+      onPress: () => navigation.navigate('PurchaseScreen'),
     },
     {
       Icon: SVG.CorporateProgram,
-      heading: 'My Corporate Program',
+      heading: 'My Corporate Programs',
       description: 'Add Member to lock your Program ',
       onPress: () => navigation.navigate('MyCorporateProgram',{isEmployee}),
     }
   ];
-  const onSubscriptionPress = () => {};
-  const onReportsPress = () => navigation.navigate('ReportsScreen');
-  const onOrdersPress = () => navigation.navigate('PurchaseScreen');
-  const onPrescriptionsPress = () => navigation.navigate('MyPrescription');
-  const onCorporateProgramPress = () =>
-    navigation.navigate('MyCorporateProgram');
-  const onLogoutPress = () => {
-    dispatch(logoutThunk());
-    dispatch(resetAppointments());
-    navigation.dispatch(DrawerActions.closeDrawer());
-    navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
-  };
   return {
-    onSubscriptionPress,
-    onReportsPress,
-    onOrdersPress,
-    onLogoutPress,
-    onPrescriptionsPress,
-    isEmployee,
-    onCorporateProgramPress,
-    data
+    data,
+    name: name ?? null,
   };
 };

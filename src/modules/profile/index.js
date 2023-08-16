@@ -68,7 +68,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header title={USER_PROFILE} showBackButton={true} hideMenu={true} hideLocation={true} hideTitle={false}/>
+      <Header title={USER_PROFILE} showBackButton={true} hideMenu={true} hideTitle={false}/>
       <ScrollView style={container} nestedScrollEnabled={true}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}
