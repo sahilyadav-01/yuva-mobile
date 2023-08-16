@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
 import {styles} from './style';
 import {OUR_PLANS, SUB_HEADING, VIEW_ALL, VIEW_DETAILS} from './constant';
 import {PNG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
+import { CONTAIN } from '../../../../styles/constants';
 
 const OurPlan = props => {
   const {handlePress, DATA, selectedItems} = useOurPlan();
@@ -62,10 +63,13 @@ const OurPlan = props => {
         <Text style={styles.subHeadingText}>{SUB_HEADING}</Text>
       </View>
       <View style={styles.ImageView}>
-        <Image style={styles.ImageBanner} source={PNG.Our_Plan_Banner} />
+        <Image style={styles.ImageBanner} resizeMode={CONTAIN} source={PNG.Our_Plan_Banner} />
       </View>
       <View style={styles.PlanView}>
-        <Image style={styles.ImageBanner2} source={PNG.OurPlanRadioButton} />
+      <ImageBackground
+      source={PNG.OurPlanRadioButton}
+      style={styles.ImageBanner2} 
+      resizeMode="cover">
         <View style={styles.TextImage}>
           <FlatList
             data={DATA}
@@ -73,8 +77,9 @@ const OurPlan = props => {
             keyExtractor={item => item.id}
           />
         </View>
+        </ImageBackground>
       </View>
-    </View>
+       </View>
   );
 };
 
