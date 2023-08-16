@@ -9,6 +9,11 @@ export const useOurPlan = () => {
           rupee: 1000,
         },
         {
+          title: 'Yuva Family Comprehensive',
+          year: 1,
+          rupee: 1000,
+        },
+        {
           title: 'Yuva Plus Gold',
           year: 2,
           rupee: 1000,

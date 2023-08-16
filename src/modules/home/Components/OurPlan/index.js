@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, SUB_HEADING, VIEW_ALL, VIEW_DETAILS} from './constant';
+import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS} from './constant';
 import {PNG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
 import { CONTAIN } from '../../../../styles/constants';
@@ -35,7 +35,7 @@ const OurPlan = props => {
               <Text style={styles.radioButtonText}>{item?.item?.year}</Text>
             </View>
             <View style={styles.PlanYear}>
-              <Text style={styles.radioButtonText}>{item?.item?.rupee}</Text>
+              <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.rupee}</Text>
             </View>
           </View>
         </View>

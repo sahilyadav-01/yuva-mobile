@@ -124,7 +124,6 @@ export const styles = StyleSheet.create({
   },
   ImageBanner2: {
     paddingBottom: 24,
-    flex: 1,
     width: '100%',
   },
   TextImage: {
