@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS} from './constant';
+import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS, YEAR} from './constant';
 import {PNG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
 import { CONTAIN } from '../../../../styles/constants';
 
 const OurPlan = props => {
-  const {handlePress, DATA, selectedItems} = useOurPlan();
+  const {handlePress,selectedItems,popularPlan,onDetails,onViewAll} = useOurPlan();
 
   const renderItem = (item, index) => {
     const onPress=()=>{
@@ -29,18 +29,18 @@ const OurPlan = props => {
           </TouchableOpacity>
           <View style={styles.DetailsContainer}>
             <View style={styles.PlanText}>
-              <Text style={styles.radioButtonText}>{item?.item?.title}</Text>
+              <Text style={styles.radioButtonText}>{item?.item?.name}</Text>
             </View>
             <View style={styles.PlanYear}>
-              <Text style={styles.radioButtonText}>{item?.item?.year}</Text>
+              <Text style={styles.radioButtonText}>{'  '}{1}{' '}{' '}{YEAR}</Text>
             </View>
             <View style={styles.PlanYear}>
-              <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.rupee}</Text>
+              <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.yearlyFinalCost}</Text>
             </View>
           </View>
         </View>
         {selectedItems.includes(item.index) && (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onDetails}>
             <View style={styles.expandedContent}>
               <Text style={styles.expandedContentText}>{VIEW_DETAILS}</Text>
             </View>
@@ -55,7 +55,7 @@ const OurPlan = props => {
         <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
         <View style={styles.line} />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onViewAll}>
           <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
         </TouchableOpacity>
       </View>
@@ -72,7 +72,7 @@ const OurPlan = props => {
       resizeMode="cover">
         <View style={styles.TextImage}>
           <FlatList
-            data={DATA}
+            data={popularPlan}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />

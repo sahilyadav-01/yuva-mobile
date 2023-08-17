@@ -147,7 +147,7 @@ import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
 import Our_Plan_Banner from './Our_Plan_Banner.png';
 import OurPlanRadioButton from './OurPlanRadioButton.png'
-
+import planDetails from './planDetails.png'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -226,7 +226,8 @@ const PNG = {
   OnMood9Banner,
   SelfHealing,
   Our_Plan_Banner,
-  OurPlanRadioButton
+  OurPlanRadioButton,
+  planDetails
 };
 
 const SVG = {

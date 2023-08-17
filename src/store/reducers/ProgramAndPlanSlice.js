@@ -132,6 +132,7 @@ const initialState = {
   lockedState: [],
   planLockLoading: false,
   guestPlanData:{},
+  ourPlanData:[],
 }
 
 const programAndPlanSlice = createSlice({
@@ -147,6 +148,9 @@ const programAndPlanSlice = createSlice({
     },
     setIndex(state, { payload }) {
       state.mainItem = payload;
+    },
+    setOurPlanData(state,{payload}){
+      state.ourPlanData=payload;
     },
     saveGuestPlanData(state, { payload }) {
       state.guestPlanData = payload;
@@ -258,5 +262,5 @@ const programAndPlanSlice = createSlice({
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData } = programAndPlanSlice.actions;
+export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData,setOurPlanData } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;
