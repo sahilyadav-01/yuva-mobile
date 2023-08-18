@@ -145,6 +145,10 @@ import Emrm from './Emrm';
 import EmrmAddIcon from './EmrmAddIcon';
 import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
+import ArrowRight from './ArrowRight';
+import Profile from './Profile';
+import ManageNotifications from './ManageNotifications';
+import ManageAddress from './ManageAddress';
 
 const PNG = {
   AMICO,
@@ -296,6 +300,10 @@ const SVG = {
   Emrm,
   EmrmAddIcon,
   PHARMACY,
+  ArrowRight,
+  Profile,
+  ManageNotifications,
+  ManageAddress
 };
 
 const BASE_64 = {DoctorsImage}
