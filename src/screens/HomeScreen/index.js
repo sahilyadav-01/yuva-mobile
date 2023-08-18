@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CarouselContainer from '../../components/CarouselContainer';
-import ServiceContainer from '../../components/ServiceContainer';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
@@ -97,7 +96,6 @@ const HomeScreen = ({ navigation, route }) => {
         <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <View style={{flex:1}}>
-          <ServiceContainer serviceCard={true} />
           </View>
         </View>
         </ScrollView>
@@ -154,11 +152,6 @@ const HomeScreen = ({ navigation, route }) => {
         <ScrollView horizontal={true} nestedScrollEnabled={true}>
         <View style={styles.serviceContainerWrapperStyle}>
           <View style={{flex:1}}>
-          <ServiceContainer
-            lifeStyleCard={true}
-            data={lifestylePackage}
-            onPackagePress={onPackagePress}
-          />
           </View>
         </View>
         </ScrollView>

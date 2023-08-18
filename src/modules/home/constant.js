@@ -1,0 +1,14 @@
+export const OBESITY = 'OBESITY';
+export const THYROID = 'THYROID';
+export const WOMEN_HEALTH = 'WOMEN_HEALTH';
+export const SMOKING_AND_ALCOHOL = 'SMOKING_AND_ALCOHOL';
+export const DIABETES = 'DIABETES';
+export const HYPER_TENSION = 'HYPER_TENSION';
+export const OPD = 'OPD';
+export const HRA = 'HRA';
+export const DIAGNOSTICS = 'Diagnostics';
+export const Talk_TO_DOCTOR = 'TalkToDoctor';
+export const HEALTH_CHECKUP = 'HealthCheckupsTests';
+export const PHARMACY = 'PHARMACY';
+export const EMRM_SCREEN_NAME= 'EmrmHome';
+export const HEADING_TEXT= 'Lifestyle Packages';
