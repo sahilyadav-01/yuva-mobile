@@ -8,13 +8,14 @@ import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
 import { getCartGuestThunk, getCartUserThunk, } from '../../../store/reducers/CartSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, Talk_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
+import { SVG } from "../../../../assets";
 
 export const useHome = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(state => state.auth);
-  const { userDetails: { name } } = useSelector(state => state.profile);
+  const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -37,22 +38,20 @@ export const useHome = () => {
         dispatch(getCartGuestThunk());
       }
     }
-  }, [focused, loggedIn]);
-
-  /** services */
+  }, [focused, loggedIn]);  
   const servicesArray = [
-    { name: 'Book Test', screenName: HEALTH_CHECKUP, icon: 'BOOK_TEST_SVG_ICON' },
-    { name: 'Plans', screenName: 'PurchaseScreen', icon: 'PLANS_SVG_ICON' },
-    { name: 'Corporate Program', screenName: 'MyCorporateProgram', icon: 'CORPORATE_PROGRAM' },
-    { name: 'Search Network', screenName: 'ProfessionalServices', icon: 'SEARCH_NETWORK' },
-    { name: 'OPD Consultation', screenName: OPD, icon: 'OPD_SVG_ICON' },
-    { name: 'Health Risk Assessment', screenName: HRA, icon: 'HRA_SVG_ICON' },
-    { name: 'Pharmacy', screenName: PHARMACY, icon: 'PHARMACY_SVG_ICON' },
-    { name: 'Mental Wellness', screenName: 'MentalWellness', icon: 'MENTAL_WELLNESS_SVG_ICON' },
-    { name: 'My Tests', screenName: DIAGNOSTICS, icon: 'MY_TEST_SVG_ICON' },
-    { name: 'EMRM', screenName: EMRM_SCREEN_NAME, icon: 'EMRM_SVG_ICON' },
-    { name: 'Online Consultation', screenName: Talk_TO_DOCTOR, icon: 'ONLINE_CONSULTATION_SVG_ICON' },
-    { name: 'Ambulance', screenName: 'ProfessionalServices', icon: 'AMBULANCE_SVG_ICON' },
+    { name: 'Book Test', screenName: HEALTH_CHECKUP, icon: SVG['BOOK_TEST_SVG_ICON'] },
+    { name: 'Plans', screenName: 'PurchaseScreen', icon: SVG['PLANS_SVG_ICON'] },
+    { name: 'Corporate Program', screenName: 'MyCorporateProgram', icon: SVG['CORPORATE_PROGRAM'] },
+    { name: 'Search Network', screenName: 'ProfessionalServices', icon: SVG['SEARCH_NETWORK'] },
+    { name: 'OPD Consultation', screenName: OPD, icon: SVG['OPD_SVG_ICON'] },
+    { name: 'Health Risk Assessment', screenName: HRA, icon: SVG['HRA_SVG_ICON'] },
+    { name: 'Pharmacy', screenName: PHARMACY, icon: SVG['PHARMACY_SVG_ICON'] },
+    { name: 'Mental Wellness', screenName: 'MentalWellness', icon: SVG['MENTAL_WELLNESS_SVG_ICON'] },
+    { name: 'My Tests', screenName: DIAGNOSTICS, icon: SVG['MY_TEST_SVG_ICON'] },
+    { name: 'EMRM', screenName: EMRM_SCREEN_NAME, icon: SVG['EMRM_SVG_ICON'] },
+    { name: 'Online Consultation', screenName: Talk_TO_DOCTOR, icon: SVG['ONLINE_CONSULTATION_SVG_ICON'] },
+    { name: 'Ambulance', screenName: 'ProfessionalServices', icon: SVG['AMBULANCE_SVG_ICON'] },
   ];
   const servicesNumRows = Math.ceil(servicesArray.length / 4);
   const renderservicesItem = [];
@@ -62,9 +61,6 @@ export const useHome = () => {
   for (let i = 1; i <= servicesArray.length; i++) {
     renderservicesItem[Math.ceil(i / 4) - 1].push(servicesArray[i - 1]);
   }
-  /** services */
-
-  /** lifestylePackage */
   const { lifestylePackage } = useSelector(state => state.lifestylePackage);
   const lifeStyle = lifestylePackage && lifestylePackage.length ? lifestylePackage.map(item => {
     let image;
@@ -104,7 +100,6 @@ export const useHome = () => {
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
   };
-  /** lifestylePackage */
 
   return {
     name,

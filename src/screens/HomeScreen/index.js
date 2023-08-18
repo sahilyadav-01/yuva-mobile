@@ -1,5 +1,3 @@
-
-
 import React, { useEffect } from 'react';
 import {
   View,
@@ -15,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../store/reducers/AppointmentSlice';
 import { styles } from '../styles';
 import Header from '../../components/Header';
-import { PNG, SVG } from '../../../assets';
+import { PNG } from '../../../assets';
 import {
   LANDING_PAGE_TEXT0,
   LANDING_PAGE_TEXT1,
@@ -44,11 +42,6 @@ const HomeScreen = ({ navigation, route }) => {
   const { userAppointments } = useSelector(state => state?.appointment);
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
-  const { lifestylePackage } = useSelector(state => state.lifestylePackage); 
-  const onPackagePress = (enumName, name) => {
-    navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
-  };
-
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index })
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -166,4 +159,3 @@ const HomeScreen = ({ navigation, route }) => {
 };
 
 export default HomeScreen;
-

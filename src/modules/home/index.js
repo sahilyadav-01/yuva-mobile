@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { styles as style } from './style';
-import LifeStyleCard from '../../components/LifeStyleCard';
-import ServiceCard from '../../components/ServiceCard';
 import { HEADING_TEXT } from './constant';
 import { useHome } from './hooks/useHome';
 import Header from '../../components/Header';
+import Services from './components/services';
+import LifeStyle from './components/lifeStyle';
 
 export const HomeScreen = () => {
   const { name, renderservicesItem, renderLifeStyleItem, onPackagePress } = useHome();
@@ -13,40 +13,13 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header initial={name ?? null} showSearch={true} showLocation={true} />
-      {/**Services */}
-      {renderservicesItem.map(item => (
-        <View style={styles.servicesSubContainer}>
-          {item.map((i) => {
-            return (
-              <ServiceCard
-                key={i.name}
-                name={i.name}
-                screenName={i.screenName}
-                image={i.image}
-                type={i?.type ?? null}
-                icon={i?.icon ?? null}
-              />
-            )
-          })}
-        </View>))}
-      {/**Services */}
-      {/**lifeStyle packages */}
-      <View style={styles.lifeStyPackagesMainContainer}>
-        <Text style={styles.lifeStyPackagesTextContainer}>{HEADING_TEXT}</Text>
-        {renderLifeStyleItem.map(item => (
-          <View style={styles.lifeStyPackagesSubContainer}>
-            {item.map((i) => {
-              return (<LifeStyleCard
-                key={i.name}
-                name={i.name}
-                image={i.image}
-                enumName={i.enumName}
-                onPackagePress={(enumName, name) => onPackagePress(enumName, name)}
-              />)
-            })}
-          </View>))}
-      </View>
-      {/**lifeStyle packages */}
+      <ScrollView>
+        <Services renderservicesItem={renderservicesItem} />
+        <View style={styles.lifeStyPackagesMainContainer}>
+          <Text style={styles.lifeStyPackagesTextContainer}>{HEADING_TEXT}</Text>
+          <LifeStyle renderLifeStyleItem={renderLifeStyleItem} onPackagePress={onPackagePress} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
