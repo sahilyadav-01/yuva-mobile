@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {SVG} from '../../../assets';
 import Header from '../../components/Header';
-import {useDrawer} from './hooks/useDrawer';
+import {useProfileDetails} from './hooks/useProfileDetails';
 import {styles} from './style';
 
-const Drawer = () => {
-  const {data, name} = useDrawer();
+const ProfileDetails = () => {
+  const {data} = useProfileDetails();
   const {
     container,
     drawerContentContainer,
@@ -22,14 +22,14 @@ const Drawer = () => {
     <View style={container}>
       <Header
         showSearch={false}
-        title="Menu"
-        PrefixIcon={SVG.Back}
         hideTitle={true}
+        hideMenu={true}
+        showBackButton={true}
       />
       <View style={drawerContentContainer}>
-        <ScrollView bounces={false}>
+        <ScrollView>
           <>
-            <Text style={textStyle}>{name}</Text>
+            <Text style={textStyle}>Profile Setting</Text>
             <View style={{height: 4}} />
             {data.map((item, index) => (
               <TouchableOpacity onPress={item?.onPress} style={itemContainer}>
@@ -51,4 +51,4 @@ const Drawer = () => {
   );
 };
 
-export default Drawer;
+export default ProfileDetails;

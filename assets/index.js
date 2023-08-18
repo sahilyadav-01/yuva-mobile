@@ -157,6 +157,10 @@ import AMBULANCE_SVG_ICON from './AMBULANCE_SVG_ICON';
 import SEARCH_NETWORK from './SEARCH_NETWORK';
 import PLANS_SVG_ICON from './PLANS_SVG_ICON';
 import CORPORATE_PROGRAM from './CORPORATE_PROGRAM';
+import ArrowRight from './ArrowRight';
+import Profile from './Profile';
+import ManageNotifications from './ManageNotifications';
+import ManageAddress from './ManageAddress';
 
 const PNG = {
   AMICO,
@@ -320,6 +324,10 @@ const SVG = {
   PLANS_SVG_ICON,
   SEARCH_NETWORK,
   CORPORATE_PROGRAM,
+  ArrowRight,
+  Profile,
+  ManageNotifications,
+  ManageAddress
 };
 
 const BASE_64 = {DoctorsImage}

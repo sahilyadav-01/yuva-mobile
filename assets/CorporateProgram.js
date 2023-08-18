@@ -1,17 +1,25 @@
 import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
 const CorporateProgram = (props) => (
   <Svg
-    width={16}
-    height={18}
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width={25}
+    height={25}
+    fill="none"
     {...props}
   >
-    <Path
-      fill="#44576A"
-      d="M14 .5H2C1.167.5.5 1.167.5 2v8.25c0 .832.667 1.5 1.5 1.5h3v3.75L8 14l3 1.5v-3.75h3c.832 0 1.5-.668 1.5-1.5V2c0-.833-.668-1.5-1.5-1.5Zm0 9.75H2v-1.5h12v1.5Zm0-3.75H2V2h12v4.5Z"
-    />
+    <G clipPath="url(#a)">
+      <Path
+        stroke="#38466C"
+        strokeWidth={2}
+        d="M18.75 4.167V0M7.29 18.75H5.208m14.583 0H9.374m-2.083-4.167H5.208m14.583 0H9.374M6.25 4.167V0M1.041 9.375h22.917M1.04 23.958h22.917V4.167H1.04v19.791Z"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="a">
+        <Path fill="#fff" d="M0 0h25v25H0z" />
+      </ClipPath>
+    </Defs>
   </Svg>
 )
-export default CorporateProgram
+export default CorporateProgram;
