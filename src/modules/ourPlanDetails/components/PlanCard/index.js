@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { styles } from './styles';
 import { BUY_NOW, RUPEE, YEAR } from './constants';
-import { PNG } from '../../../../../../assets';
 import { usePlanCard } from './hooks/usePlanCard';
+import { PNG } from '../../../../../assets';
 const PlanCard = (props) => {
 const {ourPlanData,bookOurPlan}=usePlanCard(props)
   return (

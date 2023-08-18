@@ -1,7 +1,7 @@
 import {Platform, StyleSheet} from 'react-native';
-import { fonts } from '../../../../../styles/fonts';
-import { INDIGO, ORANGE, WHITE } from '../../../../../styles/colors';
-import { CENTER } from '../../../../../styles/constants';
+import { fonts } from '../../../../styles/fonts';
+import { INDIGO, ORANGE, WHITE } from '../../../../styles/colors';
+import { CENTER } from '../../../../styles/constants';
 
 
 export const styles = StyleSheet.create({

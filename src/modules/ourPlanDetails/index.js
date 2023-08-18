@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import {useOurPlanDetails} from './hooks/useOurPlanDetails';
-import PlanCard from './components/PlanCard/PlanCard';
+import PlanCard from './components/PlanCard';
 
 const OurPlanDetails = props => {
   const {planDetails} = useOurPlanDetails(props);
