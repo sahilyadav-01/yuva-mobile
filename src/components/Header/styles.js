@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowColor: BLACK,
+    marginBottom: 8
   },
   nameContainer: {
     marginVertical: 4,
