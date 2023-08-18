@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
-import SelectList from 'react-native-dropdown-select-list';
 import { styles as style } from './style';
-import { SVG } from '../../../assets';
-import { CYAN_BLUE } from '../../styles/colors';
 import LifeStyleCard from '../../components/LifeStyleCard';
 import ServiceCard from '../../components/ServiceCard';
 import { HEADING_TEXT } from './constant';
