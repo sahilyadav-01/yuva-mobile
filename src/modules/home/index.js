@@ -10,7 +10,6 @@ export const HomeScreen = () => {
   const styles = style();
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
      <View style={{paddingHorizontal:16,backgroundColor:'white',paddingVertical:16,flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
     <Text>Header</Text>
     <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
@@ -29,10 +28,7 @@ export const HomeScreen = () => {
     <SVG.SearchIcon/>
     </View>
      </View>
-     <View>
         <OurPlan/>
-      </View>
-      </ScrollView>
     </SafeAreaView>
   );
 };
