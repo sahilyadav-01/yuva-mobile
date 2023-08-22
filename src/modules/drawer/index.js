@@ -6,7 +6,7 @@ import {useDrawer} from './hooks/useDrawer';
 import {styles} from './style';
 
 const Drawer = () => {
-  const {data} = useDrawer();
+  const {data, name} = useDrawer();
   const {
     container,
     drawerContentContainer,
@@ -23,14 +23,13 @@ const Drawer = () => {
       <Header
         showSearch={false}
         title="Menu"
-        hideLocation={true}
         PrefixIcon={SVG.Back}
         hideTitle={true}
       />
       <View style={drawerContentContainer}>
-        <ScrollView>
+        <ScrollView bounces={false}>
           <>
-            <Text style={textStyle}>Vamsi Vibhavan</Text>
+            <Text style={textStyle}>{name}</Text>
             <View style={{height: 4}} />
             {data.map((item, index) => (
               <TouchableOpacity onPress={item?.onPress} style={itemContainer}>

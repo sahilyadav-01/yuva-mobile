@@ -33,8 +33,11 @@ const Header = props => {
     onSubmitEditing,
     isSearch,
     hideLocation,
+    showLocation,
     PrefixIcon,
-    hideTitle
+    hideTitle,
+    initial
+
   } = useHeader(props);
 
   return (
@@ -52,8 +55,8 @@ const Header = props => {
           <TouchableOpacity onPress={onRightPress}>
           {isLoggedIn && !hideMenu ? (
             PrefixIcon ? PrefixIcon() :
-            <View style={styles.nameContainer}>
-              <Text style={styles.nameText}>SK</Text>
+            initial && <View style={styles.nameContainer}>
+              <Text style={styles.nameText}>{initial[0]?.toUpperCase()}</Text>
             </View>
           ) : isLoggedIn && hideMenu ? null : (
             <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
@@ -63,7 +66,7 @@ const Header = props => {
         </View>
       )}
       <View style={styles.pinView}>
-        {!hideLocation && <>
+      {showLocation && <>
         <SVG.LocationOn fill={CYAN_BLUE} />
         <SelectList
           data={cityList}
