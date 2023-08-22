@@ -10,9 +10,10 @@ import {
 import {styles} from './styles';
 import {useOurPlanDetails} from './hooks/useOurPlanDetails';
 import PlanCard from './components/PlanCard';
-import { TERMS_AND_CONDITION, termsAndCondition } from './constants';
+import { TERMS_AND_CONDITION, TITLE, termsAndCondition } from './constants';
 import { FlatList } from 'react-native-gesture-handler';
 import { PNG } from '../../../assets';
+import Header from '../../components/Header';
 
 const OurPlanDetails = props => {
   const {planDetails,planDetailsLoading,planDetailsError} = useOurPlanDetails(props);
@@ -32,6 +33,7 @@ const OurPlanDetails = props => {
       <ScrollView
         contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
+          <Header showBackButton={true} title={TITLE}/>
         <PlanCard/>
         {planDetailsLoading &&  <View style={styles.emptyView}>
           <ActivityIndicator size={'large'}/>

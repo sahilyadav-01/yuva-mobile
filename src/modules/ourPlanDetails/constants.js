@@ -12,3 +12,4 @@ export const termsAndCondition = ["Any plan can be cancelled within 7 days subje
     "Talk to the doctor - will be available from 9 am to 7 pm. ",
     " Health risk assessment is a tool to assess current medical conditions and it is not a substitute for doctor consultation. ",
     "Health checkup booking will only be scheduled 24 hours before the booking time."]
+export const TITLE='Plan  Details';   
