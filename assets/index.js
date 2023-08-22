@@ -208,7 +208,6 @@ const PNG = {
   DOWNLOAD,
   DIAGNOSTIC,
   HEALTHIMG,
-  POPULARHEALTHICON,
   POPULARDIAGNOSTICICON,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
@@ -238,7 +237,8 @@ const PNG = {
   SelfTracking,
   YuvaBanner,
   OnMood9Banner,
-  SelfHealing
+  SelfHealing,
+  POPULARHEALTHICON
 };
 
 const SVG = {
@@ -327,7 +327,7 @@ const SVG = {
   ArrowRight,
   Profile,
   ManageNotifications,
-  ManageAddress
+  ManageAddress,
 };
 
 const BASE_64 = {DoctorsImage}

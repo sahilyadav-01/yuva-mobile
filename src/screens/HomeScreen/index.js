@@ -16,8 +16,6 @@ import Header from '../../components/Header';
 import { PNG } from '../../../assets';
 import {
   LANDING_PAGE_TEXT0,
-  LANDING_PAGE_TEXT1,
-  LANDING_PAGE_TEXT2,
   LANDING_PAGE_TEXT3,
   LANDING_PAGE_TEXT4,
   SEARCH_PLACEHOLDER,
@@ -97,24 +95,6 @@ const HomeScreen = ({ navigation, route }) => {
           <Image source={PNG.HealthBanner} style={{flex:1,width:'100%'}} resizeMode='cover'/>
           </View>
         </View>
-        <View style={styles.PopularHealthCheckups}>
-          <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
-          <View style={styles.textContainer}>
-          <TouchableOpacity onPress={() => onHealthPackagePress(0)}>
-            <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-            </TouchableOpacity>
-            <View style={styles.line}/>
-          </View>
-        </View>
-        {popularPackageName && <View>
-          <CarouselContainer
-            data={popularPackageName.popularPackageResponseDtoList}
-            isIndexed={false}>
-            <CarouselItem2
-              imgPath={PNG.POPULARHEALTHICON}
-            />
-          </CarouselContainer>
-        </View>}
         <View style={styles.bannerContainer1}>
           <Image
             style={styles.bannerImage}

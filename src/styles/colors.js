@@ -93,3 +93,4 @@ export const PALE_GRAY = '#AFA9A9';
 export const SHUTTLE_GREY = '#5A6B7C';
 export const ORACLE = '#37726C';
 export const PALE_PEACH = '#FFF9EF';
+export const VIVID_TANGERINE = '#F64E19'

@@ -47,11 +47,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
     height: 21,
   },
-  line: {
-    borderBottomColor: SEASHELL,
-    borderBottomWidth: 2,
-    flex:1,
-  },
   line1: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
@@ -101,13 +96,6 @@ export const styles = StyleSheet.create({
   bannerImage: {
     width: '100%',
   },
-  PopularHealthCheckups: {
-    alignItems: CENTER,
-    marginTop: 18,
-    flexDirection: ROW,
-    justifyContent: SPACE_BETWEEN,
-    marginHorizontal: 16,
-  },
   OurPlansHeaderStyle: {
     alignItems: CENTER,
     marginTop: 20,
@@ -116,22 +104,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 36,
   },
-  LandingPageText1: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik700,
-    fontSize: fonts.size.fontSize14,
-  },
-  LandingPageText2: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
-  },
   line: {
     borderBottomColor: SEASHELL,
     borderBottomWidth: 1,
     width: 118,
   },
   planContainer: {marginTop:0},
-  textContainer: {flex:1,flexDirection:ROW_REVERSE,justifyContent:SPACE_BETWEEN,alignItems:CENTER,overflow:HIDDEN},
   keyboardAvoidViewStyle: {flex:1}
 });

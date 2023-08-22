@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { ORANGE, ORANGE_GREY } from '../../styles/colors';
-import { BUTTONCONTENT, COST } from './constant';
+import { BUTTONCONTENT } from './constant';
 import { useCarouselItem2 } from './hooks/useCarouselItem2';
 import { styles } from './styles';
 
@@ -29,17 +29,7 @@ const CarouselItem2 = (props) => {
           <Text numberOfLines={1} style={styles.descriptionStyle}>{item.packageName}</Text>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.textStyle}>{getTestCount(item)}</Text>
-        </View>
-        <View style={styles.costContainer}>
-          {item.cost === item.finalCost ? (
-            <Text style={styles.costStyle}>{COST(item.cost)}</Text>
-          ) : (
-            <>
-              <Text style={styles.costStyle}>{COST(item.finalCost)}</Text>
-              <Text style={styles.discountStyle}>{COST(item.cost)}</Text>
-            </>
-          )}
+          <Text style={styles.descriptionStyle}>{getTestCount(item)}</Text>
         </View>
         <View style={styles.addButtonViewContainer}>
           <TouchableOpacity
