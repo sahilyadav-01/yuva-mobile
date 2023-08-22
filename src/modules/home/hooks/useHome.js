@@ -51,7 +51,7 @@ export const useHome = () => {
     { name: 'My Tests', screenName: DIAGNOSTICS, icon: SVG['MY_TEST_SVG_ICON'] },
     { name: 'EMRM', screenName: EMRM_SCREEN_NAME, icon: SVG['EMRM_SVG_ICON'] },
     { name: 'Online Consultation', screenName: Talk_TO_DOCTOR, icon: SVG['ONLINE_CONSULTATION_SVG_ICON'] },
-    { name: 'Ambulance', screenName: 'ProfessionalServices', icon: SVG['AMBULANCE_SVG_ICON'] },
+    { name: 'Ambulance', screenName: 'AmbulaceHomeScreen', icon: SVG['AMBULANCE_SVG_ICON'] },
   ];
   const servicesNumRows = Math.ceil(servicesArray.length / 4);
   const renderservicesItem = [];
