@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS, YEAR} from './constant';
+import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS, YEAR} from './constants';
 import {PNG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
 import { CONTAIN } from '../../../../styles/constants';

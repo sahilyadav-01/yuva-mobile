@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOurPlanData } from "../../../../../store/reducers/ProgramAndPlanSlice";
-import { OUR_PLAN } from "../constant";
+import { OUR_PLAN } from "../constants";
 
 export const useOurPlan = () => {
   const dispatch = useDispatch();
