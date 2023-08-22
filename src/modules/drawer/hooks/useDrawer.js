@@ -1,9 +1,5 @@
-import {DrawerActions, useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {resetAppointments} from '../../../store/reducers/AppointmentSlice';
-import {logoutThunk} from '../../../store/reducers/AuthSlice';
-// import {useNavigation} from '@react-navigation/native';
-// import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import {SVG} from '../../../../assets';
 
 export const useDrawer = () => {

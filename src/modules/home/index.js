@@ -6,11 +6,11 @@ import {useHome} from './hooks/useHome';
 import Header from '../../components/Header';
 
 export const HomeScreen = () => {
-  useHome();
+  const {name} = useHome();
   const styles = style();
   return (
     <SafeAreaView style={styles.container}>
-      <Header showSearch={true}/>
+      <Header initial={name ?? null} showSearch={true} showLocation={true}/>
       <OurPlan/>
     </SafeAreaView>
   );
