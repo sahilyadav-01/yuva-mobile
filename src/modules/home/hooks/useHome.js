@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getServicesThunk} from '../../../store/reducers/AttributeSlice';
 import {allAppointmentThunk} from '../../../store/reducers/AppointmentSlice';
-import {popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
+import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import {popularTestsSliceThunk} from '../../../store/reducers/PopularTestsSlice ';
 import {lifeStyleSliceThunk} from '../../../store/reducers/LifeStyleSlice';
 import {
@@ -32,6 +32,7 @@ export const useHome = () => {
       dispatch(popularPackageNameThunk({pageNo: 1, pageSize: 4, search: ''}));
       dispatch(popularTestsSliceThunk({pageNo: 1, pageSize: 4, search: ''}));
       dispatch(lifeStyleSliceThunk({}));
+      dispatch(planPopularThunk())
       if (loggedIn === 'loggedIn') {
         dispatch(getCartUserThunk());
       } else {

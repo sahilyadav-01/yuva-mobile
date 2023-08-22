@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { planPopularThunk,setOurPlanData } from "../../../../../store/reducers/ProgramAndPlanSlice";
+import { setOurPlanData } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { OUR_PLAN } from "../constant";
 
 export const useOurPlan = () => {
@@ -9,12 +9,6 @@ export const useOurPlan = () => {
   const navigation = useNavigation();
     const [selectedItems, setSelectedItems] = useState([0]);
     const { popularPlan } = useSelector(state => state.programAndPlan);
-     
-      useEffect(() => {
-        dispatch(planPopularThunk())
-      }, []);
-
-
       const handlePress = (item) => {
         setSelectedItems([item]);
       };
