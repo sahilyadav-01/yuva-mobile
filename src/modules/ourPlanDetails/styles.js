@@ -1,7 +1,7 @@
 import { StyleSheet} from 'react-native';
 import { CYAN_BLUE, ORANGE} from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
-import { ROW } from '../../styles/constants';
+import { CENTER, ROW } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   contentContainerStyle: {
@@ -33,5 +33,11 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
     color: ORANGE,
+  },
+  emptyView: {
+    flex:1,
+    alignItems: CENTER,
+    justifyContent:CENTER,
+    marginVertical:'50%',
   },
 });

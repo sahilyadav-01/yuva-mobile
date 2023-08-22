@@ -133,6 +133,8 @@ const initialState = {
   planLockLoading: false,
   guestPlanData:{},
   ourPlanData:[],
+  planDetailsLoading:false,
+  planDetailsError:false,
 }
 
 const programAndPlanSlice = createSlice({
@@ -193,14 +195,20 @@ const programAndPlanSlice = createSlice({
     },
     [planDetailsThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      state.planDetailsLoading=true;
+      state.planDetailsError=false;
     },
     [planDetailsThunk.fulfilled]: (state, {payload}) => {
       state.planDetails = payload.data?.filter(item=>{
         if(item !== null && item !== "null") return item});
       state.loading = false;
+      state.planDetailsLoading=false;
+      state.planDetailsError=false;
     },
     [planDetailsThunk.rejected]: (state, { payload }) => {
       state.loading = false;
+      state.planDetailsLoading=false;
+      state.planDetailsError=true;
     },
     [planAmountThunk.pending]: (state, { payload }) => {
       state.loading = true;

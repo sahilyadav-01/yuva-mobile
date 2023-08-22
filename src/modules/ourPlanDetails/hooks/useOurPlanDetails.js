@@ -4,13 +4,15 @@ import { useEffect } from "react";
 
 
 export const useOurPlanDetails = (props) => {
-    const { ourPlanData ,planDetails} = useSelector(state => state.programAndPlan);
+    const { ourPlanData ,planDetails,planDetailsLoading,planDetailsError} = useSelector(state => state.programAndPlan);
     const dispatch = useDispatch();
     useEffect(() => {
          let Uuid = ourPlanData?.planUuid;
         dispatch(planDetailsThunk(Uuid))
     }, [])
     return {
-        planDetails
+        planDetails,
+        planDetailsLoading,
+        planDetailsError
     }
 }

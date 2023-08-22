@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   Image,
   SafeAreaView,
   ScrollView,
@@ -14,7 +15,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { PNG } from '../../../assets';
 
 const OurPlanDetails = props => {
-  const {planDetails} = useOurPlanDetails(props);
+  const {planDetails,planDetailsLoading,planDetailsError} = useOurPlanDetails(props);
 
   const renderItem = ({item, index}) => {
     return (
@@ -32,7 +33,10 @@ const OurPlanDetails = props => {
         contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
         <PlanCard/>
-        {planDetails && (
+        {planDetailsLoading &&  <View style={styles.emptyView}>
+          <ActivityIndicator size={'large'}/>
+        </View> }
+        {(planDetails && planDetailsLoading===false && planDetailsError===false) && (
             <FlatList
               renderItem={renderItem}
               data={planDetails}
@@ -51,6 +55,5 @@ const OurPlanDetails = props => {
           />
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  );}
 export default OurPlanDetails;
