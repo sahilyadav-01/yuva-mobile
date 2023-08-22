@@ -5,6 +5,7 @@ import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 import { PLACEHOLDER_TEXT } from "../constant";
 export const useHeader = (props) => {
   const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing,isSearch, showLocation, PrefixIcon, hideTitle, initial} = props;
+  
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
