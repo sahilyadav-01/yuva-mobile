@@ -148,6 +148,11 @@ import PHARMACY from './PharmacyMainIcon';
 import Our_Plan_Banner from './Our_Plan_Banner.png';
 import OurPlanRadioButton from './OurPlanRadioButton.png'
 import planDetails from './planDetails.png'
+import ArrowRight from './ArrowRight';
+import Profile from './Profile';
+import ManageNotifications from './ManageNotifications';
+import ManageAddress from './ManageAddress';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -301,6 +306,10 @@ const SVG = {
   Emrm,
   EmrmAddIcon,
   PHARMACY,
+  ArrowRight,
+  Profile,
+  ManageNotifications,
+  ManageAddress
 };
 
 const BASE_64 = {DoctorsImage}
