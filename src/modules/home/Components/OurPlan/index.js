@@ -65,6 +65,7 @@ const OurPlan = props => {
       <View style={styles.ImageView}>
         <Image style={styles.ImageBanner} resizeMode={CONTAIN} source={PNG.Our_Plan_Banner} />
       </View>
+      {popularPlan.length >0 && 
       <View style={styles.PlanView}>
       <ImageBackground
       source={PNG.OurPlanRadioButton}
@@ -78,7 +79,7 @@ const OurPlan = props => {
           />
         </View>
         </ImageBackground>
-      </View>
+      </View>}
        </View>
   );
 };
