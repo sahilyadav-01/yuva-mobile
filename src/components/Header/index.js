@@ -64,7 +64,7 @@ const Header = props => {
         </View>
       )}
       <View style={styles.pinView}>
-       {showLocation && <>
+        {showLocation && <>
         <SVG.LocationOn fill={CYAN_BLUE} />
         <SelectList
           data={cityList}
