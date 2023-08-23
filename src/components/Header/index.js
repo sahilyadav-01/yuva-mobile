@@ -4,7 +4,7 @@ import {styles} from './styles';
 import {SVG} from '../../../assets';
 import {LOGIN_TEXT} from './constant';
 import {useHeader} from './hooks/useHeader';
-import {CYAN_BLUE, DARK_GRAY} from '../../styles/colors';
+import { CYAN_BLUE, INDIGO_LIGHT} from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
 
@@ -45,7 +45,7 @@ const Header = props => {
         <TouchableOpacity onPress={onBackPress}>
           <SVG.Back />
         </TouchableOpacity>
-        {!hideTitle && <Text style={{marginLeft: 16}}>{title}</Text>}
+        {!hideTitle && <Text style={{marginLeft: 16, color: INDIGO_LIGHT}}>{title}</Text>}
         </View>
       )}
       {!canGoBack && (
