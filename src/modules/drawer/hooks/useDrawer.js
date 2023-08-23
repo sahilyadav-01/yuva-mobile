@@ -5,7 +5,7 @@ import {SVG} from '../../../../assets';
 export const useDrawer = () => {
   const navigation = useNavigation();
   const {isEmployee} = useSelector(state => state.auth);
-  const {userDetails:{name}} = useSelector(state => state.profile);
+  const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const data = [
     {
       Icon: SVG.Profile,

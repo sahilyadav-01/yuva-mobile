@@ -148,6 +148,18 @@ import PHARMACY from './PharmacyMainIcon';
 import Our_Plan_Banner from './Our_Plan_Banner.png';
 import OurPlanRadioButton from './OurPlanRadioButton.png'
 import planDetails from './planDetails.png'
+import OPD_SVG_ICON from './OPD_SVG_ICON';
+import HRA_SVG_ICON from './HRA_SVG_ICON';
+import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON'
+import MY_TEST_SVG_ICON from './MY_TEST_SVG_ICON';
+import ONLINE_CONSULTATION_SVG_ICON from './ONLINE_CONSULTATION_SVG_ICON';
+import MENTAL_WELLNESS_SVG_ICON from './MENTAL_WELLNESS_SVG_ICON';
+import BOOK_TEST_SVG_ICON from './BOOK_TEST_SVG_ICON';
+import EMRM_SVG_ICON from './EMRM_SVG_ICON';
+import AMBULANCE_SVG_ICON from './AMBULANCE_SVG_ICON';
+import SEARCH_NETWORK from './SEARCH_NETWORK';
+import PLANS_SVG_ICON from './PLANS_SVG_ICON';
+import CORPORATE_PROGRAM from './CORPORATE_PROGRAM';
 import ArrowRight from './ArrowRight';
 import Profile from './Profile';
 import ManageNotifications from './ManageNotifications';
@@ -306,6 +318,18 @@ const SVG = {
   Emrm,
   EmrmAddIcon,
   PHARMACY,
+  OPD_SVG_ICON,
+  HRA_SVG_ICON,
+  PHARMACY_SVG_ICON,
+  MY_TEST_SVG_ICON,
+  ONLINE_CONSULTATION_SVG_ICON,
+  MENTAL_WELLNESS_SVG_ICON,
+  BOOK_TEST_SVG_ICON,
+  EMRM_SVG_ICON,
+  AMBULANCE_SVG_ICON,
+  PLANS_SVG_ICON,
+  SEARCH_NETWORK,
+  CORPORATE_PROGRAM,
   ArrowRight,
   Profile,
   ManageNotifications,
