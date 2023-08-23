@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
 import PopularHeathCheckupCarousel from './components/PopularHeathCheckupCarousel';
+import PopularTestPackageCarousel from './components/PopularTestPackageCarousel.js';
 
 export const HomeScreen = () => {
   const { name, renderservicesItem, renderLifeStyleItem, onPackagePress, popularPackageName, onHealthPackagePress, popularTest } = useHome();
@@ -16,6 +17,7 @@ export const HomeScreen = () => {
       <ScrollView>
         <Services renderservicesItem={renderservicesItem} />
         <PopularHeathCheckupCarousel popularPackageName={popularPackageName} onHealthPackagePress={onHealthPackagePress} />
+        <PopularTestPackageCarousel popularTest={popularTest} onHealthPackagePress={onHealthPackagePress} />
         <LifeStyle renderLifeStyleItem={renderLifeStyleItem} onPackagePress={onPackagePress} />
       </ScrollView>
     </SafeAreaView>

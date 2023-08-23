@@ -52,11 +52,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '70%',
   },
-  line2: {
-    borderBottomColor: SEASHELL,
-    borderBottomWidth: 1,
-    width: '45%',
-  },
   lineJustify: {
     alignItems: CENTER,
     flexDirection: ROW,
@@ -103,11 +98,6 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
     marginHorizontal: 16,
     marginBottom: 36,
-  },
-  line: {
-    borderBottomColor: SEASHELL,
-    borderBottomWidth: 1,
-    width: 118,
   },
   planContainer: {marginTop:0},
   keyboardAvoidViewStyle: {flex:1}
