@@ -1,6 +1,5 @@
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {PNG} from '../../../../assets';
 import {useDispatch, useSelector} from 'react-redux';
 import { resetPackages } from '../../../store/reducers/ProgramAndPlanSlice';
 import { resetTests } from '../../../store/reducers/PopularTestsSlice ';
@@ -9,13 +8,7 @@ export const useServiceCard = ({screenName}) => {
   const {loggedIn} = useSelector(state => state.auth);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const imageData = {
-    OPD_Consultation: PNG.OPD_Consultation,
-    Health_Risk_Assessment: PNG.Health_Risk_Assessment,
-    Health_Checkup_Packages: PNG.Health_Checkup_Packages,
-    Talk_To_Doctor: PNG.Talk_To_Doctor,
-    My_Health_Checkup: PNG.MY_HEALTH_CHECKUP,
-  };
+  
   const onpress = () => {
     if(screenName === 'HealthCheckupsTests'){
       dispatch(resetPackages());
@@ -34,6 +27,5 @@ export const useServiceCard = ({screenName}) => {
   };
   return {
     onpress,
-    imageData,
   };
 };
