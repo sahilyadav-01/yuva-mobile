@@ -16,6 +16,8 @@ export const useHome = () => {
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(state => state.auth);
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
+  const { popularPackageName } = useSelector(state => state.programAndPlan);
+  const { popularTest } = useSelector(state => state.popularTests);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -101,11 +103,15 @@ export const useHome = () => {
   const onPackagePress = (enumName, name) => {
     navigation.navigate('LifestyleTestsAndPackages', { enumName, name })
   };
+  const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index });
 
   return {
     name,
     renderLifeStyleItem,
     onPackagePress,
-    renderservicesItem
+    renderservicesItem,
+    popularPackageName,
+    onHealthPackagePress,
+    popularTest,
   };
 };

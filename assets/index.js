@@ -215,7 +215,6 @@ const PNG = {
   DOWNLOAD,
   DIAGNOSTIC,
   HEALTHIMG,
-  POPULARHEALTHICON,
   POPULARDIAGNOSTICICON,
   HEALTHCHECKUP1,
   HEALTHCHECKUP2,
@@ -246,9 +245,10 @@ const PNG = {
   YuvaBanner,
   OnMood9Banner,
   SelfHealing,
+  POPULARHEALTHICON,
   Our_Plan_Banner,
   OurPlanRadioButton,
-  planDetails
+  planDetails,
   AmbulanceImage,
 };
 
@@ -341,7 +341,7 @@ const SVG = {
   ManageAddress,
   AMBULANCESERVICE_SUBIMAGE1,
   AMBULANCESERVICE_SUBIMAGE2,
-  AMBULANCESERVICE_SUBIMAGE3
+  AMBULANCESERVICE_SUBIMAGE3,
 };
 
 const BASE_64 = {DoctorsImage}
