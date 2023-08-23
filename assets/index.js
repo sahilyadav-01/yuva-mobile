@@ -145,6 +145,9 @@ import Emrm from './Emrm';
 import EmrmAddIcon from './EmrmAddIcon';
 import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
+import Our_Plan_Banner from './Our_Plan_Banner.png';
+import OurPlanRadioButton from './OurPlanRadioButton.png'
+import planDetails from './planDetails.png'
 import OPD_SVG_ICON from './OPD_SVG_ICON';
 import HRA_SVG_ICON from './HRA_SVG_ICON';
 import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON'
@@ -243,6 +246,9 @@ const PNG = {
   YuvaBanner,
   OnMood9Banner,
   SelfHealing,
+  Our_Plan_Banner,
+  OurPlanRadioButton,
+  planDetails
   AmbulanceImage,
 };
 
