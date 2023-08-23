@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
-import { popularPackageNameThunk } from '../../../store/reducers/ProgramAndPlanSlice';
 import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
 import { getCartGuestThunk, getCartUserThunk, } from '../../../store/reducers/CartSlice';
+import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
@@ -34,6 +34,7 @@ export const useHome = () => {
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(lifeStyleSliceThunk({}));
+      dispatch(planPopularThunk())
       if (loggedIn === 'loggedIn') {
         dispatch(getCartUserThunk());
       } else {
