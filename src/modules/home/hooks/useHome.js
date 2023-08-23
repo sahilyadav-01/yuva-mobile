@@ -7,7 +7,7 @@ import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlic
 import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
 import { getCartGuestThunk, getCartUserThunk, } from '../../../store/reducers/CartSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
-import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, Talk_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
+import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
 
 export const useHome = () => {
@@ -52,7 +52,7 @@ export const useHome = () => {
     { name: 'Mental Wellness', screenName: 'MentalWellness', icon: SVG['MENTAL_WELLNESS_SVG_ICON'] },
     { name: 'My Tests', screenName: DIAGNOSTICS, icon: SVG['MY_TEST_SVG_ICON'] },
     { name: 'EMRM', screenName: EMRM_SCREEN_NAME, icon: SVG['EMRM_SVG_ICON'] },
-    { name: 'Online Consultation', screenName: Talk_TO_DOCTOR, icon: SVG['ONLINE_CONSULTATION_SVG_ICON'] },
+    { name: 'Online Consultation', screenName: TALK_TO_DOCTOR, icon: SVG['ONLINE_CONSULTATION_SVG_ICON'] },
     { name: 'Ambulance', screenName: 'ProfessionalServices', icon: SVG['AMBULANCE_SVG_ICON'] },
   ];
   const servicesNumRows = Math.ceil(servicesArray.length / 4);
