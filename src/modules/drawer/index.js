@@ -1,60 +1,53 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { SVG } from '../../../assets';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {SVG} from '../../../assets';
 import Header from '../../components/Header';
-import { LOGOUT, MY_BOOKINGS, My_Corporate_Program, MY_PRESCRIPTIONS, MY_REPORTS } from './constants';
-import { useDrawer } from './hooks/useDrawer';
-import { styles } from './style';
+import {useDrawer} from './hooks/useDrawer';
+import {styles} from './style';
 
 const Drawer = () => {
-  const { onReportsPress, onOrdersPress, onLogoutPress, onPrescriptionsPress, isEmployee, onCorporateProgramPress } = useDrawer();
+  const {data, name} = useDrawer();
   const {
     container,
     drawerContentContainer,
     textStyle,
-    secondarySeparator,
-    logoutContainer,
+    headingStyle,
     separator,
     rowContainer,
-    contentContainerStyle,
+    itemContainer,
+    descriptionContainer,
+    contentStyle,
   } = styles();
-  return (<>
-   <Header showSearch={false} title='Menu'/>
+  return (
     <View style={container}>
-    <ScrollView style={contentContainerStyle}>
+      <Header
+        showSearch={false}
+        title="Menu"
+        PrefixIcon={SVG.Back}
+        hideTitle={true}
+      />
       <View style={drawerContentContainer}>
-        <TouchableOpacity style={rowContainer} onPress={onReportsPress}>
-        <SVG.Reports/>
-          <Text style={textStyle}>{MY_REPORTS}</Text>
-        </TouchableOpacity>
-        <View style={separator} />
-        <TouchableOpacity style={rowContainer} onPress={onPrescriptionsPress}>
-        <SVG.Prescriptions/>
-          <Text style={textStyle}>{MY_PRESCRIPTIONS}</Text>
-        </TouchableOpacity>
-        <View style={separator} />
-        <TouchableOpacity style={rowContainer} onPress={onOrdersPress}>
-        <SVG.Bookings/>
-          <Text style={textStyle}>{MY_BOOKINGS}</Text>
-        </TouchableOpacity>
-        {isEmployee && (
-            <>
-              <View style={separator} />
-              <TouchableOpacity style={rowContainer} onPress={onCorporateProgramPress}>
-                <SVG.CorporateProgram />
-                <Text style={textStyle}>{My_Corporate_Program}</Text>
+        <ScrollView bounces={false}>
+          <>
+            <Text style={textStyle}>{name}</Text>
+            <View style={{height: 4}} />
+            {data.map((item, index) => (
+              <TouchableOpacity onPress={item?.onPress} style={itemContainer}>
+                {item?.Icon()}
+                <View style={descriptionContainer}>
+                  <Text style={headingStyle}>{item?.heading}</Text>
+                  <View style={rowContainer}>
+                    <Text style={contentStyle}>{item?.description}</Text>
+                    <SVG.ArrowRight />
+                  </View>
+                  {index < data.length - 1 && <View style={separator} />}
+                </View>
               </TouchableOpacity>
-            </>
-          )}
+            ))}
+          </>
+        </ScrollView>
       </View>
-      <View style={secondarySeparator} />
-      <TouchableOpacity onPress={onLogoutPress} style={logoutContainer}>
-        <SVG.Logout/>
-        <Text style={textStyle}>{LOGOUT}</Text>
-      </TouchableOpacity>
-      </ScrollView>
     </View>
-    </>
   );
 };
 

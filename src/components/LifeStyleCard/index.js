@@ -5,23 +5,18 @@ import { styles } from './styles';
 
 const LifeStyleCard = ({ name, image, enumName, onPackagePress }) => {
   const { imageData } = useLifeStyleCard();
-
   return (
     <TouchableOpacity
       style={styles.touchableOpacityContainerStyle}
       disable={true}
-      onPress={() => onPackagePress(enumName,name)}
-      >
-      <View style={styles.topContainerStyle}>
-        <View style={styles.subTopContainerStyle}>
-          {imageData[image]}
-        </View>
+      onPress={() => onPackagePress(enumName, name)}
+    >
+      <View style={styles.subTopContainerStyle}>
+        {imageData[image]}
       </View>
-      <View style={styles.bottomContainerStyle}>
-        <Text style={styles.subBottomContainerStyle}>
-          {name}
-        </Text>
-      </View>
+      <Text style={styles.subBottomContainerStyle}>
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };

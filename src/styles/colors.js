@@ -92,3 +92,6 @@ export const CURIOUS_BLUE_DISABLE = '#1882EB80';
 export const PALE_GRAY = '#AFA9A9';
 export const SHUTTLE_GREY = '#5A6B7C';
 export const ORACLE = '#37726C';
+export const VIVID_TANGERINE = '#F64E19'
+export const ORANGE_RED='#FB5812';
+export const PALE_PEACH = '#FFF9EF';

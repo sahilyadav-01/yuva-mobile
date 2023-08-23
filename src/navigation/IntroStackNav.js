@@ -20,6 +20,8 @@ import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/Boo
 import HomeSearchScreen from '../screens/HomeSearchScreen/HomeSearchScreen';
 import HomeSearchDetailsScreen from '../screens/HomeSearchScreen/HomeSearchDetailsScreen';
 import Maintenance from '../components/Maintenance';
+import ProfileContent from '../screens/ProfileContent';
+import ProfileNavigation from './ProfileNavigation';
 
 const Stack = createStackNavigator();
 
@@ -119,6 +121,16 @@ const IntroStackNav = () => {
         name="PurchaseScreen"
         component={PurchaseNav}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProfileContent"
+        component={ProfileContent}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+          name={'Profile'}
+          component={ProfileNavigation}
+          options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
