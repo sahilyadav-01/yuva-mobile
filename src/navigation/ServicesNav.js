@@ -26,6 +26,7 @@ import EmrmNavigation from './EmrmNav';
 import OnMood9Screen from '../screens/OnMood9';
 import OnMood9Static from '../screens/OnMood9/onMood9Static';
 import LoginScreen from '../screens/login/LoginScreen';
+import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -141,6 +142,11 @@ const ServicesNav = () => {
         name="EmrmHome"
         component={EmrmNavigation}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+      name="AmbulaceHomeScreen"
+      component={AmbulanceHomeScreen}
+      options={{headerShow: false}}
       />
     </Stack.Navigator>
   );
