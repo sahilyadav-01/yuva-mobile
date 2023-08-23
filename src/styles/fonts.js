@@ -27,6 +27,7 @@ export const fonts = {
   },
   Height: {
     lineHeight30: 30,
+    lineHeight24: 24,
     lineHeight21: 21,
     lineHeight18: 18,
   },

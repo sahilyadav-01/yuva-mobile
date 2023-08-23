@@ -161,6 +161,10 @@ import ArrowRight from './ArrowRight';
 import Profile from './Profile';
 import ManageNotifications from './ManageNotifications';
 import ManageAddress from './ManageAddress';
+import AmbulanceImage from './ambulanceImage.png';
+import AMBULANCESERVICE_SUBIMAGE1 from './AMBULANCESERVICE_SUBIMAGE1';
+import AMBULANCESERVICE_SUBIMAGE2 from './AMBULANCESERVICE_SUBIMAGE2';
+import AMBULANCESERVICE_SUBIMAGE3 from './AMBULANCESERVICE_SUBIMAGE3';
 
 const PNG = {
   AMICO,
@@ -238,7 +242,8 @@ const PNG = {
   YuvaBanner,
   OnMood9Banner,
   SelfHealing,
-  POPULARHEALTHICON
+  POPULARHEALTHICON,
+  AmbulanceImage,
 };
 
 const SVG = {
@@ -328,6 +333,9 @@ const SVG = {
   Profile,
   ManageNotifications,
   ManageAddress,
+  AMBULANCESERVICE_SUBIMAGE1,
+  AMBULANCESERVICE_SUBIMAGE2,
+  AMBULANCESERVICE_SUBIMAGE3,
 };
 
 const BASE_64 = {DoctorsImage}
