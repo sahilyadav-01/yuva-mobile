@@ -6,15 +6,13 @@ const OurPlanServiceIconsCard = ({name, icon, text}) => {
   return (
     <View style={styles.touchableOpacityContainerStyle}>
       <View style={styles.subTopContainerStyle}>
-        <View style={{position: 'absolute'}}>
-          <Text style={styles.topText}>{text}</Text>
+        <View style={styles.headView}>
+          <Text style={styles.head}>{text}</Text>    
         </View>
-        <View style={{zIndex:-999}}>
-        {icon()}
-        </View>
+          {icon()}
       </View>
       <Text style={styles.subBottomContainerStyle}>{name}</Text>
-    </View>
+      </View>
   );
 };
 

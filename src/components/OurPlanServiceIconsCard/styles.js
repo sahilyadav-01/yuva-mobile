@@ -1,35 +1,46 @@
 import { StyleSheet } from 'react-native';
 import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN } from '../../styles/constants';
+import { CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
     flex:1,
     flexDirection:COLUMN,
-    marginHorizontal: 4,
-    marginVertical:16
+    marginHorizontal:2,
+    marginVertical:12,
   },
   subTopContainerStyle: {
-    alignItems: CENTER,
-    flexDirection:'column',
-    paddingTop:5,
+    alignItems:FLEX_START,
+    justifyContent:FLEX_START,
+    flexDirection:COLUMN,
   },
   subBottomContainerStyle: {
     paddingTop: 10,
+    alignItems:FLEX_START,
+    justifyContent:FLEX_START,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    textAlign: CENTER,
+    textAlign:LEFT,
+    paddingLeft:5,
     color: BLACK,
   },
-  topText: {
-    fontSize: fonts.size.fontSize8,
-    fontFamily: fonts.family.rubik500,
-    color: RED_SHADE,
-    alignSelf:'flex-end',
-    marginLeft:40,
-    width:'58%',
-    paddingLeft:10,
-    backgroundColor:WHITE,
-  },
+    headView: {
+      justifyContent:FLEX_START,
+      alignSelf:FLEX_START,
+      marginLeft: 32,
+      top:10,
+      borderRadius: 6,
+      maxWidth:155,
+      backgroundColor:WHITE,
+      zIndex:999
+    },
+    head: {
+      alignSelf:FLEX_START,
+      justifyContent:CENTER,
+      shadowColor: WHITE,
+      color:RED_SHADE,
+      fontSize: fonts.size.fontSize8,
+      fontFamily: fonts.family.rubik500,
+    },
 });
