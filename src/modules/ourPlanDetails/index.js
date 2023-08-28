@@ -18,7 +18,6 @@ import PlanServiceIcons from './components/PlanServiceIcons';
 
 const OurPlanDetails = props => {
   const {planDetails,planDetailsLoading,planDetailsError} = useOurPlanDetails(props);
-
   const renderItem = ({item, index}) => {
     return (
       <View key={index}>
