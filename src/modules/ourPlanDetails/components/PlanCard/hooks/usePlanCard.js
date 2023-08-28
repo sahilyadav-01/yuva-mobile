@@ -14,7 +14,7 @@ export const usePlanCard = (item) => {
           // navigation.navigate(ADDRESS,{plan:true})
       } 
       else {
-         navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetailsGuest', data: ourPlanData } });
+         navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetails', data: ourPlanData } });
       }
   }
   return {
