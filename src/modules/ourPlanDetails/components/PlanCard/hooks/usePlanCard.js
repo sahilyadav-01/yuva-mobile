@@ -1,6 +1,7 @@
 
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import {LOGIN_SCREEN} from '../constants'
 
 export const usePlanCard = (item) => {
   const { ourPlanData } = useSelector(state => state.programAndPlan);
@@ -12,9 +13,9 @@ export const usePlanCard = (item) => {
           alert("Hiiiiiiiiiii")
           // navigation.navigate(ADDRESS,{plan:true})
       } 
-      // else {
-      //     // navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetailsGuest'} });
-      // }
+      else {
+         navigation.navigate('Home',{screen:LOGIN_SCREEN, params: { from: 'OurPlanDetails', data: ourPlanData } });
+      }
   }
   return {
     bookOurPlan,
