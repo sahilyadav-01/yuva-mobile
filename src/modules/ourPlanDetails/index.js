@@ -31,10 +31,10 @@ const OurPlanDetails = props => {
   };
   return (
     <SafeAreaView>
-      <ScrollView
+          <Header showBackButton={true} title={TITLE}/>
+          <ScrollView
         contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
-          <Header showBackButton={true} title={TITLE}/>
         <PlanCard/>
         <PlanServiceIcons/>
         {planDetailsLoading &&  <View style={styles.emptyView}>
