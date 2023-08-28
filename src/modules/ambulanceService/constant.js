@@ -7,3 +7,4 @@ export const SECONDCARD_HEADING = 'Extension of Ambulance \n Network';
 export const SECONDCARD_SUBHEADING = 'Book ambulances in advance for hassle-free hospital visits.';
 export const THIRDCARD_HEADING = 'On Call Support';
 export const THIRDCARD_SUBHEADING = 'Seamless communication with ambulance drivers';
+export const HEADER = 'Ambulance Service';
