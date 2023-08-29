@@ -59,4 +59,16 @@ export const styles = StyleSheet.create({
     textAlign: CENTER,
     paddingVertical: 4,
   },
+  dotView: {
+    marginHorizontal: 8,
+    backgroundColor: KASHMIR_BLUE,
+    borderColor: BLACK,
+    borderWidth: 1,
+    width: 8,
+    height: 8,
+    borderRadius: 8,
+  },
+  activeView:{
+    backgroundColor: WHITE,
+  }
 });

@@ -7,7 +7,7 @@ import { getCalendarValue, getDimensions } from '../../../../utils/utils';
 
 const {width} = getDimensions();
 const AppointmentTag = () => {
-  const {userAppointments } = useAppointment();
+  const {activeIndex, userAppointments, viewabilityConfigCallbackPairs, viewabilityConfig } = useAppointment();
   const renderItem = ({item, index}) => {
     const {date, time} = getCalendarValue(item?.slot)
     return (
@@ -30,18 +30,36 @@ const AppointmentTag = () => {
       </View>
     );
   }
+  const renderDots = ({items, index}) => {
+    return (
+      <View style={[styles.dotView, activeIndex ===index && styles.activeView]} key={index} />
+    );
+  }
   return (
-    <FlatList 
-      data={userAppointments}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => `${index}`}
-      key={(item, index) => index}
-      snapToAlignment={'start'}
-      snapToInterval={width - 1}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.mainView}
-    />
+    <View style={styles.mainView}>
+      <FlatList 
+        data={userAppointments}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => `${index}`}
+        key={(item, index) => index}
+        snapToAlignment={'start'}
+        snapToInterval={width - 1}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+        viewabilityConfig={viewabilityConfig}
+      />
+      { userAppointments?.length > 1 &&
+        <FlatList
+          data={userAppointments}
+          renderItem={renderDots}
+          keyExtractor={(item, index) => `${index}`}
+          key={(item, index) => index}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      }
+    </View>
   );
 };
 
