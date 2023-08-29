@@ -9,7 +9,6 @@ import {
   updateProfileStatus,
 } from '../store/reducers/ProfileSlice';
 import {cityIdThunk} from '../store/reducers/DiagnosticsSlice';
-import CartNavigation from './CartNavigation';
 import DrawerNav from './DrawerNav';
 import ReportNav from './ReportNav';
 import MyPrescription from '../screens/MyPrescriptionScreen';
@@ -90,11 +89,6 @@ const IntroStackNav = () => {
       <Stack.Screen
         name="IntroScreen"
         component={IntroScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="CartScreen"
-        component={CartNavigation}
         options={{headerShown: false}}
       />
       <Stack.Screen

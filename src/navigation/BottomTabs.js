@@ -3,15 +3,15 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
-import {HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE} from './constants';
+import {HEALTH_PLANS, HOME, PROFILE} from './constants';
 import {CENTER} from '../styles/constants';
 import {fonts} from '../styles/fonts';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
-import OurOfferNav from './OurOffersNav';
 import { getPlatform } from '../utils/utils';
-import OurPlanNav from './OurPlanNav';
 import ProfileNavigation from './ProfileNavigation';
+import CartNavigation from './CartNavigation';
+import ReportNav from './ReportNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,7 +71,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name={HEALTH_PLANS}
-        component={OurPlanNav}
+        component={ReportNav}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -85,13 +85,13 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name={OUR_OFFERS}
-        component={OurOfferNav}
+        name={'Cart'}
+        component={CartNavigation}
         options={{
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="tag-outline"
+                name="cart-outline"
                 size={35}
                 color={focused ? ORANGE : CYAN_BLUE}
               />

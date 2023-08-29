@@ -12,6 +12,7 @@ export const useHeader = (props) => {
   const [query, setQuery] = useState('');
   const [showCount, setShowCount] = useState(false);
   const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
+  const [showSearchBox, setShowSearchBox] = useState(false);
   const { loggedIn } = useSelector(state => state.auth);
   const diagnosticState = useSelector(state => state.diagnostic);
   const { cityId } = diagnosticState;
@@ -61,6 +62,9 @@ export const useHeader = (props) => {
     onSearch && onSearch(text);
     setQuery(text);
   }
+  const onSearchPress = () => {
+    setShowSearchBox(!showSearchBox);
+  }
   return {
     isLoggedIn,
     onCartPress,
@@ -87,6 +91,8 @@ export const useHeader = (props) => {
     showLocation: showLocation ?? false,
     PrefixIcon: PrefixIcon ?? null,
     hideTitle: hideTitle ?? false,
-    initial
+    initial,
+    onSearchPress,
+    showSearchBox
   };
 }
