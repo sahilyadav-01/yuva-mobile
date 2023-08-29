@@ -8,6 +8,7 @@ import LifeStyle from './components/lifeStyle';
 import OurPlan from './components/OurPlan'
 import PopularHeathCheckupCarousel from './components/PopularHeathCheckupCarousel';
 import PopularTestPackageCarousel from './components/PopularTestPackageCarousel.js';
+import AppointmentTag from './components/appointmentTag';
 
 export const HomeScreen = () => {
   const { name, renderservicesItem, renderLifeStyleItem, onPackagePress, popularPackageName, onHealthPackagePress, popularTest } = useHome();
@@ -16,6 +17,7 @@ export const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <Header initial={name ?? null} showSearch={true} showLocation={true} />
       <ScrollView>
+        <AppointmentTag />
         <Services renderservicesItem={renderservicesItem} />
         <OurPlan/>
         <PopularHeathCheckupCarousel popularPackageName={popularPackageName} onHealthPackagePress={onHealthPackagePress} />

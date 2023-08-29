@@ -1,17 +1,19 @@
 import { StyleSheet } from "react-native";
-import { BLACK, KASHMIR_BLUE, WHITE } from "../../../styles/colors";
-import { CENTER, ROW } from "../../../styles/constants";
-import { fonts } from "../../../styles/fonts";
-import { getDimensions } from "../../../utils/utils";
+import { BLACK, KASHMIR_BLUE, WHITE } from "../../../../styles/colors";
+import { CENTER, ROW } from "../../../../styles/constants";
+import { fonts } from "../../../../styles/fonts";
+import { getDimensions } from "../../../../utils/utils";
 
 const {width} = getDimensions();
 
 export const styles = StyleSheet.create({
+  mainView: {
+    alignItems: CENTER,
+  },
   container: {
-    width: '96%',
+    width: width-4,
     marginVertical: 8,
-    marginHorizontal: 8,
-    alignSelf: CENTER,
+    marginHorizontal: 4,
     flexDirection: ROW,
   },
   borderStyle: {
