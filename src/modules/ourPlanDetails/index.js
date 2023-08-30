@@ -14,10 +14,10 @@ import { TERMS_AND_CONDITION, TITLE, termsAndCondition } from './constants';
 import { FlatList } from 'react-native-gesture-handler';
 import { PNG } from '../../../assets';
 import Header from '../../components/Header';
+import PlanServiceIcons from './components/PlanServiceIcons';
 
 const OurPlanDetails = props => {
   const {planDetails,planDetailsLoading,planDetailsError} = useOurPlanDetails(props);
-
   const renderItem = ({item, index}) => {
     return (
       <View key={index}>
@@ -30,11 +30,12 @@ const OurPlanDetails = props => {
   };
   return (
     <SafeAreaView>
-      <ScrollView
+          <Header showBackButton={true} title={TITLE}/>
+          <ScrollView
         contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
-          <Header showBackButton={true} title={TITLE}/>
         <PlanCard/>
+        <PlanServiceIcons/>
         {planDetailsLoading &&  <View style={styles.emptyView}>
           <ActivityIndicator size={'large'}/>
         </View> }

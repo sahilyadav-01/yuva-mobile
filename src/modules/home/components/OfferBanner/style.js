@@ -20,6 +20,7 @@ export const styles = () => {
       flexDirection: ROW,
       marginTop: 8,
       justifyContent: CENTER,
+      marginBottom: 12,
     },
   });
 };

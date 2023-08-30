@@ -146,7 +146,7 @@ const ServicesNav = () => {
       <Stack.Screen
       name="AmbulaceHomeScreen"
       component={AmbulanceHomeScreen}
-      options={{headerShow: false}}
+      options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import { PNG, SVG } from "../../../assets";
-import { DETIALS_TEXT, FIRSTCARD_HEADING, FIRSTCARD_SUBHEADING, HEADING, SECONDCARD_HEADING, SECONDCARD_SUBHEADING, SUBHEADING, THIRDCARD_HEADING, THIRDCARD_SUBHEADING } from "./constant";
+import Header from "../../components/Header";
+import { DETIALS_TEXT, FIRSTCARD_HEADING, FIRSTCARD_SUBHEADING, HEADER, HEADING, SECONDCARD_HEADING, SECONDCARD_SUBHEADING, SUBHEADING, THIRDCARD_HEADING, THIRDCARD_SUBHEADING } from "./constant";
 import { styles } from "./styles";
 const AmbulanceScreen = () => {
     const AmbulanceServiceCards = () => {
@@ -25,15 +26,18 @@ const AmbulanceScreen = () => {
         })
     }
     return (
-        <View style={styles.mainContainer}>
-            <ScrollView>
-                <Text style={styles.headingStyle}>{HEADING}</Text>
-                <Image source={PNG.AmbulanceImage} style={styles.mainImageStyle} resizeMode='cover' />
-                <Text style={styles.subHeadingStyle}>{SUBHEADING}</Text>
-                <Text style={styles.detialsTextStyle}>{DETIALS_TEXT}</Text>
-                <AmbulanceServiceCards />
-            </ScrollView>
-        </View>
+        <>
+            <Header title={HEADER} isScreen={true} hideMenu={false} showBackButton={true} />
+            <View style={styles.mainContainer}>
+                <ScrollView>
+                    <Text style={styles.headingStyle}>{HEADING}</Text>
+                    <Image source={PNG.AmbulanceImage} style={styles.mainImageStyle} resizeMode='cover' />
+                    <Text style={styles.subHeadingStyle}>{SUBHEADING}</Text>
+                    <Text style={styles.detialsTextStyle}>{DETIALS_TEXT}</Text>
+                    <AmbulanceServiceCards />
+                </ScrollView>
+            </View>
+        </>
     )
 }
 

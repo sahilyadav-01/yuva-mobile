@@ -10,6 +10,7 @@ import PopularHeathCheckupCarousel from './components/PopularHeathCheckupCarouse
 import PopularTestPackageCarousel from './components/PopularTestPackageCarousel.js';
 import OfferBanner1 from './components/OfferBanner';
 import PackagesOffer from './components/PackagesOffer';
+import AppointmentTag from './components/appointmentTag';
 
 export const HomeScreen = () => {
   const {
@@ -35,6 +36,7 @@ export const HomeScreen = () => {
       />
       <ScrollView nestedScrollEnabled={true}>
         <OfferBanner1 bannerData={banner1} />
+        <AppointmentTag />
         <Services renderservicesItem={renderservicesItem} />
         <OurPlan />
         <PopularHeathCheckupCarousel
