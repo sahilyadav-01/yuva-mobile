@@ -1,60 +1,30 @@
 import {StyleSheet} from 'react-native';
 import {
-  ABSOLUTE,
   AUTO,
   CENTER,
-  CONTAIN,
   FLEX_START,
   ROW,
   SPACE_AROUND,
-  SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {
   BLACK,
-  CYAN_BLUE,
   GREY,
   ORANGE,
   ORANGE_RED,
+  RED,
   WHITE,
 } from '../../../../styles/colors';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 4,
-  },
-  OurPlansHeaderStyle: {
-    alignItems: CENTER,
-    marginVertical: 8,
-    flexDirection: ROW,
-    justifyContent: SPACE_BETWEEN,
-    marginHorizontal: 16,
-  },
-  LandingPageText1: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik700,
-    fontSize: fonts.size.fontSize14,
-  },
-  LandingPageText2: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize12,
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingBottom: 110,
   },
   line: {
     borderBottomColor: ORANGE_RED,
     borderBottomWidth: 1,
     flex: 1,
-  },
-  subHeadingView: {
-    marginVertical: 6,
-    marginHorizontal: 16,
-    flexDirection: ROW,
-    zIndex: 999,
-  },
-  subHeadingText: {
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize10,
-    color: ORANGE,
   },
   ImageBanner: {
     width: '95%',
@@ -65,6 +35,7 @@ export const styles = StyleSheet.create({
   ImageView: {
     alignItems: CENTER,
     justifyContent: FLEX_START,
+    marginVertical:14,
   },
   radioOuterCircle: {
     width: 15,
@@ -126,8 +97,9 @@ export const styles = StyleSheet.create({
     borderColor:GREY,
   },
   ImageBanner2: {
-    paddingBottom: 24,
+    paddingBottom:100,
     width: '100%',
+    paddingTop:10,
   },
   TextImage: {
     paddingTop: 12,
