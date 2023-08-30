@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, ImageBackground, View, FlatList} from 'react-native';
 import {styles} from './style';
-import {GRAY, LIGHT_GREY, ORANGE} from '../../../../styles/colors';
-import { PNG } from '../../../../../assets';
+import {GRAY, ORANGE} from '../../../../styles/colors';
+import {useOfferBanner} from './hooks/useOfferBanner';
 
-const OfferBanner1 = ({data}) => {
+const OfferBanner1 = props => {
+  const {
+    bannerData: {data: bannerData},
+  } = props;
+  const data = bannerData?.data ?? null;
+  const {onBannerPress} = useOfferBanner();
   const [activeIndex, setActiveIndex] = useState(0);
   const onChange = ({nativeEvent}) => {
     const active = Math.floor(
@@ -13,16 +18,18 @@ const OfferBanner1 = ({data}) => {
     setActiveIndex(active);
   };
   const style = styles();
-  const renderItem = () => {
+  const renderItem = ({item}) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onBannerPress(item)}>
         <ImageBackground
-          source={PNG.Banner1}
+          source={{uri: item.image}}
           style={style.imageBackgroundStyle}
         />
       </TouchableOpacity>
     );
   };
+
+  if (bannerData === null || data === null || data.length === 0) return null;
   return (
     <>
       <FlatList

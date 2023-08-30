@@ -11,3 +11,4 @@ export const CONSULTATIONS = 'Consultations';
 export const TALK_TO_DOCTOR = 'Talk To Doctor';
 export const OPD_CONSULTATION = 'OPD Consultation';
 export const MY_REPORTS = 'My Reports';
+export const CART = 'Cart';

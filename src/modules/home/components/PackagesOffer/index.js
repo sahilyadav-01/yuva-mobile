@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   TouchableOpacity,
   ImageBackground,
@@ -7,46 +7,43 @@ import {
   Text,
 } from 'react-native';
 import {styles} from './style';
-import {GRAY, LIGHT_GREY, ORANGE} from '../../../../styles/colors';
 import {PNG} from '../../../../../assets';
 
-const PackagesOffer = ({data}) => {
-  //   const [activeIndex, setActiveIndex] = useState(0);
-  //   const onChange = ({nativeEvent}) => {
-  //     const active = Math.floor(
-  //       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
-  //     );
-  //     setActiveIndex(active);
-  //   };
+const PackagesOffer = props => {
+  const {
+    bannerData: {data: bannerData},
+  } = props;
+  const data = bannerData?.data ?? null;
   const style = styles();
   const renderItem = () => {
     return (
-      <ImageBackground source={PNG.Banner3} style={style.imageBackgroundStyle}>
-        <Text>Monsoon Package</Text>
-        <View style={{height: 8}} />
-        <Text style={{maxWidth: '70%'}}>
-          Embrace the Monsoon with our Exclusive package - Check for illnesses
-          common in Monsoon to ensure good health & reduce your risks
-        </Text>
-        <View style={{height: 8}} />
-        <Text>Rs 900/-</Text>
-        <View style={{height: 4}} />
-        <TouchableOpacity
-          style={{
-            borderRadius: 6,
-            paddingVertical: 6,
-            paddingHorizontal: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor:'red'
-          }}>
-          <Text>Book Now</Text>
-        </TouchableOpacity>
+      <ImageBackground
+        resizeMode="stretch"
+        source={PNG.Banner3}
+        style={style.imageBackgroundStyle}>
+        <View style={style.container}>
+          <Text style={style.headingText}>Monsoon Package</Text>
+          <View style={{height: 8}} />
+          <Text numberOfLines={3} style={style.descriptionText}>
+            Embrace the Monsoon with our Exclusive package - Check for illnesses
+            common in Monsoon to ensure good health & reduce your risks Embrace
+            the Monsoon with our Exclusive package - Check for illnesses common
+            in Monsoon to ensure good health & reduce your risks
+          </Text>
+          <View style={{height: 8}} />
+          <Text style={style.priceText}>Rs 900/-</Text>
+          <View style={{height: 4}} />
+          <TouchableOpacity style={style.buttonContainer}>
+            <Text style={[style.descriptionText]}>Book Now</Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     );
   };
+
+  if (bannerData === null || data === null || data.length === 0) return null;
   return (
-    <>
+    <View>
       <FlatList
         pagingEnabled={true}
         key={(item, index) => index.toString()}
@@ -59,20 +56,7 @@ const PackagesOffer = ({data}) => {
         horizontal={true}
         renderItem={renderItem}
       />
-      {/* <View style={style.pointerContainer}>
-        {data.map((item, index) => (
-          <View
-            style={[
-              style.pointerStyle,
-              {
-                backgroundColor: activeIndex === index ? ORANGE : GRAY,
-                marginRight: index < data.length - 1 ? 8 : 0,
-              },
-            ]}
-          />
-        ))}
-      </View> */}
-    </>
+    </View>
   );
 };
 

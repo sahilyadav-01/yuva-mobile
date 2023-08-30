@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
-import {HEALTH_PLANS, HOME, PROFILE} from './constants';
+import {CART, HOME, MY_REPORTS, PROFILE} from './constants';
 import {CENTER} from '../styles/constants';
 import {fonts} from '../styles/fonts';
 import Authentication from './Authentication';
@@ -70,13 +70,13 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name={HEALTH_PLANS}
+        name={MY_REPORTS}
         component={ReportNav}
         options={{
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="plus-box-outline"
+                name="clipboard-text-clock-outline"
                 size={35}
                 color={focused ? ORANGE : CYAN_BLUE}
               />
@@ -85,7 +85,7 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name={'Cart'}
+        name={CART}
         component={CartNavigation}
         options={{
           tabBarIcon: ({focused}) => {
