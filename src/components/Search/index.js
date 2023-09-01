@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
-import {SVG} from '../../../assets';
 import {PALE_ORANGE} from '../../styles/colors';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -27,8 +26,7 @@ const onPress=()=>{
   }
 }
   return (
-    <View style={styles.conatiner}>
-      <SVG.SearchIcon />
+    <View style={styles.container}>
       <TextInput
         onSubmitEditing={onSubmit}
         editable={editable}

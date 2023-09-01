@@ -168,6 +168,8 @@ import AmbulanceImage from './ambulanceImage.png';
 import AMBULANCESERVICE_SUBIMAGE1 from './AMBULANCESERVICE_SUBIMAGE1';
 import AMBULANCESERVICE_SUBIMAGE2 from './AMBULANCESERVICE_SUBIMAGE2';
 import AMBULANCESERVICE_SUBIMAGE3 from './AMBULANCESERVICE_SUBIMAGE3';
+import Banner1 from './Banner1.png';
+import Banner3 from './Banner3.png';
 
 const PNG = {
   AMICO,
@@ -250,6 +252,8 @@ const PNG = {
   OurPlanRadioButton,
   planDetails,
   AmbulanceImage,
+  Banner1,
+  Banner3
 };
 
 const SVG = {
