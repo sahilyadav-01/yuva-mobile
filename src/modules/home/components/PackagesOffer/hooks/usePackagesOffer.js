@@ -1,8 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-
-export const useOfferBanner = () => {
-  const navigation = useNavigation();
-  const onBannerPress = itemDetails => {
+export const usePackagesOffer = () => {
+  const onPackagePress = itemDetails => {
     if (itemDetails?.contentType === 'TEST') {
       navigation.navigate('ProductDetails', {
         headerName: 'health',
@@ -13,8 +10,7 @@ export const useOfferBanner = () => {
         name: itemDetails?.innerBannerName ?? null,
         cost: itemDetails?.cost ?? null,
       });
-    }
-    else if (itemDetails?.contentType === 'PACKAGE') {
+    } else if (itemDetails?.contentType === 'PACKAGE') {
       navigation.navigate('ProductDetails', {
         headerName: 'health',
         packageName: itemDetails?.itemId,
@@ -26,5 +22,5 @@ export const useOfferBanner = () => {
       });
     }
   };
-  return {onBannerPress};
+  return {onPackagePress};
 };
