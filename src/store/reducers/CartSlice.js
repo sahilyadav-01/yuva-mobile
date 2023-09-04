@@ -37,6 +37,7 @@ export const createCartUserThunk = createAsyncThunk(
   async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/cart';
+      console.log('Cart dto',JSON.stringify(cartDto))
       const response = await YuvaService.post(endpoint, cartDto);
       if (response?.data?.status) {
         store.dispatch(getCartUserThunk());
