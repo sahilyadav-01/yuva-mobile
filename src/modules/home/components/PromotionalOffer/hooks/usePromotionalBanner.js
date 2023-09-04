@@ -8,23 +8,24 @@ import {
 } from '../../../../../store/reducers/DiagnosticsSlice';
 import {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import { redeemCouponsSliceThunk } from '../../../../../store/reducers/CouponSlice';
 
 export const usePromotionalBanner = () => {
   const {addToCart} = useCart();
   const dispatch = useDispatch();
   const {cart, addToCartItem} = useSelector(state => state.cart);
   const {packageDetails, testDetails} = useSelector(state => state.diagnostic);
+  const {couponView} = useSelector(state => state.coupon);
   const navigation = useNavigation();
-  const badgeCount = cart?.itemDtoList?.length || 0;
   const [selectedItem, setSelectedItem] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const badgeCount = cart?.itemDtoList?.length || 0;
 
   useEffect(() => {
     if (
       testDetails?.id &&
       testDetails?.id.toString() === selectedItem?.id.toString()
     ) {
-      setSelectedItem(null);
       addToCart(
         {
           name: testDetails?.name,
@@ -42,7 +43,6 @@ export const usePromotionalBanner = () => {
       packageDetails?.packageUuid &&
       packageDetails?.packageUuid.toString() === selectedItem?.id.toString()
     ) {
-      setSelectedItem(null);
       addToCart(
         {
           name: packageDetails?.packageName,
@@ -56,20 +56,26 @@ export const usePromotionalBanner = () => {
   }, [packageDetails]);
 
   useEffect(() => {
-    if (addToCartItem && addedToCart) {
+    if(couponView !== null && addedToCart) {
       setAddedToCart(false);
-      //Add coupon as well here.. post which navigation should happen
       navigation.navigate('HomeScreen', {
         screen: 'HomeDrawer',
         params: {screen: 'Cart'},
       });
     }
+  }, [couponView])
+
+  useEffect(() => {
+    if (addToCartItem && addedToCart) {
+      dispatch(redeemCouponsSliceThunk({isLoggedIn: true, couponCode: selectedItem?.coupon }));
+      setSelectedItem(null);
+    }
   }, [addToCartItem]);
 
   const addItemToCart = itemDetails => {
     setSelectedItem(itemDetails);
-    //setSelectedITem({id:4});
-    //setSelectedItem({id:'0c3ac5f8-c10c-46f4-9252-1da459e18b57'});
+    // setSelectedItem({...itemDetails,id:4});
+    //setSelectedItem({...itemDetails,id:'0c3ac5f8-c10c-46f4-9252-1da459e18b57'});
     if (itemDetails?.contentType === 'TEST') {
       dispatch(diagnosisTestDetailsThunk({id: itemDetails?.id}));
     } else if (itemDetails?.contentType === 'PACKAGE') {
