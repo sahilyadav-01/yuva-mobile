@@ -41,7 +41,7 @@ const Header = props => {
   } = useHeader(props);
 
   return (
-    <View>
+    <View style={styles.container}>
     <View style={styles.topSection}>
       {canGoBack && (
         <View style={{flexDirection:'row',alignItems:'center'}}>
