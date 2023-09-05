@@ -51,7 +51,7 @@ export const useHome = () => {
     { name: 'Book Test', screenName: HEALTH_CHECKUP, icon: SVG['BOOK_TEST_SVG_ICON'] },
     { name: 'Plans', screenName: 'PurchaseScreen', icon: SVG['PLANS_SVG_ICON'] },
     { name: 'Corporate Program', screenName: 'MyCorporateProgram', icon: SVG['CORPORATE_PROGRAM'] },
-    { name: 'Search Network', screenName: 'ProfessionalServices', icon: SVG['SEARCH_NETWORK'] },
+    { name: 'Search Network', screenName: 'SearchNetworkHomeScreen', icon: SVG['SEARCH_NETWORK'] },
     { name: 'OPD Consultation', screenName: OPD, icon: SVG['OPD_SVG_ICON'] },
     { name: 'Health Risk Assessment', screenName: HRA, icon: SVG['HRA_SVG_ICON'] },
     { name: 'Pharmacy', screenName: PHARMACY, icon: SVG['PHARMACY_SVG_ICON'] },

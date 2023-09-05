@@ -27,6 +27,7 @@ import OnMood9Screen from '../screens/OnMood9';
 import OnMood9Static from '../screens/OnMood9/onMood9Static';
 import LoginScreen from '../screens/login/LoginScreen';
 import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
+import SearchNetworkHomeScreen from '../screens/yuvaservices/searchNetwork/SearchNetworkHomeScreen';
 import ViewAllOurPlansScreen from '../screens/OurPlanScreen/ViewAllOurPlansScreen';
 
 const Stack = createStackNavigator();
@@ -148,6 +149,11 @@ const ServicesNav = () => {
       name="AmbulaceHomeScreen"
       component={AmbulanceHomeScreen}
       options={{ headerShown: false }}
+      />
+      <Stack.Screen
+      name="SearchNetworkHomeScreen"
+      component={SearchNetworkHomeScreen}
+      options={{ headerShown: false}}
       />
     </Stack.Navigator>
   );
