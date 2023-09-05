@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {CENTER} from '../../../../styles/constants';
+import {CENTER, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
-import {GAINSBORO_LIGHT, INDIGO_LIGHT, WHITE} from '../../../../styles/colors';
+import {GAINSBORO_LIGHT, INDIGO_LIGHT, ORANGE, WHITE} from '../../../../styles/colors';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -9,22 +9,30 @@ export const styles = () => {
       paddingHorizontal: 16,
     },
     itemContainer: {
-      width: 150,
-      paddingVertical: 16,
       borderRadius: 20,
       borderWidth: 1,
       borderColor: GAINSBORO_LIGHT,
       alignItems: CENTER,
-      justifyContent: CENTER,
+      justifyContent: SPACE_BETWEEN,
+      paddingTop: 8,
+      paddingBottom: 8,
       backgroundColor: WHITE,
-      minHeight: 128,
-      maxHeight: 140,
+      minHeight: 118,
+      maxHeight: 130,
+      width: 150,
     },
     text: {
       textAlign: CENTER,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       color: INDIGO_LIGHT,
+    },
+    buttonText: {
+      textAlign: CENTER,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+      color: INDIGO_LIGHT,
+      color: WHITE
     },
     spacing: {height: 16},
     heading: {
@@ -34,6 +42,16 @@ export const styles = () => {
       marginBottom: 8,
     },
     listStyle: {flex: 1},
-    itemSeparatorStyle: {width: 16}
+    itemSeparatorStyle: {width: 16},
+    buttonContainer: {
+      backgroundColor: ORANGE,
+      borderColor: ORANGE,
+      borderRadius: 10,
+      borderWidth: 1,
+      paddingHorizontal: 8,
+      paddingVertical: 2,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+    },
   });
 };

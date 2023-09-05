@@ -35,7 +35,7 @@ const ServicesNav = () => {
     auth: {loggedIn},
   } = useSelector(state => state);
   return (
-    <Stack.Navigator initialRouteName='NewHome'>
+    <Stack.Navigator initialRouteName='HomeService'>
       <Stack.Screen
         name="NewHome"
         component={NewHomeScreen}

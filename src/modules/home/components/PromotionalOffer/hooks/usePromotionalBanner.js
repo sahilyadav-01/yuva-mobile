@@ -1,94 +1,136 @@
+import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ADD_ALERT} from '../constants';
 import {useCart} from '../../../../cart/hooks/useCart';
-import {
-  diagnosisPackageDetailsThunk,
-  diagnosisTestDetailsThunk,
-} from '../../../../../store/reducers/DiagnosticsSlice';
-import {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import { redeemCouponsSliceThunk } from '../../../../../store/reducers/CouponSlice';
+import {redeemCouponsSliceThunk} from '../../../../../store/reducers/CouponSlice';
+import {removeCouponCart} from '../../../../../store/reducers/CartSlice';
 
-export const usePromotionalBanner = () => {
+export const usePromotionalBanner = bannerData => {
   const {addToCart} = useCart();
   const dispatch = useDispatch();
-  const {cart, addToCartItem} = useSelector(state => state.cart);
-  const {packageDetails, testDetails} = useSelector(state => state.diagnostic);
-  const {couponView} = useSelector(state => state.coupon);
   const navigation = useNavigation();
+  const {cart, addToCartItem, existingIds} = useSelector(state => state.cart);
+  const cartCoupon = useSelector(state => state.cart)?.couponViewCart ?? null;
+  const {couponView} = useSelector(state => state.coupon);
   const [selectedItem, setSelectedItem] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [clearCoupons, setClearCoupons] = useState(false);
+  const [applyCoupon, setApplyCoupon] = useState(false);
+  const [data, setData] = useState(null);
   const badgeCount = cart?.itemDtoList?.length || 0;
 
   useEffect(() => {
-    if (
-      testDetails?.id &&
-      testDetails?.id.toString() === selectedItem?.id.toString()
-    ) {
-      addToCart(
-        {
-          name: testDetails?.name,
-          cost: testDetails?.cost,
-          productId: testDetails?.id,
-        },
-        'TEST',
-      );
-      setAddedToCart(true);
-    }
-  }, [testDetails]);
+    console.log('BD', bannerData);
+    setData(bannerData);
+  }, [bannerData]);
 
   useEffect(() => {
     if (
-      packageDetails?.packageUuid &&
-      packageDetails?.packageUuid.toString() === selectedItem?.id.toString()
+      couponView === null &&
+      cartCoupon === null &&
+      selectedItem !== null &&
+      clearCoupons
     ) {
-      addToCart(
-        {
-          name: packageDetails?.packageName,
-          cost: packageDetails?.packageCost,
-          productId: packageDetails?.packageUuid,
-        },
-        'PACKAGE',
-      );
+      setClearCoupons(false);
+      addToCart({productId: selectedItem?.itemId}, selectedItem?.contentType);
       setAddedToCart(true);
-    }
-  }, [packageDetails]);
-
-  useEffect(() => {
-    if(couponView !== null && addedToCart) {
+    } else if (
+      !clearCoupons &&
+      selectedItem !== null &&
+      couponView === null &&
+      addedToCart &&
+      applyCoupon
+    ) {
+      setSelectedItem(null);
       setAddedToCart(false);
-      navigation.navigate('HomeScreen', {
-        screen: 'HomeDrawer',
-        params: {screen: 'Cart'},
-      });
+      navigateToCart();
+    } else if (
+      couponView !== null &&
+      addedToCart &&
+      selectedItem !== null &&
+      !clearCoupons &&
+      applyCoupon
+    ) {
+      setSelectedItem(null);
+      setAddedToCart(false);
+      navigateToCart();
     }
-  }, [couponView])
+  }, [couponView, cartCoupon, selectedItem, applyCoupon]);
 
   useEffect(() => {
     if (addToCartItem && addedToCart) {
-      dispatch(redeemCouponsSliceThunk({isLoggedIn: true, couponCode: selectedItem?.coupon }));
-      setSelectedItem(null);
+      if (selectedItem?.coupon) {
+        dispatch(
+          redeemCouponsSliceThunk({
+            isLoggedIn: true,
+            couponCode: selectedItem?.coupon,
+          }),
+        );
+        setApplyCoupon(true);
+      } else {
+        setSelectedItem(null);
+        setAddedToCart(false);
+        navigateToCart();
+      }
     }
-  }, [addToCartItem]);
+  }, [addToCartItem, addedToCart]);
+
+  const navigateToCart = () => {
+    navigation.navigate('HomeScreen', {
+      screen: 'HomeDrawer',
+      params: {screen: 'Cart'},
+    });
+  };
 
   const addItemToCart = itemDetails => {
+    setClearCoupons(true);
     setSelectedItem(itemDetails);
-    // setSelectedItem({...itemDetails,id:4});
-    //setSelectedItem({...itemDetails,id:'0c3ac5f8-c10c-46f4-9252-1da459e18b57'});
-    if (itemDetails?.contentType === 'TEST') {
-      dispatch(diagnosisTestDetailsThunk({id: itemDetails?.id}));
-    } else if (itemDetails?.contentType === 'PACKAGE') {
-      dispatch(diagnosisPackageDetailsThunk({packageName: itemDetails?.id}));
-    }
+    dispatch(redeemCouponsSliceThunk({isLoggedIn: true}));
+    dispatch(removeCouponCart());
   };
-  const onBannerPress = details => {
-    if (badgeCount > 0) {
+  const addPackageTest = details => {
+    if (existingIds.includes(details?.itemId)) {
+      Alert.alert('Alert', 'This item has already been added to the cart');
+    } else if (badgeCount > 0) {
       Alert.alert('Alert', ADD_ALERT, [
         {text: 'OK', onPress: () => addItemToCart(details)},
         {text: 'Cancel', style: 'cancel'},
       ]);
     } else addItemToCart(details);
   };
-  return {onBannerPress};
+
+  const handleService = details => {
+    //switch (details.itemId) {
+      switch ('1dbcc55e-3dec-4e07-8c2a-e222631afebb') {
+      case '1dbcc55e-3dec-4e07-8c2a-e222631afebb':
+        //HRA Redirection
+        navigation.navigate('HRA')
+        break;
+      case 'bb4385d4-7f92-11ed-a1eb-0242ac120002':
+        //TTD Redirection
+        break;
+    }
+  };
+
+  const handlePlan = details => {
+
+  };
+
+  const onBannerPress = details => {
+    //switch (details.contentType) {
+      switch ('PLAN') {
+      // case 'TEST':
+      // case 'PACKAGE':
+      //   addPackageTest(details)
+      case 'PLAN':
+        handlePlan(details);
+        break;
+      case 'SERVICE':
+        handleService(details);
+        break;
+    }
+  };
+  return {onBannerPress, bannerData: data};
 };

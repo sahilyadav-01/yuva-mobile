@@ -25,7 +25,7 @@ const PackagesOffer = props => {
         source={PNG.Banner3}
         style={style.imageBackgroundStyle}>
         <View style={style.container}>
-          <Text style={style.headingText}>{item.innerBannerName}</Text>
+          <Text style={style.headingText}>{item.title}</Text>
           <View style={style.separator} />
           <Text numberOfLines={3} style={style.descriptionText}>
             {item.description}

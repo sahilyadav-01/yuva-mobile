@@ -36,7 +36,8 @@ const HomeScreen = ({ navigation, route }) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       if(route?.params?.navigateToDetails) {
-        navigation?.navigate('OurPlan',{screen:'OurPlanDetails',params:route?.params?.screenParams})
+        console.log(route?.params?.screenParams)
+        //navigation?.navigate('OurPlan',{screen:'OurPlanDetails',params:route?.params?.screenParams})
       }
       const isActive = 'true';
       dispatch(getServicesThunk({}));

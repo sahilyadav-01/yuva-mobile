@@ -85,8 +85,8 @@ export const useCart = (args) => {
     );
   }
 
-  const addToCart = ({ name, cost, productId }, productType) => {
-    const dToObj = { name, count: 1, cost, productId, productType };
+  const addToCart = (obj, productType) => {
+    const dToObj = {...obj,productType,count:1}
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
     const cartDto = {
       ...cart,

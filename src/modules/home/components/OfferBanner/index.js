@@ -20,7 +20,9 @@ const OfferBanner1 = props => {
   const style = styles();
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={() => onBannerPress(item)}>
+      <TouchableOpacity
+        style={style.containerStyle}
+        onPress={() => onBannerPress(item)}>
         <ImageBackground
           source={{uri: item.image}}
           style={style.imageBackgroundStyle}
@@ -44,6 +46,7 @@ const OfferBanner1 = props => {
         data={data}
         horizontal={true}
         renderItem={renderItem}
+        contentContainerStyle={style.containerStyle}
       />
       <View style={style.pointerContainer}>
         {data.map((item, index) => (
