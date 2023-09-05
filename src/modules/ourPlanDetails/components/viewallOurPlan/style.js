@@ -3,6 +3,7 @@ import {
   AUTO,
   CENTER,
   FLEX_START,
+  LINE_THROUGH,
   ROW,
   SPACE_AROUND,
 } from '../../../../styles/constants';
@@ -131,7 +132,7 @@ export const styles = StyleSheet.create({
     color: RED,
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
-    textDecorationLine:'line-through',
+    textDecorationLine:LINE_THROUGH,
     marginHorizontal:3,
   },
 });

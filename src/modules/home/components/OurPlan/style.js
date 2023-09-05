@@ -5,6 +5,7 @@ import {
   CENTER,
   CONTAIN,
   FLEX_START,
+  LINE_THROUGH,
   ROW,
   SPACE_AROUND,
   SPACE_BETWEEN,
@@ -160,7 +161,7 @@ export const styles = StyleSheet.create({
     color: RED,
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
-    textDecorationLine:'line-through',
+    textDecorationLine:LINE_THROUGH,
     marginHorizontal:3,
   },
 });
