@@ -34,7 +34,10 @@ const OurPlan = () => {
             <View style={styles.PlanYear}>
               <Text style={styles.radioButtonText}>{'  '}{1}{' '}{' '}{YEAR}</Text>
             </View>
-            <View style={styles.PlanYear}>
+            <View style={styles.PlanPrice}>
+              {item?.item?.yearlyPrice != item?.item?.yearlyFinalCost &&
+            <Text style={styles.lineThrough}>{RUPEE}{item?.item?.yearlyPrice}</Text>
+             }
               <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.yearlyFinalCost}</Text>
             </View>
           </View>
