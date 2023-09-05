@@ -26,7 +26,7 @@ export const useOurPlan = () => {
     selectedItems,
     setSelectedItems,
     handlePress,
-    popularPlan,
+    popularPlan:popularPlan.slice(0, 4),
     onDetails,
     onViewAll
   };
