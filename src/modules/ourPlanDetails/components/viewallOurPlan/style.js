@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
   },
   lineThrough: {
     color: RED,
-    fontSize: fonts.size.fontSize12,
+    fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
     textDecorationLine:'line-through',
     marginHorizontal:3,
