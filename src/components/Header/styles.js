@@ -19,6 +19,9 @@ import {getDimensions} from '../../utils/utils';
 
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
+  container: {
+    zIndex: 5
+  },
   headerContainer: {
     minHeight: 0.12 * height,
     width: '100%',

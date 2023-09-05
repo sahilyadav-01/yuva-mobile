@@ -8,33 +8,36 @@ import {
 } from 'react-native';
 import {styles} from './style';
 import {PNG} from '../../../../../assets';
+import {usePackagesOffer} from './hooks/usePackagesOffer';
+import {BOOK_NOW} from './constants';
 
 const PackagesOffer = props => {
+  const {onPackagePress} = usePackagesOffer();
   const {
     bannerData: {data: bannerData},
   } = props;
   const data = bannerData?.data ?? null;
   const style = styles();
-  const renderItem = () => {
+  const renderItem = ({item}) => {
     return (
       <ImageBackground
         resizeMode="stretch"
         source={PNG.Banner3}
         style={style.imageBackgroundStyle}>
         <View style={style.container}>
-          <Text style={style.headingText}>Monsoon Package</Text>
-          <View style={{height: 8}} />
+          <Text style={style.headingText}>{item.title}</Text>
+          <View style={style.separator} />
           <Text numberOfLines={3} style={style.descriptionText}>
-            Embrace the Monsoon with our Exclusive package - Check for illnesses
-            common in Monsoon to ensure good health & reduce your risks Embrace
-            the Monsoon with our Exclusive package - Check for illnesses common
-            in Monsoon to ensure good health & reduce your risks
+            {item.description}
           </Text>
-          <View style={{height: 8}} />
+          <View style={style.separator} />
           <Text style={style.priceText}>Rs 900/-</Text>
-          <View style={{height: 4}} />
-          <TouchableOpacity style={style.buttonContainer}>
-            <Text style={[style.descriptionText]}>Book Now</Text>
+          <TouchableOpacity
+            onPress={() => onPackagePress(item)}
+            style={style.buttonContainer}>
+            <Text style={[style.descriptionText, style.bookText]}>
+              {BOOK_NOW}
+            </Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

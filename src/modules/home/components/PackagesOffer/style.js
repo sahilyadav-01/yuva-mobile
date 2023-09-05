@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {BLACK, CYAN_BLUE, ORANGE} from '../../../../styles/colors';
+import {BLACK, CYAN_BLUE, ORANGE, WHITE} from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 
 export const styles = () => {
@@ -37,6 +37,13 @@ export const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
       backgroundColor: ORANGE,
+      marginTop: 4,
+    },
+    bookText: {
+      color: WHITE,
+    },
+    separator: {
+      height: 8,
     },
   });
 };

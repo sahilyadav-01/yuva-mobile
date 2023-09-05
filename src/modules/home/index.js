@@ -11,6 +11,7 @@ import PopularTestPackageCarousel from './components/PopularTestPackageCarousel.
 import OfferBanner1 from './components/OfferBanner';
 import PackagesOffer from './components/PackagesOffer';
 import AppointmentTag from './components/appointmentTag';
+import PromotionalBanner from './components/PromotionalOffer';
 
 export const HomeScreen = () => {
   const {
@@ -22,7 +23,6 @@ export const HomeScreen = () => {
     onHealthPackagePress,
     popularTest,
     banner1,
-    banner2,
     banner3,
   } = useHome();
   const styles = style();
@@ -39,6 +39,7 @@ export const HomeScreen = () => {
         <AppointmentTag />
         <Services renderservicesItem={renderservicesItem} />
         <OurPlan />
+        <PromotionalBanner/>
         <PopularHeathCheckupCarousel
           popularPackageName={popularPackageName}
           onHealthPackagePress={onHealthPackagePress}
