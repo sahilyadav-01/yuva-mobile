@@ -3,6 +3,7 @@ import {
   AUTO,
   CENTER,
   FLEX_START,
+  LINE_THROUGH,
   ROW,
   SPACE_AROUND,
 } from '../../../../styles/constants';
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
     borderColor: BLACK,
     alignItems: CENTER,
     justifyContent: CENTER,
-    marginLeft: 40,
+    marginLeft: 22,
     marginTop: 2,
   },
   radioOuterCircleSelected: {
@@ -82,8 +83,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: BLACK,
     backgroundColor: WHITE,
-    marginRight: 5,
-   paddingVertical:6,
+    paddingVertical:6,
   },
   PlanView: {
     marginVertical: 18,
@@ -116,9 +116,23 @@ export const styles = StyleSheet.create({
   DetailsContainer: {
     flexDirection: ROW,
     justifyContent: SPACE_AROUND,
-    marginLeft: 40,
-    marginTop:2
+    marginLeft: 25,
+    marginTop:2,
+    alignItems:CENTER,
+    paddingHorizontal: 10,
   },
-  PlanYear: {width: '30%'},
+  PlanYear: {width: '20%' },
   PlanText: {width: '45%'},
+  PlanPrice:{
+    flexDirection:ROW,
+    width: '40%',
+    justifyContent:CENTER
+  },
+  lineThrough: {
+    color: RED,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.rubik400,
+    textDecorationLine:LINE_THROUGH,
+    marginHorizontal:3,
+  },
 });
