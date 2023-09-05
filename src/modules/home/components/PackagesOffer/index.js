@@ -22,7 +22,7 @@ const PackagesOffer = props => {
     return (
       <ImageBackground
         resizeMode="stretch"
-        source={PNG.Banner3}
+        source={{uri:item.image}}
         style={style.imageBackgroundStyle}>
         <View style={style.container}>
           <Text style={style.headingText}>{item.title}</Text>
@@ -31,7 +31,7 @@ const PackagesOffer = props => {
             {item.description}
           </Text>
           <View style={style.separator} />
-          <Text style={style.priceText}>Rs 900/-</Text>
+          <Text style={style.priceText}>₹{item.price}/-</Text>
           <TouchableOpacity
             onPress={() => onPackagePress(item)}
             style={style.buttonContainer}>
