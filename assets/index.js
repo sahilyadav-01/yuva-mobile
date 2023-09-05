@@ -171,6 +171,8 @@ import AMBULANCESERVICE_SUBIMAGE3 from './AMBULANCESERVICE_SUBIMAGE3';
 import SEARCH_NETWORK_LOCATION_ICON from './SearchNetworkLocationIcon';
 import SEARCH_NETWORK_CALL_ICON from './SearchNetworkCalllIcon';
 import SEARCH_NETWORK_SEARCH_ICON from './SearchNetworkSearchIcon';
+import Banner1 from './Banner1.png';
+import Banner3 from './Banner3.png';
 
 const PNG = {
   AMICO,
@@ -253,6 +255,8 @@ const PNG = {
   OurPlanRadioButton,
   planDetails,
   AmbulanceImage,
+  Banner1,
+  Banner3
 };
 
 const SVG = {

@@ -9,6 +9,7 @@ import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
+import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from "../../../store/reducers/BannerSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
@@ -18,6 +19,7 @@ export const useHome = () => {
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
+  const { banner1, banner2, banner3 } = useSelector(state => state.banner);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -35,6 +37,9 @@ export const useHome = () => {
       dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(lifeStyleSliceThunk({}));
       dispatch(planPopularThunk())
+      dispatch(fetchBannerDetails1({position:1,screenType:'HOME_SCREEN'}));
+      dispatch(fetchBannerDetails2({position:2,screenType:'HOME_SCREEN'}));
+      dispatch(fetchBannerDetails3({position:3,screenType:'HOME_SCREEN'}));
       if (loggedIn === 'loggedIn') {
         dispatch(getCartUserThunk());
       } else {
@@ -113,5 +118,8 @@ export const useHome = () => {
     popularPackageName,
     onHealthPackagePress,
     popularTest,
+    banner1,
+    banner2,
+    banner3
   };
 };

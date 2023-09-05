@@ -33,6 +33,7 @@ import pharmacy, {pharmacyInit} from './reducers/PharmacySlice';
 import Emrm, { EmrmInit } from './reducers/EmrmSlice';
 import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
 import SearchNetwork , { SearchNetworkInit } from './reducers/SearchNetworkSlice';
+import banner, { bannerInit } from './reducers/BannerSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -65,6 +66,7 @@ const storeInitialState = {
   Emrm: EmrmInit,
   maintainence: maintainenceInit,
   SearchNetwork : SearchNetworkInit,
+  banner: bannerInit,
 };
 
 const appReducer = combineReducers({
@@ -98,6 +100,7 @@ const appReducer = combineReducers({
   Emrm,
   maintainence,
   SearchNetwork,
+  banner,
 });
 
 const rootReducer = (state, action) => {

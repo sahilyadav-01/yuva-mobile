@@ -20,7 +20,7 @@ import ViewAppointment from '../screens/yuvaservices/opd/appointments/ViewAppoin
 import CheckInAppointment from '../screens/yuvaservices/opd/appointments/CheckInAppointment';
 import EditAppointment from '../screens/yuvaservices/opd/appointments/EditAppointment';
 import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
-import ViewAllOurPlan from '../modules/ourPlan/components/ViewAllOurPlan';
+import ViewAllOurPlan from '../modules/ourPlanDetails/components/viewallOurPlan';
 import PharmacyNavigation from './PharmacyNav';
 import EmrmNavigation from './EmrmNav';
 import OnMood9Screen from '../screens/OnMood9';
@@ -28,6 +28,7 @@ import OnMood9Static from '../screens/OnMood9/onMood9Static';
 import LoginScreen from '../screens/login/LoginScreen';
 import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
 import SearchNetworkHomeScreen from '../screens/yuvaservices/searchNetwork/SearchNetworkHomeScreen';
+import ViewAllOurPlansScreen from '../screens/OurPlanScreen/ViewAllOurPlansScreen';
 
 const Stack = createStackNavigator();
 
@@ -121,7 +122,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="ViewAllOurPlan"
-        component={ViewAllOurPlan}
+        component={ViewAllOurPlansScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
