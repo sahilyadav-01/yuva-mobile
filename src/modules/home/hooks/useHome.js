@@ -19,7 +19,7 @@ export const useHome = () => {
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
-  const { banner1, banner2, banner3 } = useSelector(state => state.banner);
+  const { banner1, banner3 } = useSelector(state => state.banner);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -119,7 +119,6 @@ export const useHome = () => {
     onHealthPackagePress,
     popularTest,
     banner1,
-    banner2,
     banner3
   };
 };

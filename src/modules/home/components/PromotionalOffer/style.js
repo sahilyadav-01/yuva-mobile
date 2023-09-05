@@ -20,6 +20,7 @@ export const styles = () => {
       minHeight: 118,
       maxHeight: 130,
       width: 150,
+      paddingHorizontal: 12
     },
     text: {
       textAlign: CENTER,

@@ -2,18 +2,21 @@ import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {ADD_ALERT} from '../constants';
+import {ADD_ALERT, ITEM_ADDED} from '../constants';
 import {useCart} from '../../../../cart/hooks/useCart';
 import {redeemCouponsSliceThunk} from '../../../../../store/reducers/CouponSlice';
 import {removeCouponCart} from '../../../../../store/reducers/CartSlice';
+import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
-export const usePromotionalBanner = bannerData => {
+export const usePromotionalBanner = () => {
   const {addToCart} = useCart();
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {cart, addToCartItem, existingIds} = useSelector(state => state.cart);
   const cartCoupon = useSelector(state => state.cart)?.couponViewCart ?? null;
   const {couponView} = useSelector(state => state.coupon);
+  const {popularPlan} = useSelector(state => state.programAndPlan);
+  const {banner2} = useSelector(state => state.banner);
   const [selectedItem, setSelectedItem] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [clearCoupons, setClearCoupons] = useState(false);
@@ -22,9 +25,8 @@ export const usePromotionalBanner = bannerData => {
   const badgeCount = cart?.itemDtoList?.length || 0;
 
   useEffect(() => {
-    console.log('BD', bannerData);
-    setData(bannerData);
-  }, [bannerData]);
+    if (typeof banner2?.data?.data === 'object') setData(banner2.data.data);
+  }, [banner2]);
 
   useEffect(() => {
     if (
@@ -84,6 +86,39 @@ export const usePromotionalBanner = bannerData => {
     });
   };
 
+  const getItemDetails = item => {
+    switch (item.contentType) {
+      case 'TEST':
+      case 'PACKAGE':
+        return {
+          showDescription: false,
+          buttonText: 'Book Now',
+        };
+      case 'PLAN':
+        return {
+          showDescription: false,
+          buttonText: 'Buy Now',
+        };
+      case 'SERVICE':
+        switch (item.itemId) {
+          case '1dbcc55e-3dec-4e07-8c2a-e222631afebb':
+            return {
+              showDescription: true,
+              description: 'Get Free Diet Chart',
+              buttonText: 'Start Now',
+            };
+          case 'bb4385d4-7f92-11ed-a1eb-0242ac120002':
+            return {
+              showDescription: false,
+              buttonText: 'Consult Now',
+            };
+        }
+        break;
+      default:
+        return null;
+    }
+  };
+
   const addItemToCart = itemDetails => {
     setClearCoupons(true);
     setSelectedItem(itemDetails);
@@ -92,7 +127,7 @@ export const usePromotionalBanner = bannerData => {
   };
   const addPackageTest = details => {
     if (existingIds.includes(details?.itemId)) {
-      Alert.alert('Alert', 'This item has already been added to the cart');
+      Alert.alert('Alert', ITEM_ADDED);
     } else if (badgeCount > 0) {
       Alert.alert('Alert', ADD_ALERT, [
         {text: 'OK', onPress: () => addItemToCart(details)},
@@ -102,11 +137,9 @@ export const usePromotionalBanner = bannerData => {
   };
 
   const handleService = details => {
-    //switch (details.itemId) {
-      switch ('1dbcc55e-3dec-4e07-8c2a-e222631afebb') {
+    switch (details.itemId) {
       case '1dbcc55e-3dec-4e07-8c2a-e222631afebb':
-        //HRA Redirection
-        navigation.navigate('HRA')
+        navigation.navigate('HRA');
         break;
       case 'bb4385d4-7f92-11ed-a1eb-0242ac120002':
         //TTD Redirection
@@ -115,15 +148,19 @@ export const usePromotionalBanner = bannerData => {
   };
 
   const handlePlan = details => {
-
+    const uuid = 'f807eb12-dbbc-4b74-a5ee-25ef4e5c6848';
+    const planData = popularPlan.filter(
+      item => item?.planUuid === /*details?.itemId*/ uuid,
+    )[0];
+    dispatch(setOurPlanData(planData));
+    navigation.navigate('OurPlan');
   };
 
   const onBannerPress = details => {
-    //switch (details.contentType) {
-      switch ('PLAN') {
-      // case 'TEST':
-      // case 'PACKAGE':
-      //   addPackageTest(details)
+    switch (details.contentType) {
+      case 'TEST':
+      case 'PACKAGE':
+        addPackageTest(details);
       case 'PLAN':
         handlePlan(details);
         break;
@@ -132,5 +169,5 @@ export const usePromotionalBanner = bannerData => {
         break;
     }
   };
-  return {onBannerPress, bannerData: data};
+  return {onBannerPress, bannerData: data, getItemDetails};
 };

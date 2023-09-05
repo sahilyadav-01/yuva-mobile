@@ -23,7 +23,6 @@ export const HomeScreen = () => {
     onHealthPackagePress,
     popularTest,
     banner1,
-    banner2,
     banner3,
   } = useHome();
   const styles = style();
@@ -40,7 +39,7 @@ export const HomeScreen = () => {
         <AppointmentTag />
         <Services renderservicesItem={renderservicesItem} />
         <OurPlan />
-        <PromotionalBanner bannerData={banner2}/>
+        <PromotionalBanner/>
         <PopularHeathCheckupCarousel
           popularPackageName={popularPackageName}
           onHealthPackagePress={onHealthPackagePress}
