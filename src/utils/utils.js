@@ -521,6 +521,16 @@ export const onNeedHelpPress = async () => {
   }
 }
 
+export const onViewMapPress = async (prop) => {
+  const canOpen = await Linking.canOpenURL(prop);
+  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
+  if(canOpen){
+    Linking.openURL(prop);
+  }
+  else {
+    Linking.openURL(storeUrl);
+  }}
+
 export const getPlatform = () => {
   if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
   else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
