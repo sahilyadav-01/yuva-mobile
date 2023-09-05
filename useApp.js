@@ -8,7 +8,7 @@ import {getPlatform} from './src/utils/utils';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const checkVersion = false;
+  const checkVersion = true;
   const [showContent, setShowContent] = useState(!checkVersion);
   try {
     const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
