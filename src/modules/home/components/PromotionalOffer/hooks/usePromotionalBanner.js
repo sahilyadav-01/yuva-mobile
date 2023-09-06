@@ -3,13 +3,18 @@ import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ADD_ALERT, ITEM_ADDED} from '../constants';
-import {useCart} from '../../../../cart/hooks/useCart';
-import {redeemCouponsSliceThunk} from '../../../../../store/reducers/CouponSlice';
-import {removeCouponCart} from '../../../../../store/reducers/CartSlice';
+import {
+  redeemCouponsPlanSliceThunk,
+  redeemCouponsSliceThunk,
+} from '../../../../../store/reducers/CouponSlice';
+import {
+  createCartGuestThunk,
+  createCartUserThunk,
+  removeCouponCart,
+} from '../../../../../store/reducers/CartSlice';
 import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
 export const usePromotionalBanner = () => {
-  const {addToCart} = useCart();
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {cart, addToCartItem, existingIds} = useSelector(state => state.cart);
@@ -17,6 +22,9 @@ export const usePromotionalBanner = () => {
   const {couponView} = useSelector(state => state.coupon);
   const {popularPlan} = useSelector(state => state.programAndPlan);
   const {banner2} = useSelector(state => state.banner);
+  const {
+    auth: {loggedIn},
+  } = useSelector(state => state);
   const [selectedItem, setSelectedItem] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [clearCoupons, setClearCoupons] = useState(false);
@@ -35,8 +43,23 @@ export const usePromotionalBanner = () => {
       selectedItem !== null &&
       clearCoupons
     ) {
+      const dispatcher =
+        loggedIn === 'loggedIn' ? createCartUserThunk : createCartGuestThunk;
       setClearCoupons(false);
-      addToCart({productId: selectedItem?.itemId}, selectedItem?.contentType);
+      dispatch(
+        dispatcher({
+          cartDto: {
+            ...cart,
+            itemDtoList: [
+              {
+                productId: selectedItem?.itemId,
+                productType: selectedItem?.contentType,
+                count: 1,
+              },
+            ],
+          },
+        }),
+      );
       setAddedToCart(true);
     } else if (
       !clearCoupons &&
@@ -148,10 +171,15 @@ export const usePromotionalBanner = () => {
   };
 
   const handlePlan = details => {
-    const uuid = 'f807eb12-dbbc-4b74-a5ee-25ef4e5c6848';
     const planData = popularPlan.filter(
-      item => item?.planUuid === /*details?.itemId*/ uuid,
+      item => item?.planUuid === details?.itemId,
     )[0];
+    dispatch(
+      redeemCouponsPlanSliceThunk({
+        couponCode: details?.coupon,
+        planUuid: details?.itemId,
+      }),
+    );
     dispatch(setOurPlanData(planData));
     navigation.navigate('OurPlan');
   };
@@ -161,6 +189,7 @@ export const usePromotionalBanner = () => {
       case 'TEST':
       case 'PACKAGE':
         addPackageTest(details);
+        break;
       case 'PLAN':
         handlePlan(details);
         break;

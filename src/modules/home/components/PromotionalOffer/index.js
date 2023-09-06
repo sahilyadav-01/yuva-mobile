@@ -32,7 +32,7 @@ const PromotionalBanner = () => {
       <View style={style.container}>
         <Text style={style.heading}>{PROMOTIONAL_OFFER}</Text>
         <FlatList
-          contentContainerStyle={style.listStyle}
+          style={style.listStyle}
           horizontal
           showsHorizontalScrollIndicator={false}
           data={bannerData}

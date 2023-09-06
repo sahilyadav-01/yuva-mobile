@@ -1,4 +1,7 @@
+import { useNavigation } from "@react-navigation/native";
+
 export const usePackagesOffer = () => {
+  const navigation = useNavigation();
   const onPackagePress = itemDetails => {
     if (itemDetails?.contentType === 'TEST') {
       navigation.navigate('ProductDetails', {
@@ -7,7 +10,7 @@ export const usePackagesOffer = () => {
         uuid: itemDetails?.itemId,
         showCartButton: true,
         isTest: true,
-        name: itemDetails?.innerBannerName ?? null,
+        name: null,
         cost: itemDetails?.cost ?? null,
       });
     } else if (itemDetails?.contentType === 'PACKAGE') {
@@ -17,7 +20,7 @@ export const usePackagesOffer = () => {
         uuid: itemDetails?.itemId,
         showCartButton: true,
         isTest: false,
-        name: itemDetails?.innerBannerName ?? null,
+        name: null,
         cost: itemDetails?.cost ?? null,
       });
     }

@@ -7,18 +7,15 @@ export const styles = () => {
     listStyle: {
       marginHorizontal: 16,
       marginTop: 8,
-      height: (width - 32) / 3.25,
-      width: width - 32,
     },
     imageBackgroundStyle: {
       alignItems: CENTER,
       justifyContent: FLEX_END,
-      width: '100%',
+      width: width - 32,
       height: '100%',
     },
     containerStyle: {
-      width: '100%',
-      height: '100%',
+      height: (width - 32) / 3.25,
     },
     pointerStyle: {
       width: 8,

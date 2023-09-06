@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
+import { redeemCouponsPlanSliceThunk } from '../../../../../store/reducers/CouponSlice';
 
 export const useOfferBanner = () => {
   const navigation = useNavigation();
@@ -14,7 +15,7 @@ export const useOfferBanner = () => {
         uuid: itemDetails?.itemId,
         showCartButton: true,
         isTest: true,
-        name: itemDetails?.innerBannerName ?? null,
+        name: null,
         cost: itemDetails?.cost ?? null,
       });
     } else if (itemDetails?.contentType === 'PACKAGE') {
@@ -24,7 +25,7 @@ export const useOfferBanner = () => {
         uuid: itemDetails?.itemId,
         showCartButton: true,
         isTest: false,
-        name: itemDetails?.innerBannerName ?? null,
+        name: null,
         cost: itemDetails?.cost ?? null,
       });
     }
@@ -41,10 +42,10 @@ export const useOfferBanner = () => {
   };
 
   const handlePlan = details => {
-    const uuid = 'f807eb12-dbbc-4b74-a5ee-25ef4e5c6848';
     const planData = popularPlan.filter(
-      item => item?.planUuid === /*details?.itemId*/ uuid,
+      item => item?.planUuid === details?.itemId,
     )[0];
+    dispatch(redeemCouponsPlanSliceThunk({couponCode:details?.coupon,planUuid:details?.itemId}));
     dispatch(setOurPlanData(planData));
     navigation.navigate('OurPlan');
   };
@@ -53,6 +54,7 @@ export const useOfferBanner = () => {
       case 'TEST':
       case 'PACKAGE':
         addPackageTest(details);
+        break;
       case 'PLAN':
         handlePlan(details);
         break;
