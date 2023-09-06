@@ -1,16 +1,17 @@
 
 import { SVG } from "../../../../../../assets";
 
-export const usePlanServiceIcons = () => {
+export const usePlanServiceIcons = (data) => {
+  console.log(data,"datttaaaa");
   const servicesArray = [
-    { name: 'OPD Consultation',  icon: SVG['OPD_SVG_ICON'],text:'10 OPD'  },
-    { name: 'Health Risk Assessment',  icon: SVG['HRA_SVG_ICON'],text:'Unlimited'  },
-    { name: 'Pharmacy',  icon: SVG['PHARMACY_SVG_ICON'],text:'₹ 2000 Voucher'  },
-    { name: 'Mental Wellness',  icon: SVG['MENTAL_WELLNESS_SVG_ICON'],text:'Unlimited'  },
-    { name: 'My Tests', icon: SVG['MY_TEST_SVG_ICON'],text:'2 Full Body Checkup'  },
-    { name: 'EMRM',  icon: SVG['EMRM_SVG_ICON'],text:'₹ 2000 Voucher'  },
-    { name: 'Online Consultation',  icon: SVG['ONLINE_CONSULTATION_SVG_ICON'],text:'Unlimited'  },
-    { name: 'Ambulance',  icon: SVG['AMBULANCE_SVG_ICON'],text:'Upto ₹5000/-'  },
+    { name: 'OPD Consultation',  icon: SVG['OPD_SVG_ICON'],text:data[0]?.allocatedCount},
+    { name: 'Health Risk Assessment',  icon: SVG['HRA_SVG_ICON'],text:data[2]?.allocatedCount},
+    { name: 'Pharmacy',  icon: SVG['PHARMACY_SVG_ICON'],text:data[4]?.allocatedCount},
+    { name: 'Mental Wellness',  icon: SVG['MENTAL_WELLNESS_SVG_ICON'],text:data[5]?.allocatedCount},
+    { name: 'My Tests', icon: SVG['MY_TEST_SVG_ICON'],text:data[1]?.allocatedCount},
+    { name: 'EMRM',  icon: SVG['EMRM_SVG_ICON'],text:data[6]?.allocatedCount},
+    { name: 'Online Consultation',  icon: SVG['ONLINE_CONSULTATION_SVG_ICON'],text:data[3]?.allocatedCount},
+    { name: 'Ambulance',  icon: SVG['AMBULANCE_SVG_ICON'],text:data[9]?.allocatedCount},
   ];
   const servicesNumRows = Math.ceil(servicesArray.length / 4);
   const renderservicesItem = [];
