@@ -119,6 +119,7 @@ export const useHome = () => {
     onHealthPackagePress,
     popularTest,
     banner1,
-    banner3
+    banner3,
+    loggedIn
   };
 };

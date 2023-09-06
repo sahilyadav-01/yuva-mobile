@@ -24,6 +24,7 @@ export const HomeScreen = () => {
     popularTest,
     banner1,
     banner3,
+    loggedIn,
   } = useHome();
   const styles = style();
   return (
@@ -51,6 +52,7 @@ export const HomeScreen = () => {
         />
         <LifeStyle
           renderLifeStyleItem={renderLifeStyleItem}
+          loggedIn={loggedIn}
           onPackagePress={onPackagePress}
         />
       </ScrollView>
