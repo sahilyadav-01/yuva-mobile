@@ -14,7 +14,7 @@ const TalkToDoctorNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="TalkToDoctor"
-        component={TalkToDoctorNav}
+        component={MemberSelectScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
