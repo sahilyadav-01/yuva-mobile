@@ -32,10 +32,7 @@ const {relationId,userId,data:relativeId}=route?.params;
         healthConcern: HEALTH_LIST[selected]?.name || '',
         id:userId || userDetails?.id,
         relationId:relationId || relativeId?.relativeId,
-        plan: programData?.plan || relativeId?.plan,
-        programOrPlanUuid:programData?.uuid  || relativeId?.programOrPlanUuid,
-        userPlanVersion: programData?.userVersion  || relativeId?.userPlanVersion,
-        version:programData?.version  || relativeId?.version,
+        userId: '0',
       };
       dispatch(addRequestThunk({data}));
     };
