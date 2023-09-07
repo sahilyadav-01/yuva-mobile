@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { INDIGO_LIGHT, PALE_PEACH } from '../../../../styles/colors';
+import { INDIGO_LIGHT } from '../../../../styles/colors';
 import { COLUMN, ROW } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
@@ -16,8 +16,7 @@ export const styles = () => {
       color: INDIGO_LIGHT,
       paddingBottom: 14
     },
-    lifeStyPackagesSubContainer: {
-      backgroundColor: PALE_PEACH,
+    lifeStyPackagesSubContainer : {
       flexDirection: ROW,
       paddingTop: 12,
       paddingBottom: 36,
