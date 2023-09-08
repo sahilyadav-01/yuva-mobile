@@ -2,8 +2,8 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DiagnosticNav from './Diagnosticnavigation';
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
-import HomeScreen from '../screens/HomeScreen/index';
-import NewHomeScreen from '../screens/NewHomeScreen/index';
+//import HomeScreen from '../screens/HomeScreen/index';
+import HomeScreen from '../screens/NewHomeScreen/index';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
@@ -37,17 +37,17 @@ const ServicesNav = () => {
     auth: {loggedIn},
   } = useSelector(state => state);
   return (
-    <Stack.Navigator initialRouteName='NewHome'>
+    <Stack.Navigator>
       <Stack.Screen
-        name="NewHome"
-        component={NewHomeScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="HomeService"
+        name='HomeService'
         component={HomeScreen}
         options={{headerShown: false}}
       />
+      {/* <Stack.Screen
+        name="HomeService"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      /> */}
       <Stack.Screen
         name="OPD"
         component={loggedIn !== 'loggedIn' ? CashlessOPD : OPDNavigation}
