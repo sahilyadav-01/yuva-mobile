@@ -165,7 +165,7 @@ export const usePromotionalBanner = () => {
         navigation.navigate('HRA');
         break;
       case 'bb4385d4-7f92-11ed-a1eb-0242ac120002':
-        //TTD Redirection
+        navigation.navigate('TalkToDoctor');
         break;
     }
   };
