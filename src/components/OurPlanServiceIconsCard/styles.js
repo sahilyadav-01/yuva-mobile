@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
+import { BLACK,FLASH_WHITE,RED_SHADE, WHITE } from '../../styles/colors';
 import { CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     alignItems:FLEX_START,
     justifyContent:FLEX_START,
     flexDirection:COLUMN,
+
   },
   subBottomContainerStyle: {
     paddingTop: 10,
@@ -24,6 +25,8 @@ export const styles = StyleSheet.create({
     textAlign:LEFT,
     paddingLeft:5,
     color: BLACK,
+    backgroundColor:'blue',
+
   },
     headView: {
       justifyContent:FLEX_START,
@@ -36,11 +39,18 @@ export const styles = StyleSheet.create({
       zIndex:999
     },
     head: {
-      alignSelf:FLEX_START,
-      justifyContent:CENTER,
       shadowColor: WHITE,
       color:RED_SHADE,
       fontSize: fonts.size.fontSize8,
       fontFamily: fonts.family.rubik500,
+      position:'absolute',
+      right:0,
+       maxWidth:40,
+       height:20,
+       zIndex:999,
+       lineHeight:10,
+       top:-5.5,
+       backgroundColor:FLASH_WHITE,
+      textAlignVertical:"center"
     },
 });

@@ -5,13 +5,12 @@ import {styles} from './styles';
 const OurPlanServiceIconsCard = ({name, icon, text}) => {
   return (
     <View style={styles.touchableOpacityContainerStyle}>
+        <Text style={styles.head} numberOfLines={2}>{text}</Text>   
       <View style={styles.subTopContainerStyle}>
-        <View style={styles.headView}>
-          <Text style={styles.head}>{text}</Text>    
-        </View>
           {icon()}
+          <Text style={styles.subBottomContainerStyle}>{name}</Text>
       </View>
-      <Text style={styles.subBottomContainerStyle}>{name}</Text>
+      {/* <Text style={styles.subBottomContainerStyle}>{name}</Text> */}
       </View>
   );
 };
