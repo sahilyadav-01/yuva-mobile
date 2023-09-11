@@ -2,7 +2,6 @@
 import { SVG } from "../../../../../../assets";
 
 export const usePlanServiceIcons = (data) => {
-  console.log(data,"datttaaaa");
   const servicesArray = [
     { name: 'OPD Consultation',  icon: SVG['OPD_SVG_ICON'],text:data[0]?.allocatedCount},
     { name: 'Health Risk Assessment',  icon: SVG['HRA_SVG_ICON'],text:data[2]?.allocatedCount},
