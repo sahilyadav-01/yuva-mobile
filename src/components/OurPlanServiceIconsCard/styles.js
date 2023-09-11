@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLACK,FLASH_WHITE,RED_SHADE, WHITE } from '../../styles/colors';
-import { ABSOLUTE, CENTER, COLUMN, FLEX_START, HIDDEN, LEFT } from '../../styles/constants';
+import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
+import { ABSOLUTE, CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
