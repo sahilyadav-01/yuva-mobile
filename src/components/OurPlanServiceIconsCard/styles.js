@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
+import { ABSOLUTE, CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     alignItems:FLEX_START,
     justifyContent:FLEX_START,
     flexDirection:COLUMN,
+
   },
   subBottomContainerStyle: {
     paddingTop: 10,
@@ -26,21 +27,19 @@ export const styles = StyleSheet.create({
     color: BLACK,
   },
     headView: {
-      justifyContent:FLEX_START,
-      alignSelf:FLEX_START,
-      marginLeft: 32,
-      top:10,
-      borderRadius: 6,
-      maxWidth:155,
-      backgroundColor:WHITE,
-      zIndex:999
+       marginLeft: 36,
+       zIndex:999,
+       backgroundColor:WHITE,
+      position:ABSOLUTE,
+      height:"20%",
+      borderRadius:8,
+      top:-5.8,
+      justifyContent:CENTER
     },
     head: {
-      alignSelf:FLEX_START,
-      justifyContent:CENTER,
-      shadowColor: WHITE,
       color:RED_SHADE,
       fontSize: fonts.size.fontSize8,
       fontFamily: fonts.family.rubik500,
+      textAlign:CENTER,
     },
 });

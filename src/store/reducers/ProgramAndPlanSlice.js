@@ -41,6 +41,18 @@ export const planPopularThunk = createAsyncThunk(
     }
   }
 );
+export const getAllPlanServicesThunk = createAsyncThunk(
+  'plan/services',
+  async (Uuid, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/services?planUuid=${Uuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, { fulfillWithValue, rejectWithValue }) => {
@@ -135,6 +147,9 @@ const initialState = {
   ourPlanData:[],
   planDetailsLoading:false,
   planDetailsError:false,
+  getAllPlanServices:[],
+  getAllPlanServicesLoading:false,
+  getAllPlanServicesError:false,
 }
 
 const programAndPlanSlice = createSlice({
@@ -192,6 +207,21 @@ const programAndPlanSlice = createSlice({
     },
     [planPopularThunk.rejected]: (state, { payload }) => {
       state.loading = false;
+    },
+    [getAllPlanServicesThunk.pending]: (state, { payload }) => {
+      state.getAllPlanServicesLoading=true;
+      state.getAllPlanServicesError=false;
+      state.getAllPlanServices=[];
+    },
+    [getAllPlanServicesThunk.fulfilled]: (state, {payload}) => {
+      state.getAllPlanServices = payload.data
+      state.getAllPlanServicesLoading=false;
+      state.getAllPlanServicesError=false;
+    },
+    [getAllPlanServicesThunk.rejected]: (state, { payload }) => {
+      state.getAllPlanServicesLoading=false;
+      state.getAllPlanServicesError=true;
+      state.getAllPlanServices=[];
     },
     [planDetailsThunk.pending]: (state, { payload }) => {
       state.loading = true;

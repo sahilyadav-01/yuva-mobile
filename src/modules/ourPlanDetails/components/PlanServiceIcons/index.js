@@ -4,8 +4,8 @@ import { usePlanServiceIcons } from "./hooks/usePlanServiceIcons";
 import OurPlanServiceIconsCard from "../../../../components/OurPlanServiceIconsCard";
 import { styles } from "./style";
 
-const PlanServiceIcons = () => {
-    const{renderservicesItem}=usePlanServiceIcons();
+const PlanServiceIcons = ({data}) => {
+    const{renderservicesItem}=usePlanServiceIcons(data);
     const style = styles();
     return (
              renderservicesItem.map(item => (
