@@ -10,7 +10,6 @@ import {
 import {
   createCartGuestThunk,
   createCartUserThunk,
-  removeCouponCart,
 } from '../../../../../store/reducers/CartSlice';
 import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
@@ -25,6 +24,7 @@ export const usePromotionalBanner = () => {
   const {
     auth: {loggedIn},
   } = useSelector(state => state);
+  const isLoggedIn = loggedIn === 'loggedIn';
   const [selectedItem, setSelectedItem] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [clearCoupons, setClearCoupons] = useState(false);
@@ -89,7 +89,7 @@ export const usePromotionalBanner = () => {
       if (selectedItem?.coupon) {
         dispatch(
           redeemCouponsSliceThunk({
-            isLoggedIn: true,
+            isLoggedIn,
             couponCode: selectedItem?.coupon,
           }),
         );
@@ -145,8 +145,6 @@ export const usePromotionalBanner = () => {
   const addItemToCart = itemDetails => {
     setClearCoupons(true);
     setSelectedItem(itemDetails);
-    dispatch(redeemCouponsSliceThunk({isLoggedIn: true}));
-    dispatch(removeCouponCart());
   };
   const addPackageTest = details => {
     if (existingIds.includes(details?.itemId)) {
