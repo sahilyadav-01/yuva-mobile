@@ -217,12 +217,12 @@ export const useCart = (args) => {
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
-    if ((couponViewCart || couponView) && (isRemoved || addToCartItem)) {
+    if ((couponViewCart || couponView) && (isRemoved || addToCartItem) && navigation.isFocused() && route?.name === 'Cart') {
       dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
       dispatch(removeCoupon());
       dispatch(removeCouponCart());
     }
-  }, [isRemoved, addToCartItem]);
+  }, [isRemoved, addToCartItem, focused]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
