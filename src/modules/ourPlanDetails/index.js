@@ -17,7 +17,7 @@ import Header from '../../components/Header';
 import PlanServiceIcons from './components/PlanServiceIcons';
 
 const OurPlanDetails = props => {
-  const {planDetails,planDetailsLoading,planDetailsError} = useOurPlanDetails(props);
+  const {planDetails,planDetailsLoading,planDetailsError,getAllPlanServices,getAllPlanServicesLoading,getAllPlanServicesError} = useOurPlanDetails(props);
   const renderItem = ({item, index}) => {
     return (
       <View key={index}>
@@ -34,12 +34,13 @@ const OurPlanDetails = props => {
           <ScrollView
         contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
-        <PlanCard/>
-        <PlanServiceIcons/>
-        {planDetailsLoading &&  <View style={styles.emptyView}>
+        <PlanCard/>{(getAllPlanServices && getAllPlanServicesLoading===false && getAllPlanServicesError===false) &&
+        <PlanServiceIcons data={getAllPlanServices}/>}
+        {(planDetailsLoading && getAllPlanServicesLoading) &&  <View style={styles.emptyView}>
           <ActivityIndicator size={'large'}/>
         </View> }
-        {(planDetails && planDetailsLoading===false && planDetailsError===false) && (
+        {(planDetails && planDetailsLoading===false && planDetailsError===false &&getAllPlanServicesLoading===false) && (
+            <View>
             <FlatList
               renderItem={renderItem}
               data={planDetails}
@@ -47,7 +48,7 @@ const OurPlanDetails = props => {
               nestedScrollEnabled={true}
               showsHorizontalScrollIndicator={false}
             />
-          )}
+        
           <Text style={styles.termsCondition}>{TERMS_AND_CONDITION}</Text>
           <FlatList
             renderItem={renderItem}
@@ -56,6 +57,7 @@ const OurPlanDetails = props => {
             nestedScrollEnabled={true}
             showsHorizontalScrollIndicator={false}
           />
+           </View> )}
       </ScrollView>
     </SafeAreaView>
   );}
