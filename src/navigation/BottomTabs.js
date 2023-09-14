@@ -34,7 +34,6 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        unmountOnBlur: true,
         headerShown: false,
         showLabel: false,
         tabBarShowLabel: true,
@@ -48,6 +47,7 @@ const BottomTabs = () => {
         name={HOME}
         component={ServicesNav}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return (
               <Icon
@@ -63,6 +63,7 @@ const BottomTabs = () => {
         name={MY_REPORTS}
         component={ReportNav}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return (
               <Icon
@@ -98,6 +99,7 @@ const BottomTabs = () => {
           component={Authentication}
           initialParams={{from: PROFILE}}
           options={{
+            unmountOnBlur: true,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon
@@ -114,6 +116,7 @@ const BottomTabs = () => {
           name={PROFILE}
           component={ProfileNavigation}
           options={{
+            unmountOnBlur: true,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon

@@ -10,6 +10,7 @@ import {
 import {
   createCartGuestThunk,
   createCartUserThunk,
+  removeCouponCart,
 } from '../../../../../store/reducers/CartSlice';
 import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
@@ -145,6 +146,8 @@ export const usePromotionalBanner = () => {
   const addItemToCart = itemDetails => {
     setClearCoupons(true);
     setSelectedItem(itemDetails);
+    dispatch(redeemCouponsSliceThunk({isLoggedIn: true}));
+    dispatch(removeCouponCart());
   };
   const addPackageTest = details => {
     if (existingIds.includes(details?.itemId)) {
