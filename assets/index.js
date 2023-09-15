@@ -142,6 +142,9 @@ import AMBULANCESERVICE_SUBIMAGE3 from './AMBULANCESERVICE_SUBIMAGE3';
 import SEARCH_NETWORK_LOCATION_ICON from './SearchNetworkLocationIcon';
 import SEARCH_NETWORK_CALL_ICON from './SearchNetworkCalllIcon';
 import SEARCH_NETWORK_SEARCH_ICON from './SearchNetworkSearchIcon';
+import TalkToDoctorSvg from './TalkToDoctorSvg';
+import HraSvg from './HraSvg';
+import OPDIcon from './OPDIcon';
 
 const PNG = {
   AMICO,
@@ -290,7 +293,10 @@ const SVG = {
   AMBULANCESERVICE_SUBIMAGE3,
   SEARCH_NETWORK_LOCATION_ICON,
   SEARCH_NETWORK_CALL_ICON,
-  SEARCH_NETWORK_SEARCH_ICON
+  SEARCH_NETWORK_SEARCH_ICON,
+  TalkToDoctorSvg,
+  HraSvg,
+  OPDIcon,
 };
 
 export {PNG, SVG};

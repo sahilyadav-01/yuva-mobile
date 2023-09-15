@@ -4,7 +4,8 @@ import { ROW, SPACE_BETWEEN } from "../../styles/constants"
 import { fonts } from "../../styles/fonts"
 export const styles = StyleSheet.create({
     mainContainer: {
-        marginHorizontal: 12
+        marginHorizontal: 12,
+        flex:1
     },
     headingStyle: {
         marginLeft: 20, marginVertical: 16,
