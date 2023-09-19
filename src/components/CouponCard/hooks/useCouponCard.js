@@ -9,10 +9,12 @@ import { ALERT, COUPON_MESSAGE } from '../constant';
 export const useCouponCard = (isPlan ,planUuid,planType) => {
     const focused = useIsFocused();
     const [couponCode, setCouponCode] = useState('');
+    const [planTypee, setPlanTypee] = useState();
     const dispatch = useDispatch();
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
     const { coupon, couponView, planeCouponCode, apiErrorMessage ,selectedCouponCode} = useSelector(state => state.coupon);
+    console.log(isPlan,planType,"hiiiiiiiiiiiiiiiiiiiiiiiiiii");
     const { cart } = useSelector(state => state.cart);
     const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
@@ -47,11 +49,33 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
             }
         }
     }, [apiErrorMessage]);
+    useEffect(()=>{
+        if(planType==='Annually'){
+            setPlanTypee("ANNUALLY")
+        }
+       else if(planType==='Quarterly'){
+            setPlanTypee("QUARTERLY")
+        }
+       else if(planType==='Half Yearly'){
+            setPlanTypee("HALF_YEARLY")
+        }
+            },[planType,planTypee])
 
+            useEffect(()=>{
+                if(isPlan){
+                    if (isLoggedIn) {
+                        dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlan, planTypeEnum:planTypee, planUuid }));
+                    }
+                    else {
+                        dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));
+                    }
+                }
+            },[planTypee,planType])
+            
     useEffect(() => {
         if(isPlan){
             if (isLoggedIn) {
-                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlan, planTypeEnum:planType, planUuid }));
+                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlan, planTypeEnum:planTypee, planUuid }));
             }
             else {
                 dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));

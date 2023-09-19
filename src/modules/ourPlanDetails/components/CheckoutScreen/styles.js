@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
         shadowColor: VERY_LIGHT_GREY,
     },
     planName: {
-        marginTop: 39,
+        //  marginTop: 39,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
         marginHorizontal: 26,
@@ -227,4 +227,23 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
     },
+    boxStyle: {
+        paddingLeft:5,
+        paddingVertical: 1,
+        paddingHorizontal:2,
+        borderWidth:1,
+        alignItems: CENTER,
+        justifyContent: CENTER,
+      },
+      inputStyles: {
+        fontSize: fonts.size.fontSize10,
+        fontFamily: fonts.family.rubik400,
+        color: CYAN_BLUE,
+      },
+      dropdownStyles: {
+         position: ABSOLUTE,
+         width: 100,
+         left:-18,
+        backgroundColor: WHITE,
+      },
 })

@@ -8,6 +8,7 @@ import { useCheckout } from './hooks/useCheckout'
 import { styles } from './styles'
 import { CHECKOUT, RUPEE, TO_BE_PAID } from './constants'
 import { getPlatform } from '../../../../utils/utils'
+import SelectList from 'react-native-dropdown-select-list';
 
 const CheckoutOurPlan = () => {
     const { address,
@@ -24,8 +25,13 @@ const CheckoutOurPlan = () => {
         planName,
         planAmountToBePaid,
         planeCouponCode,
-        planCouponFinalAmount } = useCheckout();
-    const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
+        planCouponFinalAmount,
+        planType,
+        PlanTypee,
+        setSelectedPlanType,
+        selectedPlanType } = useCheckout();
+       
+    // const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
     const Platform = getPlatform();
     return (
         <SafeAreaView style={styles.container}>
@@ -46,18 +52,31 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
-                <View><Text style={styles.planName}>{`${planName} (${planType})`}</Text></View>
+                <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center',marginTop: 39,marginRight:30,zIndex:999 }}>
+                    {/* <Text style={styles.planName}>{`${planName} (${planType})`}</Text> */}
+                    <Text style={styles.planName}>{`${planName}`}</Text>
+                    <SelectList
+          data={PlanTypee ? PlanTypee :[]}
+          placeholder={PlanTypee?.[0]}
+          search={false}
+          setSelected={setSelectedPlanType}
+          boxStyles={styles.boxStyle}
+          inputStyles={styles.inputStyles}
+          dropdownStyles={styles.dropdownStyles}
+          dropdownTextStyles={styles.inputStyles}
+        />
+                </View>
                 <CheckoutPriceDetails isplan={{plan:true}}/>
                 <View>
                     <TouchableOpacity
                         onPress={onCheckout}
                         style={styles.touchableButton}>
-                        <Text style={styles.tobePaid}> 
+                        {/* <Text style={styles.tobePaid}> 
                             {TO_BE_PAID} {RUPEE} {planeCouponCode?planCouponFinalAmount:planAmountToBePaid}/-
-                        </Text>
+                        </Text> */}
                     </TouchableOpacity>
                 </View>
-                <CouponCard isPlan={true} planType={planType} planUuid={planUuid} />
+                <CouponCard isPlan={true} planType={selectedPlanType ? selectedPlanType:PlanTypee[0]} planUuid={planUuid} />
             </ScrollView>
             </KeyboardAvoidingView>
         </SafeAreaView>

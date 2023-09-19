@@ -150,6 +150,7 @@ const initialState = {
   getAllPlanServices:[],
   getAllPlanServicesLoading:false,
   getAllPlanServicesError:false,
+  planType:''
 }
 
 const programAndPlanSlice = createSlice({
@@ -171,6 +172,9 @@ const programAndPlanSlice = createSlice({
     },
     saveGuestPlanData(state, { payload }) {
       state.guestPlanData = payload;
+    },
+    selectedItem(state,{payload}){
+      state.setItemName=payload;
     },
   },
   extraReducers: {
@@ -244,10 +248,15 @@ const programAndPlanSlice = createSlice({
       state.loading = true;
     },
     [planAmountThunk.fulfilled]: (state, { payload }) => {
-      state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
-      state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
-      state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
-      state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
+      // state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
+      // state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
+      // state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
+      // state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
+      state.planAmountToBePaid = payload?.data.planAmountResponse;
+      state.planCostAfterDiscount = payload?.data.planAmountResponse;
+      state.planDiscountBeforeCoupon = payload?.data.planAmountResponse;
+      state.planPrice=payload?.data?.planAmountResponse;
+      state.planType=payload?.data?.planType;
       state.loading = false;
     },
     [planAmountThunk.rejected]: (state, { payload }) => {
@@ -300,5 +309,5 @@ const programAndPlanSlice = createSlice({
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData,setOurPlanData } = programAndPlanSlice.actions;
+export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData,setOurPlanData,selectedItem } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

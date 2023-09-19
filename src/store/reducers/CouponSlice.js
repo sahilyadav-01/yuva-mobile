@@ -173,7 +173,8 @@ const couponSlice = createSlice({
       state.loading = false;
       state.apiErrorMessage = '';
       state.planCouponDiscount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.discountForCoupon;
-      state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.amountToBePaid;
+      // state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.amountToBePaid;
+      state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse;
       state.planeCouponCode = action?.payload?.data?.couponCode;
     },
     [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {

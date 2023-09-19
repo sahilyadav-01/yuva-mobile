@@ -1,10 +1,10 @@
 import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {Alert} from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import { removeCouponCart } from "../../../../../store/reducers/CartSlice";
 import { clearApiErrorMessage, removeCoupon } from "../../../../../store/reducers/CouponSlice";
-import { planAmountThunk } from "../../../../../store/reducers/ProgramAndPlanSlice";
+import { planAmountThunk, selectedItem } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { TERMS_CONDITION } from "../constants";
 
 
@@ -12,16 +12,20 @@ export const useCheckout = () => {
     const focused = useIsFocused();
     const { termsAndCondtionChecked } = useSelector(state => state.cart);
     const route = useRoute();
+    const [selectedPlanType, setSelectedPlanType] = useState('');
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const {selectedCity} = useSelector(
         state => state.profile,
       );
-    const {ourPlanData,planPrice,planAmountToBePaid} = useSelector(state => state.programAndPlan);
+  
+    const {ourPlanData,planPrice,planAmountToBePaid,planType} = useSelector(state => state.programAndPlan);
     const { planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
     const planName = ourPlanData?.name;
+    const PlanTypee =planType ? planType?.map(item => item.name) : [];
+    console.log(selectedPlanType,planType,ourPlanData,"hiiiiiiii");
     const { address,
         pincode,
         contact,
@@ -82,6 +86,9 @@ export const useCheckout = () => {
             dispatch(clearApiErrorMessage(''));
         }
       }, [focused]);
+      useEffect(()=>{
+        dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
+      },[selectedPlanType])
     return {
         address,
         pincode,
@@ -101,5 +108,9 @@ export const useCheckout = () => {
         planAmountToBePaid,
         planeCouponCode,
         planCouponFinalAmount,
+        planType,
+        setSelectedPlanType,
+        PlanTypee,
+        selectedPlanType
     }
 }

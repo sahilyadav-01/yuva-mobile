@@ -24,6 +24,7 @@ import { useRoute } from '@react-navigation/native';
 const CouponCard = (props) => {
   const route = useRoute();
   const { isPlan, planType ,planUuid } = props;
+  console.log(props,"hiiiiiiiiiiiii");
   const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
