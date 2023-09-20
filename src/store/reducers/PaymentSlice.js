@@ -8,7 +8,7 @@ export const createOrderThunk = createAsyncThunk(
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/order?plan=${plan}`;
+      const endpoint = `/order?cod=false&plan=${plan}`;
       const reqBody =
         plan
           ? {bookingRequestDto, subscriptionRequestDto}

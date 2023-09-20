@@ -15,6 +15,7 @@ export const useCheckout = () => {
     const [selectedPlanType, setSelectedPlanType] = useState('');
     const [finalamountToBePaid, setFinalAmountToBePaid] = useState();
     const [couponFinalAmount, setCouponFinalAmount] = useState();
+    const [planTypeEnum, setPlanTypeEnum] = useState();
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const {selectedCity} = useSelector(
@@ -40,9 +41,29 @@ export const useCheckout = () => {
     const quarterlyPrice = QuarterlyPrice !== undefined ? QuarterlyPrice : ourPlanData?.quarterlyPrice;
     const halfYearlyPrice = HalfYearlyPrice !== undefined ? HalfYearlyPrice : ourPlanData?.halfYearlyPrice;
     const yearlyPrice = YearlyPrice !== undefined ? YearlyPrice : ourPlanData?.yearlyPrice
-    const plans = [{ planTypeEnum: 'QUARTERLY', cost: quarterlyPrice ?? 0 }, { planTypeEnum: 'HALF_YEARLY', cost: halfYearlyPrice ?? 0 }, { planTypeEnum: 'ANNUALLY', cost: yearlyPrice ?? 0 }]
+    // const plans = [{ planTypeEnum: 'QUARTERLY', cost: quarterlyPrice ?? 0 }, { planTypeEnum: 'HALF_YEARLY', cost: halfYearlyPrice ?? 0 }, { planTypeEnum: 'ANNUALLY', cost: yearlyPrice ?? 0 }]
+    useEffect(()=>{
+      dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
+    },[PlanTypee])
+    useEffect(()=>{
+      if(setItemName==='Annually'){
+       setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
+       setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)  
+       setPlanTypeEnum("ANNUALLY") 
+      }
+     else if(setItemName==='Quarterly'){
+        setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
+        setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)   
+        setPlanTypeEnum("QUARTERLY") 
+      }
+       else if(setItemName==='Half Yearly'){   
+        setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
+        setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)     
+        setPlanTypeEnum("HALF_YEARLY")
+      }
+    },[setItemName,planCouponFinalAmount,planAmountToBePaid])
     const onPayPress = () => {
-        const planTypeEnum = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
+        // const planTypeEnum = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
         const bookingRequestDto = {
             address,
             cityId:selectedCity,
@@ -87,23 +108,23 @@ export const useCheckout = () => {
             dispatch(clearApiErrorMessage(''));
         }
       }, [focused]);
-      useEffect(()=>{
-        dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
-      },[PlanTypee])
-      useEffect(()=>{
-        if(setItemName==='Annually'){
-         setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
-         setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)    
-        }
-       else if(setItemName==='Quarterly'){
-          setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
-          setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)   
-         }
-         else if(setItemName==='Half Yearly'){   
-          setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
-          setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)     
-         }
-      },[setItemName,planCouponFinalAmount,planAmountToBePaid])
+      // useEffect(()=>{
+      //   dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
+      // },[PlanTypee])
+      // useEffect(()=>{
+      //   if(setItemName==='Annually'){
+      //    setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
+      //    setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)    
+      //   }
+      //  else if(setItemName==='Quarterly'){
+      //     setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
+      //     setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)   
+      //    }
+      //    else if(setItemName==='Half Yearly'){   
+      //     setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
+      //     setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)     
+      //    }
+      // },[setItemName,planCouponFinalAmount,planAmountToBePaid])
       console.log(planeCouponCode,"hiiiiiiiiii212");
     return {
         address,
@@ -118,7 +139,7 @@ export const useCheckout = () => {
         onCheckout,
         price: Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice),
         planUuid: ourPlanData?.planUuid,
-        plans,
+        // plans,
         planName,
         planPrice,
         planAmountToBePaid,
