@@ -29,7 +29,9 @@ const CheckoutOurPlan = () => {
         planType,
         PlanTypee,
         setSelectedPlanType,
-        selectedPlanType } = useCheckout();
+        selectedPlanType,
+        finalamountToBePaid,
+        couponFinalAmount } = useCheckout();
        
     // const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
     const Platform = getPlatform();
@@ -56,14 +58,14 @@ const CheckoutOurPlan = () => {
                     {/* <Text style={styles.planName}>{`${planName} (${planType})`}</Text> */}
                     <Text style={styles.planName}>{`${planName}`}</Text>
                     <SelectList
-          data={PlanTypee ? PlanTypee :[]}
-          placeholder={PlanTypee?.[0]}
-          search={false}
-          setSelected={setSelectedPlanType}
-          boxStyles={styles.boxStyle}
-          inputStyles={styles.inputStyles}
-          dropdownStyles={styles.dropdownStyles}
-          dropdownTextStyles={styles.inputStyles}
+                    data={PlanTypee ? PlanTypee :[]}
+                    placeholder={PlanTypee?.[0]}
+                    search={false}
+                    setSelected={setSelectedPlanType}
+                    boxStyles={styles.boxStyle}
+                    inputStyles={styles.inputStyles}
+                    dropdownStyles={styles.dropdownStyles}
+                    dropdownTextStyles={styles.inputStyles}
         />
                 </View>
                 <CheckoutPriceDetails isplan={{plan:true}}/>
@@ -71,9 +73,9 @@ const CheckoutOurPlan = () => {
                     <TouchableOpacity
                         onPress={onCheckout}
                         style={styles.touchableButton}>
-                        {/* <Text style={styles.tobePaid}> 
-                            {TO_BE_PAID} {RUPEE} {planeCouponCode?planCouponFinalAmount:planAmountToBePaid}/-
-                        </Text> */}
+                        <Text style={styles.tobePaid}> 
+                            {TO_BE_PAID} {RUPEE} {(planeCouponCode && !undefined)?couponFinalAmount:finalamountToBePaid}/-
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <CouponCard isPlan={true} planType={selectedPlanType ? selectedPlanType:PlanTypee[0]} planUuid={planUuid} />

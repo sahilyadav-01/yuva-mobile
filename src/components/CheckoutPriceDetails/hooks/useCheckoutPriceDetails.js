@@ -13,6 +13,8 @@ export const useCheckoutPriceDetails = (isPrice) => {
     const [discountBeforeCoupon, setDiscountBeforeCoupon] = useState();
     const [costAfterDiscount, setCostAfterDiscount] = useState();
     const [finalamountToBePaid, setFinalAmountToBePaid] = useState();
+    const [couponFinalAmount, setCouponFinalAmount] = useState();
+    const [couponDiscount, setCouponDiscount] = useState();
     const { planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planDiscountForCoupon, planPrice, mainItem,setItemName } = useSelector(state => state.programAndPlan);
     const { planCouponDiscount, planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     const crossAction = () => {
@@ -20,29 +22,32 @@ export const useCheckoutPriceDetails = (isPrice) => {
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
         dispatch(removeCouponCart());
     }
-    console.log(planAmountToBePaid,planCouponFinalAmount,"hiiiiiiii212");
     useEffect(()=>{
       if(setItemName==='Annually'){
        setPrice( planPrice?.ANNUALLY?.price)
        setDiscountBeforeCoupon(planDiscountBeforeCoupon?.ANNUALLY?.discountBeforeCoupon)
        setCostAfterDiscount(planCostAfterDiscount?.ANNUALLY?.costAfterDiscount)
        setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
+       setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)
+       setCouponDiscount(planCouponDiscount?.ANNUALLY?.discountForCoupon)
       }
      else if(setItemName==='Quarterly'){
         setPrice( planPrice?.QUARTERLY?.price)
         setDiscountBeforeCoupon(planDiscountBeforeCoupon?.QUARTERLY?.discountBeforeCoupon)
         setCostAfterDiscount(planCostAfterDiscount?.QUARTERLY?.costAfterDiscount)
         setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
+        setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)
+        setCouponDiscount(planCouponDiscount?.QUARTERLY?.discountForCoupon)
        }
        else if(setItemName==='Half Yearly'){
         setPrice( planPrice?.HALF_YEARLY?.price)
         setDiscountBeforeCoupon(planDiscountBeforeCoupon?.HALF_YEARLY?.discountBeforeCoupon)
         setCostAfterDiscount(planCostAfterDiscount?.HALF_YEARLY?.costAfterDiscount)
         setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
+        setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)
+        setCouponDiscount(planCouponDiscount?.HALF_YEARLY?.discountForCoupon)
        }
-    },[price,setItemName,planPrice])
-    console.log(price,"hiiiiiii1212121212121");
-    
+    },[setItemName,planCouponDiscount,planCouponFinalAmount,planAmountToBePaid,planCostAfterDiscount,planPrice,planDiscountBeforeCoupon])
     useEffect(() => {
         dispatch(setTermsAndCondtionChecked(checked));
     }, [checked])
@@ -68,6 +73,8 @@ export const useCheckoutPriceDetails = (isPrice) => {
         processingCharge,
         discountBeforeCoupon,
         costAfterDiscount,
-        finalamountToBePaid
+        finalamountToBePaid,
+        couponFinalAmount,
+        couponDiscount
     }
 }

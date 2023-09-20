@@ -13,19 +13,20 @@ export const useCheckout = () => {
     const { termsAndCondtionChecked } = useSelector(state => state.cart);
     const route = useRoute();
     const [selectedPlanType, setSelectedPlanType] = useState('');
+    const [finalamountToBePaid, setFinalAmountToBePaid] = useState();
+    const [couponFinalAmount, setCouponFinalAmount] = useState();
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const {selectedCity} = useSelector(
         state => state.profile,
       );
   
-    const {ourPlanData,planPrice,planAmountToBePaid,planType} = useSelector(state => state.programAndPlan);
+    const {ourPlanData,planPrice,planAmountToBePaid,planType,setItemName} = useSelector(state => state.programAndPlan);
     const { planCouponFinalAmount, planeCouponCode } = useSelector(state => state.coupon);
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
     const planName = ourPlanData?.name;
     const PlanTypee =planType ? planType?.map(item => item.name) : [];
-    console.log(selectedPlanType,planType,ourPlanData,"hiiiiiiii");
     const { address,
         pincode,
         contact,
@@ -88,7 +89,22 @@ export const useCheckout = () => {
       }, [focused]);
       useEffect(()=>{
         dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
-      },[selectedPlanType])
+      },[PlanTypee])
+      useEffect(()=>{
+        if(setItemName==='Annually'){
+         setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
+         setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)    
+        }
+       else if(setItemName==='Quarterly'){
+          setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
+          setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)   
+         }
+         else if(setItemName==='Half Yearly'){   
+          setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
+          setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)     
+         }
+      },[setItemName,planCouponFinalAmount,planAmountToBePaid])
+      console.log(planeCouponCode,"hiiiiiiiiii212");
     return {
         address,
         pincode,
@@ -111,6 +127,8 @@ export const useCheckout = () => {
         planType,
         setSelectedPlanType,
         PlanTypee,
-        selectedPlanType
+        selectedPlanType,
+        finalamountToBePaid,
+        couponFinalAmount
     }
 }

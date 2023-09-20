@@ -24,8 +24,8 @@ import { useRoute } from '@react-navigation/native';
 const CouponCard = (props) => {
   const route = useRoute();
   const { isPlan, planType ,planUuid } = props;
-  console.log(props,"hiiiiiiiiiiiii");
-  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart} = useCouponCard( isPlan, planUuid,planType );
+ 
+  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart,planTypee} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const CouponCard = (props) => {
       let couponCode = item.couponCode
       dispatch(selectedCoupon({ couponCode }));
       if (isPlan) {
-        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
+        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid ,planType:planTypee }));
       } else {
         dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
       }

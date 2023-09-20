@@ -61,9 +61,9 @@ export const redeemCouponsSliceThunk = createAsyncThunk(
 );
 export const redeemCouponsPlanSliceThunk = createAsyncThunk(
   '/coupon/plan',
-  async ({couponCode, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async ({couponCode, planUuid,planType}, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const endpoint = `/plan/amount?couponCode=${couponCode}&planUuid=${planUuid}`;
+      const endpoint = `/plan/amount?couponCode=${couponCode}&planUuid=${planUuid}&planTypeEnum=${planType}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -172,8 +172,9 @@ const couponSlice = createSlice({
     [redeemCouponsPlanSliceThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.apiErrorMessage = '';
-      state.planCouponDiscount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.discountForCoupon;
+      // state.planCouponDiscount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.discountForCoupon;
       // state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse?.ANNUALLY?.amountToBePaid;
+      state.planCouponDiscount = action?.payload?.data?.planAmountResponse;
       state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse;
       state.planeCouponCode = action?.payload?.data?.couponCode;
     },

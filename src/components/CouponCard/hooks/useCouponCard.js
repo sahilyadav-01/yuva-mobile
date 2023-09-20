@@ -14,15 +14,26 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
     const { coupon, couponView, planeCouponCode, apiErrorMessage ,selectedCouponCode} = useSelector(state => state.coupon);
-    console.log(isPlan,planType,"hiiiiiiiiiiiiiiiiiiiiiiiiiii");
     const { cart } = useSelector(state => state.cart);
     const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
 
         setCouponCode(value)
     }
+    useEffect(()=>{
+        if(planType==='Annually'){
+            setPlanTypee("ANNUALLY")
+        }
+       else if(planType==='Quarterly'){
+            setPlanTypee("QUARTERLY")
+        }
+       else if(planType==='Half Yearly'){
+            setPlanTypee("HALF_YEARLY")
+        }
+            },[planType])
+
     const onApply = () => {
-        if (couponCode == '') {
+        if (couponCode === '') {
             Alert.alert(ALERT, COUPON_MESSAGE);
 
         } 
@@ -31,7 +42,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
                 dispatch(selectedCoupon({ couponCode }));
             }
             if (isPlan) {
-                dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
+                dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid,planType:planTypee }));
             } else {
                 dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
             }
@@ -44,23 +55,11 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     }
     useEffect(() => {
         if (focused) {
-            if (apiErrorMessage !== '') {
-                Alert.alert(ALERT, apiErrorMessage);
+            if (apiErrorMessage !== '' && apiErrorMessage !== undefined) {
+                 Alert.alert(ALERT, apiErrorMessage);
             }
         }
     }, [apiErrorMessage]);
-    useEffect(()=>{
-        if(planType==='Annually'){
-            setPlanTypee("ANNUALLY")
-        }
-       else if(planType==='Quarterly'){
-            setPlanTypee("QUARTERLY")
-        }
-       else if(planType==='Half Yearly'){
-            setPlanTypee("HALF_YEARLY")
-        }
-            },[planType,planTypee])
-
             useEffect(()=>{
                 if(isPlan){
                     if (isLoggedIn) {
@@ -98,6 +97,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         cart,
         planeCouponCode,
         selectedCouponCode,
-        couponViewCart
+        couponViewCart,
+        planTypee
     };
 }
