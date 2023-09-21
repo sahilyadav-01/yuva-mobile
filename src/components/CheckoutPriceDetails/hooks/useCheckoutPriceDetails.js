@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTermsAndCondtionChecked, removeCouponCart } from "../../../store/reducers/CartSlice";
-import { selectedPlaneCouponCode } from "../../../store/reducers/CouponSlice";
+import { removePlaneCoupon, selectedPlaneCouponCode } from "../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../store/reducers/ProgramAndPlanSlice";
 
 export const useCheckoutPriceDetails = (isPrice) => {
@@ -22,6 +22,9 @@ export const useCheckoutPriceDetails = (isPrice) => {
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
         dispatch(removeCouponCart());
     }
+    useEffect(()=>{
+      dispatch(removePlaneCoupon())
+     },[setItemName])
     useEffect(()=>{
       if(setItemName==='Annually'){
        setPrice( planPrice?.ANNUALLY?.price)
