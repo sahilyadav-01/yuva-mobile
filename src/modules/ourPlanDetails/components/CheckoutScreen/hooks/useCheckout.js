@@ -63,7 +63,6 @@ export const useCheckout = () => {
       }
     },[setItemName,planCouponFinalAmount,planAmountToBePaid])
     const onPayPress = () => {
-        // const planTypeEnum = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
         const bookingRequestDto = {
             address,
             cityId:selectedCity,
@@ -121,7 +120,6 @@ export const useCheckout = () => {
         onCheckout,
         price: Math.max(yearlyPrice, quarterlyPrice, halfYearlyPrice),
         planUuid: ourPlanData?.planUuid,
-        // plans,
         planName,
         planPrice,
         planAmountToBePaid,

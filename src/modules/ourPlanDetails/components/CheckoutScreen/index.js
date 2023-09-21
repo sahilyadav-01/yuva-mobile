@@ -32,8 +32,7 @@ const CheckoutOurPlan = () => {
         selectedPlanType,
         finalamountToBePaid,
         couponFinalAmount } = useCheckout();
-       
-
+        const Platform = getPlatform();
     return (
         <SafeAreaView style={styles.container}>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={false} />
@@ -53,7 +52,7 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
-                <View style={style.DropDownStyle}>
+                <View style={styles.DropDownStyle}>
                     <Text style={styles.planName}>{`${planName}`}</Text>
                     <SelectList
                     data={PlanTypee ? PlanTypee :[]}
