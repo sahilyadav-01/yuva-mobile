@@ -108,24 +108,6 @@ export const useCheckout = () => {
             dispatch(clearApiErrorMessage(''));
         }
       }, [focused]);
-      // useEffect(()=>{
-      //   dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
-      // },[PlanTypee])
-      // useEffect(()=>{
-      //   if(setItemName==='Annually'){
-      //    setFinalAmountToBePaid(planAmountToBePaid?.ANNUALLY?.amountToBePaid)
-      //    setCouponFinalAmount(planCouponFinalAmount?.ANNUALLY?.amountToBePaid)    
-      //   }
-      //  else if(setItemName==='Quarterly'){
-      //     setFinalAmountToBePaid(planAmountToBePaid?.QUARTERLY?.amountToBePaid)
-      //     setCouponFinalAmount(planCouponFinalAmount?.QUARTERLY?.amountToBePaid)   
-      //    }
-      //    else if(setItemName==='Half Yearly'){   
-      //     setFinalAmountToBePaid(planAmountToBePaid?.HALF_YEARLY?.amountToBePaid)
-      //     setCouponFinalAmount(planCouponFinalAmount?.HALF_YEARLY?.amountToBePaid)     
-      //    }
-      // },[setItemName,planCouponFinalAmount,planAmountToBePaid])
-      console.log(planeCouponCode,"hiiiiiiiiii212");
     return {
         address,
         pincode,
