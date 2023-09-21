@@ -11,12 +11,12 @@ import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../utils/utils'
 
 const CheckoutPriceDetails = (props) => {
 
-    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan, processingCharge } = useCheckoutPriceDetails(props);
+    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan, processingCharge,price,discountBeforeCoupon ,costAfterDiscount,finalamountToBePaid,couponFinalAmount,couponDiscount} = useCheckoutPriceDetails(props);
     return (
         <View>
             <View style={styles.QuantityView}>
                 <Text style={styles.Quantity}>{Quantity ? QUANTITY('') : QUANTITY('-1')}</Text>
-                <Text style={styles.QuantityNumber}>{Quantity ?? COST(planPrice)}</Text>
+                <Text style={styles.QuantityNumber}>{Quantity ?? COST(price)}</Text>
             </View>
             <View>
                 <Text style={styles.TextPrice}>{PRICE_DETAILS}</Text>
@@ -24,11 +24,11 @@ const CheckoutPriceDetails = (props) => {
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                <Text style={styles.TextPriceDiscount}>{totalCost ? TEST_AND_PACKAGES_PRICE : DISCOUNT}</Text>
-                <Text style={[styles.payableAmountDiscount, {color:totalCost ? CYAN_BLUE : GREEN}]}>{totalCost ? COST(totalCost) : DISCOUNT_AMOUNT(planDiscountBeforeCoupon)}</Text>
+                <Text style={[styles.payableAmountDiscount, {color:totalCost ? CYAN_BLUE : GREEN}]}>{totalCost  ? COST(totalCost) : DISCOUNT_AMOUNT(discountBeforeCoupon)}</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 {totalCost?<Text style={styles.orderPrice}>{DISCOUNT}</Text>:<Text style={styles.orderPrice}>{ORDER_AMOUNT}</Text>}
-                <Text style={[styles.orderAmount, {color:(totalDiscount || totalDiscount==0) ? GREEN : CYAN_BLUE}]}>{(totalDiscount || totalDiscount==0) ? DISCOUNT_AMOUNT(totalDiscount) : COST(planCostAfterDiscount)}</Text>
+                <Text style={[styles.orderAmount, {color:(totalDiscount || totalDiscount==0) ? GREEN : CYAN_BLUE}]}>{(totalDiscount || totalDiscount==0) ? DISCOUNT_AMOUNT(totalDiscount) : COST(costAfterDiscount)}</Text>
             </View>
            {processingCharge > 0 && <View style={styles.collectionContainer}>
             <Text style={styles.orderPrice}>{COLLECTION_CHARGES}</Text>
@@ -49,13 +49,13 @@ const CheckoutPriceDetails = (props) => {
                     </View>
                 </View>
                 <View>
-                    <Text style={styles.couponDiscountStyle}>{DISCOUNT_AMOUNT(planeCouponCode ? planCouponDiscount : 0)}</Text>
+                    <Text style={styles.couponDiscountStyle}>{DISCOUNT_AMOUNT(planeCouponCode ? couponDiscount : 0)}</Text>
                 </View>
             </View>}
             <View style={styles.line} />
             <View style={styles.OrderAmountDirection}>
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
-                <Text style={styles.payableAmount}>{RUPEE}{typeof amountToBePaid === 'number' ? amountToBePaid : (planeCouponCode ? planCouponFinalAmount : planAmountToBePaid)}/-</Text>
+                <Text style={styles.payableAmount}>{RUPEE}{typeof amountToBePaid === 'number' ? amountToBePaid : ((planeCouponCode && !undefined) ? couponFinalAmount : finalamountToBePaid)}/-</Text>
             </View>
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>
