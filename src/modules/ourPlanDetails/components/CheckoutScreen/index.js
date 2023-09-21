@@ -33,8 +33,7 @@ const CheckoutOurPlan = () => {
         finalamountToBePaid,
         couponFinalAmount } = useCheckout();
        
-    // const planType = plans.find((item) => item.cost === Math.max(quarterlyPrice, halfYearlyPrice, yearlyPrice))?.planTypeEnum ?? null;
-    const Platform = getPlatform();
+
     return (
         <SafeAreaView style={styles.container}>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={false} />
@@ -54,8 +53,7 @@ const CheckoutOurPlan = () => {
                         <Text style={styles.adressCheck}>{contact}</Text>
                     </View>
                 </View>
-                <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center',marginTop: 39,marginRight:30,zIndex:999 }}>
-                    {/* <Text style={styles.planName}>{`${planName} (${planType})`}</Text> */}
+                <View style={style.DropDownStyle}>
                     <Text style={styles.planName}>{`${planName}`}</Text>
                     <SelectList
                     data={PlanTypee ? PlanTypee :[]}

@@ -67,7 +67,6 @@ export const styles = StyleSheet.create({
         shadowColor: VERY_LIGHT_GREY,
     },
     planName: {
-        //  marginTop: 39,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
         marginHorizontal: 26,
@@ -246,4 +245,11 @@ export const styles = StyleSheet.create({
          left:-18,
         backgroundColor: WHITE,
       },
+      DropDownStyle:{
+        flexDirection:ROW, 
+        justifyContent:SPACE_BETWEEN, 
+        alignItems:CENTER,
+        marginTop: 39,
+        marginRight:30,
+        zIndex:999 }
 })
