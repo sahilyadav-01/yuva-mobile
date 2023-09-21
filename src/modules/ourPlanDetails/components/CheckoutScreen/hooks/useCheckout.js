@@ -41,7 +41,6 @@ export const useCheckout = () => {
     const quarterlyPrice = QuarterlyPrice !== undefined ? QuarterlyPrice : ourPlanData?.quarterlyPrice;
     const halfYearlyPrice = HalfYearlyPrice !== undefined ? HalfYearlyPrice : ourPlanData?.halfYearlyPrice;
     const yearlyPrice = YearlyPrice !== undefined ? YearlyPrice : ourPlanData?.yearlyPrice
-    // const plans = [{ planTypeEnum: 'QUARTERLY', cost: quarterlyPrice ?? 0 }, { planTypeEnum: 'HALF_YEARLY', cost: halfYearlyPrice ?? 0 }, { planTypeEnum: 'ANNUALLY', cost: yearlyPrice ?? 0 }]
     useEffect(()=>{
       dispatch(selectedItem(selectedPlanType ? selectedPlanType: PlanTypee?.[0]))
     },[PlanTypee])
