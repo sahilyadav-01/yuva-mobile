@@ -8,7 +8,7 @@ import {getCalendarValue} from '../../../../utils/utils';
 
 const ConsultationCard = props => {
   const {onConsult, onDownload, item} = props;
-  const {date, time} = getCalendarValue(item?.createdAt);
+  const {date, time} = getCalendarValue(item?.updatedAt);
   return (
     <View
       style={

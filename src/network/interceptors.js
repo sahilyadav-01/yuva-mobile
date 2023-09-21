@@ -33,7 +33,7 @@ axiosClient.interceptors.request.use(
     });
 
     config['headers'] = {
-      ...config['headers'], version: '1.0.5'
+      ...config['headers'], version: '1.0.7'
     }
 
     if (isLoginApi.length === 0) {

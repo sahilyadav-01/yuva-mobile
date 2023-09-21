@@ -15,7 +15,6 @@ export const useServiceCard = ({screenName}) => {
     Health_Checkup_Packages: PNG.Health_Checkup_Packages,
     Talk_To_Doctor: PNG.Talk_To_Doctor,
     My_Health_Checkup: PNG.MY_HEALTH_CHECKUP,
-    PHARMACY:PNG.PHARMACY,
   };
   const onpress = () => {
     if(screenName === 'HealthCheckupsTests'){

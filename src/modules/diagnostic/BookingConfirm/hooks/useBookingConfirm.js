@@ -28,7 +28,7 @@ export const useBookingConfirm = () => {
         if (route?.name === BOOKINGCONFIRM) {
             setUserAttribute(route?.params)
         }
-    }, [route])
+    }, [])
     const handleDateTime = (arg) => {
         if(arg?.status)
         setEpochTime(arg?.value);
@@ -38,17 +38,15 @@ export const useBookingConfirm = () => {
         dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version}))
         else if(!route?.params?.plan && route?.params?.Uuid)
         dispatch(getRelations({uuid:route?.params?.Uuid,check:true}))
-        dispatch(getUserAddress())
+        dispatch(getUserAddress());
     }, [])
     useEffect(() => {
-        if (relationId?.length > 0) {
+         if (relationId?.length > 0) {
             let newArray = relationId?.map((item,index) => {
                 return { key: index.toString(), value: item.name + "  -  " + item.relation + "  (" + item.age + ")", relationId:item?.id }
             }
             )
             setDataRelation(newArray)
-        } else {
-            route?.params?.Uuid ? dispatch(getRelations({uuid:route?.params?.Uuid,userVersion:route?.params?.userVersion,version:route?.params?.version})) : dispatch(getRelations())
         }
     }, [relationId])
 

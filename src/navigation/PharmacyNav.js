@@ -1,15 +1,21 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import DetialsScreen from '../modules/pharmacy/DetialsScreen';
-import PharmacyListing from '../screens/yuvaservices/pharmacy/PharmacyListing';
+import PrescriptionListing from '../screens/yuvaservices/pharmacy/PrescriptionListing';
+import ListingScreen from '../modules/pharmacy/ListingScreen';
 
 const Stack = createStackNavigator();
 const PharmacyNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="PHARMACY"
-        component={PharmacyListing}
+        name="PrescriptionListing"
+        component={PrescriptionListing}
+        options={{ headerShown: false }}
+      />
+         <Stack.Screen
+        name="PharmacyListing"
+        component={ListingScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
