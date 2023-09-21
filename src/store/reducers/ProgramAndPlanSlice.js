@@ -248,10 +248,6 @@ const programAndPlanSlice = createSlice({
       state.loading = true;
     },
     [planAmountThunk.fulfilled]: (state, { payload }) => {
-      // state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
-      // state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
-      // state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
-      // state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
       state.planAmountToBePaid = payload?.data.planAmountResponse;
       state.planCostAfterDiscount = payload?.data.planAmountResponse;
       state.planDiscountBeforeCoupon = payload?.data.planAmountResponse;
