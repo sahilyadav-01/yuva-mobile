@@ -1,9 +1,12 @@
 
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setIndex } from "../../../../../store/reducers/ProgramAndPlanSlice";
 import { HRA, MY_TEST, OPD, OURPLAN, services, TALK_TO_DOCTOR } from "../../../constant";
 
 export const usePlanCard = (item) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [priceObj, setPriceObj] = useState({value: 0, duration: '', finalPrice: 0});
   const {planServiceNameList} = item || [];
@@ -23,6 +26,7 @@ export const usePlanCard = (item) => {
     return value;
   });
   const onDetailsScreen = () => {
+    dispatch(setIndex(item));
     navigation.navigate(OURPLAN);
   };
   useEffect(() => {
