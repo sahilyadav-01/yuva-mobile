@@ -5,5 +5,5 @@ export const DOMAIN = 'msdk.in.freshchat.com';
 // export const APP_KEY = '67a8d203-09ee-47f6-a2d2-2dcf3e7e7db5';
 
 // PREPROD UAT DEV
-export const APP_ID = 'b2f29e01-36ea-4c63-918a-6f66e4647091';
-export const APP_KEY = 'ae536239-0943-42ee-ba22-f852e4077439';
+export const APP_ID = '943fe2df-56f6-4d6c-84a1-31d2f36d02ba';
+export const APP_KEY = '62944d41-f95f-43df-a4b0-a5c2e8d4f9e7';

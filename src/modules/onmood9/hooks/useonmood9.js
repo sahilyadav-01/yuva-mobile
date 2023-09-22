@@ -22,8 +22,7 @@ export const useOnMood9 = onMood9Props => {
 
   useEffect(() => {
     if (userSubscriptionDetails !== null && fetchDetails) {
-      let queryString = `user_id=testuser12${id}&status=${
-        // use ${userSubscriptionDetails?.userId} as user_id for production
+      let queryString = `user_id=${userSubscriptionDetails?.userId}${id}&status=${
         userSubscriptionDetails?.paymentStatus
       }${
         userSubscriptionDetails?.paymentStatus === 'Active'

@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HealthScreen from '../screens/yuvaservices/talkToDoctor/HealthScreen';
 import ChatScreen from '../screens/yuvaservices/talkToDoctor/ChatScreen';
 import MemberSelectScreen from '../screens/yuvaservices/talkToDoctor/MemberSelectScreen';
-import TalkToDoctorNav from './TalkToDoctorNav';
+// import TalkToDoctorNav from './TalkToDoctorNav';
 
 const Stack = createStackNavigator();
 
