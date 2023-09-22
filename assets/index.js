@@ -145,6 +145,7 @@ import SEARCH_NETWORK_SEARCH_ICON from './SearchNetworkSearchIcon';
 import TalkToDoctorSvg from './TalkToDoctorSvg';
 import HraSvg from './HraSvg';
 import OPDIcon from './OPDIcon';
+import YUVA_LOGO from './yuva_logo.png';
 
 const PNG = {
   AMICO,
@@ -203,6 +204,7 @@ const PNG = {
   OurPlanRadioButton,
   planDetails,
   AmbulanceImage,
+  YUVA_LOGO,
 };
 
 const SVG = {

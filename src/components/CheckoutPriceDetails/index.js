@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { CYAN_BLUE, GREEN, WHITE } from '../../styles/colors';
-import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE, BY_CLICKING, TERMS_AND_CONDITIONS, AND, PRIVACY_POLICY, COLLECTION_CHARGES, PROCESSING_AMOUNT } from './constants';
+import { AMOUNT_PAYABLE, DISCOUNT, ORDER_AMOUNT, PRICE_DETAILS, QUANTITY, RUPEE, COST, DISCOUNT_AMOUNT, TEST_AND_PACKAGES_PRICE, BY_CLICKING, TERMS_AND_CONDITIONS, AND, PRIVACY_POLICY, COLLECTION_CHARGES, PROCESSING_AMOUNT, PAYMENT_TEXT, PAYMENT_METHOD_TEXT2, PAYMENT_METHOD_TEXT1 } from './constants';
 import { useCheckoutPriceDetails } from './hooks/useCheckoutPriceDetails';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -11,7 +11,7 @@ import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../utils/utils'
 
 const CheckoutPriceDetails = (props) => {
 
-    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan, processingCharge } = useCheckoutPriceDetails(props);
+    const { amountToBePaid, checked, setChecked, totalCost, totalDiscount, Quantity, planAmountToBePaid, planCostAfterDiscount, planDiscountBeforeCoupon, planPrice, planCouponDiscount, planeCouponCode, crossAction, planCouponFinalAmount, plan, processingCharge, onSelect, selectedOption1, selectedOption2 } = useCheckoutPriceDetails(props);
     return (
         <View>
             <View style={styles.QuantityView}>
@@ -57,6 +57,24 @@ const CheckoutPriceDetails = (props) => {
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
                 <Text style={styles.payableAmount}>{RUPEE}{typeof amountToBePaid === 'number' ? amountToBePaid : (planeCouponCode ? planCouponFinalAmount : planAmountToBePaid)}/-</Text>
             </View>
+          { amountToBePaid !== 0 && <View style={styles.paymentMethodContainer}>
+                <View style={styles.lineStyle}></View>
+                <Text style={styles.paymentText}>{PAYMENT_TEXT}</Text>
+                <View style={styles.paymentMethodBottomContainer}>
+                    <View style={styles.innerContainer}>
+                        <TouchableOpacity style={[styles.outerRadioStyle]} onPress={() => onSelect()}>
+                            <View style={selectedOption1 ? styles.radioSelected : null} />
+                        </TouchableOpacity>
+                        <Text style={styles.paymentRadioText}>{PAYMENT_METHOD_TEXT1}</Text>
+                    </View>
+                    <View style={styles.innerContainer}>
+                        <TouchableOpacity style={[styles.outerRadioStyle]} onPress={() => onSelect()}>
+                            <View style={selectedOption2 ? styles.radioSelected : null} />
+                        </TouchableOpacity>
+                        <Text style={styles.paymentRadioText}>{PAYMENT_METHOD_TEXT2}</Text>
+                    </View>
+                </View>
+            </View>}
             <View style={styles.OrderAmountDirection}>
                 <View style={styles.checkBoxContainer}>
                     <Checkbox.Android
