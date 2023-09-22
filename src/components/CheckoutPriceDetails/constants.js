@@ -15,3 +15,6 @@ export const COST = (item) =>  `₹ ${item} /-`;
 export const DISCOUNT_AMOUNT = (item) =>  `- ₹ ${item} /-`;
 export const COLLECTION_CHARGES = "Collection Charges";
 export const PROCESSING_AMOUNT = (item) =>  `- ₹ ${item} /-`;
+export const PAYMENT_TEXT="Payment Mode";
+export const PAYMENT_METHOD_TEXT1="Cash on Delivery";
+export const PAYMENT_METHOD_TEXT2="Pay Online";

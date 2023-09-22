@@ -4,11 +4,11 @@ import {YuvaService} from '../../network/yuvaService';
 export const createOrderThunk = createAsyncThunk(
   'payment/createOrder',
   async (
-    {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender},
+    {plan, cod, bookingRequestDto, subscriptionRequestDto, name, age, gender},
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/order?cod=false&plan=${plan}`;
+      const endpoint = `/order?cod=${cod}&plan=${plan}`;
       const reqBody =
         plan
           ? {bookingRequestDto, subscriptionRequestDto}
@@ -77,11 +77,16 @@ const initialState = {
   subscriptionDetails: null,
   onMood9Loading: false,
   onMood9Error:false,
+  cod:false,
 };
 
 const paymentSlice = createSlice({
   name: 'payment',
   initialState,
+  reducers: {
+    resetPaymentMethod(state, payload){
+      state.cod=payload?.payload;
+    }},
   extraReducers: {
     [encReqThunk.pending]: state => {
       state.encReqLoading = true;
@@ -146,5 +151,6 @@ const paymentSlice = createSlice({
 });
 
 export const paymentInit = paymentSlice.getInitialState();
+export const {resetPaymentMethod} = paymentSlice.actions;
 
 export default paymentSlice.reducer;

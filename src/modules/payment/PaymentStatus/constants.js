@@ -8,3 +8,5 @@ export const PLEASE_TRY_AGAIN = 'Please try again';
 export const NUMBER = '8929945228';
 export const ZERO_PAYMENT = 'We have received your booking request. We will confirm your booking as soon as possible. If you have any questions or need any further assistance , Please call us on';
 export const ZERO_PAYMENT_STATUS = 'Thank you, for your\npurchase';
+export const COD_PAYMENT = 'We have received your booking Request. one of our executive confirm The Same. ';
+export const COD_PAYMENT_STATUS = 'Thank you\nWe have received your Order';

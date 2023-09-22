@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTermsAndCondtionChecked, removeCouponCart } from "../../../store/reducers/CartSlice";
 import { removePlaneCoupon, selectedPlaneCouponCode } from "../../../store/reducers/CouponSlice";
 import { planAmountThunk } from "../../../store/reducers/ProgramAndPlanSlice";
+import { resetPaymentMethod } from "../../../store/reducers/PaymentSlice";
 
 export const useCheckoutPriceDetails = (isPrice) => {
     const dispatch = useDispatch();
     const { amountToBePaid, totalCost, totalDiscount, Quantity, processingCharge } = isPrice?.isPrice || {};
     const { plan } = isPrice?.isplan || {};
     const [checked, setChecked] = useState(false);
+    const [selectedOption1, setSelectedOption1] = useState(false);
+    const [selectedOption2, setSelectedOption2] = useState(true);
     const [price, setPrice] = useState();
     const [discountBeforeCoupon, setDiscountBeforeCoupon] = useState();
     const [costAfterDiscount, setCostAfterDiscount] = useState();
@@ -22,6 +25,20 @@ export const useCheckoutPriceDetails = (isPrice) => {
         dispatch(planAmountThunk({planUuid: mainItem?.planUuid}));
         dispatch(removeCouponCart());
     }
+    const onSelect = () => {
+        if (selectedOption1 === true) {
+            setSelectedOption1(false);
+            setSelectedOption2(true);
+        }
+        else {
+            setSelectedOption1(true);
+            setSelectedOption2(false);
+        }
+    }
+    useEffect(() => {
+        dispatch(resetPaymentMethod(selectedOption1));
+    },[selectedOption1])
+   
     useEffect(()=>{
       dispatch(removePlaneCoupon())
      },[setItemName])
@@ -74,6 +91,9 @@ export const useCheckoutPriceDetails = (isPrice) => {
         planeCouponCode,
         plan,
         processingCharge,
+        onSelect,
+        selectedOption1,
+        selectedOption2,
         discountBeforeCoupon,
         costAfterDiscount,
         finalamountToBePaid,
