@@ -57,7 +57,7 @@ const CheckoutPriceDetails = (props) => {
                 <Text style={styles.Amountpyable}>{AMOUNT_PAYABLE}</Text>
                 <Text style={styles.payableAmount}>{RUPEE}{typeof amountToBePaid === 'number' ? amountToBePaid : ((planeCouponCode && !undefined) ? couponFinalAmount : finalamountToBePaid)}/-</Text>
             </View>
-          { amountToBePaid !== 0 && <View style={styles.paymentMethodContainer}>
+          { (!plan && amountToBePaid !== 0) && <View style={styles.paymentMethodContainer}>
                 <View style={styles.lineStyle}></View>
                 <Text style={styles.paymentText}>{PAYMENT_TEXT}</Text>
                 <View style={styles.paymentMethodBottomContainer}>
