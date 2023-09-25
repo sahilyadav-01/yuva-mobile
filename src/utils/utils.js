@@ -379,7 +379,7 @@ const downloadFile = (filePath, fileName) => {
 };
 
 export const checkPermission = async (filePath, fileName) => {
-  if(Platform.OS === 'android'){
+  if(Platform.OS === 'android' && Platform.Version < 33){
   PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
     PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then(write=>{
     if(read && write){
@@ -397,6 +397,9 @@ export const checkPermission = async (filePath, fileName) => {
     }
     })
   })
+}
+else if(Platform.OS === 'android' && Platform.Version >= 33){
+  downloadFile(filePath, fileName);
 }
 else if(Platform.OS === 'ios') downloadFile(filePath, fileName);
 };
