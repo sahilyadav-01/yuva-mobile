@@ -3,6 +3,7 @@ import {View, TextInput} from 'react-native';
 import {PALE_ORANGE} from '../../styles/colors';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
+import { SVG } from '../../../assets';
 
 const Search = props => {
   const {
@@ -27,6 +28,7 @@ const onPress=()=>{
 }
   return (
     <View style={styles.container}>
+      <SVG.SEARCH_NETWORK_SEARCH_ICON />
       <TextInput
         onSubmitEditing={onSubmit}
         editable={editable}
