@@ -11,7 +11,6 @@ export const useSearchNetworkScreen = () => {
   const { searchNetworkdata, networkTypeDropDownData, plansDropdownData, cityNamesDropdownData } = useSelector(state => state.SearchNetwork);
   const [networkTypeData, setNetworkTypeData] = useState([]);
   const [providerData, setProviderData] = useState([]);
-  const [providerDataListSearch, setProviderDataListSearch] = useState([]);
   const [pageNumberSearch, setPageNumberSearch] = useState(1);
   const defaultOption = { label: "", value: "ALL" };
   const [documentType, setDocumentType] = useState('CLINIC');
@@ -54,19 +53,18 @@ export const useSearchNetworkScreen = () => {
       setProviderData(
         _.uniqBy(
           providerData.concat(searchNetworkdata?.networkDtoList),
-          // 'name',
+          'id',
         ),
       );
     }
     else if (typeof searchNetworkdata?.networkDtoList === 'object' &&
       searchNetworkdata?.networkDtoList.length > 0 && searchQuery.length > 0) {
-      setProviderDataListSearch(prevData => {
-        const mergedData = _.uniqBy(
-          [...prevData, ...searchNetworkdata?.networkDtoList],
-          // 'id',
-        );
-        return mergedData;
-      });
+        setProviderData(
+        _.uniqBy(
+          providerData.concat(searchNetworkdata?.networkDtoList),
+          'id',
+        ),
+      );
     }
   }, [searchNetworkdata]);
   useEffect(() => {
@@ -114,7 +112,7 @@ export const useSearchNetworkScreen = () => {
     if (pageNumber < searchNetworkdata?.totalPages && searchQuery.length === 0) {
       setPageNumber(pageNumber + 1);
     }
-    else if (pageNumberSearch < searchNetworkdata?.totalPages && searchQuery.length > 1) {
+    else if (pageNumberSearch < searchNetworkdata?.totalPages && searchQuery.length >= 1) {
       setPageNumberSearch(pageNumberSearch + 1);
     }
   };
@@ -131,7 +129,5 @@ export const useSearchNetworkScreen = () => {
     setSelectedCityNamesType,
     onEndReached,
     onChangeSearch,
-    providerDataListSearch,
-    isSearch: searchQuery.length > 0,
   };
 }
