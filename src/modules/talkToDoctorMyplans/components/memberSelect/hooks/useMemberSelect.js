@@ -28,10 +28,11 @@ export const useMemberSelect = () => {
       setStartConsultation(false);
       setCheckBoxPress(0);
       setActiveIndex(null);
+      dispatch(getRelations());
     }
   }, [focused]);
   useEffect(() => {
-    if ((startConsultation && userDetails) || relations?.length > 0) {
+    if (startConsultation && userDetails) {
       setData(
         relations?.map((item, index) => {
           return {
@@ -47,7 +48,7 @@ export const useMemberSelect = () => {
       );
       setModalVisible(true);
     }
-  }, [ relations, startConsultation, checkBoxFlag]);
+  }, [ relations, startConsultation, checkBoxFlag,userDetails]);
   useEffect(() => {
     if (activeIndex !== null) {
       const status = relations?.map((item, index) => {
@@ -89,14 +90,8 @@ export const useMemberSelect = () => {
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
-  useEffect(() => {
-    dispatch(profileThunk());
-    dispatch(getRelations());
-    setStartConsultation(true);
-  }, [])
   const openModal = () => {
     dispatch(profileThunk());
-    dispatch(getRelations());
     setStartConsultation(true);
   };
   const onPressCheckBox = () => {
