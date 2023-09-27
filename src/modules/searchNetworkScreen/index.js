@@ -11,8 +11,8 @@ import { onViewMapPress } from "../../utils/utils";
 import EmptyList from "./EmptyList";
 
 const SearchNetworkScreen = () => {
-    const { providerData, networkTypeData, planTypeData, providerDataListSearch, setSelectedDocumentType,
-        setSelectedPlanType, setSelectedCityNamesType, cityNamesData, filterCheck, searchQuery, onEndReached, onChangeSearch, isSearch } = useSearchNetworkScreen();
+    const { providerData, networkTypeData, planTypeData,setSelectedDocumentType,
+        setSelectedPlanType, setSelectedCityNamesType, cityNamesData, filterCheck, searchQuery, onEndReached, onChangeSearch } = useSearchNetworkScreen();
     const renderItem = (item, index) => {
         return (
             <View style={styles.CompleteView}>
@@ -95,14 +95,14 @@ const SearchNetworkScreen = () => {
                     ListHeaderComponent={headerItem(searchQuery, networkTypeData, planTypeData, cityNamesData)}
                     style={{ flex: 1 }}
                     renderItem={renderItem}
-                    data={(providerData.length > 0 || providerDataListSearch.length > 0) ? (isSearch ? providerDataListSearch : providerData) : []}
+                    data={( providerData)}
                     keyExtractor={(item, index) => `${index}`}
                     showsHorizontalScrollIndicator={false}
                     nestedScrollEnabled={true}
                     onEndReached={onEndReached}
                     onEndReachedThreshold={0.1}
                 />
-                {!(providerData.length > 0 || providerDataListSearch.length > 0) && (
+                {!(providerData.length > 0) && (
                     <EmptyList emptyText={DISPLAY_TEXT} />
                 )}
             </View>
