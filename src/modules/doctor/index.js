@@ -23,7 +23,7 @@ const Doctor = () => {
         rating={item.rating}
         exp={item.experience}
         img={item.img}
-        qual={item.qual == undefined ? 'MBBS' : item.qual}
+        qual={item.qual == undefined ? '\n-MBBS' : item.qual}
         plan={plan}
         userVersion={userVersion}
         uuid={uuid}
