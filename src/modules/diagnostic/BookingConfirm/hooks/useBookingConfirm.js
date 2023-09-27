@@ -1,5 +1,5 @@
 
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useIsFocused } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,15 +20,16 @@ export const useBookingConfirm = () => {
     const [epochTime, setEpochTime] = useState(null);
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const focused = useIsFocused();
     const {selectedCity} = useSelector(
         state => state.profile,
       );
 
     useEffect(() => {
-        if (route?.name === BOOKINGCONFIRM) {
+        if (route?.name === BOOKINGCONFIRM && navigation?.isFocused()) {
             setUserAttribute(route?.params)
         }
-    }, [])
+    }, [focused])
     const handleDateTime = (arg) => {
         if(arg?.status)
         setEpochTime(arg?.value);
