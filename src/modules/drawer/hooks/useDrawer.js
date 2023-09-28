@@ -29,13 +29,13 @@ export const useDrawer = () => {
     {
       Icon: SVG.Bookings,
       heading: 'My Purchases',
-      description: 'History of all test and plan purchase',
+      description: 'History of all Test and Plan Purchase',
       onPress: () => navigation.navigate('PurchaseScreen'),
     },
     {
       Icon: SVG.CorporateProgram,
       heading: 'My Corporate Programs',
-      description: 'Add Member to lock your Program ',
+      description: 'Add Member to Lock your Program ',
       onPress: () => navigation.navigate('MyCorporateProgram',{isEmployee}),
     }
   ];
