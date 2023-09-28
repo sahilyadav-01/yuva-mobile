@@ -45,7 +45,7 @@ const Header = props => {
     <View style={styles.topSection}>
       {canGoBack && (
         <View style={{flexDirection:'row',alignItems:'center'}}>
-        <TouchableOpacity onPress={onBackPress}>
+        <TouchableOpacity style={{padding:10}} onPress={onBackPress}>
           <SVG.Back />
         </TouchableOpacity>
         {!hideTitle && <Text style={{marginLeft: 16, color: INDIGO_LIGHT}}>{title}</Text>}

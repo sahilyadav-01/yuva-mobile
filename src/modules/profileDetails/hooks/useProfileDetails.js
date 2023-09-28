@@ -12,7 +12,7 @@ export const useProfileDetails = () => {
     {
       Icon: SVG.Profile,
       heading: 'Profile',
-      description: 'Add or modify mobile Number, email, profile picture',
+      description: 'Add or modify mobile number, email, profile picture',
       onPress: () => navigation.navigate('Profile'),
     },
     {
@@ -30,12 +30,12 @@ export const useProfileDetails = () => {
     {
       Icon: SVG.Logout,
       heading: 'Log Out',
-      description: 'Log out from your Account',
+      description: 'Log out from your account',
       onPress: () => onLogoutPress(),
     },
   ];
   const onLogoutPress = () => {
-    Alert.alert('Logout', 'Are you sure want to Logout?', [
+    Alert.alert('Logout', 'Are you sure want to logout?', [
       {
         onPress: () => {
           dispatch(logoutThunk());
