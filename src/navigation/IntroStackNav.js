@@ -35,7 +35,7 @@ const IntroStackNav = () => {
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
   }, []);
   useEffect(()=>{
-    if(loggedIn === 'loggedIn') dispatch(cityIdThunk());
+    dispatch(cityIdThunk());
   },[loggedIn])
   getJwt().then(jwt => {
     if (jwt) {
