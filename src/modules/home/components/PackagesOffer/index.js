@@ -27,9 +27,11 @@ const PackagesOffer = props => {
         <View style={style.container}>
           <Text style={style.headingText}>{item.title}</Text>
           <View style={style.separator} />
-          <Text numberOfLines={3} style={style.descriptionText}>
+          <View style={style.descriptionContainer}>
+          <Text numberOfLines={3} style={[style.descriptionText,style.lineStyle]}>
             {item.description}
           </Text>
+          </View>
           <View style={style.separator} />
           <Text style={style.priceText}>₹{item.price}/-</Text>
           <TouchableOpacity
