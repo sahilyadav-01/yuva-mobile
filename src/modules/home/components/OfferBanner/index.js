@@ -12,7 +12,7 @@ const OfferBanner1 = props => {
   const {onBannerPress} = useOfferBanner();
   const [activeIndex, setActiveIndex] = useState(0);
   const onChange = ({nativeEvent}) => {
-    const active = Math.floor(
+    const active = Math.ceil(
       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
     );
     setActiveIndex(active);
@@ -41,7 +41,6 @@ const OfferBanner1 = props => {
         keyExtractor={(item, index) => index.toString()}
         nestedScrollEnabled={true}
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{width: 16}} />}
         style={style.listStyle}
         data={data}
         horizontal={true}

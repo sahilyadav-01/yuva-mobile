@@ -24,6 +24,9 @@ export const styles = () => {
       maxWidth: '70%',
       color: BLACK,
     },
+    descriptionContainer: {
+      height: 27,
+    },
     priceText: {
       fontSize: fonts.size.fontSize10,
       fontFamily: fonts.family.rubik600,
@@ -45,5 +48,8 @@ export const styles = () => {
     separator: {
       height: 8,
     },
+    lineStyle: {
+      lineHeight: 9,
+    }
   });
 };
