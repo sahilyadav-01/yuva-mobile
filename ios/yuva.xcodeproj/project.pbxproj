@@ -562,7 +562,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = yuva/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Yuva;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,7 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuvahealth;
 				PRODUCT_NAME = yuva;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = VamsiIOSDevelopmentProvisioningProfile;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Vamsi_IOS_Development_Profile_2.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -610,7 +610,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuvahealth;
 				PRODUCT_NAME = yuva;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = VamsiIOSDevelopmentProvisioningProfile;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Vamsi_IOS_Development_Profile_2.0;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
