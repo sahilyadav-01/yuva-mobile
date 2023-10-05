@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import { DATE, TIME, STATUS, UPCOMING_APPOINTMENT} from './constants';
 import { useAppointment } from './hooks/useAppointmentTag';
@@ -7,11 +7,12 @@ import { getCalendarValue, getDimensions } from '../../../../utils/utils';
 
 const {width} = getDimensions();
 const AppointmentTag = () => {
-  const {activeIndex, userAppointments, viewabilityConfigCallbackPairs, viewabilityConfig } = useAppointment();
+  const {activeIndex, userAppointments, viewabilityConfigCallbackPairs, viewabilityConfig, onAppointment } = useAppointment();
   const renderItem = ({item, index}) => {
     const {date, time} = getCalendarValue(item?.slot)
+    const onAppointmentPress = () => onAppointment(item);
     return (
-      <View style={styles.container} key={index}>
+      <TouchableOpacity style={styles.container} key={index} onPress={onAppointmentPress}>
         <View style={[styles.borderStyle, styles.titleView]}>
           <Text style={styles.titleText}>{UPCOMING_APPOINTMENT}</Text>
         </View>
@@ -27,7 +28,7 @@ const AppointmentTag = () => {
           <Text style={styles.textStyle}>{STATUS}</Text>
           <Text style={styles.textStyle}>{item?.status}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
   const renderDots = ({items, index}) => {
