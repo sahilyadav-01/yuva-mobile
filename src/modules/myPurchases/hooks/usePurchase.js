@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import _ from 'lodash';
-import {getPlans, getPurchases} from '../../../store/reducers/PurchasesSlice';
+import {getPlans, getPurchases, toggleTab} from '../../../store/reducers/PurchasesSlice';
 import { BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -24,6 +24,7 @@ export const usePurchase = plan => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   useEffect(()=>{
+    dispatch(toggleTab(0));
     BackHandler.addEventListener('hardwareBackPress',()=>navigation.goBack());
     return () => BackHandler.removeEventListener('hardwareBackPress',()=>{});
   },[])
