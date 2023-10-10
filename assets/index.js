@@ -146,6 +146,10 @@ import TalkToDoctorSvg from './TalkToDoctorSvg';
 import HraSvg from './HraSvg';
 import OPDIcon from './OPDIcon';
 import YUVA_LOGO from './yuva_logo.png';
+import LatestSearch from './LatestSearch';
+import BookAppointment from './BookAppointment';
+import GetMedicine from './GetMedicine';
+import ConsultDoctor from './ConsultDoctor';
 
 const PNG = {
   AMICO,
@@ -299,6 +303,10 @@ const SVG = {
   TalkToDoctorSvg,
   HraSvg,
   OPDIcon,
+  LatestSearch,
+  BookAppointment,
+  GetMedicine,
+  ConsultDoctor,
 };
 
 export {PNG, SVG};

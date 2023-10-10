@@ -60,7 +60,7 @@ const ViewAppointments = () => {
   } = useView();
   const route = useRoute();
 
-  const {headerShown} = route.params;
+  const headerShown = route?.params?.headerShown ?? false;
   return (
     <View style={styles.container}>
       {headerShown && <Header title={OPD_CONSULTATION} showBackButton={true} />}

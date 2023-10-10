@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 import { PLACEHOLDER_TEXT } from "../constant";
+import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing,isSearch, showLocation, PrefixIcon, hideTitle, initial} = props;
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing,isSearch, showLocation, PrefixIcon, hideTitle, initial,homeSearch} = props;
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const useHeader = (props) => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
-  const canGoBack = showBackButton && navigation?.canGoBack();
+  const canGoBack = (showBackButton && navigation?.canGoBack()) || homeSearch;
   const onBackPress = () => {
     if(typeof props?.onBackPress === 'function') props?.onBackPress()
     else navigation.goBack();
@@ -63,7 +64,10 @@ export const useHeader = (props) => {
     setQuery(text);
   }
   const onSearchPress = () => {
-    setShowSearchBox(!showSearchBox);
+    if(route?.name === 'HomeService') {
+      dispatch(setHomeSearch(true));
+    }
+    else setShowSearchBox(!showSearchBox);
   }
   return {
     isLoggedIn,

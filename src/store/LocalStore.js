@@ -121,3 +121,25 @@ export const getProfileStatus = async () => {
     return jwtToken;
   } catch (error) {}
 };
+
+export const setSearchHistory = async (data) => {
+  try {
+    const userRole = await AsyncStorage.setItem('searchHistory',JSON.stringify(data));
+    return userRole;
+  } catch (error) {}
+};
+
+export const getSearchHistory = async () => {
+  try {
+    const userRole = await AsyncStorage.getItem('searchHistory');
+    return userRole;
+  } catch (error) {}
+};
+
+export const clearSearchHistory = async () => {
+  try {
+    await AsyncStorage.removeItem('searchHistory');
+  } catch (error) {
+    
+  }
+}

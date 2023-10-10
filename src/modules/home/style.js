@@ -6,6 +6,7 @@ import { fonts } from '../../styles/fonts';
 export const styles = () => {
   return StyleSheet.create({
     container: { flex: 1, backgroundColor: WHITE },
+    searchHomeContainer: {paddingBottom: 12},
     boxStyle: {
       paddingTop: 0,
       borderWidth: 0,
