@@ -12,12 +12,12 @@ export const useSearchNetworkScreen = () => {
   const [networkTypeData, setNetworkTypeData] = useState([]);
   const [providerData, setProviderData] = useState([]);
   const [pageNumberSearch, setPageNumberSearch] = useState(1);
-  const defaultOption = { label: "", value: "ALL" };
+  const defaultOption = { label: '', value: "ALL" };
   const [documentType, setDocumentType] = useState('CLINIC');
   const [planTypeData, setPlanTypeData] = useState([]);
-  const [planType, setPlanType] = useState('');
+  const [planType, setPlanType] = useState();
   const [cityNamesData, setcityNamesData] = useState([]);
-  const [cityNames, setCityNames] = useState('');
+  const [cityNames, setCityNames] = useState();
   const [searchQuery, setSearchQuery] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
 
