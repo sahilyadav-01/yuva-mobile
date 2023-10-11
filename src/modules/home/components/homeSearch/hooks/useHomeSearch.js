@@ -10,9 +10,11 @@ import {
   getSearchHistory,
   setSearchHistory,
 } from '../../../../../store/LocalStore';
+import {useNavigation} from '@react-navigation/native';
 
 export const useHomeSearch = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const {
     showSearchView,
     getPopularTestsLoading,
@@ -27,12 +29,14 @@ export const useHomeSearch = () => {
   const [pageNo, setPageNo] = useState(1);
   const [text, setText] = useState('');
   const [results, setResults] = useState([]);
+  const [overlay, setOverlay] = useState(false);
+  const [elasticSearchData, setElasticSearchData] = useState([]);
   useEffect(() => {
     if (showSearchView) {
       dispatch(
         getPopularTestsPackages({
           pageNo: 1,
-          pageSize: 5,
+          pageSize: 10,
           rangeEnum: 'NO_RANGE',
           testPackageRequestDto: {},
         }),
@@ -47,7 +51,9 @@ export const useHomeSearch = () => {
       popularTestsPackages?.length > 0 &&
       pageNo <= totalPages
     ) {
-      setPopularTestsData(_.uniq(popularTestsData.concat(popularTestsPackages)));
+      setPopularTestsData(
+        _.uniq(popularTestsData.concat(popularTestsPackages)),
+      );
     }
   }, [getPopularTestsLoading, getPopularTestsError, getPopularTestsPackages]);
 
@@ -56,7 +62,7 @@ export const useHomeSearch = () => {
       dispatch(
         getPopularTestsPackages({
           pageNo,
-          pageSize: 5,
+          pageSize: 10,
           rangeEnum: 'NO_RANGE',
           testPackageRequestDto: {},
         }),
@@ -66,18 +72,40 @@ export const useHomeSearch = () => {
   useEffect(() => {
     if (!searchLoading && !searchError) {
       getSearchHistory().then(arg => {
-        if(typeof arg === 'string' && arg.length > 0)
-        setResults(_.uniq(results.concat(JSON.parse(arg))));
+        setResults(
+          _.uniq(
+            JSON.parse(arg)
+              .split(',')
+              .map(item => {
+                if (item.includes('%2C')) {
+                  return item.split('%2C').join(',');
+                }
+                return item;
+              }),
+          ),
+        );
       });
-      //make the search operation here
+      searchData !== null &&
+        setElasticSearchData([
+          ...searchData?.popularTestResponseDtoList,
+          ...searchData?.popularPackageResponseDtoList,
+        ]);
+      text.length >= 3 && setOverlay(true);
     }
   }, [searchLoading, searchError, searchData]);
 
   const data = [
-    {text: 'Book Test', icon: 'BOOK_TEST_SVG_ICON', onPress: () => {console.log('Book test')}, props:{searchScreen: true}},
-    {text: 'Book Appointment', icon: 'BookAppointment', onPress: () => {}},
-    {text: 'Get Medicine', icon: 'GetMedicine', onPress: () => {}},
-    {text: 'Consult Doctor', icon: 'ConsultDoctor', onPress: () => {}},
+    {
+      text: 'Book\nTest',
+      icon: 'BOOK_TEST_SVG_ICON',
+      onPress: () => {
+        console.log('Book test');
+      },
+      props: {searchScreen: true},
+    },
+    {text: 'Book\nAppointment', icon: 'BookAppointment', onPress: () => {}},
+    {text: 'Get\nMedicine', icon: 'GetMedicine', onPress: () => {}},
+    {text: 'Consult\nDoctor', icon: 'ConsultDoctor', onPress: () => {}},
   ];
 
   const onListEndReached = () => {
@@ -86,12 +114,29 @@ export const useHomeSearch = () => {
     }
   };
 
-  const onSearch = text => setText(text);
+  const onSearch = text => {
+    setText(text);
+    text.length === 0 && setOverlay(false);
+  };
 
   const onSubmit = () => {
-    if (text.length >= 3) {
-      setSearchHistory(text).then(() => {
-        dispatch(getSearchTests(text));
+    if (text.length >= 3 && !text.includes('%2C')) {
+      getSearchHistory().then(arg => {
+        if (typeof arg === 'string' && arg.length > 0) {
+          if (text.includes(',')) {
+          }
+          setSearchHistory(
+            `${JSON.parse(arg)},${
+              text.includes(',') ? text.split(',').join('%2C') : text
+            }`,
+          ).then(() => {
+            dispatch(getSearchTests(text));
+          });
+        } else {
+          setSearchHistory(text).then(() => {
+            dispatch(getSearchTests(text));
+          });
+        }
       });
     }
   };
@@ -107,6 +152,15 @@ export const useHomeSearch = () => {
     });
   };
 
+  const onCrossPress = () => {
+    setText('');
+    setOverlay(false);
+  };
+
+  const onItemPress = item => {
+    navigation.navigate('HomeSearchDetails', item);
+  };
+
   return {
     data,
     popularTestsData,
@@ -117,5 +171,9 @@ export const useHomeSearch = () => {
     onResultPress,
     text,
     onClearPress,
+    onCrossPress,
+    elasticSearchData,
+    overlay,
+    onItemPress,
   };
 };

@@ -1,9 +1,21 @@
-import {StyleSheet} from 'react-native';
-import {BLACK, INDIGO_LIGHT, KASHMIR_BLUE} from '../../../../styles/colors';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import {Dimensions, StyleSheet} from 'react-native';
+import {
+  BLACK,
+  INDIGO_LIGHT,
+  KASHMIR_BLUE,
+  WHITE,
+} from '../../../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  ROW,
+  ROW_REVERSE,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
+  const {width, height} = Dimensions.get('screen');
   return StyleSheet.create({
     container: {flex: 1, paddingHorizontal: 16 /*, paddingTop: 12*/},
     rowContainer: {
@@ -14,6 +26,7 @@ export const styles = () => {
       flexDirection: ROW,
       padding: 2,
       justifyContent: SPACE_BETWEEN,
+      flex: 0.36,
       marginBottom: 20,
     },
     searchContainer: {justifyContent: CENTER},
@@ -30,7 +43,7 @@ export const styles = () => {
       borderColor: INDIGO_LIGHT,
       paddingLeft: 16,
       paddingRight: 24,
-      marginBottom: 12,
+      flex: 0.7,
     },
     popularText: {
       fontFamily: fonts.family.rubik600,
@@ -56,7 +69,6 @@ export const styles = () => {
       alignItems: CENTER,
     },
     iconText: {
-      maxWidth: 40,
       textAlign: CENTER,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
@@ -90,12 +102,35 @@ export const styles = () => {
     },
     searchRowSpace: {
       marginTop: 16,
+      flex: 1,
     },
     emptyContainerView: {
       height: 160,
       alignItems: CENTER,
       justifyContent: CENTER,
     },
-    listContainer: {height: 160}
+    listContainer: {flex: 1},
+    headerContainer: {flex: 1, marginBottom: 12, justifyContent: SPACE_BETWEEN},
+    spaceContainer: {flex: 0.1},
+    searchResultContainer: {
+      position: ABSOLUTE,
+      top: 48,
+      maxHeight: height * 0.5,
+      width: width - 16,
+      backgroundColor: WHITE,
+      paddingHorizontal: 16,
+      paddingTop: 12,
+      borderWidth: 0.5,
+      borderRadius: 12,
+      marginHorizontal: 8,
+    },
+    crossContainer: {flexDirection: ROW_REVERSE, marginBottom: 12},
+    searchResultListContainer: {height: '100%'},
+    elasticSearchEmptyText: {
+      alignSelf: CENTER,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize16,
+      color: KASHMIR_BLUE
+    }
   });
 };

@@ -48,6 +48,7 @@ const homeSearchSlice = createSlice({
   reducers: {
     setHomeSearch(state, {payload}) {
       state.showSearchView = payload;
+      state.popularTestsPackages = [];
     },
   },
   extraReducers: {

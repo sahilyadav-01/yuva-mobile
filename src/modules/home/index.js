@@ -41,9 +41,9 @@ export const HomeScreen = () => {
         homeSearch={true}
         onBackPress={onBackPress}
       />
-      <ScrollView nestedScrollEnabled={true}>
+      {/* <ScrollView nestedScrollEnabled={true}> */}
       <HomeSearch/>
-      </ScrollView>
+      {/* </ScrollView> */}
     </SafeAreaView>
     );
   }

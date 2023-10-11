@@ -3,4 +3,4 @@ export const POPULAR_SEARCH = 'Popular Search';
 export const POPULAR_TEST_PACKAGE = 'Popular Test & Packages';
 export const SEARCH_HISTORY = 'Search History';
 export const CLEAR_ALL = 'Clear All';
-export const EMPTY_SEARCH = 'No search results';
+export const EMPTY_SEARCH = 'No recent searches';
