@@ -12,6 +12,7 @@ import {styles} from './style';
 import {useHomeSearch} from './hooks/useHomeSearch';
 import {
   CLEAR_ALL,
+  EMPTY_PACKAGE_TEST_LIST,
   EMPTY_SEARCH,
   POPULAR_SEARCH,
   POPULAR_TEST_PACKAGE,
@@ -155,7 +156,7 @@ export const HomeSearch = () => {
           </TouchableOpacity>
           {elasticSearchData.length === 0 && (
             <View style={{paddingBottom: 10}}>
-            <Text style={style.elasticSearchEmptyText}>Package or Test does not exist</Text>
+            <Text style={style.elasticSearchEmptyText}>{EMPTY_PACKAGE_TEST_LIST}</Text>
             </View>
           )}
           {elasticSearchData.length > 0 && (
