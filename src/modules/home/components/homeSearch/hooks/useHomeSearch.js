@@ -11,6 +11,8 @@ import {
   setSearchHistory,
 } from '../../../../../store/LocalStore';
 import {useNavigation} from '@react-navigation/native';
+import {resetPackages} from '../../../../../store/reducers/ProgramAndPlanSlice';
+import {resetTests} from '../../../../../store/reducers/PopularTestsSlice ';
 
 export const useHomeSearch = () => {
   const dispatch = useDispatch();
@@ -99,13 +101,15 @@ export const useHomeSearch = () => {
       text: 'Book\nTest',
       icon: 'BOOK_TEST_SVG_ICON',
       onPress: () => {
-        console.log('Book test');
+        dispatch(resetPackages());
+        dispatch(resetTests());
+        navigation.navigate('HealthCheckupsTests', {index: 0});
       },
       props: {searchScreen: true},
     },
-    {text: 'Book\nAppointment', icon: 'BookAppointment', onPress: () => {}},
-    {text: 'Get\nMedicine', icon: 'GetMedicine', onPress: () => {}},
-    {text: 'Consult\nDoctor', icon: 'ConsultDoctor', onPress: () => {}},
+    {text: 'Book\nAppointment', icon: 'BookAppointment', onPress: () => navigation.navigate('OPD',{screen:'Appointments'})},
+    {text: 'Get\nMedicine', icon: 'GetMedicine', onPress: () => navigation.navigate('PHARMACY')},
+    {text: 'Consult\nDoctor', icon: 'ConsultDoctor', onPress: () => navigation.navigate('TalkToDoctor')},
   ];
 
   const onListEndReached = () => {

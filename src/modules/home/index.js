@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -12,7 +12,6 @@ import OfferBanner1 from './components/OfferBanner';
 import PackagesOffer from './components/PackagesOffer';
 import AppointmentTag from './components/appointmentTag';
 import PromotionalBanner from './components/PromotionalOffer';
-import { SVG } from '../../../assets';
 import { HomeSearch } from './components/homeSearch';
 
 export const HomeScreen = () => {
@@ -41,9 +40,7 @@ export const HomeScreen = () => {
         homeSearch={true}
         onBackPress={onBackPress}
       />
-      {/* <ScrollView nestedScrollEnabled={true}> */}
       <HomeSearch/>
-      {/* </ScrollView> */}
     </SafeAreaView>
     );
   }
