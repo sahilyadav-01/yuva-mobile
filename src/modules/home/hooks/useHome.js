@@ -10,6 +10,7 @@ import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
 import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from "../../../store/reducers/BannerSlice";
+import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
@@ -20,6 +21,7 @@ export const useHome = () => {
   const { popularPackageName } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { banner1, banner3 } = useSelector(state => state.banner);
+  const { showSearchView } = useSelector(state=>state.homeSearch);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -110,6 +112,8 @@ export const useHome = () => {
   };
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index });
 
+  const onBackPress = () => dispatch(setHomeSearch(false));
+
   return {
     name,
     renderLifeStyleItem,
@@ -120,6 +124,8 @@ export const useHome = () => {
     popularTest,
     banner1,
     banner3,
-    loggedIn
+    loggedIn,
+    showSearchView,
+    onBackPress
   };
 };

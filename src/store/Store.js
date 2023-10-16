@@ -34,6 +34,7 @@ import Emrm, { EmrmInit } from './reducers/EmrmSlice';
 import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
 import SearchNetwork , { SearchNetworkInit } from './reducers/SearchNetworkSlice';
 import banner, { bannerInit } from './reducers/BannerSlice';
+import homeSearch, { homeSearchInit } from './reducers/HomeSearchSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -67,6 +68,7 @@ const storeInitialState = {
   maintainence: maintainenceInit,
   SearchNetwork : SearchNetworkInit,
   banner: bannerInit,
+  homeSearch: homeSearchInit,
 };
 
 const appReducer = combineReducers({
@@ -101,6 +103,7 @@ const appReducer = combineReducers({
   maintainence,
   SearchNetwork,
   banner,
+  homeSearch
 });
 
 const rootReducer = (state, action) => {

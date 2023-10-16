@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DiagnosticNav from './Diagnosticnavigation';
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
-//import HomeScreen from '../screens/HomeScreen/index';
 import HomeScreen from '../screens/NewHomeScreen/index';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
@@ -43,11 +42,6 @@ const ServicesNav = () => {
         component={HomeScreen}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="HomeService"
-        component={HomeScreen}
-        options={{headerShown: false}}
-      /> */}
       <Stack.Screen
         name="OPD"
         component={loggedIn !== 'loggedIn' ? CashlessOPD : OPDNavigation}
