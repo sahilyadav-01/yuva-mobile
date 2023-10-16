@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CYAN_BLUE} from '../../../../styles/colors';
-import {CONSULT_AGAIN, DOWNLOAD_PRESCRIPTION} from '../../constant';
+import {CONSULT_AGAIN} from '../../constant';
 import {styles} from './styles';
 
 const Footer = props => {
