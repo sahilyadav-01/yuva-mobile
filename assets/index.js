@@ -35,7 +35,8 @@ import LINE from './Line.png';
 import OCIRCLE from './Ocircle.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
-import BackgroundImage from './background';
+import TopSplashScreenBackgroundImage from './TopSplashScreenBackgroundImage';
+import BottomSplashScreenBackgroundImage from './BottomSplashScreenBackgroundImage';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import DOCTOR from './doctor.png';
@@ -216,7 +217,8 @@ const SVG = {
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
   Edit: EditIcon,
-  BackgroundImage: BackgroundImage,
+  TopSplashScreenBackgroundImage: TopSplashScreenBackgroundImage,
+  BottomSplashScreenBackgroundImage: BottomSplashScreenBackgroundImage,
   Back: Back,
   HRA_END_IMG: HRA_END_IMG,
   dropDown: dropDown,

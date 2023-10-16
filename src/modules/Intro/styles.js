@@ -1,22 +1,37 @@
 import {StyleSheet} from 'react-native';
 import {DARK_BLUE, ORANGE, WHITE} from '../../styles/colors';
-import {CENTER, ABSOLUTE, ROW} from '../../styles/constants';
+import {CENTER, ROW} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  screenContainer: {
-    height: '100%',
+  parentContainer:{ 
+    // flex: 1
   },
-  imageBackground: {
-    position: ABSOLUTE,
+  screenContainer1: {
+    // flex: 1,
+  },
+  screenContainer: {
+    flex: 1,
+  },
+  imageBackgroundTop: {
+    flex: 1,
+    marginLeft:'2%',
+  },
+  imageBackgroundBottom: {
+    flex: 1,
+    marginLeft:'2%',
   },
   mainContainer: {
-    flex: 1,
+    paddingVertical:15,
     alignItems: CENTER,
     justifyContent: CENTER,
   },
+  bottomContainerText:{
+    paddingRight:10
+  },
   IntroStaticScreen1Text: {
-    marginTop: 10,
+    flex: 1,
+    marginTop: 5,
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
@@ -33,7 +48,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     justifyContent: CENTER,
     alignItems: CENTER,
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
     backgroundColor: WHITE,
   },
   line: {
@@ -45,12 +60,12 @@ export const styles = StyleSheet.create({
     marginRight: 20,
   },
   buttonStyle: {
-    alignItems: CENTER,
-    justifyContent: CENTER,
-    height: '60%',
-    borderRadius: 4,
     backgroundColor: ORANGE,
-    width: '94%',
+    height: 48,
+    borderRadius: 8,
+    justifyContent: CENTER,
+    marginVertical: '2%',
+    width:'100%'
   },
   buttonText: {
     color: WHITE,
