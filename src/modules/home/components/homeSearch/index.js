@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import Cross from 'react-native-vector-icons/Entypo';
 import {SVG} from '../../../../../assets';
@@ -19,7 +20,7 @@ import {
   SEARCH_HISTORY,
   SEARCH_PLACEHOLDER,
 } from './constants';
-import {BLACK} from '../../../../styles/colors';
+import {BLACK, MANATEE} from '../../../../styles/colors';
 
 export const HomeSearch = () => {
   const {
@@ -81,7 +82,7 @@ export const HomeSearch = () => {
   };
 
   return (
-    <View style={style.container}>
+    <ScrollView nestedScrollEnabled={true} style={style.container}>
       <View style={style.headerContainer}>
         <View style={style.rowContainer}>
           <View style={style.searchContainer}>
@@ -93,6 +94,8 @@ export const HomeSearch = () => {
             style={style.textInputStyle}
             onChangeText={onSearch}
             value={text}
+            placeholderTextColor={MANATEE}
+            returnKeyType='search'
           />
         </View>
         <View style={style.spaceContainer} />
@@ -118,12 +121,13 @@ export const HomeSearch = () => {
             {POPULAR_TEST_PACKAGE}
           </Text>
           <FlatList
+            style={style.flatListStyle}
             data={popularTestsData}
             keyExtractor={(_, index) => index}
             renderItem={renderListItem}
             onEndReached={onListEndReached}
             nestedScrollEnabled={true}
-            onEndReachedThreshold={0.5}
+            onEndReachedThreshold={0.001}
           />
         </View>
       )}
@@ -170,6 +174,6 @@ export const HomeSearch = () => {
           )}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };

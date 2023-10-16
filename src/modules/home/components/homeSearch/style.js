@@ -3,6 +3,7 @@ import {
   BLACK,
   INDIGO_LIGHT,
   KASHMIR_BLUE,
+  MANATEE,
   WHITE,
 } from '../../../../styles/colors';
 import {
@@ -15,9 +16,9 @@ import {
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
-  const {width, height} = Dimensions.get('screen');
+  const {height} = Dimensions.get('screen');
   return StyleSheet.create({
-    container: {flex: 1, paddingHorizontal: 16 /*, paddingTop: 12*/},
+    container: {flex: 1, paddingHorizontal: 16},
     rowContainer: {
       marginHorizontal: 8,
       borderRadius: 8,
@@ -34,6 +35,9 @@ export const styles = () => {
       flex: 1,
       paddingVertical: 6,
       justifyContent: CENTER,
+      color: MANATEE,
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize10
     },
     popularSearchContainer: {
       paddingTop: 4,
@@ -116,13 +120,12 @@ export const styles = () => {
       position: ABSOLUTE,
       top: 48,
       maxHeight: height * 0.5,
-      width: width - 16,
+      width: '100%',
       backgroundColor: WHITE,
-      paddingHorizontal: 16,
+      paddingHorizontal: 4,
       paddingTop: 12,
       borderWidth: 0.5,
       borderRadius: 12,
-      marginHorizontal: 8,
     },
     crossContainer: {flexDirection: ROW_REVERSE, marginBottom: 12},
     searchResultListContainer: {height: '100%'},
@@ -130,7 +133,8 @@ export const styles = () => {
       alignSelf: CENTER,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize16,
-      color: KASHMIR_BLUE
-    }
+      color: KASHMIR_BLUE,
+    },
+    flatListStyle: {height: 160},
   });
 };
