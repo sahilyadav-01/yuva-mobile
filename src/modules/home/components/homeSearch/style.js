@@ -14,9 +14,11 @@ import {
   SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
+import { getPlatform } from '../../../../utils/utils';
 
 export const styles = () => {
   const {height} = Dimensions.get('screen');
+  const {isIOS} = getPlatform();
   return StyleSheet.create({
     container: {flex: 1, paddingHorizontal: 16},
     rowContainer: {
@@ -33,11 +35,11 @@ export const styles = () => {
     searchContainer: {justifyContent: CENTER},
     textInputStyle: {
       flex: 1,
-      paddingVertical: 6,
+      paddingVertical: isIOS ? 16 : 6,
       justifyContent: CENTER,
       color: MANATEE,
       fontFamily: fonts.family.rubik500,
-      fontSize: fonts.size.fontSize10
+      fontSize: fonts.size.fontSize10,
     },
     popularSearchContainer: {
       paddingTop: 4,
