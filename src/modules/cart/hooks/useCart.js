@@ -85,8 +85,8 @@ export const useCart = (args) => {
     );
   }
 
-  const addToCart = ({ name, cost, productId }, productType) => {
-    const dToObj = { name, count: 1, cost, productId, productType };
+  const addToCart = (obj, productType) => {
+    const dToObj = {...obj,productType,count:1}
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
     const cartDto = {
       ...cart,
@@ -217,12 +217,12 @@ export const useCart = (args) => {
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
-    if ((couponViewCart || couponView) && (isRemoved || addToCartItem)) {
+    if ((couponViewCart || couponView) && (isRemoved || addToCartItem) && navigation.isFocused() && route?.name === 'Cart') {
       dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
       dispatch(removeCoupon());
       dispatch(removeCouponCart());
     }
-  }, [isRemoved, addToCartItem]);
+  }, [isRemoved, addToCartItem, focused]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());

@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCityId } from "../../../store/reducers/DiagnosticsSlice";
 import { PLACEHOLDER_TEXT } from "../constant";
+import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 export const useHeader = (props) => {
-  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing,isSearch} = props;
-
+  const { showSearch, searchPlaceholder, title, showBackButton, onSearch, hideMenu,isScreen ,showCart,editable,onSubmitEditing,isSearch, showLocation, PrefixIcon, hideTitle, initial,homeSearch} = props;
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ export const useHeader = (props) => {
   const [query, setQuery] = useState('');
   const [showCount, setShowCount] = useState(false);
   const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
+  const [showSearchBox, setShowSearchBox] = useState(false);
   const { loggedIn } = useSelector(state => state.auth);
   const diagnosticState = useSelector(state => state.diagnostic);
   const { cityId } = diagnosticState;
@@ -33,7 +34,7 @@ export const useHeader = (props) => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
-  const canGoBack = showBackButton && navigation?.canGoBack();
+  const canGoBack = (showBackButton && navigation?.canGoBack()) || homeSearch;
   const onBackPress = () => {
     if(typeof props?.onBackPress === 'function') props?.onBackPress()
     else navigation.goBack();
@@ -62,6 +63,12 @@ export const useHeader = (props) => {
     onSearch && onSearch(text);
     setQuery(text);
   }
+  const onSearchPress = () => {
+    if(route?.name === 'HomeService') {
+      dispatch(setHomeSearch(true));
+    }
+    else setShowSearchBox(!showSearchBox);
+  }
   return {
     isLoggedIn,
     onCartPress,
@@ -84,6 +91,12 @@ export const useHeader = (props) => {
     showCart,
     editable,
     onSubmitEditing,
-    isSearch
+    isSearch,
+    showLocation: showLocation ?? false,
+    PrefixIcon: PrefixIcon ?? null,
+    hideTitle: hideTitle ?? false,
+    initial,
+    onSearchPress,
+    showSearchBox
   };
 }

@@ -9,7 +9,6 @@ import {
   updateProfileStatus,
 } from '../store/reducers/ProfileSlice';
 import {cityIdThunk} from '../store/reducers/DiagnosticsSlice';
-import CartNavigation from './CartNavigation';
 import DrawerNav from './DrawerNav';
 import ReportNav from './ReportNav';
 import MyPrescription from '../screens/MyPrescriptionScreen';
@@ -20,6 +19,8 @@ import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/Boo
 import HomeSearchScreen from '../screens/HomeSearchScreen/HomeSearchScreen';
 import HomeSearchDetailsScreen from '../screens/HomeSearchScreen/HomeSearchDetailsScreen';
 import Maintenance from '../components/Maintenance';
+import ProfileContent from '../screens/ProfileContent';
+import ProfileNavigation from './ProfileNavigation';
 
 const Stack = createStackNavigator();
 
@@ -34,7 +35,7 @@ const IntroStackNav = () => {
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
   }, []);
   useEffect(()=>{
-    if(loggedIn === 'loggedIn') dispatch(cityIdThunk());
+    dispatch(cityIdThunk());
   },[loggedIn])
   getJwt().then(jwt => {
     if (jwt) {
@@ -91,11 +92,6 @@ const IntroStackNav = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="CartScreen"
-        component={CartNavigation}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="ReportsScreen"
         component={ReportNav}
         options={{headerShown: false}}
@@ -119,6 +115,16 @@ const IntroStackNav = () => {
         name="PurchaseScreen"
         component={PurchaseNav}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProfileContent"
+        component={ProfileContent}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+          name={'Profile'}
+          component={ProfileNavigation}
+          options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

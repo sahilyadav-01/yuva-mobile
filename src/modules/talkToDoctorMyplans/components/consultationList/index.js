@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, SectionList} from 'react-native';
+import {View, Text} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import {COMPLETED} from '../../constant';
 import ConsultationCard from './ConsultationCard';
 import {styles} from './styles';
 

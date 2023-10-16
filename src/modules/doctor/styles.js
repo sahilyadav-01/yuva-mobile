@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   theme: {colors: {text: DARK_MAROON}},
   search: {
     marginHorizontal: '5%',
-    marginBottom: '16%',
+    marginBottom: 24,
     marginTop: '4%',
   },
 });

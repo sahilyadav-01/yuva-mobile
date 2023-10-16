@@ -32,7 +32,7 @@ const {relationId,userId,data:relativeId}=route?.params;
         healthConcern: HEALTH_LIST[selected]?.name || '',
         id:userId || userDetails?.id,
         relationId:relationId || relativeId?.relativeId,
-        userId: '0',
+        userId: userId || '0',
       };
       dispatch(addRequestThunk({data}));
     };

@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DiagnosticNav from './Diagnosticnavigation';
 import ProfessionalServices from '../screens/yuvaservices/professionalservices/ProfessionalServices';
-import HomeScreen from '../screens/HomeScreen/index';
+import HomeScreen from '../screens/NewHomeScreen/index';
 import OPDNavigation from './OPDNavigation';
 import HRANavigation from './HRANavigation';
 import TalkToDoctorNavigation from './TalkToDoctorNavigation';
@@ -19,12 +19,15 @@ import ViewAppointment from '../screens/yuvaservices/opd/appointments/ViewAppoin
 import CheckInAppointment from '../screens/yuvaservices/opd/appointments/CheckInAppointment';
 import EditAppointment from '../screens/yuvaservices/opd/appointments/EditAppointment';
 import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
-import ViewAllOurPlan from '../modules/ourPlan/components/ViewAllOurPlan';
+import ViewAllOurPlan from '../modules/ourPlanDetails/components/viewallOurPlan';
 import PharmacyNavigation from './PharmacyNav';
 import EmrmNavigation from './EmrmNav';
 import OnMood9Screen from '../screens/OnMood9';
 import OnMood9Static from '../screens/OnMood9/onMood9Static';
 import LoginScreen from '../screens/login/LoginScreen';
+import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
+import SearchNetworkHomeScreen from '../screens/yuvaservices/searchNetwork/SearchNetworkHomeScreen';
+import ViewAllOurPlansScreen from '../screens/OurPlanScreen/ViewAllOurPlansScreen';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +38,7 @@ const ServicesNav = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="HomeService"
+        name='HomeService'
         component={HomeScreen}
         options={{headerShown: false}}
       />
@@ -113,7 +116,7 @@ const ServicesNav = () => {
       />
       <Stack.Screen
         name="ViewAllOurPlan"
-        component={ViewAllOurPlan}
+        component={ViewAllOurPlansScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -135,6 +138,16 @@ const ServicesNav = () => {
         name="EmrmHome"
         component={EmrmNavigation}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+      name="AmbulaceHomeScreen"
+      component={AmbulanceHomeScreen}
+      options={{ headerShown: false }}
+      />
+      <Stack.Screen
+      name="SearchNetworkHomeScreen"
+      component={SearchNetworkHomeScreen}
+      options={{ headerShown: false}}
       />
     </Stack.Navigator>
   );

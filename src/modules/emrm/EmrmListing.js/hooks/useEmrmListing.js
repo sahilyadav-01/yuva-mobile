@@ -35,7 +35,7 @@ export const useEmrmListing = () => {
       setMedicalReportData(
         _.uniqBy(
           medicalReportData.concat(ermReportData?.ermResponseDtoList),
-          // 'name',
+          'id',
         ),
       );
     }
