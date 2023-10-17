@@ -35,8 +35,8 @@ import LINE from './Line.png';
 import OCIRCLE from './Ocircle.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
-import TopSplashScreenBackgroundImage from './TopSplashScreenBackgroundImage';
-import BottomSplashScreenBackgroundImage from './BottomSplashScreenBackgroundImage';
+import TopSplashScreenBackgroundImage from './TopSplashScreenBackgroundImage.png';
+import BottomSplashScreenBackgroundImage from './BottomSplashScreenBackgroundImage.png';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
 import DOCTOR from './doctor.png';
@@ -210,6 +210,8 @@ const PNG = {
   planDetails,
   AmbulanceImage,
   YUVA_LOGO,
+  TopSplashScreenBackgroundImage,
+  BottomSplashScreenBackgroundImage
 };
 
 const SVG = {
@@ -217,8 +219,6 @@ const SVG = {
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
   Edit: EditIcon,
-  TopSplashScreenBackgroundImage: TopSplashScreenBackgroundImage,
-  BottomSplashScreenBackgroundImage: BottomSplashScreenBackgroundImage,
   Back: Back,
   HRA_END_IMG: HRA_END_IMG,
   dropDown: dropDown,

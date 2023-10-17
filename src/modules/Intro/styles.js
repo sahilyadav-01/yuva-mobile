@@ -1,37 +1,43 @@
-import {StyleSheet} from 'react-native';
-import {DARK_BLUE, ORANGE, WHITE} from '../../styles/colors';
-import {CENTER, ROW} from '../../styles/constants';
-import {fonts} from '../../styles/fonts';
-
+import { StyleSheet, Dimensions } from 'react-native';
+import { DARK_BLUE, ORANGE, WHITE } from '../../styles/colors';
+import { CENTER, ROW } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
+const screenHeight = Dimensions.get('window').height;
+const view1Height = screenHeight * 0.2;
+const view2Height = screenHeight * 0.4;
+const view3Height = screenHeight * 0.28;
+const view4Height = screenHeight * 0.1;
 export const styles = StyleSheet.create({
-  parentContainer:{ 
-    // flex: 1
+  container: {
+    backgroundColor: WHITE,
   },
-  screenContainer1: {
-    // flex: 1,
+  firstContainerStyle: {
+    height: view1Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    backgroundColor: WHITE,
   },
-  screenContainer: {
+  imageBackgroundStyle: {
+    width: '100%',
     flex: 1,
+    backgroundColor: WHITE,
   },
-  imageBackgroundTop: {
-    flex: 1,
-    marginLeft:'2%',
+  secondContainerStyle: {
+    height: view2Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    backgroundColor: WHITE,
   },
-  imageBackgroundBottom: {
-    flex: 1,
-    marginLeft:'2%',
-  },
+
+  /**Middle Section Style */
+
   mainContainer: {
-    paddingVertical:15,
     alignItems: CENTER,
     justifyContent: CENTER,
-  },
-  bottomContainerText:{
-    paddingRight:10
+    backgroundColor: WHITE,
   },
   IntroStaticScreen1Text: {
-    flex: 1,
-    marginTop: 5,
+    paddingTop:15,
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
@@ -43,20 +49,32 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight400,
   },
-  bottomStyle: {
-    height: '10%',
-    flexDirection: ROW,
+
+  /**Middle Section Style */
+
+  thirdContainerStyle: {
+    height: view3Height,
     justifyContent: CENTER,
     alignItems: CENTER,
-    paddingHorizontal: 10,
-    backgroundColor: WHITE,
   },
   line: {
     borderBottomColor: ORANGE,
     borderBottomWidth: 2,
     width: '100%',
   },
-  bottomContaierText: {
+  fourthContainerStyle: {
+    height: view4Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    flexDirection: ROW,
+    backgroundColor: WHITE,
+  },
+  fourthInnerContainerStyle: {
+    flexDirection: ROW,
+    alignItems: CENTER,
+  },
+  fourthContainerText: {
+    flexDirection: ROW,
     marginRight: 20,
   },
   buttonStyle: {
@@ -64,8 +82,7 @@ export const styles = StyleSheet.create({
     height: 48,
     borderRadius: 8,
     justifyContent: CENTER,
-    marginVertical: '2%',
-    width:'100%'
+    width: '90%',
   },
   buttonText: {
     color: WHITE,
