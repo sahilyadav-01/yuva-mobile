@@ -14,6 +14,7 @@ const Search = props => {
     isSearch,
     editable,
     onSubmitEditing,
+    searchStyle
   } = props;
   const navigation = useNavigation();
   const onSubmit = () => {
@@ -36,7 +37,7 @@ const onPress=()=>{
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={PALE_ORANGE}
-        style={styles.textInputStyles}
+        style={[styles.textInputStyles,searchStyle]}
         value={value}
         onPressIn={onPress}
       />

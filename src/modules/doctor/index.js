@@ -23,7 +23,7 @@ const Doctor = () => {
         rating={item.rating}
         exp={item.experience}
         img={item.img}
-        qual={item.qual == undefined ? '\n-MBBS' : item.qual}
+        qual={item.qual == undefined ? '' : item.qual}
         plan={plan}
         userVersion={userVersion}
         uuid={uuid}
@@ -41,6 +41,7 @@ const Doctor = () => {
             placeholderTextColor={DARK_GRAY}
             onChangeText={onChangeSearch}
             value={searchQuery}
+            searchStyle={styles.searchStyle}
           />
         </View>
           <FlatList
