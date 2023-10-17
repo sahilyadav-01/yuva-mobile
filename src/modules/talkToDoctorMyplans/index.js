@@ -4,8 +4,6 @@ import {styles} from './styles';
 import {
   AVAILABLE,
   CHAT_NOW,
-  PLANS,
-  TALK_TO_DOCTOR,
   USED,
   VALIDITY,
 } from './constant';
