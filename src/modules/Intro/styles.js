@@ -28,16 +28,13 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     backgroundColor: WHITE,
   },
-
-  /**Middle Section Style */
-
   mainContainer: {
     alignItems: CENTER,
     justifyContent: CENTER,
     backgroundColor: WHITE,
   },
   IntroStaticScreen1Text: {
-    paddingTop:15,
+    paddingTop: 15,
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
@@ -49,9 +46,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight400,
   },
-
-  /**Middle Section Style */
-
   thirdContainerStyle: {
     height: view3Height,
     justifyContent: CENTER,
