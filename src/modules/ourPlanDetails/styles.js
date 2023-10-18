@@ -1,9 +1,12 @@
 import { StyleSheet} from 'react-native';
-import { CYAN_BLUE, ORANGE} from '../../styles/colors';
+import { CYAN_BLUE, ORANGE, WHITE} from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
 import { CENTER, ROW } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
+  parentContainerStyle:{
+    backgroundColor:WHITE
+  },
   contentContainerStyle: {
     flexGrow: 1,
     paddingBottom: 300,
