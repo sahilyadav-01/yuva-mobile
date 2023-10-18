@@ -35,15 +35,9 @@ export const useCart = (args) => {
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
   const [relationsModalVisible, setRelationsModalVisible] = useState(false);
+  const [buttonText, setButtonText] = useState('');
   const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   
-  let buttonText='';
-  if(couponId === null){
-     buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
-  }
-  else{
-     buttonText = userData !== null ? TO_BE_PAID(amountToBePaidCoupon) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
-  }
   const relationsData = [
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
@@ -110,6 +104,13 @@ export const useCart = (args) => {
       setRelationsModalVisible(true);
     }
   }
+
+  useEffect(()=>{
+   if(couponId === null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaid))
+   else if(couponId !== null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
+   else if(userData === null && isLoggedIn) setButtonText(SELECT_ADD_MEMBER)
+   else if(userData === null && !isLoggedIn) setButtonText(LOGIN_SIGNUP)
+  },[userData])
 
   useEffect(() => {
     if (relationsModalVisible && route?.name === 'Cart') {
@@ -214,6 +215,7 @@ export const useCart = (args) => {
         relations[checkBoxFlag.find(item => item.status === 'checked').index];
       setUserData({ id, name, age, gender, genderId: gender === 'Male' ? 0 : 1, relation });
     }
+    else setUserData(null);
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {

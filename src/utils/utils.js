@@ -1,5 +1,5 @@
 import validator from 'is_js';
-import {Alert, Dimensions, PermissionsAndroid, Platform, Linking} from 'react-native';
+import {Alert, Dimensions, PermissionsAndroid, Platform, Linking, NativeModules} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -447,5 +447,18 @@ export const onViewMapPress = async (prop) => {
 export const getPlatform = () => {
   if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
   else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
+}
+
+export const getIosStatusBarHeight = () => {
+  return new Promise((resolve,reject)=>{
+    NativeModules?.StatusBarHeight?.getStatusBarHeight((err,res)=>{
+      if(err) {
+        reject(0);
+      }
+      else if(res) {
+        resolve(parseFloat(res));
+      }
+    })
+  })
 }
 
