@@ -21,6 +21,8 @@
 		9F7CEB9F067A41DF85C7065E /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91DED50858E14EDB81BBDECD /* Rubik-Regular.ttf */; };
 		E82626B72A2887C1007959D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82626B62A2887C1007959D6 /* GoogleService-Info.plist */; };
 		E89AC6E32A2F0EFA001A783D /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */; };
+		E8F61DDF2ADFB96A00FFF408 /* StatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F61DDE2ADFB96A00FFF408 /* StatusBarHeight.m */; };
+		E8F61DE02ADFB96A00FFF408 /* StatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F61DDE2ADFB96A00FFF408 /* StatusBarHeight.m */; };
 		FD248DD34C0746019427FCD2 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		E82626B62A2887C1007959D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8751A2D2A2756F200B25101 /* yuva.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = yuva.entitlements; path = yuva/yuva.entitlements; sourceTree = "<group>"; };
 		E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraBold.ttf"; path = "../assets/fonts/Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		E8F61DDE2ADFB96A00FFF408 /* StatusBarHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarHeight.m; sourceTree = "<group>"; };
+		E8F61DE12ADFB98F00FFF408 /* StatusBarHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarHeight.h; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F83AA5B1217B4A7AB3A94515 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-SemiBold.ttf"; path = "../assets/fonts/Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +139,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E8F61DDC2ADFB8E400FFF408 /* StatusBarHeight */,
 				E89AC6E22A2F0EFA001A783D /* Raleway-ExtraBold.ttf */,
 				13B07FAE1A68108700A75B9A /* yuva */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -180,6 +185,15 @@
 				AC57322A2838466B80CD3184 /* Rubik-Bold.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E8F61DDC2ADFB8E400FFF408 /* StatusBarHeight */ = {
+			isa = PBXGroup;
+			children = (
+				E8F61DDE2ADFB96A00FFF408 /* StatusBarHeight.m */,
+				E8F61DE12ADFB98F00FFF408 /* StatusBarHeight.h */,
+			);
+			path = StatusBarHeight;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F61DE02ADFB96A00FFF408 /* StatusBarHeight.m in Sources */,
 				00E356F31AD99517003FC87E /* yuvaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F61DDF2ADFB96A00FFF408 /* StatusBarHeight.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
