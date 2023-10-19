@@ -146,6 +146,7 @@ export const useCart = (args) => {
 
   useEffect(() => {
     if (navigation.isFocused()) {
+      setAddButtonPress(false);
       setModalVisible(false);
       setCheckBoxStatus('unchecked');
       setCheckBoxFlag([]);
