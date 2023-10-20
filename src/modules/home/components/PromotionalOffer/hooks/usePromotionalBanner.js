@@ -115,12 +115,14 @@ export const usePromotionalBanner = () => {
       case 'TEST':
       case 'PACKAGE':
         return {
-          showDescription: false,
+          showDescription: true,
+          description: item?.description ?? 'Get Free Diet Chart',
           buttonText: 'Book Now',
         };
       case 'PLAN':
         return {
-          showDescription: false,
+          showDescription: true,
+          description: item?.description ?? 'Get Free Diet Chart',
           buttonText: 'Buy Now',
         };
       case 'SERVICE':
@@ -128,12 +130,13 @@ export const usePromotionalBanner = () => {
           case '1dbcc55e-3dec-4e07-8c2a-e222631afebb':
             return {
               showDescription: true,
-              description: 'Get Free Diet Chart',
+              description: item?.description ?? 'Get Free Diet Chart',
               buttonText: 'Start Now',
             };
           case 'bb4385d4-7f92-11ed-a1eb-0242ac120002':
             return {
-              showDescription: false,
+              showDescription: true,
+              description: item?.description ?? 'Get Free Diet Chart',
               buttonText: 'Consult Now',
             };
         }
