@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
+import { BLACK,GREEN, WHITE } from '../../styles/colors';
 import { ABSOLUTE, CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
     flex:1,
     flexDirection:COLUMN,
-    marginHorizontal:2,
+    marginHorizontal:8,
     marginVertical:12,
   },
   subTopContainerStyle: {
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
       justifyContent:CENTER
     },
     head: {
-      color:RED_SHADE,
+      color:GREEN,
       fontSize: fonts.size.fontSize8,
       fontFamily: fonts.family.rubik500,
       textAlign:CENTER,

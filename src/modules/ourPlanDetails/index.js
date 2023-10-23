@@ -40,7 +40,7 @@ const OurPlanDetails = props => {
           <ActivityIndicator size={'large'}/>
         </View> }
         {(planDetails && planDetailsLoading===false && planDetailsError===false &&getAllPlanServicesLoading===false) && (
-            <View>
+            <View style={styles.bottomContainerStyle}>
             <FlatList
               renderItem={renderItem}
               data={planDetails}
