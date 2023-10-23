@@ -62,7 +62,7 @@ export const HomeScreen = () => {
           popularPackageName={popularPackageName}
           onHealthPackagePress={onHealthPackagePress}
         />
-        <PackagesOffer bannerData={banner3} />
+        <OfferBanner1 bannerData={banner3} />
         <PopularTestPackageCarousel
           popularTest={popularTest}
           onHealthPackagePress={onHealthPackagePress}
