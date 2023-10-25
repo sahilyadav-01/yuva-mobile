@@ -33,7 +33,6 @@ const OurPlanDetails = props => {
     <SafeAreaView style={styles.parentContainerStyle}>
           <Header showBackButton={true} title={TITLE}/>
           <ScrollView
-        contentContainerStyle={styles.contentContainerStyle}
         nestedScrollEnabled={true}>
         <PlanCard/>{(getAllPlanServices && getAllPlanServicesLoading===false && getAllPlanServicesError===false) &&
         <PlanServiceIcons data={getAllPlanServices}/>}
