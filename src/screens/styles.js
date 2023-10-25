@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CENTER, SPACE_BETWEEN, FLEX, ROW, ROW_REVERSE, HIDDEN} from '../styles/constants';
+import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
 import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
 import {fonts} from '../styles/fonts';
 import { getDimensions } from '../utils/utils';

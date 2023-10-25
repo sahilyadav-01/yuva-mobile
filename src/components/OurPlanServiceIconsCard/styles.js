@@ -1,18 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { BLACK,RED_SHADE, WHITE } from '../../styles/colors';
-import { ABSOLUTE, CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
+import { BLACK,GREEN, WHITE } from '../../styles/colors';
+import { ABSOLUTE, CENTER, COLUMN, FLEX_START } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
     flex:1,
     flexDirection:COLUMN,
-    marginHorizontal:2,
+    marginHorizontal:8,
     marginVertical:12,
   },
   subTopContainerStyle: {
-    alignItems:FLEX_START,
-    justifyContent:FLEX_START,
+    alignItems: CENTER,
+    justifyContent:CENTER,
     flexDirection:COLUMN,
 
   },
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent:FLEX_START,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    textAlign:LEFT,
+    textAlign:CENTER,
     paddingLeft:5,
     color: BLACK,
   },
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
       justifyContent:CENTER
     },
     head: {
-      color:RED_SHADE,
+      color:GREEN,
       fontSize: fonts.size.fontSize8,
       fontFamily: fonts.family.rubik500,
       textAlign:CENTER,

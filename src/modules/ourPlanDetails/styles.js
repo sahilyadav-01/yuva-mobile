@@ -5,21 +5,23 @@ import { CENTER, ROW } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   parentContainerStyle:{
-    backgroundColor:WHITE
+    backgroundColor:WHITE,
+    flex:1
   },
   contentContainerStyle: {
     flexGrow: 1,
-    paddingBottom: 300,
+  },
+  bottomContainerStyle:{
+    paddingBottom: 16,
   },
   details: {
-    marginLeft: 10,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
     color: CYAN_BLUE,
   },
   starIcon: {
     flexDirection: ROW,
-    marginHorizontal:25,
+    marginHorizontal:8,
     marginTop: 16,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
@@ -32,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   termsCondition: {
     marginTop: 26,
-    marginLeft: 22,
+    marginLeft: 10,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
     color: ORANGE,
