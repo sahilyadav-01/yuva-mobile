@@ -8,9 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor:WHITE,
     flex:1
   },
-  contentContainerStyle: {
-    flexGrow: 1,
-  },
   bottomContainerStyle:{
     paddingBottom: 16,
   },
