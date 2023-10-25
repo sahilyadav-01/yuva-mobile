@@ -24,6 +24,7 @@ export const fonts = {
     fontWeight500: '500',
     fontWeight400: '400',
     fontWeight300: '300',
+    fontWeight900: '900',
   },
   Height: {
     lineHeight30: 30,

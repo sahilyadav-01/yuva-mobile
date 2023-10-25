@@ -15,6 +15,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { PNG } from '../../../assets';
 import Header from '../../components/Header';
 import PlanServiceIcons from './components/PlanServiceIcons';
+import TextBold from '../../components/TextBold';
 
 const OurPlanDetails = props => {
   const {planDetails,planDetailsLoading,planDetailsError,getAllPlanServices,getAllPlanServicesLoading,getAllPlanServicesError} = useOurPlanDetails(props);
@@ -23,7 +24,7 @@ const OurPlanDetails = props => {
       <View key={index}>
         <View style={styles.starIcon}>
           <Image style={styles.ImageStyle} source={PNG.dot} />
-          <Text style={styles.details}>{item}</Text>
+          <TextBold textData={item} textStyle={styles.details}/>
         </View>
       </View>
     );
