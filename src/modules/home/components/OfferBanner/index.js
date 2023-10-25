@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, ImageBackground, View, FlatList} from 'react-native';
+import {TouchableOpacity, View, FlatList, Image} from 'react-native';
 import {styles} from './style';
 import {GRAY, ORANGE} from '../../../../styles/colors';
 import {useOfferBanner} from './hooks/useOfferBanner';
@@ -23,7 +23,7 @@ const OfferBanner1 = props => {
       <TouchableOpacity
         style={style.containerStyle}
         onPress={() => onBannerPress(item)}>
-        <ImageBackground
+        <Image
           source={{uri: item.image}}
           style={style.imageBackgroundStyle}
         />
