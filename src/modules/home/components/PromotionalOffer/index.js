@@ -7,22 +7,23 @@ import {usePromotionalBanner} from './hooks/usePromotionalBanner';
 const PromotionalBanner = () => {
   const {onBannerPress, bannerData, getItemDetails} = usePromotionalBanner();
   const style = styles();
-  const renderData = ({item}) => {
+  const renderData = ({item,index}) => {
+    const alternateItem = index%2 === 0;
     const itemDetails = getItemDetails(item);
     return (
       <TouchableOpacity
         onPress={() => onBannerPress(item)}
-        style={style.itemContainer}>
+        style={styles(alternateItem).itemContainer}>
         <View style={{paddingVertical: 12}}>
-          <Text numberOfLines={3} style={style.text}>
+          <Text numberOfLines={3} style={styles(alternateItem).text}>
             {item?.contentName}
           </Text>
         </View>
         {itemDetails?.showDescription && (
-          <Text style={style.text}>{itemDetails?.description}</Text>
+          <Text style={styles(alternateItem).text}>{itemDetails?.description}</Text>
         )}
-        <View style={style.buttonContainer}>
-          <Text style={style.buttonText}>{itemDetails?.buttonText}</Text>
+        <View style={styles(alternateItem).buttonContainer}>
+          <Text style={styles(alternateItem).buttonText}>{itemDetails?.buttonText}</Text>
         </View>
       </TouchableOpacity>
     );

@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
-import {GAINSBORO_LIGHT, INDIGO_LIGHT, ORANGE, WHITE} from '../../../../styles/colors';
+import {BLACK, GAINSBORO_LIGHT, INDIGO_LIGHT, ORANGE, WHITE} from '../../../../styles/colors';
 
-export const styles = () => {
+export const styles = (alternate) => {
   return StyleSheet.create({
     container: {
       paddingHorizontal: 16,
@@ -16,9 +16,9 @@ export const styles = () => {
       justifyContent: SPACE_BETWEEN,
       paddingTop: 8,
       paddingBottom: 8,
-      backgroundColor: WHITE,
-      minHeight: 118,
-      maxHeight: 130,
+      backgroundColor: alternate ? WHITE : ORANGE,
+      minHeight: 120,
+      maxHeight: 132,
       width: 150,
       paddingHorizontal: 12
     },
@@ -26,14 +26,13 @@ export const styles = () => {
       textAlign: CENTER,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
-      color: INDIGO_LIGHT,
+      color: alternate ? INDIGO_LIGHT : WHITE,
     },
     buttonText: {
       textAlign: CENTER,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
-      color: INDIGO_LIGHT,
-      color: WHITE
+      color: alternate ? BLACK : ORANGE,
     },
     spacing: {height: 16},
     heading: {
@@ -45,7 +44,7 @@ export const styles = () => {
     listStyle: {flex: 1},
     itemSeparatorStyle: {width: 16},
     buttonContainer: {
-      backgroundColor: ORANGE,
+      backgroundColor: alternate ? ORANGE : WHITE,
       borderColor: ORANGE,
       borderRadius: 10,
       borderWidth: 1,
