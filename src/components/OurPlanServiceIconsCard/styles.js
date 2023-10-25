@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { BLACK,GREEN, WHITE } from '../../styles/colors';
-import { ABSOLUTE, CENTER, COLUMN, FLEX_START, LEFT } from '../../styles/constants';
+import { ABSOLUTE, CENTER, COLUMN, FLEX_START } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -11,8 +11,8 @@ export const styles = StyleSheet.create({
     marginVertical:12,
   },
   subTopContainerStyle: {
-    alignItems:FLEX_START,
-    justifyContent:FLEX_START,
+    alignItems: CENTER,
+    justifyContent:CENTER,
     flexDirection:COLUMN,
 
   },
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent:FLEX_START,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    textAlign:LEFT,
+    textAlign:CENTER,
     paddingLeft:5,
     color: BLACK,
   },
