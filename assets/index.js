@@ -126,12 +126,18 @@ import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON'
 import MY_TEST_SVG_ICON from './MY_TEST_SVG_ICON';
 import ONLINE_CONSULTATION_SVG_ICON from './ONLINE_CONSULTATION_SVG_ICON';
 import MENTAL_WELLNESS_SVG_ICON from './MENTAL_WELLNESS_SVG_ICON';
+import Mental_wellness_svg_icon2 from './Mental_wellness_svg_icon2';
 import BOOK_TEST_SVG_ICON from './BOOK_TEST_SVG_ICON';
 import EMRM_SVG_ICON from './EMRM_SVG_ICON';
+import Emrm_svg_icon2 from './Emrm_svg_icon2';
 import AMBULANCE_SVG_ICON from './AMBULANCE_SVG_ICON';
+import Ambulance_svg_icon2 from './Ambulance_svg_icon2';
 import EIGHTY_D_BENEFIT_SVG_ICON from './EIGHTY_D_BENEFIT_SVG_ICON';
+import Eighty_d_benefit_svg_icon2 from './Eighty_d_benefit_svg_icon2';
 import INSURANCE_CLAIM_SUPPORT_SVG_ICON from './INSURANCE_CLAIM_SUPPORT_SVG_ICON';
+import Insurance_claim_support_svg_icon2 from './Insurance_claim_support_svg_icon2'
 import DISCOUNT_SVG_ICON from './DISCOUNT_SVG_ICON';
+import Discount_svg_icon2 from './Discount_svg_icon2';
 import SEARCH_NETWORK from './SEARCH_NETWORK';
 import PLANS_SVG_ICON from './PLANS_SVG_ICON';
 import CORPORATE_PROGRAM from './CORPORATE_PROGRAM';
@@ -281,6 +287,7 @@ const SVG = {
   Handshake,
   MentalWellness,
   Emrm,
+  Eighty_d_benefit_svg_icon2,
   EmrmAddIcon,
   PHARMACY,
   OPD_SVG_ICON,
@@ -289,13 +296,18 @@ const SVG = {
   MY_TEST_SVG_ICON,
   ONLINE_CONSULTATION_SVG_ICON,
   MENTAL_WELLNESS_SVG_ICON,
+  Mental_wellness_svg_icon2,
   BOOK_TEST_SVG_ICON,
   EMRM_SVG_ICON,
+  Emrm_svg_icon2,
   AMBULANCE_SVG_ICON,
+  Ambulance_svg_icon2,
   PLANS_SVG_ICON,
   EIGHTY_D_BENEFIT_SVG_ICON,
   INSURANCE_CLAIM_SUPPORT_SVG_ICON,
+  Insurance_claim_support_svg_icon2,
   DISCOUNT_SVG_ICON,
+  Discount_svg_icon2,
   SEARCH_NETWORK,
   CORPORATE_PROGRAM,
   ArrowRight,
