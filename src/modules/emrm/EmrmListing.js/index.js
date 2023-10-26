@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import Header from '../../../components/Header';
 import { HEADER_TITLE } from '../EmrmHome/constants';
 import { DISPLAY_TEXT, PLACEHOLDER_TEXT, SEARCH, SUB_HEADDING_TEXT } from './constants';
 import { styles } from './styles';
-import Search from '../../../components/Search';
 import { DARK_BLUE, DARK_GRAY } from '../../../styles/colors';
 import { SVG } from '../../../../assets';
 import SelectList from 'react-native-dropdown-select-list';
@@ -34,8 +33,10 @@ const EmrmListing = () => {
         <>
             <Header title={HEADER_TITLE} isScreen={true} hideMenu={false} showBackButton={true} />
             <View style={styles.mainContainer}>
-                <View style={styles.search}>
-                    <Search
+                  <View style={styles.searchConatiner}>
+                    <SVG.SEARCH_NETWORK_SEARCH_ICON />
+                    <TextInput
+                        style={styles.searchTextInputStyle}
                         placeholder={SEARCH}
                         placeholderTextColor={DARK_GRAY}
                         onChangeText={onChangeSearch}

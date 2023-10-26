@@ -12,30 +12,15 @@ import WOMAN from './woman.png';
 import CHECK_CIRCLE from './check_circle.png';
 import THANK_DESIGN from './thank_you_design.png';
 import THANK_IMAGE from './thank_image.png';
-import VECTOR1 from './Vector1.png';
 import EditIcon from './edit';
 import PlusIcon from './plus';
 import SLIDDERIMG1 from './slidderImg1.png';
 import SLIDDERIMG2 from './slidderImg2.png';
 import SLIDDERIMG3 from './slidderImg3.png';
 import SLIDDERIMG4 from './slidderImg4.png';
-import SLIDDERBOTTOMIMG from './intoHeaderBackgroundBottom.png';
 import BOTTOMNAVIMG1 from './BottomNavImg1.png';
-import BOTTOMNAVIMG2 from './BottomNavImg2.png';
-import BOTTOMNAVIMG3 from './BottomNavImg3.png';
-import OPD_Consultation from './OPD_Consultation.png';
-import Health_Risk_Assessment from './Health_Risk_Assessment.png';
-import Health_Checkup_Packages from './Health_Checkup_Packages.png';
-import Talk_To_Doctor from './Talk_To_Doctor.png';
-import BANNER from './banner.png';
-import BANNER2 from './banner2.png';
-import DIAGNOSTIC from './diagnosticImg.png';
-import HEALTHIMG from './healthImg.png';
 import POPULARHEALTHICON from './popularHealthIcon.png';
 import POPULARDIAGNOSTICICON from './popularDiagnosticsIcon.png';
-import HEALTHCHECKUP1 from './woman_HealthCheckUp.png';
-import HEALTHCHECKUP2 from './overweight_HealthCheckUp.png';
-import PACKAGE from './package.png';
 import HRA_SECTION_ICONS from './hra_img.png';
 import INTERNALMEDICINE from './internalMedicine.png';
 import NEUROLOGY from './Neurology.png';
@@ -48,13 +33,12 @@ import SKIN from './skin.png';
 import CIRCLE from './Circle.png';
 import LINE from './Line.png';
 import OCIRCLE from './Ocircle.png';
-import DOWNLOAD from './download.png';
 import HeaderLogo from './headerLogo';
 import MenuIcon from './menu';
-import BackgroundImage from './background';
+import TopSplashScreenBackgroundImage from './TopSplashScreenBackgroundImage.png';
+import BottomSplashScreenBackgroundImage from './BottomSplashScreenBackgroundImage.png';
 import HRA_HOMEImage from './HRA_HOME.png';
 import DIAGNOSTICMYPLAN from './diagnosticMyPlan.png';
-import MY_HEALTH_CHECKUP from './MyHealthCheckup.png';
 import DOCTOR from './doctor.png';
 import Back from './back';
 import HRA_END_IMG from './HRA_END_IMG';
@@ -67,7 +51,6 @@ import HYPER_TENSION from './HYPER_TENSION';
 import dropDown from './dropDown';
 import DATE from './date.png';
 import dateAndTime from './dateAndTime';
-import POPULAR_PLAN from './Popular_Plan.png';
 import ICON from './icon.png';
 import EYE from './eye.png';
 import AddNewAdress from './AddNewAdress';
@@ -82,7 +65,6 @@ import SearchIcon from './SearchIcon';
 import Reschedule from './Reschedule';
 import CheckIn from './CheckIn';
 import landingPageBanner1 from './landingPageBanner1';
-import LandingPageBanner2 from './LandingPageBanner2.png';
 import AwayImage from './away';
 import HomeImage from './home';
 import tick from './tick';
@@ -106,21 +88,12 @@ import PaymentSuccess from './PaymentSuccess';
 import PaymentFailure from './PaymentFailure';
 import Stethoscope from './Stethoscope';
 import EditPen from './EditPen';
-import OurPlanBackground from './OurPlanBackground.png';
 import Gift from './Gift';
 import SeeYouSoon from './comingSoon';
 import OurPlanDoctors from './OurPlanDoctors';
-import OPDIcon from './OPDIcon';
-import HraSvg from './HraSvg';
-import TalkToDoctorSvg from './talkToDoctorSvg';
-import CheckUpIcon from './CheckUpIcon';
 import ExpandArrow from './ExpandArrow';
 import ambulance from './ambulance.png';
-import insuranceClaim from './insuranceClaim.png'
-import PharmacyDiscount from './PharmacyDiscount.png';
-import dot from './dots.png'
 import Reorder from './Reorder';
-import {DoctorsImage} from './DoctorsImage';
 import Calender from './Calender';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
@@ -134,7 +107,6 @@ import PharmacyIcon from './PharmacyIcon';
 import PHARMA_CARD_ICON from './trolly.png';
 import EmrmHomeImage from './EmrmHomeImage.png';
 import SelfAssessment from './SelfAssessment.png'
-import HealthBanner from './HealthBanner.png';
 import SelfLearning from './SelfLearning.png';
 import SelfTracking from './SelfTracking.png';
 import Handshake from './Handshake';
@@ -145,6 +117,49 @@ import Emrm from './Emrm';
 import EmrmAddIcon from './EmrmAddIcon';
 import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
+import Our_Plan_Banner from './Our_Plan_Banner.png';
+import OurPlanRadioButton from './OurPlanRadioButton.png'
+import planDetails from './planDetails.png'
+import OPD_SVG_ICON from './OPD_SVG_ICON';
+import HRA_SVG_ICON from './HRA_SVG_ICON';
+import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON'
+import MY_TEST_SVG_ICON from './MY_TEST_SVG_ICON';
+import ONLINE_CONSULTATION_SVG_ICON from './ONLINE_CONSULTATION_SVG_ICON';
+import MENTAL_WELLNESS_SVG_ICON from './MENTAL_WELLNESS_SVG_ICON';
+import Mental_wellness_svg_icon2 from './Mental_wellness_svg_icon2';
+import BOOK_TEST_SVG_ICON from './BOOK_TEST_SVG_ICON';
+import EMRM_SVG_ICON from './EMRM_SVG_ICON';
+import Emrm_svg_icon2 from './Emrm_svg_icon2';
+import AMBULANCE_SVG_ICON from './AMBULANCE_SVG_ICON';
+import Ambulance_svg_icon2 from './Ambulance_svg_icon2';
+import EIGHTY_D_BENEFIT_SVG_ICON from './EIGHTY_D_BENEFIT_SVG_ICON';
+import Eighty_d_benefit_svg_icon2 from './Eighty_d_benefit_svg_icon2';
+import INSURANCE_CLAIM_SUPPORT_SVG_ICON from './INSURANCE_CLAIM_SUPPORT_SVG_ICON';
+import Insurance_claim_support_svg_icon2 from './Insurance_claim_support_svg_icon2'
+import DISCOUNT_SVG_ICON from './DISCOUNT_SVG_ICON';
+import Discount_svg_icon2 from './Discount_svg_icon2';
+import SEARCH_NETWORK from './SEARCH_NETWORK';
+import PLANS_SVG_ICON from './PLANS_SVG_ICON';
+import CORPORATE_PROGRAM from './CORPORATE_PROGRAM';
+import ArrowRight from './ArrowRight';
+import Profile from './Profile';
+import ManageNotifications from './ManageNotifications';
+import ManageAddress from './ManageAddress';
+import AmbulanceImage from './ambulanceImage.png';
+import AMBULANCESERVICE_SUBIMAGE1 from './AMBULANCESERVICE_SUBIMAGE1';
+import AMBULANCESERVICE_SUBIMAGE2 from './AMBULANCESERVICE_SUBIMAGE2';
+import AMBULANCESERVICE_SUBIMAGE3 from './AMBULANCESERVICE_SUBIMAGE3';
+import SEARCH_NETWORK_LOCATION_ICON from './SearchNetworkLocationIcon';
+import SEARCH_NETWORK_CALL_ICON from './SearchNetworkCalllIcon';
+import SEARCH_NETWORK_SEARCH_ICON from './SearchNetworkSearchIcon';
+import TalkToDoctorSvg from './TalkToDoctorSvg';
+import HraSvg from './HraSvg';
+import OPDIcon from './OPDIcon';
+import YUVA_LOGO from './yuva_logo.png';
+import LatestSearch from './LatestSearch';
+import BookAppointment from './BookAppointment';
+import GetMedicine from './GetMedicine';
+import ConsultDoctor from './ConsultDoctor';
 
 const PNG = {
   AMICO,
@@ -176,53 +191,36 @@ const PNG = {
   SLIDDERIMG2,
   SLIDDERIMG3,
   SLIDDERIMG4,
-  SLIDDERBOTTOMIMG,
   BOTTOMNAVIMG1,
-  BOTTOMNAVIMG2,
-  BOTTOMNAVIMG3,
   THANK_DESIGN,
-  VECTOR1,
   THANK_IMAGE,
-  OPD_Consultation,
-  Health_Risk_Assessment,
-  Health_Checkup_Packages,
-  Talk_To_Doctor,
-  BANNER,
-  BANNER2,
-  DOWNLOAD,
-  DIAGNOSTIC,
-  HEALTHIMG,
-  POPULARHEALTHICON,
   POPULARDIAGNOSTICICON,
-  HEALTHCHECKUP1,
-  HEALTHCHECKUP2,
   HRA_HOMEImage,
   HRA_SECTION_ICONS,
-  PACKAGE,
   DIAGNOSTICMYPLAN,
-  MY_HEALTH_CHECKUP,
   DATE,
   EYE,
-  POPULAR_PLAN,
-  LandingPageBanner2,
-  OurPlanBackground,
   ambulance,
-  PharmacyDiscount,
-  insuranceClaim,
-  dot,
   PlanCard,
   PaymentSuccessful,
   PaymentFail,
   programCard,
   PHARMA_CARD_ICON,
-  HealthBanner,
   EmrmHomeImage,
   SelfAssessment,
   SelfLearning,
   SelfTracking,
   YuvaBanner,
   OnMood9Banner,
-  SelfHealing
+  SelfHealing,
+  POPULARHEALTHICON,
+  Our_Plan_Banner,
+  OurPlanRadioButton,
+  planDetails,
+  AmbulanceImage,
+  YUVA_LOGO,
+  TopSplashScreenBackgroundImage,
+  BottomSplashScreenBackgroundImage
 };
 
 const SVG = {
@@ -230,7 +228,6 @@ const SVG = {
   MenuIcon: MenuIcon,
   PlusIcon: PlusIcon,
   Edit: EditIcon,
-  BackgroundImage: BackgroundImage,
   Back: Back,
   HRA_END_IMG: HRA_END_IMG,
   dropDown: dropDown,
@@ -278,10 +275,6 @@ const SVG = {
   Gift,
   SeeYouSoon: SeeYouSoon,
   OurPlanDoctors,
-  OPDIcon,
-  HraSvg,
-  TalkToDoctorSvg,
-  CheckUpIcon,
   ExpandArrow,
   Reorder,
   Lock,
@@ -294,10 +287,46 @@ const SVG = {
   Handshake,
   MentalWellness,
   Emrm,
+  Eighty_d_benefit_svg_icon2,
   EmrmAddIcon,
   PHARMACY,
+  OPD_SVG_ICON,
+  HRA_SVG_ICON,
+  PHARMACY_SVG_ICON,
+  MY_TEST_SVG_ICON,
+  ONLINE_CONSULTATION_SVG_ICON,
+  MENTAL_WELLNESS_SVG_ICON,
+  Mental_wellness_svg_icon2,
+  BOOK_TEST_SVG_ICON,
+  EMRM_SVG_ICON,
+  Emrm_svg_icon2,
+  AMBULANCE_SVG_ICON,
+  Ambulance_svg_icon2,
+  PLANS_SVG_ICON,
+  EIGHTY_D_BENEFIT_SVG_ICON,
+  INSURANCE_CLAIM_SUPPORT_SVG_ICON,
+  Insurance_claim_support_svg_icon2,
+  DISCOUNT_SVG_ICON,
+  Discount_svg_icon2,
+  SEARCH_NETWORK,
+  CORPORATE_PROGRAM,
+  ArrowRight,
+  Profile,
+  ManageNotifications,
+  ManageAddress,
+  AMBULANCESERVICE_SUBIMAGE1,
+  AMBULANCESERVICE_SUBIMAGE2,
+  AMBULANCESERVICE_SUBIMAGE3,
+  SEARCH_NETWORK_LOCATION_ICON,
+  SEARCH_NETWORK_CALL_ICON,
+  SEARCH_NETWORK_SEARCH_ICON,
+  TalkToDoctorSvg,
+  HraSvg,
+  OPDIcon,
+  LatestSearch,
+  BookAppointment,
+  GetMedicine,
+  ConsultDoctor,
 };
 
-const BASE_64 = {DoctorsImage}
-
-export {PNG, SVG, BASE_64};
+export {PNG, SVG};

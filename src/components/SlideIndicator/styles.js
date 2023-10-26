@@ -3,7 +3,7 @@ import { GREY } from '../../styles/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    margin: 10
+    margin: 10,
   },
   indicator: {
     borderColor: GREY, 

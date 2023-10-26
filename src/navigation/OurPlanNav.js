@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import OurPlanDetails from '../modules/ourPlan/components/OurPlanDetails'
-import OurPlanAddress from '../modules/ourPlan/components/Address';
-import NewAddress from '../modules/ourPlan/components/NewAddAddress';
-import CheckoutOurPlan from '../modules/ourPlan/components/CheckoutScreen';
-import OurPlanDetailsGuest from '../modules/ourPlan/components/OurPlanDetailsGuest';
+import OurPlanAddress from '../modules/ourPlanDetails/components/Address';
+import NewAddress from '../modules/ourPlanDetails/components/NewAddAddress';
+import CheckoutOurPlan from '../modules/ourPlanDetails/components/CheckoutScreen';
+// import OurPlanDetailsGuest from '../modules/ourPlan/components/OurPlanDetailsGuest';
+import OurPlanScreen from '../screens/OurPlanScreen/OurPlanScreen';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,7 @@ const OurPlanNav = (props) => {
     <Stack.Navigator>
       <Stack.Screen
         name="OurPlanDetails"
-        component={OurPlanDetails}
+        component={OurPlanScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

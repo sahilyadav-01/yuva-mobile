@@ -2,15 +2,17 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {AGE_} from '../../constant';
 import styles from './style';
+import GoBackCross from '../../../../components/GoBackCross';
 
-const Dependents = ({dependents,hideShadow,showCheckbox,CheckboxComponent,extraContainerStyle, extraDetailsContainer}) => {
+const Dependents = ({dependents,hideShadow,showCheckbox,CheckboxComponent,extraContainerStyle, extraDetailsContainer, onCrossPress}) => {
   const renderCheckbox = showCheckbox ?? false;
-  const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender, rowView} = styles({
+  const {dependentsContainer, dependentNameGenderContainer, relationText, dependentName, dependentGender, rowView, crossContainer} = styles({
     disabled: false,hideShadow,
   });
   return dependents?.map((item, index) => {
     return (
       <View style={[dependentsContainer,extraContainerStyle]}>
+        <View style={crossContainer}><GoBackCross size={20} onPress={onCrossPress}/></View>
         <View style={dependentNameGenderContainer}>
           <View style={[rowView,extraDetailsContainer]}>
           <Text style={dependentName}>{item.name}</Text>

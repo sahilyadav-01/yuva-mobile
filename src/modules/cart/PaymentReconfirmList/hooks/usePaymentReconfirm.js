@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {Alert} from 'react-native';
-import { TERMS_CONDITION } from '../../../ourPlan/components/CheckoutScreen/constants';
+import { TERMS_CONDITION } from '../constant';
 
 export const usePaymentReconfirm = () => {
   const navigation = useNavigation();

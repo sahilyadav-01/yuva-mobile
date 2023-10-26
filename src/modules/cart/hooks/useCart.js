@@ -35,15 +35,9 @@ export const useCart = (args) => {
   const [checkBoxStatus, setCheckBoxStatus] = useState('unchecked');
   const [userData, setUserData] = useState(null);
   const [relationsModalVisible, setRelationsModalVisible] = useState(false);
+  const [buttonText, setButtonText] = useState('');
   const { userDetails, relations, activeRelations, relationAdded, relationsLoading, relationsError } = useSelector(state => state.profile);
   
-  let buttonText='';
-  if(couponId === null){
-     buttonText = userData !== null ? TO_BE_PAID(amountToBePaid) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
-  }
-  else{
-     buttonText = userData !== null ? TO_BE_PAID(amountToBePaidCoupon) : isLoggedIn ? SELECT_ADD_MEMBER : LOGIN_SIGNUP;
-  }
   const relationsData = [
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
@@ -62,7 +56,7 @@ export const useCart = (args) => {
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
       }
     } else {
-      navigation.navigate(LOGIN_SCREEN_NAVIGATION);
+      navigation.navigate('Home',{screen:LOGIN_SCREEN_NAVIGATION,params:{from: 'CartScreen'}});
     }
   };
   const onSaveDetailsPress = (arg) => {
@@ -85,8 +79,8 @@ export const useCart = (args) => {
     );
   }
 
-  const addToCart = ({ name, cost, productId }, productType) => {
-    const dToObj = { name, count: 1, cost, productId, productType };
+  const addToCart = (obj, productType) => {
+    const dToObj = {...obj,productType,count:1}
     const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
     const cartDto = {
       ...cart,
@@ -111,6 +105,13 @@ export const useCart = (args) => {
     }
   }
 
+  useEffect(()=>{
+   if(couponId === null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaid))
+   else if(couponId !== null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
+   else if(userData === null && isLoggedIn) setButtonText(SELECT_ADD_MEMBER)
+   else if(userData === null && !isLoggedIn) setButtonText(LOGIN_SIGNUP)
+  },[userData])
+
   useEffect(() => {
     if (relationsModalVisible && route?.name === 'Cart') {
       dispatch(getRelations());
@@ -120,6 +121,8 @@ export const useCart = (args) => {
   }, [relationAdded])
 
   useEffect(() => {
+    if(userData === null && loggedIn === 'loggedIn') setButtonText(SELECT_ADD_MEMBER)
+    else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
     if (loggedIn === 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
       dispatch(getCartUserThunk());
     } else if(loggedIn !== 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved) {
@@ -145,6 +148,7 @@ export const useCart = (args) => {
 
   useEffect(() => {
     if (navigation.isFocused()) {
+      setAddButtonPress(false);
       setModalVisible(false);
       setCheckBoxStatus('unchecked');
       setCheckBoxFlag([]);
@@ -217,12 +221,12 @@ export const useCart = (args) => {
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
-    if ((couponViewCart || couponView) && (isRemoved || addToCartItem)) {
+    if ((couponViewCart || couponView) && (isRemoved || addToCartItem) && navigation.isFocused() && route?.name === 'Cart') {
       dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
       dispatch(removeCoupon());
       dispatch(removeCouponCart());
     }
-  }, [isRemoved, addToCartItem]);
+  }, [isRemoved, addToCartItem, focused]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
@@ -243,6 +247,14 @@ export const useCart = (args) => {
   const onRelationModalCrossPress = () => {
     setRelationsModalVisible(false);
   };
+
+  const onContainerCrossPress = () => {
+    setCheckBoxStatus('unchecked');
+    setCheckBoxFlag([]);
+    setCheckBoxPress(0);
+    setActiveIndex(null);
+    setUserData(null);
+  }
 
 
   return {
@@ -272,5 +284,6 @@ export const useCart = (args) => {
     onSaveRelationsPress,
     relativesData: activeRelations.map((item, index) => { return { key: index.toString(), value: item?.name, relation: item?.id } }),
     loading,
+    onContainerCrossPress
   };
 };

@@ -3,17 +3,14 @@ import {
   WHITE,
   INDIGO_LIGHT,
   GAINSBORO_LIGHT,
-  ECHO_BLUE,
   ORANGE,
-  CYAN_BLUE,
-  SUNSET_ORANGE,
 } from '../../styles/colors';
-import {CENTER, LINE_THROUGH, ROW} from '../../styles/constants';
+import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    borderRadius: 12,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: GAINSBORO_LIGHT,
     paddingTop: 14,
@@ -21,10 +18,9 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   iconContainer: {marginLeft: 20, width: 36, height: 36},
-  descriptionContainer: {marginTop: 14, marginLeft: 14},
-  costContainer: {flexDirection: ROW ,marginTop: 9, marginLeft: 14,marginBottom:9},
-  textContainer: {marginLeft: 14, marginVertical: 8},
-  addButtonViewContainer: {paddingLeft: 14, paddingRight: 90},
+  descriptionContainer: {marginTop: 20, marginLeft: 14},
+  textContainer: {marginLeft: 14, marginVertical:8},
+  addButtonViewContainer: {paddingLeft: 14, paddingRight: 90, marginTop: 16, marginBottom: 6},
   addButtonContainer: {
     borderRadius: 12,
     backgroundColor: ORANGE,
@@ -34,45 +30,17 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   descriptionStyle: {
-    fontFamily: fonts.family.rubik500,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.rubik700,
     color: INDIGO_LIGHT,
     fontSize: fonts.size.fontSize12,
     lineHeight: 18,
     maxWidth: 144,
   },
-   costStyle: {
-    fontFamily: fonts.family.rubik500,
-    fontWeight: fonts.weight.fontWeight500,
-    color: CYAN_BLUE,
-    fontSize: fonts.size.fontSize14,
-    lineHeight: 21,
-    maxWidth: 144,
-  },
-  discountStyle: {
-    fontFamily: fonts.family.rubik500,
-    fontWeight: fonts.weight.fontWeight500,
-    color: SUNSET_ORANGE,
-    fontSize: fonts.size.fontSize14,
-    lineHeight: 21,
-    maxWidth: 144,
-    textDecorationLine: LINE_THROUGH,
-    marginLeft: 14
-  },
-  textStyle: {
-    fontFamily: fonts.family.rubik300,
-    fontWeight: fonts.weight.fontWeight300,
-    color: ECHO_BLUE,
-    fontSize: fonts.size.fontSize10,
-    lineHeight: 15,
-    maxWidth:132,
-  },
   buttonText: {
-    fontFamily: fonts.family.rubik500,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.rubik700,
     color: WHITE,
     fontSize: fonts.size.fontSize14,
     lineHeight: 21,
   },
-  imageStyle: {width: 36, height: 36},
+  imageStyle: {width: 46, height: 46}
 });

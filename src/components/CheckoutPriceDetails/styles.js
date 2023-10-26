@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLUE_GRAY, CHARCOAL, COUPON_DARK_GREY, CYAN_BLUE, DARK_GRAY, DEEP_BLUE, GREEN, GREY70, INDIGO, ORANGE, WHITE } from '../../styles/colors'
-import { FLEX_END, RIGHT, ROW, SPACE_BETWEEN, CENTER } from '../../styles/constants';
+import { BLACK, BLUE_GRAY, CHARCOAL, COUPON_DARK_GREY, CYAN_BLUE, DARK_GRAY, DEEP_BLUE, GREEN, GREY70, INDIGO, ORANGE, WHITE, WHITE_OPACITY } from '../../styles/colors'
+import { FLEX_END, RIGHT, ROW, SPACE_BETWEEN, CENTER, COLUMN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -222,5 +222,48 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize12,
     },
-    collectionContainer: {flexDirection:ROW,marginTop:'2.5%'}
+    collectionContainer: {flexDirection:ROW,marginTop:'2.5%'},
+    paymentMethodContainer: {
+        marginHorizontal: 25,
+        marginTop: 16,
+    },
+    lineStyle: {
+        borderColor: GREY70,
+        borderWidth: 0.5,
+    },
+    paymentText: {
+        paddingVertical: 16,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+    },
+    paymentRadioText: {
+        alignItems: CENTER,
+        color: CYAN_BLUE,
+        fontFamily: fonts.family.rubik400,
+        fontSize: fonts.size.fontSize16,
+    },
+    outerRadioStyle:{
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        borderWidth: 3,
+        borderColor: BLACK,
+        alignItems: CENTER,
+        justifyContent: CENTER,
+        marginRight: 10,
+    },
+    radioSelected: {
+        width: 8,
+        height: 8,
+        borderRadius: 5,
+        backgroundColor: BLACK,
+    },
+    paymentMethodBottomContainer: {
+        flexDirection: ROW,
+        justifyContent:SPACE_BETWEEN
+    },
+    innerContainer: {
+        flexDirection: ROW,
+    }
 })

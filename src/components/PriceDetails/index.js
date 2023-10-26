@@ -71,7 +71,7 @@ const PriceDetails = props => {
           <View >
             <MaterialIcon name="local-offer" size={15} style={iconStyle} />
           </View>
-          {(selectedCouponCode || couponViewCart) && <View>
+          {(selectedCouponCode || couponViewCart || couponView) && <View>
             <Text style={appliedStyle}>{typeof couponView === 'string' && couponView?.length > 0 ? couponView : couponViewCart}</Text>
           </View>}
           <View>

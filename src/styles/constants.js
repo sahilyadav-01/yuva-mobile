@@ -16,3 +16,5 @@ export const LINE_THROUGH = 'line-through'
 export const ROW_REVERSE = 'row-reverse';
 export const HIDDEN = 'hidden';
 export const SPACE_AROUND = 'space-around';
+export const AUTO='auto';
+export const  CONTAIN='contain';

@@ -104,7 +104,7 @@ const DetailsView = props => {
             <View style={planDetailsContainer}>
               <Text style={planText}>{item?.name}</Text>
               <View style={rowView}>
-                {item?.discount && (
+                {!(item?.totalAmount === item?.amountPaid) &&item?.discount && (
                   <Text style={[amountText, regularPriceText]}>{`₹${Math.ceil(
                     item?.totalAmount,
                   )}/-`}</Text>

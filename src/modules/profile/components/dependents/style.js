@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts } from '../../../../styles/fonts';
 import { WHITE, ORANGE, SHADOW, CYAN_BLUE } from '../../../../styles/colors';
-import { ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 
 const styles = ({ disabled, hideShadow }) => {
   return StyleSheet.create({
@@ -39,7 +39,8 @@ const styles = ({ disabled, hideShadow }) => {
       fontSize: fonts.size.fontSize14,
       height: 21,
     },
-    rowView: {flexDirection:ROW}
+    rowView: {flexDirection:ROW},
+    crossContainer:{alignSelf:FLEX_END,marginBottom:4},
   });
 };
 
