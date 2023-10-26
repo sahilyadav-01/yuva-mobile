@@ -56,7 +56,7 @@ export const useCart = (args) => {
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
       }
     } else {
-      navigation.navigate(LOGIN_SCREEN_NAVIGATION);
+      navigation.navigate('Home',{screen:LOGIN_SCREEN_NAVIGATION,params:{from: 'CartScreen'}});
     }
   };
   const onSaveDetailsPress = (arg) => {
@@ -121,6 +121,8 @@ export const useCart = (args) => {
   }, [relationAdded])
 
   useEffect(() => {
+    if(userData === null && loggedIn === 'loggedIn') setButtonText(SELECT_ADD_MEMBER)
+    else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
     if (loggedIn === 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
       dispatch(getCartUserThunk());
     } else if(loggedIn !== 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved) {
@@ -247,6 +249,14 @@ export const useCart = (args) => {
     setRelationsModalVisible(false);
   };
 
+  const onContainerCrossPress = () => {
+    setCheckBoxStatus('unchecked');
+    setCheckBoxFlag([]);
+    setCheckBoxPress(0);
+    setActiveIndex(null);
+    setUserData(null);
+  }
+
 
   return {
     cart,
@@ -275,5 +285,6 @@ export const useCart = (args) => {
     onSaveRelationsPress,
     relativesData: activeRelations.map((item, index) => { return { key: index.toString(), value: item?.name, relation: item?.id } }),
     loading,
+    onContainerCrossPress
   };
 };
