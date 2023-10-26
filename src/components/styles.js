@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
-    width:"40%",
+    width:"70%",
   },
   ImageStyle: {
     flexDirection: ROW,
@@ -124,6 +124,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
+     marginRight:'5%',
   },
   labTest: {
     flexDirection: COLUMN,
@@ -687,6 +688,7 @@ export const styles = StyleSheet.create({
     marginTop: '5%',
   },
   HospitalStyle: {
+    color: CYAN_BLUE,
     marginBottom: 13,
     marginLeft: '3%',
     fontSize: fonts.size.fontSize10,

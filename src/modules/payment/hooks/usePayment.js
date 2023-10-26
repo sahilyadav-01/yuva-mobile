@@ -14,7 +14,7 @@ export const usePayment = paymentProps => {
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const navigation = useNavigation();
-  const {encReqLoading, encReq, createOrderLoading, orderId,order} = useSelector(
+  const {encReqLoading, encReq, createOrderLoading, orderId,order, cod} = useSelector(
     state => state.payment,
   );
   const [createOrder, setCreateOrder] = useState(false);
@@ -26,6 +26,7 @@ export const usePayment = paymentProps => {
       dispatch(
         createOrderThunk({
           plan,
+          cod,
           bookingRequestDto,
           subscriptionRequestDto,
           name,
@@ -38,7 +39,7 @@ export const usePayment = paymentProps => {
   }, [focused]);
 
   useEffect(() => {
-    if (createOrder && !createOrderLoading && orderId && !order?.amountZero) {
+    if (createOrder && !createOrderLoading && orderId && !cod && !order?.amountZero) {
       dispatch(
         encReqThunk({
           plan,
@@ -48,10 +49,16 @@ export const usePayment = paymentProps => {
         }),
       );
     }
-    else if (createOrder && !createOrderLoading && orderId && order?.amountZero){
+    else if (createOrder && !createOrderLoading && orderId && !cod && order?.amountZero){
       navigation.navigate('Payment', {
         screen: 'PaymentStatus',
         params: {zeroPayment:true},
+      });
+    }
+    else if (createOrder && !createOrderLoading && orderId && !order?.amountZero && cod ){
+      navigation.navigate('Payment', {
+        screen: 'PaymentStatus',
+        params: {cod:true},
       });
     }
   }, [createOrderLoading, orderId, createOrder]);

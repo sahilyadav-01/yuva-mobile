@@ -241,7 +241,7 @@ export const usePackage = (initialIndex) => {
     else if (text.trim().length >= 3) setSearch(text.trim());
   };
 
-  const onContinuePress = () => navigation.navigate('CartScreen')
+  const onContinuePress = () => navigation.navigate('HomeScreen',{screen:'HomeDrawer',params:{screen:'Cart'}})
 
   return {
     onSearch,

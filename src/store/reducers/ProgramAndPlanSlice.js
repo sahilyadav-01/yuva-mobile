@@ -41,6 +41,18 @@ export const planPopularThunk = createAsyncThunk(
     }
   }
 );
+export const getAllPlanServicesThunk = createAsyncThunk(
+  'plan/services',
+  async (Uuid, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const endpoint = `/plan/services?planUuid=${Uuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, { fulfillWithValue, rejectWithValue }) => {
@@ -132,6 +144,13 @@ const initialState = {
   lockedState: [],
   planLockLoading: false,
   guestPlanData:{},
+  ourPlanData:[],
+  planDetailsLoading:false,
+  planDetailsError:false,
+  getAllPlanServices:[],
+  getAllPlanServicesLoading:false,
+  getAllPlanServicesError:false,
+  planType:''
 }
 
 const programAndPlanSlice = createSlice({
@@ -148,8 +167,14 @@ const programAndPlanSlice = createSlice({
     setIndex(state, { payload }) {
       state.mainItem = payload;
     },
+    setOurPlanData(state,{payload}){
+      state.ourPlanData=payload;
+    },
     saveGuestPlanData(state, { payload }) {
       state.guestPlanData = payload;
+    },
+    selectedItem(state,{payload}){
+      state.setItemName=payload;
     },
   },
   extraReducers: {
@@ -187,25 +212,47 @@ const programAndPlanSlice = createSlice({
     [planPopularThunk.rejected]: (state, { payload }) => {
       state.loading = false;
     },
+    [getAllPlanServicesThunk.pending]: (state, { payload }) => {
+      state.getAllPlanServicesLoading=true;
+      state.getAllPlanServicesError=false;
+      state.getAllPlanServices=[];
+    },
+    [getAllPlanServicesThunk.fulfilled]: (state, {payload}) => {
+      state.getAllPlanServices = payload.data
+      state.getAllPlanServicesLoading=false;
+      state.getAllPlanServicesError=false;
+    },
+    [getAllPlanServicesThunk.rejected]: (state, { payload }) => {
+      state.getAllPlanServicesLoading=false;
+      state.getAllPlanServicesError=true;
+      state.getAllPlanServices=[];
+    },
     [planDetailsThunk.pending]: (state, { payload }) => {
       state.loading = true;
+      state.planDetailsLoading=true;
+      state.planDetailsError=false;
     },
     [planDetailsThunk.fulfilled]: (state, {payload}) => {
       state.planDetails = payload.data?.filter(item=>{
         if(item !== null && item !== "null") return item});
       state.loading = false;
+      state.planDetailsLoading=false;
+      state.planDetailsError=false;
     },
     [planDetailsThunk.rejected]: (state, { payload }) => {
       state.loading = false;
+      state.planDetailsLoading=false;
+      state.planDetailsError=true;
     },
     [planAmountThunk.pending]: (state, { payload }) => {
       state.loading = true;
     },
     [planAmountThunk.fulfilled]: (state, { payload }) => {
-      state.planAmountToBePaid = payload?.data.planAmountResponse.ANNUALLY.amountToBePaid;
-      state.planCostAfterDiscount = payload?.data.planAmountResponse.ANNUALLY.costAfterDiscount;
-      state.planDiscountBeforeCoupon = payload?.data.planAmountResponse.ANNUALLY.discountBeforeCoupon;
-      state.planPrice = payload?.data.planAmountResponse.ANNUALLY.price;
+      state.planAmountToBePaid = payload?.data.planAmountResponse;
+      state.planCostAfterDiscount = payload?.data.planAmountResponse;
+      state.planDiscountBeforeCoupon = payload?.data.planAmountResponse;
+      state.planPrice=payload?.data?.planAmountResponse;
+      state.planType=payload?.data?.planType;
       state.loading = false;
     },
     [planAmountThunk.rejected]: (state, { payload }) => {
@@ -258,5 +305,5 @@ const programAndPlanSlice = createSlice({
 });
 
 export const { programAndPlanInit } = programAndPlanSlice.getInitialState();
-export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData } = programAndPlanSlice.actions;
+export const { popularPackageName, setIndex, setPlanDetails, resetPackages, saveGuestPlanData,setOurPlanData,selectedItem } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

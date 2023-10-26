@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
-import {SVG} from '../../../assets';
 import {PALE_ORANGE} from '../../styles/colors';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
+import { SVG } from '../../../assets';
 
 const Search = props => {
   const {
@@ -14,6 +14,7 @@ const Search = props => {
     isSearch,
     editable,
     onSubmitEditing,
+    searchStyle
   } = props;
   const navigation = useNavigation();
   const onSubmit = () => {
@@ -27,8 +28,8 @@ const onPress=()=>{
   }
 }
   return (
-    <View style={styles.conatiner}>
-      <SVG.SearchIcon />
+    <View style={styles.container}>
+      <SVG.SEARCH_NETWORK_SEARCH_ICON />
       <TextInput
         onSubmitEditing={onSubmit}
         editable={editable}
@@ -36,7 +37,7 @@ const onPress=()=>{
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={PALE_ORANGE}
-        style={styles.textInputStyles}
+        style={[styles.textInputStyles,searchStyle]}
         value={value}
         onPressIn={onPress}
       />

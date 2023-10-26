@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">yuva</string>
+    <string name="app_name">Yuva</string>
     <string name="freshchat_file_provider_authority">com.yuva.provider</string>
 </resources>

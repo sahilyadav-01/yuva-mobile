@@ -1,8 +1,10 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Alert} from 'react-native';
 import {styles} from './style';
 import {
   ADD_MEMBERS,
+  ALERT_DESCRIPTION,
+  ALERT_TITLE,
   LOCK_PLAN,
   NO_RELATIONS,
   PLAN_LOCKED,
@@ -36,6 +38,20 @@ const PlanLockView = props => {
       </View>
     );
   };
+  const handleAddMembersPress = () => {
+    if (!planDetails.cardNumber) {
+      Alert.alert(ALERT_TITLE, ALERT_DESCRIPTION);
+    } else {
+      onAddMembersPress();
+    }
+  };
+  const handleLockPlanPress = () => {
+    if (!planDetails.cardNumber) {
+      Alert.alert(ALERT_TITLE, ALERT_DESCRIPTION);
+    } else {
+      onLockPlan(planDetails);
+    }
+  };
   return (
     <View style={style.container}>
       <Text style={style.headingText}>{PLAN_MEMBERS}</Text>
@@ -55,14 +71,14 @@ const PlanLockView = props => {
         )}
       </View>
       <TouchableOpacity
-        onPress={onAddMembersPress}
+        onPress={handleAddMembersPress}
         style={style.buttonContainer}>
         <SVG.PlusIcon />
         <Text style={style.buttonText}>{ADD_MEMBERS}</Text>
       </TouchableOpacity>
       <View style={style.separatorStyle} />
       <TouchableOpacity
-        onPress={() => onLockPlan(planDetails)}
+        onPress={handleLockPlanPress} 
         style={style.buttonContainer}>
         <SVG.Lock />
         <Text style={style.buttonText}>{LOCK_PLAN}</Text>

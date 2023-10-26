@@ -53,12 +53,16 @@ export const styles = () => {
     buttonContainer: {
       borderTopLeftRadius: 12,
       borderTopRightRadius: 12,
+      borderBottomLeftRadius: 12,
+      borderBottomRightRadius: 12,
       paddingVertical: 12,
-      width: windowWidth,
+      width: windowWidth - 32,
       alignItems: CENTER,
       justifyContent: CENTER,
       backgroundColor: ORANGE,
-      marginHorizontal: 0
+      marginHorizontal: 0,
+      marginBottom: 24,
+      alignSelf: CENTER
     },
     buttonTextStyle: {
       fontFamily: fonts.family.rubik600,

@@ -33,5 +33,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
   },
   emptyCartContainer: {flex:1,height:getWindowDimensions().height,alignItems:CENTER,justifyContent:CENTER},
-  emptyCartText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize14,color:CYAN_BLUE}
+  emptyCartText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize14,color:CYAN_BLUE},
+  crossContainerStyle: {paddingTop: 4}
 });
