@@ -59,7 +59,7 @@ export const usePurchase = plan => {
       setPlanList(
         _.uniqBy(
           planList.concat(plans.userPlanOrderHistoryResponseDtoList),
-          'dateOfPurchase',
+          'orderNumber',
         ),
       );
       setPlanListLoading(false);
