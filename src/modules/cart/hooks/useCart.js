@@ -218,7 +218,6 @@ export const useCart = (args) => {
         relations[checkBoxFlag.find(item => item.status === 'checked').index];
       setUserData({ id, name, age, gender, genderId: gender === 'Male' ? 0 : 1, relation });
     }
-    else setUserData(null);
   }, [checkBoxStatus, checkBoxFlag]);
 
   useEffect(() => {
