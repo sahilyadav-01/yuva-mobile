@@ -21,7 +21,7 @@ const OnMood9 = (props) => {
     else if (onMood9Error)
       return (
         <View style={style.contentContainer}>
-          <Text>{ERROR_TEXT}</Text>
+          <Text style={style.errorText}>{ERROR_TEXT}</Text>
         </View>
       );
     else if (
