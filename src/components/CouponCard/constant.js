@@ -10,3 +10,4 @@ export const DISCOUNT = (item) => `₹ ${item}/- OFF`;
 export const DISCOUNT_PERCENTAGE = (item) => `${item}% OFF`;
 export const DISCOUNT_UPTO = (item) => `Upto ₹ ${item} off`;
 export const COUPON_CODE = (item) => `Code: ${item}`;
+export const NO_COUPON_TEXT = 'No Coupon Available';

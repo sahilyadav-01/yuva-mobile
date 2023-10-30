@@ -8,6 +8,7 @@ import {
   COUPON_APPLIED,
   PLACEHOLDER_TEXT,
   COUPON_LABEL,
+  NO_COUPON_TEXT,
   DISCOUNT,
   DISCOUNT_PERCENTAGE,
   DISCOUNT_UPTO,
@@ -78,7 +79,7 @@ const CouponCard = (props) => {
           <Icon name="arrow-long-right" color={WHITE} size={20} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.couponLabelStyles}>{COUPON_LABEL}</Text>
+      <Text style={styles.couponLabelStyles}>{coupon.length >=1 ? COUPON_LABEL : NO_COUPON_TEXT}</Text>
       <FlatList
         data={coupon}
         keyExtractor={(item, index) => `${index}`}
