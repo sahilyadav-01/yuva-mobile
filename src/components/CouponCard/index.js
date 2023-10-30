@@ -25,7 +25,7 @@ import { useRoute } from '@react-navigation/native';
 const CouponCard = (props) => {
   const route = useRoute();
   const { isPlan, planType ,planUuid } = props;
-  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart,planTypee,couponAvailable} = useCouponCard( isPlan, planUuid,planType );
+  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart,planTypee} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -79,7 +79,7 @@ const CouponCard = (props) => {
           <Icon name="arrow-long-right" color={WHITE} size={20} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.couponLabelStyles}>{couponAvailable ? COUPON_LABEL : NO_COUPON_TEXT}</Text>
+      <Text style={styles.couponLabelStyles}>{coupon.length >=1 ? COUPON_LABEL : NO_COUPON_TEXT}</Text>
       <FlatList
         data={coupon}
         keyExtractor={(item, index) => `${index}`}
