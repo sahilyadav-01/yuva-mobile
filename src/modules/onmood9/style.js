@@ -11,6 +11,10 @@ export const styles = () => {
       fontFamily: fonts.family.rubik600,
       fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
+      textAlign: CENTER,
+    },
+    errorContainer: {
+      paddingHorizontal: 16
     }
   });
 };

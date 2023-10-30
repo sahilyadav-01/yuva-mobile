@@ -52,7 +52,7 @@ export const paymentStatus = createAsyncThunk(
 
 export const subscriptionDetails = createAsyncThunk(
   'payment/subscriptionDetails',
-  async () => {
+  async (params = null,{fulfillWithValue,rejectWithValue}) => {
     try {
       const endpoint = `/onmood9`;
       const response = await YuvaService.get(endpoint);
@@ -78,6 +78,7 @@ const initialState = {
   onMood9Loading: false,
   onMood9Error:false,
   cod:false,
+  onMood9ErrorMessage: '',
 };
 
 const paymentSlice = createSlice({
@@ -136,16 +137,19 @@ const paymentSlice = createSlice({
       state.onMood9Loading = true;
       state.onMood9Error = false;
       state.subscriptionDetails = null;
+      state.onMood9ErrorMessage = '';
     },
     [subscriptionDetails.fulfilled]: (state,{payload}) => {
       state.onMood9Loading = false;
       state.onMood9Error = false;
       state.subscriptionDetails = payload?.data;
+      state.onMood9ErrorMessage = '';
     },
-    [subscriptionDetails.rejected]: (state) => {
+    [subscriptionDetails.rejected]: (state,{payload}) => {
       state.onMood9Loading = false;
       state.onMood9Error = true;
       state.subscriptionDetails = null;
+      state.onMood9ErrorMessage = payload?.response?.data?.errorMessage;
     }
   },
 });

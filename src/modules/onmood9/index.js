@@ -9,7 +9,7 @@ import { MENTAL_WELLNESS } from './components/onMood9Details/constants';
 
 const OnMood9 = (props) => {
   const {onMood9Props} = props;
-  const {encodedQueryString, onMood9Error, onMood9Loading, uri} = useOnMood9(onMood9Props);
+  const {encodedQueryString, onMood9Error, onMood9Loading, uri, onMood9ErrorMessage} = useOnMood9(onMood9Props);
   const style = styles();
   const getContent = () => {
     if (onMood9Loading)
@@ -20,8 +20,8 @@ const OnMood9 = (props) => {
       );
     else if (onMood9Error)
       return (
-        <View style={style.contentContainer}>
-          <Text style={style.errorText}>{ERROR_TEXT}</Text>
+        <View style={[style.contentContainer,style.errorContainer]}>
+          <Text style={style.errorText}>{onMood9ErrorMessage ?? ERROR_TEXT}</Text>
         </View>
       );
     else if (
