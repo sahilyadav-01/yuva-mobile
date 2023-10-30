@@ -91,6 +91,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
 
     return {
         coupon,
+        couponAvailable: coupon.length >= 1 ? true : false,
         couponView,
         onApply,
         onCouponValue,
