@@ -107,7 +107,7 @@ export const verifyChangeThunk = createAsyncThunk(
       const endpoint = `/validate-otp`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
       return {...response.data, verificationType};
-    } catch(e) {
+    } catch(error) {
       return rejectWithValue(error.response.data);
     }
   }
@@ -304,6 +304,7 @@ const authSlice = createSlice({
     emailErrorMsg: '',
     otpNumber: '',
     otpEmail: '',
+    otpErrorMessage:''
   },
   reducers: {
     hideErrorBox(state) {
@@ -339,7 +340,10 @@ const authSlice = createSlice({
     },
     setLoginState(state){
       state.loggedIn = 'loggedIn';
-    }
+    },
+    resetOtpMessage(state) {
+      state.otpErrorMessage = '';
+    },
   },
   extraReducers: {
     [loginThunk.pending]: (state, {payload}) => {
@@ -498,6 +502,7 @@ const authSlice = createSlice({
       state.apiErrorMessage = '';
       state.numberVerified = meta?.arg?.verificationType === 'number' ? false: state.numberVerified;
       state.emailVerified = meta?.arg?.verificationType === 'email' ? false: state.emailVerified;
+      state.otpErrorMessage = '';
     },
     [verifyChangeThunk.fulfilled]: (state, action) => {
       state.loading = false;
@@ -507,6 +512,7 @@ const authSlice = createSlice({
       state.emailVerified = action?.payload?.verificationType === 'email' ? action.payload.data: state.emailVerified;
       state.otpNumber = action?.payload?.verificationType === 'number' ? action?.meta?.arg?.otp: state.otpNumber;
       state.otpEmail = action?.payload?.verificationType === 'email'? action?.meta?.arg?.otp: state.otpEmail;
+      state.otpErrorMessage = '';
     },
     [verifyChangeThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -514,6 +520,7 @@ const authSlice = createSlice({
       state.apiErrorMessage = action.payload.errorMessage;
       state.numberVerified = action?.meta?.arg?.verificationType === 'number'? false: state.numberVerified;
       state.emailVerified = action?.meta?.arg?.verificationType === 'email'? false: state.emailVerified;
+      state.otpErrorMessage = action.payload.errorMessage ?? action.payload.otp ?? 'Invalid otp';
     },
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
@@ -654,7 +661,8 @@ export const {
   resetNumberVerified,
   resetEmailOtp,
   resetNumberOtp,
-  setLoginState
+  setLoginState,
+  resetOtpMessage,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

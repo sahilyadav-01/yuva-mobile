@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   loginThunk,
   resetHash,
+  resetOtpMessage,
   signupThunk,
   verifyChangeThunk,
   verifyOtp,
@@ -11,6 +12,7 @@ import {
   verifyThunk,
 } from '../../../store/reducers/AuthSlice';
 import { setNewEmail, setNewNumber } from '../../../store/reducers/ProfileSlice';
+import { Alert } from 'react-native';
 
 export const useOtp = (otpProps) => {
   const {email, verificationType} = otpProps;
@@ -25,6 +27,7 @@ export const useOtp = (otpProps) => {
     verifyLinkSuccessOtp,
     numberVerified,
     emailVerified,
+    otpErrorMessage,
   } = useSelector(state => state.auth);
   const navigation = useNavigation();
   const [otp, setOtp] = useState('');
@@ -70,6 +73,12 @@ export const useOtp = (otpProps) => {
     }
   }, [enableNavigation, from, verifyLinkLoading, number]);
 
+  useEffect(()=>{
+    if(otpErrorMessage) {
+      Alert.alert('Alert',otpErrorMessage);
+      dispatch(resetOtpMessage());
+    }
+  },[otpErrorMessage])
   const onVerify = (params, from, resetPassword) => {
     setFrom(from);
     if (resetPassword) {
@@ -80,7 +89,8 @@ export const useOtp = (otpProps) => {
       const {number, email, name, password} = params;
       dispatch(signupThunk({email, name, number, numberOtp: otp, password}));
     } else if (from === 'Profile'  && ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email')){
-      dispatch(verifyChangeThunk({emailOrNumber: params?.email, otp, verificationType: params?.verificationType}));
+      const isValid =  ((otp).length === 4) && (/^\d+$/).test(otp);
+      isValid ? dispatch(verifyChangeThunk({emailOrNumber: params?.email, otp, verificationType: params?.verificationType})) : Alert.alert('Alert', 'Invalid otp')
     } else if ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email') {
       dispatch(verifyThunk({emailOrNumber: params?.email, otp}));
     }

@@ -1,16 +1,16 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addErmThunk, documentTypeThunk, resetSuccessMessage } from '../../../../store/reducers/EmrmSlice';
+import { addErmThunk, documentTypeThunk, resetAddErmThunkError, resetSuccessMessage } from '../../../../store/reducers/EmrmSlice';
 import DocumentPicker from 'react-native-document-picker';
 import { Alert } from 'react-native';
-import { ALERT, VALIDATION_MESSAGE1, VALIDATION_MESSAGE2, VALIDATION_MESSAGE3, VALIDATION_MESSAGE4, VALIDATION_MESSAGE5 } from '../constants';
+import { ALERT, INTERNAL_ERROR, VALIDATION_MESSAGE1, VALIDATION_MESSAGE2, VALIDATION_MESSAGE3, VALIDATION_MESSAGE4, VALIDATION_MESSAGE5 } from '../constants';
 
 export const useEmrmCreateRecord = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
-  const { dropDownData, emrmUploadMessage } = useSelector(state => state.Emrm);
+  const { dropDownData, emrmUploadMessage, apiErrorMessage } = useSelector(state => state.Emrm);
   const [documentType, setDocumentType] = useState('');
   const [date, setDate] = useState();
   const [picker, setPicker] = useState(false);
@@ -80,7 +80,19 @@ export const useEmrmCreateRecord = () => {
       ]);
     }
   }, [emrmUploadMessage, focused]);
-
+  useEffect(() => {
+    if (apiErrorMessage !== '' && navigation.isFocused() ) {
+      Alert.alert(ALERT, apiErrorMessage ?? INTERNAL_ERROR, [
+        {
+          text: 'Ok',
+          onPress: () => {
+            dispatch(resetAddErmThunkError());
+            navigation.navigate('EmrmCreateRecord');
+          },
+        },
+      ]);
+    }
+  }, [apiErrorMessage, focused]);
   useEffect(() => {
     if (navigation.isFocused()) {
       dispatch(documentTypeThunk());

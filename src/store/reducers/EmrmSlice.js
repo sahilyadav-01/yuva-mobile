@@ -50,7 +50,7 @@ export const addErmThunk = createAsyncThunk(
 
       return response.data; 
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -72,6 +72,9 @@ const EmrmSlice = createSlice({
   reducers: {
     resetSuccessMessage(state) {
       state.emrmUploadMessage= '';
+    },
+    resetAddErmThunkError(state) {
+      state.apiErrorMessage= '';
     },
   },
   extraReducers: {
@@ -107,6 +110,8 @@ const EmrmSlice = createSlice({
 
     [addErmThunk.pending]: state => {
       state.loading = true;
+      state.apiErrorMessage = '';
+      state.apiError = false;
     },
     [addErmThunk.fulfilled]: (state, { payload }) => {
       state.apiError = false;
@@ -117,10 +122,10 @@ const EmrmSlice = createSlice({
     [addErmThunk.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = payload?.message;
+      state.apiErrorMessage = payload.status === 413 ? 'File size exceeded' : payload?.data?.errorMessage;
     },
   },
 });
-export const {resetSuccessMessage} = EmrmSlice.actions;
+export const {resetSuccessMessage, resetAddErmThunkError} = EmrmSlice.actions;
 export const EmrmInit = EmrmSlice.getInitialState();
 export default EmrmSlice.reducer;
