@@ -149,7 +149,7 @@ const paymentSlice = createSlice({
       state.onMood9Loading = false;
       state.onMood9Error = true;
       state.subscriptionDetails = null;
-      state.onMood9ErrorMessage = payload?.response?.data?.errorMessage;
+      state.onMood9ErrorMessage = payload?.errorMessage;
     }
   },
 });
