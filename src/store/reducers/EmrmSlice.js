@@ -73,6 +73,9 @@ const EmrmSlice = createSlice({
     resetSuccessMessage(state) {
       state.emrmUploadMessage= '';
     },
+    resetAddErmThunkError(state) {
+      state.apiErrorMessage= '';
+    },
   },
   extraReducers: {
     /** getDocumentType Dropdown Data */
@@ -107,6 +110,8 @@ const EmrmSlice = createSlice({
 
     [addErmThunk.pending]: state => {
       state.loading = true;
+      state.apiErrorMessage = '';
+      state.apiError = false;
     },
     [addErmThunk.fulfilled]: (state, { payload }) => {
       state.apiError = false;
@@ -121,6 +126,6 @@ const EmrmSlice = createSlice({
     },
   },
 });
-export const {resetSuccessMessage} = EmrmSlice.actions;
+export const {resetSuccessMessage, resetAddErmThunkError} = EmrmSlice.actions;
 export const EmrmInit = EmrmSlice.getInitialState();
 export default EmrmSlice.reducer;

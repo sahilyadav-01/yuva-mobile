@@ -107,7 +107,7 @@ export const verifyChangeThunk = createAsyncThunk(
       const endpoint = `/validate-otp`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
       return {...response.data, verificationType};
-    } catch(e) {
+    } catch(error) {
       return rejectWithValue(error.response.data);
     }
   }
