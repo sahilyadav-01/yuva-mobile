@@ -50,7 +50,7 @@ export const addErmThunk = createAsyncThunk(
 
       return response.data; 
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -122,7 +122,7 @@ const EmrmSlice = createSlice({
     [addErmThunk.rejected]: (state, { payload }) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = payload?.message;
+      state.apiErrorMessage = payload.status === 413 ? 'File size exceeded' : payload?.data?.errorMessage;
     },
   },
 });
