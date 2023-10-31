@@ -30,12 +30,12 @@ export const usePromotionalBanner = () => {
   const [addedToCart, setAddedToCart] = useState(false);
   const [clearCoupons, setClearCoupons] = useState(false);
   const [applyCoupon, setApplyCoupon] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const badgeCount = cart?.itemDtoList?.length || 0;
 
   useEffect(() => {
-    if (typeof banner2?.data?.data === 'object') setData(banner2.data.data);
-  }, [banner2]);
+    if (banner2?.data?.data.length > 0) setData(banner2?.data?.data);
+  }, [banner2?.data]);
 
   useEffect(() => {
     if (
@@ -139,6 +139,8 @@ export const usePromotionalBanner = () => {
               description: item?.description,
               buttonText: 'Consult Now',
             };
+          default:
+            return null;
         }
         break;
       default:
