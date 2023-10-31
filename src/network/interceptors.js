@@ -12,7 +12,7 @@ const handleMaintaince = flag => {
   store.dispatch(maintainceThunk(flag));
 };
 
-const byPassForbiddenUrls = ['/onmood9','/emrs'];
+const byPassForbiddenUrls = ['/onmood9','/erms'];
 
 let axiosClient = axios.create();
 axiosClient.interceptors.request.use(
