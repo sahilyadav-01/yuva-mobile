@@ -106,6 +106,7 @@ export const useFooter = planDetails => {
     if (relationAdded) {
       setCurrentItem(null);
       setAddMember(true);
+      if(addedPlanDetails?.uuid && addedPlanDetails?.version && addedPlanDetails?.userVersion)
       dispatch(
         getRelations({
           uuid: addedPlanDetails?.uuid,

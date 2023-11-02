@@ -37,7 +37,6 @@ const OfferBanner1 = props => {
       <FlatList
         onMomentumScrollEnd={onChange}
         pagingEnabled={true}
-        key={(item, index) => index.toString()}
         keyExtractor={(item, index) => index.toString()}
         nestedScrollEnabled={true}
         showsHorizontalScrollIndicator={false}

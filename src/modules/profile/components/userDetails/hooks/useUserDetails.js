@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetEmailVerified, resetNumberVerified, verifyEmailThunk, verifySmsThunk } from '../../../../../store/reducers/AuthSlice';
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
 import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
-import { ALERT, COVER_MESSAGE, ERROR, HURRAY, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
+import { ALERT, COVER_MESSAGE, ERROR, HURRAY, INVALID_NUMBER_TEXT, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
 import { getRole } from '../../../../../store/LocalStore';
 
 export const useUserDetails=(userDetails, edit)=>{
@@ -41,8 +41,12 @@ const onError=(error)=>{
 
 
 const onVerifyPhone = () => {
-  dispatch(verifySmsThunk({number: phoneNumber}));
-  setNumberLoading(true);
+  const numberCheck = /(0|91)?[6-9][0-9]{9}/;
+  if (numberCheck.test(phoneNumber.toString()) && phoneNumber.toString().length === 10) {
+    dispatch(verifySmsThunk({number: phoneNumber}));
+    setNumberLoading(true);
+  }
+  else Alert.alert('Alert',INVALID_NUMBER_TEXT);
 };
 
 useEffect(() => {
