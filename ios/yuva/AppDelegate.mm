@@ -67,7 +67,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [notifcenter setDelegate: self];
   [notifcenter requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionAlert |UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
   }];
-
+  [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
   return YES;
 }
 
