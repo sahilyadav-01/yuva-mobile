@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -53,6 +53,7 @@ export const HomeScreen = () => {
         searchPlaceholder="Search"
       />
       <ScrollView nestedScrollEnabled={true}>
+        <View>
         <OfferBanner1 bannerData={banner1} />
         <AppointmentTag />
         <Services renderservicesItem={renderservicesItem} />
@@ -72,6 +73,7 @@ export const HomeScreen = () => {
           loggedIn={loggedIn}
           onPackagePress={onPackagePress}
         />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
