@@ -32,6 +32,9 @@ import purchases, { purchasesInit } from './reducers/PurchasesSlice';
 import pharmacy, {pharmacyInit} from './reducers/PharmacySlice';
 import Emrm, { EmrmInit } from './reducers/EmrmSlice';
 import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
+import SearchNetwork , { SearchNetworkInit } from './reducers/SearchNetworkSlice';
+import banner, { bannerInit } from './reducers/BannerSlice';
+import homeSearch, { homeSearchInit } from './reducers/HomeSearchSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -63,6 +66,9 @@ const storeInitialState = {
   pharmacy:pharmacyInit,
   Emrm: EmrmInit,
   maintainence: maintainenceInit,
+  SearchNetwork : SearchNetworkInit,
+  banner: bannerInit,
+  homeSearch: homeSearchInit,
 };
 
 const appReducer = combineReducers({
@@ -94,7 +100,10 @@ const appReducer = combineReducers({
   purchases,
   pharmacy,
   Emrm,
-  maintainence
+  maintainence,
+  SearchNetwork,
+  banner,
+  homeSearch
 });
 
 const rootReducer = (state, action) => {

@@ -1,63 +1,53 @@
 import React from 'react';
+import {View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {BLACK, CYAN_BLUE, ORANGE} from '../styles/colors';
-import {HEALTH_PLANS, HOME, OUR_OFFERS, PROFILE} from './constants';
-import {CENTER} from '../styles/constants';
-import {fonts} from '../styles/fonts';
+import {CYAN_BLUE, ORANGE} from '../styles/colors';
+import {CART, HOME, MY_REPORTS, PROFILE} from './constants';
 import Authentication from './Authentication';
 import {useSelector} from 'react-redux';
-import OurOfferNav from './OurOffersNav';
-import { getPlatform } from '../utils/utils';
-import OurPlanNav from './OurPlanNav';
 import ProfileNavigation from './ProfileNavigation';
+import CartNavigation from './CartNavigation';
+import ReportNav from './ReportNav';
+import { styles } from './bottomTabStyle';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
   const {loggedIn} = useSelector(state => state.auth);
-  const Platform = getPlatform();
+  const { cart } = useSelector(state => state.cart);
+  const badgeCount = cart?.itemDtoList?.length || 0;
+  const style = styles()
+  const BadgeIcon = () => {
+    if(badgeCount > 0)
+    return (
+      <View
+        style={style.badgeContainer}>
+        <Text
+          style={style.badgeText}>
+          {badgeCount}
+        </Text>
+      </View>
+    );
+  };
   return (
     <Tab.Navigator
       screenOptions={{
-        unmountOnBlur: true,
         headerShown: false,
         showLabel: false,
         tabBarShowLabel: true,
         tabBarActiveTintColor: ORANGE,
-        tabBarStyle: {
-          height: 72,
-          paddingBottom:Platform.isIOS ? 8 : undefined,
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.1,
-          shadowColor: BLACK,
-          elevation: 10,
-          borderTopLeftRadius: 12,
-          borderTopRightRadius: 12,
-          shadowRadius: 12,
-        },
-        tabBarLabelStyle: {
-          marginVertical: 4,
-          fontFamily: fonts.family.rubik400,
-          fontSize: fonts.size.fontSize12,
-          fontWeight: fonts.weight.fontWeight500,
-        },
-        tabBarItemStyle: {
-          marginHorizontal: 4,
-          paddingVertical: 4,
-          justifyContent: CENTER,
-          alignItems: CENTER,
-        },
+        tabBarStyle: style.tabBarStyle,
+        tabBarLabelStyle: style.tabBarLabelStyle,
+        tabBarItemStyle: style.tabBarItemStyle,
       }}
       initialRouteName={HOME}>
       <Tab.Screen
         name={HOME}
         component={ServicesNav}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return (
               <Icon
@@ -70,13 +60,14 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name={HEALTH_PLANS}
-        component={OurPlanNav}
+        name={MY_REPORTS}
+        component={ReportNav}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return (
               <Icon
-                name="plus-box-outline"
+                name="clipboard-text-clock-outline"
                 size={35}
                 color={focused ? ORANGE : CYAN_BLUE}
               />
@@ -85,16 +76,19 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name={OUR_OFFERS}
-        component={OurOfferNav}
+        name={CART}
+        component={CartNavigation}
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <Icon
-                name="tag-outline"
-                size={35}
-                color={focused ? ORANGE : CYAN_BLUE}
-              />
+              <View>
+                <BadgeIcon/>
+                <Icon
+                  name="cart-outline"
+                  size={35}
+                  color={focused ? ORANGE : CYAN_BLUE}
+                />
+              </View>
             );
           },
         }}
@@ -105,6 +99,7 @@ const BottomTabs = () => {
           component={Authentication}
           initialParams={{from: PROFILE}}
           options={{
+            unmountOnBlur: true,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon
@@ -121,6 +116,7 @@ const BottomTabs = () => {
           name={PROFILE}
           component={ProfileNavigation}
           options={{
+            unmountOnBlur: true,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon

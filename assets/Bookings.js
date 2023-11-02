@@ -1,19 +1,17 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-
 const Bookings = (props) => (
   <Svg
-    width={16}
-    height={16}
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
     {...props}
   >
     <Path
-      d="M2 3.5H.5V14c0 .825.675 1.5 1.5 1.5h10.5V14H2V3.5Zm12-3H5c-.825 0-1.5.675-1.5 1.5v9c0 .825.675 1.5 1.5 1.5h9c.825 0 1.5-.675 1.5-1.5V2c0-.825-.675-1.5-1.5-1.5ZM14 11H5V2h9v9ZM6.5 5.75h6v1.5h-6v-1.5ZM6.5 8h3v1.5h-3V8Zm0-4.5h6V5h-6V3.5Z"
-      fill="#44576A"
+      fill="#38466C"
+      d="M11.707 2.293A.996.996 0 0 0 11 2H6a.996.996 0 0 0-.707.293l-3 3A.996.996 0 0 0 2 6v5c0 .266.105.52.293.707l10 10a.998.998 0 0 0 1.414 0l8-8a1 1 0 0 0 0-1.414l-10-10ZM8.353 10a1.647 1.647 0 1 1-.082-3.292A1.647 1.647 0 0 1 8.353 10Z"
     />
   </Svg>
 )
-
-export default Bookings
+export default Bookings;

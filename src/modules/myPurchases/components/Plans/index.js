@@ -43,10 +43,21 @@ const RenderPlans = ({item}) => {
         ) : (
           <View>
             <Text style={serviceText}>{item?.serviceName}</Text>
-            {item?.serviceUuid === '1dbcc55e-3dec-4e07-8c2a-e222631afebb' ? (   
-            <Text style={usageText}>{HRA_SUBTEXT_PLAN}</Text>) :( <Text style={usageText}>{`Used -${
-              getTests(item)[0]?.used
-            } Available -${getTests(item)[0]?.available}`}</Text>)}
+            {item?.serviceUuid === '3089855d-85a1-4c2f-9538-c8276cd76768' ? (
+              <Text style={usageText}>
+                Discount - {getTests(item)[0]?.available}%
+              </Text>
+            ) : (
+              <Text style={usageText}>
+                {getTests(item)[0]?.available >= 999 ? (
+                  <Text>
+                    {getTests(item)[0]?.available >= 999 ? HRA_SUBTEXT_PLAN : ` Available - ${getTests(item)[0]?.available}`}
+                  </Text>
+                ) : (<Text>
+                    Used - {getTests(item)[0]?.used}
+                    {getTests(item)[0]?.available >= 999 ? HRA_SUBTEXT_PLAN : ` Available - ${getTests(item)[0]?.available}`}
+                  </Text>)}
+              </Text>)}
           </View>
         )}
       </View>

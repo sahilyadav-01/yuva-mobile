@@ -28,7 +28,8 @@ let address=`${location} ${location2}`
         cityName: city,
         contactNumber: contact,
         location2: location2,
-        saveAs: selected
+        saveAs: selected,
+        cityId: dropdownCityId
     }]
 
     const onChangeLocation = text => {

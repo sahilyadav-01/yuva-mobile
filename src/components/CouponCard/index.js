@@ -8,6 +8,7 @@ import {
   COUPON_APPLIED,
   PLACEHOLDER_TEXT,
   COUPON_LABEL,
+  NO_COUPON_TEXT,
   DISCOUNT,
   DISCOUNT_PERCENTAGE,
   DISCOUNT_UPTO,
@@ -24,7 +25,7 @@ import { useRoute } from '@react-navigation/native';
 const CouponCard = (props) => {
   const route = useRoute();
   const { isPlan, planType ,planUuid } = props;
-  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart} = useCouponCard( isPlan, planUuid,planType );
+  const { coupon, couponView, onApply, onCouponValue, planeCouponCode ,selectedCouponCode, couponViewCart,planTypee} = useCouponCard( isPlan, planUuid,planType );
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const CouponCard = (props) => {
       let couponCode = item.couponCode
       dispatch(selectedCoupon({ couponCode }));
       if (isPlan) {
-        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid }));
+        dispatch(redeemCouponsPlanSliceThunk({ couponCode, planUuid ,planType:planTypee }));
       } else {
         dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
       }
@@ -78,7 +79,7 @@ const CouponCard = (props) => {
           <Icon name="arrow-long-right" color={WHITE} size={20} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.couponLabelStyles}>{COUPON_LABEL}</Text>
+      <Text style={styles.couponLabelStyles}>{coupon.length >=1 ? COUPON_LABEL : NO_COUPON_TEXT}</Text>
       <FlatList
         data={coupon}
         keyExtractor={(item, index) => `${index}`}

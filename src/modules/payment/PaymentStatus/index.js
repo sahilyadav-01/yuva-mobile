@@ -9,6 +9,8 @@ import {
   PAYMENT_SUCCESS_STATUS,
   ZERO_PAYMENT,
   ZERO_PAYMENT_STATUS,
+  COD_PAYMENT,
+  COD_PAYMENT_STATUS,
 } from './constants';
 import {usePaymentStatus} from './hooks/usePaymentStatus';
 import {styles} from './style';
@@ -28,7 +30,7 @@ const PaymentStatus = ({paymentProps}) => {
     crossContainer,
     scrollContainer,
     imageStyle
-  } = styles(paymentSuccess || (paymentProps?.zeroPayment ?? false));
+  } = styles(paymentSuccess || (paymentProps?.zeroPayment ?? false) || (paymentProps?.cod ?? false));
   if (loading)
     return (
       <View style={indicatorStyle}>
@@ -37,23 +39,23 @@ const PaymentStatus = ({paymentProps}) => {
     );
   return (
     <ScrollView style={scrollContainer}>
-    <View style={container}>
-      <View style={screenContainer}>
-        <View style={imageContainer}>
-          <Image source={paymentProps?.zeroPayment || paymentSuccess ? PNG.PaymentSuccessful : PNG.PaymentFail} resizeMode='contain' style={imageStyle}/>
+      <View style={container}>
+        <View style={screenContainer}>
+          <View style={imageContainer}>
+            {paymentProps?.cod ? (<Image source={PNG.YUVA_LOGO} resizeMode='contain' style={imageStyle} />) : (<Image source={paymentProps?.zeroPayment || paymentSuccess ? PNG.PaymentSuccessful : PNG.PaymentFail} resizeMode='contain' style={imageStyle} />)}
+          </View>
+          <Text style={paymentStatus}>
+            {paymentProps?.cod ? COD_PAYMENT_STATUS : paymentProps?.zeroPayment ? ZERO_PAYMENT_STATUS : paymentSuccess ? PAYMENT_SUCCESS_STATUS : PAYMENT_FAILURE_STATUS}
+          </Text>
+          <View style={separator} />
+          <Text style={paymentText}>{paymentProps?.cod ? COD_PAYMENT : paymentProps?.zeroPayment ? ZERO_PAYMENT : paymentSuccess ? PAYMENT_SUCCESS : PAYMENT_FAILURE}
+          {!paymentProps?.cod && <Text style={numberText}>{NUMBER}</Text>}
+          </Text>
+          <TouchableOpacity onPress={onCrossPress} style={crossContainer}>
+            <SVG.Cross color={WHITE} />
+          </TouchableOpacity>
         </View>
-        <Text style={paymentStatus}>
-          {paymentProps?.zeroPayment ? ZERO_PAYMENT_STATUS :  paymentSuccess ? PAYMENT_SUCCESS_STATUS : PAYMENT_FAILURE_STATUS}
-        </Text>
-        <View style={separator} />
-        <Text style={paymentText}>
-          {paymentProps?.zeroPayment ? ZERO_PAYMENT  : paymentSuccess ? PAYMENT_SUCCESS : PAYMENT_FAILURE} <Text style={numberText}>{NUMBER}</Text>
-        </Text>
-        <TouchableOpacity onPress={onCrossPress} style={crossContainer}>
-        <SVG.Cross color={WHITE}/>
-      </TouchableOpacity>
       </View>
-    </View>
     </ScrollView>
   );
 };

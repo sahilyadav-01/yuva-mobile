@@ -9,3 +9,4 @@ export const UNSUCCESSFULL="Please Try Again...!!!";
 export const PROFILE_MESSAGE="Profile image uploaded successfully";
 export const VERIFY = 'Verify';
 export const VERIFIED = 'Verified';
+export const INVALID_NUMBER_TEXT = 'Please enter a valid mobile number';

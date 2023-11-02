@@ -4,11 +4,11 @@ import {YuvaService} from '../../network/yuvaService';
 export const createOrderThunk = createAsyncThunk(
   'payment/createOrder',
   async (
-    {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender},
+    {plan, cod, bookingRequestDto, subscriptionRequestDto, name, age, gender},
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/order?plan=${plan}`;
+      const endpoint = `/order?cod=${cod}&plan=${plan}`;
       const reqBody =
         plan
           ? {bookingRequestDto, subscriptionRequestDto}
@@ -52,7 +52,7 @@ export const paymentStatus = createAsyncThunk(
 
 export const subscriptionDetails = createAsyncThunk(
   'payment/subscriptionDetails',
-  async () => {
+  async (params = null,{fulfillWithValue,rejectWithValue}) => {
     try {
       const endpoint = `/onmood9`;
       const response = await YuvaService.get(endpoint);
@@ -77,11 +77,17 @@ const initialState = {
   subscriptionDetails: null,
   onMood9Loading: false,
   onMood9Error:false,
+  cod:false,
+  onMood9ErrorMessage: '',
 };
 
 const paymentSlice = createSlice({
   name: 'payment',
   initialState,
+  reducers: {
+    resetPaymentMethod(state, payload){
+      state.cod=payload?.payload;
+    }},
   extraReducers: {
     [encReqThunk.pending]: state => {
       state.encReqLoading = true;
@@ -131,20 +137,24 @@ const paymentSlice = createSlice({
       state.onMood9Loading = true;
       state.onMood9Error = false;
       state.subscriptionDetails = null;
+      state.onMood9ErrorMessage = '';
     },
     [subscriptionDetails.fulfilled]: (state,{payload}) => {
       state.onMood9Loading = false;
       state.onMood9Error = false;
       state.subscriptionDetails = payload?.data;
+      state.onMood9ErrorMessage = '';
     },
-    [subscriptionDetails.rejected]: (state) => {
+    [subscriptionDetails.rejected]: (state,{payload}) => {
       state.onMood9Loading = false;
       state.onMood9Error = true;
       state.subscriptionDetails = null;
+      state.onMood9ErrorMessage = payload?.errorMessage;
     }
   },
 });
 
 export const paymentInit = paymentSlice.getInitialState();
+export const {resetPaymentMethod} = paymentSlice.actions;
 
 export default paymentSlice.reducer;

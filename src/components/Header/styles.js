@@ -1,11 +1,27 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, CYAN_BLUE, PINK_ORANGE, WHITE} from '../../styles/colors';
-import {ABSOLUTE, CENTER, FLEX_END, FLEX_START, ROW} from '../../styles/constants';
+import {
+  BLACK,
+  CYAN_BLUE,
+  ORANGE,
+  PINK_ORANGE,
+  WHITE,
+} from '../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  FLEX_END,
+  FLEX_START,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import {getDimensions} from '../../utils/utils';
 
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
+  container: {
+    zIndex: 5
+  },
   headerContainer: {
     minHeight: 0.12 * height,
     width: '100%',
@@ -22,16 +38,33 @@ export const styles = StyleSheet.create({
     zIndex: 1,
   },
   topSection: {
+    paddingHorizontal: 16,
+    backgroundColor: WHITE,
+    paddingVertical: 16,
     flexDirection: ROW,
-    justifyContent: FLEX_END,
-    paddingVertical: 4,
-     paddingTop: 16,
+    alignItems: CENTER,
+    justifyContent: SPACE_BETWEEN,
+    elevation: 10,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowColor: BLACK,
+  },
+  nameContainer: {
+    marginVertical: 4,
+    width: 30,
+    height: 30,
+    borderRadius: 60,
+    backgroundColor: ORANGE,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
   pinView: {
-    left: 0,
-    flex: 1,
     flexDirection: ROW,
-    marginTop:4
+    justifyContent: SPACE_BETWEEN,
+    alignItems: CENTER,
   },
   rightView: {
     right: 0,
@@ -41,21 +74,27 @@ export const styles = StyleSheet.create({
   rightIcon: {
     paddingHorizontal: 4,
   },
-  backIcon:{
+  backIcon: {
     paddingHorizontal: 8,
-    paddingVertical:8,
-    marginRight:6,
+    paddingVertical: 8,
+    marginRight: 6,
   },
   loginText: {
     fontFamily: fonts.family.rubik500,
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize10,
   },
+  nameText: {
+    fontFamily: fonts.family.rubik400,
+    color: WHITE,
+    fontSize: fonts.size.fontSize14,
+  },
   boxStyle: {
-    paddingTop: 0,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
     borderWidth: 0,
-    paddingHorizontal: 10,
-    minWidth: 75,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
   inputStyles: {
     fontSize: fonts.size.fontSize10,
@@ -63,19 +102,10 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
   },
   dropdownStyles: {
-    marginTop: 0,
-    borderWidth: 0,
-    borderRadius: 4,
     position: ABSOLUTE,
+    width: 100,
+    right: 0.5,
     backgroundColor: WHITE,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowColor: BLACK,
-    elevation: 3,
-    width:'150%',
   },
   sectionBottom: {
     flexDirection: ROW,
@@ -86,8 +116,8 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize14,
     color: CYAN_BLUE,
-    paddingRight:12,
-    paddingVertical:6,
+    paddingRight: 12,
+    paddingVertical: 6,
   },
   search: {
     zIndex: -1,
@@ -108,5 +138,8 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize8,
+  },
+  searchStyle: {
+    width: 8,
   },
 });

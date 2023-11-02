@@ -50,7 +50,8 @@ const Cart = props => {
     onAddRelativePress,
     onSaveRelationsPress,
     relativesData,
-    loading
+    loading,
+    onContainerCrossPress
   } = useCart();
   const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
   const {
@@ -107,7 +108,7 @@ const Cart = props => {
             onRemove={onRemove}
           />
           <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
-          {userData !== null && <Dependents hideShadow={true} dependents={[userData]} />}
+          {userData !== null && <Dependents hideShadow={true} dependents={[userData]} extraContainerStyle={styles.crossContainerStyle} onCrossPress={onContainerCrossPress} showCross={true} />}
           <CardButton
             text={buttonText}
             onPress={onPressCardButton}

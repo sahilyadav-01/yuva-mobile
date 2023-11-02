@@ -56,9 +56,11 @@ export const useFooter = planDetails => {
           userVersion: details?.userVersion,
         }),
       );
+      if(details?.uuid !== undefined || details?.version !== undefined ){
       dispatch(
         getActiveRelations({uuid: details?.uuid, version: details?.version}),
       );
+    }
     }
   }, [toggleCount]);
 
@@ -104,6 +106,7 @@ export const useFooter = planDetails => {
     if (relationAdded) {
       setCurrentItem(null);
       setAddMember(true);
+      if(addedPlanDetails?.uuid && addedPlanDetails?.version && addedPlanDetails?.userVersion)
       dispatch(
         getRelations({
           uuid: addedPlanDetails?.uuid,
@@ -111,12 +114,14 @@ export const useFooter = planDetails => {
           userVersion: addedPlanDetails?.userVersion,
         }),
       );
+      if(addedPlanDetails?.uuid !== undefined || addedPlanDetails?.version !== undefined ){
       dispatch(
         getActiveRelations({
           uuid: addedPlanDetails?.uuid,
           version: addedPlanDetails?.version,
         }),
       );
+      }
     }
   }, [relationAdded]);
 

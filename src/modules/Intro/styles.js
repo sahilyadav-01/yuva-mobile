@@ -1,22 +1,40 @@
-import {StyleSheet} from 'react-native';
-import {DARK_BLUE, ORANGE, WHITE} from '../../styles/colors';
-import {CENTER, ABSOLUTE, ROW} from '../../styles/constants';
-import {fonts} from '../../styles/fonts';
-
+import { StyleSheet, Dimensions } from 'react-native';
+import { DARK_BLUE, ORANGE, WHITE } from '../../styles/colors';
+import { CENTER, ROW } from '../../styles/constants';
+import { fonts } from '../../styles/fonts';
+const screenHeight = Dimensions.get('window').height;
+const view1Height = screenHeight * 0.2;
+const view2Height = screenHeight * 0.4;
+const view3Height = screenHeight * 0.28;
+const view4Height = screenHeight * 0.1;
 export const styles = StyleSheet.create({
-  screenContainer: {
-    height: '100%',
+  container: {
+    backgroundColor: WHITE,
   },
-  imageBackground: {
-    position: ABSOLUTE,
+  firstContainerStyle: {
+    height: view1Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    backgroundColor: WHITE,
+  },
+  imageBackgroundStyle: {
+    width: '100%',
+    flex: 1,
+    backgroundColor: WHITE,
+  },
+  secondContainerStyle: {
+    height: view2Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    backgroundColor: WHITE,
   },
   mainContainer: {
-    flex: 1,
     alignItems: CENTER,
     justifyContent: CENTER,
+    backgroundColor: WHITE,
   },
   IntroStaticScreen1Text: {
-    marginTop: 10,
+    paddingTop: 15,
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
@@ -28,29 +46,37 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
     fontWeight: fonts.weight.fontWeight400,
   },
-  bottomStyle: {
-    height: '10%',
-    flexDirection: ROW,
+  thirdContainerStyle: {
+    height: view3Height,
     justifyContent: CENTER,
     alignItems: CENTER,
-    marginHorizontal: 10,
-    backgroundColor: WHITE,
   },
   line: {
     borderBottomColor: ORANGE,
     borderBottomWidth: 2,
     width: '100%',
   },
-  bottomContaierText: {
+  fourthContainerStyle: {
+    height: view4Height,
+    justifyContent: CENTER,
+    alignItems: CENTER,
+    flexDirection: ROW,
+    backgroundColor: WHITE,
+  },
+  fourthInnerContainerStyle: {
+    flexDirection: ROW,
+    alignItems: CENTER,
+  },
+  fourthContainerText: {
+    flexDirection: ROW,
     marginRight: 20,
   },
   buttonStyle: {
-    alignItems: CENTER,
-    justifyContent: CENTER,
-    height: '60%',
-    borderRadius: 4,
     backgroundColor: ORANGE,
-    width: '94%',
+    height: 48,
+    borderRadius: 8,
+    justifyContent: CENTER,
+    width: '90%',
   },
   buttonText: {
     color: WHITE,
