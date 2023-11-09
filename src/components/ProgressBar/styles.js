@@ -1,43 +1,24 @@
-import {StyleSheet} from 'react-native';
-import {BLACK, GREEN, PEARL_GREY} from '../../styles/colors';
+import { StyleSheet } from 'react-native';
+import { BLACK, PEARL_GREY } from '../../styles/colors';
 import {
   CENTER,
-  COLUMN,
-  FLEX_START,
   ROW,
   SPACE_BETWEEN,
 } from '../../styles/constants';
-import {fonts} from '../../styles/fonts';
+import { fonts } from '../../styles/fonts';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: COLUMN,
-    alignItems: CENTER,
-    justifyContent: CENTER,
-  },
-  progressBar: {
-    width: '100%',
-    backgroundColor: PEARL_GREY,
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
   progress: {
     height: '3%',
-    backgroundColor: GREEN,
-    alignSelf: FLEX_START,
     marginTop: 9,
+    flex: 1,
   },
   statusContainer: {
     flexDirection: ROW,
-    alignItems: CENTER,
     justifyContent: SPACE_BETWEEN,
-    marginTop: 8,
-    width: '100%',
   },
   status: {
-    flexDirection: COLUMN,
     alignItems: CENTER,
-    justifyContent: CENTER,
     width: 30,
   },
   statusDot: {
@@ -66,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {styles};
+export { styles };
