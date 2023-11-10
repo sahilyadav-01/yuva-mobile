@@ -7,8 +7,6 @@ import {styles} from './styles';
 
 const ProgressBar = ({progress, showDateTimeSection}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.progressBar}></View>
       <View style={styles.statusContainer}>
         <View style={styles.status}>
           {progress >= 0.33 ? (
@@ -49,7 +47,7 @@ const ProgressBar = ({progress, showDateTimeSection}) => {
             <View
               style={[
                 styles.progress,
-                progress >= 0.33 && {width: `${progress * 33}%`},
+                progress >= 0.33 && {backgroundColor: GREEN},
               ]}
             />
             <View style={styles.status}>
@@ -90,7 +88,7 @@ const ProgressBar = ({progress, showDateTimeSection}) => {
             <View
               style={[
                 styles.progress,
-                progress >= 0.66 && {width: `${progress * 33}%`},
+                progress >= 0.66 && {backgroundColor: GREEN},
               ]}
             />
           </>
@@ -99,7 +97,7 @@ const ProgressBar = ({progress, showDateTimeSection}) => {
           <View
             style={[
               styles.progress,
-              progress >= 0.33 && {width: `${progress * 80}%`},
+              progress >= 0.33 && {backgroundColor: GREEN},
             ]}
           />
         )}
@@ -139,7 +137,6 @@ const ProgressBar = ({progress, showDateTimeSection}) => {
           </View>
         </View>
       </View>
-    </View>
   );
 };
 
