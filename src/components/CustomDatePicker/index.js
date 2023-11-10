@@ -54,6 +54,7 @@ function CustomDatePicker(props) {
 
   return (
     <>
+    <Text style={[style.emptyView,style.emptyText]}>Select a date</Text>
       <FlatList
         contentContainerStyle={style.dateContainer}
         ItemSeparatorComponent={() => (
@@ -70,12 +71,16 @@ function CustomDatePicker(props) {
           <Text style={style.emptyText}>{NO_SLOTS}</Text>
         </View>
       ) : (
+        <>
+        <Text style={[style.emptyView,style.emptyText]}>Select a time slot</Text>
         <FlatList
+          nestedScrollEnabled
           contentContainerStyle={style.timeContentContainer}
-          keyExtractor={(item, index) => index}
+          keyExtractor={(item, index) => `Time${index}`}
           data={availableSlots}
           renderItem={RenderSlots}
         />
+        </>
       )}
     </>
   );

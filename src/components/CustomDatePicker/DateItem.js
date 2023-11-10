@@ -3,7 +3,7 @@ import {TouchableOpacity, View, Text} from 'react-native';
 import {SVG} from '../../../assets';
 import { AVAILABLE } from './constants';
 import {styles} from './style';
-import {CITRINE_WHITE, CURIOUS_BLUE, CURIOUS_BLUE_DISABLE, CYAN_BLUE, WHITE} from '../../styles/colors';
+import {CITRINE_WHITE, CURIOUS_BLUE, CURIOUS_BLUE_DISABLE, CYAN_BLUE, GRAY, WHITE} from '../../styles/colors';
 
 const DateItem = props => {
   const {item, onSelectDay, activeIndex, index, unavailable} = props;
@@ -15,6 +15,7 @@ const DateItem = props => {
       style={[
         style.dateItem,
         {backgroundColor: index === activeIndex ? !emptySlots ? CURIOUS_BLUE : CURIOUS_BLUE_DISABLE : WHITE},
+        {borderColor: index === activeIndex ? !emptySlots ? CURIOUS_BLUE : CURIOUS_BLUE_DISABLE : GRAY},
       ]}>
       <View style={style.iconContainer}>
         <SVG.Calender color={index === activeIndex ? WHITE : CURIOUS_BLUE} />
