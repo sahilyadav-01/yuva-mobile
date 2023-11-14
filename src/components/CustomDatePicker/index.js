@@ -4,7 +4,7 @@ import {useDatePicker} from './hooks/useDatePicker';
 import {styles} from './style';
 import DateItem from './DateItem';
 import Slots from './Slots';
-import {NO_SLOTS} from './constants';
+import {NO_SLOTS, SELECT_DATE, SELECT_TIME} from './constants';
 
 function CustomDatePicker(props) {
   const {onDateTimeSelect, OPD} = props;
@@ -54,7 +54,7 @@ function CustomDatePicker(props) {
 
   return (
     <>
-    <Text style={[style.emptyView,style.emptyText]}>Select a date</Text>
+    <Text style={[style.emptyView,style.emptyText]}>{SELECT_DATE}</Text>
       <FlatList
         contentContainerStyle={style.dateContainer}
         ItemSeparatorComponent={() => (
@@ -72,7 +72,7 @@ function CustomDatePicker(props) {
         </View>
       ) : (
         <>
-        <Text style={[style.emptyView,style.emptyText]}>Select a time slot</Text>
+        <Text style={[style.emptyView,style.emptyText]}>{SELECT_TIME}</Text>
         <FlatList
           nestedScrollEnabled
           contentContainerStyle={style.timeContentContainer}

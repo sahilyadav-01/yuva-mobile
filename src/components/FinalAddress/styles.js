@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, WHITE} from '../../styles/colors';
+import {CYAN_BLUE, GRAY, WHITE} from '../../styles/colors';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderRadius: 12,
     height: 123,
+    borderWidth: 0.5,
+    borderColor: GRAY
   },
   nameStyle: {
     color: CYAN_BLUE,
