@@ -9,7 +9,6 @@
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
 #import <FreshchatSDK/FreshchatSDK.h>
-#import <React/RCTLinkingManager.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -71,14 +70,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
   return YES;
 }
-- (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
-restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
-{
-return [RCTLinkingManager application:application
-                 continueUserActivity:userActivity
-                   restorationHandler:restorationHandler];
-}
-
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     [[Freshchat sharedInstance] setPushRegistrationToken:devToken];
 }
