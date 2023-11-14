@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:d58d-2406-7400-43-54fe-d954-b17a-d66d-8605.ngrok-free.app</string>
+		<string>applinks:yuvahealth.in</string>
 	</array>
 	<key>com.apple.developer.associated-domains.mdm-managed</key>
 	<true/>

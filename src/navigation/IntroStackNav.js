@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { Linking } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {checkRole, initialLoad, setLoginState} from '../store/reducers/AuthSlice';
@@ -26,6 +28,7 @@ const Stack = createStackNavigator();
 
 const IntroStackNav = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [initialRouteName, setInitialRouteName] = useState(null);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
   useEffect(() => {
@@ -33,6 +36,12 @@ const IntroStackNav = () => {
     dispatch(profileThunk());
     dispatch(initialLoad());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
+    getInitialUrl();
+    const linkingEvent = Linking.addEventListener('url',(event)=>event?.url && handleDeepLinking(event.url));
+    return () => {
+      console.log('Unmount')
+      linkingEvent.remove();
+    }
   }, []);
   useEffect(()=>{
     dispatch(cityIdThunk());
@@ -55,7 +64,15 @@ const IntroStackNav = () => {
     if (existingUser) return 'HomeScreen';
     return 'IntroScreen';
   };
-
+  const handleDeepLinking = (link) => {
+    //Handle navigation here
+  }
+  const getInitialUrl = async () => {
+    try {
+      const link = await Linking.getInitialURL();
+      if(link) handleDeepLinking(link);
+    } catch (error) {}
+  }
   if (maintainenceState) {
     return <Maintenance maintenanceText="App is under maintenance" />;
   }
