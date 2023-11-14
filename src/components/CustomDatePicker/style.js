@@ -1,9 +1,10 @@
-import {StyleSheet} from 'react-native';
-import {BLACK_OPACITY, CITRINE_WHITE, CYAN_BLUE, GREEN, WHITE} from '../../styles/colors';
+import {Dimensions, StyleSheet} from 'react-native';
+import {BLACK_OPACITY, CITRINE_WHITE, CYAN_BLUE, GRAY, GREEN, WHITE} from '../../styles/colors';
 import {CENTER, ROW} from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
-export const styles = () => {
+export const styles = (arg) => {
+  const fraction = Dimensions.get('screen').width - 32;
   return StyleSheet.create({
     dateContainer: {paddingHorizontal: 24},
     horizontalSeparator: {width: 20},
@@ -30,17 +31,18 @@ export const styles = () => {
       marginTop: 4,
     },
     availableText: {color: GREEN, lineHeight: 16},
-    timeContentContainer: {backgroundColor: WHITE},
-    timeContainer: {marginHorizontal: 16, paddingHorizontal: 16},
-    itemContainer: {marginBottom: 16},
-    item: {flex: 1},
+    timeContentContainer: {borderWidth:0.5,marginHorizontal: 16,borderRadius:8,borderColor:GRAY,paddingVertical: 4},
+    timeContainer: {marginHorizontal: 0, paddingHorizontal: 16},
+    itemContainer: {marginBottom: 0},
+    item: {width:fraction*0.20},
     itemView: {
-      paddingHorizontal: 20,
+      paddingHorizontal: 1,
       paddingVertical: 4,
       borderRadius: 12,
       borderWidth: 2,
       marginBottom: 12,
       borderColor: BLACK_OPACITY,
+      alignItems:CENTER
     },
     slotText: {
       fontFamily: fonts.family.rubik400,
@@ -53,9 +55,10 @@ export const styles = () => {
       height:8
     },
     rowContainer: {flexDirection: ROW},
-    slotTextExtraStyles: {marginBottom:16,marginRight:13},
+    slotTextExtraStyles: {marginBottom:8,marginRight:13},
     emptyView: {paddingHorizontal:16,marginVertical:4,alignItems:CENTER},
     emptyText: {color:CYAN_BLUE,fontWeight:fonts.weight.fontWeight500,fontSize:fonts.size.fontSize14},
-    emptyContainer: {height: 24}
+    emptyContainer: {height: 24},
+    horizontalSeparator: {width:arg?.index % 4 !== 3 ? fraction / 32: undefined}
   });
 };
