@@ -17,7 +17,7 @@ const CheckoutScheduleList = () => {
       <ScrollView>
         <OrderDetails />
         <View style={styles.bodyContainer}>
-          <ProgressBar progress="0.65" showDateTimeSection={true} />
+          <ProgressBar progress='0.33' showDateTimeSection={true} />
         </View>
         <View style={styles.separator}/>
         <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={false}/>
