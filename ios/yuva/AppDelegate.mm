@@ -70,6 +70,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
   return YES;
 }
+
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     [[Freshchat sharedInstance] setPushRegistrationToken:devToken];
 }
