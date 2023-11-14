@@ -1,19 +1,15 @@
 import React from 'react';
 import {Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {FLEX_END, FLEX_START} from '../../styles/constants';
 import {CURIOUS_BLUE} from '../../styles/colors';
 
 const Slots = props => {
   const {item, onTimeSlotPress, slotIndex, selectedItem} = props;
-  const style = styles();
-  const RenderTime = ({itemm, index}) => {
+  const style = styles(null);
+  const RenderTime = ({_,index}) => {
     return (
-      <View
-        style={[
-          style.item,
-          {alignItems: index % 2 === 0 ? FLEX_START : FLEX_END},
-        ]}>
+      <>
+      <View style={style.item}>
         <TouchableOpacity
           onPress={() => onTimeSlotPress(item, index, slotIndex)}
           style={[
@@ -30,6 +26,8 @@ const Slots = props => {
           </Text>
         </TouchableOpacity>
       </View>
+      <View style={styles({index}).horizontalSeparator}/>
+      </>
     );
   };
   return (
@@ -42,7 +40,7 @@ const Slots = props => {
       </View>
       <View style={style.itemContainer}>
         <FlatList
-          numColumns={2}
+          numColumns={4}
           keyExtractor={(item,index) => index}
           data={item}
           renderItem={RenderTime}
