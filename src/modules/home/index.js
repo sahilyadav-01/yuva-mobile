@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -27,7 +27,8 @@ export const HomeScreen = () => {
     banner3,
     loggedIn,
     showSearchView,
-    onBackPress
+    onBackPress,
+    fcm
   } = useHome();
   const styles = style();
   if(showSearchView) {
@@ -53,6 +54,7 @@ export const HomeScreen = () => {
         searchPlaceholder="Search"
       />
       <ScrollView nestedScrollEnabled={true}>
+        {fcm?.token && <Text>Token is <Text style={{fontWeight:'900'}}>{fcm?.token ?? ''}</Text></Text>}
         <View>
         <OfferBanner1 bannerData={banner1} />
         <AppointmentTag />
