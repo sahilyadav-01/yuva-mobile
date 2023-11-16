@@ -9,6 +9,7 @@ import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
 import store from './src/store/Store';
 import {setFcmToken} from './src/store/reducers/NotificationSlice';
+import { getExistingUser } from './src/store/LocalStore';
 
 export const useApp = () => {
   const Platform = getPlatform();
@@ -18,20 +19,22 @@ export const useApp = () => {
   const initializeToken = async status => {
     if (status) {
       const token = await firebaseMessaging().getToken();
+      console.log('Token',token);
       store.dispatch(setFcmToken({status, token}));
     } else store.dispatch(setFcmToken({status: permission, token: null}));
   };
 
   const handleMessagingPermission = async () => {
     try {
+      const existingUser = await getExistingUser();
       if (
         (Platform.isAndroid && AndroidPlatform.Version < 33) ||
         Platform.isIOS
       ) {
         let permission = await firebaseMessaging().hasPermission();
         if (
-          permission === firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
-          permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL
+          (permission === firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
+          permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL) && !existingUser
         ) {
           await firebaseMessaging().requestPermission();
           permission = await firebaseMessaging().hasPermission();
@@ -43,7 +46,7 @@ export const useApp = () => {
         let notificationPermission = await PermissionsAndroid.check(
           'android.permission.POST_NOTIFICATIONS',
         );
-        if (!notificationPermission) {
+        if (!notificationPermission && !existingUser) {
           await PermissionsAndroid.request(
             'android.permission.POST_NOTIFICATIONS',
           );
