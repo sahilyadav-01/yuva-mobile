@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import firebaseMessaging from '@react-native-firebase/messaging';
-import {Freshchat, FreshchatConfig} from 'react-native-freshchat-sdk';
+import {Freshchat, FreshchatConfig,FreshchatNotificationConfig} from 'react-native-freshchat-sdk';
 import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
 import SplashScreen from 'react-native-splash-screen';
@@ -8,20 +8,24 @@ import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
 import store from './src/store/Store';
-import {setFcmToken} from './src/store/reducers/NotificationSlice';
+import {setFcmToken as setToken} from './src/store/reducers/NotificationSlice';
 import { getExistingUser } from './src/store/LocalStore';
 
 export const useApp = () => {
   const Platform = getPlatform();
   const checkVersion = true;
   const [showContent, setShowContent] = useState(!checkVersion);
+  const [fcmToken, setFcmToken] = useState(null);
 
   const initializeToken = async status => {
     if (status) {
       const token = await firebaseMessaging().getToken();
-      console.log('Token',token);
-      store.dispatch(setFcmToken({status, token}));
-    } else store.dispatch(setFcmToken({status: permission, token: null}));
+      setFcmToken(token);
+      store.dispatch(setToken({status, token}));
+    } else {
+      store.dispatch(setToken({status: permission, token: null}));
+      setFcmToken('');
+    }
   };
 
   const handleMessagingPermission = async () => {
@@ -59,11 +63,11 @@ export const useApp = () => {
     } catch (error) {}
   };
 
-  const initializeFreshchat = () => {
+  const initializeFreshchat = async () => {
     try {
       const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
       freshchatConfig.domain = DOMAIN;
-      Freshchat.init(freshchatConfig);
+      await Freshchat.init(freshchatConfig);
     } catch (e) {}
   };
   const handleVersionUpdate = (latestVersion, storeUrl) => {
@@ -116,6 +120,12 @@ export const useApp = () => {
     }
   };
 
+  useEffect(()=>{
+    if(typeof fcmToken === 'string') {
+      initializeFreshchat();
+    }
+  },[fcmToken])
+
   useEffect(() => {
     if (Platform?.isIOS && checkVersion) {
       const packageName = VersionCheck?.getPackageName();
@@ -137,9 +147,7 @@ export const useApp = () => {
       });
     } else if (Platform?.isAndroid && checkVersion) checkVersionUpdate();
     SplashScreen.hide();
-    handleMessagingPermission().finally(() => {
-      initializeFreshchat();
-    });
+    handleMessagingPermission();
   }, []);
 
   return {showContent};

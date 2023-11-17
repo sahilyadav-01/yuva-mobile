@@ -22,7 +22,6 @@ export const useHome = () => {
   const { popularTest } = useSelector(state => state.popularTests);
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
-  const { fcm } = useSelector(state=>state.notification);
   const focused = useIsFocused();
 
   useEffect(() => {
@@ -128,6 +127,5 @@ export const useHome = () => {
     loggedIn,
     showSearchView,
     onBackPress,
-    fcm
   };
 };

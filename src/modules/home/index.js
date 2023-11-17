@@ -28,7 +28,6 @@ export const HomeScreen = () => {
     loggedIn,
     showSearchView,
     onBackPress,
-    fcm
   } = useHome();
   const styles = style();
   if(showSearchView) {
@@ -54,7 +53,6 @@ export const HomeScreen = () => {
         searchPlaceholder="Search"
       />
       <ScrollView nestedScrollEnabled={true}>
-        {fcm?.token && <Text>Token is <Text style={{fontWeight:'900'}}>{fcm?.token ?? ''}</Text></Text>}
         <View>
         <OfferBanner1 bannerData={banner1} />
         <AppointmentTag />

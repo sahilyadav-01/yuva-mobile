@@ -14,6 +14,6 @@ const fcmSlice = createSlice({
   },
 });
 
-export const {fcm} = fcmSlice.getInitialState();
+export const fcm = fcmSlice.getInitialState();
 export const {setFcmToken} = fcmSlice.actions;
 export default fcmSlice.reducer;

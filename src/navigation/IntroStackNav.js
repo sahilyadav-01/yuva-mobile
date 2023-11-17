@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
+import firebaseMessaging from '@react-native-firebase/messaging';
 import {checkRole, initialLoad, setLoginState} from '../store/reducers/AuthSlice';
 import IntroScreen from '../screens/Intro/IntroScreen';
 import {getExistingUser, getJwt, getProfileStatus, getRole} from '../store/LocalStore';
@@ -33,6 +34,12 @@ const IntroStackNav = () => {
     dispatch(profileThunk());
     dispatch(initialLoad());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
+    firebaseMessaging().getInitialNotification().then((initialNotification)=>{
+      console.log('Initila notification',initialNotification)
+    })
+    firebaseMessaging().onNotificationOpenedApp((notification)=>{
+      console.log('Notification',notification)
+    })
   }, []);
   useEffect(()=>{
     dispatch(cityIdThunk());
