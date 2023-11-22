@@ -31,12 +31,21 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         <intent-filter android:autoVerify="true">
-          <action android:name="android.intent.action.VIEW" />
-          <category android:name="android.intent.category.DEFAULT" />
-          <category android:name="android.intent.category.BROWSABLE" />
-          <data android:scheme="https"
-              android:host="yuvahealth.in"
-              android:path="/" />
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"
+                  android:host="yuvahealth.in"
+                  android:path="/" />
+            <data android:scheme="https"
+                  android:host="yuvahealth.in"
+                  android:path="/test/" />
+           <data android:scheme="https"
+                 android:host="yuvahealth.in"
+                 android:path="/package/" />
+                 <data android:scheme="https"
+                 android:host="yuvahealth.in"
+                 android:path="/plan/" />
         </intent-filter>
       </activity>
         <service android:name=".MyFirebaseMessagingService"

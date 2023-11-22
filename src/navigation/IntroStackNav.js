@@ -39,7 +39,7 @@ const IntroStackNav = () => {
     getInitialUrl();
     const linkingEvent = Linking.addEventListener('url',(event)=>event?.url && handleDeepLinking(event.url));
     return () => {
-      console.log('Unmount')
+      console.log('Unmount');
       linkingEvent.remove();
     }
   }, []);
@@ -64,14 +64,35 @@ const IntroStackNav = () => {
     if (existingUser) return 'HomeScreen';
     return 'IntroScreen';
   };
+
+
+
   const handleDeepLinking = (link) => {
     //Handle navigation here
+    console.log("Link",link);
+  //   if(link==='https://yuvahealth.in/test/4')
+  //   {
+  //     navigation.navigate('ProductDetails', {
+  //       headerName: 'health',
+  //       packageName: 4,
+  //       uuid: 4,
+  //       showCartButton: true,
+  //       isTest: true,
+  //       name: null,
+  //       cost: 500,
+  //     })
+  //   }
   }
+
+
+
   const getInitialUrl = async () => {
     try {
       const link = await Linking.getInitialURL();
       if(link) handleDeepLinking(link);
-    } catch (error) {}
+    } catch (error) {
+      console.log("ERROR link",link)
+    }
   }
   if (maintainenceState) {
     return <Maintenance maintenanceText="App is under maintenance" />;
