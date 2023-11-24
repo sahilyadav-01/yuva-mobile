@@ -35,10 +35,13 @@ const IntroStackNav = () => {
     dispatch(initialLoad());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
     firebaseMessaging().getInitialNotification().then((initialNotification)=>{
-      console.log('Initila notification',initialNotification)
+      console.log('Kill state notification',initialNotification)
     })
     firebaseMessaging().onNotificationOpenedApp((notification)=>{
-      console.log('Notification',notification)
+      console.log('Notification background',notification)
+    })
+    firebaseMessaging().onMessage((notification)=>{
+      console.log('Foreground notification',notification)
     })
   }, []);
   useEffect(()=>{
