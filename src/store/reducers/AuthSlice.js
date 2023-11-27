@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
+import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 import {
   setObject,
   getObject,
@@ -14,7 +16,22 @@ import {
 import {Freshchat} from 'react-native-freshchat-sdk';
 import {YuvaService} from '../../network/yuvaService';
 import {handleNetworkError} from '../../utils/utils';
-import { Alert } from 'react-native';
+
+const registerFcmToken = async (register) => {
+  let token = null;
+  try {
+    token = await firebaseMessaging().getToken();
+  } catch (error) {
+    token = '';
+  } finally {
+    if (token) {
+      try {
+        const url = register ? `/fcm/${token}/false` : `/logout/${token}`;
+        await YuvaService.post(url);
+      } catch (error) {}
+    }
+  }
+};
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
@@ -204,6 +221,9 @@ export const logoutThunk = createAsyncThunk(
       try {
         Freshchat.resetUser();
       } catch (e) {}
+      try {
+        await registerFcmToken(false);
+      } catch (error) {}
       return value;
     } catch (error) {
       return rejectWithValue(error);
@@ -353,7 +373,7 @@ const authSlice = createSlice({
       state.apiError = false;
       state.type = ''
     },
-    [loginThunk.fulfilled]: (state, action) => {
+    [loginThunk.fulfilled]: async (state, action) => {
       if (action.payload.data) {
         setJwt(action.payload.data.jwt);
         setRole(action.payload.data.roles.includes('EMPLOYEE'));
@@ -380,6 +400,7 @@ const authSlice = createSlice({
         state.user.status = true;
         state.type = action.payload.type;
       }
+      await registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -425,7 +446,7 @@ const authSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
     },
-    [signupThunk.fulfilled]: (state, {payload}) => {
+    [signupThunk.fulfilled]: async (state, {payload}) => {
       if (payload.data) {
       setJwt(payload.data.jwt);
       setRole(payload.data.roles.includes('EMPLOYEE'));
@@ -452,6 +473,7 @@ const authSlice = createSlice({
       state.navigateToRegister = true;
       state.user.status = true;
     }
+    await registerFcmToken(true);
     },
     [signupThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -527,7 +549,7 @@ const authSlice = createSlice({
       state.signUpLoading = true;
       state.user.status = false;
     },
-    [verifyThunk.fulfilled]: (state, {payload}) => {
+    [verifyThunk.fulfilled]: async (state, {payload}) => {
       if(payload.data){
       setJwt(payload.data.jwt);
       setRole(payload.data.roles.includes('EMPLOYEE'));
@@ -553,6 +575,7 @@ const authSlice = createSlice({
         state.navigateToRegister = true;
         state.user.status = true;
       }
+      await registerFcmToken(true);
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -611,7 +634,7 @@ const authSlice = createSlice({
       state.changePasswordApiError = false;
       state.changePasswordSuccess = false;
     },
-    [resetPassword.fulfilled]: (state, {payload}) => {
+    [resetPassword.fulfilled]: async (state, {payload}) => {
       if(payload.data){
       state.changePasswordLoading = false;
       state.changePasswordApiError = false;
@@ -639,6 +662,7 @@ const authSlice = createSlice({
       state.navigateToRegister = true;
       state.user.status = true;
     }
+    await registerFcmToken(true);
     },
     [resetPassword.rejected]: () => {
       state.changePasswordLoading = false;

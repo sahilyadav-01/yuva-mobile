@@ -7,8 +7,6 @@ import SplashScreen from 'react-native-splash-screen';
 import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
-import store from './src/store/Store';
-import {setFcmToken as setToken} from './src/store/reducers/NotificationSlice';
 import { getExistingUser } from './src/store/LocalStore';
 
 export const useApp = () => {
@@ -17,15 +15,9 @@ export const useApp = () => {
   const [showContent, setShowContent] = useState(!checkVersion);
   const [fcmToken, setFcmToken] = useState(null);
 
-  const initializeToken = async status => {
-    if (status) {
-      const token = await firebaseMessaging().getToken();
-      setFcmToken(token);
-      store.dispatch(setToken({status, token}));
-    } else {
-      store.dispatch(setToken({status: permission, token: null}));
-      setFcmToken('');
-    }
+  const initializeToken = async () => {
+    const token = await firebaseMessaging().getToken();
+    setFcmToken(token);
   };
 
   const handleMessagingPermission = async () => {
@@ -43,9 +35,7 @@ export const useApp = () => {
           await firebaseMessaging().requestPermission();
           permission = await firebaseMessaging().hasPermission();
         }
-        initializeToken(
-          permission === firebaseMessaging.AuthorizationStatus.AUTHORIZED,
-        );
+        initializeToken();
       } else {
         let notificationPermission = await PermissionsAndroid.check(
           'android.permission.POST_NOTIFICATIONS',
@@ -58,7 +48,7 @@ export const useApp = () => {
             'android.permission.POST_NOTIFICATIONS',
           );
         }
-        initializeToken(notificationPermission);
+        initializeToken();
       }
     } catch (error) {}
   };
