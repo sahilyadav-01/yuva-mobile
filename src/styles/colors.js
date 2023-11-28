@@ -96,3 +96,4 @@ export const VIVID_TANGERINE = '#F64E19'
 export const ORANGE_RED='#FB5812';
 export const PALE_PEACH = '#FFF9EF';
 export const MANATEE = '#848A9E';
+export const TURQUOISE_LAGOON = '#38B9AE';

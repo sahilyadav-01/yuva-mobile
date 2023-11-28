@@ -10,7 +10,7 @@ import {
   profileThunk,
   updateProfileStatus,
 } from '../store/reducers/ProfileSlice';
-import {cityIdThunk} from '../store/reducers/DiagnosticsSlice';
+import { cityIdThunk, diagnosisPackageDetailsThunk, diagnosisTestDetailsThunk } from '../store/reducers/DiagnosticsSlice';
 import DrawerNav from './DrawerNav';
 import ReportNav from './ReportNav';
 import MyPrescription from '../screens/MyPrescriptionScreen';
@@ -23,6 +23,8 @@ import HomeSearchDetailsScreen from '../screens/HomeSearchScreen/HomeSearchDetai
 import Maintenance from '../components/Maintenance';
 import ProfileContent from '../screens/ProfileContent';
 import ProfileNavigation from './ProfileNavigation';
+import { planPopularThunk, setOurPlanData } from '../store/reducers/ProgramAndPlanSlice';
+import PageNotFound from '../screens/yuvaservices/pageNotFound';
 
 const Stack = createStackNavigator();
 
@@ -31,15 +33,16 @@ const IntroStackNav = () => {
   const navigation = useNavigation();
   const [initialRouteName, setInitialRouteName] = useState(null);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
+  const { popularPlan } = useSelector(state => state.programAndPlan);
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute));
     dispatch(profileThunk());
     dispatch(initialLoad());
+    dispatch(planPopularThunk())
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
     getInitialUrl();
     const linkingEvent = Linking.addEventListener('url',(event)=>event?.url && handleDeepLinking(event.url));
     return () => {
-      console.log('Unmount');
       linkingEvent.remove();
     }
   }, []);
@@ -65,33 +68,69 @@ const IntroStackNav = () => {
     return 'IntroScreen';
   };
 
-
-
   const handleDeepLinking = (link) => {
-    //Handle navigation here
-    console.log("Link",link);
-  //   if(link==='https://yuvahealth.in/test/4')
-  //   {
-  //     navigation.navigate('ProductDetails', {
-  //       headerName: 'health',
-  //       packageName: 4,
-  //       uuid: 4,
-  //       showCartButton: true,
-  //       isTest: true,
-  //       name: null,
-  //       cost: 500,
-  //     })
-  //   }
+    const pattern = /^(https?:\/\/)?(www\.)?yuvahealth\.in(\/(plan|test|package)\/([a-f0-9-]+(\/[a-zA-Z0-9]+)*))?\/?$/;
+    const match = link.match(pattern);
+    if (match && match.length > 1) {
+      switch (match[4]) {
+        case 'test':
+          dispatch(diagnosisTestDetailsThunk({ id: match[5] })).then(response => {
+            if (response.payload.errorMessage != null) { navigation.navigate('PageNotFound', { data: "Test" }); }
+            else {
+              navigation.navigate('ProductDetails', {
+                headerName: 'health',
+                packageName: '',
+                uuid: match[7],
+                showCartButton: true,
+                isTest: true,
+                name: null,
+                cost: '',
+              });
+            }
+          });
+          break;
+        case 'package':
+          dispatch(diagnosisPackageDetailsThunk({ packageName: match[5] })).then(response => {
+            if (response.payload.errorMessage != null) {
+              navigation.navigate('PageNotFound', { data: "Package" });
+            }
+            else {
+              navigation.navigate('ProductDetails', {
+                headerName: 'health',
+                packageName: '',
+                uuid: match[5],
+                showCartButton: true,
+                isTest: false,
+                name: null,
+                cost: '',
+              });
+            }
+          });
+          break;
+        case 'plan':
+          const planData = popularPlan.filter(
+            item => item?.planUuid === match[5],
+          )[0];
+          if (planData) {
+            dispatch(setOurPlanData(planData));
+            navigation.navigate('OurPlan');
+          }
+          else { navigation.navigate('PageNotFound', { data: "Plan" }); }
+          break;
+        default:
+          navigation.navigate('HomeService');
+          break;
+      }
+    }
+    else {
+      navigation.navigate('PageNotFound');
+    }
   }
-
-
-
   const getInitialUrl = async () => {
     try {
       const link = await Linking.getInitialURL();
       if(link) handleDeepLinking(link);
     } catch (error) {
-      console.log("ERROR link",link)
     }
   }
   if (maintainenceState) {
@@ -163,6 +202,11 @@ const IntroStackNav = () => {
           name={'Profile'}
           component={ProfileNavigation}
           options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={'PageNotFound'}
+        component={PageNotFound}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
