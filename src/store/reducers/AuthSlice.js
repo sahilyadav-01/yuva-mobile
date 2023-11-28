@@ -18,19 +18,11 @@ import {YuvaService} from '../../network/yuvaService';
 import {handleNetworkError} from '../../utils/utils';
 
 const registerFcmToken = async (register) => {
-  let token = null;
   try {
-    token = await firebaseMessaging().getToken();
-  } catch (error) {
-    token = '';
-  } finally {
-    if (token) {
-      try {
-        const url = register ? `/fcm/${token}/false` : `/logout/${token}`;
-        await YuvaService.post(url);
-      } catch (error) {}
-    }
-  }
+    const token = await firebaseMessaging().getToken();
+    const url = register ? `/fcm/${token}/false` : `/logout/${token}`;
+    token && await YuvaService.post(url);
+  } catch (error) {}
 };
 
 export const forgotPassword = createAsyncThunk(
@@ -71,6 +63,7 @@ export const resetPassword = createAsyncThunk(
         hash,
         password,
       });
+      await registerFcmToken(true);
       if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
         return {...response.data};
       }
@@ -99,6 +92,7 @@ export const verifyThunk = createAsyncThunk(
     try {
       const endpoint = `/validate-otp-login`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
+      await registerFcmToken(true);
       if (response?.data?.message === 'OTP_INVALID') {
         const errorMsg = {response: 'Invalid OTP'};
         return rejectWithValue(errorMsg);
@@ -182,6 +176,7 @@ export const loginThunk = createAsyncThunk(
         emailOrNumber: email,
         password: password
       });
+      await registerFcmToken(true);
       if(response?.data?.data === null || response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
         return {...response.data,type};
       }
@@ -220,11 +215,11 @@ export const logoutThunk = createAsyncThunk(
       const value = await removeObject('user');
       try {
         Freshchat.resetUser();
-      } catch (e) {}
-      try {
         await registerFcmToken(false);
-      } catch (error) {}
+      } catch (e) {}
+      finally {
       return value;
+      }
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -244,6 +239,7 @@ export const signupThunk = createAsyncThunk(
         otp: numberOtp,
         password,
       });
+      await registerFcmToken(true);
       return response.data;
     } catch (error) {
       handleNetworkError(
@@ -373,7 +369,7 @@ const authSlice = createSlice({
       state.apiError = false;
       state.type = ''
     },
-    [loginThunk.fulfilled]: async (state, action) => {
+    [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
         setJwt(action.payload.data.jwt);
         setRole(action.payload.data.roles.includes('EMPLOYEE'));
@@ -400,7 +396,6 @@ const authSlice = createSlice({
         state.user.status = true;
         state.type = action.payload.type;
       }
-      await registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -446,7 +441,7 @@ const authSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
     },
-    [signupThunk.fulfilled]: async (state, {payload}) => {
+    [signupThunk.fulfilled]: (state, {payload}) => {
       if (payload.data) {
       setJwt(payload.data.jwt);
       setRole(payload.data.roles.includes('EMPLOYEE'));
@@ -473,7 +468,6 @@ const authSlice = createSlice({
       state.navigateToRegister = true;
       state.user.status = true;
     }
-    await registerFcmToken(true);
     },
     [signupThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -549,7 +543,7 @@ const authSlice = createSlice({
       state.signUpLoading = true;
       state.user.status = false;
     },
-    [verifyThunk.fulfilled]: async (state, {payload}) => {
+    [verifyThunk.fulfilled]: (state, {payload}) => {
       if(payload.data){
       setJwt(payload.data.jwt);
       setRole(payload.data.roles.includes('EMPLOYEE'));
@@ -575,7 +569,6 @@ const authSlice = createSlice({
         state.navigateToRegister = true;
         state.user.status = true;
       }
-      await registerFcmToken(true);
     },
     [verifyThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -634,7 +627,7 @@ const authSlice = createSlice({
       state.changePasswordApiError = false;
       state.changePasswordSuccess = false;
     },
-    [resetPassword.fulfilled]: async (state, {payload}) => {
+    [resetPassword.fulfilled]: (state, {payload}) => {
       if(payload.data){
       state.changePasswordLoading = false;
       state.changePasswordApiError = false;
@@ -662,7 +655,6 @@ const authSlice = createSlice({
       state.navigateToRegister = true;
       state.user.status = true;
     }
-    await registerFcmToken(true);
     },
     [resetPassword.rejected]: () => {
       state.changePasswordLoading = false;
