@@ -3,9 +3,7 @@ import {SafeAreaView} from 'react-native';
 import { styles} from "../../../styles"
 import Appointment from '../../../../modules/appointment';
 
-const AppointmentHome = ({}) => {
-
-
+const AppointmentHome = (props) => {
   return (
     <SafeAreaView style={styles.container}>
      <Appointment/>

@@ -176,7 +176,6 @@ export const loginThunk = createAsyncThunk(
         emailOrNumber: email,
         password: password
       });
-      await registerFcmToken(true);
       if(response?.data?.data === null || response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
         return {...response.data,type};
       }
@@ -396,6 +395,7 @@ const authSlice = createSlice({
         state.user.status = true;
         state.type = action.payload.type;
       }
+      registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;

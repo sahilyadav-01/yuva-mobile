@@ -9,6 +9,7 @@ import {View} from 'react-native';
 import {StatusBar} from 'react-native';
 import {getIosStatusBarHeight, getPlatform} from './src/utils/utils';
 import {ORANGE} from './src/styles/colors';
+import LoaderContext from './src/components/LoaderContext';
 
 export default function App() {
   const {showContent} = useApp();
@@ -57,6 +58,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PaperProvider>
+        <LoaderContext />
         <Content />
       </PaperProvider>
     </Provider>
