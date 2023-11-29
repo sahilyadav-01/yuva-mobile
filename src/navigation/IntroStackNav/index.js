@@ -32,13 +32,8 @@ import Maintenance from '../../components/Maintenance';
 import ProfileContent from '../../screens/ProfileContent';
 import ProfileNavigation from '../ProfileNavigation';
 import {useNavigation} from '@react-navigation/native';
-import {
-  appointmentThunk,
-  currentAppointment,
-} from '../../store/reducers/AppointmentSlice';
+import {currentAppointment} from '../../store/reducers/AppointmentSlice';
 import {YuvaService} from '../../network/yuvaService';
-import {ActivityIndicator, Text, View} from 'react-native';
-import {getWindowDimensions} from '../../utils/utils';
 import {setRedirectState} from '../../store/reducers/NotificationSlice';
 
 const Stack = createStackNavigator();
@@ -46,9 +41,7 @@ const Stack = createStackNavigator();
 const IntroStackNav = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const {width, height} = getWindowDimensions();
   const [initialRouteName, setInitialRouteName] = useState(null);
-  const [loading, setLoading] = useState(false);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
   useEffect(() => {
     getInitialRoute().then(initialRoute => setInitialRouteName(initialRoute));
