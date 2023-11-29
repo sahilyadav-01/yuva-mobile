@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BookingTestAndPackageScreen from '../screens/yuvaservices/diagnostics/BookingTestAndPackage';
 import Diagnostics from '../modules/diagnostic/index';
-import DiagnosticsNavigation from './DiagnosticTab';
 import RescheduleTestAndPackage from '../screens/yuvaservices/diagnostics/RescheduleTestAndPackage';
 import BookingConfirmScreen from '../screens/yuvaservices/diagnostics/BookingConfirm';
 import AddAddressScreen from '../screens/yuvaservices/diagnostics/AddAddressScreen';
+
 const Stack = createStackNavigator();
 
 const DiagnosticNav = () => {

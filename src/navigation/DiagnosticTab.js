@@ -14,8 +14,6 @@ import { ORANGE } from '../styles/colors';
 const Tab = createMaterialTopTabNavigator();
 
 const DiagnosticsNavigation = () => {
-
-
   return (
     <Tab.Navigator
     tabBarOptions= {{   
@@ -37,7 +35,6 @@ const DiagnosticsNavigation = () => {
           backgroundColor: "transparent",
           
     }, 
- 
       }}>
       <Tab.Screen
         name='MyPlan'
