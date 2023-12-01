@@ -4,9 +4,10 @@ import {YuvaService} from '../../network/yuvaService';
 export const downloadHraReportThunk = createAsyncThunk(
   'hra-pdf-report',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    const id = params?.id ? `?id=${params?.id}` : '';
     try {
       const endpoint = '/hra-pdf-report';
-      const response = await YuvaService.get(endpoint);
+      const response = await YuvaService.get(`${endpoint}${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

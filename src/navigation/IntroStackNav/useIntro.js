@@ -75,8 +75,8 @@ export const useIntro = () => {
           params: {
             screen: 'Diagnostics',
             params: {
-                screen: 'RescheduleTestAndPackage',
-                //params: {testBooked}
+              screen: 'RescheduleTestAndPackage',
+              //params: {testBooked}
             },
           },
         },
@@ -95,9 +95,8 @@ export const useIntro = () => {
     }
   });
   const handleNotification = data => {
-    switch (data.enum) {
+    switch ('HRA_REPORT') {
       case 'APPOINTMENT':
-        let data = {id: 35};
         dispatch(setRedirectState(true));
         YuvaService.get('/appointment/user/false')
           .then(resp => {
@@ -142,9 +141,17 @@ export const useIntro = () => {
           .catch(() => dispatch(setRedirectState(false)));
         break;
       case 'BOOKING':
-        data = {id: 176};
         dispatch(setRedirectState(true));
         dispatch(bookedDetailsByIdThunk({id: data?.id, redirect: true}));
+        break;
+      case 'HRA_REPORT':
+        navigation.navigate('HomeScreen', {
+                screen: 'HomeDrawer',
+                params: {
+                  screen: 'My Reports',
+                  params: {screen: 'HRA Reports',params: {id:49}},
+                },
+              });
         break;
     }
   };

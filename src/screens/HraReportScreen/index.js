@@ -5,8 +5,9 @@ import {useReportCard} from './hooks/useHraReport';
 import {styles} from './styles';
 import {EMPTY_TEXT, ERROR_TEXT} from './constants';
 
-const HraReport = () => {
-  const {downloadHraReport, hraLoading, hraError} = useReportCard();
+const HraReport = (props) => {
+  console.log('Props',props)
+  const {downloadHraReport, hraLoading, hraError} = useReportCard(props?.route?.params?.id ?? '');
   const renderItem = ({item, index}) => {
     return (
       <ReportCard
