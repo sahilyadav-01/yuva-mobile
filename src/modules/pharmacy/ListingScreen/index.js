@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import Header from '../../../components/Header';
-import { HEADER_TITLE, SEARCH_PLACEHOLDER_PHARMACY, NO_PHARMACY_FOUND } from '../constants';
+import { HEADER_TITLE, SEARCH_PLACEHOLDER_PHARMACY, NO_PHARMACY_FOUND, VIEW_ALL_PRESCRIPTIONS } from '../constants';
 import PharmacyCards from '../../../components/PharmacyCards';
 import { useListingScreen } from './hooks/useListingScreen';
 import { useRoute } from '@react-navigation/native';
@@ -10,7 +10,9 @@ import { useRoute } from '@react-navigation/native';
 const ListingScreen = () => {
   const route = useRoute();
   const { prescriptionId } = route?.params;
-  const { pharmacyData, onSearch, isSearch, onEndReached, pharmacyDataSearch } = useListingScreen(prescriptionId);
+  const pharmacyId = route?.params?.pharmacyId ?? null;
+  const redirect = route?.params?.redirect ?? false;
+  const { pharmacyData, onSearch, isSearch, onEndReached, pharmacyDataSearch, redirectData, onViewAll } = useListingScreen(prescriptionId,pharmacyId,redirect);
   const renderItem = ({ item, index }) => {
     return (
       <PharmacyCards
@@ -23,9 +25,22 @@ const ListingScreen = () => {
       />
     );
   };
+  const RenderFooter = () => {
+    if(redirectData.redirect) {
+      return (
+        <TouchableOpacity onPress={onViewAll} style={styles.viewAll}>
+          <View style={styles.viewAllContainer}>
+          <Text style={styles.viewAllText}>{VIEW_ALL_PRESCRIPTIONS}</Text>
+          </View>
+        </TouchableOpacity>
+  
+      );
+    }
+    return null;
+  }
   return (
     <View style={styles.mainViewContainerStyle}>
-      <Header title={HEADER_TITLE} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} hideMenu={false} />
+      <Header title={HEADER_TITLE} showBackButton={true} showSearch={redirectData?.redirect ? false : true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} hideMenu={false} />
       {pharmacyData?.length > 0 ? (
         <View style={styles.CardViewContainerStyle}>
           <FlatList 
@@ -37,6 +52,7 @@ const ListingScreen = () => {
             nestedScrollEnabled={true}
             onEndReached={onEndReached}
             onEndReachedThreshold={0.1}
+            ListFooterComponent={<RenderFooter/>}
           />
         </View>
       ) : (

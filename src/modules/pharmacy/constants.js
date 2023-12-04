@@ -8,3 +8,4 @@ export const WISHES = 'Keep Smiling, Stay Healthy.!';
 export const SUBTEXT = 'Your PIN for to get medicine from this Pharmacy is - ';
 export const SUBTEXT2 = 'Please share the PIN with the Pharmacy.';
 export const NO_PHARMACY_FOUND = 'No Pharmacy Found';
+export const VIEW_ALL_PRESCRIPTIONS = 'View All Prescriptions';

@@ -156,6 +156,21 @@ export const useIntro = () => {
           },
         });
         break;
+      case 'PHARMACY':
+        navigation.navigate('HomeScreen', {
+          screen: 'HomeDrawer',
+          params: {
+            screen: 'Home',
+            params: {
+              screen: 'PHARMACY',
+              params: {
+                screen: 'PharmacyListing',
+                params: {prescriptionId:data?.id,pharmacyId:data?.pharmacyId,redirect:true},
+              },
+            },
+          },
+        });
+        break;
     }
   };
   const getInitialRoute = async () => {
