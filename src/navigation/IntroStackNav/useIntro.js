@@ -156,7 +156,7 @@ export const useIntro = () => {
           },
         });
         break;
-      case 'PHARMACY':
+      case 'PRESCRIPTION':
         navigation.navigate('HomeScreen', {
           screen: 'HomeDrawer',
           params: {
@@ -169,6 +169,13 @@ export const useIntro = () => {
               },
             },
           },
+        });
+        break;
+      case 'PRESCRIPTION_DOWNLOAD':
+        navigation.navigate('MyPrescription', {
+          prescriptionId: data.id,
+          redirect: true,
+          serviceUuid: data.serviceUuid, 
         });
         break;
     }

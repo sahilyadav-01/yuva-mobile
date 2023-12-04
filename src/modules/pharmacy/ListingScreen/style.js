@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontSize: fonts.size.fontSize14,
   },
-  viewAll: {width:'100%',paddingHorizontal:16},
+  viewAll: {width:'100%',paddingHorizontal:16, marginTop: 16},
   viewAllContainer: {
     paddingVertical: 12,
     alignItems: CENTER,

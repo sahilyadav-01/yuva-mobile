@@ -13,7 +13,6 @@ export const useListingScreen = (prescriptionId,pharmacyId,redirect) => {
   const [pageNumberSearch, setPageNumberSearch] = useState(1);
   const [pharmacyData, setPharmacyData] = useState([]);
   const [pharmacyDataSearch, setPharmacyDataSearch] = useState([]);
-  const [redirectData, setRedirectData] = useState({pharmacyId,redirect});
   const { pharmacyDataList } = useSelector(state => state.pharmacy);
   useEffect(() => {
     if (
@@ -26,7 +25,7 @@ export const useListingScreen = (prescriptionId,pharmacyId,redirect) => {
           [...prevData, ...pharmacyDataList.pharmacyResponseDtoList],
           'contactPersonNumber',
         );
-        if(redirectData.redirect) {
+        if(redirect) {
           const data = mergedData.filter(item=>item.id === pharmacyId);
           return data;
         }
@@ -85,8 +84,9 @@ useEffect(() => {
     }
   };
   const onViewAll = () => {
-    setRedirectData({redirect:false,pharmacyId:null});
+    navigation.setParams({prescriptionId,pharmacyId:null,redirect:false})
     dispatch(resetPharmacyDataList());
+    setPageNumber(1);
     dispatch(getAllPharmacyForUserThunk({ pageNo: 1, pageSize: 10, prescriptionId, search }))
   }
   return {
@@ -95,7 +95,6 @@ useEffect(() => {
     onSearch,
     onEndReached,
     isSearch: search.length > 0,
-    redirectData,
     onViewAll
   }
 }
