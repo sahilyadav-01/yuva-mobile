@@ -53,11 +53,17 @@ const initialState = {
   prescriptionError: false,
   diagnosticLoading: false,
   disagnosticError: false,
+  hraReportId: null,
 };
 
 const downlodReportSlice = createSlice({
   name: 'downloadReport',
   initialState,
+  reducers : {
+    setHraReportId(state,{payload}) {
+      state.hraReportId = payload;
+    }
+  },
   extraReducers: {
     [downloadHraReportThunk.pending]: (state, {payload}) => {
       state.loading = true;
@@ -109,5 +115,6 @@ const downlodReportSlice = createSlice({
     },
   },
 });
+export const {setHraReportId} = downlodReportSlice.actions
 export const downloadInit = downlodReportSlice.getInitialState();
 export default downlodReportSlice.reducer;

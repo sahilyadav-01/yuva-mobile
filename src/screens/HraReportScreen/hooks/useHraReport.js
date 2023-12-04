@@ -1,18 +1,32 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { downloadHraReportThunk } from "../../../store/reducers/DownloadReportSlice";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { downloadHraReportThunk, setHraReportId } from "../../../store/reducers/DownloadReportSlice";
 
-export const useReportCard = (hraId) => {
-    const { downloadHraReport, hraLoading, hraError } = useSelector(state => state.downloadReport);
+export const useReportCard = () => {
+    const { downloadHraReport, hraLoading, hraError, hraReportId } = useSelector(state => state.downloadReport);
+    const [idParam, setIdParam] = useState(null);
     const dispatch = useDispatch()
+    const focused = useIsFocused();
+    const navigation = useNavigation();
     useEffect(() => {
-        const id = hraId ? {id:hraId} : undefined
-        console.log('id',id)
-        dispatch(downloadHraReportThunk(id))
-    }, [])
+        if(navigation.isFocused()){
+        const param = hraReportId ? {id:hraReportId} : undefined;
+        setIdParam(param?.id ? hraReportId : null);
+        dispatch(setHraReportId(null));
+        dispatch(downloadHraReportThunk(param))
+    }}, [focused]);
+
+    const onViewAll = () => {
+        setIdParam(null);
+        dispatch(downloadHraReportThunk())
+    }
+    
     return {
         downloadHraReport,
         hraLoading,
-        hraError
+        hraError,
+        idParam,
+        onViewAll
     }
 }

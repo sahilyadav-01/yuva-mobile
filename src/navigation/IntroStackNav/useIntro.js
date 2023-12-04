@@ -24,6 +24,7 @@ import {
   profileThunk,
   updateProfileStatus,
 } from '../../store/reducers/ProfileSlice';
+import {setHraReportId} from '../../store/reducers/DownloadReportSlice';
 
 export const useIntro = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export const useIntro = () => {
         console.log('Kill state notification', initialNotification);
       });
     firebaseMessaging().onNotificationOpenedApp(notification => {
+      console.log('Not', notification);
       handleNotification(notification?.data ?? false);
     });
     firebaseMessaging().onMessage(notification => {
@@ -95,7 +97,7 @@ export const useIntro = () => {
     }
   });
   const handleNotification = data => {
-    switch ('HRA_REPORT') {
+    switch (data.enum) {
       case 'APPOINTMENT':
         dispatch(setRedirectState(true));
         YuvaService.get('/appointment/user/false')
@@ -145,13 +147,14 @@ export const useIntro = () => {
         dispatch(bookedDetailsByIdThunk({id: data?.id, redirect: true}));
         break;
       case 'HRA_REPORT':
+        dispatch(setHraReportId(data.id));
         navigation.navigate('HomeScreen', {
-                screen: 'HomeDrawer',
-                params: {
-                  screen: 'My Reports',
-                  params: {screen: 'HRA Reports',params: {id:49}},
-                },
-              });
+          screen: 'HomeDrawer',
+          params: {
+            screen: 'My Reports',
+            params: {screen: 'HRA Reports'},
+          },
+        });
         break;
     }
   };
