@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { Linking } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {checkRole, initialLoad, setLoginState} from '../store/reducers/AuthSlice';
@@ -8,7 +10,7 @@ import {
   profileThunk,
   updateProfileStatus,
 } from '../store/reducers/ProfileSlice';
-import {cityIdThunk} from '../store/reducers/DiagnosticsSlice';
+import { cityIdThunk, diagnosisPackageDetailsThunk, diagnosisTestDetailsThunk } from '../store/reducers/DiagnosticsSlice';
 import DrawerNav from './DrawerNav';
 import ReportNav from './ReportNav';
 import MyPrescription from '../screens/MyPrescriptionScreen';
@@ -21,11 +23,14 @@ import HomeSearchDetailsScreen from '../screens/HomeSearchScreen/HomeSearchDetai
 import Maintenance from '../components/Maintenance';
 import ProfileContent from '../screens/ProfileContent';
 import ProfileNavigation from './ProfileNavigation';
+import { planPopularThunk, setOurPlanData } from '../store/reducers/ProgramAndPlanSlice';
+import PageNotFound from '../screens/yuvaservices/pageNotFound';
 
 const Stack = createStackNavigator();
 
 const IntroStackNav = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [initialRouteName, setInitialRouteName] = useState(null);
   const {loggedIn, isAppReady} = useSelector(state => state.auth);
   useEffect(() => {
@@ -33,6 +38,11 @@ const IntroStackNav = () => {
     dispatch(profileThunk());
     dispatch(initialLoad());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
+    getInitialUrl();
+    const linkingEvent = Linking.addEventListener('url',(event)=>event?.url && handleDeepLinking(event.url));
+    return () => {
+      linkingEvent.remove();
+    }
   }, []);
   useEffect(()=>{
     dispatch(cityIdThunk());
@@ -56,6 +66,132 @@ const IntroStackNav = () => {
     return 'IntroScreen';
   };
 
+  const handleDeepLinking = (link) => {
+    const pattern = /^(https?:\/\/)?(www\.)?yuvahealth\.in(\/(plan|test|package)\/([a-f0-9-]+(\/[a-zA-Z0-9]+)*))?\/?$/;
+    const slugPattern = /^(https?:\/\/)?(www\.)?yuvahealth\.in\/(plan|test|package)\/([^\/]+)\/?$/;
+    const slugPatternMatch = link.match(slugPattern);
+    const match = link.match(pattern);
+    if (match && match.length > 1 || slugPatternMatch && slugPatternMatch.length > 1) {
+      if (match) {
+        switch (match[4]) {
+          case 'test':
+            dispatch(diagnosisTestDetailsThunk({ id: match[5] })).then(response => {
+              if (response.payload.errorMessage != null) { navigation.navigate('PageNotFound', { data: "Test" }); }
+              else {
+                navigation.navigate('ProductDetails', {
+                  headerName: 'health',
+                  packageName: '',
+                  uuid: match[7],
+                  showCartButton: true,
+                  isTest: true,
+                  name: null,
+                  cost: '',
+                });
+              }
+            });
+            break;
+          case 'package':
+            dispatch(diagnosisPackageDetailsThunk({ packageName: match[5] })).then(response => {
+              if (response.payload.errorMessage != null) {
+                navigation.navigate('PageNotFound', { data: "Package" });
+              }
+              else {
+                navigation.navigate('ProductDetails', {
+                  headerName: 'health',
+                  packageName: '',
+                  uuid: match[5],
+                  showCartButton: true,
+                  isTest: false,
+                  name: null,
+                  cost: '',
+                });
+              }
+            });
+            break;
+          case 'plan':
+            dispatch(planPopularThunk()).then(response => {
+              const planData = response.payload.data.filter(
+                item => item?.planUuid === match[5],
+              )[0];
+              if (planData) {
+                dispatch(setOurPlanData(planData));
+                navigation.navigate('OurPlan');
+              }
+              else { navigation.navigate('PageNotFound', { data: "Plan" }); }})
+            break;
+          default:
+            navigation.navigate('HomeService');
+            break;
+        }
+      }
+      else if (slugPatternMatch) {
+        switch (slugPatternMatch[3]) {
+          case 'test':
+            const splitParts = slugPatternMatch[4].split('-');
+            const lastPart = splitParts[splitParts.length - 1];
+            const slugTesttId = parseInt(lastPart);
+            dispatch(diagnosisTestDetailsThunk({ id: slugTesttId })).then(response => {
+              if (response.payload.errorMessage != null) { navigation.navigate('PageNotFound', { data: "Test" }); }
+              else {
+                navigation.navigate('ProductDetails', {
+                  headerName: 'health',
+                  packageName: '',
+                  uuid: slugTesttId,
+                  showCartButton: true,
+                  isTest: true,
+                  name: null,
+                  cost: '',
+                });
+              }
+            });
+            break;
+          case 'package':
+            const slugPackagetId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
+            dispatch(diagnosisPackageDetailsThunk({ packageName: slugPackagetId })).then(response => {
+              if (response.payload.errorMessage != null) {
+                navigation.navigate('PageNotFound', { data: "Package" });
+              }
+              else {
+                navigation.navigate('ProductDetails', {
+                  headerName: 'health',
+                  packageName: '',
+                  uuid: slugPackagetId,
+                  showCartButton: true,
+                  isTest: false,
+                  name: null,
+                  cost: '',
+                });
+              }
+            });
+            break;
+          case 'plan':
+            const slugPlainId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
+            dispatch(planPopularThunk()).then(response => {
+              const planData = response.payload.data.filter(
+                item => item?.planUuid === slugPlainId,
+              )[0];
+              if (planData) {
+                dispatch(setOurPlanData(planData));
+                navigation.navigate('OurPlan');}
+              else { navigation.navigate('PageNotFound', { data: "Plan" }); }})
+            break;
+        }
+      }
+      else {
+        navigation.navigate('PageNotFound');
+      }
+    }
+    else {
+      navigation.navigate('PageNotFound');
+    }
+  }
+  const getInitialUrl = async () => {
+    try {
+      const link = await Linking.getInitialURL();
+      if(link) handleDeepLinking(link);
+    } catch (error) {
+    }
+  }
   if (maintainenceState) {
     return <Maintenance maintenanceText="App is under maintenance" />;
   }
@@ -125,6 +261,11 @@ const IntroStackNav = () => {
           name={'Profile'}
           component={ProfileNavigation}
           options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={'PageNotFound'}
+        component={PageNotFound}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
