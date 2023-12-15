@@ -160,6 +160,7 @@ import LatestSearch from './LatestSearch';
 import BookAppointment from './BookAppointment';
 import GetMedicine from './GetMedicine';
 import ConsultDoctor from './ConsultDoctor';
+import PageNotFound from './PageNotFound';
 
 const PNG = {
   AMICO,
@@ -327,6 +328,7 @@ const SVG = {
   BookAppointment,
   GetMedicine,
   ConsultDoctor,
+  PageNotFound
 };
 
 export {PNG, SVG};
