@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, Text} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CYAN_BLUE, ORANGE} from '../styles/colors';
 import {CART, HOME, MY_REPORTS, PROFILE} from './constants';
 import Authentication from './Authentication';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ProfileNavigation from './ProfileNavigation';
 import CartNavigation from './CartNavigation';
 import ReportNav from './ReportNav';
 import { styles } from './bottomTabStyle';
+import { logoutThunk, resetRoute as clearRoutes } from '../store/reducers/AuthSlice';
+import { profileThunk } from '../store/reducers/ProfileSlice';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
-  const {loggedIn} = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const {loggedIn,resetRoute} = useSelector(state => state.auth);
   const { cart } = useSelector(state => state.cart);
   const badgeCount = cart?.itemDtoList?.length || 0;
-  const style = styles()
+  const style = styles();
   const BadgeIcon = () => {
     if(badgeCount > 0)
     return (
@@ -31,6 +36,20 @@ const BottomTabs = () => {
       </View>
     );
   };
+  useEffect(()=>{
+    if(resetRoute > 0){
+    dispatch(profileThunk());
+    dispatch(clearRoutes());
+    navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
+    }
+    else if(resetRoute === -1) {
+      console.log('Refresh token expired');
+      dispatch(clearRoutes());
+      dispatch(logoutThunk());
+      navigation.navigate('Home',{screen:'LoginScreen'});
+    }
+  },[resetRoute])
+
   return (
     <Tab.Navigator
       screenOptions={{

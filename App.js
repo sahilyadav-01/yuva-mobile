@@ -9,7 +9,9 @@ import {View} from 'react-native';
 import {StatusBar} from 'react-native';
 import {getIosStatusBarHeight, getPlatform} from './src/utils/utils';
 import {ORANGE} from './src/styles/colors';
+import YuvaService from './src/network/yuvaService';
 
+const yuvaService = new YuvaService();
 export default function App() {
   const {showContent} = useApp();
   const [height, setHeight] = useState(0);
@@ -62,3 +64,5 @@ export default function App() {
     </Provider>
   );
 }
+
+export {yuvaService as YuvaService};
