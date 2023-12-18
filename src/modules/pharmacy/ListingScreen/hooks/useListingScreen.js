@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPharmacyForUserThunk, resetPharmacyDataList } from "../../../../store/reducers/PharmacySlice";
 import _ from 'lodash';
 
-export const useListingScreen = (prescriptionId) => {
+export const useListingScreen = (prescriptionId,pharmacyId,redirect) => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
@@ -25,6 +25,10 @@ export const useListingScreen = (prescriptionId) => {
           [...prevData, ...pharmacyDataList.pharmacyResponseDtoList],
           'contactPersonNumber',
         );
+        if(redirect) {
+          const data = mergedData.filter(item=>item.id === pharmacyId);
+          return data;
+        }
         return mergedData;
       });
     }
@@ -79,11 +83,18 @@ useEffect(() => {
       setPageNumberSearch(pageNumberSearch + 1);
     }
   };
+  const onViewAll = () => {
+    navigation.setParams({prescriptionId,pharmacyId:null,redirect:false})
+    dispatch(resetPharmacyDataList());
+    setPageNumber(1);
+    dispatch(getAllPharmacyForUserThunk({ pageNo: 1, pageSize: 10, prescriptionId, search }))
+  }
   return {
     pharmacyData,
     pharmacyDataSearch,
     onSearch,
     onEndReached,
-    isSearch: search.length > 0
+    isSearch: search.length > 0,
+    onViewAll
   }
 }

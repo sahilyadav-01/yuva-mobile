@@ -19,5 +19,12 @@ export const styles = StyleSheet.create({
     paddingBottom: 12,
     paddingTop: 36,
   },
-  itemSeparator: {height: 40}
+  itemSeparator: {height: 40},
+  viewAllText: {
+    marginTop: 24,
+    alignSelf: CENTER,
+    fontFamily: fonts.family.rubik500,
+    color: CYAN_BLUE,
+    fontSize: fonts.size.fontSize14,
+  },
 });

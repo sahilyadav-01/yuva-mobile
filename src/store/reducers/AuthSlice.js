@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
+import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 import {
   setObject,
   getObject,
@@ -16,7 +18,14 @@ import {
 import {Freshchat} from 'react-native-freshchat-sdk';
 import { YuvaService } from '../../../App';
 import {handleNetworkError} from '../../utils/utils';
-import { Alert } from 'react-native';
+
+const registerFcmToken = async (register) => {
+  try {
+    const token = await firebaseMessaging().getToken();
+    const url = register ? `/fcm/${token}/false` : `/logout/${token}`;
+    token && await YuvaService.post(url);
+  } catch (error) {}
+};
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
@@ -56,6 +65,7 @@ export const resetPassword = createAsyncThunk(
         hash,
         password,
       });
+      await registerFcmToken(true);
       if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
         return {...response.data};
       }
@@ -84,6 +94,7 @@ export const verifyThunk = createAsyncThunk(
     try {
       const endpoint = `/validate-otp-login`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
+      await registerFcmToken(true);
       if (response?.data?.message === 'OTP_INVALID') {
         const errorMsg = {response: 'Invalid OTP'};
         return rejectWithValue(errorMsg);
@@ -225,8 +236,11 @@ export const logoutThunk = createAsyncThunk(
       const value = await removeObject('user');
       try {
         Freshchat.resetUser();
+        await registerFcmToken(false);
       } catch (e) {}
+      finally {
       return value;
+      }
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -246,6 +260,7 @@ export const signupThunk = createAsyncThunk(
         otp: numberOtp,
         password,
       });
+      await registerFcmToken(true);
       return response.data;
     } catch (error) {
       handleNetworkError(
@@ -412,6 +427,7 @@ const authSlice = createSlice({
         state.user.status = true;
         state.type = action.payload.type;
       }
+      registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
