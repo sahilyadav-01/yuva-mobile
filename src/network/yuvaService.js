@@ -1,5 +1,6 @@
 import axiosClient, { handleRefreshToken } from './interceptors';
 import {PATH, PROTOCOL, SERVER} from '../utils/utils';
+import { getJwt } from '../store/LocalStore';
 
 const baseUrl = PROTOCOL + SERVER + PATH;
 
@@ -17,9 +18,12 @@ class YuvaService {
       return resp;
     } catch (error) {
       if(error.response.status === 401) {
-      this.controller.abort();
-      this.setController();
-      handleRefreshToken();
+        const jwt = await getJwt();
+        if(jwt){
+          this.controller.abort();
+          this.setController();
+          handleRefreshToken();
+        }
     }
     }
   };
@@ -28,9 +32,12 @@ class YuvaService {
       return await axiosClient.post(`${baseUrl}${endpoint}`, params,{...headers,signal:this.controller.signal});
     } catch (error) {
       if(error.response.status === 401) {
-        this.controller.abort();
-        this.setController();
-        handleRefreshToken();
+        const jwt = await getJwt();
+        if(jwt){
+          this.controller.abort();
+          this.setController();
+          handleRefreshToken();
+        }
       }
     }
   };
@@ -39,9 +46,12 @@ class YuvaService {
       return await axiosClient.put(`${baseUrl}${endpoint}`, params, {signal:this.controller.signal});
     } catch (error) {
       if(error.response.status === 401) {
-        this.controller.abort();
-        this.setController();
-        handleRefreshToken();
+        const jwt = await getJwt();
+        if(jwt){
+          this.controller.abort();
+          this.setController();
+          handleRefreshToken();
+        }
       }
     }
   };
@@ -50,9 +60,12 @@ class YuvaService {
       return await axiosClient.delete(`${baseUrl}${endpoint}`, {...params,signal:this.controller.signal});
     } catch (error) {
       if(error.response.status === 401) {
-        this.controller.abort();
-        this.setController();
-        handleRefreshToken();
+        const jwt = await getJwt();
+        if(jwt){
+          this.controller.abort();
+          this.setController();
+          handleRefreshToken();
+        }
       }
     }
   }

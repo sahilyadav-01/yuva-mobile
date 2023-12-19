@@ -10,9 +10,12 @@ const handleUserForbidden = async () => {
 }
 
 const handleRefreshToken = async () => {
+    if(!store.getState().auth.unauthorised) {
+    store.dispatch(setUnauthorisedStatus(true));
     const token = await getRefreshToken();
     if(token) store.dispatch(refreshThunk(token));
     else store.dispatch(resetRoute(-1));
+    }
 }
 
 const handleMaintaince = flag => {
@@ -32,7 +35,6 @@ const loginCTAUrls = [
 ];
 
 let axiosClient = axios.create();
-let errorCount = 0;
 axiosClient.interceptors.request.use(
   async config => {
     const loginUrls = [
@@ -99,7 +101,7 @@ axiosClient.interceptors.response.use(
       handleUserForbidden();
     }
     loginCTAUrls.forEach(item=>{
-      if(config.url.includes(item)) store.dispatch(setRedirectState(false))
+      if(error?.config.url.includes(item)) store.dispatch(setRedirectState(false))
     })
     return Promise.reject(error);
   },

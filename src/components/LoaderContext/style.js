@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {getWindowDimensions} from '../../utils/utils';
 import {ABSOLUTE} from '../../styles/constants';
-import {OPAQUE_GREY} from '../../styles/colors';
+import {OPAQUE_GREY, WHITE} from '../../styles/colors';
 
 export const styles = () => {
   const {width, height} = getWindowDimensions();
@@ -12,6 +12,13 @@ export const styles = () => {
       width,
       height,
       backgroundColor: OPAQUE_GREY,
+    },
+    loaderContainer: {
+      position: ABSOLUTE,
+      zIndex: 700,
+      width,
+      height,
+      backgroundColor: WHITE,
     },
     loader: {position: ABSOLUTE, top: height / 2, left: width / 2, zIndex: 900},
   });

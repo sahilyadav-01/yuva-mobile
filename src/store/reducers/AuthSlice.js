@@ -239,6 +239,10 @@ export const logoutThunk = createAsyncThunk(
         await registerFcmToken(false);
       } catch (e) {}
       finally {
+      await clearJwt();
+      await clearRefreshToken();
+      await clearRole();
+      await clearProfileStatus();
       return value;
       }
     } catch (error) {
@@ -503,10 +507,6 @@ const authSlice = createSlice({
       state.user.jwt = '';
       state.isAppReady = true;
       state.isEmployee = null;
-      clearJwt();
-      clearRefreshToken();
-      clearRole();
-      clearProfileStatus();
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
     [signupThunk.pending]: (state, {payload}) => {

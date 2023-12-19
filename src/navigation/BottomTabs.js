@@ -12,7 +12,7 @@ import ProfileNavigation from './ProfileNavigation';
 import CartNavigation from './CartNavigation';
 import ReportNav from './ReportNav';
 import { styles } from './bottomTabStyle';
-import { logoutThunk, resetRoute as clearRoutes } from '../store/reducers/AuthSlice';
+import { logoutThunk, resetRoute as clearRoutes, setUnauthorisedStatus } from '../store/reducers/AuthSlice';
 import { profileThunk } from '../store/reducers/ProfileSlice';
 
 const Tab = createBottomTabNavigator();
@@ -41,12 +41,13 @@ const BottomTabs = () => {
     dispatch(profileThunk());
     dispatch(clearRoutes());
     navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
+    dispatch(setUnauthorisedStatus(false));
     }
     else if(resetRoute === -1) {
-      console.log('Refresh token expired');
       dispatch(clearRoutes());
       dispatch(logoutThunk());
       navigation.navigate('Home',{screen:'LoginScreen'});
+      dispatch(setUnauthorisedStatus(false));
     }
   },[resetRoute])
 
