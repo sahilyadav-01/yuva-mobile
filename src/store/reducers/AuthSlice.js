@@ -20,12 +20,13 @@ import {Freshchat} from 'react-native-freshchat-sdk';
 import { YuvaService } from '../../../App';
 import {handleNetworkError} from '../../utils/utils';
 
-const registerFcmToken = async (register) => {
+const registerFcmToken = async (register,logout) => {
+  const logoutDevices = logout ?? false;
   try {
     const fcmToken = await firebaseMessaging().getToken();
     const refreshToken = await getRefreshToken();
     const url = register ? `/fcm/${token}/false` : `/logout`;
-    const body = !register ? {fcmToken,refreshToken} : undefined;
+    const body = !register && !logoutDevices ? {fcmToken,refreshToken} : undefined;
     fcmToken && refreshToken && await YuvaService.post(url,body);
   } catch (error) {}
 };
@@ -235,12 +236,12 @@ export const initialLoad = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk(
   'auth/logoutThunk',
-  async (_, {fulfillWithValue, rejectWithValue}) => {
+  async (logout = false, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await removeObject('user');
       try {
         Freshchat.resetUser();
-        await registerFcmToken(false);
+        await registerFcmToken(false,logout);
       } catch (e) {}
       finally {
       await clearJwt();
@@ -352,6 +353,7 @@ const authSlice = createSlice({
     otpErrorMessage:'',
     unauthorised: false,
     resetRoute: 0,
+    logout: false,
   },
   reducers: {
     hideErrorBox(state) {
@@ -396,6 +398,9 @@ const authSlice = createSlice({
     },
     resetRoute(state,{payload = 0}){
       state.resetRoute = payload;
+    },
+    resetLogout(state){
+      state.logout = false;
     }
   },
   extraReducers: {
@@ -511,6 +516,7 @@ const authSlice = createSlice({
       state.user.jwt = '';
       state.isAppReady = true;
       state.isEmployee = null;
+      state.logout = true;
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
     [signupThunk.pending]: (state, {payload}) => {
@@ -765,6 +771,7 @@ export const {
   resetOtpMessage,
   setUnauthorisedStatus,
   resetRoute,
+  resetLogout
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

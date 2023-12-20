@@ -5,7 +5,7 @@ import {styles} from './style';
 
 const LoaderContext = () => {
   const {redirectLoading} = useSelector(state => state.notification);
-  const {unauthorised} = useSelector(state => state.auth);
+  const {unauthorised,logout} = useSelector(state => state.auth);
   const style = styles();
   if (!redirectLoading && !unauthorised) return null;
   if(redirectLoading)
@@ -15,7 +15,7 @@ const LoaderContext = () => {
       <ActivityIndicator style={style.loader} />
     </>
   );
-  if(unauthorised)
+  if(unauthorised || logout)
   return (
     <>
       <View style={style.loaderContainer} />
