@@ -14,6 +14,7 @@ import {
   clearRole,
   setRefreshToken,
   clearRefreshToken,
+  getRefreshToken,
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
 import { YuvaService } from '../../../App';
@@ -21,9 +22,11 @@ import {handleNetworkError} from '../../utils/utils';
 
 const registerFcmToken = async (register) => {
   try {
-    const token = await firebaseMessaging().getToken();
-    const url = register ? `/fcm/${token}/false` : `/logout/${token}`;
-    token && await YuvaService.post(url);
+    const fcmToken = await firebaseMessaging().getToken();
+    const refreshToken = await getRefreshToken();
+    const url = register ? `/fcm/${token}/false` : `/logout`;
+    const body = !register ? {fcmToken,refreshToken} : undefined;
+    fcmToken && refreshToken && await YuvaService.post(url,body);
   } catch (error) {}
 };
 
@@ -203,7 +206,8 @@ export const refreshThunk = createAsyncThunk(
   async (token, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/refresh-token`;
-      const response = await YuvaService.post(endpoint, {token});
+      const fcmToken = await firebaseMessaging().getToken();
+      const response = await YuvaService.post(endpoint, {token,fcmToken});
       await clearJwt();
       await clearRefreshToken();
       await setJwt(response?.data?.data.jwt);
