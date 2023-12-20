@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, ActivityIndicator, FlatList} from 'react-native';
+import {View, Text, ActivityIndicator, FlatList, TouchableOpacity} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {styles} from '../../styles';
 import ReportCard from '../../../../ReportCard';
-import {EMPTY_TEXT, ERROR_TEXT} from '../../constants';
+import {EMPTY_TEXT, ERROR_TEXT, VIEW_ALL_PRESCRIPTIONS} from '../../constants';
 import {useMyPrescription} from '../../hooks/useMyPrescription';
 
-export const PrescriptionContent = props => {
+export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
   const {
     prescriptionLoading,
     prescriptionError,
@@ -16,7 +16,10 @@ export const PrescriptionContent = props => {
     onEndReached,
     dataAvailable,
     pageNo,
-  } = useMyPrescription();
+    onViewAll,
+    redirectData
+  } = useMyPrescription({prescriptionId,redirect,serviceUuid});
+  const defaultValue = redirect ? dropdownData.find(item=>{if(item.uuid === serviceUuid) return item}) : dropdownData[0];
   const renderItem = ({item, index}) => {
     return (
       <ReportCard
@@ -28,12 +31,22 @@ export const PrescriptionContent = props => {
     );
   };
 
-  const renderListFooter = () => {
+  const RenderListFooter = () => {
     if (dataAvailable) {
       return (
         <View style={{alignItems: 'center'}}>
           <ActivityIndicator size="small" />
         </View>
+      );
+    }
+    if (redirectData?.redirect) {
+      return (
+        <TouchableOpacity onPress={onViewAll} style={styles.viewAll}>
+          <View style={styles.viewAllContainer}>
+          <Text style={styles.viewAllText}>{VIEW_ALL_PRESCRIPTIONS}</Text>
+          </View>
+        </TouchableOpacity>
+  
       );
     }
   };
@@ -69,7 +82,7 @@ export const PrescriptionContent = props => {
           style={styles.listContainer}
           onEndReachedThreshold={0.01}
           onEndReached={onEndReached}
-          ListFooterComponent={renderListFooter}
+          ListFooterComponent={<RenderListFooter/>}
           ListEmptyComponent={listEmptyComponent}
         />
         <View style={styles.listOffset} />
@@ -86,7 +99,7 @@ export const PrescriptionContent = props => {
         setSelected={onItemSelect}
         search={false}
         data={dropdownData}
-        defaultOption={dropdownData[0]}
+        defaultOption={defaultValue}
       />
       <RenderContent />
     </View>

@@ -58,6 +58,13 @@ export const setJwt = async jwt => {
   } catch (error) {}
 };
 
+export const setRefreshToken = async token => {
+  try {
+    await AsyncStorage.setItem('refreshToken', token);
+  } catch (error) {}
+};
+
+
 export const setProfileStatus = async status => {
   try {
     await AsyncStorage.setItem('profileUpdated', status);
@@ -67,6 +74,14 @@ export const setProfileStatus = async status => {
 export const clearJwt = async () => {
   try {
     await AsyncStorage.removeItem('jwt');
+  } catch (error) {
+    
+  }
+}
+
+export const clearRefreshToken = async () => {
+  try {
+    await AsyncStorage.removeItem('refreshToken');
   } catch (error) {
     
   }
@@ -90,6 +105,13 @@ export const getExistingUser = async () => {
 export const getJwt = async () => {
   try {
     const jwtToken = await AsyncStorage.getItem('jwt');
+    return jwtToken;
+  } catch (error) {}
+};
+
+export const getRefreshToken = async () => {
+  try {
+    const jwtToken = await AsyncStorage.getItem('refreshToken');
     return jwtToken;
   } catch (error) {}
 };

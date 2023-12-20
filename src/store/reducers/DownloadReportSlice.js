@@ -1,12 +1,13 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const downloadHraReportThunk = createAsyncThunk(
   'hra-pdf-report',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    const id = params?.id ? `?id=${params?.id}` : '';
     try {
       const endpoint = '/hra-pdf-report';
-      const response = await YuvaService.get(endpoint);
+      const response = await YuvaService.get(`${endpoint}${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -52,11 +53,17 @@ const initialState = {
   prescriptionError: false,
   diagnosticLoading: false,
   disagnosticError: false,
+  hraReportId: null,
 };
 
 const downlodReportSlice = createSlice({
   name: 'downloadReport',
   initialState,
+  reducers : {
+    setHraReportId(state,{payload}) {
+      state.hraReportId = payload;
+    }
+  },
   extraReducers: {
     [downloadHraReportThunk.pending]: (state, {payload}) => {
       state.loading = true;
@@ -108,5 +115,6 @@ const downlodReportSlice = createSlice({
     },
   },
 });
+export const {setHraReportId} = downlodReportSlice.actions
 export const downloadInit = downlodReportSlice.getInitialState();
 export default downlodReportSlice.reducer;

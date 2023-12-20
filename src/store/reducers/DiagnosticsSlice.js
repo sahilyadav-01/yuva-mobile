@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const cityIdThunk = createAsyncThunk(
   'city/getAllCityNames',

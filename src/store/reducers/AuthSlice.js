@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
+import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 import {
   setObject,
   getObject,
@@ -10,11 +12,24 @@ import {
   clearProfileStatus,
   setRole,
   clearRole,
+  setRefreshToken,
+  clearRefreshToken,
+  getRefreshToken,
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 import {handleNetworkError} from '../../utils/utils';
-import { Alert } from 'react-native';
+
+const registerFcmToken = async (register,logout) => {
+  const logoutDevices = logout ?? false;
+  try {
+    const fcmToken = await firebaseMessaging().getToken();
+    const refreshToken = await getRefreshToken();
+    const url = register ? `/fcm/${token}/false` : `/logout`;
+    const body = !register && !logoutDevices ? {fcmToken,refreshToken} : undefined;
+    fcmToken && refreshToken && await YuvaService.post(url,body);
+  } catch (error) {}
+};
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
@@ -54,6 +69,7 @@ export const resetPassword = createAsyncThunk(
         hash,
         password,
       });
+      await registerFcmToken(true);
       if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
         return {...response.data};
       }
@@ -82,6 +98,7 @@ export const verifyThunk = createAsyncThunk(
     try {
       const endpoint = `/validate-otp-login`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
+      await registerFcmToken(true);
       if (response?.data?.message === 'OTP_INVALID') {
         const errorMsg = {response: 'Invalid OTP'};
         return rejectWithValue(errorMsg);
@@ -184,6 +201,27 @@ export const loginThunk = createAsyncThunk(
     }
   },
 );
+
+export const refreshThunk = createAsyncThunk(
+  'auth/refreshThunk',
+  async (token, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = `/refresh-token`;
+      const fcmToken = await firebaseMessaging().getToken();
+      const response = await YuvaService.post(endpoint, {token,fcmToken});
+      await clearJwt();
+      await clearRefreshToken();
+      await setJwt(response?.data?.data.jwt);
+      await setRefreshToken(response?.data?.data.refreshToken);
+      await setRole(response?.data?.data.roles.includes('EMPLOYEE'));
+      await setProfileStatus(response?.data?.data.profileUpdated ? 'Y' : 'N');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const initialLoad = createAsyncThunk(
   'auth/initialLoad',
   async (_, {fulfillWithValue, rejectWithValue}) => {
@@ -198,13 +236,20 @@ export const initialLoad = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk(
   'auth/logoutThunk',
-  async (_, {fulfillWithValue, rejectWithValue}) => {
+  async (logout = false, {fulfillWithValue, rejectWithValue}) => {
     try {
       const value = await removeObject('user');
       try {
         Freshchat.resetUser();
+        await registerFcmToken(false,logout);
       } catch (e) {}
+      finally {
+      await clearJwt();
+      await clearRefreshToken();
+      await clearRole();
+      await clearProfileStatus();
       return value;
+      }
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -224,6 +269,7 @@ export const signupThunk = createAsyncThunk(
         otp: numberOtp,
         password,
       });
+      await registerFcmToken(true);
       return response.data;
     } catch (error) {
       handleNetworkError(
@@ -304,7 +350,10 @@ const authSlice = createSlice({
     emailErrorMsg: '',
     otpNumber: '',
     otpEmail: '',
-    otpErrorMessage:''
+    otpErrorMessage:'',
+    unauthorised: false,
+    resetRoute: 0,
+    logout: false,
   },
   reducers: {
     hideErrorBox(state) {
@@ -344,6 +393,15 @@ const authSlice = createSlice({
     resetOtpMessage(state) {
       state.otpErrorMessage = '';
     },
+    setUnauthorisedStatus(state,{payload}){
+      state.unauthorised = payload;
+    },
+    resetRoute(state,{payload = 0}){
+      state.resetRoute = payload;
+    },
+    resetLogout(state){
+      state.logout = false;
+    }
   },
   extraReducers: {
     [loginThunk.pending]: (state, {payload}) => {
@@ -356,6 +414,7 @@ const authSlice = createSlice({
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
         setJwt(action.payload.data.jwt);
+        setRefreshToken(action.payload.data.refreshToken);
         setRole(action.payload.data.roles.includes('EMPLOYEE'));
         setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N')
         state.isEmployee = action.payload.data.roles.includes('EMPLOYEE');
@@ -375,17 +434,60 @@ const authSlice = createSlice({
         state.user.id = action.payload.data.id;
         state.navigateToRegister = false;
         state.type = action.payload.type;
+        state.unauthorised = false;
       } else if (action.payload.data === null) {
         state.navigateToRegister = true;
         state.user.status = true;
         state.type = action.payload.type;
       }
+      registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.error.message;
+    },
+    [refreshThunk.pending]: (state, {payload}) => {
+      state.loading = true;
+      state.loggedIn = 'notLoggedIn';
+      state.user.status = false;
+      state.apiError = false;
+      state.type = ''
+    },
+    [refreshThunk.fulfilled]: (state, action) => {
+      if (action.payload.data) {
+        state.isEmployee = action.payload.data.roles.includes('EMPLOYEE');
+        state.loading = false;
+        const userData = {
+          name: action.payload.data.name,
+          jwt: action.payload.data.jwt,
+          roles: action.payload.data.roles[0],
+          id: action.payload.data.id,
+        };
+        action.payload.data.jwt && setObject('user', userData);
+        state.user.name = action.payload.data.name || 'User';
+        state.user.jwt = action.payload.data.jwt;
+        state.user.roles = action.payload.data.roles[0];
+        state.loggedIn = action.payload.data.jwt ? 'loggedIn' : state.loggedIn;
+        state.user.status = true;
+        state.user.id = action.payload.data.id;
+        state.navigateToRegister = false;
+        state.type = action.payload.type;
+        state.unauthorised = false;
+        state.resetRoute+= 1;
+      } else if (action.payload.data === null) {
+        state.navigateToRegister = true;
+        state.user.status = true;
+        state.type = action.payload.type;
+      }
+    },
+    [refreshThunk.rejected]: (state, action) => {
+      state.user.status = false;
+      state.loading = false;
+      state.apiError = true;
+      state.apiErrorMessage = action.error.message;
+      state.resetRoute = -1;
     },
     /**
      * Initial loading thunk handler
@@ -414,9 +516,7 @@ const authSlice = createSlice({
       state.user.jwt = '';
       state.isAppReady = true;
       state.isEmployee = null;
-      clearJwt();
-      clearRole();
-      clearProfileStatus();
+      state.logout = true;
     },
     [logoutThunk.rejected]: (state, {payload}) => {},
     [signupThunk.pending]: (state, {payload}) => {
@@ -428,6 +528,7 @@ const authSlice = createSlice({
     [signupThunk.fulfilled]: (state, {payload}) => {
       if (payload.data) {
       setJwt(payload.data.jwt);
+      setRefreshToken(payload.data.refreshToken);
       setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
@@ -447,6 +548,7 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+      state.unauthorised = false;
     }
     else if (payload.data === null) {
       state.navigateToRegister = true;
@@ -530,6 +632,7 @@ const authSlice = createSlice({
     [verifyThunk.fulfilled]: (state, {payload}) => {
       if(payload.data){
       setJwt(payload.data.jwt);
+      setRefreshToken(payload.data.refreshToken);
       setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
@@ -548,6 +651,7 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+      state.unauthorised = false;
     }
       else if (payload.data === null) {
         state.navigateToRegister = true;
@@ -623,6 +727,7 @@ const authSlice = createSlice({
         id: payload.data.id,
       };
       setJwt(payload.data.jwt);
+      setRefreshToken(payload.data.refreshToken);
       setRole(payload.data.roles.includes('EMPLOYEE'));
       setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
@@ -634,6 +739,7 @@ const authSlice = createSlice({
       state.user.status = true;
       state.user.id = payload.data.id;
       state.navigateToRegister = false;
+      state.unauthorised = false;
     }
     else if (payload.data === null) {
       state.navigateToRegister = true;
@@ -663,6 +769,9 @@ export const {
   resetNumberOtp,
   setLoginState,
   resetOtpMessage,
+  setUnauthorisedStatus,
+  resetRoute,
+  resetLogout
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;
