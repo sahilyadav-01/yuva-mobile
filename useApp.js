@@ -17,7 +17,6 @@ export const useApp = () => {
 
   const initializeToken = async () => {
     const token = await firebaseMessaging().getToken();
-    console.log('Token',token)
     setFcmToken(token);
   };
 

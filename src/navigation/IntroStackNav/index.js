@@ -13,6 +13,7 @@ import HomeSearchScreen from '../../screens/HomeSearchScreen/HomeSearchScreen';
 import HomeSearchDetailsScreen from '../../screens/HomeSearchScreen/HomeSearchDetailsScreen';
 import Maintenance from '../../components/Maintenance';
 import ProfileContent from '../../screens/ProfileContent';
+import PageNotFound from '../../screens/yuvaservices/pageNotFound';
 import ProfileNavigation from '../ProfileNavigation';
 
 const Stack = createStackNavigator();
@@ -88,6 +89,11 @@ const IntroStackNav = () => {
         name={'Profile'}
         component={ProfileNavigation}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={'PageNotFound'}
+        component={PageNotFound}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
