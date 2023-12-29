@@ -25,7 +25,7 @@ const registerFcmToken = async (register,logout) => {
   try {
     const fcmToken = await firebaseMessaging().getToken();
     const refreshToken = await getRefreshToken();
-    const url = register ? `/fcm/${token}/false` : `/logout`;
+    const url = register ? `/fcm/${fcmToken}/false` : `/logout`;
     const body = !register && !logoutDevices ? {fcmToken,refreshToken} : undefined;
     fcmToken && refreshToken && await YuvaService.post(url,body);
   } catch (error) {}
@@ -69,6 +69,10 @@ export const resetPassword = createAsyncThunk(
         hash,
         password,
       });
+      await setJwt(response.data.data.jwt);
+      await setRefreshToken(response.data.data.refreshToken);
+      await setRole(response.data.data.roles.includes('EMPLOYEE'));
+      await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N');
       await registerFcmToken(true);
       if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
         return {...response.data};
@@ -98,6 +102,10 @@ export const verifyThunk = createAsyncThunk(
     try {
       const endpoint = `/validate-otp-login`;
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
+      await setJwt(response.data.data.jwt);
+      await setRefreshToken(response.data.data.refreshToken);
+      await setRole(response.data.data.roles.includes('EMPLOYEE'));
+      await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N');
       await registerFcmToken(true);
       if (response?.data?.message === 'OTP_INVALID') {
         const errorMsg = {response: 'Invalid OTP'};
@@ -180,9 +188,14 @@ export const loginThunk = createAsyncThunk(
       const endpoint = `/login`;
       const response = await YuvaService.post(endpoint, {
         emailOrNumber: email,
-        password: password
+        password: password,
       });
       if(response?.data?.data === null || response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
+        await setJwt(response.data.data.jwt);
+        await setRefreshToken(response.data.data.refreshToken);
+        await setRole(response.data.data.roles.includes('EMPLOYEE'));
+        await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N')
+        await registerFcmToken(true);
         return {...response.data,type};
       }
       const error = {error: {message: 'Unauthorized User'}};
@@ -269,6 +282,10 @@ export const signupThunk = createAsyncThunk(
         otp: numberOtp,
         password,
       });
+      await setJwt(response.data.data.jwt);
+      await setRefreshToken(response.data.data.refreshToken);
+      await setRole(response.data.data.roles.includes('EMPLOYEE'));
+      await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N');
       await registerFcmToken(true);
       return response.data;
     } catch (error) {
@@ -413,10 +430,6 @@ const authSlice = createSlice({
     },
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
-        setJwt(action.payload.data.jwt);
-        setRefreshToken(action.payload.data.refreshToken);
-        setRole(action.payload.data.roles.includes('EMPLOYEE'));
-        setProfileStatus(action.payload.data.profileUpdated ? 'Y' : 'N')
         state.isEmployee = action.payload.data.roles.includes('EMPLOYEE');
         state.loading = false;
         const userData = {
@@ -440,7 +453,6 @@ const authSlice = createSlice({
         state.user.status = true;
         state.type = action.payload.type;
       }
-      registerFcmToken(true);
     },
     [loginThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -527,10 +539,6 @@ const authSlice = createSlice({
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
       if (payload.data) {
-      setJwt(payload.data.jwt);
-      setRefreshToken(payload.data.refreshToken);
-      setRole(payload.data.roles.includes('EMPLOYEE'));
-      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.loading = false;
       state.signUpLoading = false;
@@ -631,10 +639,6 @@ const authSlice = createSlice({
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
       if(payload.data){
-      setJwt(payload.data.jwt);
-      setRefreshToken(payload.data.refreshToken);
-      setRole(payload.data.roles.includes('EMPLOYEE'));
-      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.signUpLoading = false;
       const userData = {
@@ -726,10 +730,6 @@ const authSlice = createSlice({
         roles: payload.data.roles[0],
         id: payload.data.id,
       };
-      setJwt(payload.data.jwt);
-      setRefreshToken(payload.data.refreshToken);
-      setRole(payload.data.roles.includes('EMPLOYEE'));
-      setProfileStatus(payload.data.profileUpdated ? 'Y' : 'N');
       state.isEmployee = payload.data.roles.includes('EMPLOYEE');
       state.user.jwt = payload.data.jwt;
       payload.jwt && setObject('user', userData);

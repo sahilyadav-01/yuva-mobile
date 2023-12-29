@@ -54,12 +54,14 @@ export const setExistingUser = async () => {
 
 export const setJwt = async jwt => {
   try {
+    await clearJwt();
     await AsyncStorage.setItem('jwt', jwt);
   } catch (error) {}
 };
 
 export const setRefreshToken = async token => {
   try {
+    await clearRefreshToken();
     await AsyncStorage.setItem('refreshToken', token);
   } catch (error) {}
 };
