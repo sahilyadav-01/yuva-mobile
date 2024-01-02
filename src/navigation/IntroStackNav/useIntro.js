@@ -9,7 +9,6 @@ import {
   getProfileStatus,
   getRole,
 } from '../../store/LocalStore';
-import {YuvaService} from '../../network/yuvaService';
 import {setRedirectState} from '../../store/reducers/NotificationSlice';
 import {currentAppointment} from '../../store/reducers/AppointmentSlice';
 import {
@@ -26,6 +25,7 @@ import {
   updateProfileStatus,
 } from '../../store/reducers/ProfileSlice';
 import {setHraReportId} from '../../store/reducers/DownloadReportSlice';
+import {YuvaService} from '../../../App';
 
 export const useIntro = () => {
   const dispatch = useDispatch();
