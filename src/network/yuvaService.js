@@ -12,61 +12,44 @@ class YuvaService {
   setController(){
     this.controller = new AbortController();
   }
+  async handleError(error){
+    if(error.response.status === 401) {
+      const jwt = await getJwt();
+      if(jwt){
+        this.controller.abort();
+        this.setController();
+        handleRefreshToken();
+      }
+  }
+  return Promise.reject(error);
+  }
   get = async endpoint => {
     try {
       const resp = await axiosClient.get(`${baseUrl}${endpoint}`,{signal:this.controller.signal});
       return resp;
     } catch (error) {
-      if(error.response.status === 401) {
-        const jwt = await getJwt();
-        if(jwt){
-          this.controller.abort();
-          this.setController();
-          handleRefreshToken();
-        }
-    }
+      this.handleError(error)
     }
   };
   post = async (endpoint,  params,headers) => {
     try {
       return await axiosClient.post(`${baseUrl}${endpoint}`, params,{...headers,signal:this.controller.signal});
     } catch (error) {
-      if(error.response.status === 401) {
-        const jwt = await getJwt();
-        if(jwt){
-          this.controller.abort();
-          this.setController();
-          handleRefreshToken();
-        }
-      }
+      this.handleError(error)
     }
   };
   put = async (endpoint, params) => {
     try {
       return await axiosClient.put(`${baseUrl}${endpoint}`, params, {signal:this.controller.signal});
     } catch (error) {
-      if(error.response.status === 401) {
-        const jwt = await getJwt();
-        if(jwt){
-          this.controller.abort();
-          this.setController();
-          handleRefreshToken();
-        }
-      }
+      this.handleError(error)
     }
   };
   delete = async (endpoint,params) => {
     try {
       return await axiosClient.delete(`${baseUrl}${endpoint}`, {...params,signal:this.controller.signal});
     } catch (error) {
-      if(error.response.status === 401) {
-        const jwt = await getJwt();
-        if(jwt){
-          this.controller.abort();
-          this.setController();
-          handleRefreshToken();
-        }
-      }
+      this.handleError(error)
     }
   }
 }

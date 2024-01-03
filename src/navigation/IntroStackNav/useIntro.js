@@ -10,7 +10,7 @@ import {
   getRole,
 } from '../../store/LocalStore';
 import {setRedirectState} from '../../store/reducers/NotificationSlice';
-import {currentAppointment} from '../../store/reducers/AppointmentSlice';
+import {currentAppointment, setNotificationRedirect} from '../../store/reducers/AppointmentSlice';
 import {
   bookedDetailsByIdThunk,
   cityIdThunk,
@@ -127,6 +127,7 @@ export const useIntro = () => {
                   customId: item.customId,
                 }),
               );
+              dispatch(setNotificationRedirect(true));
               navigation.navigate('HomeScreen', {
                 screen: 'HomeDrawer',
                 params: {
