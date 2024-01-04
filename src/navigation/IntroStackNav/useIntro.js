@@ -26,6 +26,7 @@ import {
 } from '../../store/reducers/ProfileSlice';
 import {setHraReportId} from '../../store/reducers/DownloadReportSlice';
 import {YuvaService} from '../../../App';
+import { setOurPlanData } from '../../store/reducers/ProgramAndPlanSlice';
 
 export const useIntro = () => {
   const dispatch = useDispatch();
@@ -197,49 +198,40 @@ export const useIntro = () => {
       if (match) {
         switch (match[4]) {
           case 'test':
-            dispatch(diagnosisTestDetailsThunk({ id: match[5] })).then(response => {
-              if (response.payload.errorMessage != null) { navigation.navigate('PageNotFound', { data: "Test" }); }
-              else {
+            YuvaService.get(`/test/${match[5]}`).then(response => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: '',
-                  uuid: match[7],
+                  uuid: response.data.data.id,
                   showCartButton: true,
                   isTest: true,
                   name: null,
                   cost: '',
                 });
-              }
-            });
+            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Test" })});
             break;
           case 'package':
-            dispatch(diagnosisPackageDetailsThunk({ packageName: match[5] })).then(response => {
-              if (response.payload.errorMessage != null) {
-                navigation.navigate('PageNotFound', { data: "Package" });
-              }
-              else {
+            YuvaService.get(`/package/${match[5]}`).then(response => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
-                  packageName: '',
-                  uuid: match[5],
+                  packageName: response.data.data.packageUuid,
+                  uuid: response.data.data.packageUuid,
                   showCartButton: true,
                   isTest: false,
                   name: null,
-                  cost: '',
+                  cost: response.data.data.packageCost,
                 });
-              }
-            });
+            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Package" });});
             break;
           case 'plan':
-            dispatch(planPopularThunk()).then(response => {
-              const planData = response.payload.data.filter(
-                item => item?.planUuid === match[5],
-              )[0];
-              if (planData) {
-                dispatch(setOurPlanData(planData));
-                navigation.navigate('OurPlan');
+            YuvaService.get(`/plan/popular`).then(response => {
+              const planData = response.data.data.filter(item => item?.planUuid === match[5]);
+              if(planData?.length > 0) {
+              dispatch(setOurPlanData(planData[0]));
+              navigation.navigate('OurPlan');
               }
-              else { navigation.navigate('PageNotFound', { data: "Plan" }); }})
+              else if(planData?.length === 0) navigation.navigate('PageNotFound', { data: "Plan" })
+          })
             break;
           default:
             navigation.navigate('HomeService');
@@ -252,9 +244,7 @@ export const useIntro = () => {
             const splitParts = slugPatternMatch[4].split('-');
             const lastPart = splitParts[splitParts.length - 1];
             const slugTesttId = parseInt(lastPart);
-            dispatch(diagnosisTestDetailsThunk({ id: slugTesttId })).then(response => {
-              if (response.payload.errorMessage != null) { navigation.navigate('PageNotFound', { data: "Test" }); }
-              else {
+            YuvaService.get(`/test/${slugTesttId}`).then(() => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: '',
@@ -264,48 +254,38 @@ export const useIntro = () => {
                   name: null,
                   cost: '',
                 });
-              }
-            });
+            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Test" })});
             break;
           case 'package':
             const slugPackagetId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
-            dispatch(diagnosisPackageDetailsThunk({ packageName: slugPackagetId })).then(response => {
-              if (response.payload.errorMessage != null) {
-                navigation.navigate('PageNotFound', { data: "Package" });
-              }
-              else {
+            YuvaService.get(`/package/${slugPackagetId}`).then(() => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
-                  packageName: '',
+                  packageName: slugPackagetId,
                   uuid: slugPackagetId,
                   showCartButton: true,
                   isTest: false,
                   name: null,
                   cost: '',
                 });
-              }
-            });
+            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Package" })});
             break;
           case 'plan':
             const slugPlainId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
-            dispatch(planPopularThunk()).then(response => {
-              const planData = response.payload.data.filter(
+            YuvaService.get(`/plan/popular`).then(response => {
+              const planData = response.data.data.filter(
                 item => item?.planUuid === slugPlainId,
-              )[0];
-              if (planData) {
-                dispatch(setOurPlanData(planData));
+              );
+              if (planData?.length > 0) {
+                dispatch(setOurPlanData(planData[0]));
                 navigation.navigate('OurPlan');}
-              else { navigation.navigate('PageNotFound', { data: "Plan" }); }})
+              else if(planData?.length === 0) { navigation.navigate('PageNotFound', { data: "Plan" }); }})
             break;
         }
       }
-      else {
-        navigation.navigate('PageNotFound');
-      }
+      else navigation.navigate('PageNotFound');
     }
-    else {
-      navigation.navigate('PageNotFound');
-    }
+    else navigation.navigate('PageNotFound');
   }
   const getInitialUrl = async () => {
     try {
