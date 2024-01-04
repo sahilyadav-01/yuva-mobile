@@ -12,7 +12,6 @@ export const useProfileDetails = () => {
   const {logout} = useSelector(state=>state.auth)
   useEffect(()=>{
     if(logout){
-      navigation.dispatch(DrawerActions.closeDrawer());
       dispatch(resetLogout());
       dispatch(resetAppointments());
       navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
@@ -55,6 +54,7 @@ export const useProfileDetails = () => {
     Alert.alert('Logout', 'Are you sure want to logout from all devices?', [
       {
         onPress: () => {
+          navigation.dispatch(DrawerActions.closeDrawer());
           dispatch(logoutThunk(logoutDevices));
         },
         text: 'Yes',

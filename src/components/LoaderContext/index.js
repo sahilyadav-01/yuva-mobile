@@ -15,7 +15,7 @@ const LoaderContext = () => {
       <ActivityIndicator style={style.loader} />
     </>
   );
-  if(unauthorised || logout)
+  if(unauthorised)
   return (
     <>
       <View style={style.loaderContainer} />
