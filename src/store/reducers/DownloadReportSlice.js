@@ -28,10 +28,11 @@ export const downloadDiagnosticReportThunk = createAsyncThunk(
 );
 export const MyPrescriptionReportThunk = createAsyncThunk(
   'talkToDr/user',
-  async ({uuid,pageNo,pageSize}, {fulfillWithValue, rejectWithValue}) => {
+  async ({uuid,pageNo,pageSize,id}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/my/prescription?pageNo=${pageNo}&pageSize=${pageSize}&serviceUuid=${uuid}`;
-      const response = await YuvaService.get(endpoint);
+      const prescriptionId = typeof id === 'string' ? `&id=${id}` : '';
+      const response = await YuvaService.get(`${endpoint}${prescriptionId}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

@@ -169,7 +169,7 @@ export const useIntro = () => {
               screen: 'PHARMACY',
               params: {
                 screen: 'PharmacyListing',
-                params: {prescriptionId:data?.id,pharmacyId:data?.pharmacyId,redirect:true},
+                params: {prescriptionId:data?.id,pharmacyId:parseInt(data?.pharmacyId),redirect:true},
               },
             },
           },

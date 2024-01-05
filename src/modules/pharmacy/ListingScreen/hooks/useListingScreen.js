@@ -27,7 +27,7 @@ export const useListingScreen = (prescriptionId,pharmacyId,redirect) => {
         );
         if(redirect) {
           const data = mergedData.filter(item=>item.id === pharmacyId);
-          return data;
+          return data.length > 0 ? data : mergedData;
         }
         return mergedData;
       });
