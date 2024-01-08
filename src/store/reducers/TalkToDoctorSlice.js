@@ -34,7 +34,8 @@ const initialState = {
   consultationList: [],
   isRequested: false,
   id: null,
-  programData:''
+  programData:'',
+  requestError: false,
 };
 
 const talkToDoctorSlice = createSlice({
@@ -67,6 +68,7 @@ const talkToDoctorSlice = createSlice({
       state.loading = true;
       state.isRequested = false;
       state.id = null;
+      state.requestError = false;
     },
     [addRequestThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
@@ -74,13 +76,14 @@ const talkToDoctorSlice = createSlice({
       state.apiErrorMessage = '';
       state.isRequested = true;
       state.id = payload.id;
+      state.requestError = false;
     },
-    [addRequestThunk.rejected]: (state, {payload}) => {
+    [addRequestThunk.rejected]: (state) => {
       state.loading = false;
       state.apiError = true;
-      state.apiErrorMessage = payload.error;
       state.isRequested = false;
       state.id = null;
+      state.requestError = true;
     },
   },
 });

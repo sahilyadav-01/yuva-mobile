@@ -21,36 +21,50 @@ class YuvaService {
         handleRefreshToken();
       }
   }
-  return Promise.reject(error);
   }
   get = async endpoint => {
-    try {
-      const resp = await axiosClient.get(`${baseUrl}${endpoint}`,{signal:this.controller.signal});
-      return resp;
-    } catch (error) {
-      this.handleError(error)
-    }
+    return new Promise(async (resolve,reject) => {
+      try {
+        const response = await axiosClient.get(`${baseUrl}${endpoint}`,{signal:this.controller.signal});
+        resolve(response);
+      } catch (error) {
+        this.handleError(error);
+        reject(error);
+      }
+    })
   };
   post = async (endpoint,  params,headers) => {
-    try {
-      return await axiosClient.post(`${baseUrl}${endpoint}`, params,{...headers,signal:this.controller.signal});
-    } catch (error) {
-      this.handleError(error)
-    }
+    return new Promise(async (resolve,reject) => {
+      try {
+        const response = await axiosClient.post(`${baseUrl}${endpoint}`, params,{...headers,signal:this.controller.signal});
+        resolve(response);
+      } catch (error) {
+        this.handleError(error);
+        reject(error);
+      }
+    })
   };
   put = async (endpoint, params) => {
-    try {
-      return await axiosClient.put(`${baseUrl}${endpoint}`, params, {signal:this.controller.signal});
-    } catch (error) {
-      this.handleError(error)
-    }
+    return new Promise(async (resolve,reject) => {
+      try {
+        const response = await axiosClient.put(`${baseUrl}${endpoint}`, params, {signal:this.controller.signal});
+        resolve(response);
+      } catch (error) {
+        this.handleError(error);
+        reject(error);
+      }
+    })
   };
   delete = async (endpoint,params) => {
-    try {
-      return await axiosClient.delete(`${baseUrl}${endpoint}`, {...params,signal:this.controller.signal});
-    } catch (error) {
-      this.handleError(error)
-    }
+    return new Promise(async (resolve,reject) => {
+      try {
+        const response = await axiosClient.delete(`${baseUrl}${endpoint}`, {...params,signal:this.controller.signal});
+        resolve(response);
+      } catch (error) {
+        this.handleError(error);
+        reject(error);
+      }
+    })
   }
 }
 
