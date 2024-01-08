@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
+import { clearJwt, clearRefreshToken, getRefreshToken, setJwt, setRefreshToken } from '../LocalStore';
 
 export const createOrderThunk = createAsyncThunk(
   'payment/createOrder',
@@ -13,6 +14,12 @@ export const createOrderThunk = createAsyncThunk(
         plan
           ? {bookingRequestDto, subscriptionRequestDto}
           : {bookingRequestDto, subscriptionRequestDto, name, age, genderEnum:gender && gender.toUpperCase()};
+      const refreshToken = await getRefreshToken();
+      const refreshTokenResp = await YuvaService.post('/refresh-token', {token:refreshToken});
+      await clearJwt();
+      await clearRefreshToken();
+      await setJwt(refreshTokenResp.data.data.jwt);
+      await setRefreshToken(refreshTokenResp.data.data.refreshToken);
       const response = await YuvaService.post(endpoint, reqBody);
       return response.data;
     } catch (error) {

@@ -67,7 +67,6 @@ export const PATH = ':8080/api/v1/yuva';
 // export const PROTOCOL = 'https://';
 // export const PATH = '/api/v1/yuva';
 
-
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
 export const PASSWORD_VALIDATION = 'Please enter a valid password !';
 

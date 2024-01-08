@@ -4,7 +4,7 @@ import DrawerContent from '../screens/DrawerContent';
 import { getPlatform, getWindowDimensions } from '../utils/utils';
 import BottomTabs from './BottomTabs';
 
-const DrawerNav = props => {
+const DrawerNav = () => {
   const Drawer = createDrawerNavigator();
   const width = getWindowDimensions()?.width;
   const Platform = getPlatform();

@@ -61,7 +61,7 @@ const RescheduleAndCancel = () => {
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
                     <View style={styles.bookingText}>
-                    <Text style={textStyle(reschedule?.bookingStatus)} numberOfLines={1}>{dignosticStatus(reschedule?.bookingStatus).slice(0,25)}</Text>
+                    <Text style={textStyle(reschedule?.bookingStatus)} numberOfLines={2}>{dignosticStatus(reschedule?.bookingStatus)}</Text>
                     </View>
                     <View style={styles.timeSlot}>
                         <View style={styles.direction}>

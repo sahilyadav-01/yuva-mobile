@@ -1,21 +1,65 @@
 import {useEffect, useState} from 'react';
-import {Freshchat, FreshchatConfig} from 'react-native-freshchat-sdk';
+import firebaseMessaging from '@react-native-firebase/messaging';
+import {Freshchat, FreshchatConfig,FreshchatNotificationConfig} from 'react-native-freshchat-sdk';
+import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
 import SplashScreen from 'react-native-splash-screen';
 import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
+import { getExistingUser } from './src/store/LocalStore';
 
 export const useApp = () => {
   const Platform = getPlatform();
   const checkVersion = true;
   const [showContent, setShowContent] = useState(!checkVersion);
-  try {
-    const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
-    freshchatConfig.domain = DOMAIN;
-    Freshchat.init(freshchatConfig);
-  } catch (e) {}
+  const [fcmToken, setFcmToken] = useState(null);
 
+  const initializeToken = async () => {
+    const token = await firebaseMessaging().getToken();
+    setFcmToken(token);
+  };
+
+  const handleMessagingPermission = async () => {
+    try {
+      const existingUser = await getExistingUser();
+      if (
+        (Platform.isAndroid && AndroidPlatform.Version < 33) ||
+        Platform.isIOS
+      ) {
+        let permission = await firebaseMessaging().hasPermission();
+        if (
+          (permission === firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
+          permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL) && !existingUser
+        ) {
+          await firebaseMessaging().requestPermission();
+          permission = await firebaseMessaging().hasPermission();
+        }
+        initializeToken();
+      } else {
+        let notificationPermission = await PermissionsAndroid.check(
+          'android.permission.POST_NOTIFICATIONS',
+        );
+        if (!notificationPermission && !existingUser) {
+          await PermissionsAndroid.request(
+            'android.permission.POST_NOTIFICATIONS',
+          );
+          notificationPermission = await PermissionsAndroid.check(
+            'android.permission.POST_NOTIFICATIONS',
+          );
+        }
+        initializeToken();
+      }
+    } catch (error) {}
+  };
+
+  const initializeFreshchat = async () => {
+    try {
+      const freshchatConfig = new FreshchatConfig(APP_ID, APP_KEY);
+      freshchatConfig.domain = DOMAIN;
+      await Freshchat.init(freshchatConfig);
+    } catch (e) {}
+  };
   const handleVersionUpdate = (latestVersion, storeUrl) => {
     Alert.alert(
       'Alert',
@@ -66,6 +110,12 @@ export const useApp = () => {
     }
   };
 
+  useEffect(()=>{
+    if(typeof fcmToken === 'string') {
+      initializeFreshchat();
+    }
+  },[fcmToken])
+
   useEffect(() => {
     if (Platform?.isIOS && checkVersion) {
       const packageName = VersionCheck?.getPackageName();
@@ -87,6 +137,7 @@ export const useApp = () => {
       });
     } else if (Platform?.isAndroid && checkVersion) checkVersionUpdate();
     SplashScreen.hide();
+    handleMessagingPermission();
   }, []);
 
   return {showContent};

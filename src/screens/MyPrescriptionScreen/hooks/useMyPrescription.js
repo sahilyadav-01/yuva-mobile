@@ -2,17 +2,20 @@ import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import _ from 'lodash';
 import {MyPrescriptionReportThunk} from '../../../store/reducers/DownloadReportSlice';
+import { useNavigation } from '@react-navigation/native';
 
-export const useMyPrescription = () => {
+export const useMyPrescription = ({prescriptionId,redirect,serviceUuid}) => {
   const {myPrescriptionReport, prescriptionLoading, prescriptionError} =
     useSelector(state => state.downloadReport);
   const dispatch = useDispatch();
-  const [uuid, setUuid] = useState('0641b94d-16c4-430e-93ce-7877123d0574');
+  const navigation = useNavigation();
+  const [uuid, setUuid] = useState();
   const [pageNo, setPageNo] = useState(1);
   const [listData, setListData] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [dataAvailable, setDataAvailable] = useState(false);
   const [fetchData, setFetchData] = useState(false);
+  const [redirectData,setRedirectData] = useState(null);
   const dropdownData = [
     {
       key: '0',
@@ -47,12 +50,17 @@ export const useMyPrescription = () => {
   }, [pageNo]);
 
   useEffect(() => {
-    dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo}));
+    if(redirectData?.redirect && uuid) dispatch(MyPrescriptionReportThunk({uuid: redirectData?.serviceUuid, pageSize: 10, pageNo: 1, id: redirectData.prescriptionId.toString()}));
+    else if(uuid) {
+      dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo}));
+    }
     setFetchData(true);
   }, [uuid]);
 
   const onItemSelect = arg => {
     const selectedUuid = dropdownData.find(item => item.key === arg).uuid;
+    setRedirectData({prescriptionId,redirect,serviceUuid});
+    navigation.setParams({prescriptionId:null,redirect:false,serviceUuid:null})
     setListData([]);
     setPageNo(1);
     setUuid(selectedUuid);
@@ -65,6 +73,13 @@ export const useMyPrescription = () => {
     }
   };
 
+  const onViewAll = () => {
+    navigation.setParams({prescriptionId:null,redirect:false,serviceUuid:null})
+    setRedirectData(null);
+    setPageNo(1);
+    dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo: 1}));
+  }
+
   return {
     prescriptionLoading,
     prescriptionError,
@@ -76,5 +91,7 @@ export const useMyPrescription = () => {
     onEndReached,
     dataAvailable,
     pageNo,
+    onViewAll,
+    redirectData
   };
 };

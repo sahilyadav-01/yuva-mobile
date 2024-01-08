@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const newAppointmentThunk = createAsyncThunk(
   'appointment/newAppointment',
@@ -110,6 +110,7 @@ const initialState = {
   rescheduleAppointment: '',
   errorAppointment: '',
   getAppointment: null,
+  notificationRedirect: false,
 };
 
 const appointmentSlice = createSlice({
@@ -144,6 +145,9 @@ const appointmentSlice = createSlice({
     resetAppointments(state) {
       state.userAppointments = [];
     },
+    setNotificationRedirect(state,{payload}) {
+      state.notificationRedirect = payload;
+    }
   },
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
@@ -208,6 +212,7 @@ export const {
   resetMessage,
   resetAppointments,
   getAppointment,
+  setNotificationRedirect
 } = appointmentSlice.actions;
 export const appointmentInit = appointmentSlice.getInitialState();
 
