@@ -28,6 +28,7 @@ import LoginScreen from '../screens/login/LoginScreen';
 import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
 import SearchNetworkHomeScreen from '../screens/yuvaservices/searchNetwork/SearchNetworkHomeScreen';
 import ViewAllOurPlansScreen from '../screens/OurPlanScreen/ViewAllOurPlansScreen';
+import CategoryScreen from '../screens/yuvaservices/Product/CategoryScreen';
 
 const Stack = createStackNavigator();
 
@@ -147,6 +148,11 @@ const ServicesNav = () => {
       <Stack.Screen
       name="SearchNetworkHomeScreen"
       component={SearchNetworkHomeScreen}
+      options={{ headerShown: false}}
+      />
+       <Stack.Screen
+      name="CategoryScreen"
+      component={CategoryScreen}
       options={{ headerShown: false}}
       />
     </Stack.Navigator>
