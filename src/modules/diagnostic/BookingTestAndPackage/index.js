@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 import {styles} from './styles';
 import {
@@ -13,7 +13,6 @@ import {
 import Header from '../../../components/Header';
 import {useBookingTestAndPackage} from './hooks/useBookingTestAndPackage';
 import {SVG} from '../../../../assets';
-import {useRoute} from '@react-navigation/native';
 
 const BookingTestAndPackage = () => {
   const {

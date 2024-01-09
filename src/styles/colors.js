@@ -97,3 +97,4 @@ export const ORANGE_RED='#FB5812';
 export const PALE_PEACH = '#FFF9EF';
 export const MANATEE = '#848A9E';
 export const TURQUOISE_LAGOON = '#38B9AE';
+export const OPAQUE_GREY = 'rgba(52, 52, 52, 0.5)';

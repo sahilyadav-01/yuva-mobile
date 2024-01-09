@@ -129,6 +129,6 @@ export const useHome = () => {
     banner3,
     loggedIn,
     showSearchView,
-    onBackPress
+    onBackPress,
   };
 };

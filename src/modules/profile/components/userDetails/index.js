@@ -121,7 +121,7 @@ const UserDetails = ({
         placeholderTextColor={DARK_GRAY}
         placeholder={'Email'}
       />
-      {edit && !(userDetails?.email == email) && !emailVerified && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
+      {edit && email?.length > 0 && !(userDetails?.email == email) && !emailVerified && <Text style={verifyStyle} onPress={onVerifyEmail}>{VERIFY}</Text>}
       {edit && emailVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       <TextInput
         value={phoneNumber}
@@ -131,7 +131,7 @@ const UserDetails = ({
         placeholderTextColor={DARK_GRAY}
         placeholder={'Mobile Number'}
       />
-      {edit && !(userDetails?.number == phoneNumber) && !numberVerified && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
+      {edit && phoneNumber?.length === 10 && !(userDetails?.number == phoneNumber) && !numberVerified && <Text style={verifyStyle} onPress={onVerifyPhone}>{VERIFY}</Text>}
       {edit && numberVerified && <Text style={[verifyStyle, { color: GREEN }]} >{VERIFIED}</Text>}
       {!edit || (edit && gender !== null && profileGender) ? (
         <TextInput

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getDeviceId } from '../../utils/utils';
-import { YuvaService } from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const couponSliceThunk = createAsyncThunk(
   '/coupon/getAllCoupons/user',

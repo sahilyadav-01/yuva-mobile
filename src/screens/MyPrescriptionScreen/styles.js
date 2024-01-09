@@ -38,5 +38,18 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14
   },
-  listOffset: {height: 16}
+  listOffset: {height: 16},
+  viewAllText: {
+    fontFamily: fonts.family.rubik500,
+    color: WHITE,
+    fontSize: fonts.size.fontSize14,
+  },
+  viewAll: {width:'100%',paddingHorizontal:16,marginTop:16},
+  viewAllContainer: {
+    paddingVertical: 12,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    backgroundColor: CYAN_BLUE,
+    borderRadius: 12,
+  }
 });

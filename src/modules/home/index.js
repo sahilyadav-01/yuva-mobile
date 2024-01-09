@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -29,7 +29,7 @@ export const HomeScreen = () => {
     banner3,
     loggedIn,
     showSearchView,
-    onBackPress
+    onBackPress,
   } = useHome();
   const styles = style();
   if(showSearchView) {

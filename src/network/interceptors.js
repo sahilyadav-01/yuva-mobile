@@ -1,18 +1,38 @@
 import axios from 'axios';
-import {getJwt} from '../store/LocalStore';
-import {logoutThunk} from '../store/reducers/AuthSlice';
+import {getJwt, getRefreshToken} from '../store/LocalStore';
+import {logoutThunk, refreshThunk, resetRoute, setUnauthorisedStatus} from '../store/reducers/AuthSlice';
 import store from '../store/Store';
 import {maintainceThunk} from '../store/reducers/MaintainenceSlice';
+import { setRedirectState } from '../store/reducers/NotificationSlice';
 
-const handleUserForbidden = () => {
+const handleUserForbidden = async () => {
   store.dispatch(logoutThunk());
-};
+}
+
+const handleRefreshToken = async () => {
+    if(!store.getState().auth.unauthorised) {
+    store.dispatch(setUnauthorisedStatus(true));
+    const token = await getRefreshToken();
+    if(token) store.dispatch(refreshThunk(token));
+    else store.dispatch(resetRoute(-1));
+    }
+}
 
 const handleMaintaince = flag => {
   store.dispatch(maintainceThunk(flag));
 };
 
 const byPassForbiddenUrls = ['/onmood9','/erms'];
+
+const loginCTAUrls = [
+  '/forgot-password',
+  '/validate-otp',
+  '/verify-link',
+  '/generate-sms-otp',
+  '/login',
+  '/signup',
+  '/reset-password',
+];
 
 let axiosClient = axios.create();
 axiosClient.interceptors.request.use(
@@ -29,7 +49,13 @@ axiosClient.interceptors.request.use(
       '/test/popular',
       '/plan/popular',
       '/cart/guest',
+      '/refresh-token'
     ];
+
+    loginCTAUrls.forEach(item=>{
+      if(config.url.includes(item)) store.dispatch(setRedirectState(true))
+    })
+
     const isLoginApi = loginUrls.filter(item => {
       if (config.url.includes(item)) return item;
     });
@@ -54,23 +80,32 @@ axiosClient.interceptors.request.use(
 );
 
 axiosClient.interceptors.response.use(
-  resp => resp,
+  resp => {
+    loginCTAUrls.forEach(item=>{
+      if(resp.config.url.includes(item)) store.dispatch(setRedirectState(false))
+    })
+    return resp
+  },
   async error => {
     const jwt = await getJwt();
-    if (error.response.status === 503) {
+    if (error?.response?.status === 503) {
       handleMaintaince(true);
     } else if (
       jwt &&
-      error.response.status &&
-      error.response.status === 403 &&
+      error?.response?.status &&
+      error?.response?.status === 403 &&
       byPassForbiddenUrls.filter(item => {
         if (error?.request?.responseURL?.includes(item)) return item;
       }).length === 0
     ) {
       handleUserForbidden();
     }
+    loginCTAUrls.forEach(item=>{
+      if(error?.config.url.includes(item)) store.dispatch(setRedirectState(false))
+    })
     return Promise.reject(error);
   },
 );
 
+export {handleRefreshToken};
 export default axiosClient;

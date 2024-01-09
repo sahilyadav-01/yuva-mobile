@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const getPopularTestsPackages = createAsyncThunk(
   'homeSearch/getPopularTestsPackages',
