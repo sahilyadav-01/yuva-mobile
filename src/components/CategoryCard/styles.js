@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, DARK_BLUE, GREEN, WHITE } from '../../styles/colors';
+import { CYAN_BLUE, DARK_BLUE, GREEN, VANILLA, WHITE } from '../../styles/colors';
 import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   CompleteView: {
-    backgroundColor: WHITE,
+    backgroundColor: 'lime',
     marginLeft: '5%',
     marginRight: '5%',
     marginVertical: 12,
-    minHeight: 143,
-    borderRadius: (10, 10, 6, 6),
+    minHeight: 96,
+    borderRadius: 6,
   },
   Top: {
     flexDirection: ROW,
+    // backgroundColor:'red'
   },
   pngView: {
     width: 68,
