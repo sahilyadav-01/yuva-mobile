@@ -112,6 +112,8 @@ export const useHome = () => {
   };
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index });
 
+  const onCategoryViewAllPress = () => navigation.navigate('CategoryScreen');
+
   const onBackPress = () => dispatch(setHomeSearch(false));
 
   return {
@@ -121,6 +123,7 @@ export const useHome = () => {
     renderservicesItem,
     popularPackageName,
     onHealthPackagePress,
+    onCategoryViewAllPress,
     popularTest,
     banner1,
     banner3,

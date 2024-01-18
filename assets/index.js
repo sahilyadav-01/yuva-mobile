@@ -161,7 +161,7 @@ import BookAppointment from './BookAppointment';
 import GetMedicine from './GetMedicine';
 import ConsultDoctor from './ConsultDoctor';
 import PageNotFound from './PageNotFound';
-
+import product_image from './product_image.png'
 const PNG = {
   AMICO,
   BACTERIA,
@@ -221,7 +221,8 @@ const PNG = {
   AmbulanceImage,
   YUVA_LOGO,
   TopSplashScreenBackgroundImage,
-  BottomSplashScreenBackgroundImage
+  BottomSplashScreenBackgroundImage,
+  product_image
 };
 
 const SVG = {
