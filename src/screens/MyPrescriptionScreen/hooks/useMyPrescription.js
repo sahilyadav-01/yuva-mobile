@@ -50,7 +50,7 @@ export const useMyPrescription = ({prescriptionId,redirect,serviceUuid}) => {
   }, [pageNo]);
 
   useEffect(() => {
-    if(redirectData?.redirect && uuid) dispatch(MyPrescriptionReportThunk({uuid: redirectData?.serviceUuid, pageSize: 10, pageNo: 1, id: redirectData.prescriptionId.toString()}));
+    if(redirectData?.redirect && uuid && redirectData?.prescriptionId) dispatch(MyPrescriptionReportThunk({uuid: redirectData?.serviceUuid, pageSize: 10, pageNo: 1, id: redirectData.prescriptionId.toString()}));
     else if(uuid) {
       dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo}));
     }
