@@ -1,69 +1,70 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { PNG } from "../../../../../assets";
-import CarouselContainer from "../../../../components/CarouselContainer";
-import CarouselItem2 from "../../../../components/CarouselItem2";
-import { LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2 } from "./constant";
-import { styles } from './styles';
-import ProductCarouselItem from "../../../../components/ProductCarouselItem";
+import React from 'react';
+import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
+import {CATEGORIES, PRODUCT_HUB, VIEW_ALL} from './constant';
+import {styles as style} from './styles';
+import {PNG} from '../../../../../assets';
 
-const ProductHub = ({ popularPackageName, onCategoryViewAllPress }) => {
-    return (
+const ProductHub = ({onCategoryViewAllPress}) => {
+  const styles = style();
+  return (
+    <View style={{backgroundColor: '#F2EFEA'}}>
+      <View style={styles.PopularHealthCheckups}>
+        <Text style={styles.LandingPageText1}>{PRODUCT_HUB} </Text>
+        <View style={styles.textContainer}>
+          <TouchableOpacity onPress={() => onCategoryViewAllPress()}>
+            <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
+          </TouchableOpacity>
+          <View style={styles.line} />
+        </View>
+      </View>
+      <View style={styles.categoryHeadingContainer}>
+        <Text style={styles.categoryName}>{CATEGORIES[0].name}</Text>
+        <Text style={[styles.categoryName, {fontSize: 18}]}>
+          {CATEGORIES[1].name}
+        </Text>
+        <Text style={styles.categoryName}>{CATEGORIES[2].name}</Text>
+      </View>
+      {[0, 0].map(() => (
         <>
-            <View style={styles.PopularHealthCheckups}>
-                <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
-                <View style={styles.textContainer}>
-                    <TouchableOpacity onPress={() => onCategoryViewAllPress()}>
-                        <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.line} />
+          <View style={styles.subCategoryNameContainer}>
+            <View style={styles.subLine} />
+            <Text style={styles.subCategoryNameStyle}>{'Food'} </Text>
+            <View style={styles.subLine} />
+          </View>
+          <FlatList
+            style={styles.subCategoryList}
+            ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+            horizontal
+            data={[0, 0, 0]}
+            keyExtractor={(_, index) => `product${index}`}
+            renderItem={() => {
+              return (
+                <View style={styles.subCategoryItem}>
+                  <Image
+                    source={PNG.product_image}
+                    style={styles.categoryImage}
+                  />
+                  <View style={styles.separator} />
+                  <View style={styles.subCategoryDescription}>
+                    <Text style={styles.productName}>
+                      DiabeSmart Low GI rice
+                    </Text>
+                  </View>
+                  <View style={styles.rowContainer}>
+                    <Text style={styles.discount}>-20%</Text>
+                    <Text>799.00</Text>
+                  </View>
+                  <Text>MRP 1000</Text>
+                  <TouchableOpacity style={styles.buttonContainer}>
+                    <Text style={styles.buttonText}>Add To Cart</Text>
+                  </TouchableOpacity>
                 </View>
-            </View>
-            {popularPackageName && <View style={styles.CarouselContainerStyle}>
-                <View style={styles.categoryNameContainer}><Text style={styles.categoryNameStyle}>{'Diabetic Mart'} </Text></View>
-                <View style={styles.subCategoryNameContainer}>
-                    <View style={styles.subLine} />
-                    <Text style={styles.subCategoryNameStyle}>{'Food'} </Text>
-                    <View style={styles.subLine} />
-                </View>
-
-                <CarouselContainer
-                    data={popularPackageName.popularPackageResponseDtoList}
-                    isIndexed={false}>
-                    <ProductCarouselItem
-                        imgPath={PNG.product_image}
-                    />
-                </CarouselContainer>
-                <View style={styles.categoryNameContainer}><Text style={styles.categoryNameStyle}>{'Diabetic Mart'} </Text></View>
-                <View style={styles.subCategoryNameContainer}>
-                    <View style={styles.subLine} />
-                    <Text style={styles.subCategoryNameStyle}>{'Food'} </Text>
-                    <View style={styles.subLine} />
-                </View>
-                <CarouselContainer
-                    data={popularPackageName.popularPackageResponseDtoList}
-                    isIndexed={false}>
-                    <CarouselItem2
-                        imgPath={PNG.product_image}
-                    />
-                </CarouselContainer>
-                <View style={styles.categoryNameContainer}><Text style={styles.categoryNameStyle}>{'Diabetic Mart'} </Text></View>
-                <View style={styles.subCategoryNameContainer}>
-                    <View style={styles.subLine} />
-                    <Text style={styles.subCategoryNameStyle}>{'Food'} </Text>
-                    <View style={styles.subLine} />
-                </View>
-                <CarouselContainer
-                    data={popularPackageName.popularPackageResponseDtoList}
-                    isIndexed={false}>
-                    <CarouselItem2
-                        imgPath={PNG.product_image}
-                    />
-                </CarouselContainer>
-            </View>}
-
-
+              );
+            }}
+          />
         </>
-    )
-}
+      ))}
+    </View>
+  );
+};
 export default ProductHub;
