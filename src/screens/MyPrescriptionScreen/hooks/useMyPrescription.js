@@ -60,7 +60,7 @@ export const useMyPrescription = ({prescriptionId,redirect,serviceUuid}) => {
   const onItemSelect = arg => {
     const selectedUuid = dropdownData.find(item => item.key === arg).uuid;
     setRedirectData({prescriptionId,redirect,serviceUuid});
-    navigation.setParams({prescriptionId:null,redirect:false,serviceUuid:null})
+    navigation.setParams({prescriptionId:null})
     setListData([]);
     setPageNo(1);
     setUuid(selectedUuid);
@@ -74,9 +74,11 @@ export const useMyPrescription = ({prescriptionId,redirect,serviceUuid}) => {
   };
 
   const onViewAll = () => {
-    navigation.setParams({prescriptionId:null,redirect:false,serviceUuid:null})
+    navigation.setParams({prescriptionId:null})
     setRedirectData(null);
     setPageNo(1);
+    setListData([]);
+    setFetchData(true);
     dispatch(MyPrescriptionReportThunk({uuid, pageSize: 10, pageNo: 1}));
   }
 
