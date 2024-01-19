@@ -13,8 +13,8 @@ import {ORANGE} from '../../../styles/colors';
 import {styles as style} from './styles';
 import {useCategory} from './hooks/useCategory';
 
-const Categories = () => {
-  const {categories, onCategoryPress} = useCategory();
+const Categories = ({navigation}) => {
+  const {categories, onCategoryPress} = useCategory(navigation);
   const styles = style();
   const RenderContent = ({item}) => {
     return (

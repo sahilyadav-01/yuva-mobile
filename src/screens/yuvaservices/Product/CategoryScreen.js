@@ -3,10 +3,10 @@ import { SafeAreaView } from 'react-native'
 import { styles } from './styles';
 import Category from '../../../modules/product/category';
 
-const CategoryScreen = () => {
+const CategoryScreen = (props) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Category />
+      <Category navigation={props?.navigation}/>
     </SafeAreaView>
   )
 }

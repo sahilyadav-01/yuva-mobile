@@ -3,12 +3,12 @@ import {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllCategories} from '../../../../store/reducers/ProductSlice';
 
-export const useCategory = () => {
+export const useCategory = (navigation) => {
   const dispatch = useDispatch();
   const {categories} = useSelector(state => state.product);
 
   const onCategoryPress = item => {
-    console.log('Item', item);
+    navigation.navigate('CategoryDetails',{item})
   };
 
   useFocusEffect(

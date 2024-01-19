@@ -6,19 +6,20 @@ import {
   PALE_PEACH,
   VIVID_TANGERINE,
   WHITE,
-} from '../../../../styles/colors';
+} from '../../styles/colors';
 import {
   CENTER,
   HIDDEN,
   ROW,
   ROW_REVERSE,
   SPACE_BETWEEN,
-} from '../../../../styles/constants';
-import {fonts} from '../../../../styles/fonts';
-import {getDimensions} from '../../../../utils/utils';
+} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
+import {getDimensions} from '../../utils/utils';
 
-export const styles = () => {
-  const {width} = getDimensions();
+const {width} = getDimensions();
+
+const styles = () => {
   return StyleSheet.create({
     PopularHealthCheckups: {
       alignItems: CENTER,
@@ -90,7 +91,7 @@ export const styles = () => {
       marginHorizontal: 20,
       marginBottom: 16,
     },
-    itemSeparator: {width: (width - 40) / 7},
+    itemSeparator: {height: 24},
     subCategoryItem: {
       width: ((width - 40) * 3) / 7,
       backgroundColor: WHITE,
@@ -122,3 +123,5 @@ export const styles = () => {
     buttonText: {color: WHITE},
   });
 };
+
+export {styles,width}
