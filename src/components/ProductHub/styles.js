@@ -99,7 +99,7 @@ const styles = () => {
       paddingHorizontal: 12,
       paddingVertical: 16,
     },
-    categoryImage: {marginHorizontal: 30},
+    categoryImage: {marginHorizontal: 30, aspectRatio:0.77, width: ((((width - 40) * 3) / 7) - 24) * 0.5},
     separator: {
       marginVertical: 6,
       backgroundColor: '#C7D6E4',

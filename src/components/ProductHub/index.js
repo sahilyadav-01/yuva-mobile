@@ -2,12 +2,43 @@ import React from 'react';
 import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
 import {CATEGORIES, PRODUCT_HUB, VIEW_ALL} from './constant';
 import {styles as style, width} from './styles';
-import {PNG} from '../../../assets';
 
-const ProductHub = ({onCategoryViewAllPress, showHeading, showSubHeading}) => {
+const ProductHub = ({
+  onCategoryViewAllPress,
+  showHeading,
+  data,
+}) => {
   const styles = style();
   const renderHeading = showHeading ?? true;
-  const renderSubHeading = showSubHeading ?? true;
+  const RenderProducts = ({index}) => {
+    let obj = data?.productList[index]?.productResponseDtoForUserList[index];
+    return (
+      <View
+        style={[
+          styles.subCategoryItem,
+          {
+            marginRight: index % 2 === 0 ? (width - 40) / 7 : undefined,
+          },
+        ]}>
+        <Image
+          source={{uri: obj?.imageFilepath}}
+          style={styles.categoryImage}
+        />
+        <View style={styles.separator} />
+        <View style={styles.subCategoryDescription}>
+          <Text style={styles.productName}>{obj?.name}</Text>
+        </View>
+        <View style={styles.rowContainer}>
+          {obj?.discountPercentage ? <Text style={styles.discount}>-{obj?.discountPercentage}%</Text> : null}
+          <Text>₹ {obj?.finalPrice}</Text>
+        </View>
+        <Text>M.R.P. ₹ {obj?.originalPrice}</Text>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Add To Cart</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <View style={{backgroundColor: '#F2EFEA'}}>
       {renderHeading && (
@@ -30,58 +61,36 @@ const ProductHub = ({onCategoryViewAllPress, showHeading, showSubHeading}) => {
           </View>
         </>
       )}
-      {[0, 0].map(() => (
-        <>
-          <View style={styles.subCategoryNameContainer}>
-            {renderSubHeading && (
-              <>
-                <View style={styles.subLine} />
-                <Text style={styles.subCategoryNameStyle}>{'Food'} </Text>
-                <View style={styles.subLine} />
-              </>
+      {data.productList.map((item, index) => {
+        return (
+          <>
+            <View style={styles.subCategoryNameContainer}>
+              {item?.subCategoryId && (
+                <>
+                  <View style={styles.subLine} />
+                  <Text style={styles.subCategoryNameStyle}>
+                    {item.subCategoryName}{' '}
+                  </Text>
+                  <View style={styles.subLine} />
+                </>
+              )}
+            </View>
+            {data?.productList[index]?.productResponseDtoForUserList?.length >
+              0 && (
+              <FlatList
+                key={(_, index) => `product${index}`}
+                numColumns={2}
+                style={styles.subCategoryList}
+                ItemSeparatorComponent={() => (
+                  <View style={styles.itemSeparator} />
+                )}
+                data={data?.productList[index]?.productResponseDtoForUserList}
+                renderItem={({_, index}) => <RenderProducts index={index} />}
+              />
             )}
-          </View>
-          <FlatList
-            key={(_, index) => `product${index}`}
-            numColumns={2}
-            style={styles.subCategoryList}
-            ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-            data={[0, 0, 0]}
-            keyExtractor={(_, index) => `product${index}`}
-            renderItem={({_, index}) => {
-              return (
-                <View
-                  style={[
-                    styles.subCategoryItem,
-                    {
-                      marginRight:
-                        index % 2 === 0 ? (width - 40) / 7 : undefined,
-                    },
-                  ]}>
-                  <Image
-                    source={PNG.product_image}
-                    style={styles.categoryImage}
-                  />
-                  <View style={styles.separator} />
-                  <View style={styles.subCategoryDescription}>
-                    <Text style={styles.productName}>
-                      DiabeSmart Low GI rice {index}
-                    </Text>
-                  </View>
-                  <View style={styles.rowContainer}>
-                    <Text style={styles.discount}>-20%</Text>
-                    <Text>799.00</Text>
-                  </View>
-                  <Text>MRP 1000</Text>
-                  <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Add To Cart</Text>
-                  </TouchableOpacity>
-                </View>
-              );
-            }}
-          />
-        </>
-      ))}
+          </>
+        );
+      })}
     </View>
   );
 };
