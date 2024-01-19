@@ -39,7 +39,7 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
         </View>
       );
     }
-    if (redirectData?.redirect) {
+    if (redirectData?.redirect && redirectData?.prescriptionId) {
       return (
         <TouchableOpacity onPress={onViewAll} style={styles.viewAll}>
           <View style={styles.viewAllContainer}>
