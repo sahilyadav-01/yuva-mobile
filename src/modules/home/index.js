@@ -9,7 +9,6 @@ import OurPlan from './components/OurPlan';
 import PopularHeathCheckupCarousel from './components/PopularHeathCheckupCarousel';
 import PopularTestPackageCarousel from './components/PopularTestPackageCarousel.js';
 import OfferBanner1 from './components/OfferBanner';
-import PackagesOffer from './components/PackagesOffer';
 import AppointmentTag from './components/appointmentTag';
 import PromotionalBanner from './components/PromotionalOffer';
 import { HomeSearch } from './components/homeSearch';

@@ -1,58 +1,44 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, ORANGE, WHITE } from '../../../styles/colors';
-import { CENTER } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {fonts} from '../../../styles/fonts';
+import {AMBER, CYAN_BLUE} from '../../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 
-export const styles = StyleSheet.create({
-    mainContainer: {
-        marginHorizontal: 15,
-        paddingBottom:12,
-        backgroundColor:'red'
+export const styles = () => {
+  return StyleSheet.create({
+    categoryName: {
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize16,
+      lineHeight: 24,
+      color: CYAN_BLUE,
     },
-    headingTextContainerStyle: {
-        marginTop: 30,
+    listStyle: {marginTop: 24, paddingHorizontal: 28},
+    separator: {height: 24},
+    itemContainer: {
+      height: 96,
+      backgroundColor: AMBER,
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+      flexDirection: ROW,
+      alignItems: CENTER,
     },
-    headingTextStyle: {
-        fontFamily: fonts.family.rubik600,
-        fontWeight: fonts.weight.fontWeight600,
-        color: CYAN_BLUE,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
+    imageStyle: {width: 80, height: '100%'},
+    rowContainer: {
+      flexDirection: ROW,
+      flex: 1,
+      paddingLeft: 16,
+      paddingRight: 20,
+      justifyContent: SPACE_BETWEEN,
+      alignItems: CENTER,
     },
-    buttonContainer: {
-        marginVertical: 24,
-        marginHorizontal: '4%',
-        height: 48,
-        borderRadius: 8,
-        justifyContent: CENTER,
-        alignItems: CENTER,
-        backgroundColor: ORANGE,
+    loaderContainer: {
+      flex:1,
+      alignItems: CENTER,
+      justifyContent: CENTER,
     },
-    buttonText: {
-        fontFamily: fonts.family.rubik600,
-        fontWeight: fonts.weight.fontWeight600,
-        color: WHITE,
-        fontSize: fonts.size.fontSize16,
-        lineHeight: 24,
-    },
-    subHeadingTextStyle: {
-        fontFamily: fonts.family.rubik400,
-        fontWeight: fonts.weight.fontWeight400,
-        color: ORANGE,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
-    },
-    subHeadingTextContainerStyle: {
-
-    },
-    subTextContainerStyle:{
-        marginTop:15,
-    },
-    subTextStyle: {
-        fontFamily: fonts.family.rubik400,
-        fontWeight: fonts.weight.fontWeight400,
-        color: CYAN_BLUE,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
-    },
-});
+    errorText: {
+      fontFamily: fonts.family.rubik600,
+      fontSize: fonts.size.fontSize14,
+      color: CYAN_BLUE,
+    }
+  });
+};
