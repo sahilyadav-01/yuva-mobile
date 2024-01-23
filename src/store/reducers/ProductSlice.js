@@ -27,6 +27,19 @@ export const getAllSubCategories = createAsyncThunk(
   },
 );
 
+export const getProductDetails = createAsyncThunk(
+  'product/subProductDetails',
+  async (productId, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = `/ecom/user/product-by-id/${productId}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   categories: {
     loading: false,
@@ -38,6 +51,11 @@ const initialState = {
     subCategoryData: [],
     error: false,
   },
+  productDetails: {
+    loading: false,
+    data: null,
+    error: false,
+  }
 };
 
 const productSlice = createSlice({
@@ -66,7 +84,6 @@ const productSlice = createSlice({
       state.subCategories.subCategoryData = [];
     },
     [getAllSubCategories.fulfilled]: (state, {payload}) => {
-      console.log('Payload',JSON.stringify(payload));
       state.subCategories.loading = false;
       state.subCategories.error = false;
       state.subCategories.subCategoryData = payload.data;
@@ -75,6 +92,21 @@ const productSlice = createSlice({
       state.subCategories.loading = false;
       state.subCategories.error = true;
       state.subCategories.subCategoryData = [];
+    },
+    [getProductDetails.pending]: state => {
+      state.productDetails.loading = true;
+      state.productDetails.error = false;
+      state.productDetails.subCategoryData = null;
+    },
+    [getProductDetails.fulfilled]: (state, {payload}) => {
+      state.productDetails.loading = false;
+      state.productDetails.error = false;
+      state.productDetails.data = payload.data;
+    },
+    [getProductDetails.rejected]: state => {
+      state.productDetails.loading = false;
+      state.productDetails.error = true;
+      state.productDetails.subCategoryData = null;
     },
   },
 });
