@@ -7,11 +7,11 @@ const ProductHub = ({
   onCategoryViewAllPress,
   showHeading,
   data,
+  onAdd
 }) => {
   const styles = style();
   const renderHeading = showHeading ?? true;
-  const RenderProducts = ({index}) => {
-    let obj = data?.productList[index]?.productResponseDtoForUserList[index];
+  const RenderProducts = ({item,index}) => {
     return (
       <View
         style={[
@@ -21,19 +21,19 @@ const ProductHub = ({
           },
         ]}>
         <Image
-          source={{uri: obj?.imageFilepath}}
+          source={{uri: item?.imageFilepath}}
           style={styles.categoryImage}
         />
         <View style={styles.separator} />
         <View style={styles.subCategoryDescription}>
-          <Text style={styles.productName}>{obj?.name}</Text>
+          <Text style={styles.productName}>{item?.name}</Text>
         </View>
         <View style={styles.rowContainer}>
-          {obj?.discountPercentage ? <Text style={styles.discount}>-{obj?.discountPercentage}%</Text> : null}
-          <Text>₹ {obj?.finalPrice}</Text>
+          {item?.discountPercentage ? <Text style={styles.discount}>-{item?.discountPercentage}%</Text> : null}
+          <Text>₹ {item?.finalPrice}</Text>
         </View>
-        <Text>M.R.P. ₹ {obj?.originalPrice}</Text>
-        <TouchableOpacity style={styles.buttonContainer}>
+        <Text>M.R.P. ₹ {item?.originalPrice}</Text>
+        <TouchableOpacity onPress={() => onAdd(item?.productId)} style={styles.buttonContainer}>
           <Text style={styles.buttonText}>Add To Cart</Text>
         </TouchableOpacity>
       </View>
@@ -85,7 +85,7 @@ const ProductHub = ({
                   <View style={styles.itemSeparator} />
                 )}
                 data={data?.productList[index]?.productResponseDtoForUserList}
-                renderItem={({_, index}) => <RenderProducts index={index} />}
+                renderItem={({item, index}) => <RenderProducts index={index} item={item} />}
               />
             )}
           </>

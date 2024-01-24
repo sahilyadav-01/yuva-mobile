@@ -3,17 +3,27 @@ import {useState, useRef, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductDetails} from '../../../../store/reducers/ProductSlice';
 
-export const useProductDetails = () => {
+export const useProductDetails = (productId, navigation) => {
   let flatListRef = useRef();
   const dispatch = useDispatch();
   const {productDetails} = useSelector(state => state.product);
   const [activeIndex, setActiveIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [htmlDescription, setHtmlDescription] = useState('');
   useFocusEffect(
     useCallback(() => {
-      dispatch(getProductDetails(1));
+      dispatch(getProductDetails(productId));
     }, []),
   );
+  useEffect(() => {
+    if (!productDetails.loading && productDetails?.data !== null) {
+      setHtmlDescription(`<html>
+      <body>
+      ${productDetails?.data?.description ?? `<div></div>`}
+      </body>
+      </html>`);
+    }
+  }, [productDetails]);
   const onArrowPress = (next, index) => {
     const scrollable =
       typeof productDetails?.data?.productImageList === 'object';
@@ -35,7 +45,16 @@ export const useProductDetails = () => {
   };
   const onAddToCartPress = () => {};
   const onHeadingPress = index => {
-    console.log('Index', index);
+    const productData = [
+      productDetails?.data?.description ?? '',
+      productDetails?.data?.nutritional ?? '',
+    ];
+    const html = `<html>
+    <body>
+    ${productData[index] ?? `<div></div>`}
+    </body>
+    </html>`;
+    setHtmlDescription(html);
   };
   return {
     productDetails,
@@ -45,6 +64,7 @@ export const useProductDetails = () => {
     onSelectSize,
     onSelectQuantity,
     quantity,
+    htmlDescription,
     onAddToCartPress,
     onHeadingPress,
   };

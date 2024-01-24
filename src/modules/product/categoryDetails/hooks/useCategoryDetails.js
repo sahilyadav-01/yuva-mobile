@@ -11,11 +11,14 @@ export const useCategoryDetails = (navigation,params) => {
     console.log('Params',params)
   };
 
+  const onAdd = (productId) => {
+    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+  };
+
   useFocusEffect(
     useCallback(() => {
-        console.log('Params',params);
-      dispatch(getAllSubCategories(1));
+      dispatch(getAllSubCategories(params.item.id));
     }, []),
   );
-  return {subCategories, onCategoryPress};
+  return {subCategories, onCategoryPress, onAdd};
 };

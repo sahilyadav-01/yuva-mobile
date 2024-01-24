@@ -7,18 +7,19 @@ import Header from '../../../components/Header';
 import ProductHeader from './productHeader';
 import ProductDescription from './productDescription';
 
-const ProductDetails = () => {
+const ProductDetails = ({productId,navigation}) => {
   const {
     productDetails,
     flatListRef,
     onArrowPress,
     activeIndex,
+    htmlDescription,
     onSelectSize,
     onSelectQuantity,
     quantity,
     onAddToCartPress,
     onHeadingPress,
-  } = useProductDetails();
+  } = useProductDetails(productId,navigation);
   const styles = style();
   return (
     <>
@@ -58,7 +59,7 @@ const ProductDetails = () => {
             onAddToCartPress={onAddToCartPress}
             productData={productDetails.data}
           />
-          <ProductDescription onHeadingPress={onHeadingPress} />
+          <ProductDescription onHeadingPress={onHeadingPress} productData={productDetails.data} html={htmlDescription}/>
         </ScrollView>
       )}
     </>

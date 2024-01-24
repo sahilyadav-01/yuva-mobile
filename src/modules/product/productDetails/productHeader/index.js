@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, FlatList, View, TouchableOpacity, Image} from 'react-native';
 import {styles as style, width} from './style';
-import {SVG} from '../../../../../assets';
+import {PNG, SVG} from '../../../../../assets';
 
 const ProductHeader = ({flatListRef, onArrowPress, productData}) => {
   const styles = style();
@@ -18,7 +18,7 @@ const ProductHeader = ({flatListRef, onArrowPress, productData}) => {
           style={styles.rightContainer}>
           <SVG.ArrowRight color="#000" />
         </TouchableOpacity>
-        <Image source={{uri: item?.imageFilepath}} style={styles.imageStyle} />
+        <Image source={{uri: item?.imageFilepath}} style={styles.imageStyle} resizeMode='cover'/>
       </View>
     );
   };

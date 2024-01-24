@@ -1,29 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {
-  AMBER,
-  BLACK,
-  CYAN_BLUE,
-  DARK_BLUE,
-  DARK_GRAY,
-  DEEP_RED,
-  GREEN,
-  ORANGE,
-  WHITE,
-} from '../../../../styles/colors';
-import {
-  ABSOLUTE,
-  CENTER,
-  LINE_THROUGH,
-  ROW,
-  SPACE_BETWEEN,
-} from '../../../../styles/constants';
+import {DARK_BLUE, GREEN, ORANGE} from '../../../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {getDimensions} from '../../../../utils/utils.js';
 
 const {width, height} = getDimensions();
-const styles = arg => {
+const styles = () => {
   return StyleSheet.create({
-    container: {marginTop: 24},
+    container: {marginTop: 24, flex: 1},
     rowContainer: {
       paddingHorizontal: 24,
       flexDirection: ROW,
@@ -48,7 +32,18 @@ const styles = arg => {
       height: 1,
       backgroundColor: ORANGE,
     },
+    brandText: {
+      marginLeft: 24,
+      marginVertical: 12,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+      color: '#73757A',
+    },
+    webView: {
+      marginLeft: 24,
+      width,
+    },
   });
 };
 
-export {styles, width};
+export {styles, height};

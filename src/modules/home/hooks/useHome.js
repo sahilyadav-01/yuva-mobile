@@ -112,9 +112,7 @@ export const useHome = () => {
   };
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index });
 
-  // const onCategoryViewAllPress = () => navigation.navigate('Product',{screen: 'Categories'});
-
-  const onCategoryViewAllPress = () => navigation.navigate('Product',{screen: 'ProductDetails'});
+  const onCategoryViewAllPress = () => navigation.navigate('Product',{screen: 'Categories'});
 
   const onBackPress = () => dispatch(setHomeSearch(false));
 

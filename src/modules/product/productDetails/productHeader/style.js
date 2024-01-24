@@ -45,7 +45,7 @@ const styles = arg => {
       paddingRight: 8,
       backgroundColor: '#F6D2B0',
     },
-    imageStyle: {height: '100%', aspectRatio: 0.78},
+    imageStyle: {height: '100%', width: 0.5 * width},
     productName: {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize24,
