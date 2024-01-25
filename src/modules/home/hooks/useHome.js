@@ -123,6 +123,8 @@ export const useHome = () => {
 
   const onSelectCategory = (index) => setActiveIndex(index);
 
+  const onAdd = () => {}
+
   return {
     activeIndex,
     name,
@@ -139,6 +141,7 @@ export const useHome = () => {
     showSearchView,
     onBackPress,
     topCategories,
-    onSelectCategory
+    onSelectCategory,
+    onAdd
   };
 };
