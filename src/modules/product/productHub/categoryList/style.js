@@ -1,13 +1,13 @@
 import {StyleSheet} from 'react-native';
-import {INDIGO_LIGHT, ORANGE, VIVID_TANGERINE} from '../../../styles/colors';
+import {INDIGO_LIGHT, ORANGE, VIVID_TANGERINE} from '../../../../styles/colors';
 import {
   CENTER,
   HIDDEN,
   ROW,
   ROW_REVERSE,
   SPACE_BETWEEN,
-} from '../../../styles/constants';
-import {fonts} from '../../../styles/fonts';
+} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({

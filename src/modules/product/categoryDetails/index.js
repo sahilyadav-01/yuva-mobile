@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Image, ScrollView, Text, ActivityIndicator} from 'react-native';
-import Header from '../../../components/Header';
-import ProductHub from '../../../components/ProductHub';
-import {getDimensions} from '../../../utils/utils';
+import ProductHub from '../productHub';
 import {styles as style} from './styles';
 import {useCategoryDetails} from './hooks/useCategoryDetails';
+import {getDimensions} from '../../../utils/utils';
+import Header from '../../../components/Header';
 
 const CategoryDetails = ({navigation, params}) => {
   const {subCategories, onAdd} = useCategoryDetails(

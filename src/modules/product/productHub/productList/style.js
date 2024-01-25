@@ -7,10 +7,10 @@ import {
   RED,
   VIVID_TANGERINE,
   WHITE,
-} from '../../../styles/colors';
-import {CENTER, ROW, ROW_REVERSE} from '../../../styles/constants';
-import {fonts} from '../../../styles/fonts';
-import {getDimensions} from '../../../utils/utils';
+} from '../../../../styles/colors';
+import {CENTER, ROW, ROW_REVERSE} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
+import {getDimensions} from '../../../../utils/utils';
 
 const {width} = getDimensions();
 

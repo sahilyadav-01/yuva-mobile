@@ -1,13 +1,13 @@
 import React from 'react';
 import {ScrollView, View, ActivityIndicator, Text} from 'react-native';
-import {styles as style, width} from './style';
+import {styles as style} from './style';
 import {useProductDetails} from './hooks/useProductDetails';
 import Product from './productDetails/index';
 import Header from '../../../components/Header';
 import ProductHeader from './productHeader';
 import ProductDescription from './productDescription';
 
-const ProductDetails = ({productId,navigation}) => {
+const ProductDetails = ({productId, navigation}) => {
   const {
     productDetails,
     flatListRef,
@@ -19,8 +19,8 @@ const ProductDetails = ({productId,navigation}) => {
     quantity,
     onAddToCartPress,
     onHeadingPress,
-    currentIndex
-  } = useProductDetails(productId,navigation);
+    currentIndex,
+  } = useProductDetails(productId, navigation);
   const styles = style();
   return (
     <>
@@ -61,7 +61,11 @@ const ProductDetails = ({productId,navigation}) => {
             onAddToCartPress={onAddToCartPress}
             productData={productDetails.data}
           />
-          <ProductDescription onHeadingPress={onHeadingPress} productData={productDetails.data} html={htmlDescription}/>
+          <ProductDescription
+            onHeadingPress={onHeadingPress}
+            productData={productDetails.data}
+            html={htmlDescription}
+          />
         </ScrollView>
       )}
     </>
