@@ -19,6 +19,7 @@ const ProductDetails = ({productId,navigation}) => {
     quantity,
     onAddToCartPress,
     onHeadingPress,
+    currentIndex
   } = useProductDetails(productId,navigation);
   const styles = style();
   return (
@@ -50,6 +51,7 @@ const ProductDetails = ({productId,navigation}) => {
             flatListRef={flatListRef}
             onArrowPress={onArrowPress}
             productData={productDetails.data}
+            currentIndex={currentIndex}
           />
           <Product
             onSelectSize={onSelectSize}

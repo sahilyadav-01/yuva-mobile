@@ -1,9 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {
+  AMBER,
   BLACK,
+  BOTTICELLI,
   INDIGO_LIGHT,
   ORANGE,
   PALE_PEACH,
+  PALE_SKY,
+  RED,
   VIVID_TANGERINE,
   WHITE,
 } from '../../styles/colors';
@@ -21,7 +25,7 @@ const {width} = getDimensions();
 
 const styles = () => {
   return StyleSheet.create({
-    PopularHealthCheckups: {
+    headerContainer: {
       alignItems: CENTER,
       marginTop: 28,
       flexDirection: ROW,
@@ -29,11 +33,12 @@ const styles = () => {
       marginHorizontal: 16,
       marginBottom: 16,
     },
-    LandingPageText1: {
+    headerText: {
       color: INDIGO_LIGHT,
       fontFamily: fonts.family.rubik700,
       fontSize: fonts.size.fontSize14,
     },
+    container: {backgroundColor: AMBER},
     textContainer: {
       flex: 1,
       flexDirection: ROW_REVERSE,
@@ -99,10 +104,14 @@ const styles = () => {
       paddingHorizontal: 12,
       paddingVertical: 16,
     },
-    categoryImage: {marginHorizontal: 30, aspectRatio:0.77, width: ((((width - 40) * 3) / 7) - 24) * 0.5},
+    categoryImage: {
+      marginHorizontal: 30,
+      aspectRatio: 0.77,
+      width: (((width - 40) * 3) / 7 - 24) * 0.5,
+    },
     separator: {
       marginVertical: 6,
-      backgroundColor: '#C7D6E4',
+      backgroundColor: BOTTICELLI,
       height: 1.5,
     },
     subCategoryDescription: {width: '100%'},
@@ -110,7 +119,12 @@ const styles = () => {
       maxWidth: ((width - 40) * 3) / 7 - 24,
     },
     rowContainer: {marginVertical: 8, flexDirection: ROW},
-    discount: {marginRight: 4},
+    discount: {
+      marginRight: 4,
+      color: RED,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+    },
     buttonContainer: {
       marginTop: 12,
       paddingHorizontal: 16,
@@ -121,7 +135,17 @@ const styles = () => {
       borderRadius: 12,
     },
     buttonText: {color: WHITE},
+    finalPrice: {
+      color: ORANGE,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+    },
+    originalPrice: {
+      color: PALE_SKY,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize10,
+    },
   });
 };
 
-export {styles,width}
+export {styles, width};

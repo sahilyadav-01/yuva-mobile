@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
 import {
-  AMBER,
+  ALTO_OPACITY,
   BLACK,
   CYAN_BLUE,
   DARK_GRAY,
@@ -18,10 +18,11 @@ import {
 } from '../../../../styles/constants';
 import {getDimensions} from '../../../../utils/utils.js';
 
-const {width, height} = getDimensions();
-const styles = arg => {
+export const styles = arg => {
+  const {width, height} = getDimensions();
   const itemInset = arg?.itemInset ?? false;
   const activeItem = arg?.activeItem ?? false;
+  const currentIndex = arg?.currentIndex ?? false;
   return StyleSheet.create({
     scrollViewContainer: {flex: 1},
     imageContainer: {
@@ -136,7 +137,18 @@ const styles = arg => {
       fontSize: fonts.size.fontSize24,
       color: WHITE,
     },
+    scrollIndicatorContainer: {
+      marginTop: 6,
+      alignItems: CENTER,
+      flexDirection: ROW,
+      justifyContent: CENTER,
+    },
+    scrollIndicator: {
+      marginRight: 8,
+      borderRadius: 5,
+      width: 10,
+      height: 10,
+      backgroundColor: currentIndex ? ORANGE : ALTO_OPACITY,
+    },
   });
 };
-
-export {styles, width};

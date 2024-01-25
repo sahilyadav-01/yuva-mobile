@@ -1,6 +1,19 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../../App';
 
+export const getTopCategories = createAsyncThunk(
+  'product/topCategories',
+  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const endpoint = '/ecom/user/home-screen';
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 export const getAllCategories = createAsyncThunk(
   'product/categories',
   async (_, {fulfillWithValue, rejectWithValue}) => {
@@ -55,7 +68,12 @@ const initialState = {
     loading: false,
     data: null,
     error: false,
-  }
+  },
+  topCategories: {
+    loading: false,
+    data: [],
+    error: false,
+  },
 };
 
 const productSlice = createSlice({
@@ -107,6 +125,21 @@ const productSlice = createSlice({
       state.productDetails.loading = false;
       state.productDetails.error = true;
       state.productDetails.subCategoryData = null;
+    },
+    [getTopCategories.pending]: state => {
+      state.topCategories.loading = true;
+      state.topCategories.error = false;
+      state.topCategories.data = [];
+    },
+    [getTopCategories.fulfilled]: (state, {payload}) => {
+      state.topCategories.loading = false;
+      state.topCategories.error = false;
+      state.topCategories.data = payload;
+    },
+    [getTopCategories.rejected]: state => {
+      state.topCategories.loading = false;
+      state.topCategories.error = true;
+      state.topCategories.data = [];
     },
   },
 });

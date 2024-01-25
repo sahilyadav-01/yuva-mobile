@@ -99,3 +99,5 @@ export const MANATEE = '#848A9E';
 export const TURQUOISE_LAGOON = '#38B9AE';
 export const OPAQUE_GREY = 'rgba(52, 52, 52, 0.5)';
 export const VANILLA = '#FBF4EC';
+export const PALE_SKY = '#73757A';
+export const BOTTICELLI = '#C7D6E4';

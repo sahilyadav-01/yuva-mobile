@@ -8,6 +8,7 @@ export const useProductDetails = (productId, navigation) => {
   const dispatch = useDispatch();
   const {productDetails} = useSelector(state => state.product);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [htmlDescription, setHtmlDescription] = useState('');
   useFocusEffect(
@@ -32,9 +33,11 @@ export const useProductDetails = (productId, navigation) => {
       if (next && index < productDetails?.data?.productImageList?.length - 1) {
         newIndex += 1;
         flatListRef.current?.scrollToIndex({index: newIndex, animated: true});
+        setCurrentIndex(newIndex);
       } else if (!next && index > 0) {
         newIndex -= 1;
         flatListRef.current?.scrollToIndex({index: newIndex, animated: true});
+        setCurrentIndex(newIndex);
       }
     }
   };
@@ -65,6 +68,7 @@ export const useProductDetails = (productId, navigation) => {
     onSelectQuantity,
     quantity,
     htmlDescription,
+    currentIndex,
     onAddToCartPress,
     onHeadingPress,
   };

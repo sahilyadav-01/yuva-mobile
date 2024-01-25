@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
@@ -11,6 +11,7 @@ import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TEN
 import { SVG } from "../../../../assets";
 import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from "../../../store/reducers/BannerSlice";
 import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
+import { getTopCategories } from "../../../store/reducers/ProductSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
@@ -22,7 +23,10 @@ export const useHome = () => {
   const { popularTest } = useSelector(state => state.popularTests);
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
+  const { topCategories } = useSelector(state=>state.product);
   const focused = useIsFocused();
+
+  const [activeIndex, setActiveIndex] = useState(1);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -33,6 +37,7 @@ export const useHome = () => {
         });
       }
       const isActive = 'true';
+      dispatch(getTopCategories());
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive }));
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
@@ -116,7 +121,10 @@ export const useHome = () => {
 
   const onBackPress = () => dispatch(setHomeSearch(false));
 
+  const onSelectCategory = (index) => setActiveIndex(index);
+
   return {
+    activeIndex,
     name,
     renderLifeStyleItem,
     onPackagePress,
@@ -130,5 +138,7 @@ export const useHome = () => {
     loggedIn,
     showSearchView,
     onBackPress,
+    topCategories,
+    onSelectCategory
   };
 };
