@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {DARK_BLUE, GREEN, ORANGE} from '../../../../styles/colors';
+import {DARK_BLUE, GREEN, ORANGE, PALE_SKY} from '../../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {getDimensions} from '../../../../utils/utils.js';
 
@@ -37,7 +37,7 @@ const styles = () => {
       marginVertical: 12,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
-      color: '#73757A',
+      color: PALE_SKY,
     },
     webView: {
       marginLeft: 24,

@@ -101,3 +101,4 @@ export const OPAQUE_GREY = 'rgba(52, 52, 52, 0.5)';
 export const VANILLA = '#FBF4EC';
 export const PALE_SKY = '#73757A';
 export const BOTTICELLI = '#C7D6E4';
+export const WHEAT = '#F6D2B0';

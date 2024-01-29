@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
 import {
-  AMBER,
   BLACK,
   CYAN_BLUE,
   DARK_GRAY,
@@ -10,7 +9,6 @@ import {
   WHITE,
 } from '../../../../styles/colors';
 import {
-  ABSOLUTE,
   CENTER,
   LINE_THROUGH,
   ROW,
@@ -18,41 +16,26 @@ import {
 } from '../../../../styles/constants';
 import {getDimensions} from '../../../../utils/utils.js';
 
-const {width, height} = getDimensions();
+const {width} = getDimensions();
 const styles = arg => {
   const itemInset = arg?.itemInset ?? false;
   const activeItem = arg?.activeItem ?? false;
   return StyleSheet.create({
-    scrollViewContainer: {flex: 1},
-    imageContainer: {
-      width: width,
-      height: height * 0.3,
-      alignItems: CENTER,
-    },
-    leftContainer: {
-      position: ABSOLUTE,
-      left: 0,
-      top: '50%',
-      padding: 20,
-      paddingLeft: 8,
-      backgroundColor: '#F6D2B0',
-    },
-    rightContainer: {
-      position: ABSOLUTE,
-      right: 0,
-      top: '50%',
-      padding: 20,
-      paddingRight: 8,
-      backgroundColor: '#F6D2B0',
-    },
-    imageStyle: {height: '100%', aspectRatio: 0.78},
-    productName: {
+    quantityText: {
       fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize24,
-      color: ORANGE,
-      textAlign: CENTER,
-      marginTop: 16,
-      marginBottom: 20,
+      fontSize: fonts.size.fontSize10,
+      color: activeItem ? WHITE : BLACK,
+    },
+    quantityTextContainer: {
+      marginRight: itemInset ? 24 : 0,
+      paddingVertical: 4,
+      backgroundColor: activeItem ? BLACK : WHITE,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+      width: 60,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: BLACK,
     },
     bodyContainer: {
       paddingHorizontal: 24,
@@ -89,22 +72,6 @@ const styles = arg => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
       color: DARK_GRAY,
-    },
-    quantityText: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize10,
-      color: activeItem ? WHITE : BLACK,
-    },
-    quantityTextContainer: {
-      marginRight: itemInset ? 24 : 0,
-      paddingVertical: 4,
-      backgroundColor: activeItem ? BLACK : WHITE,
-      alignItems: CENTER,
-      justifyContent: CENTER,
-      width: 60,
-      borderRadius: 12,
-      borderWidth: 1,
-      borderColor: BLACK,
     },
     quantityPicker: {
       paddingVertical: 8,
