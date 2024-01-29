@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Image, ScrollView, Text, ActivityIndicator} from 'react-native';
-import ProductHub from '../productHub';
 import {styles as style} from './styles';
 import {useCategoryDetails} from './hooks/useCategoryDetails';
+import ProductHub from '../productHub';
 import {getDimensions} from '../../../utils/utils';
 import Header from '../../../components/Header';
 
@@ -38,7 +38,7 @@ const CategoryDetails = ({navigation, params}) => {
           </View>
         )}
         {!subCategories.loading && subCategories?.subCategoryData?.productList?.length > 0 && (
-          <ScrollView style={{flex: 1}}>
+          <ScrollView style={styles.container}>
           <Image
             source={{uri: params?.item?.imageFilepath}}
             style={{width, height: height * 0.2}}

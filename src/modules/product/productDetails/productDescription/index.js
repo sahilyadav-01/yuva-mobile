@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {styles as style} from './style';
 import {WebView} from 'react-native-webview';
+import {styles as style} from './style';
 import {useProductDescription} from './hooks/useProductDescription';
 
 const ProductDescription = ({onHeadingPress, productData, html}) => {

@@ -3,9 +3,9 @@ import {ScrollView, View, ActivityIndicator, Text} from 'react-native';
 import {styles as style} from './style';
 import {useProductDetails} from './hooks/useProductDetails';
 import Product from './productDetails/index';
-import Header from '../../../components/Header';
 import ProductHeader from './productHeader';
 import ProductDescription from './productDescription';
+import Header from '../../../components/Header';
 
 const ProductDetails = ({productId, navigation}) => {
   const {

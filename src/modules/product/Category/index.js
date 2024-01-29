@@ -8,10 +8,10 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {SVG} from '../../../../assets';
-import {ORANGE} from '../../../styles/colors';
 import {styles as style} from './styles';
 import {useCategory} from './hooks/useCategory';
+import {SVG} from '../../../../assets';
+import {ORANGE} from '../../../styles/colors';
 
 const Categories = ({navigation}) => {
   const {categories, onCategoryPress} = useCategory(navigation);
