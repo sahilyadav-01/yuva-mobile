@@ -20,6 +20,7 @@ const ProductDetails = ({productId, navigation}) => {
     onAddToCartPress,
     onHeadingPress,
     currentIndex,
+    disabled
   } = useProductDetails(productId, navigation);
   const styles = style();
   return (
@@ -60,6 +61,7 @@ const ProductDetails = ({productId, navigation}) => {
             quantity={quantity}
             onAddToCartPress={onAddToCartPress}
             productData={productDetails.data}
+            disabled={disabled}
           />
           <ProductDescription
             onHeadingPress={onHeadingPress}

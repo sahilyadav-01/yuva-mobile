@@ -66,6 +66,7 @@ const initialState = {
   termsAndCondtionChecked:false,
   cartCouponDiscount:0,
   addToCartItem: false,
+  updateCartLoading: false,
 };
 
 const cartSlice = createSlice({
@@ -80,6 +81,9 @@ const cartSlice = createSlice({
     },
     clearExistingCartIds(state){
       state.existingIds = [];
+    },
+    toggleItemAdded(state,{payload}){
+      state.addToCartItem = payload;
     }
   },
   extraReducers: {
@@ -128,18 +132,21 @@ const cartSlice = createSlice({
       state.apiError = false;
       state.apiErrorMessage = '';
       state.addToCartItem = false;
+      state.updateCartLoading = true;
     },
     [createCartUserThunk.fulfilled]: (state, {payload}) => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.addToCartItem = true;
+      state.updateCartLoading = false;
     },
     [createCartUserThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.apiErrorMessage = payload.data.message;
       state.loading = false;
       state.addToCartItem = false;
+      state.updateCartLoading = false;
     },
     [deleteCartThunk.pending]: state => {
       state.loading = true;
@@ -166,7 +173,7 @@ const cartSlice = createSlice({
     },
   },
 });
-export const {setTermsAndCondtionChecked, clearExistingCartIds} = cartSlice.actions;
+export const {setTermsAndCondtionChecked, clearExistingCartIds, toggleItemAdded} = cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
 export const {removeCouponCart} = cartSlice.actions;
 export default cartSlice.reducer;

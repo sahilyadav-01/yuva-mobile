@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {styles as style, width} from './style';
+import { ORANGE, ORANGE_GREY } from '../../../../styles/colors';
 
 const ProductDetails = ({
   onSelectSize,
@@ -9,6 +10,7 @@ const ProductDetails = ({
   quantity,
   onAddToCartPress,
   productData,
+  disabled
 }) => {
   const styles = style();
   const numColumns = Math.floor((width - 24) / 84);
@@ -80,8 +82,9 @@ const ProductDetails = ({
           </View>
         </View>
         <TouchableOpacity
+          disabled={disabled}
           onPress={onAddToCartPress}
-          style={styles.buttonContainer}>
+          style={[styles.buttonContainer,{backgroundColor:disabled ? ORANGE_GREY: ORANGE}]}>
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
       </View>
