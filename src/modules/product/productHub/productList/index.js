@@ -18,13 +18,13 @@ const ProductList = ({productList, onAdd}) => {
           </>
         )}
       </View>
-      {productList[index]?.productResponseDtoForUserList?.length > 0 && (
+      {productList?.length > 0 && (
         <FlatList
           key={(_, index) => `product${index}`}
           numColumns={2}
           style={styles.subCategoryList}
           ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-          data={productList[index]?.productResponseDtoForUserList}
+          data={productList}
           renderItem={({item, index}) => (
             <RenderProducts index={index} item={item} onAdd={onAdd} />
           )}

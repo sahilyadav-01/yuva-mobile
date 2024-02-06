@@ -1,29 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
 import { YuvaService } from '../../../App';
-import {getDeviceId} from '../../utils/utils';
 import store from '../Store';
 
 export const getCartUserThunk = createAsyncThunk(
   'cart/getCartUser',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const sessionId = await getDeviceId();
-      const endpoint = `/cart?fromWeb=false&sessionId=${sessionId}`;
-      const response = await YuvaService.get(endpoint);
-      return fulfillWithValue(response);
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const getCartGuestThunk = createAsyncThunk(
-  'cart/getCartGuest',
-  async (params = {}, {fulfillWithValue, rejectWithValue}) => {
-    try {
-      const sessionId = await getDeviceId();
-      const endpoint = `/cart/guest?sessionId=${sessionId}`;
+      const endpoint = `/cart`;
       const response = await YuvaService.get(endpoint);
       return fulfillWithValue(response);
     } catch (error) {
@@ -35,27 +19,12 @@ export const getCartGuestThunk = createAsyncThunk(
 export const createCartUserThunk = createAsyncThunk(
   'cart/createCartUser',
   async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
+    const {itemDtoList} = cartDto
     try {
       const endpoint = '/cart';
-      const response = await YuvaService.post(endpoint, cartDto);
+      const response = await YuvaService.post(endpoint,{itemDtoList} );
       if (response?.data?.status) {
         store.dispatch(getCartUserThunk());
-      }
-    } catch (error) {
-      Alert.alert('Alert', 'Unable to add item to cart');
-    }
-  },
-);
-
-export const createCartGuestThunk = createAsyncThunk(
-  'cart/createCartGuest',
-  async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
-    try {
-      const sessionId = await getDeviceId();
-      const endpoint = `/cart/guest?sessionId=${sessionId}`;
-      const response = await YuvaService.post(endpoint, cartDto);
-      if (response?.data?.status) {
-        store.dispatch(getCartGuestThunk());
       }
     } catch (error) {
       Alert.alert('Alert', 'Unable to add item to cart');
@@ -67,8 +36,7 @@ export const deleteCartThunk = createAsyncThunk(
   'cart/deleteCart',
   async ({itemId}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const sessionId = await getDeviceId();
-      const endpoint = `/cart/item?fromWeb=false&itemId=${itemId}&sessionId=${sessionId}`;
+      const endpoint = `/cart?itemId=${itemId}`;
       const response = await YuvaService.delete(endpoint);
       return fulfillWithValue(response);
     } catch (error) {
@@ -126,66 +94,25 @@ const cartSlice = createSlice({
       };
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {   
-      state.cart.itemDtoList= payload?.data?.data?.itemDtoList || []
-      state.cart.totalCost= payload?.data?.data?.totalCost || 0
-      state.cart.amountToBePaid= payload?.data?.data?.amountToBePaid || 0
-      state.cart.totalDiscount= payload?.data?.data?.totalDiscount || 0
-      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
+      state.cart.itemDtoList= payload?.data?.data?.itemDtoList.map(item=>{
+        return {...item,...payload?.data?.data?.cartPriceResponseDto}
+      }) || []
+      state.cart.totalCost= payload?.data?.data?.cartPriceResponseDto?.totalCost || 0
+      state.cart.amountToBePaid= payload?.data?.data?.cartPriceResponseDto?.amountToBePaid || 0
+      state.cart.totalDiscount= payload?.data?.data?.cartPriceResponseDto?.totalDiscount || 0
+      state.cart.processingCharge= payload?.data?.data?.cartPriceResponseDto?.processingCharge || 0;
       if(typeof payload?.data?.data?.itemDtoList === 'object' && payload?.data?.data?.itemDtoList.length >= 0){
         state.existingIds = payload?.data?.data?.itemDtoList.map(item=>item.productId)
       }
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
-      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
-      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
-      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
-      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
+      state.cart.couponViewCart= payload?.data?.data?.cartPriceResponseDto?.couponCode || null;
+      state.cart.cartCouponDiscount= payload?.data?.data?.cartPriceResponseDto?.discountForCoupon;
+      state.cart.orderAmount= payload?.data?.data?.cartPriceResponseDto?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= payload?.data?.data?.cartPriceResponseDto?.discountBeforeCoupon;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
-      state.cart = {
-        itemDtoList: [],
-        totalCost: 0,
-        isRemoved: false,
-      };
-      state.existingIds = [];
-      state.apiError = true;
-      state.apiErrorMessage = payload?.response?.data?.errorMessage;
-      state.loading = false;
-    },
-    [getCartGuestThunk.pending]: state => {
-      state.loading = true;
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.cart = {
-        itemDtoList: [],
-        totalCost: 0,
-        isRemoved: false,
-      };
-    },
-    [getCartGuestThunk.fulfilled]: (state, {payload}) => {
-      state.cart.itemDtoList = payload?.data?.data?.itemDtoList || [];
-      state.cart.totalCost = payload?.data?.data?.totalCost || 0;
-      state.cart.amountToBePaid = payload?.data?.data?.amountToBePaid || 0;
-      state.cart.totalDiscount = payload?.data?.data?.totalDiscount || 0;
-      state.cart.processingCharge= payload?.data?.data?.processingCharge || 0;
-      if (
-        typeof payload?.data?.data?.itemDtoList === 'object' &&
-        payload?.data?.data?.itemDtoList.length >= 0
-      ) {
-        state.existingIds = payload?.data?.data?.itemDtoList.map(
-          item => item.productId,
-        );
-      }
-      state.apiError= false;
-      state.apiErrorMessage= '';
-      state.loading= false;
-      state.cart.couponViewCart= payload?.data?.data?.couponCode || null;
-      state.cart.cartCouponDiscount= payload?.data?.data?.discountForCoupon;
-      state.cart.orderAmount= payload?.data?.data?.costAfterDiscount;
-      state.cart.discountBeforeCoupon= payload?.data?.data?.discountBeforeCoupon;
-    },
-    [getCartGuestThunk.rejected]: (state, {payload}) => {
       state.cart = {
         itemDtoList: [],
         totalCost: 0,
@@ -209,25 +136,6 @@ const cartSlice = createSlice({
       state.addToCartItem = true;
     },
     [createCartUserThunk.rejected]: (state, {payload}) => {
-      state.apiError = true;
-      state.apiErrorMessage = payload.data.message;
-      state.loading = false;
-      state.addToCartItem = false;
-    },
-    [createCartGuestThunk.pending]: state => {
-      state.loading = true;
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.addToCartItem = false;
-    },
-    [createCartGuestThunk.fulfilled]: (state, {payload}) => {
-      
-      state.apiError = false;
-      state.apiErrorMessage = '';
-      state.loading = false;
-      state.addToCartItem = true;
-    },
-    [createCartGuestThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.apiErrorMessage = payload.data.message;
       state.loading = false;

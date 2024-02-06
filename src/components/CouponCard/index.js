@@ -19,7 +19,7 @@ import { GREEN, SLATE_BLUE, WHITE,DARK_GRAY } from '../../styles/colors';
 import { redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } from '../../store/reducers/CouponSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
-import { getCartGuestThunk, getCartUserThunk } from '../../store/reducers/CartSlice';
+import { getCartUserThunk } from '../../store/reducers/CartSlice';
 import { useRoute } from '@react-navigation/native';
 
 const CouponCard = (props) => {
@@ -38,11 +38,7 @@ const CouponCard = (props) => {
       } else {
         dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
       }
-      if (isLoggedIn) {
         dispatch(getCartUserThunk());
-      } else {
-        dispatch(getCartGuestThunk());
-      }
     };
     return (
       <TouchableOpacity style={styles.buttonStyles} onPress={onSuccess} key={index}>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
 import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
-import { getCartGuestThunk, getCartUserThunk, } from '../../../store/reducers/CartSlice';
+import { getCartUserThunk, } from '../../../store/reducers/CartSlice';
 import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
@@ -47,11 +47,7 @@ export const useHome = () => {
       dispatch(fetchBannerDetails1({position:1,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails2({position:2,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails3({position:3,screenType:'HOME_SCREEN'}));
-      if (loggedIn === 'loggedIn') {
-        dispatch(getCartUserThunk());
-      } else {
-        dispatch(getCartGuestThunk());
-      }
+      dispatch(getCartUserThunk());
     }
   }, [focused, loggedIn]);  
   const servicesArray = [
@@ -123,7 +119,9 @@ export const useHome = () => {
 
   const onSelectCategory = (index) => setActiveIndex(index);
 
-  const onAdd = () => {}
+  const onAdd = (productId) => {
+    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+  }
 
   return {
     activeIndex,

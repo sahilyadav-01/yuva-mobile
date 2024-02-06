@@ -2,7 +2,7 @@ import { useIsFocused } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
+import { getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { couponSliceThunk, redeemCouponsPlanSliceThunk, redeemCouponsSliceThunk, selectedCoupon } from '../../../store/reducers/CouponSlice';
 import { ALERT, COUPON_MESSAGE } from '../constant';
 
@@ -46,11 +46,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
             } else {
                 dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
             }
-            if (isLoggedIn) {
                 dispatch(getCartUserThunk());
-            } else {
-                dispatch(getCartGuestThunk());
-            }
         }
     }
     useEffect(() => {

@@ -8,7 +8,6 @@ export const useCategoryDetails = (navigation,params) => {
   const {subCategories} = useSelector(state => state.product);
 
   const onCategoryPress = (params) => {
-    console.log('Params',params)
   };
 
   const onAdd = (productId) => {

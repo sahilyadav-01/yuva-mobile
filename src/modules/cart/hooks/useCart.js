@@ -1,12 +1,11 @@
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  createCartGuestThunk,
   createCartUserThunk,
   removeCouponCart,
 } from '../../../store/reducers/CartSlice';
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
-import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
+import { deleteCartThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { useEffect, useState } from 'react';
 import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
@@ -79,14 +78,17 @@ export const useCart = (args) => {
     );
   }
 
-  const addToCart = (obj, productType) => {
-    const dToObj = {...obj,productType,count:1}
-    const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
+  const addToCart = (obj, productType, count = 1) => {
+    const dToObj = {...obj,productType,count}
+    const itemDtoList = cart.itemDtoList.map(item=>{
+      const {name,count,cost,productId,productType} = item;
+      return {name,count,cost,productId,productType,productPriceId:item?.productPriceId ?? null}
+    })
     const cartDto = {
       ...cart,
-      itemDtoList: [...cart.itemDtoList, dToObj],
+      itemDtoList: [...itemDtoList, dToObj],
     };
-    dispatch(dispatcher({ cartDto }));
+    dispatch(createCartUserThunk({ cartDto }));
   };
   const onRemove = item => {
     const { productId: itemId } = item || {};
@@ -123,19 +125,15 @@ export const useCart = (args) => {
   useEffect(() => {
     if(userData === null && loggedIn === 'loggedIn') setButtonText(SELECT_ADD_MEMBER)
     else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
-    if (loggedIn === 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
+    if (route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
       dispatch(getCartUserThunk());
-    } else if(loggedIn !== 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved) {
-      dispatch(getCartGuestThunk());
     }
   }, [focused])
 
 
   useEffect(() => {
-    if (isLoggedIn && isRemoved && !fromHome) {
+    if (isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
-    } else if (isRemoved && !fromHome) {
-      dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);
 

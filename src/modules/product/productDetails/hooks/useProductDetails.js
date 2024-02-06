@@ -2,10 +2,12 @@ import {useFocusEffect} from '@react-navigation/native';
 import {useState, useRef, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductDetails} from '../../../../store/reducers/ProductSlice';
+import {useCart} from '../../../cart/hooks/useCart';
 
 export const useProductDetails = (productId, navigation) => {
   let flatListRef = useRef();
   const dispatch = useDispatch();
+  const {addToCart} = useCart();
   const {productDetails} = useSelector(state => state.product);
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,7 +48,20 @@ export const useProductDetails = (productId, navigation) => {
     if (increment) setQuantity(quantity + 1);
     else if (!increment && quantity > 1) setQuantity(quantity - 1);
   };
-  const onAddToCartPress = () => {};
+  const onAddToCartPress = () => {
+    const {finalPrice, priceId} =
+      productDetails?.data?.productPriceResponseDtoForUserList[0];
+    addToCart(
+      {
+        name: productDetails?.data?.name,
+        cost: finalPrice,
+        productId,
+        productPriceId: priceId,
+      },
+      'PRODUCT',
+      quantity,
+    );
+  };
   const onHeadingPress = index => {
     const productData = [
       productDetails?.data?.description ?? '',

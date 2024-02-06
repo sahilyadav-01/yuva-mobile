@@ -10,7 +10,7 @@ import { styles } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckoutPriceDetails from '../../../components/CheckoutPriceDetails'
 import { usePaymentReconfirm } from './hooks/usePaymentReconfirm';
-import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
+import { getCartUserThunk } from '../../../store/reducers/CartSlice';
 
 const PaymentReconfirmList = props => {
   const { onPayPress,processingCharge } = usePaymentReconfirm();
@@ -21,15 +21,10 @@ const PaymentReconfirmList = props => {
   const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
   const { coupon } = useSelector(state => state.coupon);
   const { loggedIn } = useSelector(state => state.auth);
-  const isLoggedIn = loggedIn === 'loggedIn';
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) {
       dispatch(getCartUserThunk());
-    } else {
-      dispatch(getCartGuestThunk());
-    }
   }, []);
 
   return (

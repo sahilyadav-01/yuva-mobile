@@ -4,6 +4,7 @@ import {logoutThunk, refreshThunk, resetRoute, setUnauthorisedStatus} from '../s
 import store from '../store/Store';
 import {maintainceThunk} from '../store/reducers/MaintainenceSlice';
 import { setRedirectState } from '../store/reducers/NotificationSlice';
+import { getDeviceId } from '../utils/utils';
 
 const handleUserForbidden = async () => {
   store.dispatch(logoutThunk());
@@ -48,7 +49,7 @@ axiosClient.interceptors.request.use(
       '/package/popular',
       '/test/popular',
       '/plan/popular',
-      '/cart/guest',
+      '/cart',
       '/refresh-token'
     ];
 
@@ -63,6 +64,11 @@ axiosClient.interceptors.request.use(
     config['headers'] = {
       ...config['headers'],
     };
+
+    if(config.url.includes('/cart')){
+      const deviceId = await getDeviceId();
+      config['headers'] = {...config['headers'], Cookie:`SESSION_ID=${deviceId}`}
+    }
 
     if (isLoginApi.length === 0) {
       const jwt = await getJwt();
