@@ -17,13 +17,13 @@ const ProductHub = ({
   const renderHeading = showHeading ?? true;
   return (
     <View style={styles.container}>
-      <CategoryList
+      {categories?.length > 0 && <CategoryList
         categories={categories}
         onCategoryViewAllPress={onCategoryViewAllPress}
         onSelectCategory={onSelectCategory}
         activeIndex={activeIndex}
         renderHeading={renderHeading}
-      />
+      />}
       <ProductList productList={data?.productList} onAdd={onAdd} />
     </View>
   );

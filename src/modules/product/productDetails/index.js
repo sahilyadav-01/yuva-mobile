@@ -31,22 +31,22 @@ const ProductDetails = ({productId, navigation}) => {
         showLocation={false}
         homeSearch={true}
       />
-      {productDetails.loading && (
+      {productDetails?.loading && (
         <View style={styles.loaderContainer}>
           <ActivityIndicator size={'large'} />
         </View>
       )}
-      {productDetails.error && (
+      {productDetails?.error && (
         <View style={styles.loaderContainer}>
           <Text style={styles.errorText}>Error Fetching Product Details</Text>
         </View>
       )}
-      {!productDetails.loading && productDetails?.data === null && (
+      {!productDetails?.loading && productDetails?.data === null && (
         <View style={styles.loaderContainer}>
           <Text style={styles.errorText}>Unable to fetch Product Details </Text>
         </View>
       )}
-      {!productDetails.loading && productDetails?.data !== null && (
+      {!productDetails?.loading && productDetails?.data !== null && (
         <ScrollView style={styles.scrollViewContainer}>
           <ProductHeader
             flatListRef={flatListRef}

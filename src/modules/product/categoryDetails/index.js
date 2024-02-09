@@ -43,13 +43,14 @@ const CategoryDetails = ({navigation, params}) => {
             source={{uri: params?.item?.imageFilepath}}
             style={{width, height: height * 0.2}}
             resizeMethod="scale"
-            resizeMode="stretch"
+            resizeMode="contain"
           />
           <ProductHub
             onCategoryViewAllPress={() => {}}
             showHeading={false}
             data={subCategories?.subCategoryData}
             onAdd={onAdd}
+            categories={[]}
           />
           </ScrollView>
         )}

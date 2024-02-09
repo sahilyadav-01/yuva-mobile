@@ -26,7 +26,7 @@ export const useHome = () => {
   const { topCategories } = useSelector(state=>state.product);
   const focused = useIsFocused();
 
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (navigation.isFocused()) {

@@ -1,13 +1,39 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../../App';
 
+const fetchProductData = (data) => {
+  return data.map((item)=>{
+    if(item.productList?.length > 0) {
+      let productList;
+      item?.productList?.forEach((i)=>{
+        if(i?.subCategoryId === undefined) productList = [{productResponseDtoForUserList:item?.productList}]
+        else productList = item?.productList
+      })
+      return {...item,productList};
+    }
+    return item;
+  })
+}
+
+const fetchCategoryData = (data) => {
+    if(data?.length > 0) {
+      let productList;
+      data?.forEach((i)=>{
+        if(i?.subCategoryId === undefined) productList = [{productResponseDtoForUserList:data}]
+        else productList = data
+      })
+      return productList;
+    }
+}
+
 export const getTopCategories = createAsyncThunk(
   'product/topCategories',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/ecom/user/home-screen';
       const response = await YuvaService.get(endpoint);
-      return response.data;
+      const data = fetchProductData(response.data)
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -33,7 +59,9 @@ export const getAllSubCategories = createAsyncThunk(
     try {
       const endpoint = `/ecom/user/product/${categoryId}`;
       const response = await YuvaService.get(endpoint);
-      return response.data;
+      const categoryData = fetchCategoryData(response?.data?.data.productList);
+      const data = {...response?.data,data:{...response?.data.data,productList:categoryData}};
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
