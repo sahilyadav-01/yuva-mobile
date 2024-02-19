@@ -7,6 +7,7 @@ import {useCart} from '../../../../../modules/cart/hooks/useCart';
 import {DETAILS} from '../constants';
 
 export const useHomeSearchDetails = props => {
+  console.log('Props',props?.params)
   const {name, attributeUuid, item} = props?.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -16,13 +17,13 @@ export const useHomeSearchDetails = props => {
   const {addToCart, onRemove} = useCart();
   const {existingIds, addToCartLoad} = useSelector(state => state.cart);
   useEffect(() => {
-    if (item) {
-      dispatch(getElasticSearchResult({search: `search=${item}`, uuid: ''}));
-    }
     if (attributeUuid) {
       dispatch(
         getElasticSearchResult({search: '', uuid: `uuid=${attributeUuid}`}),
       );
+    }
+    else if (item) {
+      dispatch(getElasticSearchResult({search: `search=${item}`, uuid: ''}));
     }
   }, [item, attributeUuid]);
 

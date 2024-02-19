@@ -66,12 +66,13 @@ export const HomeSearch = () => {
   const renderSearchResults = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
           onItemPress({
             name: item?.packageName ?? item?.testName,
             attributeUuid: item.packageUuid ?? item?.testId,
             item: text,
           })
+        }
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>

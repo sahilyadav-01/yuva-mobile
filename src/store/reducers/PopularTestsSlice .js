@@ -20,7 +20,7 @@ export const testPackageSearchThunk = createAsyncThunk(
     async ({search}, { fulfillWithValue, rejectWithValue }) => {
 
     try {
-      const endpoint = `/test-package/search?search=${search}`;
+      const endpoint = `/search?search=${search}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {

@@ -162,6 +162,7 @@ export const useHomeSearch = () => {
   };
 
   const onItemPress = item => {
+    console.log('Item',item)
     navigation.navigate('HomeSearchDetails', item);
   };
 
