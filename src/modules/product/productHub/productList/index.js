@@ -2,10 +2,19 @@ import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {styles as style} from './style';
 import RenderProducts from './ProductItem';
+import {useProductList} from './useProductList';
 
-const ProductList = ({productList, onAdd}) => {
+const ProductList = ({productList, onAdd, categoryId}) => {
+  const {onViewAll} = useProductList();
   const styles = style();
-  return productList?.map((item) => (
+  const ListFooter = () => {
+    return (
+      <View style={styles.footerContainer}>
+        <Text onPress={() => onViewAll({...item, categoryId})}>View All</Text>
+      </View>
+    );
+  };
+  return productList?.map(item => (
     <>
       <View style={styles.subCategoryNameContainer}>
         {item?.subCategoryId && (
@@ -28,6 +37,7 @@ const ProductList = ({productList, onAdd}) => {
           renderItem={({item, index}) => (
             <RenderProducts index={index} item={item} onAdd={onAdd} />
           )}
+          ListFooterComponent={ListFooter}
         />
       )}
     </>

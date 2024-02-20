@@ -1,30 +1,32 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {YuvaService} from '../../../App';
 
-const fetchProductData = (data) => {
-  return data.map((item)=>{
-    if(item.productList?.length > 0) {
+const fetchProductData = data => {
+  return data.map(item => {
+    if (item.productList?.length > 0) {
       let productList;
-      item?.productList?.forEach((i)=>{
-        if(i?.subCategoryId === undefined) productList = [{productResponseDtoForUserList:item?.productList}]
-        else productList = item?.productList
-      })
-      return {...item,productList};
+      item?.productList?.forEach(i => {
+        if (i?.subCategoryId === undefined)
+          productList = [{productResponseDtoForUserList: item?.productList}];
+        else productList = item?.productList;
+      });
+      return {...item, productList};
     }
     return item;
-  })
-}
+  });
+};
 
-const fetchCategoryData = (data) => {
-    if(data?.length > 0) {
-      let productList;
-      data?.forEach((i)=>{
-        if(i?.subCategoryId === undefined) productList = [{productResponseDtoForUserList:data}]
-        else productList = data
-      })
-      return productList;
-    }
-}
+const fetchCategoryData = data => {
+  if (data?.length > 0) {
+    let productList;
+    data?.forEach(i => {
+      if (i?.subCategoryId === undefined)
+        productList = [{productResponseDtoForUserList: data}];
+      else productList = data;
+    });
+    return productList;
+  }
+};
 
 export const getTopCategories = createAsyncThunk(
   'product/topCategories',
@@ -32,7 +34,7 @@ export const getTopCategories = createAsyncThunk(
     try {
       const endpoint = '/ecom/user/home-screen';
       const response = await YuvaService.get(endpoint);
-      const data = fetchProductData(response.data)
+      const data = fetchProductData(response.data);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -60,7 +62,10 @@ export const getAllSubCategories = createAsyncThunk(
       const endpoint = `/ecom/user/product/${categoryId}`;
       const response = await YuvaService.get(endpoint);
       const categoryData = fetchCategoryData(response?.data?.data.productList);
-      const data = {...response?.data,data:{...response?.data.data,productList:categoryData}};
+      const data = {
+        ...response?.data,
+        data: {...response?.data.data, productList: categoryData},
+      };
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -74,6 +79,21 @@ export const getProductDetails = createAsyncThunk(
     try {
       const endpoint = `/ecom/user/product-by-id/${productId}`;
       const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const fetchProducts = createAsyncThunk(
+  'product/productsList',
+  async ({pageNo, pageSize, productFilter}, {_, rejectWithValue}) => {
+    try {
+      const endpoint = `/ecom/user/product/view-all?pageNo=${pageNo}&pageSize=${pageSize}`;
+      const {data: response} = await YuvaService.post(endpoint, {
+        productFilterDto: productFilter,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -102,12 +122,26 @@ const initialState = {
     data: [],
     error: false,
   },
+  productList: {
+    pageNo: 1,
+    pageSize: 20,
+    productFilter: null,
+    loading: false,
+    error: false,
+    totalDocuments: 0,
+    totalPages: 0,
+    data: [],
+  },
 };
 
 const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    setProductFilter(state, {payload}) {
+      state.productList = {...state.productList, ...payload};
+    },
+  },
   extraReducers: {
     [getAllCategories.pending]: state => {
       state.categories.loading = true;
@@ -169,8 +203,23 @@ const productSlice = createSlice({
       state.topCategories.error = true;
       state.topCategories.data = [];
     },
+    [fetchProducts.pending]: state => {
+      state.productList.loading = true;
+      state.productList.error = false;
+    },
+    [fetchProducts.fulfilled]: (state, {payload}) => {
+      state.productList.loading = false;
+      state.productList.error = false;
+      state.productList.data = [
+        ...state.productList.data,
+        ...payload.productResponseDtoForUserGridViewList,
+      ];
+      state.productList.totalDocuments = payload.totalDocuments;
+      state.productList.totalPages = payload.totalPages;
+    },
   },
 });
 
+export const {setProductFilter} = productSlice.actions;
 export const productInit = productSlice.getInitialState();
 export default productSlice.reducer;

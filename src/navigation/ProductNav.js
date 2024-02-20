@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import CategoryScreen from '../screens/yuvaservices/Product/CategoryScreen';
 import CategoryDetails from '../screens/yuvaservices/Product/CategoryDetails';
 import ProductDetails from '../screens/yuvaservices/Product/ProductDetails';
+import Products from '../screens/yuvaservices/Product/Products';
 
 const Stack = createStackNavigator();
 const ProductNavigation = () => {
@@ -21,6 +22,11 @@ const ProductNavigation = () => {
        <Stack.Screen
         name="ProductDetails"
         component={ProductDetails}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Products"
+        component={Products}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

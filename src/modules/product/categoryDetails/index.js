@@ -51,6 +51,7 @@ const CategoryDetails = ({navigation, params}) => {
             data={subCategories?.subCategoryData}
             onAdd={onAdd}
             categories={[]}
+            categoryId={params?.item?.id}
           />
           </ScrollView>
         )}

@@ -87,6 +87,7 @@ const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
     },
+    footerContainer: {marginTop: 16, alignItems: CENTER}
   });
 };
 
