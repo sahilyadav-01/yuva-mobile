@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { styles } from './styles';
-import Category from '../../../modules/product/category';
+import Category from '../../../modules/product/Category'
 
 const CategoryScreen = (props) => {
   return (

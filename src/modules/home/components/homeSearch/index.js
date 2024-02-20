@@ -64,19 +64,21 @@ export const HomeSearch = () => {
   };
 
   const renderSearchResults = ({item}) => {
+    const type = item?.packageUuid ? 'PACKAGE' : item?.testId ? 'TEST' : 'PRODUCT';
     return (
       <TouchableOpacity
         onPress={() => {
           onItemPress({
-            name: item?.packageName ?? item?.testName,
-            attributeUuid: item.packageUuid ?? item?.testId,
+            name: item?.packageName ?? item?.testName ?? item?.name,
+            attributeUuid: item.packageUuid ?? item?.testId ?? item?.productId,
             item: text,
+            type,
           })
         }
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>
-          {item?.packageName ?? item?.testName}
+          {item?.packageName ?? item?.testName ?? item?.name}
         </Text>
       </TouchableOpacity>
     );

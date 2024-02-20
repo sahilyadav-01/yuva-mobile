@@ -31,6 +31,7 @@ const ProductDescription = ({onHeadingPress, productData, html}) => {
       <HeaderContent />
       <Text style={styles.brandText}>{productData?.brandName}</Text>
       <WebView
+        androidLayerType='software'
         javaScriptEnabled={true}
         injectedJavaScript={injectedScript}
         onMessage={onMessage}
