@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 
 export const section6QThunk = createAsyncThunk(
   'section6/section6QThunk',

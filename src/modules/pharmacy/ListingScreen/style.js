@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE } from '../../../styles/colors';
+import { CYAN_BLUE, WHITE } from '../../../styles/colors';
 import { CENTER } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -18,4 +18,17 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
     color: CYAN_BLUE,
   },
+  viewAllText: {
+    fontFamily: fonts.family.rubik500,
+    color: WHITE,
+    fontSize: fonts.size.fontSize14,
+  },
+  viewAll: {width:'100%',paddingHorizontal:16, marginTop: 16},
+  viewAllContainer: {
+    paddingVertical: 12,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    backgroundColor: CYAN_BLUE,
+    borderRadius: 12,
+  }
 });

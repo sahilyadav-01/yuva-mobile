@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
-import {YuvaService} from '../../network/yuvaService';
+import { YuvaService } from '../../../App';
 import {getDeviceId} from '../../utils/utils';
 import store from '../Store';
 
