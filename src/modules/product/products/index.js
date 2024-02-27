@@ -8,8 +8,8 @@ import { PNG, SVG } from '../../../../assets';
 import LoaderContext from '../../../components/LoaderContext';
 import AdvancedFilters from './AdvancedFilters';
 
-const Products = () => {
-  const {onAdd, productList,categories,applyFilter,overlay,onFilterPress,onAdvanceFiltersPress} = useProducts();
+const Products = ({navigation}) => {
+  const {onAdd, productList,categories,applyFilter,overlay,onFilterPress,onAdvanceFiltersPress} = useProducts(navigation);
   const styles = style();
 
   const ProductList = () => {
@@ -70,11 +70,9 @@ const Products = () => {
         homeSearch={true}
         title={'Products'}
       />
-      {overlay ? <AdvancedFilters/> : <>
       <LoaderContext showLoader={productList?.loading || applyFilter}/>
       <FilterView/>
       <ProductList />
-      </>}
     </View>
   );
 };

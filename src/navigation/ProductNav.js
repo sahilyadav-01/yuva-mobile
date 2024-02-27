@@ -4,6 +4,7 @@ import CategoryScreen from '../screens/yuvaservices/Product/CategoryScreen';
 import CategoryDetails from '../screens/yuvaservices/Product/CategoryDetails';
 import ProductDetails from '../screens/yuvaservices/Product/ProductDetails';
 import Products from '../screens/yuvaservices/Product/Products';
+import ProductFilter from '../screens/yuvaservices/Product/ProductFilter';
 
 const Stack = createStackNavigator();
 const ProductNavigation = () => {
@@ -27,6 +28,11 @@ const ProductNavigation = () => {
       <Stack.Screen
         name="Products"
         component={Products}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProductFilter"
+        component={ProductFilter}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

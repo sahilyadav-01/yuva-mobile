@@ -101,6 +101,52 @@ export const fetchProducts = createAsyncThunk(
   },
 );
 
+export const fetchCategories = createAsyncThunk(
+  'product/fetchCategories',
+  async (params={}, {_, rejectWithValue}) => {
+    try {
+      const endpoint = `/ecom/category/dropdown`;
+      const response = await YuvaService.get(endpoint);
+      console.log('Response',response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const fetchSubCategories = createAsyncThunk(
+  'product/fetchSubCategories',
+  async (params={}, {_, rejectWithValue}) => {
+    try {
+      const endpoint = `/ecom/sub-category/dropdown`;
+      const response = await YuvaService.post(endpoint,{
+        categoryIdList: [
+          1,2
+        ]
+      });
+      console.log('Response',response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const fetchBrands = createAsyncThunk(
+  'product/fetchBrands',
+  async (params={}, {_, rejectWithValue}) => {
+    try {
+      const endpoint = `/ecom/brand/dropdown`;
+      const response = await YuvaService.get(endpoint);
+      console.log('Response',response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   categories: {
     loading: false,
@@ -131,6 +177,21 @@ const initialState = {
     totalDocuments: 0,
     totalPages: 0,
     data: [],
+  },
+  categoryDropdown: {
+    loading: false,
+    data: [],
+    error: false,
+  },
+  subCategoryDropdown: {
+    loading: false,
+    data: [],
+    error: false,
+  },
+  brandsDropdown: {
+    loading: false,
+    data: [],
+    error: false,
   },
 };
 

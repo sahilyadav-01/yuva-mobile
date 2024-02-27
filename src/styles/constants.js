@@ -6,6 +6,7 @@ export const SPACE_BETWEEN = 'space-between';
 export const ABSOLUTE = 'absolute';
 export const WRAP = 'wrap';
 export const COLUMN = 'column';
+export const COLUMN_REVERSE = 'column-reverse';
 export const TOP = 'top';
 export const FLEX = 'flex';
 export const FLEX_END = 'flex-end';

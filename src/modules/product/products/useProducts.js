@@ -2,9 +2,9 @@ import {useFocusEffect} from '@react-navigation/native';
 import {useCallback, useEffect, useState} from 'react';
 import { Alert } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchProducts, setFilterList} from '../../../store/reducers/ProductSlice';
+import {fetchBrands, fetchCategories, fetchProducts, fetchSubCategories, setFilterList} from '../../../store/reducers/ProductSlice';
 
-export const useProducts = () => {
+export const useProducts = (navigation) => {
   const dispatch = useDispatch();
   const {productList,categories:{data:categories}} = useSelector(state => state.product);
   const [applyFilter,setApplyFilter] = useState(false);
@@ -14,6 +14,9 @@ export const useProducts = () => {
     useCallback(() => {
       const {productFilter, pageNo, pageSize} = productList;
       dispatch(fetchProducts({productFilter, pageNo, pageSize}));
+      dispatch(fetchCategories());
+      dispatch(fetchSubCategories());
+      dispatch(fetchBrands());
     }, []),
   );
 
@@ -50,7 +53,7 @@ export const useProducts = () => {
   }
 
   const onAdvanceFiltersPress = () => {
-    setOverlay(true);
+    navigation?.navigate('ProductFilter')
   }
 
   return {productList,categories,applyFilter,overlay,onAdd,onFilterPress,onAdvanceFiltersPress};
