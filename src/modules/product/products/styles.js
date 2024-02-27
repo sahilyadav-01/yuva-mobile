@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {CENTER} from '../../../styles/constants';
-import {FLASH_WHITE} from '../../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {BLACK, FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -17,6 +18,46 @@ export const styles = () => {
       flex: 1,
       alignItems: CENTER,
       justifyContent: CENTER,
+    },
+    filterContainer: {
+      marginBottom: 8,
+      paddingVertical: 12,
+      paddingHorizontal: 8,
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+    },
+    filterCard: {
+      padding: 4,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+      borderWidth: 1,
+      borderRadius: 12,
+      borderColor: BLACK,
+    },
+    filterCardActive: {
+      backgroundColor: ORANGE,
+    },
+    filterCardInactive: {
+      backgroundColor: WHITE,
+    },
+    filterText: {
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize14,
+    },
+    filterTextActive: {
+      color: WHITE,
+    },
+    filterTextInactive: {
+      color: BLACK,
+    },
+    advancedFilters: {
+      paddingVertical: 4,
+      paddingHorizontal:8,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+      borderWidth: 1,
+      borderRadius: 12,
+      borderColor: BLACK,
     },
   });
 };

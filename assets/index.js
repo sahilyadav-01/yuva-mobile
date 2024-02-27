@@ -161,6 +161,7 @@ import BookAppointment from './BookAppointment';
 import GetMedicine from './GetMedicine';
 import ConsultDoctor from './ConsultDoctor';
 import PageNotFound from './PageNotFound';
+import Filter from './Filter.png';
 import product_image from './product_image.png'
 const PNG = {
   AMICO,
@@ -222,7 +223,8 @@ const PNG = {
   YUVA_LOGO,
   TopSplashScreenBackgroundImage,
   BottomSplashScreenBackgroundImage,
-  product_image
+  product_image,
+  Filter
 };
 
 const SVG = {
@@ -329,7 +331,7 @@ const SVG = {
   BookAppointment,
   GetMedicine,
   ConsultDoctor,
-  PageNotFound
+  PageNotFound,
 };
 
 export {PNG, SVG};

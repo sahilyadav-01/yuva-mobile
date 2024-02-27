@@ -1,21 +1,26 @@
 import React from 'react';
-import {FlatList, View, ActivityIndicator} from 'react-native';
+import {FlatList, View, ActivityIndicator,Text, TouchableOpacity} from 'react-native';
 import {useProducts} from './useProducts';
 import {styles as style} from './styles';
 import RenderProducts from '../productHub/productList/ProductItem';
 import Header from '../../../components/Header';
+import { PNG, SVG } from '../../../../assets';
+import LoaderContext from '../../../components/LoaderContext';
+import AdvancedFilters from './AdvancedFilters';
 
 const Products = () => {
-  const {onAdd, productList} = useProducts();
+  const {onAdd, productList,categories,applyFilter,overlay,onFilterPress,onAdvanceFiltersPress} = useProducts();
   const styles = style();
+
   const ProductList = () => {
-    if (productList?.data?.length === 0 && productList?.loading) {
+    if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {
       return (
         <View style={styles.loaderContainer}>
           <ActivityIndicator size={'large'} />
         </View>
       );
     }
+
     const ListFooter = () => {
         return (
             <View style={{marginTop:8,alignItems:'center'}}>
@@ -37,6 +42,25 @@ const Products = () => {
       />
     );
   };
+
+  const FilterView = () => {
+    return (
+      <View style={styles.filterContainer}>
+      {categories?.slice(0,3)?.map((item)=>{
+        const itemExists = productList?.productFilter?.categoryIdList.includes(item?.id);
+        return (
+          <TouchableOpacity onPress={()=>onFilterPress(item)} style={[styles.filterCard,itemExists?styles.filterCardActive:styles.filterCardInactive]}>
+            <Text style={[styles.filterText,itemExists?styles.filterTextActive:styles.filterTextInactive]}>{item?.name}</Text>
+          </TouchableOpacity>
+        );
+      })}
+      <TouchableOpacity onPress={onAdvanceFiltersPress} style={styles.filterCard}>
+         <SVG.ArrowRight/>
+      </TouchableOpacity>
+    </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Header
@@ -46,7 +70,11 @@ const Products = () => {
         homeSearch={true}
         title={'Products'}
       />
+      {overlay ? <AdvancedFilters/> : <>
+      <LoaderContext showLoader={productList?.loading || applyFilter}/>
+      <FilterView/>
       <ProductList />
+      </>}
     </View>
   );
 };

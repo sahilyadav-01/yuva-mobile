@@ -141,6 +141,10 @@ const productSlice = createSlice({
     setProductFilter(state, {payload}) {
       state.productList = {...state.productList, ...payload};
     },
+    setFilterList(state, {payload}) {
+      console.log('Redux',{...state.productList,productFilter:payload})
+      state.productList = {...state.productList,productFilter:payload,data:[]}
+    }
   },
   extraReducers: {
     [getAllCategories.pending]: state => {
@@ -220,6 +224,6 @@ const productSlice = createSlice({
   },
 });
 
-export const {setProductFilter} = productSlice.actions;
+export const {setProductFilter,setFilterList} = productSlice.actions;
 export const productInit = productSlice.getInitialState();
 export default productSlice.reducer;
