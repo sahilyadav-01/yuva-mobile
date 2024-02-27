@@ -4,12 +4,11 @@ import {useProducts} from './useProducts';
 import {styles as style} from './styles';
 import RenderProducts from '../productHub/productList/ProductItem';
 import Header from '../../../components/Header';
-import { PNG, SVG } from '../../../../assets';
+import { SVG } from '../../../../assets';
 import LoaderContext from '../../../components/LoaderContext';
-import AdvancedFilters from './AdvancedFilters';
 
 const Products = ({navigation}) => {
-  const {onAdd, productList,categories,applyFilter,overlay,onFilterPress,onAdvanceFiltersPress} = useProducts(navigation);
+  const {onAdd, productList,categories,applyFilter,onFilterPress,onAdvanceFiltersPress} = useProducts(navigation);
   const styles = style();
 
   const ProductList = () => {

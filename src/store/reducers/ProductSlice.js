@@ -103,11 +103,10 @@ export const fetchProducts = createAsyncThunk(
 
 export const fetchCategories = createAsyncThunk(
   'product/fetchCategories',
-  async (params={}, {_, rejectWithValue}) => {
+  async (params = {}, {_, rejectWithValue}) => {
     try {
       const endpoint = `/ecom/category/dropdown`;
       const response = await YuvaService.get(endpoint);
-      console.log('Response',response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -117,15 +116,10 @@ export const fetchCategories = createAsyncThunk(
 
 export const fetchSubCategories = createAsyncThunk(
   'product/fetchSubCategories',
-  async (params={}, {_, rejectWithValue}) => {
+  async (categoryIdList, {_, rejectWithValue}) => {
     try {
       const endpoint = `/ecom/sub-category/dropdown`;
-      const response = await YuvaService.post(endpoint,{
-        categoryIdList: [
-          1,2
-        ]
-      });
-      console.log('Response',response);
+      const response = await YuvaService.post(endpoint, {categoryIdList});
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -135,11 +129,10 @@ export const fetchSubCategories = createAsyncThunk(
 
 export const fetchBrands = createAsyncThunk(
   'product/fetchBrands',
-  async (params={}, {_, rejectWithValue}) => {
+  async (params = {}, {_, rejectWithValue}) => {
     try {
       const endpoint = `/ecom/brand/dropdown`;
       const response = await YuvaService.get(endpoint);
-      console.log('Response',response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -203,9 +196,12 @@ const productSlice = createSlice({
       state.productList = {...state.productList, ...payload};
     },
     setFilterList(state, {payload}) {
-      console.log('Redux',{...state.productList,productFilter:payload})
-      state.productList = {...state.productList,productFilter:payload,data:[]}
-    }
+      state.productList = {
+        ...state.productList,
+        productFilter: payload,
+        data: [],
+      };
+    },
   },
   extraReducers: {
     [getAllCategories.pending]: state => {
@@ -282,9 +278,54 @@ const productSlice = createSlice({
       state.productList.totalDocuments = payload.totalDocuments;
       state.productList.totalPages = payload.totalPages;
     },
+    [fetchCategories.pending]: state => {
+      state.categoryDropdown.loading = true;
+      state.categoryDropdown.data = [];
+      state.categoryDropdown.error = false;
+    },
+    [fetchCategories.fulfilled]: (state, {payload}) => {
+      state.categoryDropdown.loading = false;
+      state.categoryDropdown.data = payload.data;
+      state.categoryDropdown.error = false;
+    },
+    [fetchCategories.rejected]: state => {
+      state.categoryDropdown.loading = false;
+      state.categoryDropdown.data = [];
+      state.categoryDropdown.error = true;
+    },
+    [fetchSubCategories.pending]: state => {
+      state.subCategoryDropdown.loading = true;
+      state.subCategoryDropdown.data = [];
+      state.subCategoryDropdown.error = false;
+    },
+    [fetchSubCategories.fulfilled]: (state, {payload}) => {
+      state.subCategoryDropdown.loading = false;
+      state.subCategoryDropdown.data = payload.data;
+      state.subCategoryDropdown.error = false;
+    },
+    [fetchSubCategories.rejected]: state => {
+      state.subCategoryDropdown.loading = false;
+      state.subCategoryDropdown.data = [];
+      state.subCategoryDropdown.error = true;
+    },
+    [fetchBrands.pending]: state => {
+      state.brandsDropdown.loading = true;
+      state.brandsDropdown.data = [];
+      state.brandsDropdown.error = false;
+    },
+    [fetchBrands.fulfilled]: (state, {payload}) => {
+      state.brandsDropdown.loading = false;
+      state.brandsDropdown.data = payload.data;
+      state.brandsDropdown.error = false;
+    },
+    [fetchBrands.rejected]: state => {
+      state.brandsDropdown.loading = false;
+      state.brandsDropdown.data = [];
+      state.brandsDropdown.error = true;
+    },
   },
 });
 
-export const {setProductFilter,setFilterList} = productSlice.actions;
+export const {setProductFilter, setFilterList} = productSlice.actions;
 export const productInit = productSlice.getInitialState();
 export default productSlice.reducer;

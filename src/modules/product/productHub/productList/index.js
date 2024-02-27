@@ -8,7 +8,6 @@ const ProductList = ({productList, onAdd, categoryId}) => {
   const {onViewAll} = useProductList();
   const styles = style();
   const ListFooter = (item) => {
-    console.log('Item',item);
     return (
       <View style={styles.footerContainer}>
         <Text onPress={() => onViewAll({...item, categoryId})}>View All</Text>

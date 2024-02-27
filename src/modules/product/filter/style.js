@@ -7,6 +7,7 @@ import {
 } from '../../../styles/constants';
 import {
   BLACK,
+  CYAN_BLUE,
   FLASH_WHITE,
   LIGHT_GREY,
   ORANGE,
@@ -16,6 +17,11 @@ import {fonts} from '../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
+    loaderContainer: {
+      flex: 1,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+    },
     container: {
       flex: 1,
       backgroundColor: FLASH_WHITE,
@@ -57,5 +63,10 @@ export const styles = () => {
       alignItems: CENTER,
     },
     titleText: {marginLeft: 4},
+    errorText: {
+      fontFamily: fonts.family.rubik600,
+      fontSize: fonts.size.fontSize14,
+      color: CYAN_BLUE,
+    },
   });
 };

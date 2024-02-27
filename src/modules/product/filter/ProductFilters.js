@@ -1,12 +1,27 @@
 import React from 'react';
-import {View, FlatList, Text, View} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import {Checkbox} from 'react-native-paper';
 import {styles as style} from './style';
 import {CYAN_BLUE, GREEN} from '../../../styles/colors';
 
-function ProductFilters({data, onCheck}) {
+function ProductFilters({onCheck, data1}) {
   const styles = style();
-  const RenderItem = ({item, index}) => {
+  const ListEmptyComponent = ({id}) => {
+    let emptyText;
+    switch (id) {
+      case 0:
+        emptyText = 'No Categories';
+        break;
+      case 1:
+        emptyText = 'No Sub Categories';
+        break;
+      case 2:
+        emptyText = 'No Brands';
+        break;
+    }
+    return <Text>{emptyText}</Text>;
+  };
+  const RenderItem = ({item, index, element}) => {
     return (
       <View style={styles.itemContainer}>
         <Checkbox.Android
@@ -15,13 +30,13 @@ function ProductFilters({data, onCheck}) {
           onPress={() => onCheck({id: element?.id, index})}
           status={item?.status}
         />
-        <Text style={styles.titleText}>{item?.title}</Text>
+        <Text style={styles.titleText}>{item?.name}</Text>
       </View>
     );
   };
   return (
     <View style={styles.filterView}>
-      {data.map((element, i) => {
+      {data1.map((element, i) => {
         return (
           <View style={styles.categoryContainer}>
             <Text>{element?.title}</Text>
@@ -30,7 +45,10 @@ function ProductFilters({data, onCheck}) {
               style={styles.listStyle}
               data={element?.data}
               keyExtractor={(_, index) => `filter-child-${i}-${index}`}
-              renderItem={<RenderItem />}
+              renderItem={({item, index}) => (
+                <RenderItem item={item} index={index} element={element} />
+              )}
+              ListEmptyComponent={() => <ListEmptyComponent id={element?.id} />}
             />
           </View>
         );
