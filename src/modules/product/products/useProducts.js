@@ -38,7 +38,10 @@ export const useProducts = navigation => {
     }
   }, [productList]);
 
-  const onAdd = item => {};
+  const onAdd = item => {
+    const {productId} = item;
+    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+  };
 
   const onFilterPress = item => {
     let categoryList = productList?.productFilter?.categoryIdList;
