@@ -70,6 +70,7 @@ export const HomeScreen = () => {
             activeIndex={activeIndex}
             onSelectCategory={onSelectCategory}
             onAdd={onAdd}
+            hideFooter={true}
           />}
           <OurPlan />
           <PromotionalBanner />

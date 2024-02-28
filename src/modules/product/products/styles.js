@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {CENTER, ROW, SPACE_EVENLY} from '../../../styles/constants';
 import {BLACK, FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
 import {fonts} from '../../../styles/fonts';
 
@@ -24,7 +24,7 @@ export const styles = () => {
       paddingVertical: 12,
       paddingHorizontal: 8,
       flexDirection: ROW,
-      justifyContent: SPACE_BETWEEN,
+      justifyContent: SPACE_EVENLY,
     },
     filterCard: {
       padding: 4,

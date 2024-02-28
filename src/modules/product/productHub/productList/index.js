@@ -1,17 +1,19 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {styles as style} from './style';
 import RenderProducts from './ProductItem';
 import {useProductList} from './useProductList';
 
-const ProductList = ({productList, onAdd, categoryId}) => {
+const ProductList = ({productList, onAdd, categoryId, hideFooter:hideFooterButton}) => {
   const {onViewAll} = useProductList();
   const styles = style();
+  const hideFooter = hideFooterButton ?? false;
   const ListFooter = (item) => {
+    if(hideFooter) return null;
     return (
-      <View style={styles.footerContainer}>
-        <Text onPress={() => onViewAll({...item, categoryId})}>View All</Text>
-      </View>
+      <TouchableOpacity onPress={() => onViewAll({...item, categoryId})} style={styles.footerContainer}>
+        <Text style={styles.viewAllText}>View All Products</Text>
+      </TouchableOpacity>
     );
   };
   return productList?.map(item => (

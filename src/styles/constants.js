@@ -19,3 +19,4 @@ export const HIDDEN = 'hidden';
 export const SPACE_AROUND = 'space-around';
 export const AUTO='auto';
 export const  CONTAIN='contain';
+export const SPACE_EVENLY = 'space-evenly';

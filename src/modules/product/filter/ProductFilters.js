@@ -4,21 +4,10 @@ import {Checkbox} from 'react-native-paper';
 import {styles as style} from './style';
 import {CYAN_BLUE, GREEN} from '../../../styles/colors';
 
-function ProductFilters({onCheck, data1}) {
+function ProductFilters({onCheck, data1, getListEmptyText}) {
   const styles = style();
   const ListEmptyComponent = ({id}) => {
-    let emptyText;
-    switch (id) {
-      case 0:
-        emptyText = 'No Categories';
-        break;
-      case 1:
-        emptyText = 'No Sub Categories';
-        break;
-      case 2:
-        emptyText = 'No Brands';
-        break;
-    }
+    const emptyText = getListEmptyText(id);
     return <Text>{emptyText}</Text>;
   };
   const RenderItem = ({item, index, element}) => {
@@ -39,8 +28,7 @@ function ProductFilters({onCheck, data1}) {
       {data1.map((element, i) => {
         return (
           <View style={styles.categoryContainer}>
-            <Text>{element?.title}</Text>
-            <View style={styles.separator} />
+            <Text style={styles.titleStyle}>{element?.title}</Text>
             <FlatList
               style={styles.listStyle}
               data={element?.data}

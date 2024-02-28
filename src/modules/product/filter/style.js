@@ -6,10 +6,9 @@ import {
   SPACE_BETWEEN,
 } from '../../../styles/constants';
 import {
-  BLACK,
   CYAN_BLUE,
   FLASH_WHITE,
-  LIGHT_GREY,
+  GREY,
   ORANGE,
   WHITE,
 } from '../../../styles/colors';
@@ -29,7 +28,8 @@ export const styles = () => {
     contentContainer: {
       flex: 1,
       paddingHorizontal: 16,
-      paddingBottom: 16,
+      paddingTop: 16,
+      paddingBottom: 32,
       justifyContent: SPACE_BETWEEN,
       flexDirection: COLUMN_REVERSE,
     },
@@ -43,30 +43,48 @@ export const styles = () => {
       paddingHorizontal: 4,
       alignItems: CENTER,
       justifyContent: CENTER,
-      borderWidth: 1,
-      borderColor: LIGHT_GREY,
+      flex: 1,
+      backgroundColor: ORANGE,
+      borderRadius: 8,
     },
     filterView: {
       flex: 1,
-      justifyContent: SPACE_BETWEEN,
     },
-    categoryContainer: {height: '33%'},
-    separator: {
-      width: '100%',
-      height: 0.5,
-      backgroundColor: LIGHT_GREY,
+    categoryContainer: {maxHeight: '33.3%'},
+    listStyle: {
+      borderWidth: 0.5,
+      borderColor: GREY,
+      zIndex: 10,
+      marginHorizontal: 8,
+      borderRadius: 8,
+      backgroundColor: WHITE,
     },
-    listStyle: {borderWidth: 1},
     itemContainer: {
-      marginLeft: 4,
       flexDirection: ROW,
       alignItems: CENTER,
     },
-    titleText: {marginLeft: 4},
+    titleText: {
+      marginLeft: 4,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize16,
+      color: CYAN_BLUE,
+    },
     errorText: {
       fontFamily: fonts.family.rubik600,
       fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
     },
+    titleStyle: {
+      fontFamily: fonts.family.rubik600,
+      fontSize: fonts.size.fontSize16,
+      color: CYAN_BLUE,
+      marginVertical: 8,
+    },
+    buttonText: {
+      color: WHITE,
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+    },
+    buttonSeparator: {width:16},
   });
 };

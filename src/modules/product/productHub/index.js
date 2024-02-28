@@ -12,7 +12,8 @@ const ProductHub = ({
   categories,
   activeIndex,
   onSelectCategory,
-  categoryId
+  categoryId,
+  hideFooter
 }) => {
   const styles = style();
   const renderHeading = showHeading ?? true;
@@ -25,7 +26,7 @@ const ProductHub = ({
         activeIndex={activeIndex}
         renderHeading={renderHeading}
       />}
-      <ProductList categoryId={categoryId} productList={data?.productList} onAdd={onAdd} />
+      <ProductList categoryId={categoryId} productList={data?.productList} onAdd={onAdd} hideFooter={hideFooter} />
     </View>
   );
 };

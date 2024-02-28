@@ -7,9 +7,9 @@ import {
   fetchSubCategories,
   setFilterList,
 } from '../../../store/reducers/ProductSlice';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 
-export const useFilter = (navigation) => {
+export const useFilter = navigation => {
   const dispatch = useDispatch();
   const {productList, categoryDropdown, subCategoryDropdown, brandsDropdown} =
     useSelector(state => state.product);
@@ -190,31 +190,50 @@ export const useFilter = (navigation) => {
     const categoryIdList = fetchIds(data1, 0);
     const subCategoryIdList = fetchIds(data1, 1);
     const brandIdList = fetchIds(data1, 2);
-    if(categoryIdList?.length === 0 || subCategoryIdList?.length === 0 || brandIdList?.length === 0) {
-      Alert.alert('Alert','Please select data');
-    }
-    else {
-    dispatch(
-      setFilterList({
-        ...productList.productFilter,
-        categoryIdList,
-        subCategoryIdList,
-        brandIdList,
-      }),
-    );
-    navigation?.goBack();
+    if (
+      categoryIdList?.length === 0 &&
+      subCategoryIdList?.length === 0 &&
+      brandIdList?.length === 0
+    ) {
+      Alert.alert('Alert', 'Please select data');
+    } else {
+      dispatch(
+        setFilterList({
+          ...productList.productFilter,
+          categoryIdList,
+          subCategoryIdList,
+          brandIdList,
+        }),
+      );
+      navigation?.goBack();
     }
   };
 
   const onClearFilter = () => {
-    const clearedData = data1.map(item=>{
-      if(item?.data?.length === 0) return item;
+    const clearedData = data1.map(item => {
+      if (item?.data?.length === 0) return item;
       else {
-        return {...item,data:item?.data?.map(i=>{return {...i,status:'unchecked'}})}
+        return {
+          ...item,
+          data: item?.data?.map(i => {
+            return {...i, status: 'unchecked'};
+          }),
+        };
       }
-    })
+    });
     setData1(clearedData);
-  }
+  };
+
+  const getListEmptyText = id => {
+    switch (id) {
+      case 0:
+        return 'No Categories';
+      case 1:
+        return 'No Sub Categories';
+      case 2:
+        return 'No Brands';
+    }
+  };
 
   const onCheck = ({id, index}) => {
     let newData = data1.map(item => {
@@ -236,7 +255,6 @@ export const useFilter = (navigation) => {
     setData1(newData);
   };
 
-
   return {
     onCheck,
     data,
@@ -245,6 +263,7 @@ export const useFilter = (navigation) => {
     brandsDropdown,
     data1,
     onApplyFilter,
-    onClearFilter
+    onClearFilter,
+    getListEmptyText,
   };
 };

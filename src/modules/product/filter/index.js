@@ -14,7 +14,8 @@ const ProductFilter = ({navigation}) => {
     brandsDropdown,
     data1,
     onApplyFilter,
-    onClearFilter
+    onClearFilter,
+    getListEmptyText,
   } = useFilter(navigation);
   const styles = style();
 
@@ -23,10 +24,11 @@ const ProductFilter = ({navigation}) => {
     return (
       <View style={styles.filterButtonContainer}>
         <TouchableOpacity disabled={filterDisable} onPress={onApplyFilter} style={styles.filterContainer}>
-          <Text>Apply Filter</Text>
+          <Text style={styles.buttonText}>Apply Filter</Text>
         </TouchableOpacity>
+        <View style={styles.buttonSeparator}/>
         <TouchableOpacity onPress={onClearFilter} style={styles.filterContainer}>
-          <Text>Clear Filter</Text>
+          <Text style={styles.buttonText}>Clear Filter</Text>
         </TouchableOpacity>
       </View>
     );
@@ -65,6 +67,7 @@ const ProductFilter = ({navigation}) => {
             categoryData={categoryDropdown?.data}
             subCategoryData={subCategoryDropdown?.data}
             data1={data1}
+            getListEmptyText={getListEmptyText}
           />
         </View>
       );

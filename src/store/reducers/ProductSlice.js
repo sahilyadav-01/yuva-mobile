@@ -88,13 +88,13 @@ export const getProductDetails = createAsyncThunk(
 
 export const fetchProducts = createAsyncThunk(
   'product/productsList',
-  async ({pageNo, pageSize, productFilter}, {_, rejectWithValue}) => {
+  async ({pageNo, pageSize, productFilter, paginate}, {_, rejectWithValue}) => {
     try {
       const endpoint = `/ecom/user/product/view-all?pageNo=${pageNo}&pageSize=${pageSize}`;
       const {data: response} = await YuvaService.post(endpoint, {
         productFilterDto: productFilter,
       });
-      return response.data;
+      return {...response.data, paginate};
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -202,6 +202,18 @@ const productSlice = createSlice({
         data: [],
       };
     },
+    resetProductList(state) {
+      state.productList = {
+        pageNo: 1,
+        pageSize: 20,
+        productFilter: null,
+        loading: false,
+        error: false,
+        totalDocuments: 0,
+        totalPages: 0,
+        data: [],
+      };
+    },
   },
   extraReducers: {
     [getAllCategories.pending]: state => {
@@ -271,10 +283,14 @@ const productSlice = createSlice({
     [fetchProducts.fulfilled]: (state, {payload}) => {
       state.productList.loading = false;
       state.productList.error = false;
-      state.productList.data = [
-        ...state.productList.data,
-        ...payload.productResponseDtoForUserGridViewList,
-      ];
+      if (!payload.paginate) {
+        state.productList.data = payload.productResponseDtoForUserGridViewList;
+      } else {
+        state.productList.data = [
+          ...state.productList.data,
+          ...payload.productResponseDtoForUserGridViewList,
+        ];
+      }
       state.productList.totalDocuments = payload.totalDocuments;
       state.productList.totalPages = payload.totalPages;
     },
@@ -326,6 +342,7 @@ const productSlice = createSlice({
   },
 });
 
-export const {setProductFilter, setFilterList} = productSlice.actions;
+export const {setProductFilter, setFilterList, resetProductList} =
+  productSlice.actions;
 export const productInit = productSlice.getInitialState();
 export default productSlice.reducer;

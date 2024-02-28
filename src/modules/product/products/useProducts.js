@@ -4,6 +4,7 @@ import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   fetchProducts,
+  resetProductList,
   setFilterList,
 } from '../../../store/reducers/ProductSlice';
 
@@ -17,9 +18,10 @@ export const useProducts = navigation => {
   const [pageNo, setPageNo] = useState(1);
   useFocusEffect(
     useCallback(() => {
-      const {productFilter, pageNo, pageSize} = productList;
-      dispatch(fetchProducts({productFilter, pageNo, pageSize}));
-    }, [productList?.productFilter,productList?.pageNo,productList?.pageSize]),
+      const {productFilter} = productList;
+      if(!applyFilter)
+      dispatch(fetchProducts({productFilter, pageNo:1, pageSize:20, paginate:false}));
+     }, [productList?.productFilter]),
   );
 
   useEffect(() => {

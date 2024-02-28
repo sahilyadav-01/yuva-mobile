@@ -8,7 +8,12 @@ import {
   VIVID_TANGERINE,
   WHITE,
 } from '../../../../styles/colors';
-import {CENTER, ROW, ROW_REVERSE} from '../../../../styles/constants';
+import {
+  CENTER,
+  ROW,
+  ROW_REVERSE,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 import {getDimensions} from '../../../../utils/utils';
 
@@ -45,6 +50,7 @@ const styles = () => {
       borderRadius: 20,
       paddingHorizontal: 12,
       paddingVertical: 16,
+      justifyContent: SPACE_BETWEEN,
     },
     categoryImage: {
       marginHorizontal: 30,
@@ -62,7 +68,7 @@ const styles = () => {
     },
     rowContainer: {marginVertical: 8, flexDirection: ROW},
     discount: {
-      marginRight: 4,
+      marginRight: 8,
       color: RED,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
@@ -87,7 +93,18 @@ const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
     },
-    footerContainer: {marginTop: 16, alignItems: CENTER}
+    footerContainer: {
+      marginTop: 16,
+      alignItems: CENTER,
+      backgroundColor: ORANGE,
+      paddingVertical: 8,
+      borderRadius: 8,
+    },
+    viewAllText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      color: WHITE,
+    },
   });
 };
 
