@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {Alert} from 'react-native';
-import { TERMS_CONDITION } from '../constant';
+import {TERMS_CONDITION} from '../constant';
 
 export const usePaymentReconfirm = () => {
   const navigation = useNavigation();
@@ -9,66 +9,63 @@ export const usePaymentReconfirm = () => {
     termsAndCondtionChecked,
     cart: {itemDtoList},
   } = useSelector(state => state.cart);
-  const {scheduleDate, addressData, relationData, processingCharge} = useSelector(
-    state => state.checkOut,
-  );
-  const {selectedCity} = useSelector(
-    state => state.profile,
-  );
+  const {scheduleDate, addressData, relationData, processingCharge} =
+    useSelector(state => state.checkOut);
+  const {selectedCity} = useSelector(state => state.profile);
+  const itemType = itemDtoList?.map(item => item?.productType);
+  const isProduct = 
+    !itemType?.includes('TEST') && !itemType?.includes('PACKAGE');
+
+  const fetchProductId = type => {
+    const itemType = itemDtoList.filter(item => item?.productType === type);
+    const productIds = itemType.map(item => item?.productId);
+    return productIds;
+  };
+
   const onPayPress = () => {
-    if(!termsAndCondtionChecked){
-      Alert.alert('Alert', TERMS_CONDITION)
-    }
-    else if (
-      termsAndCondtionChecked &&
-      scheduleDate !== null &&
-      addressData?.address !== undefined &&
-      addressData?.contact !== undefined &&
-      addressData?.pincode !== undefined &&
-      ((relationData?.name !== undefined &&
-        relationData?.age !== undefined &&
-        relationData?.gender !== undefined) ||
-        relationData?.id === null)
-    ) {
-      const packageUuid = itemDtoList
-        .filter(item => {
-          if (item?.productType === 'PACKAGE') return item;
-        })
-        .map(item => {
-          return item?.productId;
-        });
-      const testId = itemDtoList
-        .filter(item => {
-          if (item?.productType === 'TEST') return item;
-        })
-        .map(item => {
-          return item?.productId;
-        });
-      const details =
-        relationData?.id === null
-          ? {age: 0, name: null, gender: null}
-          : {
-              name: relationData?.name,
-              age: parseInt(relationData?.age),
-              gender: relationData?.gender,
-            };
+    const {address, contact, pincode, away} = {
+      address: addressData?.address ?? '',
+      contact: addressData?.contact ?? '',
+      pincode: addressData?.pincode ?? '',
+      away: addressData?.away ?? false,
+    };
+    const {name, age, gender} = {
+      name: relationData?.name ?? '',
+      age: relationData?.age ?? '',
+      gender: relationData?.gender ?? null,
+    };
+    const myself = relationData?.id === null;
+    const isRelationValid = (name && age && gender) || myself;
+    const isAddressValid = address && contact && pincode;
+    const isScheduleValid = scheduleDate ?? '';
+    const isBooking = isScheduleValid && isRelationValid;
+    const timeSlot = !isProduct ? scheduleDate : undefined;
+
+    if (!termsAndCondtionChecked) Alert.alert('Alert', TERMS_CONDITION);
+    else if (isAddressValid && (isProduct || isBooking)) {
+      const packageUuid = fetchProductId('PACKAGE');
+      const testId = fetchProductId('TEST');
+      const selfDetails = {age: 0, name: null, gender: null};
+      const relationDetails = {name, age: parseInt(age), gender};
+      const details = myself ? selfDetails : relationDetails;
       const paymentProps = {
         ...details,
         plan: false,
         bookingRequestDto: {
-          address: addressData?.address,
-          away: addressData?.away ?? false,
+          address,
+          away,
           cityId: selectedCity,
-          contactNumber: addressData?.contact,
+          contactNumber: contact,
           packageUuid,
-          pinCode: addressData?.pincode,
+          pinCode: pincode,
           plan: false,
           programOrPlanUuid: null,
           relationId: null,
           testId,
-          timeSlot: scheduleDate,
+          timeSlot,
         },
         subscriptionRequestDto: {},
+        cart: true,
       };
       navigation.navigate('Payment', {
         screen: 'PaymentScreen',
@@ -76,5 +73,5 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress,processingCharge};
+  return {onPayPress, processingCharge, isProduct};
 };

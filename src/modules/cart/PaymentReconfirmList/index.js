@@ -19,8 +19,6 @@ const PaymentReconfirmList = props => {
   const renderTime = getTime(new Date(parseInt(scheduleDate)), 'hh:mm');
   const { cart } = useSelector(state => state.cart);
   const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
-  const { coupon } = useSelector(state => state.coupon);
-  const { loggedIn } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -24,6 +24,7 @@ export const useCart = (args) => {
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
   const { redeemCoupons, couponView, amountToBePaidCoupon, couponId } = useSelector(state => state.coupon);
+  const [initialLoad, setInitialLoad] = useState(true);
   const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -45,9 +46,14 @@ export const useCart = (args) => {
 
   const onPressCardButton = () => {
     if (isLoggedIn) {
+      const productTypes = getProductTypes();
       setAddButtonPress(true);
       dispatch(getCartUserThunk());
-      if (userData == null) {
+      if((!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST'))){
+        dispatch(dispatch_processingCharge(processingCharge));
+        navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
+      }
+      else if (userData == null) {
         openModal();
       } else {
         dispatch(dispatch_relationData({ userData }));
@@ -107,10 +113,20 @@ export const useCart = (args) => {
     }
   }
 
+  const getProductTypes = () => {
+    const itemList = cart?.itemDtoList;
+    if(itemList?.length > 0) {
+      return itemList?.map(item=>item?.productType);
+    }
+  }
+
   useEffect(()=>{
+   const productTypes = getProductTypes();
    if(couponId === null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaid))
    else if(couponId !== null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
-   else if(userData === null && isLoggedIn) setButtonText(SELECT_ADD_MEMBER)
+   else if(userData === null && isLoggedIn && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText(TO_BE_PAID(amountToBePaid))
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
    else if(userData === null && !isLoggedIn) setButtonText(LOGIN_SIGNUP)
   },[userData])
 
@@ -123,12 +139,16 @@ export const useCart = (args) => {
   }, [relationAdded])
 
   useEffect(() => {
-    if(userData === null && loggedIn === 'loggedIn') setButtonText(SELECT_ADD_MEMBER)
+    const productTypes = getProductTypes();
+    if(userData === null && loggedIn === 'loggedIn' && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText(TO_BE_PAID(amountToBePaid))
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
     else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
-    if (route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
+    if (route?.name === 'Cart' && navigation.isFocused() && !isRemoved && initialLoad ) {
+      setInitialLoad(false);
       dispatch(getCartUserThunk());
     }
-  }, [focused])
+  }, [focused,cart?.itemDtoList])
 
 
   useEffect(() => {
@@ -225,6 +245,7 @@ export const useCart = (args) => {
       dispatch(removeCouponCart());
     }
   }, [isRemoved, addToCartItem, focused]);
+
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());
