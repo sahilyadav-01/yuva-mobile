@@ -1,18 +1,38 @@
-import React from 'react';
-import {FlatList, View, ActivityIndicator,Text, TouchableOpacity} from 'react-native';
-import {useProducts} from './useProducts';
-import {styles as style} from './styles';
+import React, { useCallback } from 'react';
+import {
+  FlatList,
+  View,
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import RenderProducts from '../productHub/productList/ProductItem';
 import Header from '../../../components/Header';
-import { SVG } from '../../../../assets';
 import LoaderContext from '../../../components/LoaderContext';
+import {styles as style} from './styles';
+import {SVG} from '../../../../assets';
+import {useProducts} from './useProducts';
 
 const Products = ({navigation}) => {
-  const {onAdd, productList,categories,applyFilter,onFilterPress,onAdvanceFiltersPress} = useProducts(navigation);
+  const {
+    onAdd,
+    productList,
+    categories,
+    applyFilter,
+    pageNo,
+    data,
+    onFilterPress,
+    onAdvanceFiltersPress,
+    onEndReached,
+  } = useProducts(navigation);
   const styles = style();
 
   const ProductList = () => {
-    if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {
+    if (
+      productList?.data?.length === 0 &&
+      productList?.loading &&
+      !applyFilter
+    ) {
       return (
         <View style={styles.loaderContainer}>
           <ActivityIndicator size={'large'} />
@@ -21,23 +41,25 @@ const Products = ({navigation}) => {
     }
 
     const ListFooter = () => {
+      if (pageNo > 0 && pageNo < productList?.totalPages)
         return (
-            <View style={{marginTop:8,alignItems:'center'}}>
-                <ActivityIndicator size={'small'}/>
-            </View>
+          <View style={styles.listLoader}>
+            <ActivityIndicator size={'small'} />
+          </View>
         );
-    }
+    };
     return (
       <FlatList
-        key={(_, index) => `product${index}`}
+        keyExtractor={useCallback((item) => item?.productId,[])}
         numColumns={2}
         style={styles.subCategoryList}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        data={productList?.data}
+        data={data}
         renderItem={({item, index}) => (
           <RenderProducts index={index} item={item} onAdd={() => onAdd(item)} />
         )}
         ListFooterComponent={ListFooter}
+        onEndReached={onEndReached}
       />
     );
   };
@@ -45,20 +67,33 @@ const Products = ({navigation}) => {
   const FilterView = () => {
     return (
       <View style={styles.filterContainer}>
-      {categories?.slice(0,3)?.map((item)=>{
-        const itemExists = productList?.productFilter?.categoryIdList.includes(item?.id);
-        return (
-          <TouchableOpacity onPress={()=>onFilterPress(item)} style={[styles.filterCard,itemExists?styles.filterCardActive:styles.filterCardInactive]}>
-            <Text style={[styles.filterText,itemExists?styles.filterTextActive:styles.filterTextInactive]}>{item?.name}</Text>
-          </TouchableOpacity>
-        );
-      })}
-      <TouchableOpacity onPress={onAdvanceFiltersPress} style={styles.filterCard}>
-         <SVG.ArrowRight/>
-      </TouchableOpacity>
-    </View>
+        {categories?.slice(0, 3)?.map(item => {
+          const itemExists =
+            productList?.productFilter?.categoryIdList.includes(item?.id);
+          let filterContainerStyle = styles.filterCardInactive;
+          let filterTextStyle = styles.filterTextInactive;
+          if (itemExists) {
+            filterContainerStyle = styles.filterCardActive;
+            filterTextStyle = styles.filterTextActive;
+          }
+          return (
+            <TouchableOpacity
+              onPress={() => onFilterPress(item)}
+              style={[styles.filterCard, filterContainerStyle]}>
+              <Text style={[styles.filterText, filterTextStyle]}>
+                {item?.name}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+        <TouchableOpacity
+          onPress={onAdvanceFiltersPress}
+          style={styles.filterCard}>
+          <SVG.ArrowRight />
+        </TouchableOpacity>
+      </View>
     );
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -69,8 +104,8 @@ const Products = ({navigation}) => {
         homeSearch={true}
         title={'Products'}
       />
-      <LoaderContext showLoader={productList?.loading || applyFilter}/>
-      <FilterView/>
+      <LoaderContext showLoader={applyFilter} />
+      <FilterView />
       <ProductList />
     </View>
   );

@@ -12,7 +12,6 @@ const ProductFilter = ({navigation}) => {
     categoryDropdown,
     subCategoryDropdown,
     brandsDropdown,
-    data1,
     onApplyFilter,
     onClearFilter,
     getListEmptyText,
@@ -39,7 +38,7 @@ const ProductFilter = ({navigation}) => {
       (categoryDropdown?.loading &&
         subCategoryDropdown?.loading &&
         brandsDropdown?.loading) ||
-      data1.length < 3
+      data.length < 3
     ) {
       return (
         <View style={styles.loaderContainer}>
@@ -56,7 +55,7 @@ const ProductFilter = ({navigation}) => {
           <Text style={styles.errorText}>Error Fetching Product Details</Text>
         </View>
       );
-    } else if (data1.length === 3)
+    } else if (data.length === 3)
       return (
         <View style={styles.contentContainer}>
           <FilterButtons />
@@ -66,7 +65,6 @@ const ProductFilter = ({navigation}) => {
             brandsData={brandsDropdown?.data}
             categoryData={categoryDropdown?.data}
             subCategoryData={subCategoryDropdown?.data}
-            data1={data1}
             getListEmptyText={getListEmptyText}
           />
         </View>

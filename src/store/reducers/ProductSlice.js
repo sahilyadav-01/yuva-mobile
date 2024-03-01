@@ -170,6 +170,7 @@ const initialState = {
     totalDocuments: 0,
     totalPages: 0,
     data: [],
+    paginate: false,
   },
   categoryDropdown: {
     loading: false,
@@ -283,14 +284,16 @@ const productSlice = createSlice({
     [fetchProducts.fulfilled]: (state, {payload}) => {
       state.productList.loading = false;
       state.productList.error = false;
-      if (!payload.paginate) {
-        state.productList.data = payload.productResponseDtoForUserGridViewList;
-      } else {
-        state.productList.data = [
-          ...state.productList.data,
-          ...payload.productResponseDtoForUserGridViewList,
-        ];
-      }
+      state.productList.paginate = payload.paginate;
+      // if (!payload.paginate) {
+      //   state.productList.data = payload.productResponseDtoForUserGridViewList;
+      // } else {
+      //   state.productList.data = [
+      //     ...state.productList.data,
+      //     ...payload.productResponseDtoForUserGridViewList,
+      //   ];
+      // }
+      state.productList.data = payload.productResponseDtoForUserGridViewList
       state.productList.totalDocuments = payload.totalDocuments;
       state.productList.totalPages = payload.totalPages;
     },

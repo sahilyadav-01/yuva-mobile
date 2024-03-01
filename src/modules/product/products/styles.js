@@ -52,12 +52,16 @@ export const styles = () => {
     },
     advancedFilters: {
       paddingVertical: 4,
-      paddingHorizontal:8,
+      paddingHorizontal: 8,
       alignItems: CENTER,
       justifyContent: CENTER,
       borderWidth: 1,
       borderRadius: 12,
       borderColor: BLACK,
+    },
+    listLoader: {
+      marginTop: 8,
+      alignItems: CENTER,
     },
   });
 };

@@ -14,38 +14,9 @@ export const useFilter = navigation => {
   const {productList, categoryDropdown, subCategoryDropdown, brandsDropdown} =
     useSelector(state => state.product);
   const [fetchSubCategory, setFetchSubCategory] = useState(false);
-  const [data1, setData1] = useState([]);
+  const [data, setData] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
-  const [data, setData] = useState([
-    {
-      title: 'Category',
-      id: 0,
-      data: [
-        {title: 'Category 1', status: 'unchecked'},
-        {title: 'Category 2', status: 'unchecked'},
-        {title: 'Category 3', status: 'unchecked'},
-      ],
-    },
-    {
-      title: 'Sub Categories',
-      id: 1,
-      data: [
-        {title: 'Sub Category 1', status: 'unchecked'},
-        {title: 'Sub Category 2', status: 'checked'},
-        {title: 'Sub Category 3', status: 'checked'},
-      ],
-    },
-    {
-      title: 'Brand',
-      id: 2,
-      data: [
-        {title: 'Brand 1', status: 'unchecked'},
-        {title: 'Brand 2', status: 'unchecked'},
-        {title: 'Brand 3', status: 'unchecked'},
-      ],
-    },
-  ]);
-
+  
   useFocusEffect(
     useCallback(() => {
       dispatch(fetchCategories());
@@ -62,7 +33,7 @@ export const useFilter = navigation => {
           ),
         );
       setFetchSubCategory(true);
-      setData1(data => {
+      setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(0)) {
           let updatedData = data.map(item => {
             if (item.id !== 0) return item;
@@ -102,7 +73,7 @@ export const useFilter = navigation => {
       !subCategoryDropdown.error &&
       fetchSubCategory
     ) {
-      setData1(data => {
+      setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(1)) {
           let updatedData = data.map(item => {
             if (item.id !== 1) return item;
@@ -113,7 +84,7 @@ export const useFilter = navigation => {
                   subCategoryDropdown.data?.length === 0
                     ? []
                     : subCategoryDropdown.data.map(item => {
-                        return {...item, status: 'unchecked'};
+                        return {...item, status: 'unchecked', disabled: true};
                       }),
               };
           });
@@ -142,7 +113,7 @@ export const useFilter = navigation => {
 
   useEffect(() => {
     if (!brandsDropdown.loading && !brandsDropdown.error) {
-      setData1(data => {
+      setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(2)) {
           let updatedData = data.map(item => {
             if (item.id !== 2) return item;
@@ -176,8 +147,8 @@ export const useFilter = navigation => {
     }
   }, [brandsDropdown.loading, brandsDropdown.error]);
 
-  const fetchIds = (data1, id) => {
-    const categoryData = data1.find(item => item.id === id)?.data;
+  const fetchIds = (data, id) => {
+    const categoryData = data.find(item => item.id === id)?.data;
     if (categoryData?.length === 0) return [];
     const selectedItems = categoryData.filter(
       item => item?.status === 'checked',
@@ -187,9 +158,9 @@ export const useFilter = navigation => {
   };
 
   const onApplyFilter = () => {
-    const categoryIdList = fetchIds(data1, 0);
-    const subCategoryIdList = fetchIds(data1, 1);
-    const brandIdList = fetchIds(data1, 2);
+    const categoryIdList = fetchIds(data, 0);
+    const subCategoryIdList = fetchIds(data, 1);
+    const brandIdList = fetchIds(data, 2);
     if (
       categoryIdList?.length === 0 &&
       subCategoryIdList?.length === 0 &&
@@ -210,7 +181,7 @@ export const useFilter = navigation => {
   };
 
   const onClearFilter = () => {
-    const clearedData = data1.map(item => {
+    const clearedData = data.map(item => {
       if (item?.data?.length === 0) return item;
       else {
         return {
@@ -221,7 +192,7 @@ export const useFilter = navigation => {
         };
       }
     });
-    setData1(clearedData);
+    setData(clearedData);
   };
 
   const getListEmptyText = id => {
@@ -236,7 +207,7 @@ export const useFilter = navigation => {
   };
 
   const onCheck = ({id, index}) => {
-    let newData = data1.map(item => {
+    let newData = data.map(item => {
       if (item.id === id) {
         return {
           ...item,
@@ -252,7 +223,25 @@ export const useFilter = navigation => {
         };
       } else return item;
     });
-    setData1(newData);
+    if(id === 0){
+    const categories = newData?.find(item=>item?.id === 0)?.data;
+    let subCategories = newData?.find(item=>item?.id === 1)?.data;
+    const activeCategories = categories?.length === 0 ? [] : categories?.filter(item=>item?.status === 'checked').map(item=>item?.id);
+    const inActiveCategories = categories?.length === 0 ? [] : categories?.filter(item=>item?.status === 'unchecked').map(item=>item?.id);
+    if((activeCategories?.length > 0 || inActiveCategories?.length > 0) && subCategories?.length > 0) {
+      subCategories = subCategories?.map((item)=>{
+        if(activeCategories?.includes(item?.secondId)) return {...item,disabled:false}
+        else return {...item,disabled:true}
+      })
+      newData = newData.map(item=>{
+        if(item?.id !== 1) return item;
+        else {
+          return {...item,data:subCategories}
+        }
+      })
+    }
+  }
+    setData(newData);
   };
 
   return {
@@ -261,7 +250,6 @@ export const useFilter = navigation => {
     categoryDropdown,
     subCategoryDropdown,
     brandsDropdown,
-    data1,
     onApplyFilter,
     onClearFilter,
     getListEmptyText,
