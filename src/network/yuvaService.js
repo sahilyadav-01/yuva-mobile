@@ -16,9 +16,10 @@ class YuvaService {
       if(jwt){
         this.controller.abort();
         this.setController();
-        handleRefreshToken();
+        handleRefreshToken(!error?.request?.responseURL.includes('/refresh-token'));
       }
   }
+  else if(error.response.status === 404 && error?.request?.responseURL.includes('/refresh-token')) handleRefreshToken(false);
   }
   get = async endpoint => {
     return new Promise(async (resolve,reject) => {
@@ -31,7 +32,7 @@ class YuvaService {
       }
     })
   };
-  post = async (endpoint,  params,headers) => {
+  post = async (endpoint,params,headers) => {
     return new Promise(async (resolve,reject) => {
       try {
         const response = await axiosClient.post(`${Config.SERVER}${endpoint}`, params,{...headers,signal:this.controller.signal});

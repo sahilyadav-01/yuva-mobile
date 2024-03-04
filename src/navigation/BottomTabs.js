@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -23,7 +23,31 @@ const BottomTabs = () => {
   const {loggedIn,resetRoute} = useSelector(state => state.auth);
   const { cart } = useSelector(state => state.cart);
   const badgeCount = cart?.itemDtoList?.length || 0;
+  const [reset,setReset] = useState(false);
   const style = styles();
+  
+  useEffect(()=>{
+    if(resetRoute > 0){
+    dispatch(profileThunk());
+    dispatch(clearRoutes());
+    navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
+    dispatch(setUnauthorisedStatus(false));
+    }
+    else if(resetRoute === -1) {
+      dispatch(logoutThunk());
+      dispatch(setUnauthorisedStatus(false));
+      setReset(true);
+    }
+  },[resetRoute])
+
+  useEffect(()=>{
+    if(loggedIn !== 'loggedIn' && reset) {
+      setReset(false);
+      dispatch(clearRoutes());
+      navigation.navigate('Home',{screen:'LoginScreen',params:{screen:'Login',params:{reset:true}}});
+    }
+  },[reset,loggedIn])
+
   const BadgeIcon = () => {
     if(badgeCount > 0)
     return (
@@ -36,20 +60,6 @@ const BottomTabs = () => {
       </View>
     );
   };
-  useEffect(()=>{
-    if(resetRoute > 0){
-    dispatch(profileThunk());
-    dispatch(clearRoutes());
-    navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
-    dispatch(setUnauthorisedStatus(false));
-    }
-    else if(resetRoute === -1) {
-      dispatch(clearRoutes());
-      dispatch(logoutThunk());
-      navigation.navigate('Home',{screen:'LoginScreen'});
-      dispatch(setUnauthorisedStatus(false));
-    }
-  },[resetRoute])
 
   return (
     <Tab.Navigator
