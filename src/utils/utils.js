@@ -56,8 +56,8 @@ export const PATH = ':8080/api/v1/yuva';
 // export const REDIRECT_URL = 'https://rajatsingh.duckdns.org:8081/api/v1/yuva/paymentGateway/response';
 // export const CANCEL_URL = 'https://rajatsingh.duckdns.org:8081/api/v1/yuva/paymentGateway/response'
 // export const PORT = ':8081';
-// export const PROTOCOL = 'http://';
-// export const PATH = ':8080/api/v1/yuva';
+// export const PROTOCOL = 'https://';
+// export const PATH = '/api/v1/yuva';
 
 // Production Server
 // export const SERVER = 'yuvahealth.in';
