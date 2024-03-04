@@ -2,11 +2,10 @@ import React from 'react'
 import {SafeAreaView } from 'react-native'
 import Chat from '../../../modules/chat';
 
-const ChatScreen = () => {
-  
+const ChatScreen = (props) => {
   return (
     <SafeAreaView>
-      <Chat />
+      <Chat data={props?.route?.params?.data}/>
     </SafeAreaView>
   )
 }

@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
-
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {resetTabBarVisible} from '../../../../../store/reducers/DoctorSlice';
 export const usePlans = () => {
   const dispatch = useDispatch();
+  const {notificationRedirect} = useSelector(state=>state.appointment);
   useEffect(() => {
-    dispatch(resetTabBarVisible(true));
+    !notificationRedirect && dispatch(resetTabBarVisible(true));
   }, []);
   return {};
 };

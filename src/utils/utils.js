@@ -52,9 +52,9 @@ export const PATH = ':8080/api/v1/yuva';
 // export const PATH = ':8080/api/v1/yuva';
 
 //PREPROD Server
-// export const SERVER = 'ec2-3-7-71-9.ap-south-1.compute.amazonaws.com';
-// export const REDIRECT_URL = 'http://ec2-3-7-71-9.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response';
-// export const CANCEL_URL = 'http://ec2-3-7-71-9.ap-south-1.compute.amazonaws.com:8080/api/v1/yuva/paymentGateway/response'
+// export const SERVER = 'rajatsingh.duckdns.org';
+// export const REDIRECT_URL = 'https://rajatsingh.duckdns.org:8081/api/v1/yuva/paymentGateway/response';
+// export const CANCEL_URL = 'https://rajatsingh.duckdns.org:8081/api/v1/yuva/paymentGateway/response'
 // export const PORT = ':8081';
 // export const PROTOCOL = 'http://';
 // export const PATH = ':8080/api/v1/yuva';
@@ -66,7 +66,6 @@ export const PATH = ':8080/api/v1/yuva';
 // export const PORT = '';
 // export const PROTOCOL = 'https://';
 // export const PATH = '/api/v1/yuva';
-
 
 export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
 export const PASSWORD_VALIDATION = 'Please enter a valid password !';

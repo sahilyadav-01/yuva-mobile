@@ -168,14 +168,17 @@ export const styles = StyleSheet.create({
   initiatedColor: {
     color: ORANGE,
     fontFamily: fonts.family.rubik500,
+    maxWidth: '70%',
   },
   cancelledColor: {
     color: RED_SHADE,
     fontFamily: fonts.family.rubik500,
+    maxWidth: '70%',
   },
   confirmedColor: {
     color: GREEN,
     fontFamily: fonts.family.rubik500,
+    maxWidth: '70%',
   },
   lab: {
     flexDirection: ROW,

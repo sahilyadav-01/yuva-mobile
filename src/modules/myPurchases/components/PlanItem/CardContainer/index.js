@@ -23,7 +23,7 @@ export const CardContainer = props => {
           <Text style={style.orderNumber}>{item?.cardNumber === null ? DUMMY_CARD : item?.cardNumber}</Text>
           <View>
             <Text style={style.validText}>{VALID_THROUGH}</Text>
-            <Text style={style.orderNumber}>{item?.cardNumber === null ? CARD_VALIDITY : getDateInFormat(new Date(item?.dateOfPurchase),'mm/yy')}</Text>
+            <Text style={style.orderNumber}>{item?.cardNumber === null ? CARD_VALIDITY : getDateInFormat(new Date(item?.validThrough),'mm/yy')}</Text>
           </View>
         </View>
       </View>

@@ -1,11 +1,14 @@
 import {useNavigation} from '@react-navigation/core';
+import {useIsFocused} from '@react-navigation/native'
 import {
   allAppointmentThunk,
   cancelAppointmentThunk,
   appointmentThunk,
+  setNotificationRedirect,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { setTabBarVisible } from '../../../../../store/reducers/DoctorSlice';
 
 export const useView = () => {
   const [cancelFlag, setCancelFlag] = useState(false);
@@ -13,6 +16,7 @@ export const useView = () => {
   const [userRelation,setUserRelation]=useState("Myself");
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const focused = useIsFocused();
   const {
     id,
     doctorName,
@@ -37,6 +41,10 @@ export const useView = () => {
       setName(memberName)
     }
     },[memberName,relation])
+  useEffect(()=>{
+    if(navigation.isFocused()) dispatch(setTabBarVisible(false));
+    else if(!navigation.isFocused()) dispatch(setNotificationRedirect(false));
+  },[focused])
   const data = {
     hospital: hospitalName,
     Doctor: doctorName,

@@ -1,9 +1,16 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {BLACK_OPACITY, CITRINE_WHITE, CYAN_BLUE, GRAY, GREEN, WHITE} from '../../styles/colors';
+import {
+  BLACK_OPACITY,
+  CITRINE_WHITE,
+  CYAN_BLUE,
+  GRAY,
+  GREEN,
+  WHITE,
+} from '../../styles/colors';
 import {CENTER, ROW} from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {fonts} from '../../styles/fonts';
 
-export const styles = (arg) => {
+export const styles = arg => {
   const fraction = Dimensions.get('screen').width - 32;
   return StyleSheet.create({
     dateContainer: {paddingHorizontal: 24},
@@ -31,10 +38,16 @@ export const styles = (arg) => {
       marginTop: 4,
     },
     availableText: {color: GREEN, lineHeight: 16},
-    timeContentContainer: {borderWidth:0.5,marginHorizontal: 16,borderRadius:8,borderColor:GRAY,paddingVertical: 4},
+    timeContentContainer: {
+      borderWidth: 0.5,
+      marginHorizontal: 16,
+      borderRadius: 8,
+      borderColor: GRAY,
+      paddingVertical: 4,
+    },
     timeContainer: {marginHorizontal: 0, paddingHorizontal: 16},
     itemContainer: {marginBottom: 0},
-    item: {width:fraction*0.20},
+    item: {width: fraction * 0.2},
     itemView: {
       paddingHorizontal: 1,
       paddingVertical: 4,
@@ -42,23 +55,35 @@ export const styles = (arg) => {
       borderWidth: 2,
       marginBottom: 12,
       borderColor: BLACK_OPACITY,
-      alignItems:CENTER
+      alignItems: CENTER,
     },
     slotText: {
       fontFamily: fonts.family.rubik400,
-      fontSize:fonts.size.fontSize12,
-      lineHeight: 18,
-      color: CYAN_BLUE
+      fontSize: fonts.size.fontSize10,
+      lineHeight: 16,
+      color: CYAN_BLUE,
     },
     separatorContainer: {
       backgroundColor: WHITE,
-      height:8
+      height: 8,
     },
     rowContainer: {flexDirection: ROW},
-    slotTextExtraStyles: {marginBottom:8,marginRight:13},
-    emptyView: {paddingHorizontal:16,marginVertical:4,alignItems:CENTER},
-    emptyText: {color:CYAN_BLUE,fontWeight:fonts.weight.fontWeight500,fontSize:fonts.size.fontSize14},
+    slotTextExtraStyles: {
+      marginBottom: 8,
+      marginRight: 13,
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize12,
+      lineHeight: 18,
+    },
+    emptyView: {paddingHorizontal: 16, marginVertical: 4, alignItems: CENTER},
+    emptyText: {
+      color: CYAN_BLUE,
+      fontWeight: fonts.weight.fontWeight500,
+      fontSize: fonts.size.fontSize14,
+    },
     emptyContainer: {height: 24},
-    horizontalSeparator: {width:arg?.index % 4 !== 3 ? fraction / 32: undefined}
+    horizontalSeparator: {
+      width: arg?.index % 4 !== 3 ? fraction / 32 : undefined,
+    },
   });
 };
