@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {WebView} from 'react-native-webview';
-import { PORT, PROTOCOL, SERVER } from '../../utils/utils';
+import Config from 'react-native-config';
 import {usePayment} from './hooks/usePayment';
 import {styles} from './style';
 
@@ -20,7 +20,7 @@ const Payment = props => {
         <WebView
           style={container}
           source={{
-            uri: `${PROTOCOL}${SERVER}${PORT}/PaymentRedirect?encRequest=${encRequest}`,
+            uri: `${Config.REDIRECT_LINK}?encRequest=${encRequest}`,
           }}
           onNavigationStateChange={state => {
             if(state?.url.includes('loadingPayment')) postPaymentNavigation(state?.url,'loadingPayment?');

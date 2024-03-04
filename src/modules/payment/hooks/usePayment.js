@@ -1,12 +1,12 @@
-import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {BackHandler} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import Config from 'react-native-config';
 import {
   createOrderThunk,
   encReqThunk,
 } from '../../../store/reducers/PaymentSlice';
-import {CANCEL_URL, REDIRECT_URL} from '../../../utils/utils';
 
 export const usePayment = paymentProps => {
   const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender} =
@@ -44,8 +44,8 @@ export const usePayment = paymentProps => {
         encReqThunk({
           plan,
           orderId,
-          redirectUrl: REDIRECT_URL,
-          cancelUrl: CANCEL_URL,
+          redirectUrl: Config.REDIRECT_URL,
+          cancelUrl: Config.CANCEL_URL,
         }),
       );
     }

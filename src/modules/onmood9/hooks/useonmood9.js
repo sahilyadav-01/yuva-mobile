@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CryptoJS from 'crypto-js';
+import Config from 'react-native-config';
 import {subscriptionDetails} from '../../../store/reducers/PaymentSlice';
-import {ONMOOD9_BASE_URL, ONMOOD9_IV, ONMOOD9_KEY} from '../onMood9Config';
+import {ONMOOD9_CORPORATE_ID, ONMOOD9_IV, ONMOOD9_KEY} from '../onMood9Config';
 
 export const useOnMood9 = onMood9Props => {
   const id = onMood9Props?.id === null ? '' : `#${onMood9Props?.id}`;
@@ -43,7 +44,7 @@ export const useOnMood9 = onMood9Props => {
 
   useEffect(() => {
     if (encodedQueryString.length > 0) {
-      setUri(`${ONMOOD9_BASE_URL}/${encodedQueryString}`);
+      setUri(`${Config.ONMOOD9}/${ONMOOD9_CORPORATE_ID}/${encodedQueryString}`);
     }
   }, [encodedQueryString]);
 

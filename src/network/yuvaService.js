@@ -1,8 +1,6 @@
+import Config from  'react-native-config';
 import axiosClient, { handleRefreshToken } from './interceptors';
-import {PATH, PROTOCOL, SERVER} from '../utils/utils';
 import { getJwt } from '../store/LocalStore';
-
-const baseUrl = PROTOCOL + SERVER + PATH;
 
 class YuvaService {
   controller;
@@ -25,7 +23,7 @@ class YuvaService {
   get = async endpoint => {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await axiosClient.get(`${baseUrl}${endpoint}`,{signal:this.controller.signal});
+        const response = await axiosClient.get(`${Config.SERVER}${endpoint}`,{signal:this.controller.signal});
         resolve(response);
       } catch (error) {
         this.handleError(error);
@@ -36,7 +34,7 @@ class YuvaService {
   post = async (endpoint,  params,headers) => {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await axiosClient.post(`${baseUrl}${endpoint}`, params,{...headers,signal:this.controller.signal});
+        const response = await axiosClient.post(`${Config.SERVER}${endpoint}`, params,{...headers,signal:this.controller.signal});
         resolve(response);
       } catch (error) {
         this.handleError(error);
@@ -47,7 +45,7 @@ class YuvaService {
   put = async (endpoint, params) => {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await axiosClient.put(`${baseUrl}${endpoint}`, params, {signal:this.controller.signal});
+        const response = await axiosClient.put(`${Config.SERVER}${endpoint}`, params, {signal:this.controller.signal});
         resolve(response);
       } catch (error) {
         this.handleError(error);
@@ -58,7 +56,7 @@ class YuvaService {
   delete = async (endpoint,params) => {
     return new Promise(async (resolve,reject) => {
       try {
-        const response = await axiosClient.delete(`${baseUrl}${endpoint}`, {...params,signal:this.controller.signal});
+        const response = await axiosClient.delete(`${Config.SERVER}${endpoint}`, {...params,signal:this.controller.signal});
         resolve(response);
       } catch (error) {
         this.handleError(error);
