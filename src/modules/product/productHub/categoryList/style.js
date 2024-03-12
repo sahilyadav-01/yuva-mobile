@@ -46,14 +46,14 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize14,
       maxWidth: '30%',
-      textAlign: CENTER
+      textAlign: CENTER,
     },
     categoryHeadingContainer: {
       flexDirection: ROW,
       paddingHorizontal: 16,
       justifyContent: SPACE_BETWEEN,
       alignItems: CENTER,
-      width:'100%'
+      width: '100%',
     },
   });
 };

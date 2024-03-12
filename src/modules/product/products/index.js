@@ -12,6 +12,7 @@ import LoaderContext from '../../../components/LoaderContext';
 import {styles as style} from './styles';
 import {SVG} from '../../../../assets';
 import {useProducts} from './useProducts';
+import ProductFooter from './ProductFooter';
 
 const Products = ({navigation}) => {
   const {
@@ -39,15 +40,6 @@ const Products = ({navigation}) => {
         </View>
       );
     }
-
-    const ListFooter = () => {
-      if (pageNo > 0 && pageNo < productList?.totalPages)
-        return (
-          <View style={styles.listLoader}>
-            <ActivityIndicator size={'small'} />
-          </View>
-        );
-    };
     return (
       <FlatList
         keyExtractor={useCallback((item) => item?.productId,[])}
@@ -58,7 +50,7 @@ const Products = ({navigation}) => {
         renderItem={({item, index}) => (
           <RenderProducts index={index} item={item} onAdd={() => onAdd(item)} />
         )}
-        ListFooterComponent={ListFooter}
+        ListFooterComponent={<ProductFooter pageNo={pageNo} productList={productList}/>}
         onEndReached={onEndReached}
       />
     );
