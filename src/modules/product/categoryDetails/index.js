@@ -39,12 +39,14 @@ const CategoryDetails = ({navigation, params}) => {
         )}
         {!subCategories.loading && subCategories?.subCategoryData?.productList?.length > 0 && (
           <ScrollView style={styles.container}>
+            <View style={{width:'100%',height:height*0.2,paddingHorizontal: 16}}>
           <Image
             source={{uri: params?.item?.imageFilepath}}
-            style={{width, height: height * 0.2}}
-            resizeMethod="scale"
-            resizeMode="contain"
+            style={{width: '100%', height: '100%'}}
+            resizeMethod="auto"
+            resizeMode="stretch"
           />
+          </View>
           <ProductHub
             onCategoryViewAllPress={() => {}}
             showHeading={false}

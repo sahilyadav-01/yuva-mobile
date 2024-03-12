@@ -25,6 +25,7 @@ export const styles = () => {
       paddingHorizontal: 8,
       flexDirection: ROW,
       justifyContent: SPACE_EVENLY,
+      width:'100%'
     },
     filterCard: {
       padding: 4,
@@ -36,9 +37,11 @@ export const styles = () => {
     },
     filterCardActive: {
       backgroundColor: ORANGE,
+      maxWidth: '25%'
     },
     filterCardInactive: {
       backgroundColor: WHITE,
+      maxWidth: '25%'
     },
     filterText: {
       fontFamily: fonts.family.rubik400,

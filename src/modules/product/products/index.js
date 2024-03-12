@@ -80,7 +80,7 @@ const Products = ({navigation}) => {
             <TouchableOpacity
               onPress={() => onFilterPress(item)}
               style={[styles.filterCard, filterContainerStyle]}>
-              <Text style={[styles.filterText, filterTextStyle]}>
+              <Text numberOfLines={2} style={[styles.filterText, filterTextStyle]}>
                 {item?.name}
               </Text>
             </TouchableOpacity>
@@ -88,7 +88,7 @@ const Products = ({navigation}) => {
         })}
         <TouchableOpacity
           onPress={onAdvanceFiltersPress}
-          style={styles.filterCard}>
+          style={[styles.filterCard,{padding:0,height:32,width:32}]}>
           <SVG.ArrowRight />
         </TouchableOpacity>
       </View>
