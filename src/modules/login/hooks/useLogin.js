@@ -69,7 +69,8 @@ export const useLogin = () => {
     } else {
       if (loggedIn == 'loggedIn' && status) {
         dispatch(profileThunk());
-        if (from?.from == 'OurPlanDetails') navigation.navigate('HomeService',{navigateToDetails:true,screenParams:{data:from?.data}});
+        if(from?.reset) navigation.reset({index:0,routes:[{name:'HomeScreen'}]})
+        else if (from?.from == 'OurPlanDetails') navigation.navigate('HomeService',{navigateToDetails:true,screenParams:{data:from?.data}});
         else if(from?.from === 'MentalWellness') navigation.navigate('MentalWellness')
         else if (from?.from === 'CartScreen') navigation.navigate('HomeDrawer',{screen:'Cart',params:{screen:'Cart'}});
         else if (from?.from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});

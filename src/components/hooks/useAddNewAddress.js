@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { ADDED_SUCCESSFULLY, ALERT, BOOKING_CONFIRM, FIELD_MISSING, PINCODE_MUST_BE } from '../constants'
+import { ADDED_SUCCESSFULLY, ALERT, ADDRESS_VALIDATION, CITY_VALIDATION, PHONE_NUMBER_VALIDATION, PINCODE_VALIDATION } from '../constants'
 import { useNavigation } from '@react-navigation/core';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -73,15 +73,14 @@ let address=`${location} ${location2}`
         }
     }
     const addAddress = () => {
-        if (!(pincode?.length === 6)) {
-            Alert.alert(ALERT, PINCODE_MUST_BE)
-        }
-        else if (location?.length && dropdownCityId !== null ) {
+        if (pincode?.length !== 6) Alert.alert(ALERT, PINCODE_VALIDATION)
+        else if(location?.length === 0) Alert.alert(ALERT,ADDRESS_VALIDATION)
+        else if(dropdownCityId === null) Alert.alert(ALERT,CITY_VALIDATION)
+        else if((!(/^\d+$/).test(contact?.toString())) || !contact?.length === 10) Alert.alert(ALERT,PHONE_NUMBER_VALIDATION)
+        else {
             navigation.navigate(navScreen, DATA);
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
-        } else {
-            Alert.alert(ALERT, FIELD_MISSING)
-        }
+        } 
     }
     return {
 

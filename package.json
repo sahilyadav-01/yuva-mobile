@@ -10,7 +10,11 @@
     "pod:install": "cd ios && pod install",
     "test": "jest",
     "build-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "switch:development": "cp .env.development .env",
+    "switch:uat": "cp .env.uat .env",
+    "switch:preprod": "cp .env.preprod .env",
+    "switch:production": "cp .env.production .env"
   },
   "dependencies": {
     "@hashiprobr/react-native-paper-datetimepicker": "^1.1.20",
@@ -37,6 +41,7 @@
     "react": "^18.2.0",
     "react-native": "0.69.1",
     "react-native-asset": "^2.1.0",
+    "react-native-config": "^1.5.1",
     "react-native-device-info": "^10.4.0",
     "react-native-document-picker": "^9.0.1",
     "react-native-dotenv": "^3.3.1",
