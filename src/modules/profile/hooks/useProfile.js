@@ -213,6 +213,10 @@ export const useProfile = () => {
 
   const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
+  const onPickerPress = () => {
+    if(edit && userDetails?.dob) openPicker()
+  }
+
   return {
     onAddMembersPress,
     onConfirmDate,
@@ -254,6 +258,7 @@ export const useProfile = () => {
       profile.activeRelationsErrorMessage,
     profileLocked: profile.profileUpdated,
     enableLockButton,
-    profileGender: profile?.userDetails?.gender
+    profileGender: profile?.userDetails?.gender,
+    onPickerPress
   };
 };
