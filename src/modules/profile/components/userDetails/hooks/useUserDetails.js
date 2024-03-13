@@ -4,9 +4,10 @@ import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetEmailVerified, resetNumberVerified, verifyEmailThunk, verifySmsThunk } from '../../../../../store/reducers/AuthSlice';
 import { profileThunk, resetMesage, uploadFamilyPic, uploadProfilePic } from '../../../../../store/reducers/ProfileSlice';
-import { ImageGallery, requestCameraPermission } from '../../../../../utils/utils';
+import { ImageGallery, getDateText, requestCameraPermission } from '../../../../../utils/utils';
 import { ALERT, COVER_MESSAGE, ERROR, HURRAY, INVALID_NUMBER_TEXT, MESSAGE, PROFILE_MESSAGE, UNSUCCESSFULL } from '../constants';
 import { getRole } from '../../../../../store/LocalStore';
+import { DD_MM_YYYY } from '../../../constant';
 
 export const useUserDetails=(userDetails, edit)=>{
     const [email, setEmail] = useState(userDetails?.email);
@@ -131,6 +132,13 @@ useEffect(()=>{
   });
 },[role])
 let editable=edit && role!='corporate';
+
+const getDateOfBirth = (edit,dob,date) => {
+  if(edit && dob) return getDateText(date);
+  if(dob) return getDateText(new Date(userDetails.dob));
+  return DD_MM_YYYY;
+}
+
 return{
      onImage,
      onCamera,
@@ -145,6 +153,7 @@ return{
      onChangeNumber,
      emailVerified,
      numberVerified,
-     editable
+     editable,
+     getDateOfBirth
 }
 }
