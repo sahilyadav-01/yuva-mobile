@@ -7,9 +7,12 @@ const LoginScreen = ({route}) => {
   const {container} = styles();
   const from = route?.params?.from ?? null;
   const data = route?.params?.data ?? null;
+  const reset = route?.params?.reset ?? null;
+  console.log('route',route)
+  console.log('Reset1',reset)
   return (
     <SafeAreaView style={container}>
-      <Login from={from} data={data} />
+      <Login from={from} data={data} reset={reset} />
     </SafeAreaView>
   );
 };

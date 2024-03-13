@@ -9,11 +9,11 @@ const handleUserForbidden = async () => {
   store.dispatch(logoutThunk());
 }
 
-const handleRefreshToken = async () => {
+const handleRefreshToken = async (status) => {
     if(!store.getState().auth.unauthorised) {
     store.dispatch(setUnauthorisedStatus(true));
     const token = await getRefreshToken();
-    if(token) store.dispatch(refreshThunk(token));
+    if(token && status) store.dispatch(refreshThunk(token));
     else store.dispatch(resetRoute(-1));
     }
 }
