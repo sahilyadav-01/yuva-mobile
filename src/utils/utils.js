@@ -178,6 +178,15 @@ export const ImageGallery=(onSuccess,onError)=>{
   }).then(onSuccess).catch(onError);
 }
 export const requestCameraPermission = async (onSuccess,onError) => {
+  if(getPlatform().isIOS) {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+      includeBase64:true,
+    }).then(onSuccess).catch(onError);
+  }
+  else {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -195,6 +204,7 @@ export const requestCameraPermission = async (onSuccess,onError) => {
   } catch (err) {
     console.warn(err);
   }
+}
 };
 export const granted = () => {
   PermissionsAndroid.request(
@@ -212,7 +222,6 @@ const downloadFile = (filePath, fileName) => {
   const {config, fs} = RNFetchBlob;
   const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
   let options;
-  if(Platform.OS === 'android') {
     if (Platform.OS === 'android') {
       options = {
         fileCache: true,
@@ -236,8 +245,6 @@ const downloadFile = (filePath, fileName) => {
         options.addAndroidDownloads.mime = 'image/jpeg';
       }
     }
-    
-  }
   else if(Platform.OS === 'ios') {
     options = {path:`${directory}/${fileName}`}
   }

@@ -55,13 +55,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Please provide permission to access Camera</string>
+	<string>Granting permission to Camera allows us to fetch your captured profile picture and cover image. We ensure that your date is confidential and will be handled securely</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Please provide permission to access Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please provide permission to access Photos</string>
+	<string>Granting permission to Photo Library allows us to fetch your uploaded profile picture and cover image. We ensure that your date is confidential and will be handled securely</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Rubik-Regular.ttf</string>
