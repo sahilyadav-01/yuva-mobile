@@ -1,18 +1,11 @@
-import React, { useCallback } from 'react';
-import {
-  FlatList,
-  View,
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import RenderProducts from '../productHub/productList/ProductItem';
+import React from 'react';
+import {View} from 'react-native';
+import {styles as style} from './styles';
+import {useProducts} from './useProducts';
+import ProductList from './ProductList';
+import FilterView from './FilterView';
 import Header from '../../../components/Header';
 import LoaderContext from '../../../components/LoaderContext';
-import {styles as style} from './styles';
-import {SVG} from '../../../../assets';
-import {useProducts} from './useProducts';
-import ProductFooter from './ProductFooter';
 
 const Products = ({navigation}) => {
   const {
@@ -28,65 +21,6 @@ const Products = ({navigation}) => {
   } = useProducts(navigation);
   const styles = style();
 
-  const ProductList = () => {
-    if (
-      productList?.data?.length === 0 &&
-      productList?.loading &&
-      !applyFilter
-    ) {
-      return (
-        <View style={styles.loaderContainer}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      );
-    }
-    return (
-      <FlatList
-        keyExtractor={useCallback((item) => item?.productId,[])}
-        numColumns={2}
-        style={styles.subCategoryList}
-        ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-        data={data}
-        renderItem={({item, index}) => (
-          <RenderProducts index={index} item={item} onAdd={() => onAdd(item)} />
-        )}
-        ListFooterComponent={<ProductFooter pageNo={pageNo} productList={productList}/>}
-        onEndReached={onEndReached}
-      />
-    );
-  };
-
-  const FilterView = () => {
-    return (
-      <View style={styles.filterContainer}>
-        {categories?.slice(0, 3)?.map(item => {
-          const itemExists =
-            productList?.productFilter?.categoryIdList.includes(item?.id);
-          let filterContainerStyle = styles.filterCardInactive;
-          let filterTextStyle = styles.filterTextInactive;
-          if (itemExists) {
-            filterContainerStyle = styles.filterCardActive;
-            filterTextStyle = styles.filterTextActive;
-          }
-          return (
-            <TouchableOpacity
-              onPress={() => onFilterPress(item)}
-              style={[styles.filterCard, filterContainerStyle]}>
-              <Text numberOfLines={2} style={[styles.filterText, filterTextStyle]}>
-                {item?.name}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-        <TouchableOpacity
-          onPress={onAdvanceFiltersPress}
-          style={[styles.filterCard,{padding:0,height:32,width:32}]}>
-          <SVG.ArrowRight />
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <Header
@@ -97,8 +31,20 @@ const Products = ({navigation}) => {
         title={'Products'}
       />
       <LoaderContext showLoader={applyFilter} />
-      <FilterView />
-      <ProductList />
+      <FilterView
+        categories={categories}
+        productList={productList}
+        onFilterPress={onFilterPress}
+        onAdvanceFiltersPress={onAdvanceFiltersPress}
+      />
+      <ProductList
+        productList={productList}
+        applyFilter={applyFilter}
+        data={data}
+        pageNo={pageNo}
+        onEndReached={onEndReached}
+        onAdd={onAdd}
+      />
     </View>
   );
 };

@@ -19,7 +19,7 @@ export const useProducts = navigation => {
   useFocusEffect(
     useCallback(() => {
       if(!applyFilter)
-      dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo:1, pageSize:3, paginate:false}));
+      dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo:1, pageSize:10, paginate:false}));
      }, [productList?.productFilter]),
   );
 
@@ -37,9 +37,9 @@ export const useProducts = navigation => {
   }, [productList?.data]);
 
   useEffect(()=>{
-    if(pageNo > 1) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo, pageSize:3, paginate:true}));
+    if(pageNo > 1) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo, pageSize:10, paginate:true}));
     else if(pageNo === 0) setPageNo(1)
-    else if(pageNo === 1 && applyFilter) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo: 1, pageSize: 3}));
+    else if(pageNo === 1 && applyFilter) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo: 1, pageSize: 10}));
   },[pageNo]);
 
   const onAdd = item => {
