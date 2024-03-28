@@ -52,7 +52,8 @@ const Profile = () => {
     changePincode,
     setSelectedCity,
     enableLockButton,
-    profileGender
+    profileGender,
+    onPickerPress
   } = useProfile();
 
   const {container, addMembersButton, saveButtonText, addIconStyle} = styles({
@@ -93,6 +94,7 @@ const Profile = () => {
           changePincode={changePincode}
           setSelectedCity={setSelectedCity}
           profileGender={profileGender}
+          onPickerPress={onPickerPress}
         />
         <Dependents dependents={dependents} />
         <AddDependentCard

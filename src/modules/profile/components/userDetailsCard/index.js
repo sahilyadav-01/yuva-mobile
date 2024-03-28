@@ -26,7 +26,8 @@ const UserDetailsCard = ({
   changePincode,
   setSelectedCity,
   cityNames,
-  profileGender
+  profileGender,
+  onPickerPress
 }) => {
   const {scrollViewContainer} = styles({disabled: false});
   return (
@@ -53,6 +54,7 @@ const UserDetailsCard = ({
         setSelectedCity={setSelectedCity}
         cityNames={cityNames}
         profileGender={profileGender}
+        onPickerPress={onPickerPress}
       />
       <ButtonContainer
         edit={edit}

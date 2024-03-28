@@ -32,8 +32,10 @@ const UserDetails = ({
   changePincode,
   setSelectedCity,
   cityNames,
-  profileGender
+  profileGender,
+  onPickerPress
 }) => {
+  const Picker = edit ? TouchableOpacity : View;
   const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
     modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon, verifyStyle } = styles({
       disabled: false,
@@ -47,7 +49,7 @@ const UserDetails = ({
   };
   const { onImage,
     onCamera, modalVisible, setModalVisible,
-    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified,editable } = useUserDetails(userDetails, edit);
+    setCoverPhoto, setUserPhoto, onVerifyPhone, onVerifyEmail, email, phoneNumber, onChangeEmail, onChangeNumber, emailVerified, numberVerified,editable, getDateOfBirth } = useUserDetails(userDetails, edit);
   return (
     <>
       <View>
@@ -157,13 +159,15 @@ const UserDetails = ({
         </>
       )}
       {!edit || (edit && userDetails?.dob) ? (
+        <Picker onPress={onPickerPress}>
         <TextInput
-          value={getDateText(new Date(userDetails.dob))}
+          value={getDateOfBirth(edit,userDetails?.dob,date)}
           editable={false}
           style={textInputStyle}
           placeholder={DD_MM_YYYY}
           placeholderTextColor={DARK_GRAY}
         />
+        </Picker>
       ) : (
         <TouchableOpacity onPress={openPicker}>
           <TextInput
