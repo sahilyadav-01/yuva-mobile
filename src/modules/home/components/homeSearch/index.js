@@ -56,9 +56,8 @@ export const HomeSearch = () => {
     return (
       <TouchableOpacity
         onPress={() => onResultPress(item)}
-        style={style.resultItem}>
+        style={style.listItemContainer}>
         <Text style={style.listItem}>{item}</Text>
-        <SVG.LatestSearch />
       </TouchableOpacity>
     );
   };
@@ -88,9 +87,6 @@ export const HomeSearch = () => {
     <ScrollView nestedScrollEnabled={true} style={style.container}>
       <View style={style.headerContainer}>
         <View style={style.rowContainer}>
-          <View style={style.searchContainer}>
-            <SVG.SearchIcon type="small" />
-          </View>
           <TextInput
             onSubmitEditing={onSubmit}
             placeholder={SEARCH_PLACEHOLDER}
@@ -100,6 +96,9 @@ export const HomeSearch = () => {
             placeholderTextColor={MANATEE}
             returnKeyType='search'
           />
+          <View style={style.searchContainer}>
+            <SVG.HeaderSearch/>
+          </View>
         </View>
         <View style={style.spaceContainer} />
         <View style={style.popularSearchContainer}>
@@ -131,6 +130,7 @@ export const HomeSearch = () => {
             onEndReached={onListEndReached}
             nestedScrollEnabled={true}
             onEndReachedThreshold={0.001}
+            ItemSeparatorComponent={()=><View style={{height:6}}/>}
           />
         </View>
       )}
@@ -147,6 +147,7 @@ export const HomeSearch = () => {
           keyExtractor={(_, index) => index}
           renderItem={renderLatestSearch}
           nestedScrollEnabled={true}
+          ItemSeparatorComponent={()=><View style={{height:6}}/>}
           ListEmptyComponent={() => {
             return (
               <View style={style.emptyContainerView}>

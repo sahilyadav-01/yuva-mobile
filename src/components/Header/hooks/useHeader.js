@@ -14,7 +14,7 @@ export const useHeader = (props) => {
   const [showCount, setShowCount] = useState(false);
   const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
   const [showSearchBox, setShowSearchBox] = useState(false);
-  const { loggedIn } = useSelector(state => state.auth);
+  const { loggedIn,user:{name} } = useSelector(state => state.auth);
   const diagnosticState = useSelector(state => state.diagnostic);
   const { cityId } = diagnosticState;
   const { cart } = useSelector(state => state.cart);
@@ -26,7 +26,7 @@ export const useHeader = (props) => {
     navigation.navigate('CartScreen');
   };
   const onRightPress = () => {
-    isLoggedIn ? onToggleDrawer() : navigation.navigate('Home',{screen:'LoginScreen'});
+    navigation.navigate('Home',{screen:'LoginScreen'});
   };
 
   const onToggleDrawer = () => {
@@ -97,6 +97,8 @@ export const useHeader = (props) => {
     hideTitle: hideTitle ?? false,
     initial,
     onSearchPress,
-    showSearchBox
+    showSearchBox,
+    name,
+    onToggleDrawer
   };
 }

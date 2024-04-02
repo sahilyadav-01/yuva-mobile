@@ -30,8 +30,8 @@ export const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   topSection: {
-    paddingHorizontal: 16,
-    backgroundColor: WHITE,
+    paddingRight: 16,
+    backgroundColor: 'red',
     paddingVertical: 8,
     flexDirection: ROW,
     alignItems: CENTER,

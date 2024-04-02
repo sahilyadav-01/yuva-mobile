@@ -174,6 +174,8 @@ import PlanOnlineConsultation from './Plan_Online_consultation';
 import PlanPharmacy from './Plan_Pharmacy';
 import PlanCheckup from './Plan_Checkup';
 import PlanAmbulance from './Plan_Ambulance';
+import BackButton from './BackButton';
+import HeaderSearch from './HeaderSearch';
 
 const PNG = {
   AMICO,
@@ -354,7 +356,9 @@ const SVG = {
   PlanOnlineConsultation,
   PlanPharmacy,
   PlanCheckup,
-  PlanAmbulance
+  PlanAmbulance,
+  BackButton,
+  HeaderSearch
 };
 
 export {PNG, SVG};

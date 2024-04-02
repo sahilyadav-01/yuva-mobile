@@ -1,4 +1,4 @@
-export const SEARCH_PLACEHOLDER = 'Search for Test/Package';
+export const SEARCH_PLACEHOLDER = 'Search';
 export const POPULAR_SEARCH = 'Popular Search';
 export const POPULAR_TEST_PACKAGE = 'Popular Test & Packages';
 export const SEARCH_HISTORY = 'Search History';
