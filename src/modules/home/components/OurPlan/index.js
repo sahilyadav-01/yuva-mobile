@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS, YEAR} from './constants';
-import {PNG} from '../../../../../assets';
+import {OUR_PLANS, RUPEE, VIEW_ALL, VIEW_DETAILS, YEAR} from './constants';
+import {PNG, SVG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
-import { CONTAIN } from '../../../../styles/constants';
 
 const OurPlan = () => {
   const {handlePress,selectedItems,popularPlan,onDetails,onViewAll} = useOurPlan();
+
+  const items = [{icon:'PlanOPD',name:'OPD Consultation'},{icon:'PlanHRA',name:'Health Risk Assessment'},{icon:'PlanOnlineConsultation',name:'Online Consultation'},{icon:'PlanPharmacy',name:'Pharmacy'},{icon:'PlanCheckup',name:'Full Body Health Checkup'},{icon:'PlanAmbulance',name:'Ambulance'}]
 
   const renderItem = (item, index) => {
     const onPress=()=>{
@@ -52,37 +53,60 @@ const OurPlan = () => {
       </View>
     );
   };
+
+  const PlanItem = () => {
+    <View>
+      <Text style={{marginBottom:4}}>PLATINUM</Text>
+      <Text style={{textAlign:'center',marginBottom:4}}>Yuva Family Comprehensive</Text>
+      <Text style={{marginBottom:4}}>1200</Text>
+      <TouchableOpacity style={{paddingHorizontal:12,paddingVertical:4,alignItems:'center',justifyContent:'center'}}>
+        <Text>Choose Plan</Text>
+      </TouchableOpacity>
+    </View>
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.OurPlansHeaderStyle}>
-        <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
-        <View style={styles.line} />
-
-        <TouchableOpacity onPress={onViewAll}>
-          <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
-        </TouchableOpacity>
+        <Text style={styles.heading}>{OUR_PLANS} </Text>
+        <Text onPress={onViewAll} style={styles.viewAll}>{VIEW_ALL}</Text>
       </View>
-      <View style={styles.subHeadingView}>
-        <Text style={styles.subHeadingText}>{SUB_HEADING}</Text>
+      <View style={styles.descriptionContainer}>
+          <Text style={styles.planHeading}>Best Plan for Your Family</Text>
+          <View style={styles.rowContainer}>
+            <Image source={PNG.Plans} resizeMode='contain' style={{width:'40%',height:'53%'}}/>
+            <View>
+              {items.map((item,index)=>{
+                return (
+                  <View style={{flexDirection:'row',marginBottom:index<items.length -1 ? 4 : 0}}>
+                {SVG[item.icon]()}
+                <Text style={styles.itemText}>{item.name}</Text>
+                </View>
+                );
+              })}
+            </View>
+          </View>
       </View>
-      <View style={styles.ImageView}>
-        <Image style={styles.ImageBanner} resizeMode={CONTAIN} source={PNG.Our_Plan_Banner} />
-      </View>
-      {popularPlan.length >0 && 
-      <View style={styles.PlanView}>
-      <ImageBackground
-      source={PNG.OurPlanRadioButton}
-      style={styles.ImageBanner2} 
-      resizeMode="cover">
-        <View style={styles.TextImage}>
-          <FlatList
-            data={popularPlan}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
+      {popularPlan.length > 0 && 
+      <View style={styles.planContainer}>
+       {popularPlan.map((item,index)=>{
+        if(index <= 2) {
+          return (
+            <View style={[styles.planItemContainer,index === 1 ? {...styles.planCenterContainer} : undefined]}>
+              <Text style={[styles.planType,index === 1 ? {marginBottom: 12} : undefined]}>PLATINUM</Text>
+              <Text numberOfLines={2} style={[styles.planText,index === 1 ? {marginBottom: 8} : undefined]}>{item?.name}</Text>
+              <Text style={[styles.planType,index === 1 ? {marginBottom: 8} : undefined]}>₹ {item?.yearlyFinalCost}</Text>
+              <TouchableOpacity onPress={() => {handlePress(index)
+              onDetails()
+              }} style={styles.buttonContainer}>
+                <Text style={styles.buttonText}>Choose Plan</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }
+       })}
         </View>
-        </ImageBackground>
-      </View>}
+      }
        </View>
   );
 };

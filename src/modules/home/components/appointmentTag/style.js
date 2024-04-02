@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: width-4,
-    marginVertical: 8,
+    marginTop: 8,
     marginHorizontal: 4,
     flexDirection: ROW,
   },

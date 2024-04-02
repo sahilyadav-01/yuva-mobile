@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TouchableWithoutFeedback, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {styles} from './styles';
-import {SVG} from '../../../assets';
+import {PNG, SVG} from '../../../assets';
 import {LOGIN_TEXT} from './constant';
 import {useHeader} from './hooks/useHeader';
-import { CYAN_BLUE, DARK_GRAY, FLASH_WHITE, INDIGO_LIGHT, VERY_LIGHT_ORANGE} from '../../styles/colors';
+import { BLACK, CYAN_BLUE, DARK_GRAY, FLASH_WHITE, INDIGO_LIGHT, MARINER, VERY_LIGHT_ORANGE, WHITE} from '../../styles/colors';
 import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
+import { fonts } from '../../styles/fonts';
 
 const Header = props => {
   const {
@@ -41,7 +42,7 @@ const Header = props => {
   } = useHeader(props);
 
   return (
-    <View style={styles.container}>
+    <View>
     <View style={styles.topSection}>
       {canGoBack && (
         <View style={{flexDirection:'row',alignItems:'center'}}>
@@ -55,18 +56,29 @@ const Header = props => {
         <View style={{flexDirection:'row',alignItems:'center'}}>
           <TouchableOpacity onPress={onRightPress}>
           {isLoggedIn && !hideMenu ? (
-            PrefixIcon ? PrefixIcon() :
-            initial && <View style={styles.nameContainer}>
-              <Text style={styles.nameText}>{initial[0]?.toUpperCase()}</Text>
+            <View style={{flexDirection:'row'}}>
+              <Image source={PNG.HomeProfile} style={{width:50,height:50}}/>
+              <View style={{marginLeft:8}}>
+                <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize14,color:BLACK,marginBottom:4}}>Hi, Vamsi</Text>
+                <Text style={{fontFamily:fonts.family.montserrat300,fontSize:fonts.size.fontSize10,color:BLACK,marginBottom:4}}>May you always be healthy</Text>
+              </View>
             </View>
           ) : isLoggedIn && hideMenu ? null : (
-            <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
+            <View style={{flexDirection:'row'}}>
+              <Image source={PNG.HomeProfile} style={{width:50,height:50}}/>
+              <View style={{marginLeft:8,alignSelf:'center'}}>
+                <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize14,color:BLACK}}>Hi, Guest</Text>
+                <Text style={{fontFamily:fonts.family.montserrat300,fontSize:fonts.size.fontSize10,color:BLACK}}>May you always be healthy</Text>
+              </View>
+            </View>
           )}
           </TouchableOpacity>
           {!hideTitle && <Text style={{marginLeft: 16}}>{title}</Text>}
         </View>
       )}
-      <View style={styles.pinView}>
+
+      
+      {/* <View style={styles.pinView}>
         {showLocation && <>
         <SVG.LocationOn fill={CYAN_BLUE} />
         <SelectList
@@ -88,8 +100,14 @@ const Header = props => {
             </TouchableOpacity>
           </>
         )}
-      </View>
-    </View>
+      </View> */}
+
+      <TouchableOpacity style={{alignItems:'center',justifyContent:'center',paddingVertical:8,backgroundColor:MARINER,borderRadius:6}}>
+        <Text style={{fontFamily:fonts.family.montserrat600,fontSize:fonts.size.fontSize10,color:WHITE,paddingHorizontal:24}}>Login</Text>
+      </TouchableOpacity>
+        </View> 
+
+
     {showSearchBox && <Search 
             placeholder={searchPlaceholder} 
             placeholderTextColor={DARK_GRAY}

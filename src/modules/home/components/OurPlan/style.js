@@ -7,39 +7,43 @@ import {
   FLEX_START,
   LINE_THROUGH,
   ROW,
+  ROW_REVERSE,
   SPACE_AROUND,
   SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {
+  ANAKIVA,
   BLACK,
   CYAN_BLUE,
   GREY,
+  MARINER,
   ORANGE,
   ORANGE_RED,
   RED,
   WHITE,
+  ZUMTHOR,
 } from '../../../../styles/colors';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingVertical: 4,
+    marginTop: 20,
+    paddingHorizontal: 20,
   },
   OurPlansHeaderStyle: {
     alignItems: CENTER,
-    marginVertical: 8,
+    marginBottom: 12,
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
-    marginHorizontal: 16,
   },
-  LandingPageText1: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik700,
-    fontSize: fonts.size.fontSize14,
+  heading: {
+    color: BLACK,
+    fontFamily: fonts.family.montserrat600,
+    fontSize: fonts.size.fontSize18,
   },
-  LandingPageText2: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+  viewAll: {
+    color: MARINER,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
   },
   line: {
@@ -113,18 +117,18 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: BLACK,
     backgroundColor: WHITE,
-    paddingVertical:6,
+    paddingVertical: 6,
   },
   PlanView: {
     marginVertical: 18,
     width: '95%',
     height: AUTO,
-    alignSelf:CENTER,
-    marginHorizontal:6,
+    alignSelf: CENTER,
+    marginHorizontal: 6,
     borderRadius: 12,
-    overflow: 'hidden', 
-    borderWidth:0.7,
-    borderColor:GREY,
+    overflow: 'hidden',
+    borderWidth: 0.7,
+    borderColor: GREY,
   },
   ImageBanner2: {
     paddingBottom: 24,
@@ -132,8 +136,8 @@ export const styles = StyleSheet.create({
   },
   TextImage: {
     paddingTop: 12,
-    paddingRight:16,
-    paddingLeft:14,
+    paddingRight: 16,
+    paddingLeft: 14,
   },
   PlanContainer: {
     flexDirection: ROW,
@@ -146,22 +150,87 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     justifyContent: SPACE_AROUND,
     marginLeft: 20,
-    marginTop:2,
-    alignItems:CENTER,
+    marginTop: 2,
+    alignItems: CENTER,
     paddingHorizontal: 10,
   },
-  PlanYear: {width: '20%' },
+  PlanYear: {width: '20%'},
   PlanText: {width: '45%'},
-  PlanPrice:{
-    flexDirection:ROW,
+  PlanPrice: {
+    flexDirection: ROW,
     width: '40%',
-    justifyContent:CENTER
+    justifyContent: CENTER,
   },
   lineThrough: {
     color: RED,
     fontSize: fonts.size.fontSize10,
     fontFamily: fonts.family.rubik400,
-    textDecorationLine:LINE_THROUGH,
-    marginHorizontal:3,
+    textDecorationLine: LINE_THROUGH,
+    marginHorizontal: 3,
   },
+  descriptionContainer: {
+    paddingTop: 12,
+    paddingBottom: 16,
+    borderRadius: 10,
+    backgroundColor: ZUMTHOR,
+  },
+  planHeading: {
+    fontFamily: fonts.family.montserrant800,
+    fontSize: fonts.size.fontSize16,
+    color: MARINER,
+    alignSelf: CENTER,
+    marginBottom: 12,
+  },
+  rowContainer: {
+    flexDirection: ROW,
+  },
+  itemText: {
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize10,
+    color: BLACK,
+    marginLeft: 10,
+  },
+  planContainer: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+  },
+  planType: {
+    marginBottom: 4,
+    fontFamily: fonts.family.montserrat400,
+    fontSize: fonts.size.fontSize12,
+    color: BLACK,
+  },
+  planText: {
+    textAlign: CENTER,
+    marginBottom: 4,
+    width: '77%',
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize10,
+    color: BLACK,
+  },
+  buttonContainer: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    borderRadius: 4,
+    backgroundColor: WHITE
+  },
+  buttonText: {
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize6,
+    color: BLACK,
+  },
+  planItemContainer: {
+    paddingVertical: 8,
+    alignItems: CENTER,
+    width: '32%',
+    borderRadius: 10,
+    backgroundColor: '#E1EEFF',
+    marginTop: 28
+  },
+  planCenterContainer: {
+    backgroundColor: '#F8CE55',
+    marginTop: 12
+  }
 });

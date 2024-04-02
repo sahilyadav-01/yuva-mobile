@@ -57,7 +57,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please provide permission to access Camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Please provide permission to access Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -87,6 +87,13 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-ExtraBold.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Thin.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

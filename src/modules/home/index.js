@@ -63,7 +63,7 @@ export const HomeScreen = () => {
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
           <Services renderservicesItem={renderservicesItem} />
-          {topCategories?.data?.length > 0 && <ProductHub
+          {/* {topCategories?.data?.length > 0 && <ProductHub
             onCategoryViewAllPress={onCategoryViewAllPress}
             data={topCategories?.data[activeIndex]}
             categories={topCategories?.data.map(item=>item.categoryName)}
@@ -71,23 +71,24 @@ export const HomeScreen = () => {
             onSelectCategory={onSelectCategory}
             onAdd={onAdd}
             hideFooter={true}
-          />}
+          />} */}
           <OurPlan />
-          <PromotionalBanner />
+          {/* <PromotionalBanner /> */}
           <PopularHeathCheckupCarousel
             popularPackageName={popularPackageName}
             onHealthPackagePress={onHealthPackagePress}
           />
-          <OfferBanner1 bannerData={banner3} />
-          <PopularTestPackageCarousel
-            popularTest={popularTest}
+          {/* <OfferBanner1 bannerData={banner3} /> */}
+          <PopularHeathCheckupCarousel
+            popularPackageName={popularTest}
             onHealthPackagePress={onHealthPackagePress}
+            isTest={true}
           />
-          <LifeStyle
+          {/* <LifeStyle
             renderLifeStyleItem={renderLifeStyleItem}
             loggedIn={loggedIn}
             onPackagePress={onPackagePress}
-          />
+          /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

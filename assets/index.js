@@ -163,6 +163,18 @@ import ConsultDoctor from './ConsultDoctor';
 import PageNotFound from './PageNotFound';
 import Filter from './Filter.png';
 import product_image from './product_image.png'
+import HomeProfile from './HomeProfile.png';
+import BookTest from './BookTest';
+import PlanOPD from './Plan_OPD';
+import Plans from './Plans.png';
+import PopularHealth from './PopularHealth';
+import AddIcon from './AddIcon';
+import PlanHRA from './Plan_HRA';
+import PlanOnlineConsultation from './Plan_Online_consultation';
+import PlanPharmacy from './Plan_Pharmacy';
+import PlanCheckup from './Plan_Checkup';
+import PlanAmbulance from './Plan_Ambulance';
+
 const PNG = {
   AMICO,
   BACTERIA,
@@ -224,7 +236,9 @@ const PNG = {
   TopSplashScreenBackgroundImage,
   BottomSplashScreenBackgroundImage,
   product_image,
-  Filter
+  Filter,
+  HomeProfile,
+  Plans
 };
 
 const SVG = {
@@ -332,6 +346,15 @@ const SVG = {
   GetMedicine,
   ConsultDoctor,
   PageNotFound,
+  BookTest,
+  PlanOPD,
+  PopularHealth,
+  AddIcon,
+  PlanHRA,
+  PlanOnlineConsultation,
+  PlanPharmacy,
+  PlanCheckup,
+  PlanAmbulance
 };
 
 export {PNG, SVG};

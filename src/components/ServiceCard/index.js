@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useServiceCard } from './hooks/useServiceCard';
 import { styles } from './styles';
+import { SVG } from '../../../assets';
 
 const ServiceCard = ({ name, screenName, icon }) => {
   const { onpress } = useServiceCard({ screenName });
@@ -11,7 +12,7 @@ const ServiceCard = ({ name, screenName, icon }) => {
       disable={true}
       onPress={onpress}>
         <View style={styles.subTopContainerStyle}>
-          {icon()}
+         <SVG.BookTest/>
         </View>
         <Text style={styles.subBottomContainerStyle}>
           {name}
