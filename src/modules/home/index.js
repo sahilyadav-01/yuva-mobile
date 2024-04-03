@@ -46,6 +46,7 @@ export const HomeScreen = () => {
           homeSearch={true}
           onBackPress={onBackPress}
           title='Search'
+          showSearchBox={true}
         />
         <HomeSearch />
       </SafeAreaView>
@@ -60,6 +61,7 @@ export const HomeScreen = () => {
         searchPlaceholder="Search"
         showLogin={loggedIn !== 'loggedIn'}
         homeScreen={true}
+        hideTitle={true}
       />
       <ScrollView nestedScrollEnabled={true}>
         <View>

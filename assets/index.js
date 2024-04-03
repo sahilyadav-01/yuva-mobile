@@ -176,6 +176,7 @@ import PlanCheckup from './Plan_Checkup';
 import PlanAmbulance from './Plan_Ambulance';
 import BackButton from './BackButton';
 import HeaderSearch from './HeaderSearch';
+import PlanBanner from './PlanBanner.png';
 
 const PNG = {
   AMICO,
@@ -240,7 +241,8 @@ const PNG = {
   product_image,
   Filter,
   HomeProfile,
-  Plans
+  Plans,
+  PlanBanner
 };
 
 const SVG = {

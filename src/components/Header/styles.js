@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {
   BLACK,
   CYAN_BLUE,
+  MARINER,
   ORANGE,
   PINK_ORANGE,
   WHITE,
@@ -20,7 +21,7 @@ import {getDimensions} from '../../utils/utils';
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
   container: {
-    zIndex: 5
+    zIndex: 5,
   },
   headerContainer: {
     minHeight: 0.12 * height,
@@ -30,12 +31,12 @@ export const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   topSection: {
-    paddingRight: 16,
-    backgroundColor: 'red',
+    backgroundColor: WHITE,
     paddingVertical: 8,
     flexDirection: ROW,
     alignItems: CENTER,
-    justifyContent: SPACE_BETWEEN,
+    //justifyContent: SPACE_BETWEEN,
+    marginBottom: 8,
   },
   nameContainer: {
     marginVertical: 4,
@@ -127,4 +128,56 @@ export const styles = StyleSheet.create({
   searchStyle: {
     width: 8,
   },
+  homeTopSection: {
+    backgroundColor: WHITE,
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+    paddingVertical: 8,
+    marginBottom: 8,
+    alignItems: CENTER,
+    paddingHorizontal: 16,
+  },
+  backContainer: {width: '20%',paddingLeft:16},
+  mainContainer: {width: '60%'},
+  searchIconContainer: {width: '20%', alignItems: FLEX_END, paddingRight: 16},
+  titleTextStyle: {
+    textAlign: CENTER,
+    color: BLACK,
+    fontFamily: fonts.family.montserrant800,
+    fontSize: fonts.size.fontSize16,
+    alignSelf: CENTER,
+  },
+  backButton: {
+    width: 42,
+    backgroundColor: WHITE,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 8,
+    elevation: 1,
+    zIndex: 1,
+    shadowColor: BLACK,
+  },
+  loginContainer: {
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    paddingVertical: 8,
+    backgroundColor: MARINER,
+    borderRadius: 6,
+  },
+  loginTextStyle: {
+    fontFamily: fonts.family.montserrat600,
+    fontSize: fonts.size.fontSize10,
+    color: WHITE,
+    paddingHorizontal: 24,
+  },
+  nameTextStyle: {
+    fontFamily: fonts.family.montserrat400,
+    fontSize: fonts.size.fontSize14,
+    color: BLACK,
+    marginBottom: 4,
+  },
+  rowContainer: {flexDirection: ROW, alignItems: CENTER},
+  mainContainerStyle: {flexDirection: ROW},
+  nameContainerStyle: {marginLeft: 8},
+  imageStyle: {width: 50, height: 50}
 });
