@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { BLACK, KASHMIR_BLUE, WHITE } from "../../../../styles/colors";
-import { CENTER, ROW } from "../../../../styles/constants";
+import { BLACK, KASHMIR_BLUE, MARINER, WHITE, ZUMTHOR } from "../../../../styles/colors";
+import { CENTER, ROW, ROW_REVERSE } from "../../../../styles/constants";
 import { fonts } from "../../../../styles/fonts";
 import { getDimensions } from "../../../../utils/utils";
 
@@ -11,10 +11,11 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
   },
   container: {
-    width: width-4,
-    marginTop: 8,
-    marginHorizontal: 4,
-    flexDirection: ROW,
+   width: width - 40,
+   borderRadius: 10,
+   paddingVertical: 12,
+   paddingHorizontal: 28,
+   backgroundColor: ZUMTHOR
   },
   borderStyle: {
     borderWidth: 1,
@@ -70,5 +71,35 @@ export const styles = StyleSheet.create({
   },
   activeView:{
     backgroundColor: WHITE,
+  },
+  heading: {
+    fontFamily: fonts.family.montserrant700,
+    fontSize: fonts.size.fontSize15,
+    color: BLACK,
+    marginBottom: 4
+  },
+  slotText: {
+    fontFamily: fonts.family.montserrat300,
+    fontSize: fonts.size.fontSize10,
+    color: BLACK,
+    marginBottom: 4,
+  },
+  separator: {
+    height:1,
+    width:'100%',
+    backgroundColor: WHITE,
+    marginBottom: 12,
+  },
+  rowContainer: {
+    flexDirection: ROW
+  },
+  nameText: {
+    fontFamily: fonts.family.montserrant800,
+    fontSize: fonts.size.fontSize16,
+    color: BLACK,
+    marginBottom: 12,
+  },
+  bookingText: {
+    color: MARINER,
   }
 });

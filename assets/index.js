@@ -178,6 +178,9 @@ import BackButton from './BackButton';
 import HeaderSearch from './HeaderSearch';
 import PlanBanner from './PlanBanner.png';
 import PlansSvg from './PlansSvg';
+import Location from './Location';
+import Appointment from './Appointment';
+import DoctorAppointment from './DoctorAppointment.png';
 
 const PNG = {
   AMICO,
@@ -243,7 +246,8 @@ const PNG = {
   Filter,
   HomeProfile,
   Plans,
-  PlanBanner
+  PlanBanner,
+  DoctorAppointment,
 };
 
 const SVG = {
@@ -363,6 +367,8 @@ const SVG = {
   BackButton,
   HeaderSearch,
   PlansSvg,
+  Location,
+  Appointment,
 };
 
 export {PNG, SVG};
