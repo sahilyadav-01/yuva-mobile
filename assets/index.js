@@ -177,6 +177,7 @@ import PlanAmbulance from './Plan_Ambulance';
 import BackButton from './BackButton';
 import HeaderSearch from './HeaderSearch';
 import PlanBanner from './PlanBanner.png';
+import PlansSvg from './PlansSvg';
 
 const PNG = {
   AMICO,
@@ -360,7 +361,8 @@ const SVG = {
   PlanCheckup,
   PlanAmbulance,
   BackButton,
-  HeaderSearch
+  HeaderSearch,
+  PlansSvg,
 };
 
 export {PNG, SVG};

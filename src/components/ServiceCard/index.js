@@ -12,7 +12,7 @@ const ServiceCard = ({ name, screenName, icon }) => {
       disable={true}
       onPress={onpress}>
         <View style={styles.subTopContainerStyle}>
-         <SVG.BookTest/>
+        {icon()}
         </View>
         <Text style={styles.subBottomContainerStyle}>
           {name}
