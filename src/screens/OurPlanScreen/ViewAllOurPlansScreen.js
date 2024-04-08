@@ -4,7 +4,7 @@ import ViewAllOurPlan from '../../modules/ourPlanDetails/components/viewallOurPl
 
 const ViewAllOurPlansScreen = (props) => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
        <ViewAllOurPlan/>
         </SafeAreaView>
     );

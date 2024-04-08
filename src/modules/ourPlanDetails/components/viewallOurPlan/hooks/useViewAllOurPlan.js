@@ -15,6 +15,10 @@ export const useViewAllOurPlan = () => {
     const onDetails=()=>{
       navigation.navigate(OUR_PLAN);
     }
+    const onPlanPress = (item) => {
+      handlePress(item);
+      navigation.navigate(OUR_PLAN);
+    }
     useEffect(()=>{
       dispatch(planPopularThunk())
     },[])
@@ -28,5 +32,6 @@ export const useViewAllOurPlan = () => {
     handlePress,
     popularPlan,
     onDetails,
+    onPlanPress
   };
 };

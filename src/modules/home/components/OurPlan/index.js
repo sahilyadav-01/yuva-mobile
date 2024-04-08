@@ -4,12 +4,11 @@ import {styles} from './style';
 import {OUR_PLANS, RUPEE, VIEW_ALL, VIEW_DETAILS, YEAR} from './constants';
 import {PNG, SVG} from '../../../../../assets';
 import {useOurPlan} from './hooks/useOurPlan';
+import DescriptionContainer from '../../../onmood9/components/details';
+import PlanDescriptor from '../../../../components/PlanDescriptor';
 
 const OurPlan = () => {
   const {handlePress,selectedItems,popularPlan,onDetails,onViewAll} = useOurPlan();
-
-  const items = [{icon:'PlanOPD',name:'OPD Consultation'},{icon:'PlanHRA',name:'Health Risk Assessment'},{icon:'PlanOnlineConsultation',name:'Online Consultation'},{icon:'PlanPharmacy',name:'Pharmacy'},{icon:'PlanCheckup',name:'Full Body Health Checkup'},{icon:'PlanAmbulance',name:'Ambulance'}]
-
   const renderItem = (item, index) => {
     const onPress=()=>{
       handlePress(item?.index);
@@ -71,22 +70,7 @@ const OurPlan = () => {
         <Text style={styles.heading}>{OUR_PLANS} </Text>
         <Text onPress={onViewAll} style={styles.viewAll}>{VIEW_ALL}</Text>
       </View>
-      <View style={styles.descriptionContainer}>
-          <Text style={styles.planHeading}>Best Plan for Your Family</Text>
-          <View style={styles.rowContainer}>
-            <Image source={PNG.Plans} resizeMode='contain' style={{width:'40%',height:'53%'}}/>
-            <View>
-              {items.map((item,index)=>{
-                return (
-                  <View style={{flexDirection:'row',marginBottom:index<items.length -1 ? 4 : 0}}>
-                {SVG[item.icon]()}
-                <Text style={styles.itemText}>{item.name}</Text>
-                </View>
-                );
-              })}
-            </View>
-          </View>
-      </View>
+      <PlanDescriptor/>
       {popularPlan.length > 0 && 
       <View style={styles.planContainer}>
        {popularPlan.map((item,index)=>{

@@ -106,3 +106,4 @@ export const MARINER = '#1C71E1';
 export const ANAKIVA = '#A5CCFF';
 export const ZUMTHOR = '#EEF5FF';
 export const CORNFLOWER = '#6195ED';
+export const ALTO_SECONDARY = '#DADADA';
