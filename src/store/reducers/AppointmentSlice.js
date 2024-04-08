@@ -111,6 +111,7 @@ const initialState = {
   errorAppointment: '',
   getAppointment: null,
   notificationRedirect: false,
+  cancelCurrentAppointment: false,
 };
 
 const appointmentSlice = createSlice({
@@ -174,9 +175,14 @@ const appointmentSlice = createSlice({
 
     [cancelAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
+      state.cancelCurrentAppointment = false;
     },
-    [cancelAppointmentThunk.fulfilled]: (state, {payload}) => {},
-    [cancelAppointmentThunk.rejected]: (state, {payload}) => {},
+    [cancelAppointmentThunk.fulfilled]: (state, {payload}) => {
+      state.cancelCurrentAppointment = true;
+    },
+    [cancelAppointmentThunk.rejected]: (state, {payload}) => {
+      state.cancelCurrentAppointment = false;
+    },
 
     [rescheduleAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;

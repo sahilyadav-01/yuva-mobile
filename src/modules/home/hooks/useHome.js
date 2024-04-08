@@ -36,10 +36,9 @@ export const useHome = () => {
           params: route?.params?.screenParams,
         });
       }
-      const isActive = 'true';
       dispatch(getTopCategories());
       dispatch(getServicesThunk({}));
-      dispatch(allAppointmentThunk({ isActive }));
+      dispatch(allAppointmentThunk({ isActive:true }));
       dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(lifeStyleSliceThunk({}));
