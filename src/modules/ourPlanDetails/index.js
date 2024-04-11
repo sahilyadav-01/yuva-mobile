@@ -41,7 +41,7 @@ const OurPlanDetails = props => {
       </View>
     );
   };
-  console.log(ourPlanData);
+ 
   return (
     <SafeAreaView style={styles.parentContainerStyle}>
       <Header showBackButton={true} title={TITLE} />

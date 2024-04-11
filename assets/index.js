@@ -181,6 +181,9 @@ import PlansSvg from './PlansSvg';
 import Location from './Location';
 import Appointment from './Appointment';
 import DoctorAppointment from './DoctorAppointment.png';
+import ProductFilter from './ProductFilter';
+import ProductSearch from './ProductSearch';
+import ProductCart from './ProductCart';
 
 const PNG = {
   AMICO,
@@ -369,6 +372,9 @@ const SVG = {
   PlansSvg,
   Location,
   Appointment,
+  ProductFilter,
+  ProductSearch,
+  ProductCart,
 };
 
 export {PNG, SVG};

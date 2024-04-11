@@ -40,8 +40,6 @@ const Header = props => {
     onToggleDrawer
   } = useHeader(props);
 
-  console.log('Can go back',canGoBack)
-
   const Heading = () => {
     return (
       !canGoBack && (

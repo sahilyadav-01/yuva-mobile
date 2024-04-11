@@ -68,7 +68,7 @@ export const HomeScreen = () => {
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
           <Services renderservicesItem={renderservicesItem} />
-          {/* {topCategories?.data?.length > 0 && <ProductHub
+          {topCategories?.data?.length > 0 && <ProductHub
             onCategoryViewAllPress={onCategoryViewAllPress}
             data={topCategories?.data[activeIndex]}
             categories={topCategories?.data.map(item=>item.categoryName)}
@@ -76,7 +76,7 @@ export const HomeScreen = () => {
             onSelectCategory={onSelectCategory}
             onAdd={onAdd}
             hideFooter={true}
-          />} */}
+          />}
           <OurPlan />
           {/* <PromotionalBanner /> */}
           <PopularHeathCheckupCarousel
