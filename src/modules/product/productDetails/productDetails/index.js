@@ -1,35 +1,22 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import {styles as style, width} from './style';
-import { ORANGE, ORANGE_GREY } from '../../../../styles/colors';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {styles as style} from './style';
+import { ANAKIVA, MARINER } from '../../../../styles/colors';
 
 const ProductDetails = ({
   onSelectSize,
-  onSelectQuantity,
   activeIndex,
-  quantity,
   onAddToCartPress,
   productData,
   disabled
 }) => {
   const styles = style();
-  const numColumns = Math.floor((width - 24) / 84);
   const RenderItem = ({item, index}) => {
     if (item !== null)
       return (
-        <TouchableOpacity
-          onPress={() => onSelectSize(index)}
-          style={
-            style({
-              itemInset: productData?.productPriceResponseDtoForUserList.length / index + 1 !== 1,
-              activeItem: activeIndex === index,
-            }).quantityTextContainer
-          }>
-          <Text style={style({activeItem: activeIndex === index}).quantityText}>
-            {item?.unit ?? ''}
-            {item?.productUnit ?? ''}
-          </Text>
-        </TouchableOpacity>
+        <TouchableOpacity onPress={() => onSelectSize(index)} style={{...styles.sizeContainer,backgroundColor:activeIndex === index ? MARINER : '#FAFAFA',marginLeft:8}}>
+        <Text style={styles.itemText}>{item?.unit} {item?.productUnit}</Text>
+       </TouchableOpacity>
       );
   };
   if (
@@ -55,36 +42,17 @@ const ProductDetails = ({
           ) : null}
         </View>
         <View style={styles.quantityContainer}>
-          <Text style={styles.quantityHeading}>Size</Text>
-          <FlatList
-            scrollEnabled={false}
-            numColumns={numColumns}
-            keyExtractor={(_, index) => `size${index}`}
-            data={productData?.productPriceResponseDtoForUserList}
-            ItemSeparatorComponent={() => <View style={{height: 12}} />}
-            renderItem={({item, index}) => (
-              <RenderItem item={item} index={index} />
-            )}
-          />
-          <Text style={styles.quantityHeading}>Quantity</Text>
-          <View style={styles.quantityPicker}>
-            <Text
-              onPress={() => onSelectQuantity(false)}
-              style={styles.quantityPickerText}>
-              -
-            </Text>
-            <Text style={styles.quantityPickerText}>{quantity}</Text>
-            <Text
-              onPress={() => onSelectQuantity(true)}
-              style={styles.quantityPickerText}>
-              +
-            </Text>
-          </View>
+         <View style={styles.sizeContainer}>
+          <Text style={styles.itemText}>Size / Weight</Text>
+         </View>
+         <ScrollView horizontal>
+         {productData?.productPriceResponseDtoForUserList.map((item,index)=><RenderItem item={item} index={index}/>)}
+          </ScrollView>
         </View>
         <TouchableOpacity
           disabled={disabled}
           onPress={onAddToCartPress}
-          style={[styles.buttonContainer,{backgroundColor:disabled ? ORANGE_GREY: ORANGE}]}>
+          style={[styles.buttonContainer,{backgroundColor:disabled ? ANAKIVA: MARINER}]}>
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
       </View>

@@ -184,6 +184,8 @@ import DoctorAppointment from './DoctorAppointment.png';
 import ProductFilter from './ProductFilter';
 import ProductSearch from './ProductSearch';
 import ProductCart from './ProductCart';
+import ProductAdd from './ProductAdd';
+import ProductRemove from './ProductRemove';
 
 const PNG = {
   AMICO,
@@ -375,6 +377,8 @@ const SVG = {
   ProductFilter,
   ProductSearch,
   ProductCart,
+  ProductAdd,
+  ProductRemove,
 };
 
 export {PNG, SVG};

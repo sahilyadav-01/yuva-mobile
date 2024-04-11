@@ -5,6 +5,7 @@ import {
   CYAN_BLUE,
   DARK_GRAY,
   DEEP_RED,
+  MARINER,
   ORANGE,
   WHITE,
 } from '../../../../styles/colors';
@@ -38,13 +39,12 @@ const styles = arg => {
       borderColor: BLACK,
     },
     bodyContainer: {
-      paddingHorizontal: 24,
+      paddingHorizontal: 16,
     },
     priceContainer: {
-      marginLeft: 12,
+      marginBottom:8,
       flexDirection: ROW,
       alignItems: CENTER,
-      marginBottom: 4,
     },
     finalPriceText: {
       marginRight: 12,
@@ -65,7 +65,7 @@ const styles = arg => {
       color: ORANGE,
     },
     quantityContainer: {
-      marginLeft: 12,
+      flexDirection: ROW,
     },
     quantityHeading: {
       marginVertical: 8,
@@ -90,7 +90,7 @@ const styles = arg => {
       color: BLACK,
     },
     buttonContainer: {
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       width: '100%',
       paddingVertical: 8,
       alignItems: CENTER,
@@ -99,9 +99,23 @@ const styles = arg => {
       marginTop: 16,
     },
     buttonText: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize24,
+      fontFamily: fonts.family.montserrat400,
+      fontSize: fonts.size.fontSize18,
       color: WHITE,
+    },
+    itemText: {
+      fontFamily: fonts.family.montserrant800,
+      fontSize: fonts.size.fontSize10,
+      color: BLACK,
+    },
+    sizeContainer: {
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      backgroundColor: '#FAFAFA',
+      borderColor: '#D9D9D9',
     },
   });
 };

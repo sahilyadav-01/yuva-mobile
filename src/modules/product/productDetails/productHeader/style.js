@@ -1,7 +1,19 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {ALTO_OPACITY, ORANGE, WHEAT} from '../../../../styles/colors';
-import {ABSOLUTE, CENTER, ROW} from '../../../../styles/constants';
+import {
+  ALTO_OPACITY,
+  BLACK,
+  FLASH_WHITE,
+  MARINER,
+  ORANGE,
+  WHEAT,
+} from '../../../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
 import {getDimensions} from '../../../../utils/utils.js';
 
 export const styles = arg => {
@@ -13,7 +25,7 @@ export const styles = arg => {
       borderRadius: 5,
       width: 10,
       height: 10,
-      backgroundColor: currentIndex ? ORANGE : ALTO_OPACITY,
+      backgroundColor: currentIndex ? MARINER : ALTO_OPACITY,
     },
     imageContainer: {
       width: width,
@@ -44,12 +56,38 @@ export const styles = arg => {
       justifyContent: CENTER,
     },
     productName: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize24,
-      color: ORANGE,
-      textAlign: CENTER,
-      marginTop: 16,
-      marginBottom: 20,
+      color: BLACK,
+      flex: 1,
+    },
+    quantityContainer: {
+      padding: 8,
+      borderRadius: 84,
+      borderWidth: 0.5,
+      borderColor: FLASH_WHITE,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+    },
+    quantityText: {
+      marginHorizontal: 16,
+      fontFamily: fonts.family.montserrant700,
+      fontSize: fonts.size.fontSize18,
+      color: BLACK,
+    },
+    quantityDetails: {
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+      alignItems: CENTER,
+      marginLeft: 16,
+    },
+    productNameContainer: {
+      marginTop: 24,
+      marginBottom: 8,
+      flexDirection: ROW,
+      alignItems: CENTER,
+      paddingHorizontal: 16,
+      justifyContent: SPACE_BETWEEN,
     },
   });
 };

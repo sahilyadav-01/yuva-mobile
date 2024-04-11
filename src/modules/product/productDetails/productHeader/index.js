@@ -5,24 +5,15 @@ import {SVG} from '../../../../../assets';
 
 const ProductHeader = ({
   flatListRef,
-  onArrowPress,
   productData,
   currentIndex: activeIndex,
+  onSelectQuantity,
+  quantity,
 }) => {
   const styles = style();
   const ProductItem = ({item, index}) => {
     return (
       <View style={styles.imageContainer}>
-        <TouchableOpacity
-          onPress={() => onArrowPress(false, index)}
-          style={styles.leftContainer}>
-          <SVG.ArrowRight color="#000" transform={[{rotateY: '180deg'}]} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onArrowPress(true, index)}
-          style={styles.rightContainer}>
-          <SVG.ArrowRight color="#000" />
-        </TouchableOpacity>
         <Image
           source={{uri: item?.imageFilepath}}
           style={styles.imageStyle}
@@ -50,7 +41,22 @@ const ProductHeader = ({
           return <View style={style({currentIndex}).scrollIndicator} />;
         })}
       </View>
-      <Text style={styles.productName}>{productData?.name}</Text>
+      <View style={styles.productNameContainer}>
+        <Text style={styles.productName}>{productData?.name}</Text>
+        <View style={styles.quantityDetails}>
+          <TouchableOpacity
+            onPress={() => onSelectQuantity(false)}
+            style={styles.quantityContainer}>
+            <SVG.ProductRemove />
+          </TouchableOpacity>
+          <Text style={styles.quantityText}>{quantity}</Text>
+          <TouchableOpacity
+            onPress={() => onSelectQuantity(true)}
+            style={styles.quantityContainer}>
+            <SVG.ProductAdd />
+          </TouchableOpacity>
+        </View>
+      </View>
     </>
   );
 };

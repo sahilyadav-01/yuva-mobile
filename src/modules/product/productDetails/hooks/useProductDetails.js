@@ -92,18 +92,22 @@ export const useProductDetails = (productId, navigation) => {
       quantity,
     );
   };
-  const onHeadingPress = index => {
-    const productData = [
-      productDetails?.data?.description ?? '',
-      productDetails?.data?.nutritional ?? '',
-    ];
-    const html = `<html>
+
+  const fetchProductDetails = () => {
+    return `<html>
     <body>
-    ${productData[index] ?? `<div></div>`}
+    ${productDetails?.data?.description ?? `<div></div>`}
     </body>
     </html>`;
-    setHtmlDescription(html);
-  };
+  }
+
+  const fetchNutritionalValue = () => {
+    return `<html>
+    <body>
+    ${productDetails?.data?.nutritional ?? `<div></div>`}
+    </body>
+    </html>`;
+  }
   return {
     productDetails,
     flatListRef,
@@ -115,7 +119,8 @@ export const useProductDetails = (productId, navigation) => {
     htmlDescription,
     currentIndex,
     onAddToCartPress,
-    onHeadingPress,
-    disabled
+    disabled,
+    fetchProductDetails,
+    fetchNutritionalValue
   };
 };

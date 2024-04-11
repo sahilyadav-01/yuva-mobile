@@ -40,8 +40,8 @@ const styles = () => {
       color: PALE_SKY,
     },
     webView: {
-      marginLeft: 24,
-      width,
+      marginHorizontal:16,
+      width: width - 32,
     },
   });
 };

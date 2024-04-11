@@ -13,14 +13,14 @@ const ProductDetails = ({productId, navigation}) => {
     flatListRef,
     onArrowPress,
     activeIndex,
-    htmlDescription,
     onSelectSize,
     onSelectQuantity,
     quantity,
     onAddToCartPress,
-    onHeadingPress,
     currentIndex,
-    disabled
+    disabled,
+    fetchProductDetails,
+    fetchNutritionalValue
   } = useProductDetails(productId, navigation);
   const styles = style();
   return (
@@ -53,6 +53,9 @@ const ProductDetails = ({productId, navigation}) => {
             onArrowPress={onArrowPress}
             productData={productDetails.data}
             currentIndex={currentIndex}
+            onSelectQuantity={onSelectQuantity}
+            activeIndex={activeIndex}
+            quantity={quantity}
           />
           <Product
             onSelectSize={onSelectSize}
@@ -64,9 +67,8 @@ const ProductDetails = ({productId, navigation}) => {
             disabled={disabled}
           />
           <ProductDescription
-            onHeadingPress={onHeadingPress}
-            productData={productDetails.data}
-            html={htmlDescription}
+            productDetails={fetchProductDetails()}
+            nutritionalValue={fetchNutritionalValue()}
           />
         </ScrollView>
       )}
