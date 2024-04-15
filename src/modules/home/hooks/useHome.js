@@ -50,7 +50,7 @@ export const useHome = () => {
     }
   }, [focused, loggedIn]);  
   const servicesArray = [
-    { name: 'Book Test', screenName: HEALTH_CHECKUP, icon: SVG['BOOK_TEST_SVG_ICON'] },
+    { name: 'Book Test', /*screenName: HEALTH_CHECKUP*/screenName: 'AmbulaceHomeScreen', icon: SVG['BOOK_TEST_SVG_ICON'] },
     { name: 'Plans', screenName: 'PurchaseScreen', icon: SVG['PLANS_SVG_ICON'] },
     { name: 'Corporate Program', screenName: 'MyCorporateProgram', icon: SVG['CORPORATE_PROGRAM'] },
     { name: 'Search Network', screenName: 'SearchNetworkHomeScreen', icon: SVG['SEARCH_NETWORK'] },
