@@ -1,49 +1,32 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
+import ProductItem from '../../productsList/gridList/ProductItem';
 import {styles as style} from './style';
-import RenderProducts from './ProductItem';
-import {useProductList} from './useProductList';
 
-const ProductList = ({productList, onAdd, categoryId, hideFooter:hideFooterButton}) => {
-  const {onViewAll} = useProductList();
+const ProductList = ({productList}) => {
   const styles = style();
-  const hideFooter = hideFooterButton ?? false;
-  const ListFooter = (item) => {
-    if(hideFooter) return null;
+  if (productList[0]?.productResponseDtoForUserList?.length > 0) {
     return (
-      <TouchableOpacity onPress={() => onViewAll({...item, categoryId})} style={styles.footerContainer}>
-        <Text style={styles.viewAllText}>View All Products</Text>
-      </TouchableOpacity>
-    );
-  };
-  return productList?.map(item => (
-    <>
-      <View style={styles.subCategoryNameContainer}>
-        {item?.subCategoryId && (
-          <>
-            <View style={styles.subLine} />
-            <Text style={styles.subCategoryNameStyle}>
-              {item?.subCategoryName}{' '}
-            </Text>
-            <View style={styles.subLine} />
-          </>
-        )}
+      <View style={styles.productContainer}>
+        {[...productList[0]?.productResponseDtoForUserList]
+          ?.splice(0, 3)
+          .map((item, index) => {
+            return (
+              <View style={{flex: 1}}>
+                <ProductItem
+                  item={item}
+                  index={index}
+                  onAdd={() => {}}
+                  leftAlign={{left: index % 3 < 2}}
+                  marginRight={8}
+                  container={{backgroundColor: '#EEF5FF'}}
+                />
+              </View>
+            );
+          })}
       </View>
-      {item?.productResponseDtoForUserList?.length > 0 && (
-        <FlatList
-          key={(_, index) => `product${index}`}
-          numColumns={2}
-          style={styles.subCategoryList}
-          ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-          data={item?.productResponseDtoForUserList}
-          renderItem={({item, index}) => (
-            <RenderProducts index={index} item={item} onAdd={onAdd} />
-          )}
-          ListFooterComponent={ListFooter}
-        />
-      )}
-    </>
-  ));
+    );
+  }
 };
 
 export default ProductList;

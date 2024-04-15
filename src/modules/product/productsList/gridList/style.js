@@ -3,7 +3,7 @@ import {fonts} from '../../../../styles/fonts';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {BLACK, FLASH_WHITE, MARINER} from '../../../../styles/colors';
 
-export const styles = arg => {
+export const styles = (arg,marginRight) => {
   const leftAlign = arg?.left ?? false;
   return StyleSheet.create({
     container: {
@@ -55,7 +55,7 @@ export const styles = arg => {
     },
     productItemContainer: {
       paddingTop: 10,
-      marginRight: leftAlign ? 16 : 0,
+      marginRight: leftAlign ? marginRight : 0,
       flex: 1,
       borderRadius: 12,
       borderWidth: 1,

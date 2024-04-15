@@ -105,6 +105,11 @@ const styles = () => {
       fontSize: fonts.size.fontSize14,
       color: WHITE,
     },
+    productContainer: {
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+      paddingHorizontal: 8,
+    },
   });
 };
 

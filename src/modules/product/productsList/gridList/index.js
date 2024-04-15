@@ -11,7 +11,7 @@ function GridList({data, onEndReached, onAdd}) {
       data={data}
       keyExtractor={(item, index) => `${item}-${index}`}
       renderItem={({item, index}) => (
-        <ProductItem item={item} index={index} onAdd={onAdd} />
+        <ProductItem item={item} index={index} onAdd={onAdd} leftAlign={{left: index % 2 === 0}}/>
       )}
       style={styles.listStyle}
       ItemSeparatorComponent={() => <View style={styles.separator} />}

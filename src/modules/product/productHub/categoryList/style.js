@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {INDIGO_LIGHT, ORANGE, VIVID_TANGERINE} from '../../../../styles/colors';
+import {BLACK, MARINER, ORANGE, VIVID_TANGERINE} from '../../../../styles/colors';
 import {
   CENTER,
   HIDDEN,
@@ -20,9 +20,9 @@ export const styles = () => {
       marginBottom: 16,
     },
     headerText: {
-      color: INDIGO_LIGHT,
-      fontFamily: fonts.family.rubik700,
-      fontSize: fonts.size.fontSize14,
+      color: BLACK,
+      fontFamily: fonts.family.montserrat600,
+      fontSize: fonts.size.fontSize18,
     },
     textContainer: {
       flex: 1,
@@ -32,9 +32,9 @@ export const styles = () => {
       overflow: HIDDEN,
     },
     viewAll: {
-      color: INDIGO_LIGHT,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize12,
+      color: MARINER,
     },
     line: {
       borderBottomColor: VIVID_TANGERINE,

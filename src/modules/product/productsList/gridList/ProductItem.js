@@ -53,11 +53,10 @@ const DiscountContainer = ({item}) => {
   ) : null;
 };
 
-function ProductItem({item, index, onAdd}) {
-  const leftAlign = {left: index % 2 === 0};
+function ProductItem({item,onAdd,leftAlign,marginRight,container}) {
   const onAddProduct = () => onAdd(item);
   return (
-    <View style={style(leftAlign).productItemContainer}>
+    <View style={[style(leftAlign,marginRight ?? 16).productItemContainer,container]}>
       <Image
         source={{uri: item?.imageFilepath}}
         resizeMode="contain"

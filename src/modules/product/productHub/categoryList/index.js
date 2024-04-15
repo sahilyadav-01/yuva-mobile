@@ -20,22 +20,7 @@ const CategoryList = ({
             <TouchableOpacity onPress={() => onCategoryViewAllPress()}>
               <Text style={styles.viewAll}>{VIEW_ALL}</Text>
             </TouchableOpacity>
-            <View style={styles.line} />
           </View>
-        </View>
-        <View style={styles.categoryHeadingContainer}>
-          {categories.map((item, index) => {
-            return (
-              <Text
-                onPress={() => onSelectCategory(index)}
-                style={[
-                  styles.categoryName,
-                  {fontSize: activeIndex === index ? 18 : undefined},
-                ]}>
-                {item}
-              </Text>
-            );
-          })}
         </View>
       </>
     );
