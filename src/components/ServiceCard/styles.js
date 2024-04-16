@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE } from '../../styles/colors';
+import { BLACK, CYAN_BLUE, ZUMTHOR } from '../../styles/colors';
 import { CENTER, COLUMN } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection:COLUMN,
     marginHorizontal: 4,
     //marginVertical:16,
-    backgroundColor:'#EEF5FF',
+    backgroundColor:ZUMTHOR,
     borderRadius: 10,
     paddingTop: 12,
     paddingBottom: 6,

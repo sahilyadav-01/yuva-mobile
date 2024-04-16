@@ -7,6 +7,7 @@ import {
   RED,
   VIVID_TANGERINE,
   WHITE,
+  ZUMTHOR,
 } from '../../../../styles/colors';
 import {
   CENTER,
@@ -110,6 +111,7 @@ const styles = () => {
       justifyContent: SPACE_BETWEEN,
       paddingHorizontal: 8,
     },
+    productItemContainerStyle: {backgroundColor: ZUMTHOR}
   });
 };
 

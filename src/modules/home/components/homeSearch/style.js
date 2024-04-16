@@ -5,7 +5,9 @@ import {
   INDIGO_LIGHT,
   KASHMIR_BLUE,
   MANATEE,
+  PORCELAIN,
   WHITE,
+  ZUMTHOR,
 } from '../../../../styles/colors';
 import {
   ABSOLUTE,
@@ -33,7 +35,7 @@ export const styles = () => {
       justifyContent: SPACE_BETWEEN,
       flex: 0.36,
       marginBottom: 12,
-      backgroundColor:'#F7F8F9'
+      backgroundColor:PORCELAIN
     },
     searchContainer: {justifyContent: CENTER},
     textInputStyle: {
@@ -71,7 +73,7 @@ export const styles = () => {
       alignItems: CENTER,
       paddingTop: 12,
       borderRadius: 12,
-      backgroundColor: '#EEF5FF',
+      backgroundColor: ZUMTHOR,
       width:'20%',
     },
     iconText: {

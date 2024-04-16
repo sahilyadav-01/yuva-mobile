@@ -19,7 +19,7 @@ const ProductList = ({productList}) => {
                   onAdd={() => {}}
                   leftAlign={{left: index % 3 < 2}}
                   marginRight={8}
-                  container={{backgroundColor: '#EEF5FF'}}
+                  container={styles.productItemContainerStyle}
                 />
               </View>
             );
