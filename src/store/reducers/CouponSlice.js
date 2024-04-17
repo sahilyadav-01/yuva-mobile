@@ -12,14 +12,14 @@ export const couponSliceThunk = createAsyncThunk(
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
       }
       else {
-        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}&sessionId=${sessionId}`;
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
       }
     } else {
       if (isLoggedIn) {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
       }
       else {
-        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&sessionId=${sessionId}`;
+        endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
       }
     }
     try {

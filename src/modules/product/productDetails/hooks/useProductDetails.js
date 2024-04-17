@@ -33,7 +33,7 @@ export const useProductDetails = (productId, navigation) => {
       </html>`);
       fetchItemExists({productId,priceId})
     }
-  }, [productDetails]);
+  }, [productDetails,activeIndex]);
 
   useEffect(()=>{
     if(addItem && !updateCartLoading) {

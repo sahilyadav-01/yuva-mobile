@@ -9,24 +9,16 @@ const ProductHub = ({
   showHeading,
   data,
   onAdd,
-  categories,
-  activeIndex,
-  onSelectCategory,
-  categoryId,
-  hideFooter
 }) => {
   const styles = style();
   const renderHeading = showHeading ?? true;
   return (
-    <View>
-      {categories?.length > 0 && <CategoryList
-        categories={categories}
+    <View style={styles.contentContainer}>
+      <CategoryList
         onCategoryViewAllPress={onCategoryViewAllPress}
-        onSelectCategory={onSelectCategory}
-        activeIndex={activeIndex}
         renderHeading={renderHeading}
-      />}
-      <ProductList productList={data?.productList} />
+      />
+      <ProductList productList={data} onAdd={onAdd}/>
     </View>
   );
 };

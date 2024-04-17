@@ -30,7 +30,7 @@ export const HomeScreen = () => {
     loggedIn,
     showSearchView,
     onBackPress,
-    topCategories,
+    topProducts,
     onSelectCategory,
     onAdd
   } = useHome();
@@ -68,10 +68,9 @@ export const HomeScreen = () => {
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
           <Services renderservicesItem={renderservicesItem} />
-          {topCategories?.data?.length > 0 && <ProductHub
+          {topProducts?.data?.length > 0 && <ProductHub
             onCategoryViewAllPress={onCategoryViewAllPress}
-            data={topCategories?.data[activeIndex]}
-            categories={topCategories?.data.map(item=>item.categoryName)}
+            data={topProducts}
             activeIndex={activeIndex}
             onSelectCategory={onSelectCategory}
             onAdd={onAdd}

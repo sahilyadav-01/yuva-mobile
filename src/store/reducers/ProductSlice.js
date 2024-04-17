@@ -28,14 +28,15 @@ const fetchCategoryData = data => {
   }
 };
 
-export const getTopCategories = createAsyncThunk(
-  'product/topCategories',
+export const getTopProducts = createAsyncThunk(
+  'product/topProducts',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = '/ecom/user/home-screen';
+      const endpoint = '/ecom/user/home-screen-products';
       const response = await YuvaService.get(endpoint);
-      const data = fetchProductData(response.data);
-      return data;
+      // const data = fetchProductData(response.data);
+      // return data;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -156,7 +157,7 @@ const initialState = {
     data: null,
     error: false,
   },
-  topCategories: {
+  topProducts: {
     loading: false,
     data: [],
     error: false,
@@ -262,20 +263,20 @@ const productSlice = createSlice({
       state.productDetails.error = true;
       state.productDetails.subCategoryData = null;
     },
-    [getTopCategories.pending]: state => {
-      state.topCategories.loading = true;
-      state.topCategories.error = false;
-      state.topCategories.data = [];
+    [getTopProducts.pending]: state => {
+      state.topProducts.loading = true;
+      state.topProducts.error = false;
+      state.topProducts.data = [];
     },
-    [getTopCategories.fulfilled]: (state, {payload}) => {
-      state.topCategories.loading = false;
-      state.topCategories.error = false;
-      state.topCategories.data = payload;
+    [getTopProducts.fulfilled]: (state, {payload}) => {
+      state.topProducts.loading = false;
+      state.topProducts.error = false;
+      state.topProducts.data = payload;
     },
-    [getTopCategories.rejected]: state => {
-      state.topCategories.loading = false;
-      state.topCategories.error = true;
-      state.topCategories.data = [];
+    [getTopProducts.rejected]: state => {
+      state.topProducts.loading = false;
+      state.topProducts.error = true;
+      state.topProducts.data = [];
     },
     [fetchProducts.pending]: state => {
       state.productList.loading = true;

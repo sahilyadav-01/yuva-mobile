@@ -16,7 +16,6 @@ export const styles = () => {
       marginTop: 28,
       flexDirection: ROW,
       justifyContent: SPACE_BETWEEN,
-      marginHorizontal: 16,
       marginBottom: 16,
     },
     headerText: {

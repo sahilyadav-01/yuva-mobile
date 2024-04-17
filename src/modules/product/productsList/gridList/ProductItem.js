@@ -39,9 +39,11 @@ const DetailsContainer = ({item, onAddProduct}) => {
 
 const ProductName = ({name}) => {
   return (
+    <View style={styles.headingContainer}>
     <Text numberOfLines={2} style={styles.heading}>
       {name}
     </Text>
+    </View>
   );
 };
 

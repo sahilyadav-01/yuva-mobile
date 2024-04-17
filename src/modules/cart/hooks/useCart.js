@@ -6,7 +6,7 @@ import {
 } from '../../../store/reducers/CartSlice';
 import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
@@ -96,9 +96,27 @@ export const useCart = (args) => {
     };
     dispatch(createCartUserThunk({ cartDto }));
   };
+
+  const fetchRemoveParams = (item) => {
+      switch(item?.productType){
+        case 'TEST':
+          if(item?.productId)
+          return {type:'TEST',itemId:item?.productId}
+        return null;
+        case 'PACKAGE':
+          if(item?.productId)
+          return {type:'PACKAGE',itemId:item?.productId}
+        return null;
+        case 'PRODUCT':
+          if(item?.productPriceId)
+          return {type:'PRODUCT',itemId:item?.productPriceId}
+        return null;
+      }
+  }
+
   const onRemove = item => {
-    const { productId: itemId } = item || {};
-    itemId && dispatch(deleteCartThunk({ itemId }));
+    const params = fetchRemoveParams(item);
+    dispatch(deleteCartThunk(params));
   };
 
   const onAddMembersPress = () => {

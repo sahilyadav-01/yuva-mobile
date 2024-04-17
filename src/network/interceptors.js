@@ -65,7 +65,7 @@ axiosClient.interceptors.request.use(
       ...config['headers'],
     };
 
-    if(config.url.includes('/cart')){
+    if(config.url.includes('/cart') || config.url.includes('/coupon/getAllCoupons/user')){
       const deviceId = await getDeviceId();
       config['headers'] = {...config['headers'], Cookie:`SESSION_ID=${deviceId}`}
     }

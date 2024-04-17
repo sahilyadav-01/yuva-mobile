@@ -3,7 +3,7 @@ import {fonts} from '../../../../styles/fonts';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 import {BLACK, FLASH_WHITE, MARINER} from '../../../../styles/colors';
 
-export const styles = (arg,marginRight) => {
+export const styles = (arg, marginRight) => {
   const leftAlign = arg?.left ?? false;
   return StyleSheet.create({
     container: {
@@ -16,6 +16,7 @@ export const styles = (arg,marginRight) => {
       fontSize: fonts.size.fontSize10,
       maxWidth: '75%',
       color: BLACK,
+      lineHeight: 12,
     },
     rowContainer: {
       flexDirection: ROW,
@@ -70,6 +71,9 @@ export const styles = (arg,marginRight) => {
     },
     imageStyle: {width: 100, height: 100, alignSelf: CENTER},
     listStyle: {flex: 1, paddingHorizontal: 20, paddingBottom: 12},
-    separator: {height: 12}
+    separator: {height: 12},
+    headingContainer: {
+      height: 48,
+    },
   });
 };

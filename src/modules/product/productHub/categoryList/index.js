@@ -4,10 +4,7 @@ import {PRODUCT_HUB, VIEW_ALL} from './constants';
 import {styles as style} from './style';
 
 const CategoryList = ({
-  categories,
   onCategoryViewAllPress,
-  onSelectCategory,
-  activeIndex,
   renderHeading,
 }) => {
   const styles = style();
