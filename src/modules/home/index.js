@@ -32,7 +32,9 @@ export const HomeScreen = () => {
     onBackPress,
     topProducts,
     onSelectCategory,
-    onAdd
+    onAdd,
+    homeTests,
+    homePackages
   } = useHome();
 
   const styles = style();
@@ -79,12 +81,12 @@ export const HomeScreen = () => {
           <OurPlan />
           {/* <PromotionalBanner /> */}
           <PopularHeathCheckupCarousel
-            popularPackageName={popularPackageName}
+            popularPackageName={homePackages}
             onHealthPackagePress={onHealthPackagePress}
           />
           {/* <OfferBanner1 bannerData={banner3} /> */}
           <PopularHeathCheckupCarousel
-            popularPackageName={popularTest}
+            popularPackageName={homeTests}
             onHealthPackagePress={onHealthPackagePress}
             isTest={true}
           />

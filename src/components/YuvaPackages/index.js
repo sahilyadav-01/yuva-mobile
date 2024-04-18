@@ -6,9 +6,7 @@ import {SVG} from '../../../assets';
 function YuvaPackages({packages, onPackagePress, onPressAdd, existingIds,isTest}) {
   const styles = style();
   if (typeof packages === 'object' && packages?.length > 0)
-    return packages?.map((i, index) => {
-     const item = {...i,id:isTest? i?.testId :i?.packageUUid, name: isTest ? i?.testName : i?.packageName,totalTest:isTest? i?.parameterCount : i?.totalTest }
-      if (index <= 2) {
+    return packages?.map((item, index) => {
         const buttonStyle = [
           styles.itemStyle,
           style({
@@ -29,7 +27,7 @@ function YuvaPackages({packages, onPackagePress, onPressAdd, existingIds,isTest}
               <View style={styles.detailsContainer}>
                 <Text styles={styles.heading}>{item?.name}</Text>
                 <Text style={styles.description}>
-                  Includes {item?.totalTest} tests
+                  Includes {item?.parameterCount} tests
                 </Text>
               </View>
             </View>
@@ -40,8 +38,6 @@ function YuvaPackages({packages, onPackagePress, onPressAdd, existingIds,isTest}
             </TouchableOpacity>
           </TouchableOpacity>
         );
-      }
-      return null;
     });
   return null;
 }

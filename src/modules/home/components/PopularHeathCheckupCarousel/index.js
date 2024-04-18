@@ -20,7 +20,7 @@ const PopularHeathCheckupCarousel = ({
         </Text>
       </View>
       <YuvaPackages
-        packages={isTest ? popularPackageName?.popularTestResponseDtoList : popularPackageName?.popularPackageResponseDtoList}
+        packages={popularPackageName.data}
         onPackagePress={onPackagePress}
         onPressAdd={onPressAdd}
         existingIds={existingIds}

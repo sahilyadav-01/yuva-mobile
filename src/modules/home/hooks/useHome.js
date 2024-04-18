@@ -5,7 +5,7 @@ import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
 import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
 import { getCartUserThunk, } from '../../../store/reducers/CartSlice';
-import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
+import {fetchHomeScreenPackages, fetchHomeScreenPlans, fetchHomeScreenTests, planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
@@ -19,7 +19,7 @@ export const useHome = () => {
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(state => state.auth);
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
-  const { popularPackageName } = useSelector(state => state.programAndPlan);
+  const { popularPackageName,homeTests,homePackages } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
@@ -36,11 +36,12 @@ export const useHome = () => {
           params: route?.params?.screenParams,
         });
       }
+      dispatch(fetchHomeScreenPlans());
+      dispatch(fetchHomeScreenPackages());
+      dispatch(fetchHomeScreenTests());
       dispatch(getTopProducts());
       dispatch(getServicesThunk({}));
       dispatch(allAppointmentThunk({ isActive:true }));
-      dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
-      dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
       dispatch(lifeStyleSliceThunk({}));
       dispatch(planPopularThunk())
       dispatch(fetchBannerDetails1({position:1,screenType:'HOME_SCREEN'}));
@@ -139,6 +140,8 @@ export const useHome = () => {
     onBackPress,
     topProducts,
     onSelectCategory,
-    onAdd
+    onAdd,
+    homeTests,
+    homePackages,
   };
 };
