@@ -25,13 +25,13 @@ export const usePackages = (isTest) => {
   const onPressAdd = (item) => {
     if(!isTest && !existingIds.includes(item?.packageUuid)){
     addToCart(
-      {name: item.packageName, cost: item.cost, productId: item.packageUuid},
+      {name: item.name, cost: item.cost, productId: item.id},
       'PACKAGE',
     );
     navigation.navigate(NEXTSCREEN_NAVIGATION, {index: 0});
     }
     else if(isTest && !existingIds.includes(item?.testId)){
-    addToCart({ name: item.testName, cost: item.cost, productId:item.testId.toString() }, 'TEST');
+    addToCart({ name: item.name, cost: item.cost, productId:item.id.toString() }, 'TEST');
     navigation.navigate(NEXTSCREEN_NAVIGATION, { index: 1 });
     }
     else Alert.alert('Alert','Item already exists in the Cart')
