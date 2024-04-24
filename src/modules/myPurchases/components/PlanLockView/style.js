@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {CYAN_BLUE, ORANGE, WHITE} from '../../../../styles/colors';
+import {CYAN_BLUE, MARINER, ORANGE, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
 export const styles = () => {
@@ -14,7 +14,7 @@ export const styles = () => {
     },
     membersContainer: {paddingTop: 20, paddingBottom: 24},
     buttonContainer: {
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       borderRadius: 6,
       paddingVertical: 12,
       flexDirection: ROW,
