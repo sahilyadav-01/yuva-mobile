@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE, BLACK } from '../../../../styles/colors';
+import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE, BLACK, ZIRCON } from '../../../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
@@ -51,7 +51,7 @@ const styles = ({ disabled }) => {
       color: BLACK,
       borderWidth: 0.5,
       borderRadius: 4,
-      backgroundColor:'#F1F4FF',
+      backgroundColor: ZIRCON,
       marginBottom: 8
     },
     separatorStyle: {
@@ -67,7 +67,7 @@ const styles = ({ disabled }) => {
       fontSize: fonts.size.fontSize16,
       color: BLACK,
       borderRadius: 4,
-      backgroundColor:'#F1F4FF',
+      backgroundColor: ZIRCON,
       borderWidth: 0.5,
       borderColor: BLACK,
       marginBottom: 8,

@@ -109,3 +109,4 @@ export const CORNFLOWER = '#6195ED';
 export const ALTO_SECONDARY = '#DADADA';
 export const DOVE_GRAY = '#727272';
 export const PORCELAIN = '#F7F8F9';
+export const ZIRCON = '#F1F4FF';

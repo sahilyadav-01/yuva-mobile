@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ServicesNav from './ServicesNav';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CYAN_BLUE, ORANGE} from '../styles/colors';
+import {ANAKIVA,MARINER} from '../styles/colors';
 import {CART, HOME, MY_REPORTS, PROFILE} from './constants';
 import Authentication from './Authentication';
 import {useDispatch, useSelector} from 'react-redux';
@@ -57,7 +57,7 @@ const BottomTabs = () => {
         headerShown: false,
         showLabel: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: ORANGE,
+        tabBarActiveTintColor: MARINER,
         tabBarStyle: style.tabBarStyle,
         tabBarLabelStyle: style.tabBarLabelStyle,
         tabBarItemStyle: style.tabBarItemStyle,
@@ -73,7 +73,7 @@ const BottomTabs = () => {
               <Icon
                 name="home-outline"
                 size={35}
-                color={focused ? ORANGE : CYAN_BLUE}
+                color={focused ? MARINER : ANAKIVA}
               />
             );
           },
@@ -89,7 +89,7 @@ const BottomTabs = () => {
               <Icon
                 name="clipboard-text-clock-outline"
                 size={35}
-                color={focused ? ORANGE : CYAN_BLUE}
+                color={focused ? MARINER : ANAKIVA}
               />
             );
           },
@@ -106,7 +106,7 @@ const BottomTabs = () => {
                 <Icon
                   name="cart-outline"
                   size={35}
-                  color={focused ? ORANGE : CYAN_BLUE}
+                  color={focused ? MARINER : ANAKIVA}
                 />
               </View>
             );
@@ -125,7 +125,7 @@ const BottomTabs = () => {
                 <Icon
                   name="account-outline"
                   size={35}
-                  color={focused ? ORANGE : CYAN_BLUE}
+                  color={focused ? MARINER : ANAKIVA}
                 />
               );
             },
@@ -142,7 +142,7 @@ const BottomTabs = () => {
                 <Icon
                   name="account-outline"
                   size={35}
-                  color={focused ? ORANGE : CYAN_BLUE}
+                  color={focused ? MARINER : ANAKIVA}
                 />
               );
             },

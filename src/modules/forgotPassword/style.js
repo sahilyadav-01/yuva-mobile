@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {MERCURY, FLASH_WHITE, WHITE, RED_SHADE, MARINER, BLACK} from '../../styles/colors';
+import {MERCURY, FLASH_WHITE, WHITE, RED_SHADE, MARINER, BLACK, ZIRCON} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -29,7 +29,7 @@ const styles = () => {
       color: BLACK,
       borderWidth: 0.5,
       borderRadius: 4,
-      backgroundColor:'#F1F4FF'
+      backgroundColor:ZIRCON,
     },
     separator: {
       borderWidth: 0.5,

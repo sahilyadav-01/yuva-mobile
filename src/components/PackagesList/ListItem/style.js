@@ -1,11 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {
   AMBER,
+  ANAKIVA,
   CYAN_BLUE,
   GREEN,
   INDIGO,
+  MARINER,
   SUNSET_ORANGE,
   WHITE,
+  ZIRCON,
 } from '../../../styles/colors';
 import {
   CENTER,
@@ -24,10 +27,10 @@ export const styles = ({selected}) => {
       paddingRight: 16,
       justifyContent: SPACE_BETWEEN,
       borderWidth: 1,
-      borderColor: selected ? GREEN : AMBER,
+      borderColor: selected ? MARINER : ANAKIVA,
       paddingVertical: 16,
       borderRadius: 10,
-      backgroundColor: selected ? WHITE : AMBER,
+      backgroundColor: selected ? WHITE : ZIRCON,
     },
     nameContainer: {
       fontFamily: fonts.family.rubik500,

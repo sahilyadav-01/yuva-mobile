@@ -6,6 +6,7 @@ import {
   PLATINUM,
   BLACK,
   MARINER,
+  ZIRCON,
 } from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
@@ -41,7 +42,7 @@ const styles = ({disabled}) => {
       color: BLACK,
       borderWidth: 0.5,
       borderRadius: 4,
-      backgroundColor: '#F1F4FF',
+      backgroundColor: ZIRCON,
       marginBottom: 16,
     },
     saveButtonText: {
@@ -63,7 +64,7 @@ const styles = ({disabled}) => {
       fontSize: fonts.size.fontSize16,
       color: BLACK,
       borderRadius: 4,
-      backgroundColor: '#F1F4FF',
+      backgroundColor: ZIRCON,
       borderWidth: 0.5,
       borderColor: BLACK,
       marginBottom: 8,

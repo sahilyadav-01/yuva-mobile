@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, ROW} from '../../../styles/constants';
+import { ZIRCON } from '../../../styles/colors';
 
 const styles = () => {
   return StyleSheet.create({
@@ -10,7 +11,7 @@ const styles = () => {
       paddingLeft:20,
       borderWidth: 0.5,
       borderRadius: 4,
-      backgroundColor:'#F1F4FF',
+      backgroundColor:ZIRCON,
       alignItems: CENTER
     },
     imageContainer: {justifyContent: CENTER, marginBottom: 4},
