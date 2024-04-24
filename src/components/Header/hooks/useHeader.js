@@ -31,7 +31,7 @@ export const useHeader = (props) => {
 
   const onToggleDrawer = () => {
     if(isLoggedIn)
-    navigation.dispatch(DrawerActions.openDrawer());
+    navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
   const canGoBack = (showBackButton && navigation?.canGoBack()) || homeSearch;
