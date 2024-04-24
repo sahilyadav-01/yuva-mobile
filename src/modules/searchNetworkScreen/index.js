@@ -16,27 +16,25 @@ const SearchNetworkScreen = () => {
     const renderItem = (item, index) => {
         return (
             <View style={styles.CompleteView}>
-                <View style={styles.Top}>
+                <TouchableOpacity onPress={() => { onViewMapPress(item?.item?.mapUrl) }} style={styles.Top}>
                     <Text style={styles.cardNameStyle} numberOfLines={2}>{item.item.name}</Text>
-                    <Text style={styles.cardAddressStyle} numberOfLines={2}>{item.item.address}</Text>
-                    <View style={styles.subTextStyle}>
+                    <View style={styles.rowView}>
+                        <View>
+                        <Text style={styles.cardAddressStyle}>{item.item.address}</Text>
+                        <View style={styles.subTextStyle}>
                         <SVG.SEARCH_NETWORK_CALL_ICON />
                         <Text style={styles.textStyle}>{item.item.number}</Text>
                     </View>
-                    <TouchableOpacity
-                        onPress={() => { onViewMapPress(item?.item?.mapUrl) }}
-                        style={styles.subTextBottomStyle}>
+                        </View>
                         <SVG.SEARCH_NETWORK_LOCATION_ICON />
-                        <Text style={styles.textStyle}>{BUTTON_TEXT}</Text>
-                    </TouchableOpacity>
-                </View>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     };
     const headerItem = (searchQuery, networkTypeData, planTypeData, cityNamesData) => {
         return (
             <>
-                <Text style={styles.headingStyle}>{HEADING_TEXT}</Text>
                 <Text style={styles.subHeadingStyle}>
                     {SUBHEADING_TEXT1}
                     <Text style={styles.subHeading2Style}>{SUBHEADING_TEXT2}</Text>
@@ -59,8 +57,8 @@ const SearchNetworkScreen = () => {
                     placeholder={PLACEHOLDER_TEXT2}
                     placeholderTextColor={DARK_GRAY}
                     boxStyles={styles.textInputStyle}
-                    inputStyles={{ color: DARK_BLUE }}
-                    dropdownTextStyles={{ color: DARK_GRAY }}
+                    inputStyles={{color:DARK_GRAY}}
+                    dropdownTextStyles={styles.selectInput}
                 />
                 {filterCheck ? (
                     <SelectList
@@ -70,8 +68,8 @@ const SearchNetworkScreen = () => {
                         placeholder={PLACEHOLDER_TEXT3}
                         placeholderTextColor={DARK_GRAY}
                         boxStyles={styles.textInputStyle}
-                        inputStyles={{ color: DARK_BLUE }}
-                        dropdownTextStyles={{ color: DARK_GRAY }}
+                        inputStyles={{ color: DARK_GRAY }}
+                        dropdownTextStyles={styles.selectInput}
                     />
                 ) : null}
                 <SelectList
@@ -81,15 +79,16 @@ const SearchNetworkScreen = () => {
                     placeholder={PLACEHOLDER_TEXT4}
                     placeholderTextColor={DARK_GRAY}
                     boxStyles={styles.textInputStyle}
-                    inputStyles={{ color: DARK_BLUE }}
-                    dropdownTextStyles={{ color: DARK_GRAY }}
+                    inputStyles={{ color: DARK_GRAY }}
+                    dropdownTextStyles={styles.selectInput}
                 />
+                <Text style={styles.suggestions}>Suggestions</Text>
             </>
         )
     }
     return (
         <>
-            <Header isScreen={true} hideMenu={false} showBackButton={true} />
+            <Header isScreen={true} hideMenu={false} showBackButton={true} title={'Search'} />
             <View style={styles.mainContainer}>
                 <FlatList
                     ListHeaderComponent={headerItem(searchQuery, networkTypeData, planTypeData, cityNamesData)}

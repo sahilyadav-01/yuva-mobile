@@ -97,7 +97,9 @@ export const useProductsList = () => {
     }
   };
 
-  const onFilterPress = () => {};
+  const onFilterPress = () => {
+    navigation?.navigate('ProductFilter');
+  };
 
   //   const onFilterPress = item => {
   //     let categoryList = productList?.productFilter?.categoryIdList;
