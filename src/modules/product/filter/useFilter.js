@@ -16,16 +16,29 @@ export const useFilter = navigation => {
   const [fetchSubCategory, setFetchSubCategory] = useState(false);
   const [data, setData] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSubCategories, setSelectedSubCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
   
   useFocusEffect(
     useCallback(() => {
+      let categories = productList?.productFilter?.categoryIdList;
+      let subCategories = productList?.productFilter?.subCategoryIdList;
+      let brands = productList?.productFilter?.brandIdList;
+      categories = categories?.length > 0 ? categories.map(String) : categories;
+      subCategories = subCategories?.length > 0 ? subCategories.map(String) : subCategories;
+      brands = brands?.length > 0 ? brands.map(String) : brands;
+      setSelectedCategories(categories);
+      setSelectedSubCategories(subCategories);
+      setSelectedBrands(brands);
+      setApplyFilter(true);
       dispatch(fetchCategories());
       dispatch(fetchBrands());
     }, []),
   );
 
   useEffect(() => {
-    if (!categoryDropdown.loading && !categoryDropdown.error) {
+    if (!categoryDropdown.loading && !categoryDropdown.error && applyFilter) {
       categoryDropdown.data.length > 0 &&
         dispatch(
           fetchSubCategories(
@@ -59,7 +72,7 @@ export const useFilter = navigation => {
                 categoryDropdown.data?.length === 0
                   ? []
                   : categoryDropdown.data.map(item => {
-                      return {...item, status: 'unchecked'};
+                      return {...item, status: selectedCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
                     }),
             },
           ];
@@ -71,25 +84,26 @@ export const useFilter = navigation => {
     if (
       !subCategoryDropdown.loading &&
       !subCategoryDropdown.error &&
-      fetchSubCategory
+      fetchSubCategory && applyFilter
     ) {
       setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(1)) {
           let updatedData = data.map(item => {
             if (item.id !== 1) return item;
-            else
+            else {
               return {
                 ...item,
                 data:
                   subCategoryDropdown.data?.length === 0
                     ? []
                     : subCategoryDropdown.data.map(item => {
-                        return {...item, status: 'unchecked', disabled: true};
+                        return {...item, status: selectedSubCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked', disabled: true};
                       }),
               };
+            }
           });
           return updatedData;
-        } else
+        } else {
           return [
             ...data,
             {
@@ -99,10 +113,11 @@ export const useFilter = navigation => {
                 subCategoryDropdown.data?.length === 0
                   ? []
                   : subCategoryDropdown.data.map(item => {
-                      return {...item, status: 'unchecked'};
+                      return {...item, status: selectedSubCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
                     }),
             },
           ];
+        }
       });
     }
   }, [
@@ -112,7 +127,7 @@ export const useFilter = navigation => {
   ]);
 
   useEffect(() => {
-    if (!brandsDropdown.loading && !brandsDropdown.error) {
+    if (!brandsDropdown.loading && !brandsDropdown.error && applyFilter) {
       setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(2)) {
           let updatedData = data.map(item => {
@@ -124,7 +139,7 @@ export const useFilter = navigation => {
                   brandsDropdown.data?.length === 0
                     ? []
                     : brandsDropdown.data.map(item => {
-                        return {...item, status: 'unchecked'};
+                        return {...item, status: selectedBrands?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
                       }),
               };
           });
@@ -139,7 +154,7 @@ export const useFilter = navigation => {
                 brandsDropdown.data?.length === 0
                   ? []
                   : brandsDropdown.data.map(item => {
-                      return {...item, status: 'unchecked'};
+                      return {...item, status: selectedBrands?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
                     }),
             },
           ];
@@ -193,6 +208,14 @@ export const useFilter = navigation => {
       }
     });
     setData(clearedData);
+    dispatch(
+      setFilterList({
+        ...productList.productFilter,
+        categoryIdList: [],
+        subCategoryIdList: [],
+        brandIdList: [],
+      }),
+    );
   };
 
   const getListEmptyText = id => {
@@ -253,5 +276,6 @@ export const useFilter = navigation => {
     onApplyFilter,
     onClearFilter,
     getListEmptyText,
+    productFilter: productList?.productFilter,
   };
 };

@@ -6,10 +6,11 @@ import {
   SPACE_BETWEEN,
 } from '../../../styles/constants';
 import {
+  BLACK,
   CYAN_BLUE,
   FLASH_WHITE,
   GREY,
-  ORANGE,
+  MARINER,
   WHITE,
 } from '../../../styles/colors';
 import {fonts} from '../../../styles/fonts';
@@ -44,7 +45,7 @@ export const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
       flex: 1,
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       borderRadius: 8,
     },
     filterView: {
@@ -65,9 +66,9 @@ export const styles = () => {
     },
     titleText: {
       marginLeft: 4,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize16,
-      color: CYAN_BLUE,
+      color: BLACK,
     },
     errorText: {
       fontFamily: fonts.family.rubik600,
@@ -75,9 +76,9 @@ export const styles = () => {
       color: CYAN_BLUE,
     },
     titleStyle: {
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize16,
-      color: CYAN_BLUE,
+      color: BLACK,
       marginVertical: 8,
     },
     buttonText: {

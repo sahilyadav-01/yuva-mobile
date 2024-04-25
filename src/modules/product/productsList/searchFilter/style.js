@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {MARINER, WHITE} from '../../../../styles/colors';
 import {
+  ABSOLUTE,
   CENTER,
   ROW,
   ROW_REVERSE,

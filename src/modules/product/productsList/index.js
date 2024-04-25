@@ -29,7 +29,7 @@ function ProductsList() {
   return (
     <View style={styles.container}>
       <Header showBackButton={true} title={'Products'} />
-      <SearchFilter onFilterPress={onFilterPress} onSearch={onSearch} />
+      <SearchFilter onFilterPress={onFilterPress} onSearch={onSearch} filterData={productList?.productFilter} />
       <GridList data={data} onEndReached={onEndReached} onAdd={onAdd} />
     </View>
   );

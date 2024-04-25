@@ -15,6 +15,7 @@ const ProductFilter = ({navigation}) => {
     onApplyFilter,
     onClearFilter,
     getListEmptyText,
+    productFilter
   } = useFilter(navigation);
   const styles = style();
 
