@@ -101,42 +101,6 @@ export const useProductsList = () => {
     navigation?.navigate('ProductFilter');
   };
 
-  //   const onFilterPress = item => {
-  //     let categoryList = productList?.productFilter?.categoryIdList;
-  //     if (
-  //       item?.id !== null &&
-  //       categoryList.includes(item?.id) &&
-  //       categoryList?.length > 1
-  //     ) {
-  //       setApplyFilter(true);
-  //       setPageNo(0);
-  //       let updatedCategories = categoryList?.filter(
-  //         category => category !== item?.id,
-  //       );
-  //       dispatch(
-  //         setFilterList({
-  //           ...productList.productFilter,
-  //           categoryIdList: updatedCategories,
-  //         }),
-  //       );
-  //     } else if (
-  //       item?.id !== null &&
-  //       categoryList.includes(item?.id) &&
-  //       categoryList?.length === 1
-  //     ) {
-  //       Alert.alert('Alert', 'Need to have atleast one category');
-  //     } else if (item?.id !== null && !categoryList.includes(item?.id)) {
-  //       setApplyFilter(true);
-  //       setPageNo(0);
-  //       dispatch(
-  //         setFilterList({
-  //           ...productList.productFilter,
-  //           categoryIdList: [...categoryList, item?.id],
-  //         }),
-  //       );
-  //     }
-  //   };
-
   const onAdvanceFiltersPress = () => {
     navigation?.navigate('ProductFilter');
   };
