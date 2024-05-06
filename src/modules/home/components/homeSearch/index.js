@@ -40,7 +40,7 @@ export const HomeSearch = () => {
   } = useHomeSearch();
   const style = styles();
 
-  const renderListItem = ({item}) => {
+  const RenderListItem = ({item,overlay}) => {
     return (
       <TouchableOpacity
         onPress={() =>
@@ -126,7 +126,7 @@ export const HomeSearch = () => {
             style={style.flatListStyle}
             data={popularTestsData}
             keyExtractor={(_, index) => index}
-            renderItem={renderListItem}
+            renderItem={({item}) => <RenderListItem item={item} overlay={overlay}/>}
             onEndReached={onListEndReached}
             nestedScrollEnabled={true}
             onEndReachedThreshold={0.001}
@@ -160,7 +160,8 @@ export const HomeSearch = () => {
       {overlay && (
         <View style={style.searchResultContainer}>
           <TouchableOpacity onPress={onCrossPress} style={style.crossContainer}>
-            <Cross name='cross' size={18} color={BLACK}/>
+            <Cross name='cross' size={24} color={BLACK}/>
+            <Text style={style.popularText}>Search Results</Text>
           </TouchableOpacity>
           {elasticSearchData.length === 0 && (
             <View style={{paddingBottom: 10}}>
@@ -169,11 +170,12 @@ export const HomeSearch = () => {
           )}
           {elasticSearchData.length > 0 && (
             <FlatList
-              keyboardShouldPersistTaps="handled"
               style={style.searchResultListContainer}
-              data={elasticSearchData}
+              keyboardShouldPersistTaps="handled"
+              data={[...elasticSearchData,...elasticSearchData]}
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderSearchResults}
+              ItemSeparatorComponent={()=><View style={{height:6}}/>}
             />
           )}
         </View>
