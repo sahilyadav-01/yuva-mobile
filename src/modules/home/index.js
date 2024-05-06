@@ -90,11 +90,11 @@ export const HomeScreen = () => {
             onHealthPackagePress={onHealthPackagePress}
             isTest={true}
           />
-          {/* <LifeStyle
+          <LifeStyle
             renderLifeStyleItem={renderLifeStyleItem}
             loggedIn={loggedIn}
             onPackagePress={onPackagePress}
-          /> */}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

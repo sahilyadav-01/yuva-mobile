@@ -33,7 +33,7 @@ export const styles = ({selected}) => {
       backgroundColor: selected ? WHITE : ZIRCON,
     },
     nameContainer: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: false ? GREEN : INDIGO,
@@ -41,7 +41,7 @@ export const styles = ({selected}) => {
     },
     priceContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
     discountText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: SUNSET_ORANGE,
@@ -49,7 +49,7 @@ export const styles = ({selected}) => {
     },
     priceText: {
       marginHorizontal: 6,
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: CYAN_BLUE,

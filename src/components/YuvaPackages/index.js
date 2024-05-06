@@ -3,41 +3,54 @@ import {TouchableOpacity, View, Text} from 'react-native';
 import {styles as style} from './style';
 import {SVG} from '../../../assets';
 
-function YuvaPackages({packages, onPackagePress, onPressAdd, existingIds,isTest}) {
+function YuvaPackages({
+  packages,
+  onPackagePress,
+  onPressAdd,
+  existingIds,
+  lifeStyle,
+}) {
+  const isLifeStylePackage = lifeStyle ?? false;
   const styles = style();
   if (typeof packages === 'object' && packages?.length > 0)
     return packages?.map((item, index) => {
-        const buttonStyle = [
-          styles.itemStyle,
-          style({
-            gap: index < packages?.length - 1,
-            diabled:
-              existingIds.length > 0 && existingIds.includes(item?.id),
-          })?.itemGap,
-        ];
-        return (
-          <TouchableOpacity
-            disabled={
-              existingIds.length > 0 && existingIds.includes(item?.id)
-            }
-            onPress={() => onPackagePress(item)}
-            style={buttonStyle}>
-            <View style={styles.rowItemContainer}>
-              <SVG.PopularHealth />
-              <View style={styles.detailsContainer}>
-                <Text styles={styles.heading}>{item?.name}</Text>
+      const buttonStyle = [
+        styles.itemStyle,
+        style({gap: index < packages?.length - 1}).itemGap,
+      ];
+      return (
+        <TouchableOpacity
+          disabled={
+            !isLifeStylePackage &&
+            existingIds.length > 0 &&
+            existingIds.includes(item?.id)
+          }
+          onPress={() =>
+            isLifeStylePackage
+              ? onPackagePress(item?.enumName, item?.name)
+              : onPackagePress(item)
+          }
+          style={buttonStyle}>
+          <View style={styles.rowItemContainer}>
+            <SVG.PopularHealth />
+            <View style={styles.detailsContainer}>
+              <Text styles={styles.heading}>{item?.name}</Text>
+              {!isLifeStylePackage ? (
                 <Text style={styles.description}>
-                  Includes {item?.parameterCount} tests
+                  Includes ${item?.parameterCount} tests
                 </Text>
-              </View>
+              ) : null}
             </View>
+          </View>
+          {!isLifeStylePackage && (
             <TouchableOpacity
               onPress={() => onPressAdd(item)}
               style={styles.addContainer}>
               <SVG.AddIcon />
             </TouchableOpacity>
-          </TouchableOpacity>
-        );
+          )}
+        </TouchableOpacity>
+      );
     });
   return null;
 }
