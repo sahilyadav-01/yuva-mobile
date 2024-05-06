@@ -34,7 +34,7 @@ function YuvaPackages({
           <View style={styles.rowItemContainer}>
             <SVG.PopularHealth />
             <View style={styles.detailsContainer}>
-              <Text styles={styles.heading}>{item?.name}</Text>
+              <Text style={styles.heading}>{item?.name}</Text>
               {!isLifeStylePackage ? (
                 <Text style={styles.description}>
                   Includes ${item?.parameterCount} tests
