@@ -63,7 +63,7 @@ const Cart = props => {
   return (
     <View style={styles.screenContainer}>
       <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
-      <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}>
+      {/* <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}> */}
       <View style={styles.container}>
         <DependentsModal
           visible={modalVisible}
@@ -107,21 +107,13 @@ const Cart = props => {
             heading={CART_DETAILS}
             onRemove={onRemove}
           />
-          {/* <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
-          {userData !== null && <Dependents hideShadow={true} dependents={[userData]} extraContainerStyle={styles.crossContainerStyle} onCrossPress={onContainerCrossPress} showCross={true} />}
-          <CardButton
-            text={buttonText}
-            onPress={onPressCardButton}
-            containerStyle={styles.containerStyle}
-            textStyle={styles.textStyle}
-          /> */}
         </View>}
         {/* {itemDtoList.length > 0 &&  !loading && <CouponCard />} */}
         <TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
-          <Text style={styles.textStyle}>Checkout</Text>
+          <Text style={styles.textStyle}>{buttonText}</Text>
         </TouchableOpacity>
       </View>
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
     </View>
   );
 };

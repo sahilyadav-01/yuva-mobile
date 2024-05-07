@@ -140,11 +140,11 @@ export const useCart = (args) => {
 
   useEffect(()=>{
    const productTypes = getProductTypes();
-   if(couponId === null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaid))
-   else if(couponId !== null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
+   if(couponId === null && userData !== null) setButtonText('Checkout')
+   else if(couponId !== null && userData !== null) setButtonText('Checkout')
    else if(userData === null && isLoggedIn && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
-   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText(TO_BE_PAID(amountToBePaid))
-   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText('Checkout')
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText('Checkout')
    else if(userData === null && !isLoggedIn) setButtonText(LOGIN_SIGNUP)
   },[userData])
 
@@ -159,8 +159,8 @@ export const useCart = (args) => {
   useEffect(() => {
     const productTypes = getProductTypes();
     if(userData === null && loggedIn === 'loggedIn' && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
-    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText(TO_BE_PAID(amountToBePaid))
-    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText('Checkout')
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText('Checkout')
     else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
     if (route?.name === 'Cart' && navigation.isFocused() && !isRemoved && initialLoad ) {
       setInitialLoad(false);
