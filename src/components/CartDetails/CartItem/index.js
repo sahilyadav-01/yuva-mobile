@@ -1,53 +1,31 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { SVG } from '../../../../assets';
-import { REMOVE } from '../constants';
-import { styles } from './style';
+import {View, Text,Image,TouchableOpacity} from 'react-native';
+import {styles as style} from './style';
+import {SVG} from '../../../../assets';
 
-const CartItem = props => {
-  const {
-    packageContainer,
-    packageName,
-    discountText,
-    priceText,
-    detailsContainer,
-    testText,
-    buttonContainer,
-    removeText,
-    priceContainer,
-  } = styles();
-  const { item: { name: text, discountedCost: discount, cost: price, tests }, onPressRemove } = props;
+const styles = style();
 
-  const priceComponent = () => {
-    if (discount === price) {
-      return <Text style={priceText}>{`₹ ${price}/-`}</Text>;
-    } else {
-      return (
-        <View style={priceContainer}>
-          <Text style={discountText}>{`₹ ${price}/-`}</Text>
-          <Text style={priceText}>{`₹ ${discount}/-`}</Text>
-        </View>
-      );
-    }
-  };
-
+const CartItems = ({item,onPressRemove}) => {
+  const discount = item?.cost > item?.discountedCost;
   return (
-    <>
-      <View style={packageContainer}>
-        <Text numberOfLines={2} style={packageName}>
-          {text}
-        </Text>
-        {priceComponent()}
+    <View style={styles.container}>
+      <View style={styles.rowView}>
+        <View style={styles.iconContainer}>
+        {item?.imageFilepath ? <Image source={{uri:item?.imageFilepath}} style={styles.iconStyle}/> : <SVG.BOOK_TEST_SVG_ICON/>}
+        </View>
+        <View style={{marginLeft:10}}>
+        <Text style={styles.itemName}>{item?.name}</Text>
+        <View style={styles.priceContainer}>
+        <Text style={[styles.itemCost,{textDecorationLine:discount ? 'line-through' : 'none'}]}>₹ {item?.cost}</Text>
+        {discount ? <Text style={styles.discountText}>₹ {item?.discountedCost}</Text> : null}
+        </View>
+        </View>
       </View>
-      <View style={detailsContainer}>
-        <Text style={testText}>{tests}</Text>
-        <TouchableOpacity style={buttonContainer} onPress={onPressRemove}>
-          <SVG.minus />
-          <Text style={removeText}>{REMOVE}</Text>
-        </TouchableOpacity>
-      </View>
-    </>
+     <TouchableOpacity onPress={()=>onPressRemove(item)}>
+     <SVG.DeleteItem />
+     </TouchableOpacity>
+    </View>
   );
 };
 
-export default CartItem;
+export default CartItems;

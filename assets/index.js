@@ -189,6 +189,7 @@ import ProductRemove from './ProductRemove';
 import CallSupport from './CallSupport';
 import AmbulanceSupport from './AmbulanceSupport';
 import AmbulanceNetwork from './AmbulanceNetwork';
+import DeleteItem from './DeleteItem';
 
 const PNG = {
   AMICO,
@@ -384,7 +385,8 @@ const SVG = {
   ProductRemove,
   CallSupport,
   AmbulanceNetwork,
-  AmbulanceSupport
+  AmbulanceSupport,
+  DeleteItem
 };
 
 export {PNG, SVG};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, KeyboardAvoidingView} from 'react-native';
+import { ScrollView, View, Text, KeyboardAvoidingView,TouchableOpacity} from 'react-native';
 import CardButton from '../../components/CardButton';
 import CartDetails from '../../components/CartDetails';
 import CouponCard from '../../components/CouponCard';
@@ -61,10 +61,10 @@ const Cart = props => {
     couponDiscount,
   } = coupon || {};
   return (
-    <>
+    <View style={styles.screenContainer}>
       <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
       <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <DependentsModal
           visible={modalVisible}
           onCrossPress={onModalCrossPress}
@@ -107,19 +107,22 @@ const Cart = props => {
             heading={CART_DETAILS}
             onRemove={onRemove}
           />
-          <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
+          {/* <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
           {userData !== null && <Dependents hideShadow={true} dependents={[userData]} extraContainerStyle={styles.crossContainerStyle} onCrossPress={onContainerCrossPress} showCross={true} />}
           <CardButton
             text={buttonText}
             onPress={onPressCardButton}
             containerStyle={styles.containerStyle}
             textStyle={styles.textStyle}
-          />
+          /> */}
         </View>}
-        {itemDtoList.length > 0 &&  !loading && <CouponCard />}
-      </ScrollView>
+        {/* {itemDtoList.length > 0 &&  !loading && <CouponCard />} */}
+        <TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
+          <Text style={styles.textStyle}>Checkout</Text>
+        </TouchableOpacity>
+      </View>
       </KeyboardAvoidingView>
-    </>
+    </View>
   );
 };
 
