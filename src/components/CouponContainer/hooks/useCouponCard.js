@@ -17,7 +17,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     const { cart } = useSelector(state => state.cart);
     const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
-
         setCouponCode(value)
     }
     useEffect(()=>{
@@ -94,6 +93,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         planeCouponCode,
         selectedCouponCode,
         couponViewCart,
-        planTypee
+        planTypee,
     };
 }

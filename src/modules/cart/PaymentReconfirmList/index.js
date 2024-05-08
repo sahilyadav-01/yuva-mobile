@@ -31,7 +31,7 @@ const PaymentReconfirmList = () => {
           <PaymentModes cod={cod} onCodPress={onCodPress} onOnlinePress={onOnlinePress}/>
           <TermsContainer checked={checked} onCheckboxPress={onCheckboxPress} />
           <TouchableOpacity onPress={onPayPress} style={styles.placeOrder}>
-            <Text>Place Order</Text>
+            <Text style={styles.buttonText}>Place Order</Text>
           </TouchableOpacity>
         </View>
       </View>

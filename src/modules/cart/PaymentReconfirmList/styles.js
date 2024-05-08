@@ -76,5 +76,10 @@ export const styles = StyleSheet.create({
     borderColor: 'grey',
     backgroundColor: 'grey',
     borderStyle: 'dashed',
+  },
+  buttonText: {
+    color: WHITE,
+    fontFamily: fonts.family.monsterrant500,
+    fontSize:fonts.size.fontSize12,
   }
 });

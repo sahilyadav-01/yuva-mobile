@@ -5,40 +5,32 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  ScrollView,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {useRoute} from '@react-navigation/native';
 import {styles} from './styles';
 import {useCouponCard} from './hooks/useCouponCard';
 import {
   APPLY_COUPON,
   CAPITALIZE_TEXT,
-  COUPON_APPLIED,
   PLACEHOLDER_TEXT,
   COUPON_LABEL,
   NO_COUPON_TEXT,
   DISCOUNT,
   DISCOUNT_PERCENTAGE,
-  DISCOUNT_UPTO,
-  USE_COUPON,
   COUPON_CODE,
 } from './constant';
 import {
-  GREEN,
   SLATE_BLUE,
-  WHITE,
   DARK_GRAY,
   MARINER,
-  BLACK,
 } from '../../styles/colors';
 import {
   redeemCouponsPlanSliceThunk,
   redeemCouponsSliceThunk,
   selectedCoupon,
 } from '../../store/reducers/CouponSlice';
-import {useDispatch, useSelector} from 'react-redux';
-import Icon from 'react-native-vector-icons/Entypo';
 import {getCartUserThunk} from '../../store/reducers/CartSlice';
-import {useRoute} from '@react-navigation/native';
 
 const CouponCard = props => {
   const route = useRoute();

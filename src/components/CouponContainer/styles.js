@@ -37,11 +37,10 @@ export const styles = StyleSheet.create({
   },
   textInputStyles: {
     flex: 1,
-    color: CYAN_BLUE,
+    color: MARINER,
     paddingHorizontal: 16,
-    fontFamily: fonts.family.montserrat400,
-    fontSize: fonts.size.fontSize10,
-    fontStyle: 'italic',
+    fontFamily: fonts.family.montserrat600,
+    fontSize: fonts.size.fontSize12,
     paddingVertical: 12,
   },
   applyStyles: {
