@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView, View, Text} from 'react-native';
+import {SafeAreaView, ScrollView, View, TouchableOpacity} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -13,6 +13,8 @@ import AppointmentTag from './components/appointmentTag';
 import PromotionalBanner from './components/PromotionalOffer';
 import {HomeSearch} from './components/homeSearch';
 import ProductHub from '../product/productHub/index.js';
+import { MARINER } from '../../styles/colors.js';
+import { CENTER } from '../../styles/constants.js';
 
 export const HomeScreen = () => {
   const {

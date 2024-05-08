@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 import { fonts } from "../../../../styles/fonts";
 import { BLACK } from "../../../../styles/colors";
-import { ROW, SPACE_BETWEEN } from "../../../../styles/constants";
+import { CENTER, ROW, SPACE_BETWEEN } from "../../../../styles/constants";
 
 export const styles = () => {
     return StyleSheet.create({
@@ -18,6 +18,7 @@ export const styles = () => {
             flexDirection: ROW,
             justifyContent: SPACE_BETWEEN,
             marginBottom: 16,
+            alignItems: CENTER,
         },
         priceText: {
             fontFamily: fonts.family.monsterrant500,

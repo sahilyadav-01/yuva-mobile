@@ -80,11 +80,9 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
   },
   useCouponTextStyle1: {
-    color: GREEN,
+    color: MARINER,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize12,
-    textAlign: CENTER,
-    width: '72%',
   },
   useCouponTextStyle2: {
     color: RED,

@@ -1,19 +1,25 @@
+import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Alert} from 'react-native';
 import {TERMS_CONDITION} from '../constant';
+import {setTermsAndCondtionChecked} from '../../../../store/reducers/CartSlice';
+import { changePaymentMethod } from '../../../../store/reducers/PaymentSlice';
 
 export const usePaymentReconfirm = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
   const {
     termsAndCondtionChecked,
     cart: {itemDtoList},
   } = useSelector(state => state.cart);
+  const {cod} = useSelector(state => state.payment);
   const {scheduleDate, addressData, relationData, processingCharge} =
     useSelector(state => state.checkOut);
   const {selectedCity} = useSelector(state => state.profile);
   const itemType = itemDtoList?.map(item => item?.productType);
-  const isProduct = 
+  const isProduct =
     !itemType?.includes('TEST') && !itemType?.includes('PACKAGE');
 
   const fetchProductId = type => {
@@ -21,6 +27,15 @@ export const usePaymentReconfirm = () => {
     const productIds = itemType.map(item => item?.productId);
     return productIds;
   };
+
+  const onCheckboxPress = check => {
+    setChecked(!check);
+    dispatch(setTermsAndCondtionChecked(!check));
+  };
+
+  const onCodPress = () => {dispatch(changePaymentMethod(true));}
+
+  const onOnlinePress = () => {dispatch(changePaymentMethod(false));}
 
   const onPayPress = () => {
     const {address, contact, pincode, away} = {
@@ -73,5 +88,5 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress, processingCharge, isProduct};
+  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress};
 };

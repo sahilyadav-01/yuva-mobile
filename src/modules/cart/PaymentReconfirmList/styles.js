@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {CYAN_BLUE, FLASH_WHITE, MARINER, ORANGE, WHITE} from '../../../styles/colors';
-import {ABSOLUTE, CENTER} from '../../../styles/constants';
+import {ABSOLUTE, CENTER, ROW} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -68,5 +68,13 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
     marginTop: 24,
     borderRadius: 10
+  },
+  separator: {
+    marginTop: 8,
+    borderWidth: 0.5,
+    width: '100%',
+    borderColor: 'grey',
+    backgroundColor: 'grey',
+    borderStyle: 'dashed',
   }
 });

@@ -94,7 +94,11 @@ const paymentSlice = createSlice({
   reducers: {
     resetPaymentMethod(state, payload){
       state.cod=payload?.payload;
-    }},
+    },
+    changePaymentMethod(state, {payload}){
+      state.cod = payload;
+    },
+  },
   extraReducers: {
     [encReqThunk.pending]: state => {
       state.encReqLoading = true;
@@ -162,6 +166,6 @@ const paymentSlice = createSlice({
 });
 
 export const paymentInit = paymentSlice.getInitialState();
-export const {resetPaymentMethod} = paymentSlice.actions;
+export const {resetPaymentMethod,changePaymentMethod} = paymentSlice.actions;
 
 export default paymentSlice.reducer;
