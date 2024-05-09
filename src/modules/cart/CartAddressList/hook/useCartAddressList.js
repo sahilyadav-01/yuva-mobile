@@ -57,6 +57,8 @@ export const useCartAddressList = () => {
     }
   };
 
+  const onAddAddress = () =>  navigation.navigate('NewAddress')
+
   return {
     ConfirmAddress,
     ConfirmDateAndTime,
@@ -65,6 +67,7 @@ export const useCartAddressList = () => {
     date,
     time,
     addressListing,
-    handleDateTime
+    handleDateTime,
+    onAddAddress
   };
 };

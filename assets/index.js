@@ -190,6 +190,8 @@ import CallSupport from './CallSupport';
 import AmbulanceSupport from './AmbulanceSupport';
 import AmbulanceNetwork from './AmbulanceNetwork';
 import DeleteItem from './DeleteItem';
+import Phone from './Phone';
+import AddAddress from './AddAddress';
 
 const PNG = {
   AMICO,
@@ -386,7 +388,9 @@ const SVG = {
   CallSupport,
   AmbulanceNetwork,
   AmbulanceSupport,
-  DeleteItem
+  DeleteItem,
+  Phone,
+  AddAddress
 };
 
 export {PNG, SVG};
