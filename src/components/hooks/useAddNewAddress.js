@@ -77,7 +77,7 @@ let address=`${location} ${location2}`
             Alert.alert(ALERT, PINCODE_MUST_BE)
         }
         else if (location?.length && dropdownCityId !== null ) {
-            navigation.navigate(navScreen, DATA);
+            navigation.navigate(navScreen, {...DATA,addressAdded:true});
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } else {
             Alert.alert(ALERT, FIELD_MISSING)

@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,8 @@ import { dispatch_addressData, dispatch_scheduleData } from '../../../../store/r
 import { ADDRESS_CHECK, ALERT, CHECKOUT_SCHEDULE_NAVIGATION, PAYMENT_PAGE_NAVIGATION, TIME_CHECK } from '../constant';
 
 export const useCartAddressList = () => {
+  const focused = useIsFocused();
+  const route = useRoute();
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -13,6 +15,7 @@ export const useCartAddressList = () => {
   const navigation = useNavigation();
   const { selectedAddress,addressListing} = useSelector(state => state.profile);
   const { cart } = useSelector(state => state?.cart);
+
   useEffect(()=>{
     const tomorrow = new Date()
       tomorrow.setDate(tomorrow.getDate() +1);
