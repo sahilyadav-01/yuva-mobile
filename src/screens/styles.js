@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
-import {CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
+import {BLACK, CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
 import {fonts} from '../styles/fonts';
 import { getDimensions } from '../utils/utils';
 
@@ -35,9 +35,9 @@ export const styles = StyleSheet.create({
     lazy: false,
   },
   textColor: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.rubik600,
+    fontFamily: fonts.family.montserrat600,
   },
   carouselText: {
     marginLeft: 17,

@@ -14,7 +14,7 @@ import {AVAILABLE, BOOK_NOW, EXPIRY_DATE, USED} from './constant';
 import {usePackageCard} from './hooks/usePackageCard';
 import {getPlanDate} from '../../../../utils/utils';
 import { NOT_AVAILABLE } from '../../../../components/constants';
-import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../../../styles/colors';
+import { ANAKIVA, CYAN_BLUE, DEEP_RED, MARINER, WHITE } from '../../../../styles/colors';
 const PackageCard = () => {
   const {programAndPlan, bookNow} = usePackageCard();
   const renderItem = ({item, index}) => {
@@ -44,7 +44,7 @@ const PackageCard = () => {
               <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : CYAN_BLUE }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
             </View>
             <TouchableOpacity
-              style={[styles.buttonStyle,{backgroundColor: i.available===0 ?AMBER :ORANGE}]}  
+              style={[styles.buttonStyle,{backgroundColor: i.available===0 ?ANAKIVA :MARINER}]}  
               onPress={() =>
                 bookNow(item.plan, item.userVersion, item.uuid, item.version, item.locked)
               } disabled={!i.available}>

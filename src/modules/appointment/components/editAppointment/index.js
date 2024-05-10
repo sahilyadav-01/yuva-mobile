@@ -6,7 +6,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
-import {DARK_GRAY, ORANGE} from '../../../../styles/colors';
+import {DARK_GRAY, MARINER} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -82,7 +82,7 @@ const EditAppointments = () => {
       <View style={styles.buttonStyles}>
         <AppointmentButton
           name={RESCHEDULE_APPOINTMENT}
-          color={ORANGE}
+          color={MARINER}
           action={saveAppointment}
           textStyles={styles.buttonTextStyle}
         />

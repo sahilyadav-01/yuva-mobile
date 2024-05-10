@@ -13,6 +13,7 @@ import {
   LIGHT_GREYISH_RED,
   RED,
   BIANCA,
+  MARINER,
 } from '../styles/colors';
 import {
   COLUMN,
@@ -44,14 +45,14 @@ export const styles = StyleSheet.create({
   ContentStyle: {
     marginVertical: '2%',
     marginLeft: '3%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize12,
   },
   NameStyle: {
     marginLeft: '3%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik600,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize14,
     width:"70%",
   },
@@ -81,20 +82,20 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   Button: {
-    backgroundColor: CYAN_BLUE,
-    height: 31,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    backgroundColor: MARINER,
+    paddingVertical:12,
+    borderRadius: 10,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
   buttonView: {
     marginTop: 4,
   },
   ButtonText: {
     color: WHITE,
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize10,
     alignSelf: CENTER,
-    marginTop: '3%',
   },
   Top: {
     flexDirection: ROW,
@@ -115,14 +116,14 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
   },
   Year: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize10,
     marginRight: '5%',
   },
   Address: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
      marginRight:'5%',
   },
@@ -528,8 +529,8 @@ export const styles = StyleSheet.create({
   },
   dateAndTimeStyle: {
     fontSize: fonts.size.fontSize8,
-    fontFamily: fonts.family.rubik500,
-    color: CYAN_BLUE,
+    fontFamily: fonts.family.monsterrant500,
+    color: BLACK,
   },
   containerView: {
     width: '100%',
@@ -545,9 +546,9 @@ export const styles = StyleSheet.create({
     justifyContent: SPACE_BETWEEN,
   },
   statusText: {
-    color: ORANGE,
+    color: MARINER,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
   },
   leftView: {
     width: '70%',
@@ -557,15 +558,15 @@ export const styles = StyleSheet.create({
     width: '30%',
   },
   doctorNameText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
   },
   doctorSpecialityText: {
     marginTop: '8%',
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize10,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
   },
   HospView: {
     justifyContent: SPACE_BETWEEN,
@@ -580,18 +581,18 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
   },
   HospNameText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
   },
   LocationStyle: {
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
   },
   DescriptionText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize10,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     marginTop: '10%',
   },
   CalView: {
@@ -691,11 +692,11 @@ export const styles = StyleSheet.create({
     marginTop: '5%',
   },
   HospitalStyle: {
-    color: CYAN_BLUE,
+    color: BLACK,
     marginBottom: 13,
     marginLeft: '3%',
     fontSize: fonts.size.fontSize10,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
   },
   addressView: {
     marginBottom: 15,
