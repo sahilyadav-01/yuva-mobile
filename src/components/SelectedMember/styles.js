@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts } from '../../styles/fonts';
-import { WHITE, ORANGE, SHADOW, CYAN_BLUE, RED } from '../../styles/colors';
-import { ABSOLUTE, FLEX_END, ROW, SPACE_BETWEEN } from '../../styles/constants';
+import { WHITE, MARINER, SHADOW, BLACK } from '../../styles/colors';
+import { ABSOLUTE, ROW, SPACE_BETWEEN } from '../../styles/constants';
 
 const styles = ({ disabled }) => {
   return StyleSheet.create({
@@ -23,22 +23,22 @@ const styles = ({ disabled }) => {
       justifyContent: SPACE_BETWEEN,
     },
     relationText: {
-      fontFamily: fonts.family.rubik400,
-      color: ORANGE,
+      fontFamily: fonts.family.montserrat400,
+      color: MARINER,
       fontSize: fonts.size.fontSize16,
       minHeight: 24,
     },
     dependentName: {
       paddingTop:1,
-      fontFamily: fonts.family.rubik500,
-      color: CYAN_BLUE,
+      fontFamily: fonts.family.monsterrant500,
+      color: BLACK,
       fontSize: fonts.size.fontSize14,
       minHeight: 22,
     },
     dependentGender: {
       paddingTop:2,
-      fontFamily: fonts.family.rubik500,
-      color: CYAN_BLUE,
+      fontFamily: fonts.family.monsterrant500,
+      color: BLACK,
       fontSize: fonts.size.fontSize14,
       minHeight: 22,
     },
