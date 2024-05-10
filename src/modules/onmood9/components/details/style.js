@@ -1,18 +1,18 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {CYAN_BLUE, DARK_BLUE, ORANGE} from '../../../../styles/colors';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import {BLACK, CYAN_BLUE, DARK_BLUE, MARINER, ORANGE} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
 
 export const styles = () => {
   return StyleSheet.create({
     headingText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
-      color: ORANGE,
+      color: MARINER,
       marginBottom: 16,
     },
     descriptionText: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       color: DARK_BLUE,
     },
@@ -24,8 +24,8 @@ export const styles = () => {
     imageText: {
       marginTop: 12,
       textAlign: CENTER,
-      color: CYAN_BLUE,
-      fontFamily: fonts.family.rubik400,
+      color: BLACK,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize10,
     },
   });

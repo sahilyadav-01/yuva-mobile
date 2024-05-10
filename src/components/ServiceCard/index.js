@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useServiceCard } from './hooks/useServiceCard';
 import { styles } from './styles';
-import { SVG } from '../../../assets';
 
 const ServiceCard = ({ name, screenName, icon }) => {
   const { onpress } = useServiceCard({ screenName });

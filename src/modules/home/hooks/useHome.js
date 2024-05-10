@@ -123,6 +123,8 @@ export const useHome = () => {
     navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
   }
 
+  const onViewAllServices = (services) => navigation.navigate('Services',{services})
+
   return {
     activeIndex,
     name,
@@ -143,5 +145,6 @@ export const useHome = () => {
     onAdd,
     homeTests,
     homePackages,
+    onViewAllServices
   };
 };

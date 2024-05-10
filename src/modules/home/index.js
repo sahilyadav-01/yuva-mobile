@@ -36,7 +36,8 @@ export const HomeScreen = () => {
     onSelectCategory,
     onAdd,
     homeTests,
-    homePackages
+    homePackages,
+    onViewAllServices,
   } = useHome();
 
   const styles = style();
@@ -71,7 +72,7 @@ export const HomeScreen = () => {
         <View>
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
-          <Services renderservicesItem={renderservicesItem} />
+          <Services renderservicesItem={renderservicesItem} onViewAllServices={onViewAllServices}/>
           {topProducts?.data?.length > 0 && <ProductHub
             onCategoryViewAllPress={onCategoryViewAllPress}
             data={topProducts}
