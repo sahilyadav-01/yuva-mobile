@@ -1,8 +1,8 @@
 import React from 'react';
+import {SafeAreaView} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Header from '../components/Header';
-import {CYAN_BLUE, ORANGE} from '../styles/colors';
-import {SafeAreaView, Text, View} from 'react-native';
+import {BLACK, MARINER} from '../styles/colors';
 import { fonts } from '../styles/fonts';
 import MyPlanPurchases from '../screens/MyPlanPurchases';
 import { useDispatch } from 'react-redux';
@@ -17,12 +17,12 @@ const PurchaseNav = () => {
       <Header title={'Purchase History'} showBackButton={true} hideMenu={true}/>
       <Tab.Navigator
         screenOptions={{
-          tabBarLabelStyle: {fontSize: 14, fontFamily:fonts.family.rubik600, lineHeight:21, color:CYAN_BLUE},
+          tabBarLabelStyle: {fontSize: 14, fontFamily:fonts.family.montserrat600, lineHeight:21, color:BLACK},
           tabBarStyle: {
             display: undefined,
             paddingVertical:8
           },
-          tabBarIndicatorStyle:{backgroundColor:ORANGE,width:'15%',height:3,marginHorizontal:'10%'},
+          tabBarIndicatorStyle:{backgroundColor:MARINER,width:'15%',height:3,marginHorizontal:'10%'},
           swipeEnabled: false,
           lazy: false,
         }}>
