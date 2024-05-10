@@ -6,6 +6,7 @@ import Product from './productDetails/index';
 import ProductHeader from './productHeader';
 import ProductDescription from './productDescription';
 import Header from '../../../components/Header';
+import { MARINER } from '../../../styles/colors';
 
 const ProductDetails = ({productId, navigation}) => {
   const {
@@ -33,7 +34,7 @@ const ProductDetails = ({productId, navigation}) => {
       />
       {productDetails?.loading && (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       )}
       {productDetails?.error && (

@@ -11,7 +11,7 @@ import {
 import {styles as style} from './styles';
 import {useCategory} from './hooks/useCategory';
 import {SVG} from '../../../../assets';
-import {ORANGE} from '../../../styles/colors';
+import {MARINER, ORANGE} from '../../../styles/colors';
 
 const Categories = ({navigation}) => {
   const {categories, onCategoryPress} = useCategory(navigation);
@@ -40,7 +40,7 @@ const Categories = ({navigation}) => {
       />
       {categories.loading && (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       )}
       {categories.error && (

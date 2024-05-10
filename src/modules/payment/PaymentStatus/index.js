@@ -14,7 +14,7 @@ import {
 } from './constants';
 import {usePaymentStatus} from './hooks/usePaymentStatus';
 import {styles} from './style';
-import { WHITE } from '../../../styles/colors';
+import { MARINER, WHITE } from '../../../styles/colors';
 
 const PaymentStatus = ({paymentProps}) => {
   const {paymentSuccess, loading, onCrossPress} = usePaymentStatus(paymentProps);
@@ -34,7 +34,7 @@ const PaymentStatus = ({paymentProps}) => {
   if (loading)
     return (
       <View style={indicatorStyle}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color={MARINER} />
       </View>
     );
   return (

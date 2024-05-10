@@ -4,6 +4,7 @@ import Header from '../../../components/Header';
 import ProductFilters from './ProductFilters';
 import {useFilter} from './useFilter';
 import {styles as style} from './style';
+import { MARINER } from '../../../styles/colors';
 
 const ProductFilter = ({navigation}) => {
   const {
@@ -43,7 +44,7 @@ const ProductFilter = ({navigation}) => {
     ) {
       return (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       );
     } else if (

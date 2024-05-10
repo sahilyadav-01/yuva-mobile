@@ -7,6 +7,7 @@ import {useHomeSearchDetails} from './hooks/useHomeSearchDetails';
 import {styles} from './styles';
 import Packages from '../../../../components/PackagesList/packages';
 import RenderProducts from '../../../product/productHub/productList/ProductItem';
+import { MARINER } from '../../../../styles/colors';
 const HomeSearchDetails = () => {
   const route = useRoute();
   const {
@@ -38,7 +39,7 @@ const HomeSearchDetails = () => {
     if(addToCartLoad) {
       return (
         <View style={[childContainerStyle, addToCartLoader]}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color={MARINER} />
       </View>
       );
     }

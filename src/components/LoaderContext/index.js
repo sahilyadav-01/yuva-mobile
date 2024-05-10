@@ -2,6 +2,7 @@ import React from 'react';
 import {ActivityIndicator, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {styles} from './style';
+import { MARINER } from '../../styles/colors';
 
 const LoaderContext = ({showLoader}) => {
   const {redirectLoading} = useSelector(state => state.notification);
@@ -11,7 +12,7 @@ const LoaderContext = ({showLoader}) => {
   return (
     <>
       <View style={style.container} />
-      <ActivityIndicator style={style.loader} />
+      <ActivityIndicator style={style.loader} color={MARINER} />
     </>
   );
   if (!redirectLoading && !unauthorised) return null;
@@ -19,14 +20,14 @@ const LoaderContext = ({showLoader}) => {
   return (
     <>
       <View style={style.container} />
-      <ActivityIndicator style={style.loader} />
+      <ActivityIndicator style={style.loader} color={MARINER} />
     </>
   );
   if(unauthorised)
   return (
     <>
       <View style={style.loaderContainer} />
-      <ActivityIndicator style={style.loader} />
+      <ActivityIndicator style={style.loader} color={MARINER} />
     </>
   );
 };

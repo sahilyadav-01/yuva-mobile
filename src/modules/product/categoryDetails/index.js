@@ -5,6 +5,7 @@ import {useCategoryDetails} from './hooks/useCategoryDetails';
 import ProductHub from '../productHub';
 import {getDimensions} from '../../../utils/utils';
 import Header from '../../../components/Header';
+import { MARINER } from '../../../styles/colors';
 
 const CategoryDetails = ({navigation, params}) => {
   const {subCategories, onAdd} = useCategoryDetails(
@@ -24,7 +25,7 @@ const CategoryDetails = ({navigation, params}) => {
       />
         {subCategories.loading && (
           <View style={styles.loaderContainer}>
-            <ActivityIndicator size={'large'} />
+            <ActivityIndicator size={'large'} color={MARINER} />
           </View>
         )}
         {subCategories.error && (

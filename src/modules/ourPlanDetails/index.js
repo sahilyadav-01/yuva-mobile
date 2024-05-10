@@ -19,6 +19,7 @@ import Header from '../../components/Header';
 import PlanServiceIcons from './components/PlanServiceIcons';
 import TextBold from '../../components/TextBold';
 import {getDimensions} from '../../utils/utils';
+import { MARINER } from '../../styles/colors';
 
 const OurPlanDetails = props => {
   const {
@@ -68,7 +69,7 @@ const OurPlanDetails = props => {
               )}
             {planDetailsLoading && getAllPlanServicesLoading && (
               <View style={styles.emptyView}>
-                <ActivityIndicator size={'large'} />
+                <ActivityIndicator size={'large'} color={MARINER} />
               </View>
             )}
             <View style={styles.termsContainer}>

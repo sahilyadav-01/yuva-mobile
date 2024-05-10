@@ -19,7 +19,7 @@ import {
   SEARCH_PACKAGES_TESTS,
   TESTS,
 } from './constants';
-import { BLACK } from '../../styles/colors';
+import { BLACK, MARINER } from '../../styles/colors';
 
 const LifestyleTestsAndPackages = props => {
   const {
@@ -68,7 +68,7 @@ const LifestyleTestsAndPackages = props => {
         <View style={[container, childContainerStyle]}>
           {addToCartLoad ? (
             <View style={[childContainerStyle, addToCartLoader]}>
-              <ActivityIndicator size={'small'} />
+              <ActivityIndicator size={'small'} color={MARINER} />
             </View>
           ) : (
             <>

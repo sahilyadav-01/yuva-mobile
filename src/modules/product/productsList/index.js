@@ -5,6 +5,7 @@ import GridList from './gridList';
 import Header from '../../../components/Header';
 import {useProductsList} from './useProductsList';
 import {styles as style} from './style';
+import { MARINER } from '../../../styles/colors';
 
 function ProductsList() {
   const styles = style();
@@ -21,7 +22,7 @@ function ProductsList() {
   if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size={'large'} />
+        <ActivityIndicator size={'large'} color={MARINER} />
       </View>
     );
   }
