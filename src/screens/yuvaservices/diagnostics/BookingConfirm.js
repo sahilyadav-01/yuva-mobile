@@ -5,7 +5,7 @@ import { styles } from '../../styles';
 
 const BookingConfirmScreen = () => {
     return (
-        <SafeAreaView style={styles.margin}>
+        <SafeAreaView style={{flex:1}}>
             <BookingConfirm />
         </SafeAreaView>
     )

@@ -4,7 +4,7 @@ import { styles } from '../../styles';
 import BookingTestAndPackage from '../../../modules/diagnostic/BookingTestAndPackage';
 const BookingTestAndPackageScreen = () => {
     return (
-        <SafeAreaView style={styles.margin}>
+        <SafeAreaView style={{flex:1}}>
             <BookingTestAndPackage />
         </SafeAreaView>
     )

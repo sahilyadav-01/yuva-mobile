@@ -90,10 +90,10 @@ const BookingTestAndPackage = () => {
   };
 //   if (!renderData) return null;
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <Header showBackButton={true} title={headerTitle()} />
       {renderData ? (
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <ScrollView style={styles.contentContainerStyle}>
           <View style={styles.booksID}>
             <View>
               <View>

@@ -37,8 +37,8 @@ export const styles = StyleSheet.create({
         color: MARINER,
       },
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        flex: 1,
+        paddingHorizontal: 16,
     },
     dateTime: {
         backgroundColor: WHITE,
@@ -48,9 +48,10 @@ export const styles = StyleSheet.create({
     },
     touchableButton: {
         backgroundColor: MARINER,
-        marginTop: 40,
-        marginHorizontal:13,
-        borderRadius: 8
+        marginTop: 24,
+        borderRadius: 8,
+        alignItems: CENTER,
+        justifyContent: CENTER
     },
     theme: { colors: { text: DARK_GREY } },
 
@@ -71,8 +72,6 @@ export const styles = StyleSheet.create({
 
     },
     booked: {
-        marginTop: 22,
-        marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
         color: MARINER,
         fontFamily: fonts.family.rubik600,
@@ -82,8 +81,7 @@ export const styles = StyleSheet.create({
         flexDirection: ROW
     },
     selectDate: {
-        marginTop: 30,
-        marginLeft: 16,
+        marginTop: 16,
         marginRight: 140,
         color: BLACK,
         fontFamily: fonts.family.rubik600,
@@ -222,4 +220,8 @@ export const styles = StyleSheet.create({
         marginTop:9,
         marginLeft:7.33,
     },
+    screenContainer: {
+        flex: 1,
+        paddingBottom: 24
+    }
 })

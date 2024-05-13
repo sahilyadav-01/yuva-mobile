@@ -17,8 +17,7 @@ export const styles = StyleSheet.create({
         width: fonts.width.width102,
     },
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        flex: 1,
     },
     dateTime: {
         backgroundColor: WHITE,
@@ -262,5 +261,6 @@ export const styles = StyleSheet.create({
         marginVertical:"40%",
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
-    }
+    },
+    screenContainer: {flex:1,paddingBottom:24}
 })
