@@ -54,14 +54,6 @@ const AddNewAddressContainer = isScreen => {
         {errorAddress && (
           <Text style={styles.errorContact}>{ERROR_TEXT_LOCATION}</Text>
         )}
-        {/* <Text style={styles.AddAddressLine}>{ADDRESSLINE2}</Text>
-                        <TextInput
-                            multiline={true}
-                            style={styles.textInputStyle}
-                            placeholder={LOCATION}
-                            placeholderTextColor={DARK_GRAY}
-                            onChangeText={onChangeLocation2}
-                        /> */}
         <Text style={styles.AddAddressLine}>{CITY}</Text>
         <SelectList
           setSelected={setSelectedCity}
