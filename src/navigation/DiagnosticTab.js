@@ -9,7 +9,7 @@ import BookingScreen from '../screens/yuvaservices/diagnostics/Booking';
 
 import MyPlanScreen from '../screens/yuvaservices/diagnostics/MyplanScreen';
 import { styles } from '../screens/styles';
-import { ORANGE } from '../styles/colors';
+import { MARINER } from '../styles/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,7 +18,7 @@ const DiagnosticsNavigation = () => {
     <Tab.Navigator
     tabBarOptions= {{   
       indicatorStyle :{
-            backgroundColor:ORANGE,
+            backgroundColor:MARINER,
             width:40,
             height:3,
             left:(Dimensions.get('window').width/2-50)/2,          

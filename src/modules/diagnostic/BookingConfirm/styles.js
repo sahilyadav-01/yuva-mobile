@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { ORANGE, WHITE, CYAN_BLUE, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
+import { MARINER, WHITE, BLACK, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
 import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         alignSelf: CENTER,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
-        color: CYAN_BLUE,
+        color: BLACK,
     },
     backGroundStyle: {backgroundColor: WHITE, marginBottom: 0},
     dropStyles: {
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         alignSelf: CENTER,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
-        color: ORANGE,
+        color: MARINER,
       },
     contentContainerStyle: {
         flexGrow: 1,
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
         height: 50,
     },
     touchableButton: {
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         marginTop: 40,
         marginHorizontal:13,
         borderRadius: 8
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
         marginTop: 22,
         marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
-        color: ORANGE,
+        color: MARINER,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
     },
@@ -85,19 +85,19 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         marginLeft: 16,
         marginRight: 140,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
     },
     Date: {
         marginTop: 16,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     Time: {
         marginTop: 12,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
     },
     AddMember: {
         marginLeft: 278,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize10,
         marginRight: 18,
@@ -124,7 +124,7 @@ export const styles = StyleSheet.create({
     SelectMember: {
         marginHorizontal:12,
         marginTop: 26,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
@@ -137,7 +137,7 @@ export const styles = StyleSheet.create({
         marginLeft: 7.33,
         minHeight: 25,
         marginTop: 9,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
@@ -163,7 +163,7 @@ export const styles = StyleSheet.create({
     },
     adressName: {
         marginLeft: 40,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
 
@@ -172,7 +172,7 @@ export const styles = StyleSheet.create({
         marginTop: 11,
         marginLeft: 40,
         marginBottom: 15,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
     },
