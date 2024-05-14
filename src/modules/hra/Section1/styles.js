@@ -72,6 +72,7 @@ export const styles = StyleSheet.create({
         backgroundColor: WHITE,
         borderWidth: 1,
         color:SLATE_GRAY,
+        justifyContent: CENTER
     },
     boxStylesContainer: {
         backgroundColor: WHITE,

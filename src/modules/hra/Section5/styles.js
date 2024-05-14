@@ -65,6 +65,7 @@ export const styles = StyleSheet.create({
         backgroundColor: WHITE,
         borderWidth: 1,
         color:BLACK,
+        justifyContent: CENTER,
     },
     touchableOpacityViewContainer: {
         marginTop: 30,
