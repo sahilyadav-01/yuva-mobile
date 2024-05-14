@@ -14,10 +14,11 @@ const CartItems = ({item,onPressRemove}) => {
         {item?.imageFilepath ? <Image source={{uri:item?.imageFilepath}} style={styles.iconStyle}/> : <SVG.BOOK_TEST_SVG_ICON/>}
         </View>
         <View style={{marginLeft:10}}>
-        <Text style={styles.itemName}>{item?.name}</Text>
+        <Text style={styles.itemName}>{item?.name} <Text style={styles.itemCost}>{item?.count > 1 ? `(${item?.count})` : ''}</Text></Text>
         <View style={styles.priceContainer}>
         <Text style={[styles.itemCost,{textDecorationLine:discount ? 'line-through' : 'none'}]}>₹ {item?.cost}</Text>
-        {discount ? <Text style={styles.discountText}>₹ {item?.discountedCost}</Text> : null}
+        {discount ? <Text style={styles.discountText}>₹ {item?.discountedCost} </Text> : null}
+        <Text style={styles.discountText}>per item</Text>
         </View>
         </View>
       </View>

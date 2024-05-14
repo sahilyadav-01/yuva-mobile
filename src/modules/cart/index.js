@@ -21,12 +21,9 @@ import {
 import {useCart} from './hooks/useCart';
 import {styles} from './styles';
 import DependentsModal from '../../components/Modal/DependentsModal';
-import Dependents from '../profile/components/dependents';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
-import { getPlatform } from '../../utils/utils';
 
 const Cart = props => {
-  const Platform = getPlatform();
   const {
     cart,
     coupon,

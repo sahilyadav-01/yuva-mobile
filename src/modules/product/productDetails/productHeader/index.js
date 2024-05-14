@@ -28,7 +28,7 @@ const ProductHeader = ({
         ref={ref => (flatListRef.current = ref)}
         initialNumToRender={1}
         horizontal
-        scrollEnabled={false}
+        scrollEnabled={true}
         data={productData.productImageList}
         keyExtractor={(_, index) => `productDetails${index}`}
         renderItem={({item, index}) => (

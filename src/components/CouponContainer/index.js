@@ -103,7 +103,9 @@ const CouponCard = props => {
                 ? styles.useCouponTextStyle1
                 : null,
             ]}>
-            Applied
+            {(item.couponCode === selectedCouponCode &&
+                (couponView || planeCouponCode)) ||
+              (item.couponCode === couponViewCart && route.name === 'Cart') ? 'Applied': 'Apply'}
           </Text>
         </View>
       </TouchableOpacity>
