@@ -94,19 +94,23 @@ export const useProductDetails = (productId, navigation) => {
   };
 
   const fetchProductDetails = () => {
+    if(productDetails?.data?.description?.length > 0)
     return `<html>
     <body>
-    ${productDetails?.data?.description ?? `<div></div>`}
+    ${productDetails?.data?.description}
     </body>
     </html>`;
+    return '';
   }
 
   const fetchNutritionalValue = () => {
+    if(productDetails?.data?.nutritional?.length > 0)
     return `<html>
     <body>
-    ${productDetails?.data?.nutritional ?? `<div></div>`}
+    ${productDetails?.data?.nutritional}
     </body>
     </html>`;
+    return '';
   }
   return {
     productDetails,

@@ -9,23 +9,23 @@ const ProductDescription = ({productDetails, nutritionalValue}) => {
   const {injectedScript, height, onMessage} = useProductDescription();
   return (
     <View style={styles.container}>
-      <WebView
+      {productDetails?.length > 0 && <WebView
         androidLayerType='software'
         javaScriptEnabled={true}
         injectedJavaScript={injectedScript}
         onMessage={onMessage}
         style={[styles.webView, {height}]}
         source={{html:productDetails}}
-      />
+      />}
       <View style={{height:8}}/>
-      <WebView
+      {nutritionalValue?.length > 0 && <WebView
         androidLayerType='software'
         javaScriptEnabled={true}
         injectedJavaScript={injectedScript}
         onMessage={onMessage}
         style={[styles.webView, {height}]}
         source={{html:nutritionalValue}}
-      />
+      />}
     </View>
   );
 };
