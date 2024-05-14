@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
-import { WHITE, DARK_BLUE, ORANGE, RED, CYAN_BLUE } from "../../../styles/colors";
+import { WHITE, DARK_BLUE, MARINER, RED, BLACK } from "../../../styles/colors";
 import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
     screenContainer: {
         flex:1,
+        backgroundColor: WHITE,
     },
     progressBarContainer: {
         width: '100%',
@@ -13,26 +14,25 @@ export const styles = StyleSheet.create({
     topContainer: {
         marginHorizontal: 13,
         marginVertical: 20,
+        flex:1,
     },
     topContainerTextStyle: {
-        fontfamily: fonts.family.fontFamilyRubix,
-        fontWeight: fonts.weight.fontWeight500,
+        fontfamily: fonts.family.monsterrant500,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
     },
     scrollViewContainer: {
-        height: 650,
+       flex:1,
     },
     scrollViewContentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 300
+       flex: 1,
     },
     questionViewContainer: {
         marginTop: 20,
     },
     questionViewContainerText: {
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.monsterrant500,
         marginBottom: 9,
         color: DARK_BLUE,
     },
@@ -46,13 +46,13 @@ export const styles = StyleSheet.create({
     text: {
         color: DARK_BLUE,
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat400,
         marginBottom: 9,
     },
     textError: {
         color: RED,
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat400,
         marginBottom: 8,
     },
     questionViewContainerTextInput: {
@@ -61,10 +61,10 @@ export const styles = StyleSheet.create({
         paddingLeft: 5,
         marginTop: 8,
         fontSize: fonts.size.fontSize12,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.monsterrant500,
         backgroundColor: WHITE,
         borderWidth: 1,
-        color:CYAN_BLUE,
+        color:BLACK,
     },
     touchableOpacityViewContainer: {
         marginTop: 30,
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
         display: FLEX,
         alignItems: CENTER,
         justifyContent: CENTER,
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         borderRadius:8,
         height: 48,
     },
