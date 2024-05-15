@@ -31,6 +31,7 @@ const ProductDetails = ({productId, navigation}) => {
         showSearch={false}
         showLocation={false}
         homeSearch={true}
+        title='Product Details'
       />
       {productDetails?.loading && (
         <View style={styles.loaderContainer}>

@@ -2,6 +2,7 @@ import React from 'react';
 import {TextInput, TouchableOpacity, View} from 'react-native';
 import {styles as style} from './style';
 import {SVG} from '../../../../../assets';
+import { BLACK } from '../../../../styles/colors';
 
 function SearchFilter({onFilterPress, onSearch,filterData}) {
   const styles = style();
@@ -19,6 +20,7 @@ function SearchFilter({onFilterPress, onSearch,filterData}) {
             onChangeText={onSearch}
             style={styles.search}
             placeholder="Search Product"
+            placeholderTextColor={BLACK}
           />
         </View>
       </View>

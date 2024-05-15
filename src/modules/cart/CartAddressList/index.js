@@ -10,7 +10,7 @@ import {useOurAddress} from '../../../components/hooks/useAddress';
 const ListHeader = ({totalAddresses,onAddAddress}) => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.heading}>Select Address {totalAddresses}</Text>
+      <Text style={styles.heading}>Select Address ({totalAddresses})</Text>
       <TouchableOpacity onPress={onAddAddress} style={styles.addAddressContainer}>
         <SVG.AddAddress />
         <Text style={styles.addAddressText}>Add New</Text>

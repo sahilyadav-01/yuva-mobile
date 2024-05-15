@@ -93,6 +93,7 @@ export const styles = StyleSheet.create({
   couponStatus: {
     fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize12,
+    color: BLACK,
   },
   viewStyles: {
     width: '70%',
