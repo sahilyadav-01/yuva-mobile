@@ -10,15 +10,52 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
     const focused = useIsFocused();
     const [couponCode, setCouponCode] = useState('');
     const [planTypee, setPlanTypee] = useState();
+    const [couponSuccess, setCouponSuccess] = useState(false);
+    const [couponApply, setCouponApply] = useState(false);
     const dispatch = useDispatch();
     const { loggedIn } = useSelector(state => state.auth);
     const isLoggedIn = loggedIn === 'loggedIn';
     const { coupon, couponView, planeCouponCode, apiErrorMessage ,selectedCouponCode} = useSelector(state => state.coupon);
-    const { cart } = useSelector(state => state.cart);
+    const { cart, cartLoading, cartError } = useSelector(state => state.cart);
     const { couponViewCart } = cart || {};
     const onCouponValue = (value) => {
         setCouponCode(value)
     }
+
+    const onSuccess = couponCode => {
+      console.log('CCA', couponCode === couponViewCart);
+      if (couponCode === couponViewCart) {
+        setCouponApply(true);
+        dispatch(selectedCoupon({couponCode: ''}));
+        dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode:''}))
+      } else {
+        setCouponApply(true);
+        dispatch(selectedCoupon({couponCode}));
+      }
+    };
+
+      useEffect(() => {
+        console.log('CCCC', couponApply, selectedCouponCode);
+        if (couponApply && selectedCouponCode) {
+            setCouponApply(false);
+          isPlan
+            ? dispatch(
+                redeemCouponsPlanSliceThunk({
+                  couponCode,
+                  planUuid,
+                  planType: planTypee,
+                }),
+              )
+            : dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode:selectedCouponCode}));
+        }
+      }, [couponApply, selectedCouponCode]);
+
+      useEffect(()=>{
+        if(couponSuccess) {
+            dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn: isLoggedIn ?? undefined }));
+        }
+      },[couponSuccess])
+
     useEffect(()=>{
         if(planType==='Annually'){
             setPlanTypee("ANNUALLY")
@@ -45,7 +82,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
             } else {
                 dispatch(redeemCouponsSliceThunk({ isLoggedIn, couponCode }));
             }
-                dispatch(getCartUserThunk());
         }
     }
     useEffect(() => {
@@ -61,7 +97,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
                         dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn, isPlan, planTypeEnum:planTypee, planUuid }));
                     }
                     else {
-                        dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));
+                        setCouponSuccess(true);
                     }
                 }
             },[planTypee,planType])
@@ -75,12 +111,7 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
                 dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));
             }
         }else{
-            if (isLoggedIn) {
-                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10, isLoggedIn }));
-            }
-            else {
-                dispatch(couponSliceThunk({ pageNo: 1, pageSize: 10 }));
-            }
+            setCouponSuccess(true);
         }
     }, []);
 
@@ -94,5 +125,6 @@ export const useCouponCard = (isPlan ,planUuid,planType) => {
         selectedCouponCode,
         couponViewCart,
         planTypee,
+        onSuccess
     };
 }

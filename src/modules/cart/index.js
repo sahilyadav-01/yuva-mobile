@@ -51,6 +51,7 @@ const Cart = props => {
     onContainerCrossPress
   } = useCart();
   const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
+  console.log('Cart',cart,loading);
   const {
     totalCost: appliedTotalCost,
     amountToBePaid: appliedAmountToBePaid,

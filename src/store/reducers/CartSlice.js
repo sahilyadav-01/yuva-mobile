@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
 import { YuvaService } from '../../../App';
 import store from '../Store';
+import { redeemCouponsSliceThunk } from './CouponSlice';
 
 export const getCartUserThunk = createAsyncThunk(
   'cart/getCartUser',
@@ -58,6 +59,7 @@ const initialState = {
     discountBeforeCoupon:0,
     orderAmount:0,
     processingCharge: 0,
+    couponId: null,
   },
   loading: false,
   apiError: false,
@@ -68,6 +70,9 @@ const initialState = {
   cartCouponDiscount:0,
   addToCartItem: false,
   updateCartLoading: false,
+  cartLoading: false,
+  cartError: false,
+  cartEmpty: false,
 };
 
 const cartSlice = createSlice({
@@ -91,6 +96,8 @@ const cartSlice = createSlice({
     [getCartUserThunk.pending]: state => {
       state.loading = true;
       state.apiError = false;
+      state.cartLoading = true;
+      state.cartError = false;
       state.apiErrorMessage = '';
       state.cart = {
         itemDtoList: [],
@@ -99,6 +106,8 @@ const cartSlice = createSlice({
       };
     },
     [getCartUserThunk.fulfilled]: (state, {payload}) => {   
+      state.cartLoading = false;
+      state.cartError = false;
       state.cart.itemDtoList= payload?.data?.data?.itemDtoList.map(item=>{
         return {...item,...payload?.data?.data?.cartPriceResponseDto}
       }) || []
@@ -116,8 +125,61 @@ const cartSlice = createSlice({
       state.cart.cartCouponDiscount= payload?.data?.data?.cartPriceResponseDto?.discountForCoupon;
       state.cart.orderAmount= payload?.data?.data?.cartPriceResponseDto?.costAfterDiscount;
       state.cart.discountBeforeCoupon= payload?.data?.data?.cartPriceResponseDto?.discountBeforeCoupon;
+      state.cart.couponId= payload?.data?.data?.cartPriceResponseDto?.couponId ?? null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
+      console.log('Payload',payload)
+      state.cartLoading = false;
+      state.cartError = true;
+      state.cartEmpty = payload?.response?.status === 404;
+      state.apiError = true;
+      state.loading = false;
+      if(state.cart.couponViewCart === null){
+        state.cart = {
+          itemDtoList: [],
+          totalCost: 0,
+          isRemoved: false,
+        };
+        state.existingIds = [];
+        state.apiErrorMessage = payload?.response?.data?.errorMessage;
+      }
+    },
+    [redeemCouponsSliceThunk.pending]: (state, { payload }) => {
+      state.loading = true;
+      state.couponView = null;
+      state.totalCost = 0;
+      state.amountToBePaidCoupon = 0;
+      state.totalDiscount = 0;
+      state.couponMessage = false;
+      state.apiErrorMessage = '';
+      state.apiError = false;
+    },
+    [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
+      console.log('AP',action.payload);
+      state.apiError= false;
+      state.apiErrorMessage= '';
+      state.loading= false;
+      state.cartLoading = false;
+      state.cartError = false;
+      state.cart.itemDtoList= action.payload?.data?.itemDtoList.map(item=>{
+        return {...item,...action.payload?.data?.cartPriceResponseDto}
+      }) || [];
+      state.cart.totalCost= action.payload?.data?.cartPriceResponseDto?.totalCost || 0
+      state.cart.amountToBePaid= action.payload?.data?.cartPriceResponseDto?.amountToBePaid || 0
+      state.cart.totalDiscount= action.payload?.data?.cartPriceResponseDto?.totalDiscount || 0
+      state.cart.processingCharge= action.payload?.data?.cartPriceResponseDto?.processingCharge || 0;
+      if(typeof action.payload?.data?.itemDtoList === 'object' && action.payload?.data?.itemDtoList.length >= 0){
+        state.existingIds = action.payload?.data?.itemDtoList.map(item=>item.productId)
+      }
+      state.cart.couponViewCart= action.payload?.data?.cartPriceResponseDto?.couponCode || null;
+      state.cart.cartCouponDiscount= action.payload?.data?.cartPriceResponseDto?.discountForCoupon;
+      state.cart.orderAmount= action.payload?.data?.cartPriceResponseDto?.costAfterDiscount;
+      state.cart.discountBeforeCoupon= action.payload?.data?.cartPriceResponseDto?.discountBeforeCoupon;
+      state.cart.couponId= action.payload?.data?.cartPriceResponseDto?.couponId ?? null;
+    },
+    [redeemCouponsSliceThunk.rejected]: (state, action) => {
+      state.cartLoading = false;
+      state.cartError = true;
       state.cart = {
         itemDtoList: [],
         totalCost: 0,

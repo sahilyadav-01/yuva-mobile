@@ -49,8 +49,7 @@ axiosClient.interceptors.request.use(
       '/package/popular',
       '/test/popular',
       '/plan/popular',
-      '/cart',
-      '/refresh-token'
+      '/refresh-token',
     ];
 
     loginCTAUrls.forEach(item=>{
@@ -58,17 +57,20 @@ axiosClient.interceptors.request.use(
     })
 
     const isLoginApi = loginUrls.filter(item => {
-      if (config.url.includes(item)) return item;
+      if (config.url.includes(item) || (config.url.includes('/cart') && store.getState().auth.loggedIn !== 'loggedIn')) return item;
     });
+
+    config.url.includes('/cart') && console.log('AB',isLoginApi)
 
     config['headers'] = {
       ...config['headers'],
     };
 
-    if((config.url.includes('/cart') || config.url.includes('/coupon/getAllCoupons/user') && (true || store.getState().auth.loggedIn !== 'loggedIn'))){
+    if((config.url.includes('/cart') || config.url.includes('/coupon/getAllCoupons/user'))){
       const deviceId = await getDeviceId();
       config['headers'] = {...config['headers'], Cookie:`SESSION_ID=${deviceId}`}
     }
+
 
     if (isLoginApi.length === 0) {
       const jwt = await getJwt();
@@ -77,6 +79,13 @@ axiosClient.interceptors.request.use(
         Authorization: `Bearer ${jwt ?? ''}`,
       };
       return config;
+    }
+    else if(config.url.includes('/cart?couponCode')){
+      const jwt = await getJwt();
+      config['headers'] =  {
+        ...config['headers'],
+        Authorization: `Bearer ${jwt ?? ''}`,
+      };
     }
     return config;
   },

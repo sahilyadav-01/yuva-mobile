@@ -18,7 +18,7 @@ export const useCart = (args) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { cart, loading, addToCartItem } = useSelector(state => state.cart);
+  const { cart, loading, addToCartItem, cartLoading, cartEmpty } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
   const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
@@ -48,7 +48,7 @@ export const useCart = (args) => {
     if (isLoggedIn) {
       const productTypes = getProductTypes();
       setAddButtonPress(true);
-      dispatch(getCartUserThunk());
+      //dispatch(getCartUserThunk());
       if((!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST'))){
         dispatch(dispatch_processingCharge(processingCharge));
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
@@ -174,6 +174,12 @@ export const useCart = (args) => {
       dispatch(getCartUserThunk());
     }
   }, [isRemoved]);
+
+  useEffect(()=>{
+    if(route?.name === 'Cart' && navigation?.isFocused() && !cartLoading && cartEmpty && cart?.couponViewCart?.length > 0) {
+      dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode:cart?.couponViewCart}));
+    }
+  },[focused,cartLoading,cartEmpty])
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {

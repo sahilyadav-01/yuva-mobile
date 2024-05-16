@@ -34,18 +34,17 @@ export const couponSliceThunk = createAsyncThunk(
 export const redeemCouponsSliceThunk = createAsyncThunk(
   '/coupon/redeem',
   async ({ isLoggedIn, couponCode }, { fulfillWithValue, rejectWithValue }) => {
-
     let endpoint;
     const sessionId = await getDeviceId();
     if (isLoggedIn) {
       if (couponCode) {
-        endpoint = `/cart?couponCode=${couponCode}&fromWeb=false`;
+        endpoint = `/cart?couponCode=${couponCode}`;
       } else {
-        endpoint = `/cart?clearCoupon=true&fromWeb=false`;
+        endpoint = `/cart?clearCoupon=true`;
       }
     } else {
       if (couponCode) {
-        endpoint = `/cart/guest?sessionId=${sessionId}&couponCode=${couponCode}&fromWeb=false`;
+        endpoint = `/cart/guest?sessionId=${sessionId}&couponCode=${couponCode}`;
       } else {
         endpoint = `/cart/guest?&clearCoupon=true`;
       }
@@ -134,35 +133,35 @@ const couponSlice = createSlice({
     },
 
     /** redeemCoupons */
-    [redeemCouponsSliceThunk.pending]: (state, { payload }) => {
-      state.loading = true;
-      state.couponView = null;
-      state.totalCost = 0;
-      state.amountToBePaidCoupon = 0;
-      state.totalDiscount = 0;
-      state.couponMessage = false;
-      state.apiErrorMessage = '';
-      state.apiError = false;
-    },
-    [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.apiErrorMessage = '';
-      state.totalCost = action?.payload?.data?.totalCost || 0;
-      state.amountToBePaidCoupon = action?.payload?.data?.amountToBePaid || 0;
-      state.totalDiscount = action?.payload?.data?.totalDiscount || 0;
-      state.couponMessage = true;
-      state.couponView = action?.payload?.data?.couponCode || null;
-      state.couponDiscount = action?.payload?.data?.discountForCoupon;
-      state.couponId = action?.payload?.data?.couponId || null;
-    },
-    [redeemCouponsSliceThunk.rejected]: (state, action) => {
-      state.loading = false;
-      state.redeemCoupons = action.payload?.errorMessage || '';
-      state.apiError = true;
-      state.couponMessage = true;
-      state.couponView = null;
-      state.apiErrorMessage = action?.payload?.errorMessage;
-    },
+    // [redeemCouponsSliceThunk.pending]: (state, { payload }) => {
+    //   state.loading = true;
+    //   state.couponView = null;
+    //   state.totalCost = 0;
+    //   state.amountToBePaidCoupon = 0;
+    //   state.totalDiscount = 0;
+    //   state.couponMessage = false;
+    //   state.apiErrorMessage = '';
+    //   state.apiError = false;
+    // },
+    // [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
+    //   state.loading = false;
+    //   state.apiErrorMessage = '';
+    //   state.totalCost = action?.payload?.data?.totalCost || 0;
+    //   state.amountToBePaidCoupon = action?.payload?.data?.amountToBePaid || 0;
+    //   state.totalDiscount = action?.payload?.data?.totalDiscount || 0;
+    //   state.couponMessage = true;
+    //   state.couponView = action?.payload?.data?.couponCode || null;
+    //   state.couponDiscount = action?.payload?.data?.discountForCoupon;
+    //   state.couponId = action?.payload?.data?.couponId || null;
+    // },
+    // [redeemCouponsSliceThunk.rejected]: (state, action) => {
+    //   state.loading = false;
+    //   state.redeemCoupons = action.payload?.errorMessage || '';
+    //   state.apiError = true;
+    //   state.couponMessage = true;
+    //   state.couponView = null;
+    //   state.apiErrorMessage = action?.payload?.errorMessage;
+    // },
      /** redeemCoupons For Plane*/
      [redeemCouponsPlanSliceThunk.pending]: (state, { payload }) => {
       state.loading = true;

@@ -44,37 +44,20 @@ const CouponCard = props => {
     selectedCouponCode,
     couponViewCart,
     planTypee,
+    onSuccess
   } = useCouponCard(isPlan, planUuid, planType);
   const {loggedIn} = useSelector(state => state.auth);
-  const isLoggedIn = loggedIn === 'loggedIn';
-  const dispatch = useDispatch();
   const renderItem = ({item, index}) => {
-    const onSuccess = () => {
-      let couponCode = item.couponCode;
-      dispatch(selectedCoupon({couponCode}));
-      if (isPlan) {
-        dispatch(
-          redeemCouponsPlanSliceThunk({
-            couponCode,
-            planUuid,
-            planType: planTypee,
-          }),
-        );
-      } else {
-        dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode}));
-      }
-      dispatch(getCartUserThunk());
-    };
     return (
-      <TouchableOpacity onPress={onSuccess} key={index}>
+      <TouchableOpacity onPress={()=>onSuccess(item?.couponCode)} key={index}>
         <View
           style={[
             styles.couponContainer,
             {
               borderColor:
-                (item.couponCode === selectedCouponCode &&
-                  (couponView || planeCouponCode)) ||
-                (item.couponCode === couponViewCart && route.name === 'Cart')
+              (item.couponCode === selectedCouponCode &&
+                (couponView || planeCouponCode)) ||
+              (item.couponCode === couponViewCart)
                   ? MARINER
                   : SLATE_BLUE,
             },
@@ -99,13 +82,13 @@ const CouponCard = props => {
               styles.couponStatus,
               (item.couponCode === selectedCouponCode &&
                 (couponView || planeCouponCode)) ||
-              (item.couponCode === couponViewCart && route.name === 'Cart')
+              (item.couponCode === couponViewCart)
                 ? styles.useCouponTextStyle1
                 : null,
             ]}>
             {(item.couponCode === selectedCouponCode &&
                 (couponView || planeCouponCode)) ||
-              (item.couponCode === couponViewCart && route.name === 'Cart') ? 'Applied': 'Apply'}
+              (item.couponCode === couponViewCart) ? 'Applied': 'Apply'}
           </Text>
         </View>
       </TouchableOpacity>
