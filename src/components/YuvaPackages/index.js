@@ -20,11 +20,6 @@ function YuvaPackages({
       ];
       return (
         <TouchableOpacity
-          disabled={
-            !isLifeStylePackage &&
-            existingIds.length > 0 &&
-            existingIds.includes(item?.id)
-          }
           onPress={() =>
             isLifeStylePackage
               ? onPackagePress(item?.enumName, item?.name)
@@ -44,6 +39,11 @@ function YuvaPackages({
           </View>
           {!isLifeStylePackage && (
             <TouchableOpacity
+            disabled={
+              !isLifeStylePackage &&
+              existingIds.length > 0 &&
+              existingIds.includes(item?.id)
+            }
               onPress={() => onPressAdd(item)}
               style={styles.addContainer}>
               <SVG.AddIcon />
