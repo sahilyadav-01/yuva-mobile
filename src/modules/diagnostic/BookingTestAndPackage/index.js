@@ -14,7 +14,7 @@ import Header from '../../../components/Header';
 import {useBookingTestAndPackage} from './hooks/useBookingTestAndPackage';
 import {SVG} from '../../../../assets';
 
-const BookingTestAndPackage = () => {
+const BookingTestAndPackage = ({params}) => {
   const {
     packageDetails,
     packageList,
@@ -28,7 +28,8 @@ const BookingTestAndPackage = () => {
     testDetails,
     headerTitle,
     isScreenRes,
-  } = useBookingTestAndPackage();
+  } = useBookingTestAndPackage(params);
+  console.log('Render',params)
   const renderItem = ({item, index}) => {
     const onToggle = () => {
       onUpdate(index);

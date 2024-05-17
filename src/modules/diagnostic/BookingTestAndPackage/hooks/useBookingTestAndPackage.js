@@ -8,9 +8,10 @@ import { useRoute } from '@react-navigation/native';
 import { BOOKINGCONFIRM, DETAILS, HEALTH_CHECKUP_DIAGNOSTIC, LIFE_STYLE, MY_TESTS } from '../constants';
 import { useCart } from '../../../cart/hooks/useCart';
 
-export const useBookingTestAndPackage = () => {
+export const useBookingTestAndPackage = (params) => {
     const route = useRoute();
-    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = route?.params;
+    const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = params ?? route?.params;
+    console.log('Data',params,params ?? route?.params,{ packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes })
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const focused = useIsFocused();

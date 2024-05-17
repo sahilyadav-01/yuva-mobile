@@ -12,25 +12,28 @@ export const usePackages = (isTest) => {
   const {addToCart} = useCart({isHomeScreen: true});
   const navigation = useNavigation();
   const {existingIds} = useSelector(state => state.cart);
-  const onPackagePress = item =>
+  const onPackagePress = item => {
+    console.log('Item',item)
     navigation.navigate(PRODUCT_DETAILS_NAVIGATION, {
       headerName: HEALTH,
-      packageName: item.packageUuid,
-      uuid: item.packageUuid ?? null,
+      packageName: item.id,
+      uuid: item.id ?? null,
       showCartButton: true,
-      isTest: item.testId ? true : false,
-      name: item.packageName ?? null,
-      cost: item.cost ?? null,
+      isTest: item?.test,
+      name: item.name ?? null,
+      cost: item.originalPrice ?? null,
     });
+  }
   const onPressAdd = (item) => {
-    if(!isTest && !existingIds.includes(item?.packageUuid)){
+    console.log('Existing idsa',existingIds,item)
+    if(!item?.test && !existingIds.includes(item?.id)){
     addToCart(
       {name: item.name, cost: item.finalPrice, productId: item.id},
       'PACKAGE',
     );
     navigation.navigate(NEXTSCREEN_NAVIGATION, {index: 0});
     }
-    else if(isTest && !existingIds.includes(item?.testId)){
+    else if(item?.test && !existingIds.includes(item?.id)){
     addToCart({ name: item.name, cost: item.finalPrice, productId:item.id.toString() }, 'TEST');
     navigation.navigate(NEXTSCREEN_NAVIGATION, { index: 1 });
     }
