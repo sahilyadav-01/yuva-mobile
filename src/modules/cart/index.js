@@ -1,14 +1,10 @@
 import React from 'react';
-import { ScrollView, View, Text, KeyboardAvoidingView,TouchableOpacity} from 'react-native';
-import CardButton from '../../components/CardButton';
+import { View, Text, TouchableOpacity} from 'react-native';
 import CartDetails from '../../components/CartDetails';
-import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
-import PriceDetails from '../../components/PriceDetails';
 import {
   CART_DETAILS,
   MY_CART,
-  PRICE_DETAILS,
   ADD_NEW_MEMBER,
   ADD_MEMBER,
   SELECT_MEMBER,
@@ -26,14 +22,11 @@ import AddMembersModal from '../../components/Modal/AddMembersModal';
 const Cart = props => {
   const {
     cart,
-    coupon,
-    couponView,
     onPressCardButton,
     buttonText,
     onSaveDetailsPress,
     onAddModalCrossPress,
     onRemove,
-    userData,
     onModalCrossPress,
     onPressCheckBox,
     checkBoxStatus,
@@ -48,20 +41,11 @@ const Cart = props => {
     onSaveRelationsPress,
     relativesData,
     loading,
-    onContainerCrossPress
   } = useCart();
-  const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
-  console.log('Cart',cart,loading);
-  const {
-    totalCost: appliedTotalCost,
-    amountToBePaid: appliedAmountToBePaid,
-    totalDiscount: appliedTotalDiscount,
-    couponDiscount,
-  } = coupon || {};
+  const {itemDtoList} = cart || {};
   return (
     <View style={styles.screenContainer}>
       <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
-      {/* <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}> */}
       <View style={styles.container}>
         <DependentsModal
           visible={modalVisible}
@@ -106,12 +90,10 @@ const Cart = props => {
             onRemove={onRemove}
           />
         </View>}
-        {/* {itemDtoList.length > 0 &&  !loading && <CouponCard />} */}
         <TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
           <Text style={styles.textStyle}>{buttonText}</Text>
         </TouchableOpacity>
       </View>
-      {/* </KeyboardAvoidingView> */}
     </View>
   );
 };

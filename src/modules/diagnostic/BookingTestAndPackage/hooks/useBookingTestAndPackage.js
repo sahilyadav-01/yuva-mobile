@@ -11,7 +11,6 @@ import { useCart } from '../../../cart/hooks/useCart';
 export const useBookingTestAndPackage = (params) => {
     const route = useRoute();
     const { packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes } = params ?? route?.params;
-    console.log('Data',params,params ?? route?.params,{ packageName, name, cost, uuid, userVersion, version, plan, showCartButton, isTest, headerName,isScreenRes })
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const focused = useIsFocused();

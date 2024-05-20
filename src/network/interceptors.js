@@ -60,8 +60,6 @@ axiosClient.interceptors.request.use(
       if (config.url.includes(item) || (config.url.includes('/cart') && store.getState().auth.loggedIn !== 'loggedIn')) return item;
     });
 
-    config.url.includes('/cart') && console.log('AB',isLoginApi)
-
     config['headers'] = {
       ...config['headers'],
     };

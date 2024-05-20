@@ -14,7 +14,6 @@ const CartHeader = ({totalItems}) => {
 
 const CartDetails = props => {
   const {data, onRemove} = props;
-  console.log('Data data',data);
   return (
     <FlatList
       ItemSeparatorComponent={() => <View style={{height: 8}} />}

@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 
 const styles = style();
 
-const PriceBreakdown = () => {
+const PriceBreakdown = ({plan,priceBreakup}) => {
   const {cart:{totalCost,amountToBePaid,totalDiscount,processingCharge}} = useSelector(state=>state.cart)
   const data = [
-    {key: 'Price', value: totalCost},
-    {key: 'Discount', value: totalDiscount},
+    {key: 'Price', value: plan ? priceBreakup?.price : totalCost},
+    {key: 'Discount', value: plan ? priceBreakup?.totalDiscount :totalDiscount},
     {key: 'Collection Charges', value: processingCharge,description:'Applicable for Diagnostic Tests*'},
-    {key: 'Total', value: amountToBePaid},
+    {key: 'Total', value: plan ? priceBreakup?.amountToBePaid :amountToBePaid},
   ];
   return (
     <View style={styles.container}>

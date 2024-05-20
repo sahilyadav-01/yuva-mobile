@@ -9,7 +9,6 @@ export const programAndPlanThunk = createAsyncThunk(
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
@@ -25,7 +24,6 @@ export const popularPackageNameThunk = createAsyncThunk(
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
-      //const errorOject =  JSON.stringify(error.response.data)
       return rejectWithValue(error.response.data);
     }
   },
@@ -221,10 +219,12 @@ const programAndPlanSlice = createSlice({
     selectedItem(state, {payload}) {
       state.setItemName = payload;
     },
+    updateFinalAmount(state, {payload}) {
+      const planType = Object.keys(state.planAmountToBePaid)[0];
+      state.planAmountToBePaid[planType] = payload;
+    }
   },
   extraReducers: {
-    /**
-     */
     [programAndPlanThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
@@ -407,5 +407,6 @@ export const {
   saveGuestPlanData,
   setOurPlanData,
   selectedItem,
+  updateFinalAmount
 } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

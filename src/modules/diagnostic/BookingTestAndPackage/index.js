@@ -29,7 +29,7 @@ const BookingTestAndPackage = ({params}) => {
     headerTitle,
     isScreenRes,
   } = useBookingTestAndPackage(params);
-  console.log('Render',params)
+
   const renderItem = ({item, index}) => {
     const onToggle = () => {
       onUpdate(index);

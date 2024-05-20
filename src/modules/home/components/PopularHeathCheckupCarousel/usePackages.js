@@ -13,7 +13,6 @@ export const usePackages = (isTest) => {
   const navigation = useNavigation();
   const {existingIds} = useSelector(state => state.cart);
   const onPackagePress = item => {
-    console.log('Item',item)
     navigation.navigate(PRODUCT_DETAILS_NAVIGATION, {
       headerName: HEALTH,
       packageName: item.id,
@@ -25,7 +24,6 @@ export const usePackages = (isTest) => {
     });
   }
   const onPressAdd = (item) => {
-    console.log('Existing idsa',existingIds,item)
     if(!item?.test && !existingIds.includes(item?.id)){
     addToCart(
       {name: item.name, cost: item.finalPrice, productId: item.id},

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView} from 'react-native';
 import Header from '../../../components/Header';
 import PriceBreakdown from './PriceBreakdown';
 import CouponCard from '../../../components/CouponContainer';
@@ -7,6 +7,7 @@ import {styles} from './styles';
 import {usePaymentReconfirm} from './hooks/usePaymentReconfirm';
 import TermsContainer from './TermsContainer';
 import PaymentModes from './PaymentModes';
+import { getPlatform } from '../../../utils/utils';
 
 const Separator = () => {
   return <View style={styles.separator} />;
@@ -23,10 +24,11 @@ const PaymentReconfirmList = () => {
         hideMenu={true}
         showCart={true}
       />
-      <View style={{paddingHorizontal: 20, flex: 1}}>
+      <ScrollView style={{paddingHorizontal: 20, flex: 1}}>
+      <KeyboardAvoidingView behavior={getPlatform().isIOS ? 'padding' : null} style={{flex: 1}}>
         <PriceBreakdown />
         <View style={{flex: 1}}>
-          <CouponCard />
+          <CouponCard/>
           <Separator/>
           <PaymentModes cod={cod} onCodPress={onCodPress} onOnlinePress={onOnlinePress}/>
           <TermsContainer checked={checked} onCheckboxPress={onCheckboxPress} />
@@ -34,7 +36,8 @@ const PaymentReconfirmList = () => {
             <Text style={styles.buttonText}>Place Order</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   );
 };

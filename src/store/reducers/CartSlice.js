@@ -128,7 +128,6 @@ const cartSlice = createSlice({
       state.cart.couponId= payload?.data?.data?.cartPriceResponseDto?.couponId ?? null;
     },
     [getCartUserThunk.rejected]: (state, {payload}) => {
-      console.log('Payload',payload)
       state.cartLoading = false;
       state.cartError = true;
       state.cartEmpty = payload?.response?.status === 404;
@@ -155,7 +154,6 @@ const cartSlice = createSlice({
       state.apiError = false;
     },
     [redeemCouponsSliceThunk.fulfilled]: (state, action) => {
-      console.log('AP',action.payload);
       state.apiError= false;
       state.apiErrorMessage= '';
       state.loading= false;
