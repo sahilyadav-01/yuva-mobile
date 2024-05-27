@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
 import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlice ';
@@ -12,11 +13,16 @@ import { SVG } from "../../../../assets";
 import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from "../../../store/reducers/BannerSlice";
 import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 import { getTopProducts } from "../../../store/reducers/ProductSlice";
+import { getPlatform } from "../../../utils/utils";
+import { Alert } from "react-native";
+import { setPermission } from "../../../store/reducers/LocationSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
+  const focused = useIsFocused();
+  const Platform = getPlatform();
   const { loggedIn } = useSelector(state => state.auth);
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const { popularPackageName,homeTests,homePackages } = useSelector(state => state.programAndPlan);
@@ -24,7 +30,7 @@ export const useHome = () => {
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
   const { topProducts } = useSelector(state=>state.product);
-  const focused = useIsFocused();
+  const {permissionStatus} = useSelector(state=>state.location);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -48,6 +54,7 @@ export const useHome = () => {
       dispatch(fetchBannerDetails2({position:2,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails3({position:3,screenType:'HOME_SCREEN'}));
       dispatch(getCartUserThunk());
+      if(permissionStatus || Platform.isIOS) fetchCurrentCoordinates();
     }
   }, [focused, loggedIn]);  
   const servicesArray = [
@@ -124,6 +131,16 @@ export const useHome = () => {
   }
 
   const onViewAllServices = (services) => navigation.navigate('Services',{services})
+
+  const fetchCurrentCoordinates = () => {
+    const onSuccess = (args) => {
+      const {coords:{latitude,longitude}} = args;
+    };
+    const onError = (error) => {
+      if(Platform.isIOS) dispatch(setPermission(false));
+    }
+      Geolocation.getCurrentPosition(onSuccess,onError)
+  }
 
   return {
     activeIndex,

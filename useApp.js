@@ -2,16 +2,18 @@ import {useEffect, useState} from 'react';
 import firebaseMessaging from '@react-native-firebase/messaging';
 import {Freshchat, FreshchatConfig,FreshchatNotificationConfig} from 'react-native-freshchat-sdk';
 import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
+import store from './src/store/Store';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
 import SplashScreen from 'react-native-splash-screen';
 import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
 import { getExistingUser } from './src/store/LocalStore';
+import { setPermission } from './src/store/reducers/LocationSlice';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const checkVersion = false;
+  const checkVersion = true;
   const [showContent, setShowContent] = useState(!checkVersion);
   const [fcmToken, setFcmToken] = useState(null);
 
@@ -99,16 +101,29 @@ export const useApp = () => {
             VersionCheck.needUpdate({
               currentVersion: currentAndroidVersion,
               latestVersion,
-            }).then(obj => {
+            }).then(async (obj) => {
               if (obj && obj?.isNeeded)
                 handleVersionUpdate(obj?.latestVersion, storeUrl);
-              else setShowContent(true);
+              else {
+                await handleLocationPermission();
+                setShowContent(true);}
             });
           },
         );
       });
     }
   };
+
+  const handleLocationPermission = async () => {
+    if(Platform.isAndroid && AndroidPlatform.Version > 23) {
+        const status = await PermissionsAndroid.request('android.permission.ACCESS_FINE_LOCATION',{
+          title: 'Request to access geo-location',
+          message: 'Permission to access your geo-location is used to provide services specific to your location',
+          buttonPositive: 'Yes'
+        })
+        store.dispatch(setPermission(status === 'granted'));
+    }
+  }
 
   useEffect(()=>{
     if(typeof fcmToken === 'string') {
