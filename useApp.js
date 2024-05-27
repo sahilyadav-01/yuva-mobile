@@ -11,7 +11,7 @@ import { getExistingUser } from './src/store/LocalStore';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const checkVersion = true;
+  const checkVersion = false;
   const [showContent, setShowContent] = useState(!checkVersion);
   const [fcmToken, setFcmToken] = useState(null);
 
