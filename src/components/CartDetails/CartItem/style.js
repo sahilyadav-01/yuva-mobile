@@ -1,66 +1,65 @@
 import {StyleSheet} from 'react-native';
 import {
+  BLACK,
   CYAN_BLUE,
   GUARDSMAN_RED,
   RED_SHADE,
   SPANISH_WHITE,
 } from '../../../styles/colors';
-import {CENTER, LINE_THROUGH, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {
+  CENTER,
+  LINE_THROUGH,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    packageContainer: {
-      paddingVertical: 11,
-      paddingLeft: 16,
-      paddingRight: 30,
+    container: {
+      paddingVertical: 8,
+      paddingRight: 12,
+      paddingLeft: 8,
       flexDirection: ROW,
+      alignItems: CENTER,
       justifyContent: SPACE_BETWEEN,
-      backgroundColor: SPANISH_WHITE,
+      borderWidth: 0.5,
+      borderColor: '#D1D1D1',
+      borderRadius: 4,
     },
-    packageName: {
-      maxWidth: '40%',
-      fontSize: fonts.size.fontSize12,
-      lineHeight: 18,
-      color: CYAN_BLUE,
-      fontFamily: fonts.family.rubik500,
-    },
-    discountText: {
-      fontSize: fonts.size.fontSize12,
-      lineHeight: 18,
-      color: RED_SHADE,
-      fontFamily: fonts.family.rubik400,
-      marginRight:4,
-      textDecorationLine:LINE_THROUGH
-    },
-    priceText: {
-      fontSize: fonts.size.fontSize12,
-      lineHeight: 18,
-      color: CYAN_BLUE,
-      fontFamily: fonts.family.rubik400,
-    },
-    detailsContainer: {
-      paddingVertical: 14,
-      paddingLeft: 16,
-      paddingRight: 30,
+    rowView: {
       flexDirection: ROW,
-      justifyContent: SPACE_BETWEEN,
       alignItems: CENTER,
     },
-    testText: {
-      fontFamily: fonts.family.rubik400,
-      lineHeight: 15,
+    itemCost: {
+      marginRight: 4,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize10,
-      color: CYAN_BLUE,
+      color: BLACK,
     },
-    buttonContainer: {flexDirection: ROW, alignItems: CENTER},
-    removeText: {
-      fontFamily: fonts.family.rubik400,
-      lineHeight: 18,
-      fontSize: fonts.size.fontSize12,
-      color: GUARDSMAN_RED,
-      marginLeft: 8,
+    discountText: {
+      fontFamily: fonts.family.montserrat400,
+      fontSize: fonts.size.fontSize10,
+      color: '#6B6B6B',
     },
-    priceContainer: {flexDirection: ROW},
+    itemName: {
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize10,
+      color: BLACK,
+    },
+    iconContainer: {
+      width: 40,
+      height: 40,
+      paddingHorizontal: 4,
+      paddingVertical: 12,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+      backgroundColor: '#E4E4E4',
+    },
+    iconStyle: {
+      width: 25,
+      height: 25,
+    },
+    priceContainer: {flexDirection: ROW, alignItems: CENTER},
   });
 };

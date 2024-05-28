@@ -2,10 +2,11 @@ import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
 import {
   WHITE,
-  ORANGE,
   SHADOW,
   PLATINUM,
-  DARK_BLUE,
+  BLACK,
+  MARINER,
+  ZIRCON,
 } from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
@@ -27,17 +28,22 @@ const styles = ({disabled}) => {
       flexDirection: ROW,
       paddingVertical: 16,
       marginBottom: 20,
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       borderRadius: 8,
       alignItems: CENTER,
       justifyContent: CENTER,
+      marginTop: 8
     },
     textInputStyle: {
-      borderBottomWidth: 1,
-      borderColor: PLATINUM,
-      paddingBottom: 5,
-      marginBottom: 35,
-      color: DARK_BLUE,
+      paddingVertical: 12,
+      paddingLeft: 20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderWidth: 0.5,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
+      marginBottom: 16,
     },
     saveButtonText: {
       fontFamily: fonts.family.rubik400,
@@ -51,7 +57,23 @@ const styles = ({disabled}) => {
       backgroundColor: PLATINUM,
       marginBottom: 30,
     },
-    dropdownBoxStyle: {borderWidth: 0, paddingLeft: 5},
+    dropdownBoxStyle: {
+      paddingVertical: 12,
+      paddingLeft: 20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
+      borderWidth: 0.5,
+      borderColor: BLACK,
+      marginBottom: 8,
+    },
+    inputStyle: {
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+    }
   });
 };
 

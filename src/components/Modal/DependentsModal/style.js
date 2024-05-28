@@ -1,16 +1,16 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, ORANGE, SHADOW, WHITE} from '../../../styles/colors';
+import {BLACK, MARINER, WHITE} from '../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
-import { getWindowDimensions } from '../../../utils/utils';
+import { getDimensions, getWindowDimensions } from '../../../utils/utils';
 
 export const styles = () => {
-  const {height:windowHeight} = getWindowDimensions();
+  const {height:windowHeight,width} = getWindowDimensions();
   return StyleSheet.create({
     selectText: {
       marginTop: 8,
-      fontFamily: fonts.family.rubik500,
-      color: CYAN_BLUE,
+      fontFamily: fonts.family.monsterrant500,
+      color: BLACK,
       lineHeight: 16,
       marginHorizontal: 6,
     },
@@ -48,11 +48,11 @@ export const styles = () => {
       alignItems: CENTER,
     },
     itemSeparatorStyle: {height: 24},
-    primaryText: {fontFamily: fonts.family.rubik500, color:CYAN_BLUE,lineHeight:18},
-    secondaryText: {fontFamily: fonts.family.rubik600, color:ORANGE,lineHeight:21},
+    primaryText: {fontFamily: fonts.family.monsterrant500, color:BLACK,lineHeight:18},
+    secondaryText: {fontFamily: fonts.family.montserrat600, color:MARINER,lineHeight:21},
     emptyDependentContainer: {height:1,paddingVertical:0},
     headingContainer: {marginTop:8,marginHorizontal:6,flexDirection:ROW,justifyContent:SPACE_BETWEEN},
-    addMemberContainer: {marginTop:24,justifyContent:CENTER,alignSelf:CENTER,backgroundColor:WHITE},
-    addMemberText: {fontFamily:fonts.family.rubik500,lineHeight:21,fontSize:fonts.size.fontSize14,color:CYAN_BLUE}
+    addMemberContainer: {marginTop:24,justifyContent:CENTER,alignSelf:CENTER,backgroundColor:MARINER,width:width - 32, paddingVertical:12, alignItems: CENTER,justifyContent:CENTER,borderRadius:8},
+    addMemberText: {fontFamily:fonts.family.montserrat600,lineHeight:21,fontSize:fonts.size.fontSize14,color:WHITE}
   });
 };

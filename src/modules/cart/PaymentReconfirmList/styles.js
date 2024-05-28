@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, FLASH_WHITE, ORANGE, WHITE} from '../../../styles/colors';
-import {CENTER} from '../../../styles/constants';
+import {CYAN_BLUE, FLASH_WHITE, MARINER, ORANGE, WHITE} from '../../../styles/colors';
+import {ABSOLUTE, CENTER, ROW} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -59,5 +59,27 @@ export const styles = StyleSheet.create({
   },
   PriceDetails:{
     paddingVertical:'5%',
+  },
+  placeOrder: {
+    width:'100%',
+    backgroundColor: MARINER,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    paddingVertical: 16,
+    marginTop: 24,
+    borderRadius: 10
+  },
+  separator: {
+    marginTop: 8,
+    borderWidth: 0.5,
+    width: '100%',
+    borderColor: 'grey',
+    backgroundColor: 'grey',
+    borderStyle: 'dashed',
+  },
+  buttonText: {
+    color: WHITE,
+    fontFamily: fonts.family.monsterrant500,
+    fontSize:fonts.size.fontSize12,
   }
 });

@@ -13,10 +13,10 @@ import {useSelector} from 'react-redux';
 import {useView} from './hooks/useView';
 import {CANCEL, CHECK, MESSAGE, RESCHEDULE, WAITING} from '../../constant';
 import {
-  CYAN_BLUE,
+  BLACK,
   GREEN,
   LIGHT_PINK,
-  ORANGE,
+  MARINER,
   RED_SHADE,
   WHITE,
 } from '../../../../styles/colors';
@@ -146,7 +146,7 @@ const ViewAppointments = () => {
                 : [styles.familyView, styles.childView]
             }>
             <Text
-              style={[styles.FamilyName, {color: memberName ? CYAN_BLUE : ORANGE}]}>
+              style={[styles.FamilyName, {color: memberName ? BLACK : MARINER}]}>
               {memberName || MYSELF}
             </Text>
             {relation && <Text style={styles.RelationStyle}>{relation}</Text>}

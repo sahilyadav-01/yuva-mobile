@@ -14,6 +14,6 @@ export const styles = StyleSheet.create({
     color: GREY,
     paddingHorizontal: 10,
     fontSize: fonts.size.fontSize10,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
   },
 });

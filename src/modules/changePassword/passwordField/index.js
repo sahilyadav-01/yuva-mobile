@@ -1,9 +1,10 @@
 import React from 'react';
 import {Image, TextInput, TouchableOpacity, View} from 'react-native';
 import {PNG} from '../../../../assets';
-import {SILVER_CHALICE} from '../../../styles/colors';
+import {BLACK, SILVER_CHALICE} from '../../../styles/colors';
 import separatorStyles from '../../forgotPassword/style';
 import styles from './style';
+import {fonts} from '../../../styles/fonts';
 
 const InputPassword = props => {
   const {separator, textInputContainer} = separatorStyles();
@@ -12,7 +13,15 @@ const InputPassword = props => {
     <View style={props?.extraStyles}>
       <View style={inputContainer}>
         <TextInput
-          style={[textInputContainer, textInputStyles]}
+          style={[
+            textInputStyles,
+            {
+              fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+              color: BLACK,
+              paddingVertical: 0,
+            },
+          ]}
           placeholder={props.placeholderText}
           onChangeText={props.onChangeText}
           value={props.value}
@@ -20,7 +29,7 @@ const InputPassword = props => {
           secureTextEntry={props?.secureTextEntry}
           onEndEditing={props.onEndEditing}
           autoComplete={'off'}
-          textContentType='oneTimeCode'
+          textContentType="oneTimeCode"
         />
         <TouchableOpacity
           style={imageContainer}

@@ -1,28 +1,28 @@
 import { StyleSheet } from "react-native";
-import { WHITE, DARK_BLUE, ORANGE } from "../../../styles/colors";
+import { WHITE, DARK_BLUE, MARINER } from "../../../styles/colors";
 import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
+    container: {flex:1,backgroundColor:WHITE},
     progressBarContainer: {
         width: '100%',
     },
     topContainer: {
         marginHorizontal: 13,
         marginVertical: 20,
+        flex:1,
     },
     topContainerTextStyle: {
-        fontWeight: fonts.weight.fontWeight500,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.monsterrant500,
         fontSize: fonts.size.fontSize18,
         color: DARK_BLUE,
     },
     scrollViewContainer: {
-        height: 650,
+        flex:1,
     },
     scrollViewContentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 300
+       flex:1,
     },
     touchableOpacityViewContainer: {
         marginTop: 30,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         display: FLEX,
         alignItems: CENTER,
         justifyContent: CENTER,
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         borderRadius:8,
         height: 48,
     },

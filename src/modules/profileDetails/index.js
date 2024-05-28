@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {SVG} from '../../../assets';
 import Header from '../../components/Header';
 import {useProfileDetails} from './hooks/useProfileDetails';
 import {styles} from './style';
+import {SVG} from '../../../assets';
 
 const ProfileDetails = () => {
   const {data} = useProfileDetails();
@@ -12,10 +12,8 @@ const ProfileDetails = () => {
     drawerContentContainer,
     textStyle,
     headingStyle,
-    separator,
     rowContainer,
     itemContainer,
-    descriptionContainer,
     contentStyle,
   } = styles();
   return (
@@ -30,17 +28,16 @@ const ProfileDetails = () => {
         <ScrollView>
           <>
             <Text style={textStyle}>Profile Setting</Text>
-            <View style={{height: 4}} />
+            <View style={{height: 12}} />
             {data.map((item, index) => (
-              <TouchableOpacity onPress={item?.onPress} style={itemContainer}>
+              <TouchableOpacity onPress={item?.onPress} style={[itemContainer,{marginBottom:index<data.length - 1 ? 12 : 0}]}>
                 {item?.Icon()}
-                <View style={descriptionContainer}>
+                <View style={rowContainer}>
+                  <View>
                   <Text style={headingStyle}>{item?.heading}</Text>
-                  <View style={rowContainer}>
-                    <Text style={contentStyle}>{item?.description}</Text>
-                    <SVG.ArrowRight />
+                  <Text style={contentStyle}>{item?.description}</Text>
                   </View>
-                  {index < data.length - 1 && <View style={separator} />}
+                  <SVG.BackButton transform={[{rotate:'180deg'}]}/>
                 </View>
               </TouchableOpacity>
             ))}

@@ -6,15 +6,15 @@ import { clearJwt, clearRefreshToken, getRefreshToken, setJwt, setRefreshToken }
 export const createOrderThunk = createAsyncThunk(
   'payment/createOrder',
   async (
-    {plan, cod, bookingRequestDto, subscriptionRequestDto, name, age, gender},
+    {plan, cod, bookingRequestDto, subscriptionRequestDto, name, age, gender, cart},
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/order?cod=${cod}&plan=${plan}`;
+      const endpoint = `/order`;
       const reqBody =
         plan
-          ? {bookingRequestDto, subscriptionRequestDto}
-          : {bookingRequestDto, subscriptionRequestDto, name, age, genderEnum:gender && gender.toUpperCase()};
+          ? {bookingRequestDto,subscriptionRequestDto,cod,cart}
+          : {bookingRequestDto, subscriptionRequestDto, name, age, genderEnum:gender?.toUpperCase() ?? undefined, cart, cod};
       const refreshToken = await getRefreshToken();
       const fcmToken = await firebaseMessaging().getToken();
       const refreshTokenResp = await YuvaService.post('/refresh-token', {token:refreshToken,fcmToken});
@@ -96,7 +96,11 @@ const paymentSlice = createSlice({
   reducers: {
     resetPaymentMethod(state, payload){
       state.cod=payload?.payload;
-    }},
+    },
+    changePaymentMethod(state, {payload}){
+      state.cod = payload;
+    },
+  },
   extraReducers: {
     [encReqThunk.pending]: state => {
       state.encReqLoading = true;
@@ -164,6 +168,6 @@ const paymentSlice = createSlice({
 });
 
 export const paymentInit = paymentSlice.getInitialState();
-export const {resetPaymentMethod} = paymentSlice.actions;
+export const {resetPaymentMethod,changePaymentMethod} = paymentSlice.actions;
 
 export default paymentSlice.reducer;

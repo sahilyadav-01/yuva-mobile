@@ -8,7 +8,7 @@ import Header from '../../../components/Header';
 import { BUTTON_TEXT, HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_2_HEADING, SECTION_2_SUB_HEADING } from "../constant";
 import { useSection2 } from './hooks/useSection2';
 import { styles } from './styles';
-import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
+import { ANAKIVA, MARINER } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
@@ -17,10 +17,10 @@ const Section2 = () => {
     const { progressWidth, dispatch_option, questionData, answers, next, renderData } = useSection2();
     if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
     return (
-        <>
+        <View style={styles.container}>
             <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
             <View style={styles.progressBarContainer}>
-                <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.2} width={progressWidth} height={12} />
+                <Progress.Bar color={MARINER} unfilledColor={ANAKIVA} progress={0.2} width={progressWidth} height={12} />
             </View>
             <View style={styles.topContainer}>
                 <Text style={styles.topContainerTextStyle1}>{SECTION_2_HEADING}</Text>
@@ -29,7 +29,7 @@ const Section2 = () => {
                 <View style={styles.scrollViewContainer}>
                     <ScrollView
                         bounces={false}
-                        contentContainerStyle={styles.scrollViewContentContainerStyle}
+                        style={styles.scrollViewContentContainerStyle}
                         showsVerticalScrollIndicator={false}>
                         <FlatList
                             data={questionData}
@@ -71,7 +71,7 @@ const Section2 = () => {
                     </ScrollView>
                 </View>
             </View>
-        </>
+        </View>
     )
 }
 

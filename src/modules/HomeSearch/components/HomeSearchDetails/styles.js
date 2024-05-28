@@ -24,6 +24,11 @@ export const styles = addToCartLoad => {
     },
     screenContainer: {paddingHorizontal: 14, paddingVertical: 24},
     childContainerStyle: {flex: addToCartLoad ? 1 : undefined},
-    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER}
+    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER},
+    subCategoryList: {
+      marginHorizontal: 20,
+      marginBottom: 16,
+    },
+    itemSeparator: {height: 24},
   });
 };

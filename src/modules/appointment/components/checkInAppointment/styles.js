@@ -4,8 +4,8 @@ import {ABSOLUTE, CENTER, FLEX_END, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 export const styles = StyleSheet.create({
   thanksMessageStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
   },
   thanksMessageView: {
@@ -41,21 +41,21 @@ export const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize12,
     marginLeft: 15,
     marginTop: 15,
   },
   otpDescriptionStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize12,
     marginLeft: 15,
   },
   thankStyle: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
     marginLeft: 15,
     marginTop: 15,

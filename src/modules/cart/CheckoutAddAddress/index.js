@@ -14,13 +14,7 @@ const CheckoutAddAddressList = () => {
      <View style={styles.contentContainer}>
      <KeyboardAvoidingView style={styles.fullViewContainer} behavior={Platform.isIOS ? 'position' : null}>
       <ScrollView nestedScrollEnabled style={styles.fullViewContainer}>
-        <View style={styles.fullViewContainer}>
-        <OrderDetails />
-        <View style={styles.bodyContainer}>
-          <ProgressBar progress="0" showDateTimeSection={true} />
-        </View>
         <AddNewAddressContainer isScreen={'CheckoutAddressList'} />
-        </View>
       </ScrollView>
       </KeyboardAvoidingView>
      </View>

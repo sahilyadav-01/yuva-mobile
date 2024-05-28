@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AddressListing, getUserAddress, saveCheckedAddress, setCity } from "../../store/reducers/ProfileSlice";
@@ -6,6 +6,7 @@ import { NEW_ADDRESS } from "../constants";
 
 
 export const useOurAddress = (isNavScreen) => {
+  const focused = useIsFocused();
   const route = useRoute();
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -22,6 +23,22 @@ export const useOurAddress = (isNavScreen) => {
       setUserAttribute(route?.params)
     }
   }, [route])
+  useEffect(()=>{
+    if(navigation?.isFocused() && route?.params?.addressAdded){
+      let list = userAddress.concat(userNewAddress);
+      const addressSelected = Object.values(route?.params)[0]
+      setUserAddressListing([...userAddress,{...addressSelected,addressAdded:undefined}]);
+      dispatch(saveCheckedAddress({
+        address: addressSelected?.address,
+        pincode: addressSelected?.pinCode,
+        contact: addressSelected?.contactNumber,
+        cityName: addressSelected?.cityName,
+        away:addressSelected?.saveAs,
+        cityId: addressSelected?.cityId,
+      }));
+      setChecked(list.length -1);
+    }
+  },[focused])
   const address = userAddress?.[checked]?.address || userAttribute?.[0]?.address;
   const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
   const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;

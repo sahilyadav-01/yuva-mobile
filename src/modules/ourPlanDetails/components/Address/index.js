@@ -6,7 +6,6 @@ import { CHECKOUT, CONFIRM_DETAILS, OUR_PLAN_ADDRESS } from "./constants";
 import { styles } from "./styles";
 import { useOurPlanAddress } from "./hooks/useAddress";
 import AddressList from "../../../../components/Address";
-import ProgressBar from "../../../../components/ProgressBar";
 
 const OurPlanAddress = () => {
     const { AddressAdded,addressListing } = useOurPlanAddress();
@@ -15,9 +14,6 @@ const OurPlanAddress = () => {
         <SafeAreaView>
             <Header showBackButton={true} title={CHECKOUT} hideMenu={true} showCart={false} />
             <ScrollView contentContainerStyle={styles.contentContainerStyle} nestedScrollEnabled={true}>
-                <View style={styles.progressBar}>
-                    <ProgressBar progress={0} />
-                </View>
                 <AddressList isNavScreen={OUR_PLAN_ADDRESS}/>
                 <View>
                 {addressListing?.length>0 &&

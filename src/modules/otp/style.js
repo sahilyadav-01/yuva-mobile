@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, CYAN_BLUE_OPACITY, FLASH_WHITE, LIGHT_MERCURY, ORANGE, WHITE} from '../../styles/colors';
+import {CYAN_BLUE, CYAN_BLUE_OPACITY, FLASH_WHITE, LIGHT_MERCURY, MARINER, WHITE} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import { getPlatform } from '../../utils/utils';
@@ -34,7 +34,7 @@ const styles = (enableResendOtp) => {
       justifyContent: SPACE_BETWEEN,
     },
     verifyButtonContainer: {
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       borderRadius: 10,
       paddingVertical: 16,
       alignItems: CENTER,

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
-import {PALE_ORANGE} from '../../styles/colors';
+import {BLACK} from '../../styles/colors';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
 import { SVG } from '../../../assets';
@@ -36,7 +36,7 @@ const onPress=()=>{
         multiline={false}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor={PALE_ORANGE}
+        placeholderTextColor={BLACK}
         style={[styles.textInputStyles,searchStyle]}
         value={value}
         onPressIn={onPress}

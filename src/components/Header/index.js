@@ -1,12 +1,10 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TouchableWithoutFeedback, TextInput} from 'react-native';
-import {styles} from './styles';
-import {SVG} from '../../../assets';
-import {LOGIN_TEXT} from './constant';
-import {useHeader} from './hooks/useHeader';
-import { CYAN_BLUE, DARK_GRAY, FLASH_WHITE, INDIGO_LIGHT, VERY_LIGHT_ORANGE} from '../../styles/colors';
-import SelectList from 'react-native-dropdown-select-list';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import Search from '../Search';
+import {useHeader} from './hooks/useHeader';
+import {styles} from './styles';
+import { DARK_GRAY} from '../../styles/colors';
+import {PNG, SVG} from '../../../assets';
 
 const Header = props => {
   const {
@@ -37,70 +35,103 @@ const Header = props => {
     hideTitle,
     initial,
     onSearchPress,
-    showSearchBox
+    showSearchBox,
+    name,
+    onToggleDrawer
   } = useHeader(props);
 
-  return (
-    <View style={styles.container}>
-    <View style={styles.topSection}>
-      {canGoBack && (
-        <View style={{flexDirection:'row',alignItems:'center'}}>
-        <TouchableOpacity style={{padding:10}} onPress={onBackPress}>
-          <SVG.Back />
-        </TouchableOpacity>
-        {!hideTitle && <Text style={{marginLeft: 16, color: INDIGO_LIGHT}}>{title}</Text>}
-        </View>
-      )}
-      {!canGoBack && (
-        <View style={{flexDirection:'row',alignItems:'center'}}>
-          <TouchableOpacity onPress={onRightPress}>
-          {isLoggedIn && !hideMenu ? (
-            PrefixIcon ? PrefixIcon() :
-            initial && <View style={styles.nameContainer}>
-              <Text style={styles.nameText}>{initial[0]?.toUpperCase()}</Text>
+  const Heading = () => {
+    return (
+      !canGoBack && (
+            <View style={styles.mainContainerStyle}>
+              <TouchableOpacity onPress={onToggleDrawer}>
+                <Image source={PNG.HomeProfile} style={styles.imageStyle} />
+              </TouchableOpacity>
+              <View style={styles.nameContainerStyle}>
+                <Text style={styles.nameTextStyle}>Hi, {isLoggedIn ? name : 'Guest'}</Text>
+                <Text style={styles.nameTextStyle}>
+                  May you always be healthy
+                </Text>
+              </View>
             </View>
-          ) : isLoggedIn && hideMenu ? null : (
-            <Text style={styles.loginText}>{LOGIN_TEXT}</Text>
-          )}
+      )
+    );
+  };
+
+  const SearchBox = () => {
+    return (
+      showSearch && (
+        <>
+          <View style={styles.searchStyle} />
+          <TouchableOpacity onPress={onSearchPress}>
+            <SVG.SearchIcon />
           </TouchableOpacity>
-          {!hideTitle && <Text style={{marginLeft: 16}}>{title}</Text>}
-        </View>
-      )}
-      <View style={styles.pinView}>
-        {showLocation && <>
-        <SVG.LocationOn fill={CYAN_BLUE} />
-        <SelectList
-          data={cityList}
-          placeholder={placeholder}
-          search={false}
-          setSelected={setSelected}
-          boxStyles={styles.boxStyle}
-          inputStyles={styles.inputStyles}
-          dropdownStyles={styles.dropdownStyles}
-          dropdownTextStyles={styles.inputStyles}
+        </>
+      )
+    );
+  };
+
+  const Login = ({showLogin}) => {
+    return (
+      showLogin && (
+        <TouchableOpacity onPress={onRightPress} style={styles.loginContainer}>
+          <Text style={styles.loginTextStyle}>Login</Text>
+        </TouchableOpacity>
+      )
+    );
+  };
+
+  const BackButton = () => {
+    return (
+      (canGoBack || props?.showBackButton) && (
+        <TouchableOpacity style={styles.backButton} onPress={onBackPress}>
+          <SVG.BackButton />
+        </TouchableOpacity>
+      )
+    );
+  };
+
+  const SearchInput = () => {
+    return (
+      showSearchBox && (
+        <Search
+          placeholder={searchPlaceholder}
+          placeholderTextColor={DARK_GRAY}
+          onChangeText={onChangeSearch}
+          value={query}
+          isScreen={isScreen}
+          isSearch={isSearch}
+          editable={editable}
+          onSubmitEditing={onSubmitEditing}
         />
-        </>}
-        {showSearch && (
-          <>
-            <View style={styles.searchStyle} />
-            <TouchableOpacity onPress={onSearchPress}>
-              <SVG.SearchIcon />
-            </TouchableOpacity>
-          </>
-        )}
+      )
+    );
+  };
+
+  if(props?.homeScreen) {
+    return (
+      <View style={styles.homeTopSection}>
+        <Heading/>
+        <SearchBox/>
+        <Login showLogin={props?.showLogin ?? false}/>
       </View>
+    );
+  }
+
+  return (
+    <View>
+    <View style={[styles.topSection,{justifyContent:showSearch ? 'space-between' : 'center'}]}>
+      <View style={styles.backContainer}>
+    <BackButton/>
     </View>
-    {showSearchBox && <Search 
-            placeholder={searchPlaceholder} 
-            placeholderTextColor={DARK_GRAY}
-            onChangeText={onChangeSearch} 
-            value={query}
-            isScreen={isScreen}
-            isSearch={isSearch}
-            editable={editable}
-            onSubmitEditing={onSubmitEditing}
-    />}
-      <View style={{height:8}}/>
+    <View style={styles.mainContainer}>
+      {!hideTitle && <Text style={styles.titleTextStyle}>{title}</Text>}
+      </View>
+      <View style={styles.searchIconContainer}>
+      <SearchBox/>
+      </View>
+      </View>
+      <SearchInput/>
       </View>
   );
 };

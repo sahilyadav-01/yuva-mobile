@@ -161,6 +161,37 @@ import BookAppointment from './BookAppointment';
 import GetMedicine from './GetMedicine';
 import ConsultDoctor from './ConsultDoctor';
 import PageNotFound from './PageNotFound';
+import Filter from './Filter.png';
+import product_image from './product_image.png'
+import HomeProfile from './HomeProfile.png';
+import BookTest from './BookTest';
+import PlanOPD from './Plan_OPD';
+import Plans from './Plans.png';
+import PopularHealth from './PopularHealth';
+import AddIcon from './AddIcon';
+import PlanHRA from './Plan_HRA';
+import PlanOnlineConsultation from './Plan_Online_consultation';
+import PlanPharmacy from './Plan_Pharmacy';
+import PlanCheckup from './Plan_Checkup';
+import PlanAmbulance from './Plan_Ambulance';
+import BackButton from './BackButton';
+import HeaderSearch from './HeaderSearch';
+import PlanBanner from './PlanBanner.png';
+import PlansSvg from './PlansSvg';
+import Location from './Location';
+import Appointment from './Appointment';
+import DoctorAppointment from './DoctorAppointment.png';
+import ProductFilter from './ProductFilter';
+import ProductSearch from './ProductSearch';
+import ProductCart from './ProductCart';
+import ProductAdd from './ProductAdd';
+import ProductRemove from './ProductRemove';
+import CallSupport from './CallSupport';
+import AmbulanceSupport from './AmbulanceSupport';
+import AmbulanceNetwork from './AmbulanceNetwork';
+import DeleteItem from './DeleteItem';
+import Phone from './Phone';
+import AddAddress from './AddAddress';
 
 const PNG = {
   AMICO,
@@ -221,7 +252,13 @@ const PNG = {
   AmbulanceImage,
   YUVA_LOGO,
   TopSplashScreenBackgroundImage,
-  BottomSplashScreenBackgroundImage
+  BottomSplashScreenBackgroundImage,
+  product_image,
+  Filter,
+  HomeProfile,
+  Plans,
+  PlanBanner,
+  DoctorAppointment,
 };
 
 const SVG = {
@@ -328,7 +365,32 @@ const SVG = {
   BookAppointment,
   GetMedicine,
   ConsultDoctor,
-  PageNotFound
+  PageNotFound,
+  BookTest,
+  PlanOPD,
+  PopularHealth,
+  AddIcon,
+  PlanHRA,
+  PlanOnlineConsultation,
+  PlanPharmacy,
+  PlanCheckup,
+  PlanAmbulance,
+  BackButton,
+  HeaderSearch,
+  PlansSvg,
+  Location,
+  Appointment,
+  ProductFilter,
+  ProductSearch,
+  ProductCart,
+  ProductAdd,
+  ProductRemove,
+  CallSupport,
+  AmbulanceNetwork,
+  AmbulanceSupport,
+  DeleteItem,
+  Phone,
+  AddAddress
 };
 
 export {PNG, SVG};

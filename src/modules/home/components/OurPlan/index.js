@@ -1,88 +1,49 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList, Image,ImageBackground} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {OUR_PLANS, RUPEE, SUB_HEADING, VIEW_ALL, VIEW_DETAILS, YEAR} from './constants';
-import {PNG} from '../../../../../assets';
+import {OUR_PLANS, VIEW_ALL} from './constants';
 import {useOurPlan} from './hooks/useOurPlan';
-import { CONTAIN } from '../../../../styles/constants';
+import PlanDescriptor from '../../../../components/PlanDescriptor';
+import { fonts } from '../../../../styles/fonts';
+import { BLACK, CYAN_BLUE, GREEN, MARINER, WHITE } from '../../../../styles/colors';
+import { CENTER } from '../../../../styles/constants';
 
 const OurPlan = () => {
-  const {handlePress,selectedItems,popularPlan,onDetails,onViewAll} = useOurPlan();
-
-  const renderItem = (item, index) => {
-    const onPress=()=>{
-      handlePress(item?.index);
-  }
-    return (
-      <View style={selectedItems.includes(item.index) && styles.PlanClickView} key={index}>
-        <View style={styles.PlanContainer}>
-          <TouchableOpacity
-            style={[
-              styles.radioOuterCircle,
-              selectedItems.includes(item.index) &&
-                styles.radioOuterCircleSelected,
-            ]}
-            onPress={onPress}>
-            {selectedItems.includes(item.index) && (
-              <View style={styles.radioInnerCircle} />
-            )}
-          </TouchableOpacity>
-          <View style={styles.DetailsContainer}>
-            <View style={styles.PlanText}>
-              <Text style={styles.radioButtonText}>{item?.item?.name}</Text>
-            </View>
-            <View style={styles.PlanYear}>
-              <Text style={styles.radioButtonText}>{'  '}{1}{' '}{' '}{YEAR}</Text>
-            </View>
-            <View style={styles.PlanPrice}>
-              {item?.item?.yearlyPrice != item?.item?.yearlyFinalCost &&
-            <Text style={styles.lineThrough}>{RUPEE}{item?.item?.yearlyPrice}</Text>
-             }
-              <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.yearlyFinalCost}</Text>
-            </View>
-          </View>
-        </View>
-        {selectedItems.includes(item.index) && (
-          <TouchableOpacity onPress={onDetails}>
-            <View style={styles.expandedContent}>
-              <Text style={styles.expandedContentText}>{VIEW_DETAILS}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      </View>
-    );
-  };
+  const {handlePress,homePlans,onDetails,onViewAll} = useOurPlan();
   return (
     <View style={styles.container}>
       <View style={styles.OurPlansHeaderStyle}>
-        <Text style={styles.LandingPageText1}>{OUR_PLANS} </Text>
-        <View style={styles.line} />
-
-        <TouchableOpacity onPress={onViewAll}>
-          <Text style={styles.LandingPageText2}>{VIEW_ALL}</Text>
-        </TouchableOpacity>
+        <Text style={styles.heading}>{OUR_PLANS} </Text>
+        <Text onPress={onViewAll} style={styles.viewAll}>{VIEW_ALL}</Text>
       </View>
-      <View style={styles.subHeadingView}>
-        <Text style={styles.subHeadingText}>{SUB_HEADING}</Text>
-      </View>
-      <View style={styles.ImageView}>
-        <Image style={styles.ImageBanner} resizeMode={CONTAIN} source={PNG.Our_Plan_Banner} />
-      </View>
-      {popularPlan.length >0 && 
-      <View style={styles.PlanView}>
-      <ImageBackground
-      source={PNG.OurPlanRadioButton}
-      style={styles.ImageBanner2} 
-      resizeMode="cover">
-        <View style={styles.TextImage}>
-          <FlatList
-            data={popularPlan}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
+      <PlanDescriptor/>
+      {homePlans.data.length > 0 && 
+      <View style={styles.planContainer}>
+       {homePlans.data.map((item,index)=>{
+          return (
+            <View style={{elevation:index === 1 ? 15 : 0,zIndex:index === 1 ? 15 : 0,paddingHorizontal:8,paddingVertical:12,backgroundColor:index === 1 ? WHITE : '#EEF5FF',borderRadius:12,marginTop:24,width:'33.33%' }}>
+              <View style={{height:50}}><Text numberOfLines={3} style={{fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize12,color:BLACK}}>{item?.name}</Text></View>
+              <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize6,color:CYAN_BLUE,marginVertical:4}}>Check Health Benefits</Text>
+              <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize8,color:BLACK}}>₹ {item?.price}</Text>
+              <TouchableOpacity onPress={() => {handlePress(index)
+               onDetails()
+               }} style={{width:'38.5%',marginVertical:8,backgroundColor:MARINER,alignItems:CENTER,justifyContent:CENTER,borderRadius:4,paddingVertical:4}}>
+                <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize6,color:WHITE}}>Buy Now</Text>
+              </TouchableOpacity>
+              <Text style={{marginTop:8,marginBottom:4,fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize6,color:BLACK}}>Key Features</Text>
+              {item?.planServiceNameList.map(i=>{
+                return (
+                  <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom:4,alignItems:'center'}}>
+                    <Text numberOfLines={2} style={{maxWidth:'55%',fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize4,color:BLACK}}>{i.serviceName}</Text>
+                    <Text numberOfLines={2} style={{maxWidth:'35%',fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize4,color:GREEN}}>{i.shortDescription}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          );
+       })}
         </View>
-        </ImageBackground>
-      </View>}
+      }
        </View>
   );
 };

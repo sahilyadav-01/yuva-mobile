@@ -7,7 +7,7 @@ import Header from '../../../components/Header';
 import { useSection5 } from './hooks/useSection5';
 import { BUTTON_TEXT, KEYBOARD_TYPE_VALUE, SECOND_QUESTION, SECTION_5_HEADING, PLACEHOLDER_COLOR, THIRD_QUESTION, HEALTH_RISK_ASSESSMENT } from '../constant';
 import { styles } from './styles';
-import { DARK_GRAY, GREEN, PALE_GOLDENROD, SLATE_GRAY } from '../../../styles/colors';
+import { ANAKIVA, DARK_GRAY, MARINER, SLATE_GRAY } from '../../../styles/colors';
 import { styles as hraStyles } from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 import { getPlatform } from '../../../utils/utils';
@@ -19,9 +19,9 @@ const Section5 = () => {
   return (
     <Container behavior='padding' style={styles.screenContainer}>
       <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
-      <ScrollView>
+      <ScrollView style={styles.scrollViewContentContainerStyle}>
       <View style={styles.progressBarContainer}>
-        <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={0.5} width={progressWidth} height={12} />
+        <Progress.Bar color={MARINER} unfilledColor={ANAKIVA} progress={0.5} width={progressWidth} height={12} />
       </View>
       <View style={styles.topContainer}>
         <Text style={styles.topContainerTextStyle}>{SECTION_5_HEADING}</Text>

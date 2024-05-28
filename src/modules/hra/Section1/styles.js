@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { WHITE, DARK_BLUE, ORANGE, SLATE_GRAY, RED } from "../../../styles/colors";
+import { WHITE, DARK_BLUE, MARINER, SLATE_GRAY, RED } from "../../../styles/colors";
 import { CENTER, FLEX } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
@@ -16,10 +16,9 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     topContainerTextStyle: {
-        fontWeight: fonts.weight.fontWeight500,
         fontSize: fonts.size.fontSize24,
         color: DARK_BLUE,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.monsterrant500,
     },
     scrollViewContainer: {
         height: 650,
@@ -35,7 +34,7 @@ export const styles = StyleSheet.create({
         display: FLEX,
         alignItems: CENTER,
         justifyContent: CENTER,
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         borderRadius:8,
         height: 48,
     },
@@ -48,20 +47,20 @@ export const styles = StyleSheet.create({
     },
     questionViewContainerText: {
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat400,
         marginBottom: 9,
         color: SLATE_GRAY,
     },
     text: {
         color: SLATE_GRAY,
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat400,
         marginBottom: 9,
     },
     textError: {
         color: RED,
         fontSize: fonts.size.fontSize16,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat400,
         marginBottom: 8,
     },
     questionViewContainerTextInput: {
@@ -73,6 +72,7 @@ export const styles = StyleSheet.create({
         backgroundColor: WHITE,
         borderWidth: 1,
         color:SLATE_GRAY,
+        justifyContent: CENTER
     },
     boxStylesContainer: {
         backgroundColor: WHITE,

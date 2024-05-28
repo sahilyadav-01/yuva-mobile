@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, RED, VERY_DARK_GREY, ORANGE_GREY } from '../../../styles/colors';
+import { BLACK, DARK_BLUE, PLATINUM, WHITE, AMBER, GAINSBORO, CYAN_BLUE, FLASH_WHITE, INDIGO_LIGHT, VERY_DARK_GREY, ANAKIVA, MARINER } from '../../../styles/colors';
 import { BOLD, COLUMN, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
@@ -17,8 +17,7 @@ export const styles = StyleSheet.create({
         width: fonts.width.width102,
     },
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        flex: 1,
     },
     dateTime: {
         backgroundColor: WHITE,
@@ -33,7 +32,7 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.family.fontFamilyRubix,
     },
     touchable: (disabled) => ({
-        backgroundColor: disabled ? ORANGE_GREY : ORANGE,
+        backgroundColor: disabled ? ANAKIVA : MARINER,
         marginTop: 40,
         marginHorizontal:16,
         borderRadius: 8,
@@ -202,7 +201,7 @@ export const styles = StyleSheet.create({
         marginTop: 22,
         marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
-        color: ORANGE,
+        color: MARINER,
         fontFamily: fonts.family.fontFamilyRubix,
         fontSize: fonts.size.fontSize14,
     },
@@ -231,7 +230,7 @@ export const styles = StyleSheet.create({
     },
     textReschedule: {
 
-        color: ORANGE,
+        color: MARINER,
         fontSize: fonts.size.fontSize14,
         fontFamily: fonts.family.fontFamilyRubix,
     },
@@ -262,5 +261,6 @@ export const styles = StyleSheet.create({
         marginVertical:"40%",
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize16,
-    }
+    },
+    screenContainer: {flex:1,paddingBottom:24}
 })

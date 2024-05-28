@@ -5,6 +5,7 @@ import {WebView} from 'react-native-webview';
 import Config from 'react-native-config';
 import {usePayment} from './hooks/usePayment';
 import {styles} from './style';
+import { MARINER } from '../../styles/colors';
 
 const Payment = props => {
   const {paymentProps} = props;
@@ -13,7 +14,7 @@ const Payment = props => {
   if (!renderData)
     return (
       <View style={indicatorStyle}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color={MARINER} />
       </View>
     );
   return (

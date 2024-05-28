@@ -91,6 +91,7 @@ export const useHomeSearch = () => {
         setElasticSearchData([
           ...searchData?.popularTestResponseDtoList,
           ...searchData?.popularPackageResponseDtoList,
+          ...searchData?.productResponseDtoForUserGridViewList
         ]);
       text.length >= 3 && setOverlay(true);
     }
@@ -161,9 +162,7 @@ export const useHomeSearch = () => {
     setOverlay(false);
   };
 
-  const onItemPress = item => {
-    navigation.navigate('HomeSearchDetails', item);
-  };
+  const onItemPress = item => navigation.navigate('HomeSearchDetails', item);
 
   return {
     data,

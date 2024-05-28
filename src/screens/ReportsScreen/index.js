@@ -4,6 +4,7 @@ import MyReports from '../../components/myReports';
 import {useReport} from './hooks/useReport';
 import {styles} from './styles';
 import {EMPTY_TEXT, ERROR_TEXT} from './constants';
+import { MARINER } from '../../styles/colors';
 
 const Reports = () => {
   const {downloadDiagnosticReport, diagnosticLoading, diagnosticError} =
@@ -22,7 +23,7 @@ const Reports = () => {
   if (diagnosticLoading)
     return (
       <View style={styles.emptyView}>
-        <ActivityIndicator size={'large'} />
+        <ActivityIndicator size={'large'} color={MARINER} />
       </View>
     );
   else if (diagnosticError)

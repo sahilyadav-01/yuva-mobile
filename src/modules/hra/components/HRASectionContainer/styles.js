@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ORANGE, WHITE } from "../../../../styles/colors";
+import { MARINER, WHITE } from "../../../../styles/colors";
 import { CENTER, FLEX } from "../../../../styles/constants";
 import { fonts } from '../../../../styles/fonts';
 
@@ -21,13 +21,12 @@ export const styles = StyleSheet.create({
         justifyContent: CENTER,
         height: 48,
          width: 375,
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         borderRadius:8,
     },
     textContainer: {
         fontSize: fonts.size.fontSize16,
         color: WHITE,
-        fontWeight: fonts.weight.fontWeight600,
-        fontfamily: fonts.family.fontFamilyRubix,
+        fontfamily: fonts.family.montserrat600,
     }
 });

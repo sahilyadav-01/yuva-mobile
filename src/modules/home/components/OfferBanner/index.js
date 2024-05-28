@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, View, FlatList, Image} from 'react-native';
 import {styles} from './style';
-import {GRAY, ORANGE} from '../../../../styles/colors';
+import {ANAKIVA, MARINER} from '../../../../styles/colors';
 import {useOfferBanner} from './hooks/useOfferBanner';
 
 const OfferBanner1 = props => {
@@ -52,7 +52,7 @@ const OfferBanner1 = props => {
             style={[
               style.pointerStyle,
               {
-                backgroundColor: activeIndex === index ? ORANGE : GRAY,
+                backgroundColor: activeIndex === index ? MARINER : ANAKIVA,
                 marginRight: index < data.length - 1 ? 8 : 0,
               },
             ]}

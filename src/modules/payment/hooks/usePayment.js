@@ -9,7 +9,7 @@ import {
 } from '../../../store/reducers/PaymentSlice';
 
 export const usePayment = paymentProps => {
-  const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender} =
+  const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender, cart} =
     paymentProps;
   const dispatch = useDispatch();
   const focused = useIsFocused();
@@ -32,6 +32,7 @@ export const usePayment = paymentProps => {
           name,
           age,
           gender,
+          cart
         }),
       );
       setCreateOrder(true);

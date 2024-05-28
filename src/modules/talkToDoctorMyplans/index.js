@@ -10,7 +10,7 @@ import {
 import {SVG} from '../../../assets';
 import {usePatient} from './hooks/usePatient';
 import {getPlanDate} from '../../utils/utils';
-import { AMBER, CYAN_BLUE, DEEP_RED, ORANGE, WHITE } from '../../styles/colors';
+import { ANAKIVA, BLACK, DEEP_RED, MARINER, WHITE } from '../../styles/colors';
 import { NOT_AVAILABLE } from '../../components/constants';
 
 const MyPlans = () => {
@@ -39,10 +39,10 @@ const MyPlans = () => {
               </View>
             </View>
             <View>
-              <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : CYAN_BLUE }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
+              <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : BLACK }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
             </View>
-            <TouchableOpacity   style={[styles.buttonStyle,{backgroundColor: i.available===0 ?AMBER :ORANGE}]} onPress={() => onSelectMember(item)} disabled={!i.available}>
-            <Text style={[styles.textStyle, { color: i.available === 0 ? CYAN_BLUE : WHITE }]}>{CHAT_NOW}</Text>
+            <TouchableOpacity   style={[styles.buttonStyle,{backgroundColor: i.available===0 ?ANAKIVA :MARINER}]} onPress={() => onSelectMember(item)} disabled={!i.available}>
+            <Text style={[styles.textStyle, { color: i.available === 0 ? BLACK : WHITE }]}>{CHAT_NOW}</Text>
           </TouchableOpacity>
           </View>
   

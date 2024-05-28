@@ -1,19 +1,32 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allAppointmentThunk, currentAppointment } from "../../../../../store/reducers/AppointmentSlice";
+import { allAppointmentThunk, cancelAppointmentThunk, currentAppointment } from "../../../../../store/reducers/AppointmentSlice";
 
 export const useAppointment = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const { userAppointments } = useSelector(state => state?.appointment);
+  const { userAppointments,currentAppointment:{patientNumber}, cancelCurrentAppointment } = useSelector(state => state?.appointment);
+
+  useEffect(() => {
+    dispatch(allAppointmentThunk({ isActive: true }));
+  }, []);
+
+  useEffect(()=>{
+    if(cancelCurrentAppointment) {
+      dispatch(allAppointmentThunk({ isActive:true }));
+    }
+  },[cancelCurrentAppointment])
+  
   const onViewableItemsChanged = ({ viewableItems }) => {
     const currentIndex = viewableItems[(viewableItems.length -1)].index;
     setActiveIndex(currentIndex);
   };
 
-  const onAppointment = (item) => {
+  const onAppointmentReschedule = (item) => {
+    let name = "Myself";
+    let userRelation = "Myself";
     const {
       id,
       doctorName,
@@ -28,7 +41,6 @@ export const useAppointment = () => {
       memberName,
       customId,
     } = item || {};
-    
     dispatch(
       currentAppointment({
         id,
@@ -45,8 +57,24 @@ export const useAppointment = () => {
         customId,
       }),
     );
-    navigation.navigate('ViewAppointment');
-  };
+   if(relation && memberName){
+      userRelation = relation;
+      userName = memberName
+    }
+    const data = {
+      hospital: hospitalName,
+      Doctor: doctorName,
+      Specialization: speciality,
+      Description: description,
+      memberName: name + '   |   ' + userRelation,
+      patientNumber: patientNumber,
+    };
+    navigation.navigate('EditAppointment',data);
+  }
+
+  const onAppointmentCancel = ({id}) => {
+    dispatch(cancelAppointmentThunk({id}))
+  }
 
   const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
 
@@ -54,14 +82,13 @@ export const useAppointment = () => {
     waitForInteraction: true,
     itemVisiblePercentThreshold: 60,
   };
-  useEffect(() => {
-    dispatch(allAppointmentThunk({ isActive: true }));
-  }, []);
+
   return {
     activeIndex,
     userAppointments,
     viewabilityConfig,
     viewabilityConfigCallbackPairs,
-    onAppointment
+    onAppointmentReschedule,
+    onAppointmentCancel,
   };
 };

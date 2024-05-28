@@ -13,12 +13,9 @@ const CheckoutScheduleList = () => {
 
   return (
     <>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true} />
+      <Header title={'Select Date and Time'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true} />
       <ScrollView>
         <OrderDetails />
-        <View style={styles.bodyContainer}>
-          <ProgressBar progress='0.33' showDateTimeSection={true} />
-        </View>
         <View style={styles.separator}/>
         <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={false}/>
         <FinalAddress />
