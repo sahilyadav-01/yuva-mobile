@@ -116,9 +116,11 @@ const styles = ({ disabled }) => {
       top:-55,
     },
     verifyStyle: {
-      marginTop: -32,
       textAlign: RIGHT,
-      color: DARK_BLUE,
+      color: BLACK,
+      fontFamily: fonts.family.montserrat400,
+      fontSize: fonts.size.fontSize12,
+      marginBottom: 8,
     },
     inputStyle: {
       fontFamily: fonts.family.monsterrant500,
