@@ -10,7 +10,7 @@ import { MARINER } from '../../../../styles/colors';
 const {width} = getDimensions();
 const AppointmentTag = () => {
   const {activeIndex, userAppointments, viewabilityConfigCallbackPairs, viewabilityConfig, onAppointmentReschedule, onAppointmentCancel } = useAppointment();
-  const renderItem = ({item}) => {
+  const renderItem = ({item,index}) => {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Upcoming Appointment</Text>
@@ -53,6 +53,7 @@ const AppointmentTag = () => {
   return (
     <View style={styles.mainView}>
       <FlatList 
+        bounces={false}
         data={userAppointments}
         renderItem={renderItem}
         keyExtractor={(item, index) => `${index}`}
@@ -64,6 +65,7 @@ const AppointmentTag = () => {
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         viewabilityConfig={viewabilityConfig}
       />
+      <View style={{height:8}}/>
       { userAppointments?.length > 1 &&
         <FlatList
           data={userAppointments}

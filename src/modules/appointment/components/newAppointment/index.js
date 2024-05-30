@@ -83,7 +83,7 @@ const NewAppointments = () => {
               search={false}
               defaultOption={{key:"null", value: MYSELF}}
               setSelected={setSelected}
-              data={dataRelation || []}
+              data={[{key:"null", value: MYSELF},...dataRelation || []]}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
               dropdownTextStyles={{color:DARK_GRAY}}

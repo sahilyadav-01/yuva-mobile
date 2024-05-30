@@ -11,11 +11,12 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
   },
   container: {
-    width: width - 40,
+    width: width-40,
     borderRadius: 10,
     paddingVertical: 12,
     paddingHorizontal: 28,
     backgroundColor: ZUMTHOR,
+    marginHorizontal: 20
   },
   borderStyle: {
     borderWidth: 1,

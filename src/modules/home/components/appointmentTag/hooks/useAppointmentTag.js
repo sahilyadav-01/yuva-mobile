@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allAppointmentThunk, cancelAppointmentThunk, currentAppointment } from "../../../../../store/reducers/AppointmentSlice";
@@ -6,6 +6,7 @@ import { allAppointmentThunk, cancelAppointmentThunk, currentAppointment } from 
 export const useAppointment = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const route = useRoute();
   const [activeIndex, setActiveIndex] = useState(0);
   const { userAppointments,currentAppointment:{patientNumber}, cancelCurrentAppointment } = useSelector(state => state?.appointment);
 
@@ -20,8 +21,10 @@ export const useAppointment = () => {
   },[cancelCurrentAppointment])
   
   const onViewableItemsChanged = ({ viewableItems }) => {
-    const currentIndex = viewableItems[(viewableItems.length -1)].index;
-    setActiveIndex(currentIndex);
+    if(route.name === 'HomeService'){
+    const currentIndex = viewableItems[(viewableItems?.length -1)]?.index ?? null;
+    currentIndex !== null && setActiveIndex(currentIndex);
+    }
   };
 
   const onAppointmentReschedule = (item) => {

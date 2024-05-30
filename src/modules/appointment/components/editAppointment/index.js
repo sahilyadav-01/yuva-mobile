@@ -63,7 +63,7 @@ const EditAppointments = () => {
               boxStyles={styles.boxStyles}
               defaultOption={{key: 'null', value: memberName || null}}
               setSelected={setSelected}
-              data={dataRelation}
+              data={[{key: 'null', value: memberName || null},...dataRelation]}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
               dropdownTextStyles={{color:DARK_GRAY}}

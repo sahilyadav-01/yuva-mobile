@@ -47,7 +47,7 @@ const BookingConfirm = () => {
                       defaultOption={{key: NULL, value: MYSELF}}
                       setSelected={setSelectedMember}
                       inputStyles={styles.valueStyle}
-                      data={dataRelation}
+                      data={[{key: NULL, value: MYSELF},...dataRelation]}
                       dropdownStyles={styles.dropStyles}
                       dropdownTextStyles={{color: DARK_GRAY}}
                     />
@@ -73,7 +73,7 @@ const BookingConfirm = () => {
                     />
                   </View>
                 )}
-                <AddressList isNavScreen={BOOKINGCONFIRM} />
+                <AddressList extraStyles={{marginLeft:-16}} isNavScreen={BOOKINGCONFIRM} />
               </View>
               <View>
                 {!bookedDetails && addressListing?.length > 0 ? (

@@ -43,7 +43,7 @@ const AddressList = (isNavScreen) => {
         )
     }
     return (
-        <View>
+        <View style={isNavScreen?.extraStyles}>
             {userAddressListing.length>0 && <View style={styles.AddressCheck} >
                 <Text style={styles.selectDate}>
                     {SELECT_ADRESS}

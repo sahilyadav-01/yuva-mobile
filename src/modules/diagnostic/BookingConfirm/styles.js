@@ -5,30 +5,22 @@ import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
 export const styles = StyleSheet.create({
-
     boxStyles: {
+        marginVertical:8,
         marginHorizontal:12,
-        marginTop:5,
-        borderWidth: 0.1,
-        backgroundColor: LIGHT_GREYISH_RED,
+        borderWidth: 0.5,
+        backgroundColor: WHITE,
         color: LIGHT_GREYISH_RED,
-        minHeight: 42,
+        alignItems: CENTER,
         borderRadius: 0,
-        marginBottom: 23,
         color: LIGHT_GREYISH_RED,
         borderColor:LIGHT_MERCURY,
-    },
-    valueStyle: {
-        alignSelf: CENTER,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize12,
-        color: BLACK,
+        textAlign: CENTER,
+        paddingVertical:8
     },
     backGroundStyle: {backgroundColor: WHITE, marginBottom: 0},
     dropStyles: {
-        marginHorizontal: 13,
         borderColor: LIGHT_MERCURY,
-        marginBottom: 8
       },
       valueStyle: {
         alignSelf: CENTER,
@@ -54,7 +46,6 @@ export const styles = StyleSheet.create({
         justifyContent: CENTER
     },
     theme: { colors: { text: DARK_GREY } },
-
     dateTimePicker: {
         marginHorizontal:25,
         minHeight: 42,
@@ -177,7 +168,6 @@ export const styles = StyleSheet.create({
     border: {
         borderColor:WHITE,
         marginTop: 14,
-        marginHorizontal:16,
         shadowColor: WHITE,
         shadowOpacity: 0.5,
         borderRadius: 6,
@@ -222,6 +212,6 @@ export const styles = StyleSheet.create({
     },
     screenContainer: {
         flex: 1,
-        paddingBottom: 24
+        paddingBottom: 24,
     }
 })

@@ -54,7 +54,7 @@ function CustomDatePicker(props) {
 
   return (
     <>
-    <Text style={[style.emptyView,style.emptyText]}>{SELECT_DATE}</Text>
+    <Text style={[style.emptyView,style.emptyText,{paddingHorizontal:OPD?16:0}]}>{SELECT_DATE}</Text>
       <FlatList
         contentContainerStyle={style.dateContainer}
         ItemSeparatorComponent={() => (
@@ -72,10 +72,10 @@ function CustomDatePicker(props) {
         </View>
       ) : (
         <>
-        <Text style={[style.emptyView,style.emptyText]}>{SELECT_TIME}</Text>
+        <Text style={[style.emptyView,style.emptyText,{paddingHorizontal:OPD?16:0}]}>{SELECT_TIME}</Text>
         <FlatList
           nestedScrollEnabled
-          contentContainerStyle={style.timeContentContainer}
+          contentContainerStyle={[style.timeContentContainer,{marginHorizontal:OPD?16:0}]}
           keyExtractor={(item, index) => `Time${index}`}
           data={availableSlots}
           renderItem={RenderSlots}
