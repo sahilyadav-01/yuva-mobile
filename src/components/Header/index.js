@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
+import SelectList from 'react-native-dropdown-select-list';
 import Search from '../Search';
 import {useHeader} from './hooks/useHeader';
 import {styles} from './styles';
-import { DARK_GRAY} from '../../styles/colors';
+import { BLACK, DARK_GRAY} from '../../styles/colors';
 import {PNG, SVG} from '../../../assets';
 
 const Header = props => {
@@ -37,8 +38,11 @@ const Header = props => {
     onSearchPress,
     showSearchBox,
     name,
-    onToggleDrawer
+    onToggleDrawer,
+    cityNamesDropdownData
   } = useHeader(props);
+
+  console.log('Data',cityNamesDropdownData)
 
   const Heading = () => {
     return (
@@ -110,10 +114,23 @@ const Header = props => {
 
   if(props?.homeScreen) {
     return (
+      <View style={{zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:'white'}}>
       <View style={styles.homeTopSection}>
         <Heading/>
         <SearchBox/>
         <Login showLogin={props?.showLogin ?? false}/>
+      </View>
+      {cityNamesDropdownData?.length > 0 && <View style={{paddingHorizontal:16,marginBottom:8}}><SelectList
+          setSelected={()=>{}}
+          search={false}
+          data={cityNamesDropdownData}
+          placeholder={'Select your City'}
+          placeholderTextColor={BLACK}
+          boxStyles={{borderWidth:0.5,borderColor:'black',alignItems:'center',paddingVertical:8}}
+          inputStyles={{color: BLACK}}
+          dropdownTextStyles={{color: BLACK}}
+          defaultOption={cityNamesDropdownData[0]}
+        /></View>}
       </View>
     );
   }

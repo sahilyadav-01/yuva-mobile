@@ -16,6 +16,7 @@ import { getTopProducts } from "../../../store/reducers/ProductSlice";
 import { getPlatform } from "../../../utils/utils";
 import { Alert } from "react-native";
 import { setPermission } from "../../../store/reducers/LocationSlice";
+import { getAllCityNamesThunk } from "../../../store/reducers/SearchNetworkSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
@@ -42,6 +43,7 @@ export const useHome = () => {
           params: route?.params?.screenParams,
         });
       }
+      dispatch(getAllCityNamesThunk());
       dispatch(fetchHomeScreenPlans());
       dispatch(fetchHomeScreenPackages());
       dispatch(fetchHomeScreenTests());

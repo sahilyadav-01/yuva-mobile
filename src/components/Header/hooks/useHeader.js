@@ -19,6 +19,7 @@ export const useHeader = (props) => {
   const { cityId } = diagnosticState;
   const { cart } = useSelector(state => state.cart);
   const {userDetails} =  useSelector(state  =>  state.profile)
+  const {cityNamesDropdownData,cityLoading,cityError} = useSelector(state => state.SearchNetwork);
   const count = cart?.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
@@ -99,6 +100,7 @@ export const useHeader = (props) => {
     onSearchPress,
     showSearchBox,
     name,
-    onToggleDrawer
+    onToggleDrawer,
+    cityNamesDropdownData
   };
 }

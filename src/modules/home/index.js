@@ -69,7 +69,7 @@ export const HomeScreen = () => {
         hideTitle={true}
       />
       <ScrollView nestedScrollEnabled={true}>
-        <View>
+        <View style={{backgroundColor:'white'}}>
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
           <Services renderservicesItem={renderservicesItem} onViewAllServices={onViewAllServices}/>

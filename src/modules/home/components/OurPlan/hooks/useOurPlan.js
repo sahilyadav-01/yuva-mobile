@@ -30,6 +30,6 @@ export const useOurPlan = () => {
     handlePress,
     onDetails,
     onViewAll,
-    homePlans
+    homePlans,
   };
 };

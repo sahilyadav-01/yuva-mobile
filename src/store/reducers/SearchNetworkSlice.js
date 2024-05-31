@@ -66,7 +66,9 @@ const initialState = {
     searchNetworkdata: {},
     networkTypeDropDownData: [],
     plansDropdownData: [],
-    cityNamesDropdownData: []
+    cityNamesDropdownData: [],
+    cityLoading: false,
+    cityError: false,
 };
 
 const SearchNetworkSlice = createSlice({
@@ -118,13 +120,20 @@ const SearchNetworkSlice = createSlice({
 
         [getAllCityNamesThunk.pending]: (state, action) => {
             state.loading = true;
+            state.cityLoading = true;
+            state.cityError = false;
         },
         [getAllCityNamesThunk.fulfilled]: (state, action) => {
-            state.cityNamesDropdownData = action.payload?.data || [];
+            console.log('payload',action?.payload)
+            state.cityNamesDropdownData = action.payload?.data?.map((item)=>{return {...item,key:`${item?.id}`,value:`${item?.name}`}}) || [];
+            state.cityLoading = false;
+            state.cityError = false;
         },
         [getAllCityNamesThunk.rejected]: (state, action) => {
             state.apiError = true;
             state.loading = false;
+            state.cityLoading = false;
+            state.cityError = true;
         },
     },
 });
