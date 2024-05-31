@@ -17,7 +17,7 @@ const Details = ({item}) => {
   return (
     <View>
       <View style={styles.rowView}>
-        <Text style={styles.priceText}>₹ {item?.originalPrice}</Text>
+        {parseFloat(item?.originalPrice) > parseFloat(item?.finalPrice) ? <Text style={styles.priceText}>₹ {item?.originalPrice}</Text>: null}
         <View style={styles.itemGap} />
         <DiscountContainer
           discountPercentage={item?.discountPercentage ?? ''}
@@ -58,7 +58,7 @@ const DiscountContainer = ({item}) => {
 function ProductItem({item,onAdd,leftAlign,marginRight,container}) {
   const onAddProduct = () => onAdd(item);
   return (
-    <View style={[style(leftAlign,marginRight ?? 16).productItemContainer,container]}>
+    <TouchableOpacity onPress={onAddProduct} style={[style(leftAlign,marginRight ?? 16).productItemContainer,container]}>
       <Image
         source={{uri: item?.imageFilepath}}
         resizeMode="contain"
@@ -66,7 +66,7 @@ function ProductItem({item,onAdd,leftAlign,marginRight,container}) {
       />
       <ProductName name={item?.name} />
       <DetailsContainer item={item} onAddProduct={onAddProduct} />
-    </View>
+    </TouchableOpacity>
   );
 }
 

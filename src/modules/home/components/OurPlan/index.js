@@ -21,7 +21,10 @@ const OurPlan = () => {
       <View style={styles.planContainer}>
        {homePlans.data.map((item,index)=>{
           return (
-            <View style={{elevation:index === 1 ? 15 : 0,shadowOffset:index === 1 ? {width:1,height:1} : undefined,shadowOpacity:index === 1 ? 0.3 : undefined,zIndex:index === 1 ? 75 : 0,paddingHorizontal:8,paddingVertical:12,backgroundColor:index === 1 ? WHITE : '#EEF5FF',borderRadius:12,marginTop:24,width:'33.33%' }}>
+            <TouchableOpacity onPress={() => {
+              handlePress(index)
+              onDetails()
+            }} style={{ elevation: index === 1 ? 15 : 0, shadowOffset: index === 1 ? { width: 1, height: 1 } : undefined, shadowOpacity: index === 1 ? 0.3 : undefined, zIndex: index === 1 ? 75 : 0, paddingHorizontal: 8, paddingVertical: 12, backgroundColor: index === 1 ? WHITE : '#EEF5FF', borderRadius: 12, marginTop: 24, width: '33.33%' }}>
               <View style={{height:50}}><Text numberOfLines={3} style={{fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize12,color:BLACK}}>{item?.name}</Text></View>
               <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize6,color:CYAN_BLUE,marginVertical:4}}>Check Health Benefits</Text>
               <Text style={{fontFamily:fonts.family.montserrat400,fontSize:fonts.size.fontSize8,color:BLACK}}>₹ {item?.price}</Text>
@@ -39,7 +42,7 @@ const OurPlan = () => {
                   </View>
                 );
               })}
-            </View>
+            </TouchableOpacity>
           );
        })}
         </View>

@@ -56,5 +56,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize10,
     color: DOVE_GRAY,
+    maxWidth: '70%'
   },
 });

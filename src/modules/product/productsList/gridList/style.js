@@ -37,6 +37,7 @@ export const styles = (arg, marginRight) => {
       fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize10,
       color: '#6B6B6B',
+      textDecorationLine: 'line-through',
     },
     discountContainer: {
       paddingHorizontal: 6,

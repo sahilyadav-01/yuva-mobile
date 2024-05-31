@@ -32,7 +32,7 @@ function YuvaPackages({
               <Text style={styles.heading}>{item?.name}</Text>
               {!isLifeStylePackage ? (
                 <Text style={styles.description}>
-                  Includes ${item?.parameterCount} tests
+                  Includes {item?.parameterCount} tests
                 </Text>
               ) : null}
             </View>
