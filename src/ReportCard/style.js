@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     marginLeft:12,
     marginRight:8,
     color:CYAN_BLUE,
-    width:'80%'
+    maxWidth:'60%'
   },
   downloadReportStyle:{
    position:ABSOLUTE,

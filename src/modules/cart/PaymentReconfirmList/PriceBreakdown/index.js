@@ -7,6 +7,7 @@ const styles = style();
 
 const PriceBreakdown = ({plan,priceBreakup}) => {
   const {cart:{totalCost,amountToBePaid,totalDiscount,processingCharge}} = useSelector(state=>state.cart)
+  console.log('BBD',plan,priceBreakup?.amountToBePaid,amountToBePaid)
   const data = [
     {key: 'Price', value: plan ? priceBreakup?.price : totalCost},
     {key: 'Discount', value: plan ? priceBreakup?.totalDiscount :totalDiscount},
@@ -16,7 +17,7 @@ const PriceBreakdown = ({plan,priceBreakup}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headingText}>Order Summary</Text>
-      {data.filter((item)=>item?.value > 0).map((item)=><View style={styles.rowView}>
+      {data.map((item)=><View style={styles.rowView}>
         <View style={{justifyContent:'center'}}>
         <Text style={[styles.priceText,{marginTop:2}]}>{item.key}</Text>
         {item?.description ? <Text style={styles.priceText}>{item?.description}</Text> : null}

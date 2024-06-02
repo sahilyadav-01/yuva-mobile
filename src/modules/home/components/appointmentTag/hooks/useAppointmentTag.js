@@ -2,6 +2,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allAppointmentThunk, cancelAppointmentThunk, currentAppointment } from "../../../../../store/reducers/AppointmentSlice";
+import { Alert } from "react-native";
 
 export const useAppointment = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,10 @@ export const useAppointment = () => {
   }
 
   const onAppointmentCancel = ({id}) => {
-    dispatch(cancelAppointmentThunk({id}))
+    Alert.alert('Appointment','Are you sure want to cancel the appointment',[
+      {text: 'OK', onPress: () => dispatch(cancelAppointmentThunk({id}))},
+      {text: 'Cancel', style: 'cancel'},
+    ])   
   }
 
   const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);

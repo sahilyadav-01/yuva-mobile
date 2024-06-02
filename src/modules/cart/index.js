@@ -90,9 +90,9 @@ const Cart = props => {
             onRemove={onRemove}
           />
         </View>}
-        <TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
+        {itemDtoList.length > 0 &&<TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
           <Text style={styles.textStyle}>{buttonText}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
     </View>
   );
