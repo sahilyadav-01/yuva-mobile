@@ -7,7 +7,6 @@ const styles = style();
 
 const PriceBreakdown = ({plan,priceBreakup}) => {
   const {cart:{totalCost,amountToBePaid,totalDiscount,processingCharge}} = useSelector(state=>state.cart)
-  console.log('BBD',plan,priceBreakup?.amountToBePaid,amountToBePaid)
   const data = [
     {key: 'Price', value: plan ? priceBreakup?.price : totalCost},
     {key: 'Discount', value: plan ? priceBreakup?.totalDiscount :totalDiscount},

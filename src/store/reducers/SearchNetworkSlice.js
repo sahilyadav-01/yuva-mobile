@@ -124,7 +124,6 @@ const SearchNetworkSlice = createSlice({
             state.cityError = false;
         },
         [getAllCityNamesThunk.fulfilled]: (state, action) => {
-            console.log('payload',action?.payload)
             state.cityNamesDropdownData = action.payload?.data?.map((item)=>{return {...item,key:`${item?.id}`,value:`${item?.name}`}}) || [];
             state.cityLoading = false;
             state.cityError = false;

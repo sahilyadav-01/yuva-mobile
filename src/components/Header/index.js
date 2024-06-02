@@ -7,46 +7,9 @@ import {styles} from './styles';
 import { BLACK, DARK_GRAY} from '../../styles/colors';
 import {PNG, SVG} from '../../../assets';
 
-const Header = props => {
-  const {
-    isLoggedIn,
-    onCartPress,
-    onRightPress,
-    cityList,
-    setSelected,
-    selectedCity,
-    query,
-    onChangeSearch,
-    showSearch,
-    searchPlaceholder,
-    canGoBack,
-    onBackPress,
-    title,
-    showCount,
-    count,
-    hideMenu,
-    placeholder,
-    isScreen,
-    showCart,
-    editable,
-    onSubmitEditing,
-    isSearch,
-    showLocation,
-    PrefixIcon,
-    hideTitle,
-    initial,
-    onSearchPress,
-    showSearchBox,
-    name,
-    onToggleDrawer,
-    cityNamesDropdownData
-  } = useHeader(props);
-
-  console.log('Data',cityNamesDropdownData)
-
-  const Heading = () => {
+const Heading = ({onToggleDrawer,isLoggedIn,name,canGoBack}) => {
+  if(!canGoBack) {
     return (
-      !canGoBack && (
             <View style={styles.mainContainerStyle}>
               <TouchableOpacity onPress={onToggleDrawer}>
                 <Image source={PNG.HomeProfile} style={styles.imageStyle} />
@@ -58,67 +21,106 @@ const Header = props => {
                 </Text>
               </View>
             </View>
-      )
     );
-  };
+  }
+  return null;
+};
 
-  const SearchBox = () => {
+const SearchBox = ({showSearch,onSearchPress}) => {
+  if(showSearch) {
     return (
-      showSearch && (
         <>
           <View style={styles.searchStyle} />
           <TouchableOpacity onPress={onSearchPress}>
             <SVG.SearchIcon />
           </TouchableOpacity>
         </>
-      )
     );
-  };
+  }
+  return null;
+};
 
-  const Login = ({showLogin}) => {
-    return (
-      showLogin && (
-        <TouchableOpacity onPress={onRightPress} style={styles.loginContainer}>
-          <Text style={styles.loginTextStyle}>Login</Text>
-        </TouchableOpacity>
-      )
-    );
-  };
+const Login = ({showLogin,onRightPress}) => {
+  if(showLogin) {
+  return (
+      <TouchableOpacity onPress={onRightPress} style={styles.loginContainer}>
+        <Text style={styles.loginTextStyle}>Login</Text>
+      </TouchableOpacity>
+  );
+}
+return null;
+};
 
-  const BackButton = () => {
-    return (
-      (canGoBack || props?.showBackButton) && (
-        <TouchableOpacity style={styles.backButton} onPress={onBackPress}>
-          <SVG.BackButton />
-        </TouchableOpacity>
-      )
-    );
-  };
+const BackButton = ({canGoBack,showBackButton,onBackPress}) => {
+  if((canGoBack || showBackButton))
+  return (
+      <TouchableOpacity style={styles.backButton} onPress={onBackPress}>
+        <SVG.BackButton />
+      </TouchableOpacity>
+  );
+  return null;
+};
 
-  const SearchInput = () => {
-    return (
-      showSearchBox && (
-        <Search
-          placeholder={searchPlaceholder}
-          placeholderTextColor={DARK_GRAY}
-          onChangeText={onChangeSearch}
-          value={query}
-          isScreen={isScreen}
-          isSearch={isSearch}
-          editable={editable}
-          onSubmitEditing={onSubmitEditing}
-        />
-      )
-    );
-  };
+const SearchInput = ({showSearchBox,searchPlaceholder,onChangeSearch,query,isScreen,isSearch,editable,onSubmitEditing}) => {
+  if(showSearchBox) {
+  return (
+      <Search
+        placeholder={searchPlaceholder}
+        placeholderTextColor={DARK_GRAY}
+        onChangeText={onChangeSearch}
+        value={query}
+        isScreen={isScreen}
+        isSearch={isSearch}
+        editable={editable}
+        onSubmitEditing={onSubmitEditing}
+      />
+  );
+}
+return null;
+};
+
+const Header = props => {
+  const {
+    isLoggedIn,
+    //onCartPress,
+    onRightPress,
+    //cityList,
+    //setSelected,
+    //selectedCity,
+    query,
+    onChangeSearch,
+    showSearch,
+    searchPlaceholder,
+    canGoBack,
+    onBackPress,
+    title,
+    //showCount,
+    //count,
+    //hideMenu,
+    //placeholder,
+    isScreen,
+    //showCart,
+    editable,
+    onSubmitEditing,
+    isSearch,
+    //showLocation,
+    //PrefixIcon,
+    hideTitle,
+    //initial,
+    onSearchPress,
+    showSearchBox,
+    name,
+    onToggleDrawer,
+    cityNamesDropdownData
+  } = useHeader(props);
 
   if(props?.homeScreen) {
     return (
       <View style={{zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:'white'}}>
       <View style={styles.homeTopSection}>
-        <Heading/>
-        <SearchBox/>
-        <Login showLogin={props?.showLogin ?? false}/>
+        <Heading onToggleDrawer={onToggleDrawer} isLoggedIn={isLoggedIn} name={name} canGoBack={canGoBack}/>
+        <SearchBox showSearch={showSearch} onSearchPress={onSearchPress}/>
+        <Login showLogin={props?.showLogin ?? false} onRightPress={onRightPress}/>
       </View>
       {cityNamesDropdownData?.length > 0 && <View style={{paddingHorizontal:16,marginBottom:8}}><SelectList
           setSelected={()=>{}}
@@ -139,16 +141,16 @@ const Header = props => {
     <View>
     <View style={[styles.topSection,{justifyContent:showSearch ? 'space-between' : 'center'}]}>
       <View style={styles.backContainer}>
-    <BackButton/>
+    <BackButton canGoBack={canGoBack} showBackButton={props?.showBackButton ?? false} onBackPress={onBackPress}/>
     </View>
     <View style={styles.mainContainer}>
-      {!hideTitle && <Text style={styles.titleTextStyle}>{title}</Text>}
+      {!hideTitle ? <Text style={styles.titleTextStyle}>{title}</Text>: null}
       </View>
       <View style={styles.searchIconContainer}>
-      <SearchBox/>
+      <SearchBox showSearch={showSearch} onSearchPress={onSearchPress}/>
       </View>
       </View>
-      <SearchInput/>
+      <SearchInput showSearchBox={showSearchBox} searchPlaceholder={searchPlaceholder} onChangeSearch={onChangeSearch} query={query} isScreen={isScreen} isSearch={isSearch} editable={editable} onSubmitEditing={onSubmitEditing} />
       </View>
   );
 };

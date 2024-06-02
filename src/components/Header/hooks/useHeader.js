@@ -48,6 +48,7 @@ export const useHeader = (props) => {
       dispatch(setCityId(selectedCity))
     }
   }, [selectedCity])
+
   useEffect(() => {
     setShowCount(count>0);
   }, [count]);
@@ -60,6 +61,7 @@ export const useHeader = (props) => {
     setPlaceholder(diagnosticState.selectedCityId)
    }
   }, [diagnosticState])
+
   const onChangeSearch = (text) => {
     onSearch && onSearch(text);
     setQuery(text);
