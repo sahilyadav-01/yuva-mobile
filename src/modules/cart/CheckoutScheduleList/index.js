@@ -17,7 +17,7 @@ const CheckoutScheduleList = () => {
       <ScrollView>
         <OrderDetails />
         <View style={styles.separator}/>
-        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={false}/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
         <FinalAddress />
         <TouchableOpacity
           onPress={ConfirmDateAndTime}

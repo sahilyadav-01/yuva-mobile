@@ -190,7 +190,10 @@ export const loginThunk = createAsyncThunk(
         emailOrNumber: email,
         password: password,
       });
-      if(response?.data?.data === null || response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
+      if(response?.data?.data === null) {
+        return {...response.data,type};
+      }
+      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
         await setJwt(response.data.data.jwt);
         await setRefreshToken(response.data.data.refreshToken);
         await setRole(response.data.data.roles.includes('EMPLOYEE'));
@@ -427,6 +430,7 @@ const authSlice = createSlice({
       state.user.status = false;
       state.apiError = false;
       state.type = ''
+      state.navigateToRegister = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
