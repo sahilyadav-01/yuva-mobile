@@ -132,6 +132,7 @@ export const useHomeSearchDetails = props => {
         } else if (item.selected === true) {
           onRemove({
             productId: item?.packageUuid.toString(),
+            productType: 'PACKAGE',
           });
         }
         return item;
@@ -157,6 +158,7 @@ export const useHomeSearchDetails = props => {
         } else if (item.selected === true) {
           onRemove({
             productId: item?.testId.toString(),
+            productType: 'TEST'
           });
         }
         return item;
