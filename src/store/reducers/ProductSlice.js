@@ -92,9 +92,7 @@ export const fetchProducts = createAsyncThunk(
   async ({pageNo, pageSize, productFilter, paginate}, {_, rejectWithValue}) => {
     try {
       const endpoint = `/ecom/user/product/view-all?pageNo=${pageNo}&pageSize=${pageSize}`;
-      const {data: response} = await YuvaService.post(endpoint, {
-        productFilterDto: productFilter,
-      });
+      const {data: response} = await YuvaService.post(endpoint, productFilter);
       return {...response.data, paginate};
     } catch (error) {
       return rejectWithValue(error);

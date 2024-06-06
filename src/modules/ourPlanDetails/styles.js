@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, CYAN_BLUE, ORANGE, WHITE} from '../../styles/colors';
+import {BLACK, CYAN_BLUE, ORANGE, RED, WHITE} from '../../styles/colors';
 import {fonts} from '../../styles/fonts';
 import {CENTER, ROW} from '../../styles/constants';
 import {getDimensions} from '../../utils/utils';
@@ -82,5 +82,11 @@ export const styles = StyleSheet.create({
   },
   container: {paddingHorizontal: 20},
   iconContainer: {marginTop: 24},
-  termsContainer: {marginTop: 12}
+  termsContainer: {marginTop: 12},
+  noteText: {
+    marginBottom: 8,
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize14,
+    color: RED,
+  }
 });

@@ -31,6 +31,7 @@ const OurPlanDetails = props => {
     getAllPlanServicesError,
     ourPlanData,
     bookOurPlan,
+    selectedCityId
   } = useOurPlanDetails(props);
   const renderItem = ({item, index}) => {
     return (
@@ -48,6 +49,7 @@ const OurPlanDetails = props => {
       <Header showBackButton={true} title={TITLE} />
       <ScrollView nestedScrollEnabled={true}>
         <View style={styles.container}>
+          {parseInt(selectedCityId) === -1 ? <Text style={styles.noteText}>This plan is currently not available in the selected city. You can still proceed to buy the plan and avail the services in other locations</Text> : null}
           <ImageBackground
             resizeMode="cover"
             source={PNG.PlanBanner}

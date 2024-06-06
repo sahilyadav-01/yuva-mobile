@@ -20,6 +20,7 @@ export const useHeader = (props) => {
   const { cart } = useSelector(state => state.cart);
   const {userDetails} =  useSelector(state  =>  state.profile)
   const {cityNamesDropdownData,cityLoading,cityError} = useSelector(state => state.SearchNetwork);
+  const {currentCityDetails} = useSelector(state=>state.location);
   const count = cart?.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
@@ -41,11 +42,12 @@ export const useHeader = (props) => {
     else navigation.goBack();
   }
   const setSelected = (city) => {
-    setSelectedCity(city);
+    if(city) setSelectedCity(city);
+    else setSelectedCity(-1);
   }
   useEffect(() => {
     if (selectedCity) {
-      dispatch(setCityId(selectedCity))
+      dispatch(setCityId(selectedCity.toString()))
     }
   }, [selectedCity])
 
@@ -103,6 +105,7 @@ export const useHeader = (props) => {
     showSearchBox,
     name,
     onToggleDrawer,
-    cityNamesDropdownData
+    cityNamesDropdownData,
+    currentCityDetails
   };
 }

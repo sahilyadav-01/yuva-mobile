@@ -17,6 +17,7 @@ export const useOurPlanDetails = props => {
     getAllPlanServicesError,
   } = useSelector(state => state.programAndPlan);
   const {loggedIn} = useSelector(state => state.auth);
+  const {selectedCityId} = useSelector(state => state.diagnostic);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const focused = useIsFocused();
@@ -47,5 +48,6 @@ export const useOurPlanDetails = props => {
     getAllPlanServicesError,
     ourPlanData,
     bookOurPlan,
+    selectedCityId
   };
 };

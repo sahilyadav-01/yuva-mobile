@@ -85,7 +85,7 @@ const Header = props => {
     //onCartPress,
     onRightPress,
     //cityList,
-    //setSelected,
+    setSelected,
     //selectedCity,
     query,
     onChangeSearch,
@@ -111,7 +111,8 @@ const Header = props => {
     showSearchBox,
     name,
     onToggleDrawer,
-    cityNamesDropdownData
+    cityNamesDropdownData,
+    currentCityDetails,
   } = useHeader(props);
 
   if(props?.homeScreen) {
@@ -123,15 +124,15 @@ const Header = props => {
         <Login showLogin={props?.showLogin ?? false} onRightPress={onRightPress}/>
       </View>
       {cityNamesDropdownData?.length > 0 && <View style={{paddingHorizontal:16,marginBottom:8}}><SelectList
-          setSelected={()=>{}}
+          setSelected={setSelected}
           search={false}
-          data={cityNamesDropdownData}
+          data={cityNamesDropdownData.filter(item=>item.id !== -1)}
           placeholder={'Select your City'}
           placeholderTextColor={BLACK}
           boxStyles={{borderWidth:0.5,borderColor:'black',alignItems:'center',paddingVertical:8}}
           inputStyles={{color: BLACK}}
           dropdownTextStyles={{color: BLACK}}
-          defaultOption={cityNamesDropdownData[0]}
+          defaultOption={currentCityDetails ?? cityNamesDropdownData[0]}
         /></View>}
       </View>
     );

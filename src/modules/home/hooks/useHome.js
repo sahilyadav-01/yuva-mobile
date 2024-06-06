@@ -15,7 +15,7 @@ import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 import { getTopProducts } from "../../../store/reducers/ProductSlice";
 import { getPlatform } from "../../../utils/utils";
 import { Alert } from "react-native";
-import { setPermission } from "../../../store/reducers/LocationSlice";
+import { getCurrentCity, setPermission } from "../../../store/reducers/LocationSlice";
 import { getAllCityNamesThunk } from "../../../store/reducers/SearchNetworkSlice";
 
 export const useHome = () => {
@@ -43,7 +43,6 @@ export const useHome = () => {
           params: route?.params?.screenParams,
         });
       }
-      dispatch(getAllCityNamesThunk());
       dispatch(fetchHomeScreenPlans());
       dispatch(fetchHomeScreenPackages());
       dispatch(fetchHomeScreenTests());
@@ -56,7 +55,8 @@ export const useHome = () => {
       dispatch(fetchBannerDetails2({position:2,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails3({position:3,screenType:'HOME_SCREEN'}));
       dispatch(getCartUserThunk());
-      if(permissionStatus || Platform.isIOS) fetchCurrentCoordinates();
+      if(permissionStatus || Platform.isIOS) fetchCurrentCity();
+      else dispatch(getAllCityNamesThunk());
     }
   }, [focused, loggedIn]);  
   const servicesArray = [
@@ -134,9 +134,11 @@ export const useHome = () => {
 
   const onViewAllServices = (services) => navigation.navigate('Services',{services})
 
-  const fetchCurrentCoordinates = () => {
+  const fetchCurrentCity = () => {
     const onSuccess = (args) => {
       const {coords:{latitude,longitude}} = args;
+      dispatch(getCurrentCity({latitude,longitude}))
+      dispatch(getAllCityNamesThunk());
     };
     const onError = (error) => {
       if(Platform.isIOS) dispatch(setPermission(false));
