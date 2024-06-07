@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import { YuvaService } from '../../../App';
-
+import { logoutThunk } from './AuthSlice';
 
 const initialState = {
     permissionStatus: false,
@@ -43,7 +43,10 @@ const locationSlice = createSlice({
             state.fetchCityLoading = false;
             state.fetchCityError = true;
             state.currentCityDetails = null;
-        }
+        },
+        [logoutThunk.fulfilled]: (state, {payload}) => {
+            state.permissionStatus = payload
+        },
     }
 });
 

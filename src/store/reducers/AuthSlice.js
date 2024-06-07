@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { Alert } from 'react-native';
+import { Alert, PermissionsAndroid } from 'react-native';
 import {
   setObject,
   getObject,
@@ -264,7 +264,12 @@ export const logoutThunk = createAsyncThunk(
       await clearRefreshToken();
       await clearRole();
       await clearProfileStatus();
-      return value;
+      const status = await PermissionsAndroid.request('android.permission.ACCESS_FINE_LOCATION',{
+        title: 'Request to access geo-location',
+        message: 'Permission to access your geo-location is used to provide services specific to your location',
+        buttonPositive: 'Yes'
+      })
+      return status==='granted';
       }
     } catch (error) {
       return rejectWithValue(error);

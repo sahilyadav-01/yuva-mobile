@@ -337,7 +337,7 @@ const profileSlice = createSlice({
       }
     },
     [updateProfile.rejected]: (state, { payload }) => {
-      if(payload?.response?.status === 409) Alert.alert('Alert',payload?.response?.data?.errorMessage)
+      if(payload?.response?.status === 409) Alert.alert('Alert',`${payload?.response?.data?.errorMessage}. Please save the details to proceed further.`)
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
