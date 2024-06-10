@@ -14,7 +14,7 @@ import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from ".
 import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
 import { getTopProducts } from "../../../store/reducers/ProductSlice";
 import { getPlatform } from "../../../utils/utils";
-import { Alert } from "react-native";
+import { Alert, Linking } from "react-native";
 import { getCurrentCity, setPermission } from "../../../store/reducers/LocationSlice";
 import { getAllCityNamesThunk } from "../../../store/reducers/SearchNetworkSlice";
 
@@ -31,9 +31,10 @@ export const useHome = () => {
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
   const { topProducts } = useSelector(state=>state.product);
-  const {permissionStatus} = useSelector(state=>state.location);
+  const {permissionStatus,currentCityDetails} = useSelector(state=>state.location);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [enableGps,setEnableGps] = useState(false);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -141,9 +142,11 @@ export const useHome = () => {
       dispatch(getAllCityNamesThunk());
     };
     const onError = (error) => {
-      if(Platform.isIOS) dispatch(setPermission(false));
+     if(Platform.isAndroid && error.code === 2) setEnableGps(true);
+     else if(Platform.isIOS) dispatch(setPermission(false));
+     dispatch(getAllCityNamesThunk());
     }
-      Geolocation.getCurrentPosition(onSuccess,onError)
+    Geolocation.getCurrentPosition(onSuccess,onError)
   }
 
   return {
@@ -166,6 +169,8 @@ export const useHome = () => {
     onAdd,
     homeTests,
     homePackages,
-    onViewAllServices
+    onViewAllServices,
+    enableGps,
+    currentCityDetails
   };
 };

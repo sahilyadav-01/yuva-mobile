@@ -177,7 +177,7 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
   },
   rowContainer: {flexDirection: ROW, alignItems: CENTER},
-  mainContainerStyle: {flexDirection: ROW},
+  mainContainerStyle: {flexDirection: ROW,maxWidth:'55%'},
   nameContainerStyle: {marginLeft: 8},
   imageStyle: {width: 50, height: 50}
 });

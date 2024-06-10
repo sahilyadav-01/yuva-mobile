@@ -14,6 +14,7 @@ export const useHeader = (props) => {
   const [showCount, setShowCount] = useState(false);
   const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
   const [showSearchBox, setShowSearchBox] = useState(false);
+  const [defaultCity, setDefaultCity] = useState(null);
   const { loggedIn,user:{name} } = useSelector(state => state.auth);
   const diagnosticState = useSelector(state => state.diagnostic);
   const { cityId } = diagnosticState;
@@ -54,6 +55,16 @@ export const useHeader = (props) => {
   useEffect(() => {
     setShowCount(count>0);
   }, [count]);
+
+  useEffect(()=>{
+    if(cityNamesDropdownData?.length > 0 && typeof currentCityDetails?.value === 'string') {
+    let defaultVal = currentCityDetails?.value?.toUpperCase() !== 'CITY NOT FOUND' ? {...currentCityDetails,key:`${cityNamesDropdownData?.length + 1}`} : cityNamesDropdownData[0];
+    setDefaultCity(defaultVal);
+    }
+    else if(cityNamesDropdownData?.length > 0) {
+      setDefaultCity(cityNamesDropdownData[0]);
+    }
+  },[cityNamesDropdownData,currentCityDetails])
 
   useEffect(() => {
    if(diagnosticState.selectedCityId===''){
@@ -106,6 +117,7 @@ export const useHeader = (props) => {
     name,
     onToggleDrawer,
     cityNamesDropdownData,
-    currentCityDetails
+    currentCityDetails,
+    defaultCity
   };
 }

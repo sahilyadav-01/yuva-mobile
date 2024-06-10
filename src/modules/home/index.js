@@ -15,6 +15,7 @@ import {HomeSearch} from './components/homeSearch';
 import ProductHub from '../product/productHub/index.js';
 import { MARINER } from '../../styles/colors.js';
 import { CENTER } from '../../styles/constants.js';
+import { Text } from 'react-native';
 
 export const HomeScreen = () => {
   const {
@@ -38,6 +39,8 @@ export const HomeScreen = () => {
     homeTests,
     homePackages,
     onViewAllServices,
+    enableGps,
+    currentCityDetails
   } = useHome();
 
   const styles = style();
@@ -68,6 +71,12 @@ export const HomeScreen = () => {
         homeScreen={true}
         hideTitle={true}
       />
+      {enableGps && <View style={{marginBottom:8,paddingHorizontal:16,alignItems:'center'}}>
+        <Text>Please turn on GPS in settings to access the current location</Text>
+        </View>}
+        {!enableGps && currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND'  && <View style={{marginBottom:8,paddingHorizontal:16,alignItems:'center'}}>
+        <Text>Unable to fetch the current location</Text>
+        </View>}
       <ScrollView nestedScrollEnabled={true}>
         <View style={{backgroundColor:'white'}}>
           <OfferBanner1 bannerData={banner1} />
