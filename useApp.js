@@ -104,9 +104,6 @@ export const useApp = () => {
             }).then(async (obj) => {
               if (obj && obj?.isNeeded)
                 handleVersionUpdate(obj?.latestVersion, storeUrl);
-              else {
-                await handleLocationPermission();
-                setShowContent(true);}
             });
           },
         );
@@ -152,7 +149,11 @@ export const useApp = () => {
       });
     } else if (Platform?.isAndroid && checkVersion) checkVersionUpdate();
     SplashScreen.hide();
-    handleMessagingPermission();
+    handleMessagingPermission().finally(()=>{
+      handleLocationPermission().finally(()=>{
+        setShowContent(true);
+      })
+    });
   }, []);
 
   return {showContent};
