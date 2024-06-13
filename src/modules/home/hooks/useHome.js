@@ -146,7 +146,7 @@ export const useHome = () => {
      else if(Platform.isIOS) dispatch(setPermission(false));
      dispatch(getAllCityNamesThunk());
     }
-    Geolocation.getCurrentPosition(onSuccess,onError)
+    Geolocation.getCurrentPosition(onSuccess,onError,{enableHighAccuracy:true})
   }
 
   return {

@@ -71,11 +71,11 @@ export const HomeScreen = () => {
         homeScreen={true}
         hideTitle={true}
       />
-      {enableGps && <View style={{marginBottom:8,paddingHorizontal:16,alignItems:'center'}}>
-        <Text>Please turn on GPS in settings to access the current location</Text>
+      {enableGps && <View style={styles.noteContainer}>
+        <Text style={styles.noteText}>Please turn on GPS in settings to access the current location</Text>
         </View>}
-        {!enableGps && currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND'  && <View style={{marginBottom:8,paddingHorizontal:16,alignItems:'center'}}>
-        <Text>Unable to fetch the current location</Text>
+        {!enableGps && currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND'  && <View style={styles.noteContainer}>
+        <Text style={styles.noteText}>Unable to fetch the current location</Text>
         </View>}
       <ScrollView nestedScrollEnabled={true}>
         <View style={{backgroundColor:'white'}}>

@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 300,
+        paddingHorizontal: 20,
+        backgroundColor: WHITE
     },
     circle: {
         marginLeft: 41,

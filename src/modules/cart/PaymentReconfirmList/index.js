@@ -8,6 +8,7 @@ import {usePaymentReconfirm} from './hooks/usePaymentReconfirm';
 import TermsContainer from './TermsContainer';
 import PaymentModes from './PaymentModes';
 import { getPlatform } from '../../../utils/utils';
+import LoaderContext from '../../../components/LoaderContext';
 
 const Separator = () => {
   return <View style={styles.separator} />;
@@ -25,6 +26,7 @@ const PaymentReconfirmList = () => {
         showCart={true}
       />
       <ScrollView style={{paddingHorizontal: 20, flex: 1}}>
+        <LoaderContext/>
       <KeyboardAvoidingView behavior={getPlatform().isIOS ? 'padding' : null} style={{flex: 1}}>
         <PriceBreakdown />
         <View style={{flex: 1}}>

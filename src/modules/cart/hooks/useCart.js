@@ -11,6 +11,7 @@ import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelat
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
 import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
+import { setRedirectState } from '../../../store/reducers/NotificationSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
@@ -171,6 +172,7 @@ export const useCart = (args) => {
 
   useEffect(() => {
     if (isRemoved && !fromHome) {
+      console.log('Effect')
       dispatch(getCartUserThunk());
     }
   }, [isRemoved]);
@@ -180,6 +182,11 @@ export const useCart = (args) => {
       dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode:cart?.couponViewCart}));
     }
   },[focused,cartLoading,cartEmpty])
+
+  useEffect(()=>{
+    if(cartLoading) setRedirectState(true);
+    else setRedirectState(false);
+  },[cartLoading])
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
