@@ -20,7 +20,7 @@ export const useOurPlan = () => {
     }
     useEffect(() => {
       if(homePlans?.data?.length > 0) {
-      const ourPlanData = {...homePlans.data[selectedItems],yearlyFinalCost:homePlans.data[selectedItems]?.price};
+      const ourPlanData = {...homePlans.data[selectedItems],yearlyPrice:homePlans.data[selectedItems]?.price,yearlyFinalCost:homePlans.data[selectedItems]?.discountedPrice};
       dispatch(setOurPlanData(ourPlanData));
       }
     }, [selectedItems,homePlans])

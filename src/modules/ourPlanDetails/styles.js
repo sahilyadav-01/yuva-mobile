@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
   planPrice: {
     marginBottom: 16,
     maxWidth: '60%',
-    fontFamily: fonts.family.montserrat400,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
     color: BLACK,
   },

@@ -189,6 +189,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 12,
     borderColor: ALTO_SECONDARY,
+    justifyContent:'space-between'
   },
   separator: {height: 10}
 });

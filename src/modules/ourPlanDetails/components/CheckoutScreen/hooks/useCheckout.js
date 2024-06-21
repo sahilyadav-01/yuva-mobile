@@ -57,6 +57,7 @@ export const useCheckout = () => {
     },[setItemName,planCouponFinalAmount,planAmountToBePaid])
 
     const onPayPress = () => {
+      
         const bookingRequestDto = {
             address,
             cityId:selectedCity,
@@ -77,11 +78,11 @@ export const useCheckout = () => {
             cityId:selectedCity,
             pinCode: pincode,
             number,
-            planTypeEnum,
+            planTypeEnum: Object.keys(planAmountToBePaid)[0],
             planUuid: ourPlanData?.planUuid,
             couponName:planeCouponCode ?? undefined,
         }
-        const paymentProps = { plan: true, bookingRequestDto, subscriptionRequestDto, cart:false }
+        const paymentProps = { plan: true, subscriptionRequestDto, cart:false }
         navigation.navigate('Payment', { screen: 'PaymentScreen', params: { paymentProps } })
     }
 

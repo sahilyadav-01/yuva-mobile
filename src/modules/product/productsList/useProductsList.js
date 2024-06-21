@@ -106,10 +106,10 @@ export const useProductsList = () => {
   };
 
   const onSearch = text => {
-    if (text.trim().length > 2) {
+    //if (text.trim().length > 2) {
       setPageNo(0);
       setFilterData({...filterData, productName: text});
-    }
+    //}
   };
 
   return {

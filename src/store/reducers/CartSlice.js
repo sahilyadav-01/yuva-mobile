@@ -175,17 +175,17 @@ const cartSlice = createSlice({
       state.cart.discountBeforeCoupon= action.payload?.data?.cartPriceResponseDto?.discountBeforeCoupon;
       state.cart.couponId= action.payload?.data?.cartPriceResponseDto?.couponId ?? null;
     },
-    [redeemCouponsSliceThunk.rejected]: (state, action) => {
+    [redeemCouponsSliceThunk.rejected]: (state, {payload}) => {
       state.cartLoading = false;
-      state.cartError = true;
-      state.cart = {
-        itemDtoList: [],
-        totalCost: 0,
-        isRemoved: false,
-      };
-      state.existingIds = [];
+      // state.cartError = true;
+      // state.cart = {
+      //   itemDtoList: [],
+      //   totalCost: 0,
+      //   isRemoved: false,
+      // };
+      // state.existingIds = [];
       state.apiError = true;
-      state.apiErrorMessage = payload?.response?.data?.errorMessage;
+      state.apiErrorMessage = payload?.errorMessage;
       state.loading = false;
     },
     [createCartUserThunk.pending]: state => {

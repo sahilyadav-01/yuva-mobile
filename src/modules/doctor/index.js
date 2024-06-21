@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList,Text} from 'react-native';
 import DoctorCard from '../../components/DoctorCard';
 import {useDoctor} from './hooks/useDoctor';
 import {styles} from './styles';
@@ -32,8 +32,8 @@ const Doctor = () => {
       />
     );
   };
+  if(data?.length > 0)
   return (
-  
       <View style={styles.contentContainerStyle}>
         <View style={styles.search}>
           <Search
@@ -53,6 +53,11 @@ const Doctor = () => {
           />
       </View>
   );
+  return (
+    <View style={styles.listEmptyStyles}>
+      <Text style={styles.emptyText}>No Doctors available in the Selected City</Text>
+    </View>
+  ); 
 };
 
 export default Doctor;

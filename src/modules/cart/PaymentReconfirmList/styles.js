@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, FLASH_WHITE, MARINER, ORANGE, WHITE} from '../../../styles/colors';
+import {CYAN_BLUE, FLASH_WHITE, MARINER, ORANGE, RED, WHITE} from '../../../styles/colors';
 import {ABSOLUTE, CENTER, ROW} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
@@ -81,5 +81,11 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontFamily: fonts.family.monsterrant500,
     fontSize:fonts.size.fontSize12,
+  },
+  couponError: {
+    marginTop: 8, 
+    color: RED,
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize12,
   }
 });

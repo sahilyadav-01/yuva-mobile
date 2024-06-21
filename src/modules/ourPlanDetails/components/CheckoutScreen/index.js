@@ -7,6 +7,7 @@ import { getPlatform } from '../../../../utils/utils';
 import PriceBreakdown from '../../../cart/PaymentReconfirmList/PriceBreakdown';
 import CouponCard from '../../../../components/CouponContainer';
 import { useCheckout } from './hooks/useCheckout';
+import PaymentModes from '../../../cart/PaymentReconfirmList/PaymentModes';
 
 const Separator = () => {
   return <View style={styles.separator} />;
@@ -21,6 +22,9 @@ const {
   planType,
   checked,
   onCheckboxPress,
+  onCodPress,
+  onOnlinePress,
+  cod
 } = useCheckout();
  
   return (
@@ -46,6 +50,7 @@ const {
         <View style={{flex: 1}}>
           <CouponCard isPlan={true} planType={planType[0]} planUuid={planUuid}/>
           <Separator />
+          <PaymentModes cod={cod} onCodPress={onCodPress} onOnlinePress={onOnlinePress}/>
           <TermsContainer checked={checked} onCheckboxPress={onCheckboxPress} />
           <TouchableOpacity
             onPress={onCheckout}

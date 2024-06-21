@@ -19,7 +19,7 @@ import Header from '../../components/Header';
 import PlanServiceIcons from './components/PlanServiceIcons';
 import TextBold from '../../components/TextBold';
 import {getDimensions} from '../../utils/utils';
-import { MARINER } from '../../styles/colors';
+import { MARINER, RED } from '../../styles/colors';
 
 const OurPlanDetails = props => {
   const {
@@ -43,7 +43,7 @@ const OurPlanDetails = props => {
       </View>
     );
   };
- 
+
   return (
     <SafeAreaView style={styles.parentContainerStyle}>
       <Header showBackButton={true} title={TITLE} />
@@ -55,7 +55,8 @@ const OurPlanDetails = props => {
             source={PNG.PlanBanner}
             style={styles.imageBackground}>
             <Text style={styles.planName}>{ourPlanData?.name}</Text>
-            <Text style={styles.planPrice}>{ourPlanData?.yearlyFinalCost}</Text>
+            {ourPlanData?.yearlyPrice > ourPlanData?.yearlyFinalCost ? <Text style={[styles.planPrice,{ textDecorationLine:'line-through',color:RED}]}>₹ {ourPlanData?.yearlyPrice} /-</Text> : null}
+            <Text style={styles.planPrice}>₹ {ourPlanData?.yearlyFinalCost} /-</Text>
             <TouchableOpacity
               onPress={bookOurPlan}
               style={styles.buyNowContainer}>

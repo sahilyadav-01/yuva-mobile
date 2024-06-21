@@ -5,9 +5,10 @@ import Header from '../../../../components/Header';
 import {useViewAllOurPlan} from './hooks/useViewAllOurPlan';
 import {styles} from './style';
 import {LEARN_MORE, VIEW_PLAN} from './constants';
+import { RED } from '../../../../styles/colors';
 
 const ViewAllOurPlan = () => {
-  const {popularPlan, onPlanPress} = useViewAllOurPlan();
+  const {popularPlan, onPlanPress, allPlans} = useViewAllOurPlan();
 
   const RenderItem = ({item, index}) => {
     return (
@@ -16,6 +17,7 @@ const ViewAllOurPlan = () => {
           ...styles.itemContainer,
           marginRight: (index + 1) % 3 === 0 ? 0 : 10,
         }}>
+          <>
         <Text numberOfLines={3} style={styles.heading}>
           {item?.name}
         </Text>
@@ -24,9 +26,13 @@ const ViewAllOurPlan = () => {
             {item?.description}
           </Text>
         )}
+        {item?.yearlyPrice > item?.yearlyFinalCost ? <Text numberOfLines={1} style={[styles.priceText,{textDecorationLine:'line-through',color:RED}]}>
+          {item?.yearlyPrice}/-
+        </Text> : <Text>{'  '}</Text>}
         <Text numberOfLines={1} style={styles.priceText}>
           {item?.yearlyFinalCost}/- per year
         </Text>
+        </>
         <TouchableOpacity
           onPress={() => onPlanPress(index)}
           style={styles.buttonContainer}>
@@ -42,7 +48,7 @@ const ViewAllOurPlan = () => {
         <ImageContainer />
         <FlatList
           numColumns={3}
-          data={popularPlan}
+          data={allPlans?.data}
           keyExtractor={(item, index) => `${item}-${index}`}
           renderItem={RenderItem}
           ItemSeparatorComponent={() => <View style={styles.separator} />}

@@ -6,6 +6,7 @@ import {useHeader} from './hooks/useHeader';
 import {styles} from './styles';
 import { BLACK, DARK_GRAY} from '../../styles/colors';
 import {PNG, SVG} from '../../../assets';
+import { CENTER, SPACE_BETWEEN } from '../../styles/constants';
 
 const Heading = ({onToggleDrawer,isLoggedIn,name,canGoBack}) => {
   if(!canGoBack) {
@@ -82,11 +83,8 @@ return null;
 const Header = props => {
   const {
     isLoggedIn,
-    //onCartPress,
     onRightPress,
-    //cityList,
     setSelected,
-    //selectedCity,
     query,
     onChangeSearch,
     showSearch,
@@ -94,19 +92,11 @@ const Header = props => {
     canGoBack,
     onBackPress,
     title,
-    //showCount,
-    //count,
-    //hideMenu,
-    //placeholder,
     isScreen,
-    //showCart,
     editable,
     onSubmitEditing,
     isSearch,
-    //showLocation,
-    //PrefixIcon,
     hideTitle,
-    //initial,
     onSearchPress,
     showSearchBox,
     name,
@@ -117,7 +107,7 @@ const Header = props => {
 
   if(props?.homeScreen) {
     return (
-      <View style={{zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:'white'}}>
+      <View style={styles.screenContainer}>
       <View style={styles.homeTopSection}>
         <Heading onToggleDrawer={onToggleDrawer} isLoggedIn={isLoggedIn} name={name} canGoBack={canGoBack}/>
         <SearchBox showSearch={showSearch} onSearchPress={onSearchPress}/>
@@ -139,8 +129,8 @@ const Header = props => {
   }
 
   return (
-    <View>
-    <View style={[styles.topSection,{justifyContent:showSearch ? 'space-between' : 'center'}]}>
+    <View style={styles.screenContainer}>
+    <View style={[styles.topSection,{justifyContent:showSearch ? SPACE_BETWEEN : CENTER}]}>
       <View style={styles.backContainer}>
     <BackButton canGoBack={canGoBack} showBackButton={props?.showBackButton ?? false} onBackPress={onBackPress}/>
     </View>

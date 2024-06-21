@@ -21,7 +21,7 @@ export const useDoctor=()=>{
         return userDetails?.cityId;
       }
       else {
-        return diagnosticState?.cityId?.find((item)=>{return item?.name === diagnosticState?.selectedCityId})?.id
+        return diagnosticState?.cityId?.find((item)=>{return `${item?.id}` === `${diagnosticState?.selectedCityId}`})?.id ?? parseInt(diagnosticState?.selectedCityId)
       }
     }
     useEffect(()=>{

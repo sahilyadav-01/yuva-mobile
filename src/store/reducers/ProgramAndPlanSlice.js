@@ -163,6 +163,19 @@ export const programAndPlanLockUserThunk = createAsyncThunk(
     }
   },
 );
+
+export const fetchAllPlans = createAsyncThunk(
+  'plans/viewAll',
+  async (params=null,{fulfillWithValue, rejectWithValue}) => {
+    try {
+      const response = await YuvaService.get('/plan/viewAll');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const initialState = {
   loading: false,
   apiError: false,
@@ -194,6 +207,7 @@ const initialState = {
   homePackages: {loading: false, data: [], error: false},
   homeTests: {loading: false, data: [], error: false},
   homePlans: {loading: false, data: [], error: false},
+  allPlans: {loading: false, data: [], error: false},
 };
 
 const programAndPlanSlice = createSlice({
@@ -391,6 +405,21 @@ const programAndPlanSlice = createSlice({
       state.homePlans.error = false;
     },
     [fetchHomeScreenPlans.rejected]: (state) => {
+      state.homePlans.loading = false;
+      state.homePlans.data = [];
+      state.homePlans.error = true;
+    },
+    [fetchAllPlans.pending]: (state) => {
+      state.allPlans.loading = true;
+      state.allPlans.data = [];
+      state.allPlans.error = false;
+    },
+    [fetchAllPlans.fulfilled]: (state,{payload}) => {
+      state.allPlans.loading = true;
+      state.allPlans.data = payload?.data;
+      state.allPlans.error = false;
+    },
+    [fetchAllPlans.rejected]: (state) => {
       state.homePlans.loading = false;
       state.homePlans.data = [];
       state.homePlans.error = true;

@@ -15,7 +15,7 @@ const Separator = () => {
 };
 
 const PaymentReconfirmList = () => {
-  const {onPayPress, checked, onCheckboxPress,cod, onCodPress, onOnlinePress} = usePaymentReconfirm();
+  const {onPayPress, checked, onCheckboxPress,cod, onCodPress, onOnlinePress,apiErrorMessage} = usePaymentReconfirm();
   return (
     <View style={{flex: 1}}>
       <Header
@@ -31,6 +31,7 @@ const PaymentReconfirmList = () => {
         <PriceBreakdown />
         <View style={{flex: 1}}>
           <CouponCard/>
+          {apiErrorMessage ? <Text style={styles.couponError}>{apiErrorMessage}</Text> : null}
           <Separator/>
           <PaymentModes cod={cod} onCodPress={onCodPress} onOnlinePress={onOnlinePress}/>
           <TermsContainer checked={checked} onCheckboxPress={onCheckboxPress} />

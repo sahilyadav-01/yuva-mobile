@@ -7,12 +7,13 @@ const styles = style();
 
 const PriceBreakdown = ({plan,priceBreakup}) => {
   const {cart:{totalCost,amountToBePaid,totalDiscount,processingCharge}} = useSelector(state=>state.cart)
-  const data = [
-    {key: 'Price', value: plan ? priceBreakup?.price : totalCost},
-    {key: 'Discount', value: plan ? priceBreakup?.totalDiscount :totalDiscount},
-    {key: 'Collection Charges', value: processingCharge,description:'Applicable for Diagnostic Tests*'},
-    {key: 'Total', value: plan ? priceBreakup?.amountToBePaid :amountToBePaid},
+  let data = [
+    {key: 'Price', value: plan ? priceBreakup?.price : totalCost, id:0},
+    {key: 'Discount', value: plan ? priceBreakup?.totalDiscount :totalDiscount, id:1},
+    {key: 'Collection Charges', value: processingCharge,description:'Applicable for Diagnostic Tests*', id:2},
+    {key: 'Total', value: plan ? priceBreakup?.amountToBePaid :amountToBePaid, id:3},
   ];
+  data = plan ? data.filter(item=>item.id !== 2) : data
   return (
     <View style={styles.container}>
       <Text style={styles.headingText}>Order Summary</Text>

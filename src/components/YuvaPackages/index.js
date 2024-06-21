@@ -45,7 +45,7 @@ function YuvaPackages({
               existingIds.includes(item?.id)
             }
               onPress={() => onPressAdd(item)}
-              style={styles.addContainer}>
+              style={style({disabled:existingIds.includes(item?.id)}).addContainer}>
               <SVG.AddIcon />
             </TouchableOpacity>
           )}

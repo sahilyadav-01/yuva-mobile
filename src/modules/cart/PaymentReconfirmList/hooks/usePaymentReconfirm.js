@@ -13,11 +13,13 @@ export const usePaymentReconfirm = () => {
   const {
     termsAndCondtionChecked,
     cart: {itemDtoList},
+    apiErrorMessage
   } = useSelector(state => state.cart);
   const {cod} = useSelector(state => state.payment);
   const {scheduleDate, addressData, relationData, processingCharge} =
     useSelector(state => state.checkOut);
-  const {selectedCity} = useSelector(state => state.profile);
+  const { user } = useSelector(state => state.auth);
+  const {selectedCity,userDetails} = useSelector(state => state.profile);
   const itemType = itemDtoList?.map(item => item?.productType);
   const isProduct =
     !itemType?.includes('TEST') && !itemType?.includes('PACKAGE');
@@ -60,7 +62,7 @@ export const usePaymentReconfirm = () => {
     else if (isAddressValid && (isProduct || isBooking)) {
       const packageUuid = fetchProductId('PACKAGE');
       const testId = fetchProductId('TEST');
-      const selfDetails = {age: 0, name: null, gender: null};
+      const selfDetails = {age: 0, name:true ? null : user?.name, gender: (false && userDetails?.gender) ? userDetails?.gender?.toUpperCase() : null};
       const relationDetails = {name, age: parseInt(age), gender};
       const details = myself ? selfDetails : relationDetails;
       const paymentProps = {
@@ -68,7 +70,7 @@ export const usePaymentReconfirm = () => {
         plan: false,
         bookingRequestDto: {
           address,
-          away,
+          away: away === 'true' ? true : false,
           cityId: selectedCity,
           contactNumber: contact,
           packageUuid,
@@ -88,5 +90,5 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress};
+  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress, apiErrorMessage};
 };

@@ -26,7 +26,7 @@ export const usePayment = paymentProps => {
       dispatch(
         createOrderThunk({
           plan,
-          cod,
+          cod: plan ? cod ? 'true': 'false' : cod,
           bookingRequestDto,
           subscriptionRequestDto,
           name,

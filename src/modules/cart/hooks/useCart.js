@@ -1,16 +1,15 @@
+import { useEffect, useState } from 'react';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCartUserThunk,
-  removeCouponCart,
 } from '../../../store/reducers/CartSlice';
-import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
+import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
 import { deleteCartThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
-import { useCallback, useEffect, useState } from 'react';
 import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
-import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
+import { clearApiErrorMessage, redeemCouponsSliceThunk, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
 import { setRedirectState } from '../../../store/reducers/NotificationSlice';
 
 export const useCart = (args) => {
@@ -19,12 +18,12 @@ export const useCart = (args) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { cart, loading, addToCartItem, cartLoading, cartEmpty } = useSelector(state => state.cart);
+  const { cart, loading, cartLoading, cartEmpty } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
+  const { isRemoved, processingCharge } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
-  const { redeemCoupons, couponView, amountToBePaidCoupon, couponId } = useSelector(state => state.coupon);
+  const { redeemCoupons, couponView, couponId } = useSelector(state => state.coupon);
   const [initialLoad, setInitialLoad] = useState(true);
   const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -43,13 +42,11 @@ export const useCart = (args) => {
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
   ]
-  /** */
-
+  
   const onPressCardButton = () => {
     if (isLoggedIn) {
       const productTypes = getProductTypes();
       setAddButtonPress(true);
-      //dispatch(getCartUserThunk());
       if((!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST'))){
         dispatch(dispatch_processingCharge(processingCharge));
         navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
@@ -172,7 +169,6 @@ export const useCart = (args) => {
 
   useEffect(() => {
     if (isRemoved && !fromHome) {
-      console.log('Effect')
       dispatch(getCartUserThunk());
     }
   }, [isRemoved]);
@@ -268,14 +264,6 @@ export const useCart = (args) => {
       setUserData({ id, name, age, gender, genderId: gender === 'Male' ? 0 : 1, relation });
     }
   }, [checkBoxStatus, checkBoxFlag]);
-
-  useEffect(() => {
-    if ((couponViewCart || couponView) && (isRemoved || addToCartItem) && navigation.isFocused() && route?.name === 'Cart') {
-      dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
-      dispatch(removeCoupon());
-      dispatch(removeCouponCart());
-    }
-  }, [isRemoved, addToCartItem, focused]);
 
   const openModal = () => {
     dispatch(profileThunk());

@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
   container: {
     zIndex: 5,
   },
+  screenContainer: {zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:WHITE},
   headerContainer: {
     minHeight: 0.12 * height,
     width: '100%',
@@ -35,7 +36,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     flexDirection: ROW,
     alignItems: CENTER,
-    //justifyContent: SPACE_BETWEEN,
     marginBottom: 8,
   },
   nameContainer: {
@@ -137,7 +137,7 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     paddingHorizontal: 16,
   },
-  backContainer: {width: '20%',paddingLeft:16},
+  backContainer: {width: '20%',paddingLeft:16,backgroundColor:WHITE},
   mainContainer: {width: '60%'},
   searchIconContainer: {width: '20%', alignItems: FLEX_END, paddingRight: 16},
   titleTextStyle: {
@@ -154,8 +154,10 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 8,
     elevation: 1,
-    zIndex: 1,
+    zIndex: 20,
     shadowColor: BLACK,
+    shadowOffset: {width:1,height:1},
+    shadowOpacity: 0.3
   },
   loginContainer: {
     alignItems: CENTER,

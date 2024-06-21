@@ -23,7 +23,7 @@ function AddressItem({item,index,checked,setChecked}) {
         />
         <View style={styles.addressDetails}>
           <Text style={styles.addressType}>
-            {item?.away ? 'Other' : 'Home'}
+            {item?.away || item?.saveAs === 'true' ? 'Away' : 'Home'}
           </Text>
           <Text style={styles.addressText}>{item?.address}</Text>
           <Text style={[styles.addressText, {marginTop: 4}]}>
