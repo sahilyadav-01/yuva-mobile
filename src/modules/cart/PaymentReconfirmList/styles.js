@@ -82,10 +82,4 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.monsterrant500,
     fontSize:fonts.size.fontSize12,
   },
-  couponError: {
-    marginTop: 8, 
-    color: RED,
-    fontFamily: fonts.family.monsterrant500,
-    fontSize: fonts.size.fontSize12,
-  }
 });

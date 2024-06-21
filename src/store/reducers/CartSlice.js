@@ -90,6 +90,10 @@ const cartSlice = createSlice({
     },
     toggleItemAdded(state,{payload}){
       state.addToCartItem = payload;
+    },
+    clearErrorMessage(state){
+      if(state.apiErrorMessage.length > 0)
+        state.apiErrorMessage = '';
     }
   },
   extraReducers: {
@@ -177,13 +181,6 @@ const cartSlice = createSlice({
     },
     [redeemCouponsSliceThunk.rejected]: (state, {payload}) => {
       state.cartLoading = false;
-      // state.cartError = true;
-      // state.cart = {
-      //   itemDtoList: [],
-      //   totalCost: 0,
-      //   isRemoved: false,
-      // };
-      // state.existingIds = [];
       state.apiError = true;
       state.apiErrorMessage = payload?.errorMessage;
       state.loading = false;
@@ -234,7 +231,6 @@ const cartSlice = createSlice({
     },
   },
 });
-export const {setTermsAndCondtionChecked, clearExistingCartIds, toggleItemAdded} = cartSlice.actions;
+export const {setTermsAndCondtionChecked, clearExistingCartIds, toggleItemAdded, clearErrorMessage,removeCouponCart} = cartSlice.actions;
 export const cartInit = cartSlice.getInitialState();
-export const {removeCouponCart} = cartSlice.actions;
 export default cartSlice.reducer;

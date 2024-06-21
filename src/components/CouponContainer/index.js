@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {useRoute} from '@react-navigation/native';
 import {styles} from './styles';
 import {useCouponCard} from './hooks/useCouponCard';
 import {
@@ -25,15 +23,8 @@ import {
   DARK_GRAY,
   MARINER,
 } from '../../styles/colors';
-import {
-  redeemCouponsPlanSliceThunk,
-  redeemCouponsSliceThunk,
-  selectedCoupon,
-} from '../../store/reducers/CouponSlice';
-import {getCartUserThunk} from '../../store/reducers/CartSlice';
 
 const CouponCard = props => {
-  const route = useRoute();
   const {isPlan, planType, planUuid} = props;
   const {
     coupon,
@@ -43,10 +34,9 @@ const CouponCard = props => {
     planeCouponCode,
     selectedCouponCode,
     couponViewCart,
-    planTypee,
+    couponError,
     onSuccess
   } = useCouponCard(isPlan, planUuid, planType);
-  const {loggedIn} = useSelector(state => state.auth);
   const renderItem = ({item, index}) => {
     return (
       <TouchableOpacity onPress={()=>onSuccess(item?.couponCode)} key={index}>
@@ -109,6 +99,7 @@ const CouponCard = props => {
           <Text style={styles.couponText}>Apply</Text>
         </TouchableOpacity>
       </View>
+      {couponError ? <Text style={styles.couponError}>{couponError}</Text> : null}
       <Text style={styles.couponLabelStyles}>
         {coupon.length >= 1 ? `${COUPON_LABEL} (${coupon?.length})` : NO_COUPON_TEXT}
       </Text>

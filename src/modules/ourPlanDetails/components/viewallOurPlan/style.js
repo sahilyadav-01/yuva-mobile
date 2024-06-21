@@ -6,6 +6,7 @@ import {
   LINE_THROUGH,
   ROW,
   SPACE_AROUND,
+  SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {
   ALTO,
@@ -189,7 +190,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 12,
     borderColor: ALTO_SECONDARY,
-    justifyContent:'space-between'
+    justifyContent:SPACE_BETWEEN
   },
   separator: {height: 10}
 });

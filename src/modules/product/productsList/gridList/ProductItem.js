@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles as style} from './style';
 import {SVG} from '../../../../../assets';
+import { FLASH_WHITE, WHITE } from '../../../../styles/colors';
 
 const styles = style();
 
@@ -58,14 +59,14 @@ const DiscountContainer = ({item}) => {
 function ProductItem({item,onAdd,leftAlign,marginRight,container}) {
   const onAddProduct = () => onAdd(item);
   return (
-    <TouchableOpacity onPress={onAddProduct} style={[style(leftAlign,marginRight ?? 16).productItemContainer,container]}>
-      <Image
+    <TouchableOpacity onPress={onAddProduct} style={[style(leftAlign,marginRight ?? 16).productItemContainer,container,{borderColor:item===0?WHITE:FLASH_WHITE}]}>
+      {item!==0 && <Image
         source={{uri: item?.imageFilepath}}
         resizeMode="contain"
         style={styles.imageStyle}
-      />
-      <ProductName name={item?.name} />
-      <DetailsContainer item={item} onAddProduct={onAddProduct} />
+      />}
+      {item!==0 && <ProductName name={item?.name} />}
+      {item!==0 && <DetailsContainer item={item} onAddProduct={onAddProduct} />}
     </TouchableOpacity>
   );
 }

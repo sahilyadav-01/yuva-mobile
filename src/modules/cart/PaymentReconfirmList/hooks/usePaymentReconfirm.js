@@ -12,8 +12,7 @@ export const usePaymentReconfirm = () => {
   const [checked, setChecked] = useState(false);
   const {
     termsAndCondtionChecked,
-    cart: {itemDtoList},
-    apiErrorMessage
+    cart: {itemDtoList}
   } = useSelector(state => state.cart);
   const {cod} = useSelector(state => state.payment);
   const {scheduleDate, addressData, relationData, processingCharge} =
@@ -90,5 +89,5 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress, apiErrorMessage};
+  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress};
 };

@@ -10,6 +10,7 @@ import {
 } from '../../../store/reducers/CouponSlice';
 import {ALERT, COUPON_MESSAGE} from '../constant';
 import {updateFinalAmount} from '../../../store/reducers/ProgramAndPlanSlice';
+import { clearErrorMessage } from '../../../store/reducers/CartSlice';
 
 export const useCouponCard = (isPlan, planUuid, planType) => {
   const navigation = useNavigation();
@@ -29,7 +30,7 @@ export const useCouponCard = (isPlan, planUuid, planType) => {
     selectedCouponCode,
     planCouponData,
   } = useSelector(state => state.coupon);
-  const {cart} = useSelector(state => state.cart);
+  const {cart,apiErrorMessage:couponError} = useSelector(state => state.cart);
   const {couponViewCart} = cart || {};
 
   useEffect(() => {
@@ -130,6 +131,7 @@ export const useCouponCard = (isPlan, planUuid, planType) => {
 
   const onCouponValue = value => {
     setCouponCode(value);
+    dispatch(clearErrorMessage());
   };
 
   const onSuccess = couponCode => {
@@ -175,5 +177,6 @@ export const useCouponCard = (isPlan, planUuid, planType) => {
     couponViewCart,
     planTypee,
     onSuccess,
+    couponError,
   };
 };

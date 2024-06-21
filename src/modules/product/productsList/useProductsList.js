@@ -84,12 +84,20 @@ export const useProductsList = () => {
   }, [filterData]);
 
   const onAdd = item => {
+    if(item !== 0){
     const {productId} = item;
     navigation.navigate('Product', {
       screen: 'ProductDetails',
       params: {productId},
     });
+  }
   };
+
+  const getData = (data) => {
+    const offset = (Math.ceil(data.length/2)*2) - data.length;
+    if(offset === 0) return data;
+    return [...data,...Array.from({length:offset},()=>0)];
+  }
 
   const onEndReached = () => {
     if (data?.length < productList?.totalDocuments && !applyFilter) {
@@ -124,5 +132,6 @@ export const useProductsList = () => {
     onEndReached,
     onSearch,
     filterData,
+    getData
   };
 };

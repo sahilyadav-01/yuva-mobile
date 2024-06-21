@@ -17,6 +17,7 @@ function ProductsList() {
     data,
     onSearch,
     onAdd,
+    getData
   } = useProductsList();
 
   if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {
@@ -31,7 +32,7 @@ function ProductsList() {
     <View style={styles.container}>
       <Header showBackButton={true} title={'Products'} />
       <SearchFilter onFilterPress={onFilterPress} onSearch={onSearch} filterData={productList?.productFilter} />
-      <GridList data={data} onEndReached={onEndReached} onAdd={onAdd} />
+      <GridList data={getData(data)} onEndReached={onEndReached} onAdd={onAdd} />
     </View>
   );
 }
