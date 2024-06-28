@@ -21,6 +21,7 @@ import {
   PINCODE,
   SAVE_AS,
 } from '../constants';
+import { getPlatform } from '../../utils/utils';
 
 const AddNewAddressContainer = isScreen => {
   const {
@@ -30,8 +31,6 @@ const AddNewAddressContainer = isScreen => {
     onChangePincode,
     onChangeLocation,
     onChangeContact,
-    onChangeCity,
-    onChangeLocation2,
     errorState,
     errorPincode,
     errorAddress,
@@ -39,13 +38,14 @@ const AddNewAddressContainer = isScreen => {
     setSelectedCity,
   } = useAddNewAddress(isScreen);
 
+  const isIOS = getPlatform().isIOS;
   return (
     <ScrollView contentContainerStyle={styles.contentContainerStyle}>
       <View style={styles.borderAddNewAddress}>
         <Text style={styles.AddAddressLine}>Address</Text>
         <TextInput
           multiline={true}
-          style={styles.textInputStyle}
+          style={[styles.textInputStyle,{paddingBottom:isIOS?72:undefined}]}
           placeholder={'Type your Address here'}
           placeholderTextColor={DARK_GRAY}
           onChangeText={onChangeLocation}
@@ -70,7 +70,7 @@ const AddNewAddressContainer = isScreen => {
           keyboardType="numeric"
           multiline={false}
           maxLength={6}
-          style={styles.textInputStyle}
+          style={[styles.textInputStyle,{paddingVertical:isIOS?10:undefined}]}
           placeholder={'Type your Pin Code here'}
           placeholderTextColor={DARK_GRAY}
           onChangeText={onChangePincode}
@@ -83,7 +83,7 @@ const AddNewAddressContainer = isScreen => {
           keyboardType="phone-pad"
           multiline={false}
           maxLength={10}
-          style={styles.textInputStyle}
+          style={[styles.textInputStyle,{paddingVertical:isIOS?10:undefined}]}
           placeholder={'Type your Contact Number here'}
           placeholderTextColor={DARK_GRAY}
           onChangeText={onChangeContact}

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {WHITE, BLACK, RED, MARINER} from '../../styles/colors';
-import {CENTER} from '../../styles/constants';
+import {CENTER, TOP} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     color: BLACK,
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
+    textAlignVertical:TOP,
   },
   boxStyles: {
     backgroundColor: WHITE,
@@ -50,7 +51,7 @@ export const styles = StyleSheet.create({
   },
   errorContact: {
     color: RED,
-    marginHorizontal: 14,
+    
   },
   pickerContainer: {borderWidth: 0.5, borderColor: '#D1D1D1', borderRadius: 6,padding:2},
 });
