@@ -40,11 +40,11 @@ export const HomeSearch = () => {
   } = useHomeSearch();
   const style = styles();
 
-  const RenderListItem = ({item,overlay}) => {
+  const RenderListItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() =>
-          onItemPress({name: item.name, attributeUuid: item.id, item: text})
+        onPress={() => 
+          onItemPress({name: item.name, attributeUuid: item.id, item: text, type: item?.test ? 'TEST' : 'PACKAGE'})
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>{item?.name}</Text>

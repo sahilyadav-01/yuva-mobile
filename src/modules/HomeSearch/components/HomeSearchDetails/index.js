@@ -34,6 +34,7 @@ const HomeSearchDetails = () => {
     itemSeparator
   } = styles(addToCartLoad);
 
+
   const SearchContent = () => {
     const type = route?.params?.type;
     if(addToCartLoad) {

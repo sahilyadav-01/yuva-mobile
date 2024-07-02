@@ -33,7 +33,7 @@ export const useProductDetails = (productId, navigation) => {
       </html>`);
       fetchItemExists({productId,priceId})
     }
-  }, [productDetails,activeIndex]);
+  }, [productDetails,activeIndex,quantity]);
 
   useEffect(()=>{
     if(addItem && !updateCartLoading) {
@@ -47,7 +47,7 @@ export const useProductDetails = (productId, navigation) => {
     if(itemDtoList?.length === 0) setDisabled(false);
     else {
       const exists = itemDtoList.filter(item=>{
-        const arg = item?.productType === 'PRODUCT' && item?.productId?.toString() === productId.toString() && item?.productPriceId !== null && item?.productPriceId?.toString() === priceId?.toString();
+        const arg = item?.productType === 'PRODUCT' && item?.productId?.toString() === productId.toString() && item?.productPriceId !== null && item?.productPriceId?.toString() === priceId?.toString() && item?.count === quantity;
         if(arg) return item;
       })?.length > 0;
       setDisabled(exists);

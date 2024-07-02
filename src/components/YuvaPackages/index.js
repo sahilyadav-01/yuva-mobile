@@ -9,6 +9,7 @@ function YuvaPackages({
   onPressAdd,
   existingIds,
   lifeStyle,
+  isTest
 }) {
   const isLifeStylePackage = lifeStyle ?? false;
   const styles = style();
@@ -18,6 +19,7 @@ function YuvaPackages({
         styles.itemStyle,
         style({gap: index < packages?.length - 1}).itemGap,
       ];
+      if(item.id === 6)
       return (
         <TouchableOpacity
           onPress={() =>
@@ -42,10 +44,10 @@ function YuvaPackages({
             disabled={
               !isLifeStylePackage &&
               existingIds.length > 0 &&
-              existingIds.includes(item?.id)
+              existingIds.includes(item?.id?.toString())
             }
               onPress={() => onPressAdd(item)}
-              style={style({disabled:existingIds.includes(item?.id)}).addContainer}>
+              style={style({disabled:existingIds.includes(item?.id?.toString())}).addContainer}>
               <SVG.AddIcon />
             </TouchableOpacity>
           )}
