@@ -166,6 +166,7 @@ const UserDetails = ({
           style={textInputStyle}
           placeholder={DD_MM_YYYY}
           placeholderTextColor={DARK_GRAY}
+          onPressOut={onPickerPress}
         />
         </Picker>
       ) : (

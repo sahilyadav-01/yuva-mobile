@@ -114,6 +114,7 @@ const Profile = () => {
           mode={'date'}
           onCancel={closePicker}
           onConfirm={onConfirmDate}
+          maximumDate={new Date()}
         />
       </ScrollView>
     </>
