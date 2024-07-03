@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const Bookings = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const Bookings = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#000"
       strokeLinecap="round"
@@ -16,5 +15,5 @@ const Bookings = (props) => (
       d="M5.561 5.561h.012M9.46 1H6.406c-1.892 0-2.838 0-3.561.368a3.379 3.379 0 0 0-1.477 1.477C1 3.568 1 4.514 1 6.406V9.46c0 .827 0 1.24.093 1.629.083.345.22.674.405.977.209.34.501.633 1.085 1.217l5.294 5.294c1.338 1.338 2.007 2.007 2.779 2.258.678.22 1.41.22 2.088 0 .771-.251 1.44-.92 2.779-2.258l3.054-3.055c1.338-1.338 2.007-2.007 2.258-2.778a3.38 3.38 0 0 0 0-2.088c-.251-.772-.92-1.44-2.258-2.779l-5.294-5.294c-.584-.584-.876-.876-1.217-1.085a3.38 3.38 0 0 0-.977-.405C10.7 1 10.287 1 9.46 1ZM6.124 5.561a.563.563 0 1 1-1.126 0 .563.563 0 0 1 1.126 0Z"
     />
   </Svg>
-)
+);
 export default Bookings;

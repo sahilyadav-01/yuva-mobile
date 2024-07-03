@@ -34,7 +34,7 @@ export const HomeScreen = () => {
     homePackages,
     onViewAllServices,
     enableGps,
-    currentCityDetails
+    currentCityDetails,
   } = useHome();
 
   const styles = style();
@@ -47,7 +47,7 @@ export const HomeScreen = () => {
           showLocation={false}
           homeSearch={true}
           onBackPress={onBackPress}
-          title='Search'
+          title="Search"
           showSearchBox={true}
         />
         <HomeSearch />
@@ -65,32 +65,44 @@ export const HomeScreen = () => {
         homeScreen={true}
         hideTitle={true}
       />
-      {enableGps && <View style={styles.noteContainer}>
-        <Text style={styles.noteText}>Please turn on GPS in settings to access the current location</Text>
-        </View>}
-        {!enableGps && currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND'  && <View style={styles.noteContainer}>
-        <Text style={styles.noteText}>Unable to fetch the current location</Text>
-        </View>}
+      {enableGps && (
+        <View style={styles.noteContainer}>
+          <Text style={styles.noteText}>
+            Please turn on GPS in settings to access the current location
+          </Text>
+        </View>
+      )}
+      {!enableGps &&
+        currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND' && (
+          <View style={styles.noteContainer}>
+            <Text style={styles.noteText}>
+              Unable to fetch the current location
+            </Text>
+          </View>
+        )}
       <ScrollView nestedScrollEnabled={true}>
-        <View style={{backgroundColor:'white'}}>
+        <View style={{backgroundColor: 'white'}}>
           <OfferBanner1 bannerData={banner1} />
           <AppointmentTag />
-          <Services renderservicesItem={renderservicesItem} onViewAllServices={onViewAllServices}/>
-          {topProducts?.data?.length > 0 && <ProductHub
-            onCategoryViewAllPress={onCategoryViewAllPress}
-            data={topProducts}
-            activeIndex={activeIndex}
-            onSelectCategory={onSelectCategory}
-            onAdd={onAdd}
-            hideFooter={true}
-          />}
+          <Services
+            renderservicesItem={renderservicesItem}
+            onViewAllServices={onViewAllServices}
+          />
+          {topProducts?.data?.length > 0 && (
+            <ProductHub
+              onCategoryViewAllPress={onCategoryViewAllPress}
+              data={topProducts}
+              activeIndex={activeIndex}
+              onSelectCategory={onSelectCategory}
+              onAdd={onAdd}
+              hideFooter={true}
+            />
+          )}
           <OurPlan />
-          {/* <PromotionalBanner /> */}
           <PopularHeathCheckupCarousel
             popularPackageName={homePackages}
             onHealthPackagePress={onHealthPackagePress}
           />
-          {/* <OfferBanner1 bannerData={banner3} /> */}
           <PopularHeathCheckupCarousel
             popularPackageName={homeTests}
             onHealthPackagePress={onHealthPackagePress}

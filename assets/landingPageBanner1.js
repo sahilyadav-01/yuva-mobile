@@ -1,22 +1,13 @@
-import * as React from "react"
-import Svg, {
-  G,
-  Rect,
-  Path,
-  Defs,
-  LinearGradient,
-  Stop,
-} from "react-native-svg"
-/* SVGR has dropped some elements not supported by react-native-svg: filter */
+import * as React from 'react';
+import Svg, {G, Rect, Path, Defs, LinearGradient, Stop} from 'react-native-svg';
 
-const landingPageBanner1 = (props) => (
+const landingPageBanner1 = props => (
   <Svg
     width={356}
     height={108}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <G filter="url(#a)">
       <Rect x={4} y={4} width={348} height={100} rx={6} fill="#fff" />
     </G>
@@ -59,13 +50,12 @@ const landingPageBanner1 = (props) => (
         y1={4}
         x2={290.674}
         y2={104}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#F3F8FD" />
         <Stop offset={1} stopColor="#F3F8FD" stopOpacity={0} />
       </LinearGradient>
     </Defs>
   </Svg>
-)
+);
 
-export default landingPageBanner1
+export default landingPageBanner1;

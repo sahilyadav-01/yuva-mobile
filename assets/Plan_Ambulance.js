@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Rect, Path } from "react-native-svg"
-const PlanAmbulance = (props) => (
+import * as React from 'react';
+import Svg, {Rect, Path} from 'react-native-svg';
+const PlanAmbulance = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={15}
     height={15}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Rect width={15} height={15} fill="#A5CCFF" rx={2} />
     <Path
       fill="#fff"
@@ -22,5 +21,5 @@ const PlanAmbulance = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
+);
 export default PlanAmbulance;

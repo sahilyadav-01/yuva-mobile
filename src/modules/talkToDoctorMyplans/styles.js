@@ -24,9 +24,9 @@ export const styles = StyleSheet.create({
     borderColor: GREY,
     elevation: 7,
   },
-  headViewContainer:{
-    flexDirection:ROW,
-    justifyContent:SPACE_BETWEEN,
+  headViewContainer: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
   },
   buttonStyle: {
     height: 48,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
-    maxWidth:155,
+    maxWidth: 155,
   },
   head: {
     alignSelf: FLEX_START,
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    paddingVertical:5,
+    paddingVertical: 5,
   },
   expiry: {
     alignSelf: FLEX_END,
@@ -96,6 +96,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },
-  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
-  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
+  emptyContainer: {height: '100%', alignItems: CENTER, justifyContent: CENTER},
+  emptyText: {fontFamily: fonts.family.rubik500, color: CYAN_BLUE},
 });

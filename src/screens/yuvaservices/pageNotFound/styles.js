@@ -1,7 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, TURQUOISE_LAGOON, WHITE } from '../../../styles/colors';
-import { CENTER } from '../diagnostics/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  TURQUOISE_LAGOON,
+  WHITE,
+} from '../../../styles/colors';
+import {CENTER} from '../diagnostics/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   mainView: {
@@ -36,7 +41,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderWidth: 1,
     shadowColor: BLACK,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
@@ -54,5 +59,5 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: CENTER,
     justifyContent: CENTER,
-  }
+  },
 });

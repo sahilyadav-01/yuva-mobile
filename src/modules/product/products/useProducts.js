@@ -18,40 +18,74 @@ export const useProducts = navigation => {
   const [data, setData] = useState([]);
   useFocusEffect(
     useCallback(() => {
-      if(!applyFilter)
-      dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo:1, pageSize:10, paginate:false}));
-     }, [productList?.productFilter]),
+      if (!applyFilter) {
+        dispatch(
+          fetchProducts({
+            productFilter: productList?.productFilter,
+            pageNo: 1,
+            pageSize: 10,
+            paginate: false,
+          }),
+        );
+      }
+    }, [productList?.productFilter]),
   );
 
   useEffect(() => {
-    if(!productList?.paginate) setData(productList?.data)
-    else {
-      setData((data)=>{
+    if (!productList?.paginate) {
+      setData(productList?.data);
+    } else {
+      setData(data => {
         const newData = data.concat(productList?.data);
         return newData;
-      })
+      });
     }
-    if (!productList?.loading && !productList?.error && applyFilter && pageNo > 0) {
+    if (
+      !productList?.loading &&
+      !productList?.error &&
+      applyFilter &&
+      pageNo > 0
+    ) {
       setApplyFilter(false);
     }
   }, [productList?.data]);
 
-  useEffect(()=>{
-    if(pageNo > 1) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo, pageSize:10, paginate:true}));
-    else if(pageNo === 0) setPageNo(1)
-    else if(pageNo === 1 && applyFilter) dispatch(fetchProducts({productFilter:productList?.productFilter, pageNo: 1, pageSize: 10}));
-  },[pageNo]);
+  useEffect(() => {
+    if (pageNo > 1) {
+      dispatch(
+        fetchProducts({
+          productFilter: productList?.productFilter,
+          pageNo,
+          pageSize: 10,
+          paginate: true,
+        }),
+      );
+    } else if (pageNo === 0) {
+      setPageNo(1);
+    } else if (pageNo === 1 && applyFilter) {
+      dispatch(
+        fetchProducts({
+          productFilter: productList?.productFilter,
+          pageNo: 1,
+          pageSize: 10,
+        }),
+      );
+    }
+  }, [pageNo]);
 
   const onAdd = item => {
     const {productId} = item;
-    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+    navigation.navigate('Product', {
+      screen: 'ProductDetails',
+      params: {productId},
+    });
   };
 
   const onEndReached = () => {
-    if(data?.length < productList?.totalDocuments && !applyFilter) {
-    setPageNo(pageNo + 1);
+    if (data?.length < productList?.totalDocuments && !applyFilter) {
+      setPageNo(pageNo + 1);
     }
-  }
+  };
 
   const onFilterPress = item => {
     let categoryList = productList?.productFilter?.categoryIdList;
@@ -102,6 +136,6 @@ export const useProducts = navigation => {
     onAdd,
     onFilterPress,
     onAdvanceFiltersPress,
-    onEndReached
+    onEndReached,
   };
 };

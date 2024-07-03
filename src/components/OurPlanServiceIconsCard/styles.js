@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     color: BLACK,
     marginTop: 4,
     width: '80%',
-    height:20,
+    height: 20,
     textAlignVertical: CENTER,
   },
   headView: {
@@ -48,6 +48,6 @@ export const styles = StyleSheet.create({
   },
   iconStyle: {
     height: 20,
-    justifyContent: CENTER
+    justifyContent: CENTER,
   },
 });

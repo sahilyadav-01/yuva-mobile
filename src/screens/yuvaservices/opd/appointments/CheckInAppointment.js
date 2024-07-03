@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {SafeAreaView} from 'react-native';
 import CheckInAppointments from '../../../../modules/appointment/components/checkInAppointment';
 
-const CheckInAppointment=()=> {
-
+const CheckInAppointment = () => {
   return (
-  <SafeAreaView>
-<CheckInAppointments/>
-  </SafeAreaView>
-  )
-}
+    <SafeAreaView>
+      <CheckInAppointments />
+    </SafeAreaView>
+  );
+};
 export default CheckInAppointment;

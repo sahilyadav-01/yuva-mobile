@@ -11,14 +11,6 @@ const DateTimePick = ({dateLabel, onChange}) => {
   return (
     <View className="mt-{40px}">
       <Text>{date}</Text>
-      {/* //   <DateTimePickerModal
-    //     type={`${finDate}`}
-    //     value={date}
-    //     style={{backgroundColor: '#FFFFF', color: '#1D2334'}}
-    //     selectionColor="#1D2334"
-    //     theme={{colors: {text: 'black'}}}
-    //     onChangeDate={change}
-    //   /> */}
     </View>
   );
 };

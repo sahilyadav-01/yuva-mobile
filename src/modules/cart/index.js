@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import CartDetails from '../../components/CartDetails';
 import Header from '../../components/Header';
 import {
@@ -19,7 +19,7 @@ import {styles} from './styles';
 import DependentsModal from '../../components/Modal/DependentsModal';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
 
-const Cart = props => {
+const Cart = () => {
   const {
     cart,
     onPressCardButton,
@@ -45,7 +45,13 @@ const Cart = props => {
   const {itemDtoList} = cart || {};
   return (
     <View style={styles.screenContainer}>
-      <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
+      <Header
+        title={MY_CART}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
       <View style={styles.container}>
         <DependentsModal
           visible={modalVisible}
@@ -71,7 +77,7 @@ const Cart = props => {
           relationsData={relationsData}
           buttonText={SAVE_DETAILS}
         />
-         <AddMembersModal
+        <AddMembersModal
           heading={ADD_RELATIVE}
           onCrossPress={onRelationModalCrossPress}
           modalVisible={relationsModalVisible}
@@ -80,19 +86,27 @@ const Cart = props => {
           buttonText={SAVE_DETAILS}
           headingText={RELATIONSHIP}
         />
-        {itemDtoList.length === 0 && !loading && <View style={styles.emptyCartContainer}>
-          <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
-          </View>}
-        {itemDtoList.length > 0 &&  !loading && <View style={styles.bodyContainer}>
-          <CartDetails
-            data={itemDtoList}
-            heading={CART_DETAILS}
-            onRemove={onRemove}
-          />
-        </View>}
-        {itemDtoList.length > 0 &&<TouchableOpacity onPress={onPressCardButton} style={styles.buttonContainer}>
-          <Text style={styles.textStyle}>{buttonText}</Text>
-        </TouchableOpacity>}
+        {itemDtoList.length === 0 && !loading && (
+          <View style={styles.emptyCartContainer}>
+            <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
+          </View>
+        )}
+        {itemDtoList.length > 0 && !loading && (
+          <View style={styles.bodyContainer}>
+            <CartDetails
+              data={itemDtoList}
+              heading={CART_DETAILS}
+              onRemove={onRemove}
+            />
+          </View>
+        )}
+        {itemDtoList.length > 0 && (
+          <TouchableOpacity
+            onPress={onPressCardButton}
+            style={styles.buttonContainer}>
+            <Text style={styles.textStyle}>{buttonText}</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

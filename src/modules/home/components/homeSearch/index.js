@@ -43,8 +43,13 @@ export const HomeSearch = () => {
   const RenderListItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() => 
-          onItemPress({name: item.name, attributeUuid: item.id, item: text, type: item?.test ? 'TEST' : 'PACKAGE'})
+        onPress={() =>
+          onItemPress({
+            name: item.name,
+            attributeUuid: item.id,
+            item: text,
+            type: item?.test ? 'TEST' : 'PACKAGE',
+          })
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>{item?.name}</Text>
@@ -63,7 +68,11 @@ export const HomeSearch = () => {
   };
 
   const renderSearchResults = ({item}) => {
-    const type = item?.packageUuid ? 'PACKAGE' : item?.testId ? 'TEST' : 'PRODUCT';
+    const type = item?.packageUuid
+      ? 'PACKAGE'
+      : item?.testId
+      ? 'TEST'
+      : 'PRODUCT';
     return (
       <TouchableOpacity
         onPress={() => {
@@ -72,9 +81,8 @@ export const HomeSearch = () => {
             attributeUuid: item.packageUuid ?? item?.testId ?? item?.productId,
             item: text,
             type,
-          })
-        }
-        }
+          });
+        }}
         style={style.listItemContainer}>
         <Text style={style.listItem}>
           {item?.packageName ?? item?.testName ?? item?.name}
@@ -94,10 +102,10 @@ export const HomeSearch = () => {
             onChangeText={onSearch}
             value={text}
             placeholderTextColor={MANATEE}
-            returnKeyType='search'
+            returnKeyType="search"
           />
           <View style={style.searchContainer}>
-            <SVG.HeaderSearch/>
+            <SVG.HeaderSearch />
           </View>
         </View>
         <View style={style.spaceContainer} />
@@ -126,11 +134,13 @@ export const HomeSearch = () => {
             style={style.flatListStyle}
             data={popularTestsData}
             keyExtractor={(_, index) => index}
-            renderItem={({item}) => <RenderListItem item={item} overlay={overlay}/>}
+            renderItem={({item}) => (
+              <RenderListItem item={item} overlay={overlay} />
+            )}
             onEndReached={onListEndReached}
             nestedScrollEnabled={true}
             onEndReachedThreshold={0.001}
-            ItemSeparatorComponent={()=><View style={{height:6}}/>}
+            ItemSeparatorComponent={() => <View style={{height: 6}} />}
           />
         </View>
       )}
@@ -147,7 +157,7 @@ export const HomeSearch = () => {
           keyExtractor={(_, index) => index}
           renderItem={renderLatestSearch}
           nestedScrollEnabled={true}
-          ItemSeparatorComponent={()=><View style={{height:6}}/>}
+          ItemSeparatorComponent={() => <View style={{height: 6}} />}
           ListEmptyComponent={() => {
             return (
               <View style={style.emptyContainerView}>
@@ -160,22 +170,24 @@ export const HomeSearch = () => {
       {overlay && (
         <View style={style.searchResultContainer}>
           <TouchableOpacity onPress={onCrossPress} style={style.crossContainer}>
-            <Cross name='cross' size={24} color={BLACK}/>
+            <Cross name="cross" size={24} color={BLACK} />
             <Text style={style.popularText}>Search Results</Text>
           </TouchableOpacity>
           {elasticSearchData.length === 0 && (
             <View style={{paddingBottom: 10}}>
-            <Text style={style.elasticSearchEmptyText}>{EMPTY_PACKAGE_TEST_LIST}</Text>
+              <Text style={style.elasticSearchEmptyText}>
+                {EMPTY_PACKAGE_TEST_LIST}
+              </Text>
             </View>
           )}
           {elasticSearchData.length > 0 && (
             <FlatList
               style={style.searchResultListContainer}
               keyboardShouldPersistTaps="handled"
-              data={[...elasticSearchData,...elasticSearchData]}
+              data={[...elasticSearchData, ...elasticSearchData]}
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderSearchResults}
-              ItemSeparatorComponent={()=><View style={{height:6}}/>}
+              ItemSeparatorComponent={() => <View style={{height: 6}} />}
             />
           )}
         </View>

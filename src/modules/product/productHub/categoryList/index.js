@@ -3,12 +3,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {PRODUCT_HUB, VIEW_ALL} from './constants';
 import {styles as style} from './style';
 
-const CategoryList = ({
-  onCategoryViewAllPress,
-  renderHeading,
-}) => {
+const CategoryList = ({onCategoryViewAllPress, renderHeading}) => {
   const styles = style();
-  if (renderHeading)
+  if (renderHeading) {
     return (
       <>
         <View style={styles.headerContainer}>
@@ -21,6 +18,7 @@ const CategoryList = ({
         </View>
       </>
     );
+  }
 };
 
 export default CategoryList;

@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { BLACK } from '../../styles/colors';
-import { CENTER, COLUMN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK} from '../../styles/colors';
+import {CENTER, COLUMN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
-    flex:1,
+    flex: 1,
     justifyContent: CENTER,
-    flexDirection:COLUMN,
+    flexDirection: COLUMN,
     marginHorizontal: 5,
   },
   subTopContainerStyle: {

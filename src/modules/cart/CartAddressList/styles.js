@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, FLASH_WHITE, MARINER, ORANGE, WHITE} from '../../../styles/colors';
+import {
+  BLACK,
+  FLASH_WHITE,
+  MARINER,
+  ORANGE,
+  WHITE,
+} from '../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 

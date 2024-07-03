@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-import { MARINER } from "../src/styles/colors"
-const OPDIcon = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+import {MARINER} from '../src/styles/colors';
+const OPDIcon = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={26}
     height={35}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill={MARINER}
       fillRule="evenodd"
@@ -40,5 +39,5 @@ const OPDIcon = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
-export default OPDIcon
+);
+export default OPDIcon;

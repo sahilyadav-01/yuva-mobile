@@ -1,12 +1,20 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, DARK_BLUE, ORANGE, PALE_ORANGE, VERY_LIGHT_ORANGE, WHITE } from '../../../styles/colors';
-import { CENTER, ROW } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  ORANGE,
+  PALE_ORANGE,
+  VERY_LIGHT_ORANGE,
+  WHITE,
+} from '../../../styles/colors';
+import {CENTER, ROW} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   mainContainer: {
     marginHorizontal: 15,
-    flex: 1
+    flex: 1,
   },
   searchConatiner: {
     marginVertical: 10,
@@ -33,7 +41,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     fontSize: fonts.size.fontSize14,
     fontFamily: fonts.family.rubik500,
-    color: PALE_ORANGE
+    color: PALE_ORANGE,
   },
   middleContainer: {
     marginTop: 18,
@@ -46,7 +54,7 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontSize: fonts.size.fontSize14,
     lineHeight: 21,
-    marginLeft: "5%",
+    marginLeft: '5%',
   },
   textInputStyle: {
     marginVertical: 30,
@@ -69,7 +77,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   bottomContainer: {
-    flex: 1
+    flex: 1,
   },
-
 });

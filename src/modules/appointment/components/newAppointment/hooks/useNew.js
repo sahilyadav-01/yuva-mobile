@@ -9,7 +9,7 @@ import {
   resetMessage,
 } from '../../../../../store/reducers/AppointmentSlice';
 import {getRelations} from '../../../../../store/reducers/ProfileSlice';
-import { setTabBarVisible } from '../../../../../store/reducers/DoctorSlice';
+import {setTabBarVisible} from '../../../../../store/reducers/DoctorSlice';
 export const useNew = (plan, userVersion, uuid, version) => {
   const [signupFlag, setSignupFlag] = useState(false);
   const [signupMessage, setSignupMessage] = useState();
@@ -31,19 +31,17 @@ export const useNew = (plan, userVersion, uuid, version) => {
   const {newMessage, appointmentDescription} = useSelector(
     state => state.appointment,
   );
-  const {doctorId} = useSelector(
-    state => state.appointment.appointment,
-  );
-  useEffect(()=>{
-    const tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() +1);
+  const {doctorId} = useSelector(state => state.appointment.appointment);
+  useEffect(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(7);
     tomorrow.setMinutes(0);
     tomorrow.setSeconds(0);
     setTime(tomorrow);
     setDate(tomorrow);
-  },[])
-  
+  }, []);
+
   const {relationId} = useSelector(state => state.profile);
   useEffect(() => {
     if (newMessage?.message) {
@@ -57,22 +55,22 @@ export const useNew = (plan, userVersion, uuid, version) => {
     return () => dispatch(resetMessage());
   }, [newMessage, appointmentDescription]);
   const newAppointment = () => {
-    if(typeof epochTime === 'string')
-    dispatch(
-      newAppointmentThunk({
-        alternateContactNumber,
-        description,
-        doctorId,
-        plan,
-        programOrPlanUuid: uuid,
-        selected,
-        epoch: epochTime,
-        userPlanVersion: userVersion,
-        version: version,
-      }),
-    );
-    else {
-      Alert.alert('Alert','Please select a time slot')
+    if (typeof epochTime === 'string') {
+      dispatch(
+        newAppointmentThunk({
+          alternateContactNumber,
+          description,
+          doctorId,
+          plan,
+          programOrPlanUuid: uuid,
+          selected,
+          epoch: epochTime,
+          userPlanVersion: userVersion,
+          version: version,
+        }),
+      );
+    } else {
+      Alert.alert('Alert', 'Please select a time slot');
     }
   };
   const onChangeDescription = txt => {
@@ -97,13 +95,17 @@ export const useNew = (plan, userVersion, uuid, version) => {
     getEpoch(date, time);
   };
 
-  const handleDateTime = (arg) => {
-    if(arg?.status)
-    setEpochTime(arg?.value);
-  }
+  const handleDateTime = arg => {
+    if (arg?.status) {
+      setEpochTime(arg?.value);
+    }
+  };
   useEffect(() => {
-    if(!plan) dispatch(getRelations({uuid,check:true}));
-    else if(plan) dispatch(getRelations({uuid,version,userVersion}));
+    if (!plan) {
+      dispatch(getRelations({uuid, check: true}));
+    } else if (plan) {
+      dispatch(getRelations({uuid, version, userVersion}));
+    }
   }, []);
   useEffect(() => {
     if (relationId?.length >= 0) {
@@ -128,7 +130,7 @@ export const useNew = (plan, userVersion, uuid, version) => {
   useEffect(() => {
     if (navigation.isFocused()) {
       dispatch(setTabBarVisible(false));
-    } 
+    }
   }, [focused]);
   return {
     goBack,
@@ -146,6 +148,6 @@ export const useNew = (plan, userVersion, uuid, version) => {
     selected,
     setSelected,
     dataRelation,
-    handleDateTime
+    handleDateTime,
   };
 };

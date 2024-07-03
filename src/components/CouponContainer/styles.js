@@ -1,7 +1,18 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, BLACK, OFF_WHITE, COUPON_DARK_GREY, DARK_BLUE, ORANGE, GREEN, RED, MARINER, WHITE } from '../../styles/colors';
-import { CENTER, FLEX_START, ROW, SPACE_BETWEEN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  CYAN_BLUE,
+  BLACK,
+  OFF_WHITE,
+  COUPON_DARK_GREY,
+  DARK_BLUE,
+  ORANGE,
+  GREEN,
+  RED,
+  MARINER,
+  WHITE,
+} from '../../styles/colors';
+import {CENTER, FLEX_START, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   viewContainer: {
@@ -25,12 +36,12 @@ export const styles = StyleSheet.create({
     color: BLACK,
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize16,
-    marginBottom: 8
+    marginBottom: 8,
   },
   viewCoupon: {
     flexDirection: ROW,
     borderColor: COUPON_DARK_GREY,
-    borderRadius:8,
+    borderRadius: 8,
     borderWidth: 0.5,
     justifyContent: SPACE_BETWEEN,
     marginBottom: 12,
@@ -49,7 +60,7 @@ export const styles = StyleSheet.create({
     justifyContent: CENTER,
     alignItems: CENTER,
     paddingVertical: 12,
-    paddingHorizontal: 36
+    paddingHorizontal: 36,
   },
   couponContainer: {
     borderWidth: 1,
@@ -100,7 +111,7 @@ export const styles = StyleSheet.create({
   },
   couponLabelStyles: {
     color: BLACK,
-    marginBottom:12,
+    marginBottom: 12,
     fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize14,
   },
@@ -113,9 +124,9 @@ export const styles = StyleSheet.create({
     color: WHITE,
   },
   couponError: {
-    marginBottom: 8, 
+    marginBottom: 8,
     color: RED,
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
-  }
+  },
 });

@@ -7,7 +7,7 @@ export const styles = () => {
   return StyleSheet.create({
     container: {flex: 1},
     loaderContainer: {
-      flex:1,
+      flex: 1,
       alignItems: CENTER,
       justifyContent: CENTER,
     },
@@ -15,6 +15,6 @@ export const styles = () => {
       fontFamily: fonts.family.rubik600,
       fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
-    }
+    },
   });
 };

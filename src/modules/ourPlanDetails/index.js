@@ -19,7 +19,7 @@ import Header from '../../components/Header';
 import PlanServiceIcons from './components/PlanServiceIcons';
 import TextBold from '../../components/TextBold';
 import {getDimensions} from '../../utils/utils';
-import { MARINER, RED } from '../../styles/colors';
+import {MARINER, RED} from '../../styles/colors';
 
 const OurPlanDetails = props => {
   const {
@@ -31,7 +31,7 @@ const OurPlanDetails = props => {
     getAllPlanServicesError,
     ourPlanData,
     bookOurPlan,
-    selectedCityId
+    selectedCityId,
   } = useOurPlanDetails(props);
   const renderItem = ({item, index}) => {
     return (
@@ -49,14 +49,30 @@ const OurPlanDetails = props => {
       <Header showBackButton={true} title={TITLE} />
       <ScrollView nestedScrollEnabled={true}>
         <View style={styles.container}>
-          {parseInt(selectedCityId) === -1 ? <Text style={styles.noteText}>This plan is currently not available in the selected city. You can still proceed to buy the plan and avail the services in other locations</Text> : null}
+          {parseInt(selectedCityId) === -1 ? (
+            <Text style={styles.noteText}>
+              This plan is currently not available in the selected city. You can
+              still proceed to buy the plan and avail the services in other
+              locations
+            </Text>
+          ) : null}
           <ImageBackground
             resizeMode="cover"
             source={PNG.PlanBanner}
             style={styles.imageBackground}>
             <Text style={styles.planName}>{ourPlanData?.name}</Text>
-            {ourPlanData?.yearlyPrice > ourPlanData?.yearlyFinalCost ? <Text style={[styles.planPrice,{ textDecorationLine:'line-through',color:RED}]}>₹ {ourPlanData?.yearlyPrice} /-</Text> : null}
-            <Text style={styles.planPrice}>₹ {ourPlanData?.yearlyFinalCost} /-</Text>
+            {ourPlanData?.yearlyPrice > ourPlanData?.yearlyFinalCost ? (
+              <Text
+                style={[
+                  styles.planPrice,
+                  {textDecorationLine: 'line-through', color: RED},
+                ]}>
+                ₹ {ourPlanData?.yearlyPrice} /-
+              </Text>
+            ) : null}
+            <Text style={styles.planPrice}>
+              ₹ {ourPlanData?.yearlyFinalCost} /-
+            </Text>
             <TouchableOpacity
               onPress={bookOurPlan}
               style={styles.buyNowContainer}>

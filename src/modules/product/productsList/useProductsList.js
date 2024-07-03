@@ -22,7 +22,7 @@ export const useProductsList = () => {
   });
   useFocusEffect(
     useCallback(() => {
-      if (!applyFilter)
+      if (!applyFilter) {
         dispatch(
           fetchProducts({
             productFilter: productList?.productFilter,
@@ -31,12 +31,14 @@ export const useProductsList = () => {
             paginate: false,
           }),
         );
+      }
     }, [productList?.productFilter]),
   );
 
   useEffect(() => {
-    if (!productList?.paginate) setData(productList?.data);
-    else {
+    if (!productList?.paginate) {
+      setData(productList?.data);
+    } else {
       setData(data => {
         const newData = data.concat(productList?.data);
         return newData;
@@ -53,7 +55,7 @@ export const useProductsList = () => {
   }, [productList?.data]);
 
   useEffect(() => {
-    if (pageNo > 1 && filterData.productName.length === 0)
+    if (pageNo > 1 && filterData.productName.length === 0) {
       dispatch(
         fetchProducts({
           productFilter: filterData,
@@ -62,8 +64,13 @@ export const useProductsList = () => {
           paginate: true,
         }),
       );
-    else if (pageNo === 0 && filterData.productName.length === 0) setPageNo(1);
-    else if (pageNo === 1 && applyFilter && filterData.productName.length === 0)
+    } else if (pageNo === 0 && filterData.productName.length === 0) {
+      setPageNo(1);
+    } else if (
+      pageNo === 1 &&
+      applyFilter &&
+      filterData.productName.length === 0
+    ) {
       dispatch(
         fetchProducts({
           productFilter: filterData,
@@ -71,6 +78,7 @@ export const useProductsList = () => {
           pageSize: 10,
         }),
       );
+    }
   }, [pageNo]);
 
   useEffect(() => {
@@ -84,20 +92,22 @@ export const useProductsList = () => {
   }, [filterData]);
 
   const onAdd = item => {
-    if(item !== 0){
-    const {productId} = item;
-    navigation.navigate('Product', {
-      screen: 'ProductDetails',
-      params: {productId},
-    });
-  }
+    if (item !== 0) {
+      const {productId} = item;
+      navigation.navigate('Product', {
+        screen: 'ProductDetails',
+        params: {productId},
+      });
+    }
   };
 
-  const getData = (data) => {
-    const offset = (Math.ceil(data.length/2)*2) - data.length;
-    if(offset === 0) return data;
-    return [...data,...Array.from({length:offset},()=>0)];
-  }
+  const getData = data => {
+    const offset = Math.ceil(data.length / 2) * 2 - data.length;
+    if (offset === 0) {
+      return data;
+    }
+    return [...data, ...Array.from({length: offset}, () => 0)];
+  };
 
   const onEndReached = () => {
     if (data?.length < productList?.totalDocuments && !applyFilter) {
@@ -115,8 +125,8 @@ export const useProductsList = () => {
 
   const onSearch = text => {
     //if (text.trim().length > 2) {
-      setPageNo(0);
-      setFilterData({...filterData, productName: text});
+    setPageNo(0);
+    setFilterData({...filterData, productName: text});
     //}
   };
 
@@ -132,6 +142,6 @@ export const useProductsList = () => {
     onEndReached,
     onSearch,
     filterData,
-    getData
+    getData,
   };
 };

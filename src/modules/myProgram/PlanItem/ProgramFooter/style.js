@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import { CYAN_BLUE, ORANGE } from '../../../../styles/colors';
-import { CENTER, ROW } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import {CYAN_BLUE, ORANGE} from '../../../../styles/colors';
+import {CENTER, ROW} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -22,7 +22,7 @@ export const styles = () => {
       lineHeight: 18,
     },
     arrowContainer: {padding: 12, justifyContent: CENTER, alignSelf: CENTER},
-    footerContainer: {flexDirection: ROW, paddingBottom:10},
+    footerContainer: {flexDirection: ROW, paddingBottom: 10},
     headingText: {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize14,

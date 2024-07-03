@@ -2,10 +2,10 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {lifeStyleEnumData} from '../../../store/reducers/LifeStyleSlice';
-import { useCart } from '../../cart/hooks/useCart';
-import { LIFESTYLE } from '../constants';
+import {useCart} from '../../cart/hooks/useCart';
+import {LIFESTYLE} from '../constants';
 
-export const useLifestyle = (initialEnum,initialName) => {
+export const useLifestyle = (initialEnum, initialName) => {
   const {
     lifestylePackage,
     packageDataLoading,
@@ -25,7 +25,7 @@ export const useLifestyle = (initialEnum,initialName) => {
   const [testData, setTestData] = useState([]);
   const [renderData, setRenderData] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [placeholder,setPlaceholder] = useState(initialName);
+  const [placeholder, setPlaceholder] = useState(initialName);
   const [searchText, setSearchText] = useState('');
   useEffect(() => {
     if (focused && lifestylePackage.length > 0) {
@@ -44,8 +44,10 @@ export const useLifestyle = (initialEnum,initialName) => {
   }, [lifestylePackage, focused]);
 
   useEffect(() => {
-    if (selectedEnum && searchText.length === 0) dispatch(lifeStyleEnumData({enumName: selectedEnum}));
-  }, [selectedEnum,searchText]);
+    if (selectedEnum && searchText.length === 0) {
+      dispatch(lifeStyleEnumData({enumName: selectedEnum}));
+    }
+  }, [selectedEnum, searchText]);
 
   useEffect(() => {
     if (
@@ -56,134 +58,186 @@ export const useLifestyle = (initialEnum,initialName) => {
     ) {
       setPackageData(
         lifestylePackages.map(item => {
-          return {...item, selected: existingIds.length > 0 &&
-            existingIds.includes(item.packageUuid.toString())};
+          return {
+            ...item,
+            selected:
+              existingIds.length > 0 &&
+              existingIds.includes(item.packageUuid.toString()),
+          };
         }),
       );
       setTestData(
         lifestyleTests.map(item => {
-          return {...item, selected: existingIds.length > 0 &&
-            existingIds.includes(item.testId.toString()), packageName: item.testName};
+          return {
+            ...item,
+            selected:
+              existingIds.length > 0 &&
+              existingIds.includes(item.testId.toString()),
+            packageName: item.testName,
+          };
         }),
       );
       setRenderData(true);
-    }
-    else if (
+    } else if (
       !packageDataLoading &&
       !packageDataError &&
-      lifestylePackages.length === 0 && 
-      lifestyleTests.length > 0 
-    ){
+      lifestylePackages.length === 0 &&
+      lifestyleTests.length > 0
+    ) {
       setPackageData([]);
       setTestData(
         lifestyleTests.map(item => {
-          return {...item, selected: existingIds.length > 0 &&
-            existingIds.includes(item.testId.toString()), packageName: item.testName};
+          return {
+            ...item,
+            selected:
+              existingIds.length > 0 &&
+              existingIds.includes(item.testId.toString()),
+            packageName: item.testName,
+          };
         }),
       );
       setRenderData(true);
-    }
-    else if (
+    } else if (
       !packageDataLoading &&
       !packageDataError &&
       lifestylePackages.length > 0 &&
-      lifestyleTests.length === 0 
-    ){
+      lifestyleTests.length === 0
+    ) {
       setTestData([]);
       setPackageData(
         lifestylePackages.map(item => {
-          return {...item, selected: existingIds.length > 0 &&
-            existingIds.includes(item.packageUuid.toString())};
+          return {
+            ...item,
+            selected:
+              existingIds.length > 0 &&
+              existingIds.includes(item.packageUuid.toString()),
+          };
         }),
       );
       setRenderData(true);
-    }
-    else if (!packageDataLoading &&
+    } else if (
+      !packageDataLoading &&
       !packageDataError &&
       lifestylePackages.length === 0 &&
-      lifestyleTests.length === 0 ){
-        setPackageData([]);
-        setTestData([]);
-        setRenderData(true);
-      }
+      lifestyleTests.length === 0
+    ) {
+      setPackageData([]);
+      setTestData([]);
+      setRenderData(true);
+    }
   }, [packageDataLoading]);
 
-  useEffect(()=>{
-    if(packageData.length > 0) {
+  useEffect(() => {
+    if (packageData.length > 0) {
       setPackageData(
         packageData.map(item => {
-          if (existingIds.includes(item.packageUuid.toString()))
+          if (existingIds.includes(item.packageUuid.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     }
-    if(testData.length > 0) {
+    if (testData.length > 0) {
       setTestData(
         testData.map(item => {
-          if (existingIds.includes(item.testId.toString()))
+          if (existingIds.includes(item.testId.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     }
-  },[existingIds])
+  }, [existingIds]);
 
-  const onContinuePress = () => navigation.navigate('HomeScreen',{screen:'HomeDrawer',params:{screen:'Cart'}})
+  const onContinuePress = () =>
+    navigation.navigate('HomeScreen', {
+      screen: 'HomeDrawer',
+      params: {screen: 'Cart'},
+    });
 
-  const onSearch = (arg) => {
+  const onSearch = arg => {
     setSearchText(arg.trim());
-    if(arg.trim().length >= 3){
-      dispatch(lifeStyleEnumData({enumName: selectedEnum, search:arg.trim()}));
+    if (arg.trim().length >= 3) {
+      dispatch(lifeStyleEnumData({enumName: selectedEnum, search: arg.trim()}));
     }
-  }
+  };
 
   const select = arg => {
     setSelectedEnum(
       enumMapping.find(item => {
-        if (item.key.toString() === arg.toString()) return item;
+        if (item.key.toString() === arg.toString()) {
+          return item;
+        }
       }).enumName,
     );
-    setPlaceholder(packages.find(item => {
-      if (item.key.toString() === arg.toString()) return item;
-    }).value)
+    setPlaceholder(
+      packages.find(item => {
+        if (item.key.toString() === arg.toString()) {
+          return item;
+        }
+      }).value,
+    );
   };
   const onPackagePress = arg => {
-        navigation.navigate('ProductDetails', {
-          headerName:LIFESTYLE,
-          packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
-          uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
-          showCartButton: true,
-          isTest: arg?.item?.testId ? true : false, 
-          name:arg?.item?.packageName ?? null,
-          cost: arg?.item?.cost ?? null
-        });
+    navigation.navigate('ProductDetails', {
+      headerName: LIFESTYLE,
+      packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
+      uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
+      showCartButton: true,
+      isTest: arg?.item?.testId ? true : false,
+      name: arg?.item?.packageName ?? null,
+      cost: arg?.item?.cost ?? null,
+    });
   };
   const onPackageSelect = arg => {
     const id = arg?.item?.packageUuid ?? arg?.item?.testId;
     const objData = arg?.item?.packageUuid ? packageData : testData;
     objData.forEach(item => {
-      if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === false){
-        addToCart({
-          name: item?.packageName,
-          cost: item?.cost,
-          productId: item?.packageUuid.toString()
-        },
-        'PACKAGE')
+      if (
+        item?.packageUuid &&
+        item?.packageUuid.toString() === id.toString() &&
+        item.selected === false
+      ) {
+        addToCart(
+          {
+            name: item?.packageName,
+            cost: item?.cost,
+            productId: item?.packageUuid.toString(),
+          },
+          'PACKAGE',
+        );
       }
-      if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === true){
-        onRemove({productId:item?.packageUuid.toString(),productType:'PACKAGE'});
-      }
-      else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === false){
-        addToCart({
-          name: item?.testName,
-          cost: item?.cost,
-          productId: item?.testId.toString()
-        },
-        'TEST')
-      }
-      else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === true){
-        onRemove({productId:item?.testId.toString(),productType:'TEST'});
+      if (
+        item?.packageUuid &&
+        item?.packageUuid.toString() === id.toString() &&
+        item.selected === true
+      ) {
+        onRemove({
+          productId: item?.packageUuid.toString(),
+          productType: 'PACKAGE',
+        });
+      } else if (
+        item?.testId &&
+        item?.testId.toString() === id.toString() &&
+        item.selected === false
+      ) {
+        addToCart(
+          {
+            name: item?.testName,
+            cost: item?.cost,
+            productId: item?.testId.toString(),
+          },
+          'TEST',
+        );
+      } else if (
+        item?.testId &&
+        item?.testId.toString() === id.toString() &&
+        item.selected === true
+      ) {
+        onRemove({productId: item?.testId.toString(), productType: 'TEST'});
       }
     });
   };
@@ -198,6 +252,6 @@ export const useLifestyle = (initialEnum,initialName) => {
     onPackageSelect,
     onContinuePress,
     onSearch,
-    placeholder
+    placeholder,
   };
 };

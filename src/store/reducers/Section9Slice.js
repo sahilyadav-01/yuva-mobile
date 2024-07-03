@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 //const DOWNLOAD_REPORT = 'http://' + SERVER + ':8080/api/v1/yuva/hraPdfReport';
 export const section9QThunk = createAsyncThunk(
@@ -42,38 +42,6 @@ export const reportStatusThunk = createAsyncThunk(
     }
   },
 );
-
-/**
- * Download file
- */
-
-/**
- * Download Report
- */
-
-// export const reportDownloadThunk = createAsyncThunk(
-//   'section9/download',
-//   async ({jwt}, {fulfillWithValue, rejectWithValue}) => {
-//     try {
-//       const authToken = 'Bearer ' + jwt;
-//       return await axios
-//         .get(
-//           DOWNLOAD_REPORT,
-//           {
-//             headers: {
-//               'Content-Type': 'application/json',
-//               Authorization: authToken,
-//             },
-//           },
-//         )
-//         .then(resp => resp.data);
-//     } catch (error) {
-//       //const errorOject =  JSON.stringify(error.response.data)
-
-//       return rejectWithValue(error.response.data);
-//     }
-//   },
-// );
 
 export const finalSubmission = createAsyncThunk(
   'section9/finalSubmission',
@@ -148,10 +116,6 @@ const section9Slice = createSlice({
     [section9QThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
-
-    /**
-     * Report status
-     */
     [reportStatusThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
@@ -194,7 +158,7 @@ const section9Slice = createSlice({
         //   state.chart[0].data.push({x:item.attribute, y:hscore})
         // })
       }
-      state.metrics['Score'] = {label: 'Score', value: score};
+      state.metrics.Score = {label: 'Score', value: score};
       state.result = true;
       state.hraComplete = true;
     },
@@ -204,7 +168,7 @@ const section9Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option, dispatch_reset_result,reset_complete} =
+export const {init, dispatch_option, dispatch_reset_result, reset_complete} =
   section9Slice.actions;
 export const section9Init = section9Slice.getInitialState();
 export default section9Slice.reducer;

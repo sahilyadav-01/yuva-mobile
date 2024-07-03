@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { DARK_BLUE, MARINER, WHITE } from '../../styles/colors';
-import { CENTER, ROW } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet, Dimensions} from 'react-native';
+import {DARK_BLUE, MARINER, WHITE} from '../../styles/colors';
+import {CENTER, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 const screenHeight = Dimensions.get('window').height;
 const view1Height = screenHeight * 0.2;
 const view2Height = screenHeight * 0.4;

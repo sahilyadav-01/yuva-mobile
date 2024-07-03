@@ -12,17 +12,19 @@ export const useItem = item => {
     if (
       arrowPress &&
       purchasesDetailLoading === false &&
-      purchasesItemDetails !== null && purchasesItemDetails[`${item?.orderNumber}`] !== undefined 
+      purchasesItemDetails !== null &&
+      purchasesItemDetails[`${item?.orderNumber}`] !== undefined
     ) {
       setExpanded(true);
     }
   }, [purchasesDetailLoading, arrowPress]);
   const onArrowPress = orderId => {
-    if (purchasesTab === 0) setExpanded(!expanded);
-    else if (purchasesTab === 1 && expanded === true) {setExpanded(false);
-    setArrowPress(false);
-    }
-    else if (purchasesTab === 1 && expanded === false) {
+    if (purchasesTab === 0) {
+      setExpanded(!expanded);
+    } else if (purchasesTab === 1 && expanded === true) {
+      setExpanded(false);
+      setArrowPress(false);
+    } else if (purchasesTab === 1 && expanded === false) {
       dispatch(getPurchaseItemDetails({orderId}));
       item?.orderNumber === orderId.toString() && setArrowPress(true);
     }
@@ -42,11 +44,18 @@ export const useItem = item => {
           name: i?.itemName,
           totalAmount: i?.itemCost,
           amountPaid: i?.itemDiscountedCost,
-          discount: `${purchasesItemDetails[`${item.orderNumber}`]?.couponAmount}`,
-          couponName:purchasesItemDetails[`${item.orderNumber}`]?.couponName ?? null,
-          totalDiscount: `${purchasesItemDetails[`${item.orderNumber}`]?.discount}`,
-          processingCharge:purchasesItemDetails[`${item.orderNumber}`]?.processingCharge,
-          invoiceFilePath: purchasesItemDetails[`${item.orderNumber}`]?.invoiceFilePath,
+          discount: `${
+            purchasesItemDetails[`${item.orderNumber}`]?.couponAmount
+          }`,
+          couponName:
+            purchasesItemDetails[`${item.orderNumber}`]?.couponName ?? null,
+          totalDiscount: `${
+            purchasesItemDetails[`${item.orderNumber}`]?.discount
+          }`,
+          processingCharge:
+            purchasesItemDetails[`${item.orderNumber}`]?.processingCharge,
+          invoiceFilePath:
+            purchasesItemDetails[`${item.orderNumber}`]?.invoiceFilePath,
         };
       })
     : null;
@@ -54,6 +63,6 @@ export const useItem = item => {
     expanded,
     onArrowPress,
     priceBreakUpArray,
-    purchasesTab
+    purchasesTab,
   };
 };

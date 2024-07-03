@@ -12,4 +12,3 @@ export const MESSAGE = 'Message';
 export const BOOK_APPOINTMENT = 'Book Appoinment';
 export const RESCHEDULE_APPOINTMENT = 'Reschedule Appoinment';
 export const ALERT = 'Alert';
-

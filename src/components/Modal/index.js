@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal as RNModal, View} from 'react-native';
 import {styles} from './style';
 
-const  Modal = (props) => {
+const Modal = props => {
   const {
     transparent,
     visible,
@@ -20,6 +20,6 @@ const  Modal = (props) => {
       </View>
     </RNModal>
   );
-}
+};
 
 export default Modal;

@@ -1,84 +1,82 @@
 import {Platform, StyleSheet} from 'react-native';
-import { fonts } from '../../../../styles/fonts';
-import { INDIGO, ORANGE, WHITE } from '../../../../styles/colors';
-import { CENTER } from '../../../../styles/constants';
-
+import {fonts} from '../../../../styles/fonts';
+import {INDIGO, ORANGE, WHITE} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
 
 export const styles = StyleSheet.create({
   contentContainerStyle: {
     flexGrow: 1,
     paddingBottom: 300,
   },
-  CardView:{
-    marginTop:13,
-    marginHorizontal:11,
-    backgroundColor:ORANGE,
-    flex:1,
-    borderRadius:10,
-    paddingBottom:11,
-    flexDirection:'row',
+  CardView: {
+    marginTop: 13,
+    marginHorizontal: 11,
+    backgroundColor: ORANGE,
+    flex: 1,
+    borderRadius: 10,
+    paddingBottom: 11,
+    flexDirection: 'row',
   },
-  nameText:{
-    marginLeft:24,
-    marginTop:34,
+  nameText: {
+    marginLeft: 24,
+    marginTop: 34,
     fontFamily: fonts.family.rubik700,
     fontSize: fonts.size.fontSize16,
-    color:INDIGO,
+    color: INDIGO,
     ...Platform.select({
       ios: {
-        shadowOffset: { width: 0, height: 2.5 },
+        shadowOffset: {width: 0, height: 2.5},
         shadowColor: WHITE,
-        shadowOpacity:1.5,
+        shadowOpacity: 1.5,
       },
       android: {
-        textShadowColor:WHITE,
-        textShadowOffset: {width:0, height:2.5},
-        textShadowRadius:10,
+        textShadowColor: WHITE,
+        textShadowOffset: {width: 0, height: 2.5},
+        textShadowRadius: 10,
       },
     }),
   },
-  line:{
-    marginTop:5,
-    borderBottomColor:WHITE,
-    borderBottomWidth:2,
+  line: {
+    marginTop: 5,
+    borderBottomColor: WHITE,
+    borderBottomWidth: 2,
     flex: 1,
-    marginLeft:24,
-    paddingHorizontal:9,
+    marginLeft: 24,
+    paddingHorizontal: 9,
   },
-  Image:{
-    marginTop:16,
-    marginBottom:19,
-    marginRight:6,
-    width:'100%'
+  Image: {
+    marginTop: 16,
+    marginBottom: 19,
+    marginRight: 6,
+    width: '100%',
   },
-  Year:{
+  Year: {
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize10,
   },
-  AmountText:{
-    marginLeft:41,
-    marginTop:15,
+  AmountText: {
+    marginLeft: 41,
+    marginTop: 15,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-    color:INDIGO,
-    shadowOffset:{  width: 0,  height:2.5,  },
-    shadowColor:WHITE,
-    shadowOpacity:1,
+    color: INDIGO,
+    shadowOffset: {width: 0, height: 2.5},
+    shadowColor: WHITE,
+    shadowOpacity: 1,
     elevation: 5,
   },
-  BuyNow:{
-    backgroundColor:INDIGO,
-    marginLeft:34,
-    marginTop:3,
-    borderRadius:8,
-    padding:8,
-    width:105,
+  BuyNow: {
+    backgroundColor: INDIGO,
+    marginLeft: 34,
+    marginTop: 3,
+    borderRadius: 8,
+    padding: 8,
+    width: 105,
   },
-  BuyNowText:{
-    color:WHITE,
-    textAlign:CENTER
+  BuyNowText: {
+    color: WHITE,
+    textAlign: CENTER,
   },
-  ViewWidth:{width:'60%'},
-  ImageView:{paddingHorizontal:6,width:'40%'}
-
+  ViewWidth: {width: '60%'},
+  ImageView: {paddingHorizontal: 6, width: '40%'},
 });

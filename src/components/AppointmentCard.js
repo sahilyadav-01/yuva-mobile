@@ -38,15 +38,8 @@ const AppointmentCard = ({
   memberName,
   customId,
 }) => {
-  /**
-   * Use navigation
-   */
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  /**
-   * Handlers
-   */
   const viewAppointment = () => {
     dispatch(resetTabBarVisible(false));
     dispatch(
@@ -101,8 +94,6 @@ const AppointmentCard = ({
               </Text>
             </View>
           </View>
-
-          {/* right view */}
           <View style={styles.rightView}>
             <View style={styles.rightSubView}>
               <Text style={styles.doctorNameText}>{doctorName}</Text>
@@ -120,8 +111,6 @@ const AppointmentCard = ({
               </View>
             </View>
           </View>
-
-          {/* actions */}
         </View>
         {(status === 'INITIATED' ||
           status === 'RESCHEDULED' ||

@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, FLASH_WHITE, MARINER, ORANGE, WHITE} from '../../../../styles/colors';
+import {
+  CYAN_BLUE,
+  FLASH_WHITE,
+  MARINER,
+  ORANGE,
+  WHITE,
+} from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -57,17 +63,17 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize12,
   },
-  PriceDetails:{
-    paddingVertical:'5%',
+  PriceDetails: {
+    paddingVertical: '5%',
   },
   placeOrder: {
-    width:'100%',
+    width: '100%',
     backgroundColor: MARINER,
     alignItems: CENTER,
     justifyContent: CENTER,
     paddingVertical: 16,
     marginTop: 24,
-    borderRadius: 10
+    borderRadius: 10,
   },
   separator: {
     marginTop: 8,
@@ -80,6 +86,6 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: WHITE,
     fontFamily: fonts.family.monsterrant500,
-    fontSize:fonts.size.fontSize12,
-  }
+    fontSize: fonts.size.fontSize12,
+  },
 });

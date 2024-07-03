@@ -7,136 +7,136 @@ import {styles} from './styles';
 
 const ProgressBar = ({progress, showDateTimeSection}) => {
   return (
-      <View style={styles.statusContainer}>
-        <View style={styles.status}>
-          {progress >= 0.33 ? (
-            <View
-              style={[
-                styles.statusDot,
-                {backgroundColor: WHITE, borderColor: GREEN},
-              ]}>
-              <Icon name="check" size={12} color={GREEN} />
-            </View>
-          ) : (
-            <View
-              style={[
-                styles.statusDot,
-                {backgroundColor: WHITE, borderColor: BLACK},
-              ]}>
-              <View
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 12,
-                  backgroundColor: BLACK,
-                  borderColor: BLACK,
-                }}
-              />
-            </View>
-          )}
+    <View style={styles.statusContainer}>
+      <View style={styles.status}>
+        {progress >= 0.33 ? (
           <View
             style={[
-              styles.statusLabel,
-              progress >= 0.33 && styles.statusLabelActive,
+              styles.statusDot,
+              {backgroundColor: WHITE, borderColor: GREEN},
             ]}>
-            <Text style={styles.statusText}>{STATUS_TEXT1}</Text>
+            <Icon name="check" size={12} color={GREEN} />
           </View>
-        </View>
-        {showDateTimeSection && (
-          <>
+        ) : (
+          <View
+            style={[
+              styles.statusDot,
+              {backgroundColor: WHITE, borderColor: BLACK},
+            ]}>
             <View
-              style={[
-                styles.progress,
-                progress >= 0.33 && {backgroundColor: GREEN},
-              ]}
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: 12,
+                backgroundColor: BLACK,
+                borderColor: BLACK,
+              }}
             />
-            <View style={styles.status}>
-              {progress >= 0.66 && (
-                <View
-                  style={[
-                    styles.statusDot,
-                    {backgroundColor: WHITE, borderColor: GREEN},
-                  ]}>
-                  <Icon name="check" size={12} color={GREEN} />
-                </View>
-              )}
-              {progress < 0.66 && (
-                <View
-                  style={[
-                    styles.statusDot,
-                    {backgroundColor: WHITE, borderColor: BLACK},
-                  ]}>
-                  <View
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 12,
-                      backgroundColor: BLACK,
-                      borderColor: BLACK,
-                    }}
-                  />
-                </View>
-              )}
-              <View
-                style={[
-                  styles.statusLabel,
-                  progress >= 0.66 && styles.statusLabelActive,
-                ]}>
-                <Text style={styles.statusText}>{STATUS_TEXT2}</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.progress,
-                progress >= 0.66 && {backgroundColor: GREEN},
-              ]}
-            />
-          </>
+          </View>
         )}
-        {!showDateTimeSection && (
+        <View
+          style={[
+            styles.statusLabel,
+            progress >= 0.33 && styles.statusLabelActive,
+          ]}>
+          <Text style={styles.statusText}>{STATUS_TEXT1}</Text>
+        </View>
+      </View>
+      {showDateTimeSection && (
+        <>
           <View
             style={[
               styles.progress,
               progress >= 0.33 && {backgroundColor: GREEN},
             ]}
           />
-        )}
-        <View style={styles.status}>
-          {progress >= 1 && (
-            <View
-              style={[
-                styles.statusDot,
-                {backgroundColor: WHITE, borderColor: GREEN},
-              ]}>
-              <Icon name="check" size={12} color={GREEN} />
-            </View>
-          )}
-          {progress < 1 && (
-            <View
-              style={[
-                styles.statusDot,
-                {backgroundColor: WHITE, borderColor: BLACK},
-              ]}>
+          <View style={styles.status}>
+            {progress >= 0.66 && (
               <View
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 12,
-                  backgroundColor: BLACK,
-                  borderColor: BLACK,
-                }}
-              />
+                style={[
+                  styles.statusDot,
+                  {backgroundColor: WHITE, borderColor: GREEN},
+                ]}>
+                <Icon name="check" size={12} color={GREEN} />
+              </View>
+            )}
+            {progress < 0.66 && (
+              <View
+                style={[
+                  styles.statusDot,
+                  {backgroundColor: WHITE, borderColor: BLACK},
+                ]}>
+                <View
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 12,
+                    backgroundColor: BLACK,
+                    borderColor: BLACK,
+                  }}
+                />
+              </View>
+            )}
+            <View
+              style={[
+                styles.statusLabel,
+                progress >= 0.66 && styles.statusLabelActive,
+              ]}>
+              <Text style={styles.statusText}>{STATUS_TEXT2}</Text>
             </View>
-          )}
+          </View>
           <View
             style={[
-              styles.statusLabel,
-              progress >= 1 && styles.statusLabelActive,
+              styles.progress,
+              progress >= 0.66 && {backgroundColor: GREEN},
+            ]}
+          />
+        </>
+      )}
+      {!showDateTimeSection && (
+        <View
+          style={[
+            styles.progress,
+            progress >= 0.33 && {backgroundColor: GREEN},
+          ]}
+        />
+      )}
+      <View style={styles.status}>
+        {progress >= 1 && (
+          <View
+            style={[
+              styles.statusDot,
+              {backgroundColor: WHITE, borderColor: GREEN},
             ]}>
-            <Text style={styles.statusText}>{STATUS_TEXT3}</Text>
+            <Icon name="check" size={12} color={GREEN} />
           </View>
+        )}
+        {progress < 1 && (
+          <View
+            style={[
+              styles.statusDot,
+              {backgroundColor: WHITE, borderColor: BLACK},
+            ]}>
+            <View
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: 12,
+                backgroundColor: BLACK,
+                borderColor: BLACK,
+              }}
+            />
+          </View>
+        )}
+        <View
+          style={[
+            styles.statusLabel,
+            progress >= 1 && styles.statusLabelActive,
+          ]}>
+          <Text style={styles.statusText}>{STATUS_TEXT3}</Text>
         </View>
       </View>
+    </View>
   );
 };
 

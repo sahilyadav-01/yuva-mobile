@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { G, Rect, Path, Defs, ClipPath } from "react-native-svg"
+import * as React from 'react';
+import Svg, {G, Rect, Path, Defs, ClipPath} from 'react-native-svg';
 
-const Gift = (props) => (
+const Gift = props => (
   <Svg
     width={98}
     height={73}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <G filter="url(#a)">
       <Rect x={2} y={2} width={94} height={69} rx={12} fill="#fff" />
     </G>
@@ -24,6 +23,6 @@ const Gift = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
+);
 
 export default Gift;

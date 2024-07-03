@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, DARK_BLUE, GREEN, VANILLA, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {CYAN_BLUE, DARK_BLUE, GREEN, VANILLA, WHITE} from '../../styles/colors';
+import {CENTER, COLUMN, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   CompleteView: {
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize14,
-    width: "40%",
+    width: '40%',
   },
   Year: {
     color: CYAN_BLUE,

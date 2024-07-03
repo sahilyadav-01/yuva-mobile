@@ -1,7 +1,12 @@
 import {StyleSheet} from 'react-native';
-import { ALTO_OPACITY, NAVAJO_WHITE, ROSE_WHITE, WHITE } from '../../../../styles/colors';
-import { FLEX_START, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import {
+  ALTO_OPACITY,
+  NAVAJO_WHITE,
+  ROSE_WHITE,
+  WHITE,
+} from '../../../../styles/colors';
+import {FLEX_START, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -25,7 +30,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 15,
       letterSpacing: 3,
-      maxWidth:"60%",
+      maxWidth: '60%',
     },
     nameText: {
       marginBottom: 36,
@@ -46,8 +51,8 @@ export const styles = () => {
     orderNumber: {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize8,
-      color:WHITE,
-      lineHeight:10
+      color: WHITE,
+      lineHeight: 10,
     },
     boxStyle: {
       paddingVertical: 4,

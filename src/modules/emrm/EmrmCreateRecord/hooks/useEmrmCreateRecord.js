@@ -1,16 +1,31 @@
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addErmThunk, documentTypeThunk, resetAddErmThunkError, resetSuccessMessage } from '../../../../store/reducers/EmrmSlice';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addErmThunk,
+  documentTypeThunk,
+  resetAddErmThunkError,
+  resetSuccessMessage,
+} from '../../../../store/reducers/EmrmSlice';
 import DocumentPicker from 'react-native-document-picker';
-import { Alert } from 'react-native';
-import { ALERT, INTERNAL_ERROR, VALIDATION_MESSAGE1, VALIDATION_MESSAGE2, VALIDATION_MESSAGE3, VALIDATION_MESSAGE4, VALIDATION_MESSAGE5 } from '../constants';
+import {Alert} from 'react-native';
+import {
+  ALERT,
+  INTERNAL_ERROR,
+  VALIDATION_MESSAGE1,
+  VALIDATION_MESSAGE2,
+  VALIDATION_MESSAGE3,
+  VALIDATION_MESSAGE4,
+  VALIDATION_MESSAGE5,
+} from '../constants';
 
 export const useEmrmCreateRecord = () => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
-  const { dropDownData, emrmUploadMessage, apiErrorMessage } = useSelector(state => state.Emrm);
+  const {dropDownData, emrmUploadMessage, apiErrorMessage} = useSelector(
+    state => state.Emrm,
+  );
   const [documentType, setDocumentType] = useState('');
   const [date, setDate] = useState();
   const [picker, setPicker] = useState(false);
@@ -18,12 +33,15 @@ export const useEmrmCreateRecord = () => {
   const [medicalDocumentName, setMedicalDocumentName] = useState('');
   const [document, setDocument] = useState(null);
   const [fileName, setFileName] = useState('');
-  const setSelectedDocumentType = (arg) => {
-    setDocumentType(dropDownData.find(item => {
-      if (item.name.toString() === arg.toString()) return item;
-    }).id
+  const setSelectedDocumentType = arg => {
+    setDocumentType(
+      dropDownData.find(item => {
+        if (item.name.toString() === arg.toString()) {
+          return item;
+        }
+      }).id,
     );
-  }
+  };
   const onConfirmDate = date => {
     setDate(date);
     setPicker(false);
@@ -34,15 +52,12 @@ export const useEmrmCreateRecord = () => {
     medicalDocument: medicalDocumentName,
     date: Date.parse(date).toString(),
     healthCentre: healthCenterName,
-    documentType: documentType.toString()
-  }
+    documentType: documentType.toString(),
+  };
   const handleDocumentPick = async () => {
     const res = await DocumentPicker.pick({
-      type: [
-        DocumentPicker.types.pdf,
-        DocumentPicker.types.images,
-      ],
-      allowMultiSelection: false
+      type: [DocumentPicker.types.pdf, DocumentPicker.types.images],
+      allowMultiSelection: false,
     });
     setDocument(res);
     setFileName(res?.[0].name);
@@ -50,23 +65,18 @@ export const useEmrmCreateRecord = () => {
   const handleSubmit = () => {
     if (documentType === '') {
       Alert.alert(ALERT, VALIDATION_MESSAGE1);
-    }
-    else if (medicalDocumentName === '') {
+    } else if (medicalDocumentName === '') {
       Alert.alert(ALERT, VALIDATION_MESSAGE2);
-    }
-    else if (date === undefined) {
+    } else if (date === undefined) {
       Alert.alert(ALERT, VALIDATION_MESSAGE3);
-    }
-    else if (healthCenterName === '') {
+    } else if (healthCenterName === '') {
       Alert.alert(ALERT, VALIDATION_MESSAGE4);
-    }
-    else if (document === null) {
+    } else if (document === null) {
       Alert.alert(ALERT, VALIDATION_MESSAGE5);
+    } else {
+      dispatch(addErmThunk({document: document?.[0], ermRequest: ermRequest}));
     }
-    else {
-      dispatch(addErmThunk({ document: document?.[0], ermRequest: ermRequest }));
-    }
-  }
+  };
   useEffect(() => {
     if (emrmUploadMessage !== '' && navigation.isFocused()) {
       Alert.alert(ALERT, emrmUploadMessage, [
@@ -81,7 +91,7 @@ export const useEmrmCreateRecord = () => {
     }
   }, [emrmUploadMessage, focused]);
   useEffect(() => {
-    if (apiErrorMessage !== '' && navigation.isFocused() ) {
+    if (apiErrorMessage !== '' && navigation.isFocused()) {
       Alert.alert(ALERT, apiErrorMessage ?? INTERNAL_ERROR, [
         {
           text: 'Ok',
@@ -102,7 +112,10 @@ export const useEmrmCreateRecord = () => {
   const openPicker = () => setPicker(true);
   const closePicker = () => setPicker(false);
   return {
-    dropDownData: dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, })),
+    dropDownData: dropDownData?.map(dropDownData => ({
+      label: dropDownData?.id,
+      value: dropDownData?.name,
+    })),
     setSelectedDocumentType,
     picker,
     onConfirmDate,

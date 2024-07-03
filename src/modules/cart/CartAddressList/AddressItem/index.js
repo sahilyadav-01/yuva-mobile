@@ -5,7 +5,7 @@ import {styles} from './style';
 import {SVG} from '../../../../../assets';
 import {CYAN_BLUE, MARINER} from '../../../../styles/colors';
 
-function AddressItem({item,index,checked,setChecked}) {
+function AddressItem({item, index, checked, setChecked}) {
   return (
     <View style={styles.container}>
       <View style={styles.contactContainer}>
@@ -32,7 +32,6 @@ function AddressItem({item,index,checked,setChecked}) {
           <Text style={[styles.addressText, {marginTop: 4}]}>
             {item?.pinCode}
           </Text>
-          {/* <Text style={styles.addressText}>{`${item?.address}\n`}<Text style={[styles.addressText,{marginTop:4}]}>{`${item?.cityName}\n`}<Text style={[styles.addressText,{marginTop:4}]}>{item?.pinCode}</Text></Text></Text> */}
         </View>
       </View>
     </View>

@@ -1,19 +1,19 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, WHITE } from '../../../styles/colors';
-import { CENTER } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {CYAN_BLUE, WHITE} from '../../../styles/colors';
+import {CENTER} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   mainViewContainerStyle: {
-    flex: 1
+    flex: 1,
   },
   CardViewContainerStyle: {
     marginTop: '10%',
-    flex: 1
+    flex: 1,
   },
   NoOrderText: {
     textAlign: CENTER,
-    marginVertical: "40%",
+    marginVertical: '40%',
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
     color: CYAN_BLUE,
@@ -23,12 +23,12 @@ export const styles = StyleSheet.create({
     color: WHITE,
     fontSize: fonts.size.fontSize14,
   },
-  viewAll: {width:'100%',paddingHorizontal:16, marginTop: 16},
+  viewAll: {width: '100%', paddingHorizontal: 16, marginTop: 16},
   viewAllContainer: {
     paddingVertical: 12,
     alignItems: CENTER,
     justifyContent: CENTER,
     backgroundColor: CYAN_BLUE,
     borderRadius: 12,
-  }
+  },
 });

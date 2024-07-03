@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const Logout = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const Logout = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#000"
       strokeLinecap="round"
@@ -22,5 +21,5 @@ const Logout = (props) => (
       d="M8.5 11H21m0 0-3.75-3.75M21 11l-3.75 3.75"
     />
   </Svg>
-)
+);
 export default Logout;

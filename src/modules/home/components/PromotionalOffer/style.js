@@ -1,9 +1,15 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, SPACE_BETWEEN} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
-import {BLACK, GAINSBORO_LIGHT, INDIGO_LIGHT, ORANGE, WHITE} from '../../../../styles/colors';
+import {
+  BLACK,
+  GAINSBORO_LIGHT,
+  INDIGO_LIGHT,
+  ORANGE,
+  WHITE,
+} from '../../../../styles/colors';
 
-export const styles = (alternate) => {
+export const styles = alternate => {
   return StyleSheet.create({
     container: {
       paddingHorizontal: 16,
@@ -20,7 +26,7 @@ export const styles = (alternate) => {
       minHeight: 120,
       maxHeight: 132,
       width: 150,
-      paddingHorizontal: 12
+      paddingHorizontal: 12,
     },
     text: {
       textAlign: CENTER,

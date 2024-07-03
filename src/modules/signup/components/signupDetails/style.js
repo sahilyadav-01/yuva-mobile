@@ -20,7 +20,7 @@ const styles = () => {
     },
     textInputContainer: {
       paddingVertical: 12,
-      paddingLeft:20,
+      paddingLeft: 20,
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
@@ -53,7 +53,7 @@ const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize10,
       color: CYAN_BLUE,
-      paddingHorizontal:8
+      paddingHorizontal: 8,
     },
     termsAndConditionsContainer: {
       marginTop: 32,
@@ -82,10 +82,12 @@ const styles = () => {
     },
     bottomTextContainer: {alignItems: CENTER},
     rowTextContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
-    termsConditionsText: {lineHeight: 20,
+    termsConditionsText: {
+      lineHeight: 20,
       fontFamily: fonts.family.rubik600,
       fontSize: fonts.size.fontSize12,
-      color: CYAN_BLUE,}
+      color: CYAN_BLUE,
+    },
   });
 };
 

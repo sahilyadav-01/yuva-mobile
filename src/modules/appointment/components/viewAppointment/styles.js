@@ -21,7 +21,7 @@ import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1,
   },
   fullView: {},
   description: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    height:'100%',
+    height: '100%',
   },
   Header: {
     color: BLACK,
@@ -235,9 +235,9 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize10,
     color: DARK_BLUE,
   },
-  appointmentId:{
-    position:ABSOLUTE, 
-    right:14
+  appointmentId: {
+    position: ABSOLUTE,
+    right: 14,
   },
   customId: {
     marginTop: 5,

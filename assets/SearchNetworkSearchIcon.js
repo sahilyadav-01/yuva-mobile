@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-import { MARINER } from "../src/styles/colors"
-const SearchNetworkSearchIcon = (props) => (
+import * as React from 'react';
+import Svg, {G, Path, Defs, ClipPath} from 'react-native-svg';
+import {MARINER} from '../src/styles/colors';
+const SearchNetworkSearchIcon = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={18}
     height={18}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <G clipPath="url(#a)">
       <Path
         fill={MARINER}
@@ -21,5 +20,5 @@ const SearchNetworkSearchIcon = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
-export default SearchNetworkSearchIcon
+);
+export default SearchNetworkSearchIcon;

@@ -19,14 +19,15 @@ export const useFilter = navigation => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSubCategories, setSelectedSubCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
-  
+
   useFocusEffect(
     useCallback(() => {
       let categories = productList?.productFilter?.categoryIdList;
       let subCategories = productList?.productFilter?.subCategoryIdList;
       let brands = productList?.productFilter?.brandIdList;
       categories = categories?.length > 0 ? categories.map(String) : categories;
-      subCategories = subCategories?.length > 0 ? subCategories.map(String) : subCategories;
+      subCategories =
+        subCategories?.length > 0 ? subCategories.map(String) : subCategories;
       brands = brands?.length > 0 ? brands.map(String) : brands;
       setSelectedCategories(categories);
       setSelectedSubCategories(subCategories);
@@ -49,8 +50,9 @@ export const useFilter = navigation => {
       setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(0)) {
           let updatedData = data.map(item => {
-            if (item.id !== 0) return item;
-            else
+            if (item.id !== 0) {
+              return item;
+            } else {
               return {
                 ...item,
                 data:
@@ -60,9 +62,10 @@ export const useFilter = navigation => {
                         return {...item, status: 'unchecked'};
                       }),
               };
+            }
           });
           return updatedData;
-        } else
+        } else {
           return [
             ...data,
             {
@@ -72,10 +75,18 @@ export const useFilter = navigation => {
                 categoryDropdown.data?.length === 0
                   ? []
                   : categoryDropdown.data.map(item => {
-                      return {...item, status: selectedCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
+                      return {
+                        ...item,
+                        status: selectedCategories?.includes(
+                          item?.id?.toString(),
+                        )
+                          ? 'checked'
+                          : 'unchecked',
+                      };
                     }),
             },
           ];
+        }
       });
     }
   }, [categoryDropdown.loading, categoryDropdown.error]);
@@ -84,20 +95,30 @@ export const useFilter = navigation => {
     if (
       !subCategoryDropdown.loading &&
       !subCategoryDropdown.error &&
-      fetchSubCategory && applyFilter
+      fetchSubCategory &&
+      applyFilter
     ) {
       setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(1)) {
           let updatedData = data.map(item => {
-            if (item.id !== 1) return item;
-            else {
+            if (item.id !== 1) {
+              return item;
+            } else {
               return {
                 ...item,
                 data:
                   subCategoryDropdown.data?.length === 0
                     ? []
                     : subCategoryDropdown.data.map(item => {
-                        return {...item, status: selectedSubCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked', disabled: true};
+                        return {
+                          ...item,
+                          status: selectedSubCategories?.includes(
+                            item?.id?.toString(),
+                          )
+                            ? 'checked'
+                            : 'unchecked',
+                          disabled: true,
+                        };
                       }),
               };
             }
@@ -113,7 +134,14 @@ export const useFilter = navigation => {
                 subCategoryDropdown.data?.length === 0
                   ? []
                   : subCategoryDropdown.data.map(item => {
-                      return {...item, status: selectedSubCategories?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
+                      return {
+                        ...item,
+                        status: selectedSubCategories?.includes(
+                          item?.id?.toString(),
+                        )
+                          ? 'checked'
+                          : 'unchecked',
+                      };
                     }),
             },
           ];
@@ -131,20 +159,27 @@ export const useFilter = navigation => {
       setData(data => {
         if (data?.length > 0 && data?.map(item => item?.id).includes(2)) {
           let updatedData = data.map(item => {
-            if (item.id !== 2) return item;
-            else
+            if (item.id !== 2) {
+              return item;
+            } else {
               return {
                 ...item,
                 data:
                   brandsDropdown.data?.length === 0
                     ? []
                     : brandsDropdown.data.map(item => {
-                        return {...item, status: selectedBrands?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
+                        return {
+                          ...item,
+                          status: selectedBrands?.includes(item?.id?.toString())
+                            ? 'checked'
+                            : 'unchecked',
+                        };
                       }),
               };
+            }
           });
           return updatedData;
-        } else
+        } else {
           return [
             ...data,
             {
@@ -154,21 +189,31 @@ export const useFilter = navigation => {
                 brandsDropdown.data?.length === 0
                   ? []
                   : brandsDropdown.data.map(item => {
-                      return {...item, status: selectedBrands?.includes(item?.id?.toString()) ? 'checked' : 'unchecked'};
+                      return {
+                        ...item,
+                        status: selectedBrands?.includes(item?.id?.toString())
+                          ? 'checked'
+                          : 'unchecked',
+                      };
                     }),
             },
           ];
+        }
       });
     }
   }, [brandsDropdown.loading, brandsDropdown.error]);
 
   const fetchIds = (data, id) => {
     const categoryData = data.find(item => item.id === id)?.data;
-    if (categoryData?.length === 0) return [];
+    if (categoryData?.length === 0) {
+      return [];
+    }
     const selectedItems = categoryData.filter(
       item => item?.status === 'checked',
     );
-    if (selectedItems?.length === 0) return [];
+    if (selectedItems?.length === 0) {
+      return [];
+    }
     return selectedItems.map(item => parseInt(item?.id));
   };
 
@@ -197,8 +242,9 @@ export const useFilter = navigation => {
 
   const onClearFilter = () => {
     const clearedData = data.map(item => {
-      if (item?.data?.length === 0) return item;
-      else {
+      if (item?.data?.length === 0) {
+        return item;
+      } else {
         return {
           ...item,
           data: item?.data?.map(i => {
@@ -244,26 +290,45 @@ export const useFilter = navigation => {
             return element;
           }),
         };
-      } else return item;
+      } else {
+        return item;
+      }
     });
-    if(id === 0){
-    const categories = newData?.find(item=>item?.id === 0)?.data;
-    let subCategories = newData?.find(item=>item?.id === 1)?.data;
-    const activeCategories = categories?.length === 0 ? [] : categories?.filter(item=>item?.status === 'checked').map(item=>item?.id);
-    const inActiveCategories = categories?.length === 0 ? [] : categories?.filter(item=>item?.status === 'unchecked').map(item=>item?.id);
-    if((activeCategories?.length > 0 || inActiveCategories?.length > 0) && subCategories?.length > 0) {
-      subCategories = subCategories?.map((item)=>{
-        if(activeCategories?.includes(item?.secondId)) return {...item,disabled:false}
-        else return {...item,disabled:true}
-      })
-      newData = newData.map(item=>{
-        if(item?.id !== 1) return item;
-        else {
-          return {...item,data:subCategories}
-        }
-      })
+    if (id === 0) {
+      const categories = newData?.find(item => item?.id === 0)?.data;
+      let subCategories = newData?.find(item => item?.id === 1)?.data;
+      const activeCategories =
+        categories?.length === 0
+          ? []
+          : categories
+              ?.filter(item => item?.status === 'checked')
+              .map(item => item?.id);
+      const inActiveCategories =
+        categories?.length === 0
+          ? []
+          : categories
+              ?.filter(item => item?.status === 'unchecked')
+              .map(item => item?.id);
+      if (
+        (activeCategories?.length > 0 || inActiveCategories?.length > 0) &&
+        subCategories?.length > 0
+      ) {
+        subCategories = subCategories?.map(item => {
+          if (activeCategories?.includes(item?.secondId)) {
+            return {...item, disabled: false};
+          } else {
+            return {...item, disabled: true};
+          }
+        });
+        newData = newData.map(item => {
+          if (item?.id !== 1) {
+            return item;
+          } else {
+            return {...item, data: subCategories};
+          }
+        });
+      }
     }
-  }
     setData(newData);
   };
 

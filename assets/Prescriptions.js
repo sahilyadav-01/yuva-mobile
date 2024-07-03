@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const Prescriptions = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const Prescriptions = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={20}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#000"
       d="M13.136 2.376H10.99v1.017H13.142c.546 0 .989.443.989.989V18a.99.99 0 0 1-.99.989H2.003a.99.99 0 0 1-.989-.99V4.383a.99.99 0 0 1 .99-.99h2.153V2.377H2.009C.9 2.376 0 3.276 0 4.386V17.99c0 1.109.9 2.008 2.01 2.008h11.126c1.109 0 2.009-.9 2.009-2.01V4.385c0-1.109-.9-2.009-2.01-2.009h.001Z"
@@ -17,5 +16,5 @@ const Prescriptions = (props) => (
       d="M10.507 1.854h-1.1a1.854 1.854 0 1 0-3.708 0H4.607v2.548h5.895V1.854h.005Zm-1.882 0H6.483v-.026a1.072 1.072 0 0 1 2.144 0v.028-.002h-.002ZM4.959 7.094h7.882v.975H4.959v-.975ZM4.959 11.176h7.882v.975H4.959v-.975ZM4.959 15.207h7.882v.98H4.959v-.98ZM2.193 6.465h2.234v2.233H2.193V6.465ZM2.193 10.547h2.234v2.233H2.193v-2.233ZM2.193 14.582h2.234v2.233H2.193v-2.233Z"
     />
   </Svg>
-)
+);
 export default Prescriptions;

@@ -14,12 +14,15 @@ import {
   TOTAL_AMOUNT,
 } from './constants';
 import RenderPlans from '../Plans';
-import { useDetailsView } from './hooks/useDetailsView';
+import {useDetailsView} from './hooks/useDetailsView';
 
 const DetailsView = props => {
   const {item, purchasesTab, priceBreakUpArray, renderList} = props;
-  const path = purchasesTab === 0 ? item?.invoiceFilePath : priceBreakUpArray[0]?.invoiceFilePath;
-  const {downloadInvoice} = useDetailsView(path)
+  const path =
+    purchasesTab === 0
+      ? item?.invoiceFilePath
+      : priceBreakUpArray[0]?.invoiceFilePath;
+  const {downloadInvoice} = useDetailsView(path);
   const {
     purchaseContainer,
     purchaseText,
@@ -52,14 +55,16 @@ const DetailsView = props => {
 
   return (
     <>
-      {renderList && <View style={listExpandContainer}>
-        <FlatList
-          data={item?.planServiceDtoList}
-          keyExtractor={index => index}
-          renderItem={renderPlans}
-          ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
-        />
-      </View>}
+      {renderList && (
+        <View style={listExpandContainer}>
+          <FlatList
+            data={item?.planServiceDtoList}
+            keyExtractor={index => index}
+            renderItem={renderPlans}
+            ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
+          />
+        </View>
+      )}
       <View style={purchaseContainer}>
         <Text style={purchaseText}>{PURCHASED_BY}</Text>
         <Text style={personText}>{item?.customerName}</Text>
@@ -104,11 +109,12 @@ const DetailsView = props => {
             <View style={planDetailsContainer}>
               <Text style={planText}>{item?.name}</Text>
               <View style={rowView}>
-                {!(item?.totalAmount === item?.amountPaid) &&item?.discount && (
-                  <Text style={[amountText, regularPriceText]}>{`₹${Math.ceil(
-                    item?.totalAmount,
-                  )}/-`}</Text>
-                )}
+                {!(item?.totalAmount === item?.amountPaid) &&
+                  item?.discount && (
+                    <Text style={[amountText, regularPriceText]}>{`₹${Math.ceil(
+                      item?.totalAmount,
+                    )}/-`}</Text>
+                  )}
                 <Text style={amountText}>{`₹${Math.ceil(
                   item?.amountPaid,
                 )}/-`}</Text>

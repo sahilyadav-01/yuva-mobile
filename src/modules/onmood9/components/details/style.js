@@ -1,6 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {BLACK, CYAN_BLUE, DARK_BLUE, MARINER, ORANGE} from '../../../../styles/colors';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  MARINER,
+  ORANGE,
+} from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 
 export const styles = () => {
@@ -17,7 +23,7 @@ export const styles = () => {
       color: DARK_BLUE,
     },
     container: {
-      marginVertical: 36
+      marginVertical: 36,
     },
     itemContainer: {marginRight: 24},
     imageStyle: {height: 100},

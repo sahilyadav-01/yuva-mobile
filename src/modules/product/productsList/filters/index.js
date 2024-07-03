@@ -1,14 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import {styles as style} from './style';
 
 function Filters(props) {
-    const styles = style();
-    return (
-        <View>
-
-        </View>
-    );
+  const styles = style();
+  return <View />;
 }
 
 export default Filters;

@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, RED, WHITE } from '../../styles/colors';
-import { ABSOLUTE, CENTER } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE, RED, WHITE} from '../../styles/colors';
+import {ABSOLUTE, CENTER} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    container: { flex: 1, backgroundColor: WHITE },
+    container: {flex: 1, backgroundColor: WHITE},
     searchHomeContainer: {paddingBottom: 12},
     boxStyle: {
       paddingTop: 0,
@@ -38,6 +38,6 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       color: RED,
     },
-    noteContainer: {marginBottom:8,paddingHorizontal:16,alignItems:CENTER}
+    noteContainer: {marginBottom: 8, paddingHorizontal: 16, alignItems: CENTER},
   });
 };

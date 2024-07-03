@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, MARINER, ORANGE, VIVID_TANGERINE} from '../../../../styles/colors';
+import {
+  BLACK,
+  MARINER,
+  ORANGE,
+  VIVID_TANGERINE,
+} from '../../../../styles/colors';
 import {
   CENTER,
   HIDDEN,

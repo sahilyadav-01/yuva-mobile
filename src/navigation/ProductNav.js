@@ -21,16 +21,11 @@ const ProductNavigation = () => {
         component={CategoryDetails}
         options={{headerShown: false}}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="ProductDetails"
         component={ProductDetails}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name="Products"
-        component={Products}
-        options={{headerShown: false}}
-      /> */}
       <Stack.Screen
         name="ProductFilter"
         component={ProductFilter}

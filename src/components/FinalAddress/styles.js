@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     height: 123,
     borderWidth: 0.5,
-    borderColor: GRAY
+    borderColor: GRAY,
   },
   nameStyle: {
     color: CYAN_BLUE,

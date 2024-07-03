@@ -1,7 +1,16 @@
-import { StyleSheet } from 'react-native';
-import { WHITE, CYAN_BLUE, GREEN, DEEP_BLUE, DARK_GRAY, CHARCOAL, BLUE_GRAY, MEDIUM_CARMINE } from '../../styles/colors';
-import { CENTER, ROW, SPACE_BETWEEN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  WHITE,
+  CYAN_BLUE,
+  GREEN,
+  DEEP_BLUE,
+  DARK_GRAY,
+  CHARCOAL,
+  BLUE_GRAY,
+  MEDIUM_CARMINE,
+} from '../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -32,13 +41,13 @@ export const styles = () => {
       color: CYAN_BLUE,
       fontFamily: fonts.family.rubik500,
     },
-    discountPriceTextStyle:{
+    discountPriceTextStyle: {
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       color: GREEN,
       fontFamily: fonts.family.rubik500,
     },
-    gstText:{
+    gstText: {
       fontSize: fonts.size.fontSize10,
       lineHeight: 15,
       color: CYAN_BLUE,
@@ -54,7 +63,7 @@ export const styles = () => {
       flexDirection: ROW,
       justifyContent: SPACE_BETWEEN,
       padding: 5,
-      paddingHorizontal:12,
+      paddingHorizontal: 12,
     },
     crossStyle: {
       color: DARK_GRAY,
@@ -82,14 +91,28 @@ export const styles = () => {
     },
     couponDiscountStyle: {
       height: 36,
-      color:GREEN,
-      paddingVertical:10,
+      color: GREEN,
+      paddingVertical: 10,
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize14,
-      paddingHorizontal:5,
+      paddingHorizontal: 5,
     },
-    collectionChargesText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize14,color:CYAN_BLUE},
-    applicableText: {fontFamily: fonts.family.rubik400,fontSize:fonts.size.fontSize10,color:MEDIUM_CARMINE},
-    processingChargeContainer: {paddingRight:16,paddingLeft:12,flexDirection:ROW,justifyContent:SPACE_BETWEEN,paddingVertical:8}
+    collectionChargesText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      color: CYAN_BLUE,
+    },
+    applicableText: {
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize10,
+      color: MEDIUM_CARMINE,
+    },
+    processingChargeContainer: {
+      paddingRight: 16,
+      paddingLeft: 12,
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+      paddingVertical: 8,
+    },
   });
 };

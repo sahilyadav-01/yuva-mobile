@@ -1,13 +1,13 @@
-import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { setOurPlanData } from "../../../../../store/reducers/ProgramAndPlanSlice";
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
 export const usePackagesOffer = () => {
   const navigation = useNavigation();
   const {popularPlan} = useSelector(state => state.programAndPlan);
   const dispatch = useDispatch();
   const onPackagePress = itemDetails => {
-    switch(itemDetails?.contentType){
+    switch (itemDetails?.contentType) {
       case 'TEST':
         navigation.navigate('ProductDetails', {
           headerName: 'health',
@@ -38,6 +38,6 @@ export const usePackagesOffer = () => {
         navigation.navigate('OurPlan');
         break;
     }
-    }
+  };
   return {onPackagePress};
 };

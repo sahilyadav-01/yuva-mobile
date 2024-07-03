@@ -39,8 +39,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
-    zIndex:10,
-    shadowOffset: {width:0,height:0}
+    zIndex: 10,
+    shadowOffset: {width: 0, height: 0},
   },
   TitleStyle: {
     marginTop: '5%',
@@ -141,7 +141,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderColor: BLACK,
     backgroundColor: WHITE,
-    position:ABSOLUTE,
+    position: ABSOLUTE,
   },
   valueStyle: {
     alignSelf: CENTER,

@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const DISCOUNT_SVG_ICON = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const DISCOUNT_SVG_ICON = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#38466C"
       strokeLinecap="round"
@@ -16,5 +15,5 @@ const DISCOUNT_SVG_ICON = (props) => (
       d="m2.988 13.654-1.522-1.522a1.608 1.608 0 0 1 0-2.264l1.522-1.522c.26-.26.47-.771.47-1.132V5.061c0-.881.722-1.602 1.603-1.602h2.153c.36 0 .872-.21 1.132-.471l1.522-1.522c.621-.621 1.643-.621 2.264 0l1.522 1.522c.26.26.771.47 1.132.47h2.153c.881 0 1.602.722 1.602 1.603v2.153c0 .36.21.872.471 1.132l1.522 1.522c.621.621.621 1.643 0 2.264l-1.522 1.522c-.26.26-.47.771-.47 1.132v2.153c0 .881-.722 1.602-1.603 1.602h-2.153c-.36 0-.872.21-1.132.471l-1.522 1.522c-.621.621-1.643.621-2.264 0l-1.522-1.522c-.26-.26-.771-.47-1.132-.47H5.061a1.607 1.607 0 0 1-1.602-1.603v-2.153c0-.37-.21-.882-.471-1.132ZM8.006 13.993l6.009-6.009M13.51 13.492h.009M8.502 8.484h.009"
     />
   </Svg>
-)
+);
 export default DISCOUNT_SVG_ICON;

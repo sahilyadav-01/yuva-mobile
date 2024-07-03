@@ -6,7 +6,10 @@ import {styles} from './styles';
 const ProductDetails = props => {
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <Product productId={props?.route?.params?.productId} navigation={props?.navigation}/>
+      <Product
+        productId={props?.route?.params?.productId}
+        navigation={props?.navigation}
+      />
     </SafeAreaView>
   );
 };

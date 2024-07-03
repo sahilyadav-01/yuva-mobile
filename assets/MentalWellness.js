@@ -1,13 +1,12 @@
-import React from "react"
-import Svg, { Path } from "react-native-svg"
-const MentalWellness = (props) => (
+import React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const MentalWellness = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
     height={32}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#44576A"
       d="M23.148 17c0 .552-.457 1-1.021 1a1.01 1.01 0 0 1-1.021-1c0-.552.457-1 1.02-1a1.01 1.01 0 0 1 1.022 1ZM11.574 22.667h2.724v-1.333h-2.724v1.333ZM14.298 25.333h-2.724V24h2.724v1.333Z"
@@ -25,5 +24,5 @@ const MentalWellness = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
+);
 export default MentalWellness;

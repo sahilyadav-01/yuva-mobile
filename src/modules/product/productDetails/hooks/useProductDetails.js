@@ -3,20 +3,24 @@ import {useState, useRef, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductDetails} from '../../../../store/reducers/ProductSlice';
 import {useCart} from '../../../cart/hooks/useCart';
-import { setRedirectState } from '../../../../store/reducers/NotificationSlice';
+import {setRedirectState} from '../../../../store/reducers/NotificationSlice';
 
 export const useProductDetails = (productId, navigation) => {
   let flatListRef = useRef();
   const dispatch = useDispatch();
   const {addToCart} = useCart();
   const {productDetails} = useSelector(state => state.product);
-  const {cart:{itemDtoList},addToCartItem,updateCartLoading} = useSelector(state => state.cart);
+  const {
+    cart: {itemDtoList},
+    addToCartItem,
+    updateCartLoading,
+  } = useSelector(state => state.cart);
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [htmlDescription, setHtmlDescription] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [addItem,setAddItem] = useState(false);
+  const [addItem, setAddItem] = useState(false);
   useFocusEffect(
     useCallback(() => {
       dispatch(getProductDetails(productId));
@@ -24,35 +28,48 @@ export const useProductDetails = (productId, navigation) => {
   );
   useEffect(() => {
     if (!productDetails.loading && productDetails?.data !== null) {
-      const productId = productDetails?.data?.productPriceResponseDtoForUserList[activeIndex]?.productId ?? null;
-      const priceId = productDetails?.data?.productPriceResponseDtoForUserList[activeIndex]?.priceId;
+      const productId =
+        productDetails?.data?.productPriceResponseDtoForUserList[activeIndex]
+          ?.productId ?? null;
+      const priceId =
+        productDetails?.data?.productPriceResponseDtoForUserList[activeIndex]
+          ?.priceId;
       setHtmlDescription(`<html>
       <body>
-      ${productDetails?.data?.description ?? `<div></div>`}
+      ${productDetails?.data?.description ?? '<div></div>'}
       </body>
       </html>`);
-      fetchItemExists({productId,priceId})
+      fetchItemExists({productId, priceId});
     }
-  }, [productDetails,activeIndex,quantity]);
+  }, [productDetails, activeIndex, quantity]);
 
-  useEffect(()=>{
-    if(addItem && !updateCartLoading) {
+  useEffect(() => {
+    if (addItem && !updateCartLoading) {
       setAddItem(false);
       dispatch(setRedirectState(false));
       setDisabled(addToCartItem);
     }
-  },[updateCartLoading])
+  }, [updateCartLoading]);
 
-  const fetchItemExists = ({productId,priceId}) => {
-    if(itemDtoList?.length === 0) setDisabled(false);
-    else {
-      const exists = itemDtoList.filter(item=>{
-        const arg = item?.productType === 'PRODUCT' && item?.productId?.toString() === productId.toString() && item?.productPriceId !== null && item?.productPriceId?.toString() === priceId?.toString() && item?.count === quantity;
-        if(arg) return item;
-      })?.length > 0;
+  const fetchItemExists = ({productId, priceId}) => {
+    if (itemDtoList?.length === 0) {
+      setDisabled(false);
+    } else {
+      const exists =
+        itemDtoList.filter(item => {
+          const arg =
+            item?.productType === 'PRODUCT' &&
+            item?.productId?.toString() === productId.toString() &&
+            item?.productPriceId !== null &&
+            item?.productPriceId?.toString() === priceId?.toString() &&
+            item?.count === quantity;
+          if (arg) {
+            return item;
+          }
+        })?.length > 0;
       setDisabled(exists);
     }
-  }
+  };
 
   const onArrowPress = (next, index) => {
     const scrollable =
@@ -72,8 +89,11 @@ export const useProductDetails = (productId, navigation) => {
   };
   const onSelectSize = index => setActiveIndex(index);
   const onSelectQuantity = increment => {
-    if (increment) setQuantity(quantity + 1);
-    else if (!increment && quantity > 1) setQuantity(quantity - 1);
+    if (increment) {
+      setQuantity(quantity + 1);
+    } else if (!increment && quantity > 1) {
+      setQuantity(quantity - 1);
+    }
   };
   const onAddToCartPress = () => {
     setDisabled(true);
@@ -94,24 +114,26 @@ export const useProductDetails = (productId, navigation) => {
   };
 
   const fetchProductDetails = () => {
-    if(productDetails?.data?.description?.length > 0)
-    return `<html>
+    if (productDetails?.data?.description?.length > 0) {
+      return `<html>
     <body>
     ${productDetails?.data?.description}
     </body>
     </html>`;
+    }
     return '';
-  }
+  };
 
   const fetchNutritionalValue = () => {
-    if(productDetails?.data?.nutritional?.length > 0)
-    return `<html>
+    if (productDetails?.data?.nutritional?.length > 0) {
+      return `<html>
     <body>
     ${productDetails?.data?.nutritional}
     </body>
     </html>`;
+    }
     return '';
-  }
+  };
   return {
     productDetails,
     flatListRef,
@@ -125,6 +147,6 @@ export const useProductDetails = (productId, navigation) => {
     onAddToCartPress,
     disabled,
     fetchProductDetails,
-    fetchNutritionalValue
+    fetchNutritionalValue,
   };
 };

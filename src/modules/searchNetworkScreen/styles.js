@@ -1,7 +1,17 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, DARK_BLUE, GREY, INDIGO_LIGHT, MARINER, MEDIUM_CARMINE, ORANGE, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN, ROW, SPACE_BETWEEN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  GREY,
+  INDIGO_LIGHT,
+  MARINER,
+  MEDIUM_CARMINE,
+  ORANGE,
+  WHITE,
+} from '../../styles/colors';
+import {CENTER, COLUMN, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
   mainContainer: {
     marginHorizontal: 15,

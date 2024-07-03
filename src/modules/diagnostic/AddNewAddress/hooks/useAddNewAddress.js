@@ -1,15 +1,9 @@
-
-
-import { useSelector } from 'react-redux';
-
+import {useSelector} from 'react-redux';
 
 export const useAddNewAddress = () => {
+  const {packageDetails} = useSelector(state => state.diagnostic);
 
-    const { packageDetails } = useSelector(state => state.diagnostic);
-
-    return {
-
-        packageDetails,
-
-    }
-}
+  return {
+    packageDetails,
+  };
+};

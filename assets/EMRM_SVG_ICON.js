@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const EMRM_SVG_ICON = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const EMRM_SVG_ICON = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={21}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#38466C"
       strokeWidth={2}
@@ -25,5 +24,5 @@ const EMRM_SVG_ICON = (props) => (
       d="M4.846 4.383h6.461M4.846 8.23h6.461M4.846 12.078H8.23"
     />
   </Svg>
-)
+);
 export default EMRM_SVG_ICON;

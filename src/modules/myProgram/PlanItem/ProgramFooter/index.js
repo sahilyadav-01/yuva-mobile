@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {ADD_MEMBER,ADD_NEW_MEMBER,PLAN_DETAILS,PLAN_MEMBERS,RELATIONSHIP} from './constants';
-import { SVG } from '../../../../../assets';
+import {
+  ADD_MEMBER,
+  ADD_NEW_MEMBER,
+  PLAN_DETAILS,
+  PLAN_MEMBERS,
+  RELATIONSHIP,
+} from './constants';
+import {SVG} from '../../../../../assets';
 import PlanLockView from '../../components/PlanLockView';
 import AddMembersModal from '../../../../components/Modal/AddMembersModal';
 import DetailsView from '../../components/DetailsView';
-import { useFooter } from './hooks/useFooter';
+import {useFooter} from './hooks/useFooter';
 
 export const ProgramFooter = props => {
   const {item} = props;
@@ -25,7 +31,7 @@ export const ProgramFooter = props => {
   const style = styles();
   const [expanded, setExpanded] = useState(false);
   if (!item) {
-    return null; 
+    return null;
   }
   const FooterItem = ({extraStyles, text, planDetails}) => {
     return (
@@ -35,7 +41,7 @@ export const ProgramFooter = props => {
           onPress={() => {
             if (planDetails && !expanded && !planLockView) {
               setExpanded(true);
-            }else if (!planDetails && !expanded && !planLockView) {
+            } else if (!planDetails && !expanded && !planLockView) {
               onToggle(item);
             } else if (!planDetails && expanded && !planLockView) {
               setExpanded(false);
@@ -50,7 +56,11 @@ export const ProgramFooter = props => {
             }
           }}
           style={style.arrowContainer}>
-          <SVG.ExpandArrow expanded={(planDetails && expanded) || (!planDetails && planLockView)}   />
+          <SVG.ExpandArrow
+            expanded={
+              (planDetails && expanded) || (!planDetails && planLockView)
+            }
+          />
         </TouchableOpacity>
       </View>
     );
@@ -63,15 +73,14 @@ export const ProgramFooter = props => {
           extraStyles={style.footerColumnStyle}
           planDetails={true}
         />
-        <FooterItem text={PLAN_MEMBERS} planDetails={false} extraStyles={style.rightView} />
-      </View>
-       {expanded && (
-        <DetailsView
-          item={item}
-          renderList={true}
+        <FooterItem
+          text={PLAN_MEMBERS}
+          planDetails={false}
+          extraStyles={style.rightView}
         />
-     )} 
-       {planLockView && (
+      </View>
+      {expanded && <DetailsView item={item} renderList={true} />}
+      {planLockView && (
         <PlanLockView
           dependents={dependents}
           onAddMembersPress={onAddMembersPress}
@@ -79,7 +88,7 @@ export const ProgramFooter = props => {
           onLockPlan={onLockPlan}
           item={item}
         />
-      )} 
+      )}
       <AddMembersModal
         heading={ADD_NEW_MEMBER}
         onCrossPress={onCrossPress}

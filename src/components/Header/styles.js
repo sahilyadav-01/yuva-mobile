@@ -23,7 +23,13 @@ export const styles = StyleSheet.create({
   container: {
     zIndex: 5,
   },
-  screenContainer: {zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:WHITE},
+  screenContainer: {
+    zIndex: 10,
+    elevation: 10,
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.3,
+    backgroundColor: WHITE,
+  },
   headerContainer: {
     minHeight: 0.12 * height,
     width: '100%',
@@ -137,7 +143,7 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     paddingHorizontal: 16,
   },
-  backContainer: {width: '20%',paddingLeft:16,backgroundColor:WHITE},
+  backContainer: {width: '20%', paddingLeft: 16, backgroundColor: WHITE},
   mainContainer: {width: '60%'},
   searchIconContainer: {width: '20%', alignItems: FLEX_END, paddingRight: 16},
   titleTextStyle: {
@@ -156,8 +162,8 @@ export const styles = StyleSheet.create({
     elevation: 1,
     zIndex: 20,
     shadowColor: BLACK,
-    shadowOffset: {width:1,height:1},
-    shadowOpacity: 0.3
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.3,
   },
   loginContainer: {
     alignItems: CENTER,
@@ -179,7 +185,7 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
   },
   rowContainer: {flexDirection: ROW, alignItems: CENTER},
-  mainContainerStyle: {flexDirection: ROW,maxWidth:'55%'},
+  mainContainerStyle: {flexDirection: ROW, maxWidth: '55%'},
   nameContainerStyle: {marginLeft: 8},
-  imageStyle: {width: 50, height: 50}
+  imageStyle: {width: 50, height: 50},
 });

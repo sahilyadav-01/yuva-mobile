@@ -59,7 +59,7 @@ const BookingTestAndPackage = ({params}) => {
                   )}
                 </Text>
               </View>
-              <View></View>
+              <View />
               {item?.parameterCount > 0 && (
                 <View style={styles.drop}>
                   <SVG.dropDown />
@@ -89,7 +89,7 @@ const BookingTestAndPackage = ({params}) => {
       </View>
     );
   };
-//   if (!renderData) return null;
+  //   if (!renderData) return null;
   return (
     <View style={styles.screenContainer}>
       <Header showBackButton={true} title={headerTitle()} />
@@ -153,10 +153,10 @@ const BookingTestAndPackage = ({params}) => {
               )}
             </View>
           )}
-          <View></View>
+          <View />
         </ScrollView>
       ) : (
-        <View >
+        <View>
           <Text style={styles.somethingWentWrong}>{SOMETHING_WENT_WRONG}</Text>
         </View>
       )}

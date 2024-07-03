@@ -26,7 +26,7 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
-      color:INDIGO
+      color: INDIGO,
     },
     rowContainer: {flexDirection: ROW},
     iconContainer: {marginLeft: 16},
@@ -45,6 +45,6 @@ export const styles = () => {
       alignItems: CENTER,
     },
     dropdownItemStyles: {paddingLeft: 12, paddingVertical: 0},
-    dropdownContainer: {flex:1,marginBottom:16,marginHorizontal:10}
+    dropdownContainer: {flex: 1, marginBottom: 16, marginHorizontal: 10},
   });
 };

@@ -7,11 +7,13 @@ import {SVG} from '../../../../assets';
 import {useCartAddressList} from './hook/useCartAddressList';
 import {useOurAddress} from '../../../components/hooks/useAddress';
 
-const ListHeader = ({totalAddresses,onAddAddress}) => {
+const ListHeader = ({totalAddresses, onAddAddress}) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.heading}>Select Address ({totalAddresses})</Text>
-      <TouchableOpacity onPress={onAddAddress} style={styles.addAddressContainer}>
+      <TouchableOpacity
+        onPress={onAddAddress}
+        style={styles.addAddressContainer}>
         <SVG.AddAddress />
         <Text style={styles.addAddressText}>Add New</Text>
       </TouchableOpacity>
@@ -22,7 +24,7 @@ const ListHeader = ({totalAddresses,onAddAddress}) => {
 const ItemSeparator = () => <View style={{height: 12}} />;
 
 function CartAddressList(props) {
-  const {ConfirmAddress,onAddAddress} = useCartAddressList();
+  const {ConfirmAddress, onAddAddress} = useCartAddressList();
   const {
     userAddress,
     checked,
@@ -31,7 +33,7 @@ function CartAddressList(props) {
     userAttribute,
     userAddressListing,
   } = useOurAddress('CheckoutAddressList');
-  
+
   return (
     <View style={styles.screenContainer}>
       <Header
@@ -42,7 +44,10 @@ function CartAddressList(props) {
         showCart={true}
       />
       <View style={styles.container}>
-        <ListHeader totalAddresses={userAddressListing?.length} onAddAddress={onAddAddress} />
+        <ListHeader
+          totalAddresses={userAddressListing?.length}
+          onAddAddress={onAddAddress}
+        />
         <FlatList
           ItemSeparatorComponent={ItemSeparator}
           style={{flex: 1}}

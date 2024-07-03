@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import { BLACK, DARK_BLUE, ORANGE, WHITE } from '../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, ROW } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {BLACK, DARK_BLUE, ORANGE, WHITE} from '../../../styles/colors';
+import {ABSOLUTE, CENTER, FLEX_END, ROW} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   messageView: {
-    marginTop:38,
+    marginTop: 38,
     borderRadius: 12,
     backgroundColor: WHITE,
     marginHorizontal: 15,
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-    lineHeight:18,
+    lineHeight: 18,
     marginLeft: 15,
   },
   thankStyle: {
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     color: DARK_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-    lineHeight:18,
+    lineHeight: 18,
     marginLeft: 15,
   },
   secondView: {width: '75%'},
@@ -62,6 +62,6 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize12,
     marginLeft: 15,
     marginTop: 15,
-    marginBottom:38
+    marginBottom: 38,
   },
 });

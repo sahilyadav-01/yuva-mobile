@@ -1,13 +1,23 @@
 import React from 'react';
-import {View, Text, ActivityIndicator, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {styles} from '../../styles';
 import ReportCard from '../../../../ReportCard';
 import {EMPTY_TEXT, ERROR_TEXT, VIEW_ALL_PRESCRIPTIONS} from '../../constants';
 import {useMyPrescription} from '../../hooks/useMyPrescription';
-import { MARINER } from '../../../../styles/colors';
+import {MARINER} from '../../../../styles/colors';
 
-export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
+export const PrescriptionContent = ({
+  prescriptionId,
+  redirect,
+  serviceUuid,
+}) => {
   const {
     prescriptionLoading,
     prescriptionError,
@@ -18,9 +28,15 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
     dataAvailable,
     pageNo,
     onViewAll,
-    redirectData
-  } = useMyPrescription({prescriptionId,redirect,serviceUuid});
-  const defaultValue = redirect ? dropdownData.find(item=>{if(item.uuid === serviceUuid) return item}) : dropdownData[0];
+    redirectData,
+  } = useMyPrescription({prescriptionId, redirect, serviceUuid});
+  const defaultValue = redirect
+    ? dropdownData.find(item => {
+        if (item.uuid === serviceUuid) {
+          return item;
+        }
+      })
+    : dropdownData[0];
   const renderItem = ({item, index}) => {
     return (
       <ReportCard
@@ -44,10 +60,9 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
       return (
         <TouchableOpacity onPress={onViewAll} style={styles.viewAll}>
           <View style={styles.viewAllContainer}>
-          <Text style={styles.viewAllText}>{VIEW_ALL_PRESCRIPTIONS}</Text>
+            <Text style={styles.viewAllText}>{VIEW_ALL_PRESCRIPTIONS}</Text>
           </View>
         </TouchableOpacity>
-  
       );
     }
   };
@@ -59,18 +74,20 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
     );
   };
   const RenderContent = () => {
-    if (prescriptionLoading && pageNo === 1)
+    if (prescriptionLoading && pageNo === 1) {
       return (
         <View style={styles.emptyView}>
           <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       );
-    if (!prescriptionLoading && prescriptionError && pageNo === 1)
+    }
+    if (!prescriptionLoading && prescriptionError && pageNo === 1) {
       return (
         <View style={styles.emptyView}>
           <Text style={styles.emptyText}>{ERROR_TEXT}</Text>
         </View>
       );
+    }
     return (
       <>
         <View style={styles.listOffset} />
@@ -83,7 +100,7 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
           style={styles.listContainer}
           onEndReachedThreshold={0.01}
           onEndReached={onEndReached}
-          ListFooterComponent={<RenderListFooter/>}
+          ListFooterComponent={<RenderListFooter />}
           ListEmptyComponent={listEmptyComponent}
         />
         <View style={styles.listOffset} />

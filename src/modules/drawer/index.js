@@ -32,13 +32,16 @@ const Drawer = () => {
             <Text style={textStyle}>General</Text>
             <View style={{height: 12}} />
             {data.map((item, index) => (
-              <TouchableOpacity onPress={item?.onPress} style={[itemContainer,{marginBottom:index<data.length - 1 ? 12 : 0}]}>
-                <View style={{width:25}}>
-                {item?.Icon()}
-                </View>
-                  <View style={rowContainer}>
-                    <Text style={contentStyle}>{item?.heading}</Text>
-                    <SVG.BackButton transform={[{rotate:'180deg'}]}/>
+              <TouchableOpacity
+                onPress={item?.onPress}
+                style={[
+                  itemContainer,
+                  {marginBottom: index < data.length - 1 ? 12 : 0},
+                ]}>
+                <View style={{width: 25}}>{item?.Icon()}</View>
+                <View style={rowContainer}>
+                  <Text style={contentStyle}>{item?.heading}</Text>
+                  <SVG.BackButton transform={[{rotate: '180deg'}]} />
                 </View>
               </TouchableOpacity>
             ))}

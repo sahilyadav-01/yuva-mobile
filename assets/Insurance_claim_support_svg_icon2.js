@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-import { MARINER } from "../src/styles/colors"
-const Insurance_claim_support_svg_icon2 = (props) => (
+import * as React from 'react';
+import Svg, {G, Path, Defs, ClipPath} from 'react-native-svg';
+import {MARINER} from '../src/styles/colors';
+const Insurance_claim_support_svg_icon2 = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={38}
     height={40}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <G clipPath="url(#a)">
       <Path
         stroke={MARINER}
@@ -31,5 +30,5 @@ const Insurance_claim_support_svg_icon2 = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
-export default Insurance_claim_support_svg_icon2
+);
+export default Insurance_claim_support_svg_icon2;

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { Alert, PermissionsAndroid } from 'react-native';
+import {Alert, PermissionsAndroid} from 'react-native';
 import {
   setObject,
   getObject,
@@ -17,44 +17,42 @@ import {
   getRefreshToken,
 } from '../LocalStore';
 import {Freshchat} from 'react-native-freshchat-sdk';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 import {handleNetworkError} from '../../utils/utils';
 
-const registerFcmToken = async (register,logout) => {
+const registerFcmToken = async (register, logout) => {
   const logoutDevices = logout ?? false;
   try {
     const fcmToken = await firebaseMessaging().getToken();
     const refreshToken = await getRefreshToken();
-    const url = register ? `/fcm/${fcmToken}/false` : `/logout`;
-    const body = !register && !logoutDevices ? {fcmToken,refreshToken} : undefined;
-    fcmToken && refreshToken && await YuvaService.post(url,body);
+    const url = register ? `/fcm/${fcmToken}/false` : '/logout';
+    const body =
+      !register && !logoutDevices ? {fcmToken, refreshToken} : undefined;
+    fcmToken && refreshToken && (await YuvaService.post(url, body));
   } catch (error) {}
 };
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
-  async ({emailOrNumber,inputType}, {fulfillWithValue, rejectWithValue}) => {
+  async ({emailOrNumber, inputType}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/forgot-password?emailOrNumber=${emailOrNumber}`;
       const response = await YuvaService.post(endpoint, {});
       if (response.data.status) {
-        inputType !== 'number' && Alert.alert('Alert',response.data.message);
+        inputType !== 'number' && Alert.alert('Alert', response.data.message);
         return response.data;
       } else {
         return rejectWithValue(response.data);
       }
+    } catch (error) {
+      handleNetworkError(
+        error.response.status,
+        error.response.data.errorMessage ?? null,
+      );
+      return rejectWithValue(error.response.data);
     }
-    catch (error) {
-    handleNetworkError(
-      error.response.status,
-      error.response.data.errorMessage ?? null,
-    );
-    return rejectWithValue(error.response.data);
-  }
-},
+  },
 );
-
-
 
 export const resetPassword = createAsyncThunk(
   'auth/resetpassword',
@@ -74,14 +72,11 @@ export const resetPassword = createAsyncThunk(
       await setRole(response.data.data.roles.includes('EMPLOYEE'));
       await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N');
       await registerFcmToken(true);
-      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')){
+      if (response?.data?.data?.roles?.includes('RETAIL_USER', 'EMPLOYEE')) {
         return {...response.data};
       }
       const error = {error: {message: 'Unauthorized User'}};
-      handleNetworkError(
-        403, 
-        error.error.message ?? null,
-      );
+      handleNetworkError(403, error.error.message ?? null);
       return rejectWithValue(error);
     } catch (error) {
       handleNetworkError(
@@ -95,12 +90,9 @@ export const resetPassword = createAsyncThunk(
 
 export const verifyThunk = createAsyncThunk(
   'auth/verifyThunk',
-  async (
-    {emailOrNumber, otp },
-    {fulfillWithValue, rejectWithValue},
-  ) => {
+  async ({emailOrNumber, otp}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/validate-otp-login`;
+      const endpoint = '/validate-otp-login';
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
       await setJwt(response.data.data.jwt);
       await setRefreshToken(response.data.data.refreshToken);
@@ -129,20 +121,20 @@ export const verifyChangeThunk = createAsyncThunk(
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/validate-otp`;
+      const endpoint = '/validate-otp';
       const response = await YuvaService.post(endpoint, {emailOrNumber, otp});
       return {...response.data, verificationType};
-    } catch(error) {
+    } catch (error) {
       return rejectWithValue(error.response.data);
     }
-  }
+  },
 );
 
 export const verifyOtp = createAsyncThunk(
   'auth/verifyOtp',
   async ({emailOrNumber, otp}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/verify-link?emailOrNumber=${emailOrNumber}&hash=${otp}`
+      const endpoint = `/verify-link?emailOrNumber=${emailOrNumber}&hash=${otp}`;
       const response = await YuvaService.get(endpoint);
       return {response, hash: otp};
     } catch (error) {
@@ -170,10 +162,10 @@ export const verifyEmailThunk = createAsyncThunk(
   'auth/verifyEmailThunk',
   async ({email, name}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/generate-email-otp`;
+      const endpoint = '/generate-email-otp';
       const response = await YuvaService.post(endpoint, {
         email: email,
-        name: name
+        name: name,
       });
       return response.data;
     } catch (error) {
@@ -183,31 +175,27 @@ export const verifyEmailThunk = createAsyncThunk(
 );
 export const loginThunk = createAsyncThunk(
   'auth/loginThunk',
-  async ({email, password,type}, {fulfillWithValue, rejectWithValue}) => {
+  async ({email, password, type}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/login`;
+      const endpoint = '/login';
       const response = await YuvaService.post(endpoint, {
         emailOrNumber: email,
         password: password,
       });
-      if(response?.data?.data === null) {
-        return {...response.data,type};
+      if (response?.data?.data === null) {
+        return {...response.data, type};
       }
-      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
+      if (response?.data?.data?.roles?.includes('RETAIL_USER', 'EMPLOYEE')) {
         await setJwt(response.data.data.jwt);
         await setRefreshToken(response.data.data.refreshToken);
         await setRole(response.data.data.roles.includes('EMPLOYEE'));
-        await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N')
+        await setProfileStatus(response.data.data.profileUpdated ? 'Y' : 'N');
         await registerFcmToken(true);
-        return {...response.data,type};
+        return {...response.data, type};
       }
       const error = {error: {message: 'Unauthorized User'}};
-      handleNetworkError(
-        403, 
-        error.error.message ?? null,
-      );
+      handleNetworkError(403, error.error.message ?? null);
       return rejectWithValue(error);
-      
     } catch (error) {
       handleNetworkError(
         error.response.status,
@@ -222,9 +210,9 @@ export const refreshThunk = createAsyncThunk(
   'auth/refreshThunk',
   async (token, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/refresh-token`;
+      const endpoint = '/refresh-token';
       const fcmToken = await firebaseMessaging().getToken();
-      const response = await YuvaService.post(endpoint, {token,fcmToken});
+      const response = await YuvaService.post(endpoint, {token, fcmToken});
       await clearJwt();
       await clearRefreshToken();
       await setJwt(response?.data?.data.jwt);
@@ -257,19 +245,23 @@ export const logoutThunk = createAsyncThunk(
       const value = await removeObject('user');
       try {
         Freshchat.resetUser();
-        await registerFcmToken(false,logout);
-      } catch (e) {}
-      finally {
-      await clearJwt();
-      await clearRefreshToken();
-      await clearRole();
-      await clearProfileStatus();
-      const status = await PermissionsAndroid.request('android.permission.ACCESS_FINE_LOCATION',{
-        title: 'Request to access geo-location',
-        message: 'Permission to access your geo-location is used to provide services specific to your location',
-        buttonPositive: 'Yes'
-      })
-      return status==='granted';
+        await registerFcmToken(false, logout);
+      } catch (e) {
+      } finally {
+        await clearJwt();
+        await clearRefreshToken();
+        await clearRole();
+        await clearProfileStatus();
+        const status = await PermissionsAndroid.request(
+          'android.permission.ACCESS_FINE_LOCATION',
+          {
+            title: 'Request to access geo-location',
+            message:
+              'Permission to access your geo-location is used to provide services specific to your location',
+            buttonPositive: 'Yes',
+          },
+        );
+        return status === 'granted';
       }
     } catch (error) {
       return rejectWithValue(error);
@@ -283,7 +275,7 @@ export const signupThunk = createAsyncThunk(
     {fulfillWithValue, rejectWithValue},
   ) => {
     try {
-      const endpoint = `/signup`;
+      const endpoint = '/signup';
       const response = await YuvaService.post(endpoint, {
         name,
         number,
@@ -316,9 +308,13 @@ export const verifyUserExistenceThunk = createAsyncThunk(
     } catch (error) {
       let existing = null;
       const {status} = error.response;
-      if (status === 302) existing = true;
-      else if (status === 404) existing = false;
-      else existing = null;
+      if (status === 302) {
+        existing = true;
+      } else if (status === 404) {
+        existing = false;
+      } else {
+        existing = null;
+      }
       if (existing !== null) {
         return fulfillWithValue({
           type: isNumber ? 'numberExisting' : 'emailExisting',
@@ -365,8 +361,8 @@ const authSlice = createSlice({
     changePasswordApiError: false,
     changePasswordApiErrorMessage: '',
     changePasswordSuccess: false,
-    type:'',
-    isEmployee:null,
+    type: '',
+    isEmployee: null,
     numberVerified: false,
     numberError: false,
     numberErrorMsg: '',
@@ -375,7 +371,7 @@ const authSlice = createSlice({
     emailErrorMsg: '',
     otpNumber: '',
     otpEmail: '',
-    otpErrorMessage:'',
+    otpErrorMessage: '',
     unauthorised: false,
     resetRoute: 0,
     logout: false,
@@ -400,33 +396,33 @@ const authSlice = createSlice({
     checkRole(state, {payload}) {
       state.isEmployee = payload;
     },
-    resetNumberVerified(state){
+    resetNumberVerified(state) {
       state.numberVerified = false;
     },
-    resetEmailVerified(state){
+    resetEmailVerified(state) {
       state.emailVerified = false;
     },
-    resetNumberOtp(state){
-      state.otpNumber = ''
+    resetNumberOtp(state) {
+      state.otpNumber = '';
     },
-    resetEmailOtp(state){
+    resetEmailOtp(state) {
       state.otpEmail = '';
     },
-    setLoginState(state){
+    setLoginState(state) {
       state.loggedIn = 'loggedIn';
     },
     resetOtpMessage(state) {
       state.otpErrorMessage = '';
     },
-    setUnauthorisedStatus(state,{payload}){
+    setUnauthorisedStatus(state, {payload}) {
       state.unauthorised = payload;
     },
-    resetRoute(state,{payload = 0}){
+    resetRoute(state, {payload = 0}) {
       state.resetRoute = payload;
     },
-    resetLogout(state){
+    resetLogout(state) {
       state.logout = false;
-    }
+    },
   },
   extraReducers: {
     [loginThunk.pending]: (state, {payload}) => {
@@ -434,7 +430,7 @@ const authSlice = createSlice({
       state.loggedIn = 'notLoggedIn';
       state.user.status = false;
       state.apiError = false;
-      state.type = ''
+      state.type = '';
       state.navigateToRegister = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
@@ -474,7 +470,7 @@ const authSlice = createSlice({
       state.loggedIn = 'notLoggedIn';
       state.user.status = false;
       state.apiError = false;
-      state.type = ''
+      state.type = '';
     },
     [refreshThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {
@@ -496,7 +492,7 @@ const authSlice = createSlice({
         state.navigateToRegister = false;
         state.type = action.payload.type;
         state.unauthorised = false;
-        state.resetRoute+= 1;
+        state.resetRoute += 1;
       } else if (action.payload.data === null) {
         state.navigateToRegister = true;
         state.user.status = true;
@@ -510,9 +506,6 @@ const authSlice = createSlice({
       state.apiErrorMessage = action.error.message;
       state.resetRoute = -1;
     },
-    /**
-     * Initial loading thunk handler
-     */
     [initialLoad.pending]: (state, {payload}) => {
       state.isAppReady = false;
     },
@@ -548,29 +541,28 @@ const authSlice = createSlice({
     },
     [signupThunk.fulfilled]: (state, {payload}) => {
       if (payload.data) {
-      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
-      state.loading = false;
-      state.signUpLoading = false;
-      const userData = {
-        name: payload.data.name,
-        jwt: payload.data.jwt,
-        roles: payload.data.roles[0],
-        id: payload.data.id,
-      };
-      state.user.jwt = payload.data.jwt;
-      payload.data.jwt && setObject('user', userData);
-      state.user.name = payload.data.name || 'User';
-      state.user.roles = payload.data.roles[0];
-      state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
-      state.user.status = true;
-      state.user.id = payload.data.id;
-      state.navigateToRegister = false;
-      state.unauthorised = false;
-    }
-    else if (payload.data === null) {
-      state.navigateToRegister = true;
-      state.user.status = true;
-    }
+        state.isEmployee = payload.data.roles.includes('EMPLOYEE');
+        state.loading = false;
+        state.signUpLoading = false;
+        const userData = {
+          name: payload.data.name,
+          jwt: payload.data.jwt,
+          roles: payload.data.roles[0],
+          id: payload.data.id,
+        };
+        state.user.jwt = payload.data.jwt;
+        payload.data.jwt && setObject('user', userData);
+        state.user.name = payload.data.name || 'User';
+        state.user.roles = payload.data.roles[0];
+        state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
+        state.user.status = true;
+        state.user.id = payload.data.id;
+        state.navigateToRegister = false;
+        state.unauthorised = false;
+      } else if (payload.data === null) {
+        state.navigateToRegister = true;
+        state.user.status = true;
+      }
     },
     [signupThunk.rejected]: (state, action) => {
       state.user.status = false;
@@ -619,27 +611,48 @@ const authSlice = createSlice({
       state.loading = true;
       state.apiError = false;
       state.apiErrorMessage = '';
-      state.numberVerified = meta?.arg?.verificationType === 'number' ? false: state.numberVerified;
-      state.emailVerified = meta?.arg?.verificationType === 'email' ? false: state.emailVerified;
+      state.numberVerified =
+        meta?.arg?.verificationType === 'number' ? false : state.numberVerified;
+      state.emailVerified =
+        meta?.arg?.verificationType === 'email' ? false : state.emailVerified;
       state.otpErrorMessage = '';
     },
     [verifyChangeThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.apiError = false;
       state.apiErrorMessage = '';
-      state.numberVerified = action?.payload?.verificationType === 'number' ? action.payload.data: state.numberVerified;
-      state.emailVerified = action?.payload?.verificationType === 'email' ? action.payload.data: state.emailVerified;
-      state.otpNumber = action?.payload?.verificationType === 'number' ? action?.meta?.arg?.otp: state.otpNumber;
-      state.otpEmail = action?.payload?.verificationType === 'email'? action?.meta?.arg?.otp: state.otpEmail;
+      state.numberVerified =
+        action?.payload?.verificationType === 'number'
+          ? action.payload.data
+          : state.numberVerified;
+      state.emailVerified =
+        action?.payload?.verificationType === 'email'
+          ? action.payload.data
+          : state.emailVerified;
+      state.otpNumber =
+        action?.payload?.verificationType === 'number'
+          ? action?.meta?.arg?.otp
+          : state.otpNumber;
+      state.otpEmail =
+        action?.payload?.verificationType === 'email'
+          ? action?.meta?.arg?.otp
+          : state.otpEmail;
       state.otpErrorMessage = '';
     },
     [verifyChangeThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action.payload.errorMessage;
-      state.numberVerified = action?.meta?.arg?.verificationType === 'number'? false: state.numberVerified;
-      state.emailVerified = action?.meta?.arg?.verificationType === 'email'? false: state.emailVerified;
-      state.otpErrorMessage = action.payload.errorMessage ?? action.payload.otp ?? 'Invalid otp';
+      state.numberVerified =
+        action?.meta?.arg?.verificationType === 'number'
+          ? false
+          : state.numberVerified;
+      state.emailVerified =
+        action?.meta?.arg?.verificationType === 'email'
+          ? false
+          : state.emailVerified;
+      state.otpErrorMessage =
+        action.payload.errorMessage ?? action.payload.otp ?? 'Invalid otp';
     },
     [verifyThunk.pending]: (state, action) => {
       state.loading = true;
@@ -647,26 +660,25 @@ const authSlice = createSlice({
       state.user.status = false;
     },
     [verifyThunk.fulfilled]: (state, {payload}) => {
-      if(payload.data){
-      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
-      state.signUpLoading = false;
-      const userData = {
-        name: payload.data.name,
-        jwt: payload.data.jwt,
-        roles: payload.data.roles[0],
-        id: payload.data.id,
-      };
-      state.user.jwt = payload.data.jwt;
-      payload.jwt && setObject('user', userData);
-      state.user.name = payload.data.name || 'User';
-      state.user.roles = payload.data.roles[0];
-      state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
-      state.user.status = true;
-      state.user.id = payload.data.id;
-      state.navigateToRegister = false;
-      state.unauthorised = false;
-    }
-      else if (payload.data === null) {
+      if (payload.data) {
+        state.isEmployee = payload.data.roles.includes('EMPLOYEE');
+        state.signUpLoading = false;
+        const userData = {
+          name: payload.data.name,
+          jwt: payload.data.jwt,
+          roles: payload.data.roles[0],
+          id: payload.data.id,
+        };
+        state.user.jwt = payload.data.jwt;
+        payload.jwt && setObject('user', userData);
+        state.user.name = payload.data.name || 'User';
+        state.user.roles = payload.data.roles[0];
+        state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
+        state.user.status = true;
+        state.user.id = payload.data.id;
+        state.navigateToRegister = false;
+        state.unauthorised = false;
+      } else if (payload.data === null) {
         state.navigateToRegister = true;
         state.user.status = true;
       }
@@ -711,12 +723,11 @@ const authSlice = createSlice({
       state.verifyLinkApiErrorMessage = '';
     },
     [verifyOtp.fulfilled]: (state, action) => {
-      if(action?.payload?.response?.data?.data){
-      state.verifyLinkLoading = false;
-      state.verifyLinkSuccessOtp = action.payload.hash;
-      }
-      else{
-        Alert.alert('Alert','OTP is Incorrect/Expired')
+      if (action?.payload?.response?.data?.data) {
+        state.verifyLinkLoading = false;
+        state.verifyLinkSuccessOtp = action.payload.hash;
+      } else {
+        Alert.alert('Alert', 'OTP is Incorrect/Expired');
       }
     },
     [verifyOtp.rejected]: (state, action) => {
@@ -729,33 +740,32 @@ const authSlice = createSlice({
       state.changePasswordSuccess = false;
     },
     [resetPassword.fulfilled]: (state, {payload}) => {
-      if(payload.data){
-      state.changePasswordLoading = false;
-      state.changePasswordApiError = false;
-      state.changePasswordSuccess = true;
-      const userData = {
-        name: payload.data.name,
-        jwt: payload.data.jwt,
-        roles: payload.data.roles[0],
-        id: payload.data.id,
-      };
-      state.isEmployee = payload.data.roles.includes('EMPLOYEE');
-      state.user.jwt = payload.data.jwt;
-      payload.jwt && setObject('user', userData);
-      state.user.name = payload.data.name || 'User';
-      state.user.roles = payload.data.roles[0];
-      state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
-      state.user.status = true;
-      state.user.id = payload.data.id;
-      state.navigateToRegister = false;
-      state.unauthorised = false;
-    }
-    else if (payload.data === null) {
-      state.navigateToRegister = true;
-      state.user.status = true;
-    }
+      if (payload.data) {
+        state.changePasswordLoading = false;
+        state.changePasswordApiError = false;
+        state.changePasswordSuccess = true;
+        const userData = {
+          name: payload.data.name,
+          jwt: payload.data.jwt,
+          roles: payload.data.roles[0],
+          id: payload.data.id,
+        };
+        state.isEmployee = payload.data.roles.includes('EMPLOYEE');
+        state.user.jwt = payload.data.jwt;
+        payload.jwt && setObject('user', userData);
+        state.user.name = payload.data.name || 'User';
+        state.user.roles = payload.data.roles[0];
+        state.loggedIn = payload.data.jwt ? 'loggedIn' : state.loggedIn;
+        state.user.status = true;
+        state.user.id = payload.data.id;
+        state.navigateToRegister = false;
+        state.unauthorised = false;
+      } else if (payload.data === null) {
+        state.navigateToRegister = true;
+        state.user.status = true;
+      }
     },
-    [resetPassword.rejected]: () => {
+    [resetPassword.rejected]: state => {
       state.changePasswordLoading = false;
       state.changePasswordApiError = true;
       state.changePasswordSuccess = false;
@@ -780,7 +790,7 @@ export const {
   resetOtpMessage,
   setUnauthorisedStatus,
   resetRoute,
-  resetLogout
+  resetLogout,
 } = authSlice.actions;
 export const authInit = authSlice.getInitialState();
 export default authSlice.reducer;

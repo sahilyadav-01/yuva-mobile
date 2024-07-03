@@ -1,6 +1,6 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const EveningSlot = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const EveningSlot = props => (
   <Svg xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
     <Path
       fill="#44576A"
@@ -11,5 +11,5 @@ const EveningSlot = (props) => (
       d="M5.25 11h-.135A2.258 2.258 0 0 0 3 9.5a2.247 2.247 0 0 0-2.25 2.25A2.247 2.247 0 0 0 3 14h2.25c.825 0 1.5-.675 1.5-1.5S6.075 11 5.25 11Z"
     />
   </Svg>
-)
+);
 export default EveningSlot;

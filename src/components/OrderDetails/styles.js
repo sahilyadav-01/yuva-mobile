@@ -1,12 +1,7 @@
-import { StyleSheet } from 'react-native';
-import {
-  BLACK,
-  CYAN_BLUE_OPACITY,
-  MARINER,
-  ANAKIVA,
-} from '../../styles/colors';
-import { ABSOLUTE, CENTER, ROW, FLEX_START } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE_OPACITY, MARINER, ANAKIVA} from '../../styles/colors';
+import {ABSOLUTE, CENTER, ROW, FLEX_START} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   containerStyle: {

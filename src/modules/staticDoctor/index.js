@@ -7,12 +7,11 @@ import MedicalCondition from './components/mostSearchedCard';
 import DedicatedDoctor from './components/doctorCard';
 import Consultation from './components/consultationCard';
 import BestDoctors from './components/doctorsTheBest';
-import { DOCTOR } from './constant';
+import {DOCTOR} from './constant';
 const TalkToDoctor = ({navigation}) => {
-
   return (
     <SafeAreaView>
-      <Header showBackButton={true} title={DOCTOR}/>
+      <Header showBackButton={true} title={DOCTOR} />
       <ScrollView
         nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}

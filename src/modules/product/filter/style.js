@@ -86,6 +86,6 @@ export const styles = () => {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize14,
     },
-    buttonSeparator: {width:16},
+    buttonSeparator: {width: 16},
   });
 };

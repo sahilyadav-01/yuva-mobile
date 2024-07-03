@@ -65,11 +65,7 @@ const OTP = props => {
             <Text style={verifyText}>Verify</Text>
           </TouchableOpacity>
           <View style={timerContainer}>
-            <Timer
-              interval={60}
-              key={key}
-              resetEnable={onEnableResend}
-            />
+            <Timer interval={60} key={key} resetEnable={onEnableResend} />
           </View>
           <TouchableOpacity
             style={resendOtpContainer}

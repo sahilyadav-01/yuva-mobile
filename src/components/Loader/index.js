@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {styles} from './style';
-import { MARINER } from '../../styles/colors';
+import {MARINER} from '../../styles/colors';
 
 const Loader = props => {
   const {container} = styles();

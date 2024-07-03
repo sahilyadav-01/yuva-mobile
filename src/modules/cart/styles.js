@@ -8,8 +8,7 @@ import {
 } from '../../styles/colors';
 import {ABSOLUTE, CENTER, FLEX_END} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
-import { getWindowDimensions } from '../../utils/utils';
-
+import {getWindowDimensions} from '../../utils/utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -26,7 +25,7 @@ export const styles = StyleSheet.create({
   bodyContainer: {
     paddingVertical: 18,
     paddingHorizontal: 20,
-    backgroundColor:WHITE,
+    backgroundColor: WHITE,
     height: '70%',
   },
   textStyle: {
@@ -34,10 +33,19 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik600,
     fontSize: fonts.size.fontSize16,
   },
-  emptyCartContainer: {flex:1,height:getWindowDimensions().height,alignItems:CENTER,justifyContent:CENTER},
-  emptyCartText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize14,color:CYAN_BLUE},
+  emptyCartContainer: {
+    flex: 1,
+    height: getWindowDimensions().height,
+    alignItems: CENTER,
+    justifyContent: CENTER,
+  },
+  emptyCartText: {
+    fontFamily: fonts.family.rubik500,
+    fontSize: fonts.size.fontSize14,
+    color: CYAN_BLUE,
+  },
   crossContainerStyle: {paddingTop: 4},
-  screenContainer: {flex:1,backgroundColor:WHITE},
+  screenContainer: {flex: 1, backgroundColor: WHITE},
   buttonContainer: {
     backgroundColor: MARINER,
     alignItems: CENTER,

@@ -9,7 +9,7 @@ import {
 import {getEpoch} from '../../../../../utils/utils';
 import {Alert} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import { ALERT, SELECT_DATE_TIME } from '../constant';
+import {ALERT, SELECT_DATE_TIME} from '../constant';
 export const useEdit = (plan, userVersion, uuid, version) => {
   const {id} = useSelector(state => state.appointment.currentAppointment);
   const {rescheduleAppointment, errorAppointment} = useSelector(
@@ -41,15 +41,15 @@ export const useEdit = (plan, userVersion, uuid, version) => {
   const goBack = () => {
     navigation.goBack();
   };
-useEffect(()=>{
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() +1);
-  tomorrow.setHours(7);
-  tomorrow.setMinutes(0);
-  tomorrow.setSeconds(0);
-  setTime(tomorrow);
-  setDate(tomorrow);
-},[])
+  useEffect(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(7);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    setTime(tomorrow);
+    setDate(tomorrow);
+  }, []);
 
   const {
     newMessage,
@@ -61,20 +61,19 @@ useEffect(()=>{
   const {doctorId, name, specialization} = appointment;
   const {relationId} = useSelector(state => state.profile);
   const saveAppointment = () => {
-    if(epochTime === null){
-      Alert.alert(ALERT,SELECT_DATE_TIME)
-    }
-    else {
-    dispatch(
-      rescheduleAppointmentThunk({
-        timeSlot: epochTime,
-        id,
-        doctorId,
-        plan,
-        programOrPlanUuid: uuid,
-        selected,
-      }),
-    );
+    if (epochTime === null) {
+      Alert.alert(ALERT, SELECT_DATE_TIME);
+    } else {
+      dispatch(
+        rescheduleAppointmentThunk({
+          timeSlot: epochTime,
+          id,
+          doctorId,
+          plan,
+          programOrPlanUuid: uuid,
+          selected,
+        }),
+      );
     }
   };
   useEffect(() => {
@@ -122,10 +121,11 @@ useEffect(()=>{
     setTime(time);
   };
 
-  const handleDateTime = (arg) => {
-    if(arg?.status)
-    setEpochTime(arg?.value);
-  }
+  const handleDateTime = arg => {
+    if (arg?.status) {
+      setEpochTime(arg?.value);
+    }
+  };
   return {
     goBack,
     saveAppointment,
@@ -144,6 +144,6 @@ useEffect(()=>{
     Doctor,
     Specialization,
     Description,
-    handleDateTime
+    handleDateTime,
   };
 };

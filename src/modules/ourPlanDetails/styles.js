@@ -88,5 +88,5 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
     color: RED,
-  }
+  },
 });

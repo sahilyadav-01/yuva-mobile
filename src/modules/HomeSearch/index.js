@@ -8,8 +8,8 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import { SVG } from '../../../assets';
-import { DARK_GRAY } from '../../styles/colors';
+import {SVG} from '../../../assets';
+import {DARK_GRAY} from '../../styles/colors';
 import {
   ENTER_MOBILE,
   NO_DATA_FOUND,
@@ -38,7 +38,7 @@ const HomeSearch = () => {
   };
   const renderView = item => {
     const renderList = item => {
-      const onPackPress= () => onPackagePress(item)
+      const onPackPress = () => onPackagePress(item);
       return (
         <TouchableOpacity onPress={onPackPress}>
           <Text style={styles.listText}>{item?.item?.packageName}</Text>
@@ -149,7 +149,7 @@ const HomeSearch = () => {
         <View style={styles.expert}>
           <View style={styles.nurse}>
             <View style={styles.nurseImage}>
-            <SVG.NurseComponent />
+              <SVG.NurseComponent />
             </View>
             <Text style={styles.nurseText}>{NURSE_TEXT}</Text>
           </View>

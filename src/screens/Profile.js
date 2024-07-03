@@ -15,7 +15,9 @@ const ProfileScreen = () => {
   };
   if (Platform.isIOS) {
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidViewStyle}>
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={styles.keyboardAvoidViewStyle}>
         <ProfileScreen />
       </KeyboardAvoidingView>
     );

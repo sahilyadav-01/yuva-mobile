@@ -34,8 +34,9 @@ export const useChat = requestedData => {
   }, [error]);
 
   useEffect(() => {
-    if (isRequested && requestType === 'CHAT') Freshchat.showConversations();
-    else if (isRequested && requestType === 'VIDEO')
+    if (isRequested && requestType === 'CHAT') {
+      Freshchat.showConversations();
+    } else if (isRequested && requestType === 'VIDEO') {
       Alert.alert('Alert', VIDEO_MESSAGE, [
         {
           text: 'Ok',
@@ -43,16 +44,18 @@ export const useChat = requestedData => {
             navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]}),
         },
       ]);
+    }
     return () => dispatch(clearRequest());
   }, [isRequested]);
 
   useEffect(() => {
-    if (requestError)
+    if (requestError) {
       Alert.alert('Alert', REQUEST_ERROR, [
         {
           text: 'Ok',
         },
       ]);
+    }
   }, [requestError]);
 
   const onInitChat = () => {

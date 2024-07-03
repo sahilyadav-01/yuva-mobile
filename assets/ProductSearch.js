@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Circle, Path } from "react-native-svg"
-const ProductSearch = (props) => (
+import * as React from 'react';
+import Svg, {Circle, Path} from 'react-native-svg';
+const ProductSearch = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Circle
       cx={10.625}
       cy={10.937}
@@ -25,5 +24,5 @@ const ProductSearch = (props) => (
       d="m16.202 16.93 3.144 3.136"
     />
   </Svg>
-)
+);
 export default ProductSearch;

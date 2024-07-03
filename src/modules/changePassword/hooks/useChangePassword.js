@@ -19,8 +19,11 @@ export const useChangePassword = () => {
 
   useEffect(() => {
     if (!changePasswordLoading && changePasswordSuccess && enableNavigation) {
-      if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
-      else navigation.navigate('HomeService');
+      if (from !== 'Home') {
+        navigation.navigate('Home', {screen: 'HomeService'});
+      } else {
+        navigation.navigate('HomeService');
+      }
     }
   }, [changePasswordLoading, enableNavigation, from]);
 
@@ -32,8 +35,9 @@ export const useChangePassword = () => {
     setSecureConfirmPasswordText(secureTextEntry);
   const onLoginPress = (from, number, hash) => {
     setFrom(from);
-    if (password && password === confirmPassword)
+    if (password && password === confirmPassword) {
       dispatch(resetPassword({emailOrNumber: number, hash, password}));
+    }
     setEnableNavigation(true);
   };
   const onForgotPasswordPress = from =>

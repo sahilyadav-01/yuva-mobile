@@ -1,16 +1,14 @@
-import * as React from "react"
-import Svg, { G, Rect, Defs, Pattern, Use, Image } from "react-native-svg"
-/* SVGR has dropped some elements not supported by react-native-svg: filter */
+import * as React from 'react';
+import Svg, {G, Rect, Defs, Pattern, Use, Image} from 'react-native-svg';
 
-const OurPlanDoctors = (props) => (
+const OurPlanDoctors = props => (
   <Svg
     width={props?.width ?? 174}
     height={props?.height ?? 111}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    {...props}
-  >
+    {...props}>
     <G filter="url(#a)">
       <Rect width={173.602} height={110.73} rx={9.259} fill="url(#b)" />
     </G>
@@ -19,8 +17,7 @@ const OurPlanDoctors = (props) => (
         id="b"
         patternContentUnits="objectBoundingBox"
         width={1}
-        height={1}
-      >
+        height={1}>
         <Use xlinkHref="#c" transform="matrix(.00166 0 0 .0026 0 -.036)" />
       </Pattern>
       <Image
@@ -31,6 +28,6 @@ const OurPlanDoctors = (props) => (
       />
     </Defs>
   </Svg>
-)
+);
 
 export default OurPlanDoctors;

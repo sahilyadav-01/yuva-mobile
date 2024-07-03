@@ -60,7 +60,7 @@ export const useHomeSearch = () => {
   }, [getPopularTestsLoading, getPopularTestsError, getPopularTestsPackages]);
 
   useEffect(() => {
-    if (pageNo > 1)
+    if (pageNo > 1) {
       dispatch(
         getPopularTestsPackages({
           pageNo,
@@ -69,6 +69,7 @@ export const useHomeSearch = () => {
           testPackageRequestDto: {},
         }),
       );
+    }
   }, [pageNo]);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ export const useHomeSearch = () => {
         setElasticSearchData([
           ...searchData?.popularTestResponseDtoList,
           ...searchData?.popularPackageResponseDtoList,
-          ...searchData?.productResponseDtoForUserGridViewList
+          ...searchData?.productResponseDtoForUserGridViewList,
         ]);
       text.length >= 3 && setOverlay(true);
     }
@@ -108,9 +109,21 @@ export const useHomeSearch = () => {
       },
       props: {searchScreen: true},
     },
-    {text: 'Book\nAppointment', icon: 'BookAppointment', onPress: () => navigation.navigate('OPD',{screen:'Appointments'})},
-    {text: 'Get\nMedicine', icon: 'GetMedicine', onPress: () => navigation.navigate('PHARMACY')},
-    {text: 'Consult\nDoctor', icon: 'ConsultDoctor', onPress: () => navigation.navigate('TalkToDoctor')},
+    {
+      text: 'Book\nAppointment',
+      icon: 'BookAppointment',
+      onPress: () => navigation.navigate('OPD', {screen: 'Appointments'}),
+    },
+    {
+      text: 'Get\nMedicine',
+      icon: 'GetMedicine',
+      onPress: () => navigation.navigate('PHARMACY'),
+    },
+    {
+      text: 'Consult\nDoctor',
+      icon: 'ConsultDoctor',
+      onPress: () => navigation.navigate('TalkToDoctor'),
+    },
   ];
 
   const onListEndReached = () => {

@@ -48,6 +48,6 @@ export const useOurPlanDetails = props => {
     getAllPlanServicesError,
     ourPlanData,
     bookOurPlan,
-    selectedCityId
+    selectedCityId,
   };
 };

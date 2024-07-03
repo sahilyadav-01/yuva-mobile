@@ -30,14 +30,19 @@ const ProfileDetails = () => {
             <Text style={textStyle}>Profile Setting</Text>
             <View style={{height: 12}} />
             {data.map((item, index) => (
-              <TouchableOpacity onPress={item?.onPress} style={[itemContainer,{marginBottom:index<data.length - 1 ? 12 : 0}]}>
+              <TouchableOpacity
+                onPress={item?.onPress}
+                style={[
+                  itemContainer,
+                  {marginBottom: index < data.length - 1 ? 12 : 0},
+                ]}>
                 {item?.Icon()}
                 <View style={rowContainer}>
                   <View>
-                  <Text style={headingStyle}>{item?.heading}</Text>
-                  <Text style={contentStyle}>{item?.description}</Text>
+                    <Text style={headingStyle}>{item?.heading}</Text>
+                    <Text style={contentStyle}>{item?.description}</Text>
                   </View>
-                  <SVG.BackButton transform={[{rotate:'180deg'}]}/>
+                  <SVG.BackButton transform={[{rotate: '180deg'}]} />
                 </View>
               </TouchableOpacity>
             ))}

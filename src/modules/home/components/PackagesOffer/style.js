@@ -50,6 +50,6 @@ export const styles = () => {
     },
     lineStyle: {
       lineHeight: 9,
-    }
+    },
   });
 };

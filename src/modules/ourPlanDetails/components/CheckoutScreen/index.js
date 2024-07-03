@@ -3,10 +3,10 @@ import {View, Text, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import Header from '../../../../components/Header';
 import {styles} from './styles';
 import TermsContainer from '../../../cart/PaymentReconfirmList/TermsContainer';
-import { getPlatform } from '../../../../utils/utils';
+import {getPlatform} from '../../../../utils/utils';
 import PriceBreakdown from '../../../cart/PaymentReconfirmList/PriceBreakdown';
 import CouponCard from '../../../../components/CouponContainer';
-import { useCheckout } from './hooks/useCheckout';
+import {useCheckout} from './hooks/useCheckout';
 import PaymentModes from '../../../cart/PaymentReconfirmList/PaymentModes';
 
 const Separator = () => {
@@ -14,19 +14,19 @@ const Separator = () => {
 };
 
 const CheckoutOurPlan = () => {
-const platform = getPlatform();
-const {
-  onCheckout,
-  planUuid,
-  planAmountToBePaid,
-  planType,
-  checked,
-  onCheckboxPress,
-  onCodPress,
-  onOnlinePress,
-  cod
-} = useCheckout();
- 
+  const platform = getPlatform();
+  const {
+    onCheckout,
+    planUuid,
+    planAmountToBePaid,
+    planType,
+    checked,
+    onCheckboxPress,
+    onCodPress,
+    onOnlinePress,
+    cod,
+  } = useCheckout();
+
   return (
     <View style={{flex: 1}}>
       <Header
@@ -44,17 +44,24 @@ const {
           priceBreakup={{
             price: Object.values(planAmountToBePaid)[0]?.price,
             totalDiscount: Object.values(planAmountToBePaid)[0]?.totalDiscount,
-            amountToBePaid: Object.values(planAmountToBePaid)[0]?.amountToBePaid,
+            amountToBePaid:
+              Object.values(planAmountToBePaid)[0]?.amountToBePaid,
           }}
         />
         <View style={{flex: 1}}>
-          <CouponCard isPlan={true} planType={planType[0]} planUuid={planUuid}/>
+          <CouponCard
+            isPlan={true}
+            planType={planType[0]}
+            planUuid={planUuid}
+          />
           <Separator />
-          <PaymentModes cod={cod} onCodPress={onCodPress} onOnlinePress={onOnlinePress}/>
+          <PaymentModes
+            cod={cod}
+            onCodPress={onCodPress}
+            onOnlinePress={onOnlinePress}
+          />
           <TermsContainer checked={checked} onCheckboxPress={onCheckboxPress} />
-          <TouchableOpacity
-            onPress={onCheckout}
-            style={styles.placeOrder}>
+          <TouchableOpacity onPress={onCheckout} style={styles.placeOrder}>
             <Text style={styles.buttonText}>Place Order</Text>
           </TouchableOpacity>
         </View>

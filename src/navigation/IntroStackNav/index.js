@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import { useIntro } from './useIntro';
+import {useIntro} from './useIntro';
 import IntroScreen from '../../screens/Intro/IntroScreen';
 import DrawerNav from '../DrawerNav';
 import ReportNav from '../ReportNav';
@@ -19,7 +19,7 @@ import ProfileNavigation from '../ProfileNavigation';
 const Stack = createStackNavigator();
 
 const IntroStackNav = () => {
-  const {isAppReady,maintainenceState,initialRouteName} = useIntro();
+  const {isAppReady, maintainenceState, initialRouteName} = useIntro();
   if (maintainenceState) {
     return <Maintenance maintenanceText="App is under maintenance" />;
   }
@@ -93,7 +93,7 @@ const IntroStackNav = () => {
       <Stack.Screen
         name={'PageNotFound'}
         component={PageNotFound}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

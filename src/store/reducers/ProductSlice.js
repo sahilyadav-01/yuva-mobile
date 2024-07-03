@@ -6,9 +6,11 @@ const fetchProductData = data => {
     if (item.productList?.length > 0) {
       let productList;
       item?.productList?.forEach(i => {
-        if (i?.subCategoryId === undefined)
+        if (i?.subCategoryId === undefined) {
           productList = [{productResponseDtoForUserList: item?.productList}];
-        else productList = item?.productList;
+        } else {
+          productList = item?.productList;
+        }
       });
       return {...item, productList};
     }
@@ -20,9 +22,11 @@ const fetchCategoryData = data => {
   if (data?.length > 0) {
     let productList;
     data?.forEach(i => {
-      if (i?.subCategoryId === undefined)
+      if (i?.subCategoryId === undefined) {
         productList = [{productResponseDtoForUserList: data}];
-      else productList = data;
+      } else {
+        productList = data;
+      }
     });
     return productList;
   }
@@ -34,8 +38,6 @@ export const getTopProducts = createAsyncThunk(
     try {
       const endpoint = '/ecom/user/home-screen-products';
       const response = await YuvaService.get(endpoint);
-      // const data = fetchProductData(response.data);
-      // return data;
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -104,7 +106,7 @@ export const fetchCategories = createAsyncThunk(
   'product/fetchCategories',
   async (params = {}, {_, rejectWithValue}) => {
     try {
-      const endpoint = `/ecom/category/dropdown`;
+      const endpoint = '/ecom/category/dropdown';
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -117,7 +119,7 @@ export const fetchSubCategories = createAsyncThunk(
   'product/fetchSubCategories',
   async (categoryIdList, {_, rejectWithValue}) => {
     try {
-      const endpoint = `/ecom/sub-category/dropdown`;
+      const endpoint = '/ecom/sub-category/dropdown';
       const response = await YuvaService.post(endpoint, {categoryIdList});
       return response.data;
     } catch (error) {
@@ -130,7 +132,7 @@ export const fetchBrands = createAsyncThunk(
   'product/fetchBrands',
   async (params = {}, {_, rejectWithValue}) => {
     try {
-      const endpoint = `/ecom/brand/dropdown`;
+      const endpoint = '/ecom/brand/dropdown';
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -292,7 +294,7 @@ const productSlice = createSlice({
       //     ...payload.productResponseDtoForUserGridViewList,
       //   ];
       // }
-      state.productList.data = payload.productResponseDtoForUserGridViewList
+      state.productList.data = payload.productResponseDtoForUserGridViewList;
       state.productList.totalDocuments = payload.totalDocuments;
       state.productList.totalPages = payload.totalPages;
     },

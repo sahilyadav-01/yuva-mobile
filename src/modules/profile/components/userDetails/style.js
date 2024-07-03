@@ -1,9 +1,24 @@
-import { StyleSheet } from 'react-native';
-import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE, BLACK, ZIRCON } from '../../../../styles/colors';
-import { ABSOLUTE, CENTER, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  FLASH_WHITE,
+  PLATINUM,
+  DARK_BLUE,
+  WHITE,
+  CATSKILL_WHITE,
+  BLACK,
+  ZIRCON,
+} from '../../../../styles/colors';
+import {
+  ABSOLUTE,
+  CENTER,
+  FLEX_END,
+  RIGHT,
+  ROW,
+  SPACE_BETWEEN,
+} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
-const styles = ({ disabled }) => {
+const styles = ({disabled}) => {
   return StyleSheet.create({
     userImage: {
       minHeight: 85,
@@ -17,7 +32,7 @@ const styles = ({ disabled }) => {
     },
     userCoverImage: {
       minHeight: 200,
-      width: "100%",
+      width: '100%',
       borderRadius: 14,
       backgroundColor: FLASH_WHITE,
       alignSelf: CENTER,
@@ -26,12 +41,12 @@ const styles = ({ disabled }) => {
     coverIcon: {
       position: ABSOLUTE,
       right: 3,
-      bottom:-10
+      bottom: -10,
     },
     UserIcon: {
       position: ABSOLUTE,
-      right:3,
-      bottom:3
+      right: 3,
+      bottom: 3,
     },
     userPicture: {
       backgroundColor: WHITE,
@@ -45,14 +60,14 @@ const styles = ({ disabled }) => {
     },
     textInputStyle: {
       paddingVertical: 12,
-      paddingLeft:20,
+      paddingLeft: 20,
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
       borderWidth: 0.5,
       borderRadius: 4,
       backgroundColor: ZIRCON,
-      marginBottom: 8
+      marginBottom: 8,
     },
     separatorStyle: {
       height: 1,
@@ -60,9 +75,9 @@ const styles = ({ disabled }) => {
       backgroundColor: PLATINUM,
       marginBottom: 30,
     },
-    dropdownBoxStyle:{
+    dropdownBoxStyle: {
       paddingVertical: 12,
-      paddingLeft:20,
+      paddingLeft: 20,
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
@@ -72,48 +87,48 @@ const styles = ({ disabled }) => {
       borderColor: BLACK,
       marginBottom: 8,
     },
-    modalView:{
+    modalView: {
       flex: 1,
-      justifyContent:FLEX_END
+      justifyContent: FLEX_END,
     },
-    modaltext:{
-     position:ABSOLUTE,
-     left:20,
-     top:20,
-     color: DARK_BLUE,
-     fontSize: fonts.size.fontSize18,
-     fontFamily: fonts.family.rubik500,
-
+    modaltext: {
+      position: ABSOLUTE,
+      left: 20,
+      top: 20,
+      color: DARK_BLUE,
+      fontSize: fonts.size.fontSize18,
+      fontFamily: fonts.family.rubik500,
     },
-    modalTextView:{
-      backgroundColor:CATSKILL_WHITE,
+    modalTextView: {
+      backgroundColor: CATSKILL_WHITE,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
       padding: 70,
       marginBottom: 5,
-      marginHorizontal:10,
+      marginHorizontal: 10,
       alignItems: 'center',
-      shadowColor: '#000', shadowOpacity: 0.25,
+      shadowColor: '#000',
+      shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
     },
-    GalleryIcon:{
-      textAlign:CENTER,
+    GalleryIcon: {
+      textAlign: CENTER,
       color: DARK_BLUE,
       fontSize: fonts.size.fontSize12,
       fontFamily: fonts.family.rubik400,
     },
-    IconView:{
-      flexDirection:ROW,
-      justifyContent:SPACE_BETWEEN,
+    IconView: {
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
     },
-    galleryTouch:{
-      marginHorizontal:40,
+    galleryTouch: {
+      marginHorizontal: 40,
     },
-    CrossIcon:{
-      position:ABSOLUTE,
-      right:10,
-      top:-55,
+    CrossIcon: {
+      position: ABSOLUTE,
+      right: 10,
+      top: -55,
     },
     verifyStyle: {
       textAlign: RIGHT,
@@ -126,7 +141,7 @@ const styles = ({ disabled }) => {
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
-    }
+    },
   });
 };
 

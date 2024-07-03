@@ -11,10 +11,10 @@ import {
   verifySmsThunk,
   verifyThunk,
 } from '../../../store/reducers/AuthSlice';
-import { setNewEmail, setNewNumber } from '../../../store/reducers/ProfileSlice';
-import { Alert } from 'react-native';
+import {setNewEmail, setNewNumber} from '../../../store/reducers/ProfileSlice';
+import {Alert} from 'react-native';
 
-export const useOtp = (otpProps) => {
+export const useOtp = otpProps => {
   const {email, verificationType} = otpProps;
   let otpRef = useRef();
   const dispatch = useDispatch();
@@ -39,24 +39,29 @@ export const useOtp = (otpProps) => {
 
   useEffect(() => {
     if (!signUpLoading && !apiError && otp) {
-      if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
-      else navigation.navigate('HomeService');
-    }
-    else if(!signUpLoading && loggedIn==='loggedIn' && status) {
-     if (from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
-      else navigation.navigate('HomeService');
+      if (from !== 'Home') {
+        navigation.navigate('Home', {screen: 'HomeService'});
+      } else {
+        navigation.navigate('HomeService');
+      }
+    } else if (!signUpLoading && loggedIn === 'loggedIn' && status) {
+      if (from !== 'Home') {
+        navigation.navigate('Home', {screen: 'HomeService'});
+      } else {
+        navigation.navigate('HomeService');
+      }
     }
   }, [signUpLoading]);
 
   useEffect(() => {
-    if(numberVerified && verificationType === 'number') {
+    if (numberVerified && verificationType === 'number') {
       dispatch(setNewNumber(email));
       navigation.goBack();
     }
   }, [numberVerified]);
 
   useEffect(() => {
-    if(emailVerified && verificationType === 'email') {
+    if (emailVerified && verificationType === 'email') {
       dispatch(setNewEmail(email));
       navigation.goBack();
     }
@@ -73,12 +78,12 @@ export const useOtp = (otpProps) => {
     }
   }, [enableNavigation, from, verifyLinkLoading, number]);
 
-  useEffect(()=>{
-    if(otpErrorMessage) {
-      Alert.alert('Alert',otpErrorMessage);
+  useEffect(() => {
+    if (otpErrorMessage) {
+      Alert.alert('Alert', otpErrorMessage);
       dispatch(resetOtpMessage());
     }
-  },[otpErrorMessage])
+  }, [otpErrorMessage]);
   const onVerify = (params, from, resetPassword) => {
     setFrom(from);
     if (resetPassword) {
@@ -88,10 +93,25 @@ export const useOtp = (otpProps) => {
     } else if (params?.verificationType === 'number' && params?.signUp) {
       const {number, email, name, password} = params;
       dispatch(signupThunk({email, name, number, numberOtp: otp, password}));
-    } else if (from === 'Profile'  && ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email')){
-      const isValid =  ((otp).length === 4) && (/^\d+$/).test(otp);
-      isValid ? dispatch(verifyChangeThunk({emailOrNumber: params?.email, otp, verificationType: params?.verificationType})) : Alert.alert('Alert', 'Invalid otp')
-    } else if ((params?.verificationType === 'number' && !params?.signUp) || params?.verificationType === 'email') {
+    } else if (
+      from === 'Profile' &&
+      ((params?.verificationType === 'number' && !params?.signUp) ||
+        params?.verificationType === 'email')
+    ) {
+      const isValid = otp.length === 4 && /^\d+$/.test(otp);
+      isValid
+        ? dispatch(
+            verifyChangeThunk({
+              emailOrNumber: params?.email,
+              otp,
+              verificationType: params?.verificationType,
+            }),
+          )
+        : Alert.alert('Alert', 'Invalid otp');
+    } else if (
+      (params?.verificationType === 'number' && !params?.signUp) ||
+      params?.verificationType === 'email'
+    ) {
       dispatch(verifyThunk({emailOrNumber: params?.email, otp}));
     }
   };
@@ -113,10 +133,13 @@ export const useOtp = (otpProps) => {
   };
 
   const getHeaderText = type => {
-    if (type === 'number') return 'Verify Phone Number';
-    else return 'Verify Email';
+    if (type === 'number') {
+      return 'Verify Phone Number';
+    } else {
+      return 'Verify Email';
+    }
   };
-  const onEnableResend = (reset) => reset && setEnableResendOtp(reset);
+  const onEnableResend = reset => reset && setEnableResendOtp(reset);
 
   return {
     getHeaderText,

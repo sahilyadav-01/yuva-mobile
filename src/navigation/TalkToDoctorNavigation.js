@@ -10,29 +10,29 @@ const Stack = createStackNavigator();
 
 const TalkToDoctorNavigation = () => {
   return (
-    <SafeAreaView style={{flex:1}}>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="TalkToDoctor"
-        component={MemberSelectScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="HealthScreen"
-        component={HealthScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ChatScreen"
-        component={ChatScreen}
-        options={{headerShown: false}}
-      />
-         <Stack.Screen
-        name="MemberSelectScreen"
-        component={MemberSelectScreen}
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
+    <SafeAreaView style={{flex: 1}}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="TalkToDoctor"
+          component={MemberSelectScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HealthScreen"
+          component={HealthScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MemberSelectScreen"
+          component={MemberSelectScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     </SafeAreaView>
   );
 };

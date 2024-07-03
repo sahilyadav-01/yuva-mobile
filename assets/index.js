@@ -97,16 +97,16 @@ import Reorder from './Reorder';
 import Calender from './Calender';
 import PlanCard from './PlanCard.png';
 import Lock from './Lock';
-import NurseComponent from './Nurse'
+import NurseComponent from './Nurse';
 import AfternoonSlot from './AfternoonSlot';
 import EveningSlot from './EveningSlot';
-import PaymentSuccessful from './success_payment.png'
-import PaymentFail from './failed_payment.png'
+import PaymentSuccessful from './success_payment.png';
+import PaymentFail from './failed_payment.png';
 import programCard from './programCard.png';
 import PharmacyIcon from './PharmacyIcon';
 import PHARMA_CARD_ICON from './trolly.png';
 import EmrmHomeImage from './EmrmHomeImage.png';
-import SelfAssessment from './SelfAssessment.png'
+import SelfAssessment from './SelfAssessment.png';
 import SelfLearning from './SelfLearning.png';
 import SelfTracking from './SelfTracking.png';
 import Handshake from './Handshake';
@@ -118,11 +118,11 @@ import EmrmAddIcon from './EmrmAddIcon';
 import SelfHealing from './SelfHealing.png';
 import PHARMACY from './PharmacyMainIcon';
 import Our_Plan_Banner from './Our_Plan_Banner.png';
-import OurPlanRadioButton from './OurPlanRadioButton.png'
-import planDetails from './planDetails.png'
+import OurPlanRadioButton from './OurPlanRadioButton.png';
+import planDetails from './planDetails.png';
 import OPD_SVG_ICON from './OPD_SVG_ICON';
 import HRA_SVG_ICON from './HRA_SVG_ICON';
-import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON'
+import PHARMACY_SVG_ICON from './PHARMACY_SVG_ICON';
 import MY_TEST_SVG_ICON from './MY_TEST_SVG_ICON';
 import ONLINE_CONSULTATION_SVG_ICON from './ONLINE_CONSULTATION_SVG_ICON';
 import MENTAL_WELLNESS_SVG_ICON from './MENTAL_WELLNESS_SVG_ICON';
@@ -135,7 +135,7 @@ import Ambulance_svg_icon2 from './Ambulance_svg_icon2';
 import EIGHTY_D_BENEFIT_SVG_ICON from './EIGHTY_D_BENEFIT_SVG_ICON';
 import Eighty_d_benefit_svg_icon2 from './Eighty_d_benefit_svg_icon2';
 import INSURANCE_CLAIM_SUPPORT_SVG_ICON from './INSURANCE_CLAIM_SUPPORT_SVG_ICON';
-import Insurance_claim_support_svg_icon2 from './Insurance_claim_support_svg_icon2'
+import Insurance_claim_support_svg_icon2 from './Insurance_claim_support_svg_icon2';
 import DISCOUNT_SVG_ICON from './DISCOUNT_SVG_ICON';
 import Discount_svg_icon2 from './Discount_svg_icon2';
 import SEARCH_NETWORK from './SEARCH_NETWORK';
@@ -162,7 +162,7 @@ import GetMedicine from './GetMedicine';
 import ConsultDoctor from './ConsultDoctor';
 import PageNotFound from './PageNotFound';
 import Filter from './Filter.png';
-import product_image from './product_image.png'
+import product_image from './product_image.png';
 import HomeProfile from './HomeProfile.png';
 import BookTest from './BookTest';
 import PlanOPD from './Plan_OPD';
@@ -309,19 +309,19 @@ const SVG = {
   Bookings,
   PaymentSuccess,
   PaymentFailure,
-  EditPen:EditPen,
+  EditPen: EditPen,
   Gift,
   SeeYouSoon: SeeYouSoon,
   OurPlanDoctors,
   ExpandArrow,
   Reorder,
   Lock,
-  NurseComponent:NurseComponent,
+  NurseComponent: NurseComponent,
   Calender,
   AfternoonSlot,
   EveningSlot,
   CorporateProgram,
-  PharmacyIcon:PharmacyIcon,
+  PharmacyIcon: PharmacyIcon,
   Handshake,
   MentalWellness,
   Emrm,
@@ -390,7 +390,7 @@ const SVG = {
   AmbulanceSupport,
   DeleteItem,
   Phone,
-  AddAddress
+  AddAddress,
 };
 
 export {PNG, SVG};

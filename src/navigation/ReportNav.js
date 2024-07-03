@@ -6,14 +6,14 @@ import Reports from '../screens/ReportsScreen';
 import {DARK_BLUE} from '../styles/colors';
 import {DIAGNOSTIC_REPORTS, HRA_REPORTS, MY_REPORTS} from './constants';
 import HraReport from '../screens/HraReportScreen';
-import { SafeAreaView } from 'react-native';
+import {SafeAreaView} from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
 
 const ReportNav = () => {
   return (
-    <SafeAreaView style={{flex:1}}>
-      <Header title={MY_REPORTS} showBackButton={true} hideMenu={true}/>
+    <SafeAreaView style={{flex: 1}}>
+      <Header title={MY_REPORTS} showBackButton={true} hideMenu={true} />
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: {fontSize: 16, marginTop: 15},

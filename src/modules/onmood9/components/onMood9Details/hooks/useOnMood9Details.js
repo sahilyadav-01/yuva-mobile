@@ -106,7 +106,9 @@ export const useOnMood9Details = () => {
               ? 'checked'
               : 'unchecked';
           return {index, status};
-        } else return {index, status: 'unchecked'};
+        } else {
+          return {index, status: 'unchecked'};
+        }
       });
       setCheckBoxFlag(status);
       setFetchRelations(true);
@@ -161,14 +163,19 @@ export const useOnMood9Details = () => {
   const onModalCrossPress = () => setModalVisible(false);
 
   const onPressCheckBox = () => {
-    if (checkBoxStatus === 'unchecked') setCheckBoxStatus('checked');
-    else if (checkBoxStatus === 'checked') setCheckBoxStatus('unchecked');
+    if (checkBoxStatus === 'unchecked') {
+      setCheckBoxStatus('checked');
+    } else if (checkBoxStatus === 'checked') {
+      setCheckBoxStatus('unchecked');
+    }
   };
 
   const onConsult = () => {
-    if (loggedIn !== 'loggedIn')
+    if (loggedIn !== 'loggedIn') {
       navigation.navigate('LoginScreen', {from: 'MentalWellness'});
-    else if (loggedIn === 'loggedIn') setModalVisible(true);
+    } else if (loggedIn === 'loggedIn') {
+      setModalVisible(true);
+    }
   };
 
   const onAddMembersPress = () => {

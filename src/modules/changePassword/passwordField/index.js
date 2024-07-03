@@ -17,7 +17,7 @@ const InputPassword = props => {
             textInputStyles,
             {
               fontFamily: fonts.family.monsterrant500,
-      fontSize: fonts.size.fontSize16,
+              fontSize: fonts.size.fontSize16,
               color: BLACK,
               paddingVertical: 0,
             },

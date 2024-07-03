@@ -4,7 +4,7 @@ import {CENTER, COLUMN, ROW, TOP, WRAP} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  screenContainer: {flex:1},
+  screenContainer: {flex: 1},
   container: {
     marginHorizontal: 12,
   },
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
   },
   containerStyle: {
     backgroundColor: MARINER,
-    paddingVertical:16,
+    paddingVertical: 16,
     borderRadius: 8,
     justifyContent: CENTER,
     alignContent: CENTER,

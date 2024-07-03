@@ -2,7 +2,10 @@ import {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useSelector, useDispatch} from 'react-redux';
-import {section1QThunk, dispatch_option} from '../../../../store/reducers/Section1Slice';
+import {
+  section1QThunk,
+  dispatch_option,
+} from '../../../../store/reducers/Section1Slice';
 import {
   ALERT,
   ALL_QUESTION_CHECK,
@@ -21,7 +24,7 @@ import {
 } from '../../constant';
 import {getDimensions} from '../../../../utils/utils';
 import {fetchSavedHRA, saveHRAData} from '../../../../store/reducers/HRASlice';
-import { genderData } from '../constants';
+import {genderData} from '../constants';
 
 export const useSection1 = userData => {
   const navigation = useNavigation();
@@ -39,31 +42,72 @@ export const useSection1 = userData => {
   const answers = useSelector(state => state.section1.answers);
   const questionData = useSelector(state => state.section1.rawQuestions);
   const {loggedIn} = useSelector(state => state.auth);
-  const {continueHRA, saveHRALoading, sectionData, sectionId, saveHRAError, continueHRAId} = useSelector(state => state.hra);
+  const {
+    continueHRA,
+    saveHRALoading,
+    sectionData,
+    sectionId,
+    saveHRAError,
+    continueHRAId,
+  } = useSelector(state => state.hra);
   const [enableData, setEnableData] = useState(false);
   const [renderData, setRenderData] = useState(false);
-  
+
   useEffect(() => {
     dispatch(section1QThunk());
   }, []);
 
-  useEffect(()=>{
-    if(!saveHRALoading && sectionData !== null && sectionId === 1 && questionData.length > 0){
-      const {Q2,Q3,Q4,Q5,Q58} = sectionData;
-      dispatch( dispatch_option({key: questionData[0].questionId, value: Q2.toString()}));
-      dispatch( dispatch_option({key: questionData[1].questionId, value: Q3.toString()}));
-      dispatch( dispatch_option({key: questionData[2].questionId, value: Q4.toString()}));
-      dispatch( dispatch_option({key: questionData[3].questionId, value: Q5.toString()}));
-      dispatch( dispatch_option({key: questionData[4].questionId, value: Q58.toString()}));
+  useEffect(() => {
+    if (
+      !saveHRALoading &&
+      sectionData !== null &&
+      sectionId === 1 &&
+      questionData.length > 0
+    ) {
+      const {Q2, Q3, Q4, Q5, Q58} = sectionData;
+      dispatch(
+        dispatch_option({
+          key: questionData[0].questionId,
+          value: Q2.toString(),
+        }),
+      );
+      dispatch(
+        dispatch_option({
+          key: questionData[1].questionId,
+          value: Q3.toString(),
+        }),
+      );
+      dispatch(
+        dispatch_option({
+          key: questionData[2].questionId,
+          value: Q4.toString(),
+        }),
+      );
+      dispatch(
+        dispatch_option({
+          key: questionData[3].questionId,
+          value: Q5.toString(),
+        }),
+      );
+      dispatch(
+        dispatch_option({
+          key: questionData[4].questionId,
+          value: Q58.toString(),
+        }),
+      );
+      setRenderData(true);
+    } else if (!saveHRALoading && saveHRAError) {
       setRenderData(true);
     }
-    else if(!saveHRALoading && saveHRAError) setRenderData(true)
-  },[saveHRALoading, questionData])
+  }, [saveHRALoading, questionData]);
 
   useEffect(() => {
-    if (continueHRA && questionData.length > 0) dispatch(fetchSavedHRA({sectionId: 1}));
-    else if(questionData.length > 0) setRenderData(true);
-  }, [continueHRA,questionData]);
+    if (continueHRA && questionData.length > 0) {
+      dispatch(fetchSavedHRA({sectionId: 1}));
+    } else if (questionData.length > 0) {
+      setRenderData(true);
+    }
+  }, [continueHRA, questionData]);
 
   useEffect(() => {
     if (
@@ -72,8 +116,15 @@ export const useSection1 = userData => {
       questionData[0]?.questionId &&
       questionData[4]?.questionId
     ) {
-      dispatch(dispatch_option({key: questionData[0].questionId, value: userData.age}));
-      dispatch(dispatch_option({key: questionData[4].questionId,value: userData.genderId}));
+      dispatch(
+        dispatch_option({key: questionData[0].questionId, value: userData.age}),
+      );
+      dispatch(
+        dispatch_option({
+          key: questionData[4].questionId,
+          value: userData.genderId,
+        }),
+      );
       setRenderData(true);
     }
   }, [questionData]);
@@ -123,7 +174,7 @@ export const useSection1 = userData => {
         setRequiredFieldQ1(validQ1);
         if (!validQ1) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q1);
-        } 
+        }
         break;
 
       case SECOND_QUESTION:
@@ -131,7 +182,7 @@ export const useSection1 = userData => {
         setRequiredFieldQ2(validQ2);
         if (!validQ2) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q2);
-        } 
+        }
         break;
 
       case THIRD_QUESTION:
@@ -139,7 +190,7 @@ export const useSection1 = userData => {
         setRequiredFieldQ3(validQ3);
         if (!validQ3) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q3);
-        } 
+        }
         break;
 
       case FOURTH_QUESTION:
@@ -147,7 +198,7 @@ export const useSection1 = userData => {
         setRequiredFieldQ4(validQ4);
         if (!validQ4) {
           Alert.alert(ALERT, SECTION_1_PLACEHOLDER_Q4);
-        } 
+        }
         break;
 
       default:
@@ -209,8 +260,8 @@ export const useSection1 = userData => {
     answers,
     setQuestion5,
     next,
-    data:genderData,
+    data: genderData,
     renderData,
-    onChangeText
+    onChangeText,
   };
 };

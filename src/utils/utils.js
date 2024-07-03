@@ -1,13 +1,25 @@
 import validator from 'is_js';
-import {Alert, Dimensions, PermissionsAndroid, Platform, Linking, NativeModules} from 'react-native';
+import {
+  Alert,
+  Dimensions,
+  PermissionsAndroid,
+  Platform,
+  Linking,
+  NativeModules,
+} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import DeviceInfo from 'react-native-device-info';
 import ImagePicker from 'react-native-image-crop-picker';
 export const handleNetworkError = (status, message) => {
   if (!message) {
-    if (status >= 500) Alert.alert('Error', 'Internal Server Error');
-    else if (status === 403) Alert.alert('Error', 'Forbidden');
-  } else Alert.alert('Error', message.toString());
+    if (status >= 500) {
+      Alert.alert('Error', 'Internal Server Error');
+    } else if (status === 403) {
+      Alert.alert('Error', 'Forbidden');
+    }
+  } else {
+    Alert.alert('Error', message.toString());
+  }
 };
 
 export const isEmail = email => {
@@ -58,7 +70,9 @@ export const transforSubData = (
   return Object.keys(data3)
     .map(k => data3[k])
     .reduce(function (acc, x) {
-      for (var key in x) acc[key] = x[key];
+      for (var key in x) {
+        acc[key] = x[key];
+      }
       return acc;
     }, {});
 };
@@ -151,12 +165,11 @@ export const getTime = timestamp => {
 export const getEpoch = (date, time) => {
   const dtString = date.toISOString().slice(0, 10);
   const timeString = processTime(time);
-  if(Platform.OS === 'ios'){
-    return Date.parse(dtString + 'T' + timeString)
-  }
-  else if(Platform.OS==='android'){
+  if (Platform.OS === 'ios') {
+    return Date.parse(dtString + 'T' + timeString);
+  } else if (Platform.OS === 'android') {
     return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
-  } 
+  }
 };
 
 const processTime = time => {
@@ -169,42 +182,47 @@ const processTime = time => {
   return addZero(time?.getHours()) + ':' + addZero(time?.getMinutes()) + ':00';
 };
 
-export const ImageGallery=(onSuccess,onError)=>{
+export const ImageGallery = (onSuccess, onError) => {
   ImagePicker.openPicker({
     width: 300,
     height: 400,
     cropping: true,
-    includeBase64:true,
-  }).then(onSuccess).catch(onError);
-}
-export const requestCameraPermission = async (onSuccess,onError) => {
-  if(getPlatform().isIOS) {
+    includeBase64: true,
+  })
+    .then(onSuccess)
+    .catch(onError);
+};
+export const requestCameraPermission = async (onSuccess, onError) => {
+  if (getPlatform().isIOS) {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
       cropping: true,
-      includeBase64:true,
-    }).then(onSuccess).catch(onError);
-  }
-  else {
-  try {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      ImagePicker.openCamera({
+      includeBase64: true,
+    })
+      .then(onSuccess)
+      .catch(onError);
+  } else {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        ImagePicker.openCamera({
           width: 300,
           height: 400,
           cropping: true,
-          includeBase64:true,
-        }).then(onSuccess).catch(onError);
-    } else {
-     Alert.alert("permission denied...!!!")
+          includeBase64: true,
+        })
+          .then(onSuccess)
+          .catch(onError);
+      } else {
+        Alert.alert('permission denied...!!!');
+      }
+    } catch (err) {
+      console.warn(err);
     }
-  } catch (err) {
-    console.warn(err);
   }
-}
 };
 export const granted = () => {
   PermissionsAndroid.request(
@@ -220,41 +238,41 @@ const downloadFile = (filePath, fileName) => {
   let ext = getExtention(file_Url);
   ext = fileName;
   const {config, fs} = RNFetchBlob;
-  const directory = Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+  const directory =
+    Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
   let options;
-    if (Platform.OS === 'android') {
-      options = {
-        fileCache: true,
-        addAndroidDownloads: {
-          useDownloadManager: true,
-          notification: true,
-          path: directory + '/yuva/' + ext,
-          showNotification: true,
-        },
-      };
-    
-      if (ext === 'pdf') {
-        options.addAndroidDownloads.description = 'PDF File';
-        options.addAndroidDownloads.mime = 'application/pdf';
-      } else if (ext === 'png') {
-        options.addAndroidDownloads.description = 'PNG File';
-        options.addAndroidDownloads.mime = 'image/png';
-      }
-      else if (ext === 'jpeg' || ext === 'jpg') {
-        options.addAndroidDownloads.description = 'JPEG File';
-        options.addAndroidDownloads.mime = 'image/jpeg';
-      }
+  if (Platform.OS === 'android') {
+    options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: directory + '/yuva/' + ext,
+        showNotification: true,
+      },
+    };
+
+    if (ext === 'pdf') {
+      options.addAndroidDownloads.description = 'PDF File';
+      options.addAndroidDownloads.mime = 'application/pdf';
+    } else if (ext === 'png') {
+      options.addAndroidDownloads.description = 'PNG File';
+      options.addAndroidDownloads.mime = 'image/png';
+    } else if (ext === 'jpeg' || ext === 'jpg') {
+      options.addAndroidDownloads.description = 'JPEG File';
+      options.addAndroidDownloads.mime = 'image/jpeg';
     }
-  else if(Platform.OS === 'ios') {
-    options = {path:`${directory}/${fileName}`}
+  } else if (Platform.OS === 'ios') {
+    options = {path: `${directory}/${fileName}`};
   }
   config(options)
     .fetch('GET', file_Url)
     .then(res => {
-      if(Platform.OS === 'android')
-      alert('File Downloaded Successfully.', JSON.stringify(res));
-      else if(Platform.OS === 'ios') 
+      if (Platform.OS === 'android') {
+        alert('File Downloaded Successfully.', JSON.stringify(res));
+      } else if (Platform.OS === 'ios') {
         RNFetchBlob.ios.previewDocument(res.path());
+      }
     })
     .catch(err => {
       alert('Download Failed');
@@ -262,29 +280,38 @@ const downloadFile = (filePath, fileName) => {
 };
 
 export const checkPermission = async (filePath, fileName) => {
-  if(Platform.OS === 'android' && Platform.Version < 33){
-  PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then(read=>{
-    PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then(write=>{
-    if(read && write){
-      downloadFile(filePath, fileName);
-    }
-    else if(read && !write){
-      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
-    }
-    else if(!read && write){
-      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
-    }
-    else {
-      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
-      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE);
-    }
-    })
-  })
-}
-else if(Platform.OS === 'android' && Platform.Version >= 33){
-  downloadFile(filePath, fileName);
-}
-else if(Platform.OS === 'ios') downloadFile(filePath, fileName);
+  if (Platform.OS === 'android' && Platform.Version < 33) {
+    PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    ).then(read => {
+      PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      ).then(write => {
+        if (read && write) {
+          downloadFile(filePath, fileName);
+        } else if (read && !write) {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          );
+        } else if (!read && write) {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          );
+        } else {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          );
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          );
+        }
+      });
+    });
+  } else if (Platform.OS === 'android' && Platform.Version >= 33) {
+    downloadFile(filePath, fileName);
+  } else if (Platform.OS === 'ios') {
+    downloadFile(filePath, fileName);
+  }
 };
 
 const getExtention = filename => {
@@ -341,10 +368,18 @@ export const getDateInFormat = (date, format) => {
     case 'dd mm':
       return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
     case 'dd mm yy':
-      return date && `${date.getDate()}-${getMonthInText(date.getMonth())} ${date.getFullYear()}`;
+      return (
+        date &&
+        `${date.getDate()}-${getMonthInText(
+          date.getMonth(),
+        )} ${date.getFullYear()}`
+      );
     case 'mm/yy':
       const year = date.getFullYear().toString();
-      return date && `${date.getMonth() + 1}/${year.substring(year.length-2,year.length)}`;
+      return (
+        date &&
+        `${date.getMonth() + 1}/${year.substring(year.length - 2, year.length)}`
+      );
     default:
       getDateText(date);
   }
@@ -375,63 +410,79 @@ export const getDeviceId = async () => {
 };
 
 export const onTermsConditionsPress = async () => {
-  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/terms-and-conditions');
-  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
-  if(canOpen){
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/terms-and-conditions',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
     Linking.openURL('https://www.yuvahealth.in/terms-and-conditions');
-  }
-  else {
+  } else {
     Linking.openURL(storeUrl);
   }
-}
+};
 
 export const onPrivacyPolicyPress = async () => {
-  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/privacy-policy');
-  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
-  if(canOpen){
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/privacy-policy',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
     Linking.openURL('https://www.yuvahealth.in/privacy-policy');
-  }
-  else {
+  } else {
     Linking.openURL(storeUrl);
   }
-}
+};
 
 export const onNeedHelpPress = async () => {
-  const canOpen = await Linking.canOpenURL('https://www.yuvahealth.in/contact-us');
-  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome';
-  if(canOpen){
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/contact-us',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
     Linking.openURL('https://www.yuvahealth.in/contact-us');
-  }
-  else {
+  } else {
     Linking.openURL(storeUrl);
   }
-}
+};
 
-export const onViewMapPress = async (prop) => {
+export const onViewMapPress = async prop => {
   const canOpen = await Linking.canOpenURL(prop);
-  const storeUrl = Platform.OS === 'ios' ? 'https://apps.apple.com/in/app/google-chrome/id535886823' : 'market://details?id=com.android.chrome'
-  if(canOpen){
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
     Linking.openURL(prop);
-  }
-  else {
+  } else {
     Linking.openURL(storeUrl);
-  }}
+  }
+};
 
 export const getPlatform = () => {
-  if(Platform.OS === 'android') return {isIOS:false,isAndroid:true}
-  else if(Platform.OS === 'ios') return {isIOS:true,isAndroid:false}
-}
+  if (Platform.OS === 'android') {
+    return {isIOS: false, isAndroid: true};
+  } else if (Platform.OS === 'ios') {
+    return {isIOS: true, isAndroid: false};
+  }
+};
 
 export const getIosStatusBarHeight = () => {
-  return new Promise((resolve,reject)=>{
-    NativeModules?.StatusBarHeight?.getStatusBarHeight((err,res)=>{
-      if(err) {
+  return new Promise((resolve, reject) => {
+    NativeModules?.StatusBarHeight?.getStatusBarHeight((err, res) => {
+      if (err) {
         reject(0);
-      }
-      else if(res) {
+      } else if (res) {
         resolve(parseFloat(res));
       }
-    })
-  })
-}
-
+    });
+  });
+};

@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg"
+import * as React from 'react';
+import Svg, {Path, Defs, LinearGradient, Stop} from 'react-native-svg';
 
-const HeaderLogo = (props) => (
+const HeaderLogo = props => (
   <Svg
     width={95}
     height={29}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -54,8 +53,7 @@ const HeaderLogo = (props) => (
         y1={28.461}
         x2={12.682}
         y2={-19.631}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#319B4B" />
         <Stop offset={0.09} stopColor="#39A252" />
         <Stop offset={0.33} stopColor="#4DB462" />
@@ -68,8 +66,7 @@ const HeaderLogo = (props) => (
         y1={28.46}
         x2={12.682}
         y2={-19.632}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#319B4B" />
         <Stop offset={0.09} stopColor="#39A252" />
         <Stop offset={0.33} stopColor="#4DB462" />
@@ -82,8 +79,7 @@ const HeaderLogo = (props) => (
         y1={28.46}
         x2={12.69}
         y2={-19.632}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#319B4B" />
         <Stop offset={0.09} stopColor="#39A252" />
         <Stop offset={0.33} stopColor="#4DB462" />
@@ -96,8 +92,7 @@ const HeaderLogo = (props) => (
         y1={29.526}
         x2={11.451}
         y2={-18.565}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#319B4B" />
         <Stop offset={0.09} stopColor="#39A252" />
         <Stop offset={0.33} stopColor="#4DB462" />
@@ -110,8 +105,7 @@ const HeaderLogo = (props) => (
         y1={29.526}
         x2={13.907}
         y2={-18.565}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#319B4B" />
         <Stop offset={0.09} stopColor="#39A252" />
         <Stop offset={0.33} stopColor="#4DB462" />
@@ -120,6 +114,6 @@ const HeaderLogo = (props) => (
       </LinearGradient>
     </Defs>
   </Svg>
-)
+);
 
 export default HeaderLogo;

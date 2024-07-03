@@ -1,24 +1,25 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getDeviceId } from '../../utils/utils';
-import { YuvaService } from '../../../App';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {getDeviceId} from '../../utils/utils';
+import {YuvaService} from '../../../App';
 
 export const couponSliceThunk = createAsyncThunk(
   '/coupon/getAllCoupons/user',
-  async ({ pageNo, pageSize, isLoggedIn, isPlan, planTypeEnum, planUuid }, { fulfillWithValue, rejectWithValue }) => {
+  async (
+    {pageNo, pageSize, isLoggedIn, isPlan, planTypeEnum, planUuid},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     let endpoint;
     const sessionId = await getDeviceId();
     if (isPlan) {
       if (isLoggedIn) {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
-      }
-      else {
+      } else {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}&planTypeEnum=${planTypeEnum}&planUuid=${planUuid}`;
       }
     } else {
       if (isLoggedIn) {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
-      }
-      else {
+      } else {
         endpoint = `/coupon/getAllCoupons/user?pageNo=${pageNo}&pageSize=${pageSize}`;
       }
     }
@@ -33,20 +34,20 @@ export const couponSliceThunk = createAsyncThunk(
 
 export const redeemCouponsSliceThunk = createAsyncThunk(
   '/coupon/redeem',
-  async ({ isLoggedIn, couponCode }, { fulfillWithValue, rejectWithValue }) => {
+  async ({isLoggedIn, couponCode}, {fulfillWithValue, rejectWithValue}) => {
     let endpoint;
     const sessionId = await getDeviceId();
     if (isLoggedIn) {
       if (couponCode) {
         endpoint = `/cart?couponCode=${couponCode}`;
       } else {
-        endpoint = `/cart?clearCoupon=true`;
+        endpoint = '/cart?clearCoupon=true';
       }
     } else {
       if (couponCode) {
         endpoint = `/cart/guest?sessionId=${sessionId}&couponCode=${couponCode}`;
       } else {
-        endpoint = `/cart/guest?&clearCoupon=true`;
+        endpoint = '/cart/guest?&clearCoupon=true';
       }
     }
 
@@ -60,7 +61,10 @@ export const redeemCouponsSliceThunk = createAsyncThunk(
 );
 export const redeemCouponsPlanSliceThunk = createAsyncThunk(
   '/coupon/plan',
-  async ({couponCode, planUuid,planType}, { fulfillWithValue, rejectWithValue }) => {
+  async (
+    {couponCode, planUuid, planType},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
       const endpoint = `/plan/amount?couponCode=${couponCode}&planUuid=${planUuid}&planTypeEnum=${planType}`;
       const response = await YuvaService.get(endpoint);
@@ -84,12 +88,12 @@ const initialState = {
   couponMessage: false,
   selectedCouponCode: '',
   couponDiscount: 0,
-  planCouponDiscount:null,
-  planCouponFinalAmount:null,
-  planeCouponCode:null,
-  couponId:null,
+  planCouponDiscount: null,
+  planCouponFinalAmount: null,
+  planeCouponCode: null,
+  couponId: null,
   planCouponData: null,
-}
+};
 
 const couponSlice = createSlice({
   name: 'coupon',
@@ -115,7 +119,7 @@ const couponSlice = createSlice({
     },
   },
   extraReducers: {
-    [couponSliceThunk.pending]: (state, { payload }) => {
+    [couponSliceThunk.pending]: (state, {payload}) => {
       state.loading = true;
       state.apiError = false;
       state.apiErrorMessage = '';
@@ -129,7 +133,7 @@ const couponSlice = createSlice({
       state.loading = false;
       state.apiErrorMessage = action?.payload?.message;
     },
-     [redeemCouponsPlanSliceThunk.pending]: (state, { payload }) => {
+    [redeemCouponsPlanSliceThunk.pending]: (state, {payload}) => {
       state.loading = true;
       state.apiErrorMessage = '';
       state.apiError = false;
@@ -144,17 +148,25 @@ const couponSlice = createSlice({
       state.planCouponDiscount = action?.payload?.data?.planAmountResponse;
       state.planCouponFinalAmount = action?.payload?.data?.planAmountResponse;
       state.planeCouponCode = action?.payload?.data?.couponCode;
-      state.planCouponData = Object.values(action?.payload?.data?.planAmountResponse).find(item=>item?.price > 0);
+      state.planCouponData = Object.values(
+        action?.payload?.data?.planAmountResponse,
+      ).find(item => item?.price > 0);
     },
     [redeemCouponsPlanSliceThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
       state.apiErrorMessage = action?.payload?.errorMessage;
     },
-
   },
 });
 
-export const { couponInit } = couponSlice.getInitialState();
-export const { coupon, removeCoupon, selectedCoupon, selectedPlaneCouponCode, removePlaneCoupon, clearApiErrorMessage } = couponSlice.actions;
+export const {couponInit} = couponSlice.getInitialState();
+export const {
+  coupon,
+  removeCoupon,
+  selectedCoupon,
+  selectedPlaneCouponCode,
+  removePlaneCoupon,
+  clearApiErrorMessage,
+} = couponSlice.actions;
 export default couponSlice.reducer;

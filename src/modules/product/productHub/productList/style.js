@@ -111,7 +111,11 @@ const styles = () => {
       justifyContent: SPACE_BETWEEN,
       paddingHorizontal: 8,
     },
-    productItemContainerStyle: {backgroundColor: ZUMTHOR,width:(width-32)*0.4,marginRight:(width-32)*0.05}
+    productItemContainerStyle: {
+      backgroundColor: ZUMTHOR,
+      width: (width - 32) * 0.4,
+      marginRight: (width - 32) * 0.05,
+    },
   });
 };
 

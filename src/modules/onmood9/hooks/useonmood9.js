@@ -12,7 +12,7 @@ export const useOnMood9 = onMood9Props => {
     subscriptionDetails: userSubscriptionDetails,
     onMood9Loading,
     onMood9Error,
-    onMood9ErrorMessage
+    onMood9ErrorMessage,
   } = useSelector(state => state?.payment);
   const [fetchDetails, setFetchDetails] = useState(false);
   const [encodedQueryString, setEncodedQueryString] = useState('');
@@ -24,9 +24,9 @@ export const useOnMood9 = onMood9Props => {
 
   useEffect(() => {
     if (userSubscriptionDetails !== null && fetchDetails) {
-      let queryString = `user_id=${userSubscriptionDetails?.userId}${id}&status=${
-        userSubscriptionDetails?.paymentStatus
-      }${
+      let queryString = `user_id=${
+        userSubscriptionDetails?.userId
+      }${id}&status=${userSubscriptionDetails?.paymentStatus}${
         userSubscriptionDetails?.paymentStatus === 'Active'
           ? `&start_date=${userSubscriptionDetails?.startDate}&end_date=${userSubscriptionDetails?.endDate}`
           : ''
@@ -48,5 +48,11 @@ export const useOnMood9 = onMood9Props => {
     }
   }, [encodedQueryString]);
 
-  return {encodedQueryString, onMood9Error, onMood9Loading, uri, onMood9ErrorMessage};
+  return {
+    encodedQueryString,
+    onMood9Error,
+    onMood9Loading,
+    uri,
+    onMood9ErrorMessage,
+  };
 };

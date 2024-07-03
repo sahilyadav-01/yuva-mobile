@@ -27,7 +27,7 @@ const UserDetailsCard = ({
   setSelectedCity,
   cityNames,
   profileGender,
-  onPickerPress
+  onPickerPress,
 }) => {
   const {scrollViewContainer} = styles({disabled: false});
   return (

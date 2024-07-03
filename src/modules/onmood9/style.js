@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {CENTER} from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
-import { BLACK } from '../../styles/colors';
+import {fonts} from '../../styles/fonts';
+import {BLACK} from '../../styles/colors';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -14,7 +14,7 @@ export const styles = () => {
       textAlign: CENTER,
     },
     errorContainer: {
-      paddingHorizontal: 16
-    }
+      paddingHorizontal: 16,
+    },
   });
 };

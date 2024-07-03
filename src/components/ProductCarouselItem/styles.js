@@ -19,8 +19,13 @@ export const styles = StyleSheet.create({
   },
   iconContainer: {marginLeft: 20, width: 36, height: 36},
   descriptionContainer: {marginTop: 20, marginLeft: 14},
-  textContainer: {marginLeft: 14, marginVertical:8},
-  addButtonViewContainer: {paddingLeft: 14, paddingRight: 90, marginTop: 16, marginBottom: 6},
+  textContainer: {marginLeft: 14, marginVertical: 8},
+  addButtonViewContainer: {
+    paddingLeft: 14,
+    paddingRight: 90,
+    marginTop: 16,
+    marginBottom: 6,
+  },
   addButtonContainer: {
     borderRadius: 12,
     backgroundColor: ORANGE,
@@ -42,5 +47,5 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
     lineHeight: 21,
   },
-  imageStyle: {width: 46, height: 46}
+  imageStyle: {width: 46, height: 46},
 });

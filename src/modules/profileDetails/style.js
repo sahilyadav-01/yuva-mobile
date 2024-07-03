@@ -5,8 +5,8 @@ import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
-    container: {flex: 1,backgroundColor:WHITE},
-    drawerContentContainer: {flex:1,marginTop:32, paddingHorizontal: 20},
+    container: {flex: 1, backgroundColor: WHITE},
+    drawerContentContainer: {flex: 1, marginTop: 32, paddingHorizontal: 20},
     textStyle: {
       fontFamily: fonts.family.montserrant700,
       fontSize: fonts.size.fontSize16,
@@ -22,8 +22,8 @@ export const styles = () => {
       fontFamily: fonts.family.montserrat300,
       fontSize: fonts.size.fontSize8,
       color: BLACK,
-      minWidth:'80%',
-      maxWidth:'90%'
+      minWidth: '80%',
+      maxWidth: '90%',
     },
     secondarySeparator: {
       marginBottom: 20,
@@ -31,14 +31,29 @@ export const styles = () => {
       borderBottomColor: MISCHKA,
       marginHorizontal: 16,
     },
-    logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
-    separator: {borderWidth:0.5,marginTop: 16, borderColor: KASHMIR_BLUE},
-    rowContainer: {flexDirection:ROW,justifyContent:SPACE_BETWEEN,flex:1,alignItems:CENTER,marginLeft:24},
+    logoutContainer: {marginHorizontal: 16, flexDirection: ROW},
+    separator: {borderWidth: 0.5, marginTop: 16, borderColor: KASHMIR_BLUE},
+    rowContainer: {
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+      flex: 1,
+      alignItems: CENTER,
+      marginLeft: 24,
+    },
     contentContainerStyle: {
       flexGrow: 1,
-       paddingBottom: 100,
+      paddingBottom: 100,
     },
-    itemContainer: {paddingVertical:12,borderWidth:0.5,borderRadius:8,flexDirection:ROW,flex:1,paddingHorizontal:24,backgroundColor:'#F9F9F9',borderColor:'#E9E9E9'},
-    descriptionContainer: {marginLeft: 28,flex:1}
+    itemContainer: {
+      paddingVertical: 12,
+      borderWidth: 0.5,
+      borderRadius: 8,
+      flexDirection: ROW,
+      flex: 1,
+      paddingHorizontal: 24,
+      backgroundColor: '#F9F9F9',
+      borderColor: '#E9E9E9',
+    },
+    descriptionContainer: {marginLeft: 28, flex: 1},
   });
 };

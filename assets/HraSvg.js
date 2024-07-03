@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-import { MARINER } from "../src/styles/colors"
-const HraSvg = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+import {MARINER} from '../src/styles/colors';
+const HraSvg = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={34}
     height={31}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill={MARINER}
       fillRule="evenodd"
@@ -34,5 +33,5 @@ const HraSvg = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
-export default HraSvg
+);
+export default HraSvg;

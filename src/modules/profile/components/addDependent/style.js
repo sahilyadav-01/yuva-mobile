@@ -32,7 +32,7 @@ const styles = ({disabled}) => {
       borderRadius: 8,
       alignItems: CENTER,
       justifyContent: CENTER,
-      marginTop: 8
+      marginTop: 8,
     },
     textInputStyle: {
       paddingVertical: 12,
@@ -73,7 +73,7 @@ const styles = ({disabled}) => {
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
-    }
+    },
   });
 };
 

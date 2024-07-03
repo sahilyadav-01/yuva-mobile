@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
-import { fonts } from '../../../../styles/fonts';
-import { WHITE, SHADOW, MARINER, BLACK } from '../../../../styles/colors';
-import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
+import {StyleSheet} from 'react-native';
+import {fonts} from '../../../../styles/fonts';
+import {WHITE, SHADOW, MARINER, BLACK} from '../../../../styles/colors';
+import {FLEX_END, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
 
-const styles = ({ disabled, hideShadow }) => {
+const styles = ({disabled, hideShadow}) => {
   return StyleSheet.create({
     dependentsContainer: {
       marginTop: 12,
@@ -39,8 +39,8 @@ const styles = ({ disabled, hideShadow }) => {
       fontSize: fonts.size.fontSize14,
       height: 21,
     },
-    rowView: {flexDirection:ROW},
-    crossContainer:{alignSelf:FLEX_END,marginBottom:4},
+    rowView: {flexDirection: ROW},
+    crossContainer: {alignSelf: FLEX_END, marginBottom: 4},
   });
 };
 
