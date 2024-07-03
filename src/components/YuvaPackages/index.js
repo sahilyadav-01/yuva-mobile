@@ -19,7 +19,6 @@ function YuvaPackages({
         styles.itemStyle,
         style({gap: index < packages?.length - 1}).itemGap,
       ];
-      if (item.id === 6) {
         return (
           <TouchableOpacity
             onPress={() =>
@@ -56,7 +55,6 @@ function YuvaPackages({
             )}
           </TouchableOpacity>
         );
-      }
     });
   }
   return null;
