@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { ORANGE, WHITE } from '../../../../styles/colors';
+import { MARINER, WHITE } from '../../../../styles/colors';
 import { CENTER } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
     touchableButton: {
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         marginTop: 40,
         marginHorizontal: 13,
         borderRadius: 8,
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         paddingVertical:12,
         textAlign: CENTER,
         color: WHITE,
-        fontFamily: fonts.family.rubik500,
+        fontFamily: fonts.family.monsterrant500,
         fontSize: fonts.size.fontSize16,
     }
 })

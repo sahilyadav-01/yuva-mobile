@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, WHITE } from '../../styles/colors';
-import { ABSOLUTE } from '../../styles/constants';
+import { BLACK, CYAN_BLUE, RED, WHITE } from '../../styles/colors';
+import { ABSOLUTE, CENTER } from '../../styles/constants';
 import { fonts } from '../../styles/fonts';
 
 export const styles = () => {
@@ -33,5 +33,11 @@ export const styles = () => {
       elevation: 3,
       width: '150%',
     },
+    noteText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize12,
+      color: RED,
+    },
+    noteContainer: {marginBottom:8,paddingHorizontal:16,alignItems:CENTER}
   });
 };

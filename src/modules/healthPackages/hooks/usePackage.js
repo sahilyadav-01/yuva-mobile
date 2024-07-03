@@ -186,7 +186,7 @@ export const usePackage = (initialIndex) => {
         } else if (item.selected === true) {
           onRemove({productId:item?.packageUuid
             ? item?.packageUuid.toString()
-            : item?.testId.toString()})
+            : item?.testId.toString(), productType: item?.packageUuid ? 'PACKAGE' : 'TEST'})
         }
         return item;
       }

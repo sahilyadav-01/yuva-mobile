@@ -4,6 +4,7 @@ import MyPlanCard from '../../../components/MyPlanCard'
 import { styles } from './styles'
 import { useMyPlan } from './hooks/useMyPlan';
 import { NO_PLAN } from './constants';
+import { MARINER } from '../../../styles/colors';
 
 const MyPlans = () => {
   const { programAndPlan, bookingListError, bookingListLoading } = useMyPlan();
@@ -13,7 +14,7 @@ const MyPlans = () => {
       item={item}
     />);
   }
-  if(bookingListLoading) return <View style={styles.loaderContainer}><ActivityIndicator size={'large'}/></View>
+  if(bookingListLoading) return <View style={styles.loaderContainer}><ActivityIndicator size={'large'} color={MARINER}/></View>
   else if(!bookingListLoading && !bookingListError)
   return (
     <View>

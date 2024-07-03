@@ -37,7 +37,7 @@ const UserDetails = ({
 }) => {
   const Picker = edit ? TouchableOpacity : View;
   const { userImage, textInputStyle, separatorStyle, dropdownBoxStyle, userCoverImage, userPicture, UserIcon, coverIcon,
-    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon, verifyStyle } = styles({
+    modalView, modalTextView, modaltext, GalleryIcon, IconView, galleryTouch, CrossIcon, verifyStyle, inputStyle } = styles({
       disabled: false,
     });
   const mockData = {
@@ -144,19 +144,16 @@ const UserDetails = ({
           placeholderTextColor={DARK_GRAY}
         />
       ) : (
-        <>
           <SelectList
             setSelected={arg => setSelectedGender(arg, data)}
             search={false}
             data={data}
             placeholder={gender ?? SELECT_GENDER}
-            placeholderTextColor={DARK_GRAY}
+            placeholderTextColor={BLACK}
             boxStyles={dropdownBoxStyle}
-            inputStyles={{color: DARK_BLUE} }
-            dropdownTextStyles={{color:DARK_GRAY}}
+            inputStyles={inputStyle}
+            dropdownTextStyles={inputStyle}
           />
-          <View style={separatorStyle} />
-        </>
       )}
       {!edit || (edit && userDetails?.dob) ? (
         <Picker onPress={onPickerPress}>
@@ -225,10 +222,9 @@ const UserDetails = ({
               placeholder={city ?? CITY}
               placeholderTextColor={DARK_GRAY}
               boxStyles={dropdownBoxStyle}
-              inputStyles={cityNames ? {color: DARK_BLUE} : undefined}
-              dropdownTextStyles={{color:DARK_GRAY}}
+              inputStyles={cityNames ? inputStyle : undefined}
+              dropdownTextStyles={inputStyle}
             />
-            <View style={separatorStyle} />
           </>
         ))}
       <TextInput
@@ -236,7 +232,7 @@ const UserDetails = ({
         placeholderTextColor={DARK_GRAY}
         value={!edit ? mockData.pinCode ?? pinCode : pinCode}
         editable={edit}
-        style={{ ...textInputStyle, marginBottom: 32 }}
+        style={{ ...textInputStyle, marginBottom: 24 }}
         onChangeText={changePincode}
       />
     </>

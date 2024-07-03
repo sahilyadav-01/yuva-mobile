@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE } from '../../../styles/colors';
+import { BLACK } from '../../../styles/colors';
 import { BOLD, CENTER } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 60,
     },
     textColor: {
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.fontFamilyRubix,
         fontWeight: BOLD,
         marginLeft: 17,

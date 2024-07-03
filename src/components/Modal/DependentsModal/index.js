@@ -5,7 +5,7 @@ import Modal from '../index';
 import Dependent from './Dependent';
 import {styles} from './style';
 import BackCross from '../../GoBackCross';
-import { CYAN_BLUE, GREEN } from '../../../styles/colors';
+import { BLACK, GREEN } from '../../../styles/colors';
 import { getPlatform } from '../../../utils/utils';
 
 function DependentsModal(props) {
@@ -25,7 +25,7 @@ function DependentsModal(props) {
       </View>
       <View style={dependentContainer}>
         <Text style={primaryText}>{primary}</Text>
-        <Checkbox.Android color={GREEN} uncheckedColor={CYAN_BLUE} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
+        <Checkbox.Android color={GREEN} uncheckedColor={BLACK} onPress={onCheckBoxPress} status={checkBoxStatus ?? 'unchecked'}/>
       </View>
       {data.length > 0 && <FlatList
         data={listData}

@@ -6,13 +6,12 @@ import { PNG } from '../../assets';
 import { AVAIL, AVAILABLE, BOKINGTESTANDPACKAGE, MY_TEST, NOT_AVAILABLE, SELECT_THIS_PACKAGE, USED, VALID } from './constants';
 import { getPlanDate } from '../utils/utils';
 import { useNavigation } from '@react-navigation/native';
-import { AMBER, CYAN_BLUE, ORANGE, DEEP_RED, WHITE, GREY } from '../styles/colors';
+import { AMBER, BLACK, MARINER, DEEP_RED, WHITE, GREY } from '../styles/colors';
 
 const MyPlanCard = ({ item }) => {
   const navigation = useNavigation();
     const renderItem = (plan) => {
         const onBookingTestandPackage = () => {
-
             const params={
                 headerName:MY_TEST,
                 packageName: plan?.item?.id ,
@@ -54,12 +53,12 @@ const MyPlanCard = ({ item }) => {
                     </View>
                 </View>
                 <View>
-                    <Text style={[styles.Available,{color: available===0 ?DEEP_RED :CYAN_BLUE}]}>{available===0 ? NOT_AVAILABLE : AVAILABLE}</Text>
+                    <Text style={[styles.Available,{color: available===0 ?DEEP_RED :BLACK}]}>{available===0 ? NOT_AVAILABLE : AVAILABLE}</Text>
                 </View>
 
                 <View>
-                    <TouchableOpacity style={[styles.buttonStyleMyTest,{backgroundColor: available===0 ?AMBER :ORANGE}]} onPress={onBookingTestandPackage} disabled={!available}>
-                        <Text style={[styles.textStyle,{color: available===0 ?CYAN_BLUE :WHITE}]}>{SELECT_THIS_PACKAGE}</Text>
+                    <TouchableOpacity style={[styles.buttonStyleMyTest,{backgroundColor: available===0 ?AMBER :MARINER}]} onPress={onBookingTestandPackage} disabled={!available}>
+                        <Text style={[styles.textStyle,{color: available===0 ?BLACK :WHITE}]}>{SELECT_THIS_PACKAGE}</Text>
                     </TouchableOpacity>
                 </View>
             </View >

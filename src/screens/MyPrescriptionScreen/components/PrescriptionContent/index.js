@@ -5,6 +5,7 @@ import {styles} from '../../styles';
 import ReportCard from '../../../../ReportCard';
 import {EMPTY_TEXT, ERROR_TEXT, VIEW_ALL_PRESCRIPTIONS} from '../../constants';
 import {useMyPrescription} from '../../hooks/useMyPrescription';
+import { MARINER } from '../../../../styles/colors';
 
 export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
   const {
@@ -35,7 +36,7 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
     if (dataAvailable) {
       return (
         <View style={{alignItems: 'center'}}>
-          <ActivityIndicator size="small" />
+          <ActivityIndicator size="small" color={MARINER} />
         </View>
       );
     }
@@ -61,7 +62,7 @@ export const PrescriptionContent = ({prescriptionId,redirect,serviceUuid}) => {
     if (prescriptionLoading && pageNo === 1)
       return (
         <View style={styles.emptyView}>
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       );
     if (!prescriptionLoading && prescriptionError && pageNo === 1)

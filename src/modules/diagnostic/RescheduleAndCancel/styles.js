@@ -6,9 +6,14 @@ import { fonts } from '../../../styles/fonts';
 export const styles = StyleSheet.create({
 
   contentContainerStyle: {
-    flexGrow: 1,
-    paddingBottom: 300,
+   flex:1,
+   backgroundColor: WHITE,
   },
+  container: {
+    flex:1,
+    backgroundColor: WHITE,
+    paddingBottom: 24,
+   },
   buttonView: {
     flexDirection: ROW,
     marginHorizontal: '4%',

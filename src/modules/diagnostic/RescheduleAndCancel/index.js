@@ -56,9 +56,9 @@ const RescheduleAndCancel = () => {
         )
     }
     return (
-        <View >
-            <Header showBackButton={false} title={MY_TESTS} />
-            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <View style={styles.container}>
+            <Header showBackButton={true} title={MY_TESTS} />
+            <ScrollView style={styles.contentContainerStyle}>
                 <View style={backGroundStyle(reschedule?.bookingStatus)}>
                     <View style={styles.bookingText}>
                     <Text style={textStyle(reschedule?.bookingStatus)} numberOfLines={2}>{dignosticStatus(reschedule?.bookingStatus)}</Text>
@@ -84,9 +84,9 @@ const RescheduleAndCancel = () => {
                     <Text style={styles.address}>{reschedule?.patientLocation}</Text>
                     <Text style={styles.adressPhn}>{reschedule?.patientPhoneNumber}</Text>
                 </View>
-                <View style={styles.TestHeader}>
+                {reschedule?.testName?.length > 0 ? <View style={styles.TestHeader}>
                     <Text style={styles.Test}>{TEST}</Text>
-                </View>
+                </View>: null}
                 <View >
                     {reschedule?.testName?.length &&
                         <FlatList
@@ -97,9 +97,9 @@ const RescheduleAndCancel = () => {
                             nestedScrollEnabled={true}
                         />}
                 </View>
-                <View style={styles.PackageHeader}>
+                {reschedule?.packageNameDescriptionDtoList?.length > 0 ? <View style={styles.PackageHeader}>
                     <Text style={styles.package}>{PACKAGE}</Text>
-                </View>
+                </View> : null}
                 <View>
                     {reschedule?.packageNameDescriptionDtoList?.length > 0 &&
                         <FlatList

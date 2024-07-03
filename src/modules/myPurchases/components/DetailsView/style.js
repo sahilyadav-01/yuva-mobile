@@ -57,6 +57,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 14,
       color: CYAN_BLUE,
+      maxWidth:'60%'
     },
     amountText: {
       fontFamily: fonts.family.rubik400,

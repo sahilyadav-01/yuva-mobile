@@ -2,7 +2,7 @@ import React  from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import styles from './style';
-import { DARK_BLUE, DARK_GRAY } from '../../../../styles/colors';
+import { BLACK, DARK_BLUE, DARK_GRAY } from '../../../../styles/colors';
 import { ADD_MEMBER, AGE, NAME, RELATIONSHIP } from '../../constant';
 import { color } from 'react-native-reanimated';
 
@@ -23,6 +23,7 @@ const AddDependentCard = ({
     saveButtonText,
     separatorStyle,
     dropdownBoxStyle,
+    inputStyle
   } = styles({disabled: false});
   
   return (
@@ -30,31 +31,28 @@ const AddDependentCard = ({
       <View style={scrollViewContainer}>
         <TextInput
           placeholder={NAME}
-          placeholderTextColor={DARK_GRAY}
+          placeholderTextColor={BLACK}
           onChangeText={onNameChange}
           style={textInputStyle}
         />
         <TextInput
           placeholder={AGE}
-          placeholderTextColor={DARK_GRAY}
+          placeholderTextColor={BLACK}
           keyboardType="number-pad"
           onChangeText={onAgeChange}
           style={textInputStyle}
         />
-        <>
           <SelectList
             setSelected={setSelectedRelation}
             search={false}
             data={relationsData.map(item=>{return {...item,value:item?.value?.name}})}
             placeholder={RELATIONSHIP}
-            placeholderTextColor={DARK_GRAY}
+            placeholderTextColor={BLACK}
             boxStyles={dropdownBoxStyle}
-            inputStyles={{color: relationSelected ? DARK_BLUE : DARK_GRAY}}
+            inputStyles={inputStyle}
             onSelect={onSelect}
-            dropdownTextStyles={{color:DARK_GRAY}}
+            dropdownTextStyles={inputStyle}
           />
-          <View style={separatorStyle} />
-        </>
         <TouchableOpacity onPress={onAddMember} style={saveDetailsButton}>
           <Text style={saveButtonText}>{ADD_MEMBER}</Text>
         </TouchableOpacity>

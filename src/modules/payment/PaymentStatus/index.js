@@ -14,7 +14,7 @@ import {
 } from './constants';
 import {usePaymentStatus} from './hooks/usePaymentStatus';
 import {styles} from './style';
-import { WHITE } from '../../../styles/colors';
+import { MARINER, WHITE } from '../../../styles/colors';
 
 const PaymentStatus = ({paymentProps}) => {
   const {paymentSuccess, loading, onCrossPress} = usePaymentStatus(paymentProps);
@@ -34,7 +34,7 @@ const PaymentStatus = ({paymentProps}) => {
   if (loading)
     return (
       <View style={indicatorStyle}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color={MARINER} />
       </View>
     );
   return (
@@ -42,7 +42,7 @@ const PaymentStatus = ({paymentProps}) => {
       <View style={container}>
         <View style={screenContainer}>
           <View style={imageContainer}>
-            {paymentProps?.cod ? (<Image source={PNG.YUVA_LOGO} resizeMode='contain' style={imageStyle} />) : (<Image source={paymentProps?.zeroPayment || paymentSuccess ? PNG.PaymentSuccessful : PNG.PaymentFail} resizeMode='contain' style={imageStyle} />)}
+            {paymentProps?.cod ? (<Image source={PNG.PaymentSuccessful} resizeMode='contain' style={imageStyle} />) : (<Image source={paymentProps?.zeroPayment || paymentSuccess ? PNG.PaymentSuccessful : PNG.PaymentFail} resizeMode='contain' style={imageStyle} />)}
           </View>
           <Text style={paymentStatus}>
             {paymentProps?.cod ? COD_PAYMENT_STATUS : paymentProps?.zeroPayment ? ZERO_PAYMENT_STATUS : paymentSuccess ? PAYMENT_SUCCESS_STATUS : PAYMENT_FAILURE_STATUS}

@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { YuvaService } from '../../../App';
 import { setProfileStatus, setJwt, setRefreshToken } from '../LocalStore';
@@ -336,6 +337,7 @@ const profileSlice = createSlice({
       }
     },
     [updateProfile.rejected]: (state, { payload }) => {
+      if(payload?.response?.status === 409) Alert.alert('Alert',`${payload?.response?.data?.errorMessage}. Please save the details to proceed further.`)
       state.apiError = true;
       state.userDetails = null;
       state.loading = false;
@@ -387,9 +389,6 @@ const profileSlice = createSlice({
     [logoutThunk.fulfilled]: state => {
       state.profileUpdated = false;
     },
-    /**
-     * planIsSubscribed
-     */
     [planIsSubscribedThunk.pending]: state => {
       state.loading = true;
     },

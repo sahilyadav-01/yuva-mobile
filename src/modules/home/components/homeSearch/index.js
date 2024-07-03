@@ -40,11 +40,11 @@ export const HomeSearch = () => {
   } = useHomeSearch();
   const style = styles();
 
-  const renderListItem = ({item}) => {
+  const RenderListItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() =>
-          onItemPress({name: item.name, attributeUuid: item.id, item: text})
+        onPress={() => 
+          onItemPress({name: item.name, attributeUuid: item.id, item: text, type: item?.test ? 'TEST' : 'PACKAGE'})
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>{item?.name}</Text>
@@ -56,26 +56,28 @@ export const HomeSearch = () => {
     return (
       <TouchableOpacity
         onPress={() => onResultPress(item)}
-        style={style.resultItem}>
+        style={style.listItemContainer}>
         <Text style={style.listItem}>{item}</Text>
-        <SVG.LatestSearch />
       </TouchableOpacity>
     );
   };
 
   const renderSearchResults = ({item}) => {
+    const type = item?.packageUuid ? 'PACKAGE' : item?.testId ? 'TEST' : 'PRODUCT';
     return (
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
           onItemPress({
-            name: item?.packageName ?? item?.testName,
-            attributeUuid: item.packageUuid ?? item?.testId,
+            name: item?.packageName ?? item?.testName ?? item?.name,
+            attributeUuid: item.packageUuid ?? item?.testId ?? item?.productId,
             item: text,
+            type,
           })
+        }
         }
         style={style.listItemContainer}>
         <Text style={style.listItem}>
-          {item?.packageName ?? item?.testName}
+          {item?.packageName ?? item?.testName ?? item?.name}
         </Text>
       </TouchableOpacity>
     );
@@ -85,9 +87,6 @@ export const HomeSearch = () => {
     <ScrollView nestedScrollEnabled={true} style={style.container}>
       <View style={style.headerContainer}>
         <View style={style.rowContainer}>
-          <View style={style.searchContainer}>
-            <SVG.SearchIcon type="small" />
-          </View>
           <TextInput
             onSubmitEditing={onSubmit}
             placeholder={SEARCH_PLACEHOLDER}
@@ -97,6 +96,9 @@ export const HomeSearch = () => {
             placeholderTextColor={MANATEE}
             returnKeyType='search'
           />
+          <View style={style.searchContainer}>
+            <SVG.HeaderSearch/>
+          </View>
         </View>
         <View style={style.spaceContainer} />
         <View style={style.popularSearchContainer}>
@@ -124,10 +126,11 @@ export const HomeSearch = () => {
             style={style.flatListStyle}
             data={popularTestsData}
             keyExtractor={(_, index) => index}
-            renderItem={renderListItem}
+            renderItem={({item}) => <RenderListItem item={item} overlay={overlay}/>}
             onEndReached={onListEndReached}
             nestedScrollEnabled={true}
             onEndReachedThreshold={0.001}
+            ItemSeparatorComponent={()=><View style={{height:6}}/>}
           />
         </View>
       )}
@@ -144,6 +147,7 @@ export const HomeSearch = () => {
           keyExtractor={(_, index) => index}
           renderItem={renderLatestSearch}
           nestedScrollEnabled={true}
+          ItemSeparatorComponent={()=><View style={{height:6}}/>}
           ListEmptyComponent={() => {
             return (
               <View style={style.emptyContainerView}>
@@ -156,7 +160,8 @@ export const HomeSearch = () => {
       {overlay && (
         <View style={style.searchResultContainer}>
           <TouchableOpacity onPress={onCrossPress} style={style.crossContainer}>
-            <Cross name='cross' size={18} color={BLACK}/>
+            <Cross name='cross' size={24} color={BLACK}/>
+            <Text style={style.popularText}>Search Results</Text>
           </TouchableOpacity>
           {elasticSearchData.length === 0 && (
             <View style={{paddingBottom: 10}}>
@@ -165,11 +170,12 @@ export const HomeSearch = () => {
           )}
           {elasticSearchData.length > 0 && (
             <FlatList
-              keyboardShouldPersistTaps="handled"
               style={style.searchResultListContainer}
-              data={elasticSearchData}
+              keyboardShouldPersistTaps="handled"
+              data={[...elasticSearchData,...elasticSearchData]}
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderSearchResults}
+              ItemSeparatorComponent={()=><View style={{height:6}}/>}
             />
           )}
         </View>

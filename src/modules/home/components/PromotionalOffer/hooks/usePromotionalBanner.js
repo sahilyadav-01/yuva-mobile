@@ -8,7 +8,6 @@ import {
   redeemCouponsSliceThunk,
 } from '../../../../../store/reducers/CouponSlice';
 import {
-  createCartGuestThunk,
   createCartUserThunk,
   removeCouponCart,
 } from '../../../../../store/reducers/CartSlice';
@@ -44,11 +43,9 @@ export const usePromotionalBanner = () => {
       selectedItem !== null &&
       clearCoupons
     ) {
-      const dispatcher =
-        loggedIn === 'loggedIn' ? createCartUserThunk : createCartGuestThunk;
       setClearCoupons(false);
       dispatch(
-        dispatcher({
+        createCartUserThunk({
           cartDto: {
             ...cart,
             itemDtoList: [

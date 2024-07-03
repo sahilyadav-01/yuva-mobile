@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import {ORANGE, ORANGE_GREY, SILVER_CHALICE, CYAN_BLUE, GREEN} from '../../../../styles/colors';
+import {SILVER_CHALICE, CYAN_BLUE, GREEN, MARINER, ANAKIVA} from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
@@ -107,7 +107,7 @@ const SignUpDetailsCard = props => {
         disabled={!signUp?.enableSignUpButton}
         style={{
           ...style.buttonContainer,
-          backgroundColor: signUp?.enableSignUpButton ? ORANGE : ORANGE_GREY,
+          backgroundColor: signUp?.enableSignUpButton ? MARINER : ANAKIVA,
         }}
         onPress={() => {
           if (signUp?.enableSignUpButton)

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE } from '../../../../styles/colors';
+import { FLASH_WHITE, PLATINUM, DARK_BLUE, WHITE, CATSKILL_WHITE, BLACK, ZIRCON } from '../../../../styles/colors';
 import { ABSOLUTE, CENTER, FLEX_END, RIGHT, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 
@@ -44,11 +44,15 @@ const styles = ({ disabled }) => {
       justifyContent: CENTER,
     },
     textInputStyle: {
-      borderBottomWidth: 1,
-      borderColor: PLATINUM,
-      paddingBottom: 5,
-      marginBottom: 35,
-      color: DARK_BLUE,
+      paddingVertical: 12,
+      paddingLeft:20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderWidth: 0.5,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
+      marginBottom: 8
     },
     separatorStyle: {
       height: 1,
@@ -56,7 +60,18 @@ const styles = ({ disabled }) => {
       backgroundColor: PLATINUM,
       marginBottom: 30,
     },
-    dropdownBoxStyle: { borderWidth: 0, paddingLeft: 5 },
+    dropdownBoxStyle:{
+      paddingVertical: 12,
+      paddingLeft:20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
+      borderWidth: 0.5,
+      borderColor: BLACK,
+      marginBottom: 8,
+    },
     modalView:{
       flex: 1,
       justifyContent:FLEX_END
@@ -99,13 +114,18 @@ const styles = ({ disabled }) => {
       position:ABSOLUTE,
       right:10,
       top:-55,
-    
-
     },
     verifyStyle: {
-      marginTop: -32,
       textAlign: RIGHT,
-      color: DARK_BLUE,
+      color: BLACK,
+      fontFamily: fonts.family.montserrat400,
+      fontSize: fonts.size.fontSize12,
+      marginBottom: 8,
+    },
+    inputStyle: {
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
     }
   });
 };

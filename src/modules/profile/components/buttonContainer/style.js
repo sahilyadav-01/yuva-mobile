@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {WHITE, ORANGE, ORANGE_GREY} from '../../../../styles/colors';
+import {WHITE, ANAKIVA, MARINER} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
 const styles = ({disabled}) => {
@@ -10,7 +10,7 @@ const styles = ({disabled}) => {
       flexDirection: ROW,
       paddingVertical: 16,
       marginBottom: 20,
-      backgroundColor: disabled ? ORANGE_GREY : ORANGE,
+      backgroundColor: disabled ? ANAKIVA : MARINER,
       borderRadius: 8,
       alignItems: CENTER,
       justifyContent: CENTER,
@@ -20,7 +20,7 @@ const styles = ({disabled}) => {
       flexDirection: ROW,
       paddingVertical: 14,
       marginBottom: 45,
-      backgroundColor: disabled ? ORANGE_GREY : ORANGE,
+      backgroundColor: disabled ? ANAKIVA : MARINER,
       borderRadius: 8,
       alignItems: CENTER,
       justifyContent: CENTER,

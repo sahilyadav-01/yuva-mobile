@@ -1,28 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 import { useDispatch, useSelector } from 'react-redux';
 import { allAppointmentThunk } from '../../../store/reducers/AppointmentSlice';
 import { popularTestsSliceThunk } from '../../../store/reducers/PopularTestsSlice ';
 import { lifeStyleSliceThunk } from '../../../store/reducers/LifeStyleSlice';
-import { getCartGuestThunk, getCartUserThunk, } from '../../../store/reducers/CartSlice';
-import {planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
+import { getCartUserThunk, } from '../../../store/reducers/CartSlice';
+import {fetchHomeScreenPackages, fetchHomeScreenPlans, fetchHomeScreenTests, planPopularThunk, popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import { getServicesThunk } from "../../../store/reducers/AttributeSlice";
 import { DIABETES, DIAGNOSTICS, EMRM_SCREEN_NAME, HEALTH_CHECKUP, HRA, HYPER_TENSION, OBESITY, OPD, PHARMACY, SMOKING_AND_ALCOHOL, TALK_TO_DOCTOR, THYROID, WOMEN_HEALTH } from "../constant";
 import { SVG } from "../../../../assets";
 import { fetchBannerDetails1, fetchBannerDetails2, fetchBannerDetails3 } from "../../../store/reducers/BannerSlice";
 import { setHomeSearch } from "../../../store/reducers/HomeSearchSlice";
+import { getTopProducts } from "../../../store/reducers/ProductSlice";
+import { getPlatform } from "../../../utils/utils";
+import { Alert, Linking } from "react-native";
+import { getCurrentCity, setPermission } from "../../../store/reducers/LocationSlice";
+import { getAllCityNamesThunk } from "../../../store/reducers/SearchNetworkSlice";
 
 export const useHome = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
+  const focused = useIsFocused();
+  const Platform = getPlatform();
   const { loggedIn } = useSelector(state => state.auth);
   const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
-  const { popularPackageName } = useSelector(state => state.programAndPlan);
+  const { popularPackageName,homeTests,homePackages } = useSelector(state => state.programAndPlan);
   const { popularTest } = useSelector(state => state.popularTests);
   const { banner1, banner3 } = useSelector(state => state.banner);
   const { showSearchView } = useSelector(state=>state.homeSearch);
-  const focused = useIsFocused();
+  const { topProducts } = useSelector(state=>state.product);
+  const {permissionStatus,currentCityDetails} = useSelector(state=>state.location);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [enableGps,setEnableGps] = useState(false);
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -32,21 +44,20 @@ export const useHome = () => {
           params: route?.params?.screenParams,
         });
       }
-      const isActive = 'true';
+      dispatch(fetchHomeScreenPlans());
+      dispatch(fetchHomeScreenPackages());
+      dispatch(fetchHomeScreenTests());
+      dispatch(getTopProducts());
       dispatch(getServicesThunk({}));
-      dispatch(allAppointmentThunk({ isActive }));
-      dispatch(popularPackageNameThunk({ pageNo: 1, pageSize: 4, search: '' }));
-      dispatch(popularTestsSliceThunk({ pageNo: 1, pageSize: 4, search: '' }));
+      dispatch(allAppointmentThunk({ isActive:true }));
       dispatch(lifeStyleSliceThunk({}));
       dispatch(planPopularThunk())
       dispatch(fetchBannerDetails1({position:1,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails2({position:2,screenType:'HOME_SCREEN'}));
       dispatch(fetchBannerDetails3({position:3,screenType:'HOME_SCREEN'}));
-      if (loggedIn === 'loggedIn') {
-        dispatch(getCartUserThunk());
-      } else {
-        dispatch(getCartGuestThunk());
-      }
+      dispatch(getCartUserThunk());
+      if(permissionStatus || Platform.isIOS) fetchCurrentCity();
+      else dispatch(getAllCityNamesThunk());
     }
   }, [focused, loggedIn]);  
   const servicesArray = [
@@ -112,20 +123,54 @@ export const useHome = () => {
   };
   const onHealthPackagePress = (index) => navigation.navigate('HealthCheckupsTests', { index });
 
+  const onCategoryViewAllPress = () => navigation.navigate('Product',{screen: 'Products'});
+
   const onBackPress = () => dispatch(setHomeSearch(false));
 
+  const onSelectCategory = (index) => setActiveIndex(index);
+
+  const onAdd = (productId) => {
+    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+  }
+
+  const onViewAllServices = (services) => navigation.navigate('Services',{services})
+
+  const fetchCurrentCity = () => {
+    const onSuccess = (args) => {
+      const {coords:{latitude,longitude}} = args;
+      dispatch(getCurrentCity({latitude,longitude}))
+      dispatch(getAllCityNamesThunk());
+    };
+    const onError = (error) => {
+     if(Platform.isAndroid && error.code === 2) setEnableGps(true);
+     else if(Platform.isIOS) dispatch(setPermission(false));
+     dispatch(getAllCityNamesThunk());
+    }
+    Geolocation.getCurrentPosition(onSuccess,onError,{enableHighAccuracy:true})
+  }
+
   return {
+    activeIndex,
     name,
     renderLifeStyleItem,
     onPackagePress,
     renderservicesItem,
     popularPackageName,
     onHealthPackagePress,
+    onCategoryViewAllPress,
     popularTest,
     banner1,
     banner3,
     loggedIn,
     showSearchView,
     onBackPress,
+    topProducts,
+    onSelectCategory,
+    onAdd,
+    homeTests,
+    homePackages,
+    onViewAllServices,
+    enableGps,
+    currentCityDetails
   };
 };

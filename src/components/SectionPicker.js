@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import { useDispatch } from 'react-redux';
-import { DARK_GRAY, SLATE_GRAY } from '../styles/colors';
+import { DARK_BLUE, DARK_GRAY, SLATE_GRAY, WHITE } from '../styles/colors';
+import { CENTER } from '../styles/constants';
 
 const SectionPicker = ({
   dispatcher,
@@ -21,14 +22,15 @@ const SectionPicker = ({
   };
   return (
     <View className="mt-[20px]">
-      <Text style={{color: '#282A2E'}} className="text-base mb-[8px]" >{text}</Text>
+      <Text style={{color: SLATE_GRAY}} className="text-base mb-[8px]" >{text}</Text>
       <SelectList
         boxStyles={{
-          backgroundColor: 'white',
+          backgroundColor: WHITE,
           borderRadius: 8,
           height: 50,
           borderWidth: 1,
-          borderColor: '#1D2334',
+          borderColor: DARK_BLUE,
+          alignItems: CENTER,
         }}
         inputStyles={{color: SLATE_GRAY}}
         //placeholder={(defaultAnswer === undefined ||  defaultAnswer === '') ? '' : data[defaultAnswer].value}

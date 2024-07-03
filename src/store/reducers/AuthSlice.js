@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import firebaseMessaging from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { Alert } from 'react-native';
+import { Alert, PermissionsAndroid } from 'react-native';
 import {
   setObject,
   getObject,
@@ -190,7 +190,10 @@ export const loginThunk = createAsyncThunk(
         emailOrNumber: email,
         password: password,
       });
-      if(response?.data?.data === null || response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
+      if(response?.data?.data === null) {
+        return {...response.data,type};
+      }
+      if(response?.data?.data?.roles?.includes('RETAIL_USER','EMPLOYEE')) {
         await setJwt(response.data.data.jwt);
         await setRefreshToken(response.data.data.refreshToken);
         await setRole(response.data.data.roles.includes('EMPLOYEE'));
@@ -261,7 +264,12 @@ export const logoutThunk = createAsyncThunk(
       await clearRefreshToken();
       await clearRole();
       await clearProfileStatus();
-      return value;
+      const status = await PermissionsAndroid.request('android.permission.ACCESS_FINE_LOCATION',{
+        title: 'Request to access geo-location',
+        message: 'Permission to access your geo-location is used to provide services specific to your location',
+        buttonPositive: 'Yes'
+      })
+      return status==='granted';
       }
     } catch (error) {
       return rejectWithValue(error);
@@ -427,6 +435,7 @@ const authSlice = createSlice({
       state.user.status = false;
       state.apiError = false;
       state.type = ''
+      state.navigateToRegister = false;
     },
     [loginThunk.fulfilled]: (state, action) => {
       if (action.payload.data) {

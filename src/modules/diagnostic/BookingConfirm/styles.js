@@ -1,44 +1,36 @@
 import { StyleSheet } from 'react-native';
-import { ORANGE, WHITE, CYAN_BLUE, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
+import { MARINER, WHITE, BLACK, DARK_GREY, LIGHT_MERCURY, LIGHT_GREYISH_RED, BOX_SHADOW } from '../../../styles/colors';
 import { FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 import { CENTER } from './constants';
 
 export const styles = StyleSheet.create({
-
     boxStyles: {
+        marginVertical:8,
         marginHorizontal:12,
-        marginTop:5,
-        borderWidth: 0.1,
-        backgroundColor: LIGHT_GREYISH_RED,
+        borderWidth: 0.5,
+        backgroundColor: WHITE,
         color: LIGHT_GREYISH_RED,
-        minHeight: 42,
+        alignItems: CENTER,
         borderRadius: 0,
-        marginBottom: 23,
         color: LIGHT_GREYISH_RED,
         borderColor:LIGHT_MERCURY,
-    },
-    valueStyle: {
-        alignSelf: CENTER,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize12,
-        color: CYAN_BLUE,
+        textAlign: CENTER,
+        paddingVertical:8
     },
     backGroundStyle: {backgroundColor: WHITE, marginBottom: 0},
     dropStyles: {
-        marginHorizontal: 13,
         borderColor: LIGHT_MERCURY,
-        marginBottom: 8
       },
       valueStyle: {
         alignSelf: CENTER,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
-        color: ORANGE,
+        color: MARINER,
       },
     contentContainerStyle: {
-        flexGrow: 1,
-        paddingBottom: 400,
+        flex: 1,
+        paddingHorizontal: 16,
     },
     dateTime: {
         backgroundColor: WHITE,
@@ -47,13 +39,13 @@ export const styles = StyleSheet.create({
         height: 50,
     },
     touchableButton: {
-        backgroundColor: ORANGE,
-        marginTop: 40,
-        marginHorizontal:13,
-        borderRadius: 8
+        backgroundColor: MARINER,
+        marginTop: 24,
+        borderRadius: 8,
+        alignItems: CENTER,
+        justifyContent: CENTER
     },
     theme: { colors: { text: DARK_GREY } },
-
     dateTimePicker: {
         marginHorizontal:25,
         minHeight: 42,
@@ -71,10 +63,8 @@ export const styles = StyleSheet.create({
 
     },
     booked: {
-        marginTop: 22,
-        marginLeft: 16,
         fontWeight: fonts.weight.fontWeight600,
-        color: ORANGE,
+        color: MARINER,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
     },
@@ -82,22 +72,21 @@ export const styles = StyleSheet.create({
         flexDirection: ROW
     },
     selectDate: {
-        marginTop: 30,
-        marginLeft: 16,
+        marginTop: 16,
         marginRight: 140,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik600,
         fontSize: fonts.size.fontSize14,
     },
     Date: {
         marginTop: 16,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
     Time: {
         marginTop: 12,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
@@ -109,7 +98,7 @@ export const styles = StyleSheet.create({
     },
     AddMember: {
         marginLeft: 278,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize10,
         marginRight: 18,
@@ -124,7 +113,7 @@ export const styles = StyleSheet.create({
     SelectMember: {
         marginHorizontal:12,
         marginTop: 26,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
     },
@@ -137,7 +126,7 @@ export const styles = StyleSheet.create({
         marginLeft: 7.33,
         minHeight: 25,
         marginTop: 9,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik500,
         fontSize: fonts.size.fontSize12,
     },
@@ -163,7 +152,7 @@ export const styles = StyleSheet.create({
     },
     adressName: {
         marginLeft: 40,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize12,
 
@@ -172,14 +161,13 @@ export const styles = StyleSheet.create({
         marginTop: 11,
         marginLeft: 40,
         marginBottom: 15,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontFamily: fonts.family.rubik400,
         fontSize: fonts.size.fontSize14,
     },
     border: {
         borderColor:WHITE,
         marginTop: 14,
-        marginHorizontal:16,
         shadowColor: WHITE,
         shadowOpacity: 0.5,
         borderRadius: 6,
@@ -222,4 +210,8 @@ export const styles = StyleSheet.create({
         marginTop:9,
         marginLeft:7.33,
     },
+    screenContainer: {
+        flex: 1,
+        paddingBottom: 24,
+    }
 })

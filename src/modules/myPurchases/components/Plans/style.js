@@ -29,7 +29,7 @@ export const styles = () => {
       color:INDIGO,
     },
     rowContainer: {flexDirection: ROW},
-    iconContainer: {marginLeft: 16},
+    iconContainer: {marginLeft: 16,justifyContent:CENTER},
     inputStyles: {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,

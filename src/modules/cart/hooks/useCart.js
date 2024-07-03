@@ -1,17 +1,16 @@
+import { useEffect, useState } from 'react';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  createCartGuestThunk,
   createCartUserThunk,
-  removeCouponCart,
 } from '../../../store/reducers/CartSlice';
-import { LOGIN_SIGNUP, SELECT_ADD_MEMBER,TO_BE_PAID, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
-import { deleteCartThunk, getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
-import { useEffect, useState } from 'react';
+import { LOGIN_SIGNUP, SELECT_ADD_MEMBER, MYSELF, OTHER_RELATION, LOGIN_SCREEN_NAVIGATION, CHECKOUT_ADDRESS_NAVIGATION, MALE, FEMALE, KEY_VALUE1, KEY_VALUE2 } from '../constants';
+import { deleteCartThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
 import { addRelation, getActiveRelations, getRelations, profileThunk, resetRelations } from '../../../store/reducers/ProfileSlice';
 import { getAge } from '../../../utils/utils';
 import { dispatch_processingCharge, dispatch_relationData } from '../../../store/reducers/CheckOutSlice';
-import { clearApiErrorMessage, redeemCouponsSliceThunk, removeCoupon, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
+import { clearApiErrorMessage, redeemCouponsSliceThunk, removePlaneCoupon } from '../../../store/reducers/CouponSlice';
+import { setRedirectState } from '../../../store/reducers/NotificationSlice';
 
 export const useCart = (args) => {
   const fromHome = args?.isHomeScreen ?? false;
@@ -19,12 +18,13 @@ export const useCart = (args) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { cart, loading, addToCartItem } = useSelector(state => state.cart);
+  const { cart, loading, cartLoading, cartEmpty } = useSelector(state => state.cart);
   const { coupon } = useSelector(state => state);
-  const { isRemoved, amountToBePaid, processingCharge, couponViewCart } = cart || {};
+  const { isRemoved, processingCharge } = cart || {};
   const { loggedIn } = useSelector(state => state.auth);
   const isLoggedIn = loggedIn === 'loggedIn';
-  const { redeemCoupons, couponView, amountToBePaidCoupon, couponId } = useSelector(state => state.coupon);
+  const { redeemCoupons, couponView, couponId } = useSelector(state => state.coupon);
+  const [initialLoad, setInitialLoad] = useState(true);
   const [addButtonPress, setAddButtonPress] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -42,13 +42,16 @@ export const useCart = (args) => {
     { key: KEY_VALUE1, value: MALE },
     { key: KEY_VALUE2, value: FEMALE },
   ]
-  /** */
-
+  
   const onPressCardButton = () => {
     if (isLoggedIn) {
+      const productTypes = getProductTypes();
       setAddButtonPress(true);
-      dispatch(getCartUserThunk());
-      if (userData == null) {
+      if((!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST'))){
+        dispatch(dispatch_processingCharge(processingCharge));
+        navigation.navigate(CHECKOUT_ADDRESS_NAVIGATION);
+      }
+      else if (userData == null) {
         openModal();
       } else {
         dispatch(dispatch_relationData({ userData }));
@@ -79,18 +82,39 @@ export const useCart = (args) => {
     );
   }
 
-  const addToCart = (obj, productType) => {
-    const dToObj = {...obj,productType,count:1}
-    const dispatcher = isLoggedIn ? createCartUserThunk : createCartGuestThunk;
+  const addToCart = (obj, productType, count = 1) => {
+    const dToObj = {...obj,productType,count}
+    const itemDtoList = cart.itemDtoList.map(item=>{
+      const {name,count,cost,productId,productType} = item;
+      return {name,count,cost,productId,productType,productPriceId:item?.productPriceId ?? null}
+    })
     const cartDto = {
       ...cart,
-      itemDtoList: [...cart.itemDtoList, dToObj],
+      itemDtoList: [...itemDtoList, dToObj],
     };
-    dispatch(dispatcher({ cartDto }));
+    dispatch(createCartUserThunk({ cartDto }));
   };
+
+  const fetchRemoveParams = (item) => {
+      switch(item?.productType){
+        case 'TEST':
+          if(item?.productId)
+          return {type:'TEST',itemId:item?.productId}
+        return null;
+        case 'PACKAGE':
+          if(item?.productId)
+          return {type:'PACKAGE',itemId:item?.productId}
+        return null;
+        case 'PRODUCT':
+          if(item?.productPriceId)
+          return {type:'PRODUCT',itemId:item?.productPriceId}
+        return null;
+      }
+  }
+
   const onRemove = item => {
-    const { productId: itemId } = item || {};
-    itemId && dispatch(deleteCartThunk({ itemId }));
+    const params = fetchRemoveParams(item);
+    dispatch(deleteCartThunk(params));
   };
 
   const onAddMembersPress = () => {
@@ -105,10 +129,20 @@ export const useCart = (args) => {
     }
   }
 
+  const getProductTypes = () => {
+    const itemList = cart?.itemDtoList;
+    if(itemList?.length > 0) {
+      return itemList?.map(item=>item?.productType);
+    }
+  }
+
   useEffect(()=>{
-   if(couponId === null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaid))
-   else if(couponId !== null && userData !== null) setButtonText(TO_BE_PAID(amountToBePaidCoupon))
-   else if(userData === null && isLoggedIn) setButtonText(SELECT_ADD_MEMBER)
+   const productTypes = getProductTypes();
+   if(couponId === null && userData !== null) setButtonText('Checkout')
+   else if(couponId !== null && userData !== null) setButtonText('Checkout')
+   else if(userData === null && isLoggedIn && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText('Checkout')
+   else if(userData === null && isLoggedIn && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText('Checkout')
    else if(userData === null && !isLoggedIn) setButtonText(LOGIN_SIGNUP)
   },[userData])
 
@@ -121,23 +155,34 @@ export const useCart = (args) => {
   }, [relationAdded])
 
   useEffect(() => {
-    if(userData === null && loggedIn === 'loggedIn') setButtonText(SELECT_ADD_MEMBER)
+    const productTypes = getProductTypes();
+    if(userData === null && loggedIn === 'loggedIn' && (productTypes?.includes('PACKAGE') || productTypes?.includes('TEST'))) setButtonText(SELECT_ADD_MEMBER)
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId === null) setButtonText('Checkout')
+    else if(userData === null && loggedIn === 'loggedIn' && (!productTypes?.includes('PACKAGE') && !productTypes?.includes('TEST')) && couponId !== null) setButtonText('Checkout')
     else if(userData === null && loggedIn !== 'loggedIn') setButtonText(LOGIN_SIGNUP)
-    if (loggedIn === 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved ) {
+    if (route?.name === 'Cart' && navigation.isFocused() && !isRemoved && initialLoad ) {
+      setInitialLoad(false);
       dispatch(getCartUserThunk());
-    } else if(loggedIn !== 'loggedIn' && route?.name === 'Cart' && navigation.isFocused() && !isRemoved) {
-      dispatch(getCartGuestThunk());
     }
-  }, [focused])
+  }, [focused,cart?.itemDtoList])
 
 
   useEffect(() => {
-    if (isLoggedIn && isRemoved && !fromHome) {
+    if (isRemoved && !fromHome) {
       dispatch(getCartUserThunk());
-    } else if (isRemoved && !fromHome) {
-      dispatch(getCartGuestThunk());
     }
   }, [isRemoved]);
+
+  useEffect(()=>{
+    if(route?.name === 'Cart' && navigation?.isFocused() && !cartLoading && cartEmpty && cart?.couponViewCart?.length > 0) {
+      dispatch(redeemCouponsSliceThunk({isLoggedIn, couponCode:cart?.couponViewCart}));
+    }
+  },[focused,cartLoading,cartEmpty])
+
+  useEffect(()=>{
+    if(cartLoading) setRedirectState(true);
+    else setRedirectState(false);
+  },[cartLoading])
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
@@ -220,13 +265,6 @@ export const useCart = (args) => {
     }
   }, [checkBoxStatus, checkBoxFlag]);
 
-  useEffect(() => {
-    if ((couponViewCart || couponView) && (isRemoved || addToCartItem) && navigation.isFocused() && route?.name === 'Cart') {
-      dispatch(redeemCouponsSliceThunk({ isLoggedIn }));
-      dispatch(removeCoupon());
-      dispatch(removeCouponCart());
-    }
-  }, [isRemoved, addToCartItem, focused]);
   const openModal = () => {
     dispatch(profileThunk());
     dispatch(getRelations());

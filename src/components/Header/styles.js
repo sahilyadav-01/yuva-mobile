@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {
   BLACK,
   CYAN_BLUE,
+  MARINER,
   ORANGE,
   PINK_ORANGE,
   WHITE,
@@ -20,37 +21,22 @@ import {getDimensions} from '../../utils/utils';
 const {height} = getDimensions();
 export const styles = StyleSheet.create({
   container: {
-    zIndex: 5
+    zIndex: 5,
   },
+  screenContainer: {zIndex:10,elevation:10,shadowOffset:{width:1,height:1},shadowOpacity:0.3,backgroundColor:WHITE},
   headerContainer: {
     minHeight: 0.12 * height,
     width: '100%',
     backgroundColor: WHITE,
     paddingHorizontal: 16,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowColor: BLACK,
-    elevation: 10,
     paddingBottom: 24,
-    zIndex: 1,
   },
   topSection: {
-    paddingHorizontal: 16,
     backgroundColor: WHITE,
-    paddingVertical: 16,
+    paddingVertical: 8,
     flexDirection: ROW,
     alignItems: CENTER,
-    justifyContent: SPACE_BETWEEN,
-    elevation: 10,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowColor: BLACK,
+    marginBottom: 8,
   },
   nameContainer: {
     marginVertical: 4,
@@ -142,4 +128,58 @@ export const styles = StyleSheet.create({
   searchStyle: {
     width: 8,
   },
+  homeTopSection: {
+    backgroundColor: WHITE,
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
+    paddingVertical: 8,
+    marginBottom: 8,
+    alignItems: CENTER,
+    paddingHorizontal: 16,
+  },
+  backContainer: {width: '20%',paddingLeft:16,backgroundColor:WHITE},
+  mainContainer: {width: '60%'},
+  searchIconContainer: {width: '20%', alignItems: FLEX_END, paddingRight: 16},
+  titleTextStyle: {
+    textAlign: CENTER,
+    color: BLACK,
+    fontFamily: fonts.family.montserrant800,
+    fontSize: fonts.size.fontSize16,
+    alignSelf: CENTER,
+  },
+  backButton: {
+    width: 42,
+    backgroundColor: WHITE,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 8,
+    elevation: 1,
+    zIndex: 20,
+    shadowColor: BLACK,
+    shadowOffset: {width:1,height:1},
+    shadowOpacity: 0.3
+  },
+  loginContainer: {
+    alignItems: CENTER,
+    justifyContent: CENTER,
+    paddingVertical: 8,
+    backgroundColor: MARINER,
+    borderRadius: 6,
+  },
+  loginTextStyle: {
+    fontFamily: fonts.family.montserrat600,
+    fontSize: fonts.size.fontSize10,
+    color: WHITE,
+    paddingHorizontal: 24,
+  },
+  nameTextStyle: {
+    fontFamily: fonts.family.montserrat400,
+    fontSize: fonts.size.fontSize14,
+    color: BLACK,
+    marginBottom: 4,
+  },
+  rowContainer: {flexDirection: ROW, alignItems: CENTER},
+  mainContainerStyle: {flexDirection: ROW,maxWidth:'55%'},
+  nameContainerStyle: {marginLeft: 8},
+  imageStyle: {width: 50, height: 50}
 });

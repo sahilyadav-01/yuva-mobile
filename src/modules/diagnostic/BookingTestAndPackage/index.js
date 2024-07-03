@@ -14,7 +14,7 @@ import Header from '../../../components/Header';
 import {useBookingTestAndPackage} from './hooks/useBookingTestAndPackage';
 import {SVG} from '../../../../assets';
 
-const BookingTestAndPackage = () => {
+const BookingTestAndPackage = ({params}) => {
   const {
     packageDetails,
     packageList,
@@ -28,7 +28,8 @@ const BookingTestAndPackage = () => {
     testDetails,
     headerTitle,
     isScreenRes,
-  } = useBookingTestAndPackage();
+  } = useBookingTestAndPackage(params);
+
   const renderItem = ({item, index}) => {
     const onToggle = () => {
       onUpdate(index);
@@ -90,10 +91,10 @@ const BookingTestAndPackage = () => {
   };
 //   if (!renderData) return null;
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <Header showBackButton={true} title={headerTitle()} />
       {renderData ? (
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <ScrollView style={styles.contentContainerStyle}>
           <View style={styles.booksID}>
             <View>
               <View>

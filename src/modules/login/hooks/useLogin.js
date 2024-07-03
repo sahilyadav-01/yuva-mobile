@@ -77,7 +77,7 @@ export const useLogin = () => {
         else navigation.navigate('HomeService');
       }
     }
-  }, [status]);
+  }, [status,navigateToRegister]);
 
   return {
     email,

@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.0</string>
+	<string>3.2.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -57,7 +57,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Granting permission to Camera allows us to fetch your captured profile picture and cover image. We ensure that your date is confidential and will be handled securely</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Permission to access your geo-location is used to provide services specific to your location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Please provide permission to access Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -87,6 +87,13 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-ExtraBold.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Thin.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

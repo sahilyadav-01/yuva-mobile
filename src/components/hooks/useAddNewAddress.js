@@ -78,7 +78,7 @@ let address=`${location} ${location2}`
         else if(dropdownCityId === null) Alert.alert(ALERT,CITY_VALIDATION)
         else if((!(/^\d+$/).test(contact?.toString())) || !contact?.length === 10) Alert.alert(ALERT,PHONE_NUMBER_VALIDATION)
         else {
-            navigation.navigate(navScreen, DATA);
+            navigation.navigate(navScreen, {...DATA,addressAdded:true});
             Alert.alert(ALERT, ADDED_SUCCESSFULLY)
         } 
     }

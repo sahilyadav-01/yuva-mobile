@@ -21,9 +21,6 @@ const DoctorCard = ({
   version,
   hospital,
 }) => {
-  /**
-   * Hooks
-   */
   const params = {
     Doctor: name,
     Specialization: specialization,

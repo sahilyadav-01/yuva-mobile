@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ORANGE, CYAN_BLUE } from "../../../styles/colors";
+import { MARINER, BLACK } from "../../../styles/colors";
 import { CENTER } from "../../../styles/constants";
 import { fonts } from '../../../styles/fonts';
 
@@ -13,25 +13,23 @@ export const styles = StyleSheet.create({
     },
     topContainerTextStyle: {
         marginHorizontal: 30,
-        marginTop: 23.64,
-        fontWeight: fonts.weight.fontWeight600,
-        fontfamily: fonts.family.rubik600,
+        marginTop: 24,
+        fontfamily: fonts.family.montserrat600,
         textAlign: CENTER,
         fontSize: fonts.size.fontSize20,
-        color: ORANGE,
+        color: MARINER,
     },
     topContainerSubTextStyle: {
         marginHorizontal: 30,
-        fontfamily: fonts.family.rubik600,
+        fontfamily: fonts.family.montserrat600,
         marginTop: 30,
-        fontWeight: fonts.weight.fontWeight600,
         textAlign: CENTER,
         fontSize: fonts.size.fontSize14,
-        color: CYAN_BLUE,
+        color: BLACK,
     },
     imageBackground: {
         alignItems: CENTER,
-        marginTop: 23.09,
+        marginTop: 24,
     },
     bottomContainer: {
         marginTop: 28,

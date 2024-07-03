@@ -1,19 +1,21 @@
 import { StyleSheet } from 'react-native';
-import { ORANGE } from '../../../styles/colors';
+import { MARINER, WHITE } from '../../../styles/colors';
 import { fonts } from '../../../styles/fonts';
 
 
 export const styles = StyleSheet.create({
     contentContainerStyle: {
         flexGrow: 1,
-        paddingBottom: 400,
+        backgroundColor: WHITE,
     },
     booked: {
-        marginTop: 22,
-        marginLeft: 16,
-        color: ORANGE,
-        fontFamily: fonts.family.rubik600,
+        marginTop: 16,
+        marginLeft: 20,
+        color: MARINER,
+        fontFamily: fonts.family.montserrat600,
         fontSize: fonts.size.fontSize14,
     },
+    addressContainer: {paddingHorizontal: 20},
+    container: {backgroundColor:WHITE}
 
 })

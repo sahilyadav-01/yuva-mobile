@@ -8,7 +8,7 @@ const ListItem = props => {
   const { item, index } = props;
   const style = styles({ selected: item?.selected });
 
-  const priceComponent = () => {
+  const PriceComponent = ({item}) => {
     if (item?.finalCost === item?.cost) {
       return <Text style={style.priceText}>{`₹ ${item?.cost}/-`}</Text>;
     } else {
@@ -31,7 +31,7 @@ const ListItem = props => {
         {item.packageName || item.testName}
       </Text>
       <View style={style.priceContainer}>
-        {priceComponent()}
+        <PriceComponent item={item}/>
         <TouchableOpacity
           onPress={() => {
             props?.onPackageSelect({ item, index });

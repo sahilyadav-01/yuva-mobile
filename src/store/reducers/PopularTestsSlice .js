@@ -20,7 +20,7 @@ export const testPackageSearchThunk = createAsyncThunk(
     async ({search}, { fulfillWithValue, rejectWithValue }) => {
 
     try {
-      const endpoint = `/test-package/search?search=${search}`;
+      const endpoint = `/search?search=${search}`;
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -31,9 +31,9 @@ export const testPackageSearchThunk = createAsyncThunk(
 );
   export const getElasticSearchResult = createAsyncThunk(
     'search/result',
-      async ({search,uuid}, { fulfillWithValue, rejectWithValue }) => {
+      async ({search,uuid,productTypeEnum}, { fulfillWithValue, rejectWithValue }) => {
       try {
-        const endpoint = `/search/result?${search}${uuid}`;
+        const endpoint = `/search/result?${search}${uuid}${productTypeEnum}`;
         const response = await YuvaService.get(endpoint);
         return response.data;
       } catch (error) {

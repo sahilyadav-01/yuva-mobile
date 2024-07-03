@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, CYAN_BLUE, ORANGE, WHITE} from '../../../../styles/colors';
+import {BLACK, MARINER, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -27,16 +27,14 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   header: {
-    fontFamily: fonts.family.rubik400,
-    fontWeight: fonts.weight.fontWeight700,
+    fontFamily: fonts.family.montserrant700,
     fontSize: fonts.size.fontSize14,
-    color: CYAN_BLUE,
+    color: BLACK,
   },
   description: {
-    fontFamily: fonts.family.rubik400,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize12,
-    color: ORANGE,
+    color: MARINER,
   },
   headerView: {
     paddingVertical: 2,

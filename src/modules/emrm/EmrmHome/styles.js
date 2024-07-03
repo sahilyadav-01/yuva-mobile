@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, ORANGE, WHITE } from '../../../styles/colors';
+import { BLACK, MARINER, WHITE } from '../../../styles/colors';
 import { CENTER } from '../../../styles/constants';
 import { fonts } from '../../../styles/fonts';
 
@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
     headingTextStyle: {
-        fontFamily: fonts.family.rubik600,
+        fontFamily: fonts.family.montserrat600,
         fontWeight: fonts.weight.fontWeight600,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontSize: fonts.size.fontSize14,
         lineHeight: 21,
     },
@@ -25,19 +25,19 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         justifyContent: CENTER,
         alignItems: CENTER,
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
     },
     buttonText: {
-        fontFamily: fonts.family.rubik600,
+        fontFamily: fonts.family.montserrat600,
         fontWeight: fonts.weight.fontWeight600,
         color: WHITE,
         fontSize: fonts.size.fontSize16,
         lineHeight: 24,
     },
     subHeadingTextStyle: {
-        fontFamily: fonts.family.rubik400,
+        fontFamily: fonts.family.montserrat400,
         fontWeight: fonts.weight.fontWeight400,
-        color: ORANGE,
+        color: MARINER,
         fontSize: fonts.size.fontSize14,
         lineHeight: 21,
     },
@@ -48,9 +48,9 @@ export const styles = StyleSheet.create({
         marginTop:15,
     },
     subTextStyle: {
-        fontFamily: fonts.family.rubik400,
+        fontFamily: fonts.family.monsterrant500,
         fontWeight: fonts.weight.fontWeight400,
-        color: CYAN_BLUE,
+        color: BLACK,
         fontSize: fonts.size.fontSize14,
         lineHeight: 21,
     },

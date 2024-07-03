@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BOX_SHADOW, CYAN_BLUE, GREY70, ORANGE, V_LIGHT_GREY, WHITE } from '../../../../styles/colors';
+import { BOX_SHADOW, BLACK, GREY70, MARINER, V_LIGHT_GREY, WHITE } from '../../../../styles/colors';
 import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
 import { fonts } from '../../../../styles/fonts';
 import { getDimensions } from '../../../../utils/utils';
@@ -12,13 +12,15 @@ export const styles = StyleSheet.create({
         marginBottom: 43,
         marginTop: 26,
         marginLeft: 17,
-        fontFamily: fonts.family.rubik600,
+        fontFamily: fonts.family.montserrat600,
         fontSize: fonts.size.fontSize14,
-        color: CYAN_BLUE
+        color: BLACK
     },
     contentContainerStyle: {
         flexGrow: 1,
         paddingBottom: 300,
+        paddingHorizontal: 20,
+        backgroundColor: WHITE
     },
     circle: {
         marginLeft: 41,
@@ -47,7 +49,7 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     touchableButton: {
-        backgroundColor: ORANGE,
+        backgroundColor: MARINER,
         marginTop: 40,
         marginLeft: 13,
         marginRight: 14,
@@ -58,7 +60,7 @@ export const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 15,
         color: WHITE,
-        fontFamily: fonts.family.rubik500,
+        fontFamily: fonts.family.monsterrant500,
         fontSize: fonts.size.fontSize16,
 
     },
@@ -69,8 +71,8 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         marginLeft: 16,
         marginRight: 140,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik600,
+        color: BLACK,
+        fontFamily: fonts.family.montserrat600,
         fontSize: fonts.size.fontSize14,
     },
     Add: {
@@ -90,8 +92,8 @@ export const styles = StyleSheet.create({
         marginLeft: 7.33,
         minHeight: 25,
         marginTop: 9,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik500,
+        color: BLACK,
+        fontFamily: fonts.family.monsterrant500,
         fontSize: fonts.size.fontSize12,
     },
     svg:{
@@ -117,8 +119,8 @@ export const styles = StyleSheet.create({
     },
     adressName: {
         marginLeft: 40,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik400,
+        color: BLACK,
+        fontFamily: fonts.family.montserrat400,
         fontSize: fonts.size.fontSize12,
 
     },
@@ -131,8 +133,8 @@ export const styles = StyleSheet.create({
         marginTop: 11,
         marginLeft: 40,
         marginBottom: 15,
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik400,
+        color: BLACK,
+        fontFamily: fonts.family.montserrat400,
         fontSize: fonts.size.fontSize14,
     },
     Image: {
@@ -147,14 +149,14 @@ export const styles = StyleSheet.create({
     },
     AddText: {
         marginLeft: '6%',
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik600,
+        color: BLACK,
+        fontFamily: fonts.family.montserrat600,
         fontSize: fonts.size.fontSize10,
     },
     check:{
         marginRight: '6%',
-        color: CYAN_BLUE,
-        fontFamily: fonts.family.rubik600,
+        color: BLACK,
+        fontFamily: fonts.family.montserrat600,
         fontSize: fonts.size.fontSize10,
     },
     progress: {

@@ -36,6 +36,8 @@ import SearchNetwork , { SearchNetworkInit } from './reducers/SearchNetworkSlice
 import banner, { bannerInit } from './reducers/BannerSlice';
 import homeSearch, { homeSearchInit } from './reducers/HomeSearchSlice';
 import notification, { notificationInit } from './reducers/NotificationSlice';
+import product, {productInit} from './reducers/ProductSlice';
+import location from './reducers/LocationSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -71,6 +73,7 @@ const storeInitialState = {
   banner: bannerInit,
   homeSearch: homeSearchInit,
   notification: notificationInit,
+  product: productInit,
 };
 
 const appReducer = combineReducers({
@@ -107,6 +110,8 @@ const appReducer = combineReducers({
   banner,
   homeSearch,
   notification,
+  product,
+  location,
 });
 
 const rootReducer = (state, action) => {

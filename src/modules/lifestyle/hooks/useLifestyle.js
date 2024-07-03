@@ -172,7 +172,7 @@ export const useLifestyle = (initialEnum,initialName) => {
         'PACKAGE')
       }
       if (item?.packageUuid && item?.packageUuid.toString() === id.toString() && item.selected === true){
-        onRemove({productId:item?.packageUuid.toString()});
+        onRemove({productId:item?.packageUuid.toString(),productType:'PACKAGE'});
       }
       else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === false){
         addToCart({
@@ -183,7 +183,7 @@ export const useLifestyle = (initialEnum,initialName) => {
         'TEST')
       }
       else if (item?.testId && item?.testId.toString() === id.toString() && item.selected === true){
-        onRemove({productId:item?.testId.toString()});
+        onRemove({productId:item?.testId.toString(),productType:'TEST'});
       }
     });
   };

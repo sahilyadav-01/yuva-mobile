@@ -8,8 +8,6 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import * as Progress from 'react-native-progress';
-import PickerData from '../../../utils/PickerData';
-import SelectList from 'react-native-dropdown-select-list';
 import Header from '../../../components/Header';
 import {
   BUTTON_TEXT,
@@ -27,10 +25,10 @@ import {
 } from '../constant';
 import {useSection1} from './hooks/useSection1';
 import {styles} from './styles';
-import {DARK_GRAY, GREEN, PALE_GOLDENROD} from '../../../styles/colors';
+import {ANAKIVA, DARK_GRAY, MARINER} from '../../../styles/colors';
 import Loader from '../../../components/Loader';
 import { styles as hraStyles } from '../HRAHome/styles';
-import { getDimensions, getPlatform } from '../../../utils/utils';
+import { getPlatform } from '../../../utils/utils';
 
 const Section1 = props => {
   const {
@@ -60,8 +58,8 @@ const Section1 = props => {
       <ScrollView>
       <View style={styles.progressBarContainer}>
         <Progress.Bar
-          color={GREEN}
-          unfilledColor={PALE_GOLDENROD}
+          color={MARINER}
+          unfilledColor={ANAKIVA}
           progress={0.1}
           width={progressWidth}
           height={12}

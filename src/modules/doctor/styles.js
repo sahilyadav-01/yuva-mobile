@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {DARK_MAROON, PALE_ORANGE} from '../../styles/colors';
+import {BLACK, DARK_MAROON} from '../../styles/colors';
 import { fonts } from '../../styles/fonts';
+import { CENTER } from '../../styles/constants';
 
 export const styles = StyleSheet.create({
   contentContainerStyle: {
@@ -13,8 +14,10 @@ export const styles = StyleSheet.create({
     marginTop: '4%',
   },
   searchStyle: {
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
-    color: PALE_ORANGE
-  }
+    color: BLACK
+  },
+  listEmptyStyles: {flex:1,alignItems:CENTER,justifyContent:CENTER},
+  emptyText: {fontFamily:fonts.family.monsterrant500,fontSize:fonts.size.fontSize14,color: BLACK}
 });

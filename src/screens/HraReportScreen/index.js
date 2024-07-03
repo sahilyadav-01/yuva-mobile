@@ -4,6 +4,7 @@ import ReportCard from '../../ReportCard';
 import {useReportCard} from './hooks/useHraReport';
 import {styles} from './styles';
 import {EMPTY_TEXT, ERROR_TEXT} from './constants';
+import { MARINER } from '../../styles/colors';
 
 const HraReport = (props) => {
   const {downloadHraReport, hraLoading, hraError, idParam, onViewAll} = useReportCard();
@@ -30,7 +31,7 @@ const HraReport = (props) => {
   if (hraLoading)
     return (
       <View style={styles.emptyView}>
-        <ActivityIndicator size={'large'} />
+        <ActivityIndicator size={'large'} color={MARINER} />
       </View>
     );
   else if (hraError)

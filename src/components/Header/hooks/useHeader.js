@@ -14,11 +14,14 @@ export const useHeader = (props) => {
   const [showCount, setShowCount] = useState(false);
   const [placeholder, setPlaceholder] = useState(PLACEHOLDER_TEXT);
   const [showSearchBox, setShowSearchBox] = useState(false);
-  const { loggedIn } = useSelector(state => state.auth);
+  const [defaultCity, setDefaultCity] = useState(null);
+  const { loggedIn,user:{name} } = useSelector(state => state.auth);
   const diagnosticState = useSelector(state => state.diagnostic);
   const { cityId } = diagnosticState;
   const { cart } = useSelector(state => state.cart);
   const {userDetails} =  useSelector(state  =>  state.profile)
+  const {cityNamesDropdownData,cityLoading,cityError} = useSelector(state => state.SearchNetwork);
+  const {currentCityDetails} = useSelector(state=>state.location);
   const count = cart?.itemDtoList?.length || 0;
   const isLoggedIn = loggedIn === 'loggedIn';
   const cityList = cityId.map(item => item.name);
@@ -26,11 +29,11 @@ export const useHeader = (props) => {
     navigation.navigate('CartScreen');
   };
   const onRightPress = () => {
-    isLoggedIn ? onToggleDrawer() : navigation.navigate('Home',{screen:'LoginScreen'});
+    navigation.navigate('Home',{screen:'LoginScreen'});
   };
 
   const onToggleDrawer = () => {
-    //toggle drawer
+    if(isLoggedIn)
     navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
@@ -40,16 +43,28 @@ export const useHeader = (props) => {
     else navigation.goBack();
   }
   const setSelected = (city) => {
-    setSelectedCity(city);
+    if(city) setSelectedCity(city);
+    else setSelectedCity(-1);
   }
   useEffect(() => {
     if (selectedCity) {
-      dispatch(setCityId(selectedCity))
+      dispatch(setCityId(selectedCity.toString()))
     }
   }, [selectedCity])
+
   useEffect(() => {
     setShowCount(count>0);
   }, [count]);
+
+  useEffect(()=>{
+    if(cityNamesDropdownData?.length > 0 && typeof currentCityDetails?.value === 'string') {
+    let defaultVal = currentCityDetails?.value?.toUpperCase() !== 'CITY NOT FOUND' ? {...currentCityDetails,key:`${cityNamesDropdownData?.length + 1}`} : cityNamesDropdownData[0];
+    setDefaultCity(defaultVal);
+    }
+    else if(cityNamesDropdownData?.length > 0) {
+      setDefaultCity(cityNamesDropdownData[0]);
+    }
+  },[cityNamesDropdownData,currentCityDetails])
 
   useEffect(() => {
    if(diagnosticState.selectedCityId===''){
@@ -59,6 +74,7 @@ export const useHeader = (props) => {
     setPlaceholder(diagnosticState.selectedCityId)
    }
   }, [diagnosticState])
+
   const onChangeSearch = (text) => {
     onSearch && onSearch(text);
     setQuery(text);
@@ -97,6 +113,11 @@ export const useHeader = (props) => {
     hideTitle: hideTitle ?? false,
     initial,
     onSearchPress,
-    showSearchBox
+    showSearchBox,
+    name,
+    onToggleDrawer,
+    cityNamesDropdownData,
+    currentCityDetails,
+    defaultCity
   };
 }

@@ -1,28 +1,29 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, INDIGO_LIGHT, KASHMIR_BLUE, MISCHKA, WHITE} from '../../styles/colors';
+import {BLACK, KASHMIR_BLUE, MISCHKA, WHITE} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
     container: {flex: 1,backgroundColor:WHITE},
-    drawerContentContainer: {flex:1,paddingTop: 28, paddingHorizontal: 20},
+    drawerContentContainer: {flex:1,marginTop:32, paddingHorizontal: 20},
     textStyle: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize14,
+      fontFamily: fonts.family.montserrant700,
+      fontSize: fonts.size.fontSize16,
       lineHeight: 17,
-      color: INDIGO_LIGHT,
+      color: BLACK,
     },
     headingStyle: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize12,
-      color: INDIGO_LIGHT,
+      color: BLACK,
     },
     contentStyle: {
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize10,
-      color: KASHMIR_BLUE,
-      maxWidth: '70%',
+      fontFamily: fonts.family.montserrat300,
+      fontSize: fonts.size.fontSize8,
+      color: BLACK,
+      minWidth:'80%',
+      maxWidth:'90%'
     },
     secondarySeparator: {
       marginBottom: 20,
@@ -32,12 +33,12 @@ export const styles = () => {
     },
     logoutContainer: {marginHorizontal: 16,flexDirection:ROW},
     separator: {borderWidth:0.5,marginTop: 16, borderColor: KASHMIR_BLUE},
-    rowContainer: {flexDirection:ROW,justifyContent:SPACE_BETWEEN,marginTop:4},
+    rowContainer: {flexDirection:ROW,justifyContent:SPACE_BETWEEN,flex:1,alignItems:CENTER,marginLeft:24},
     contentContainerStyle: {
       flexGrow: 1,
        paddingBottom: 100,
     },
-    itemContainer: {paddingTop:16,flexDirection:ROW,flex:1},
+    itemContainer: {paddingVertical:12,borderWidth:0.5,borderRadius:8,flexDirection:ROW,flex:1,paddingHorizontal:24,backgroundColor:'#F9F9F9',borderColor:'#E9E9E9'},
     descriptionContainer: {marginLeft: 28,flex:1}
   });
 };

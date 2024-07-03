@@ -43,5 +43,12 @@ export const fonts = {
     rubik700: 'Rubik-Bold',
     nunito600: 'Nunito-SemiBold',
     raleway800: 'Raleway-ExtraBold',
+    montserrat600: 'Montserrat-SemiBold',
+    montserrat300: 'Montserrat-Light',
+    montserrat400: 'Montserrat-Regular',
+    monsterrant500: 'Montserrat-Medium',
+    montserrant800: 'Montserrat-ExtraBold',
+    montserrant700: 'Montserrat-Bold',
+    montserrant100: 'Montserrat-Thin',
   }
 };
