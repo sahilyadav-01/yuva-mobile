@@ -20,7 +20,7 @@ const CartItems = ({item, onPressRemove}) => {
             <SVG.BOOK_TEST_SVG_ICON />
           )}
         </View>
-        <View style={{marginLeft: 10}}>
+        <View style={{marginLeft: 10,maxWidth:'65%'}}>
           <Text style={styles.itemName}>
             {item?.name}{' '}
             <Text style={styles.itemCost}>

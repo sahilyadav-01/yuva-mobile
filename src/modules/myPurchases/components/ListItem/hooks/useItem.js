@@ -56,6 +56,7 @@ export const useItem = item => {
             purchasesItemDetails[`${item.orderNumber}`]?.processingCharge,
           invoiceFilePath:
             purchasesItemDetails[`${item.orderNumber}`]?.invoiceFilePath,
+          allocatedCount: i?.allocatedCount,
         };
       })
     : null;

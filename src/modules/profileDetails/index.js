@@ -27,7 +27,7 @@ const ProfileDetails = () => {
       <View style={drawerContentContainer}>
         <ScrollView>
           <>
-            <Text style={textStyle}>Profile Setting</Text>
+            <Text style={textStyle}>Settings</Text>
             <View style={{height: 12}} />
             {data.map((item, index) => (
               <TouchableOpacity

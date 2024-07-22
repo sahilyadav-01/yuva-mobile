@@ -107,7 +107,7 @@ const DetailsView = props => {
         {priceBreakUpArray.map(item => {
           return (
             <View style={planDetailsContainer}>
-              <Text style={planText}>{item?.name}</Text>
+              <Text style={planText}>{item?.name}{item?.allocatedCount > 1 ? ` X (${item?.allocatedCount})` : ''}</Text>
               <View style={rowView}>
                 {!(item?.totalAmount === item?.amountPaid) &&
                   item?.discount && (
