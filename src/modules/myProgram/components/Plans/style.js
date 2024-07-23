@@ -13,7 +13,7 @@ export const styles = () => {
       width: '100%',
     },
     serviceText: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize14,
       lineHeight: 21,
       marginBottom: 5,
@@ -23,7 +23,7 @@ export const styles = () => {
     usageText: {
       marginLeft: 16,
       marginBottom: 16,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: INDIGO,
@@ -31,7 +31,7 @@ export const styles = () => {
     rowContainer: {flexDirection: ROW},
     iconContainer: {marginLeft: 16},
     inputStyles: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
       color: INDIGO,

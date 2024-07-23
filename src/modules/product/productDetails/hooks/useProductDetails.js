@@ -1,11 +1,13 @@
-import {useFocusEffect} from '@react-navigation/native';
 import {useState, useRef, useCallback, useEffect} from 'react';
+import { Alert } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
 import {getProductDetails} from '../../../../store/reducers/ProductSlice';
 import {useCart} from '../../../cart/hooks/useCart';
 import {setRedirectState} from '../../../../store/reducers/NotificationSlice';
 
 export const useProductDetails = (productId, navigation) => {
+  const comingSoon = true;
   let flatListRef = useRef();
   const dispatch = useDispatch();
   const {addToCart} = useCart();
@@ -96,6 +98,10 @@ export const useProductDetails = (productId, navigation) => {
     }
   };
   const onAddToCartPress = () => {
+    if(comingSoon) {
+      Alert.alert('Alert','Coming Soon')
+    }
+    else {
     setDisabled(true);
     setAddItem(true);
     dispatch(setRedirectState(true));
@@ -111,6 +117,7 @@ export const useProductDetails = (productId, navigation) => {
       'PRODUCT',
       quantity,
     );
+  }
   };
 
   const fetchProductDetails = () => {

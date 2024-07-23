@@ -18,7 +18,7 @@ export const styles = () => {
     },
     contentContainer: {paddingTop: 12, paddingLeft: 24},
     cardText: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       color: ALTO_OPACITY,
       lineHeight: 18,
@@ -34,7 +34,7 @@ export const styles = () => {
     },
     nameText: {
       marginBottom: 36,
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize10,
       color: NAVAJO_WHITE,
     },
@@ -44,12 +44,12 @@ export const styles = () => {
       justifyContent: SPACE_BETWEEN,
     },
     validText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize6,
       color: WHITE,
     },
     orderNumber: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize8,
       color: WHITE,
       lineHeight: 10,

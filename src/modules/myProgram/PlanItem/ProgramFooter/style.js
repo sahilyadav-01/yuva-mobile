@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, ORANGE} from '../../../../styles/colors';
+import {BLACK, MARINER} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
@@ -8,7 +8,7 @@ export const styles = () => {
     itemContainer: {
       flexDirection: ROW,
       borderWidth: 1,
-      borderColor: CYAN_BLUE,
+      borderColor: BLACK,
       flex: 1,
       paddingVertical: 12,
       alignItems: CENTER,
@@ -16,29 +16,29 @@ export const styles = () => {
     },
     textStyle: {
       marginRight: 12,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
-      color: ORANGE,
+      color: MARINER,
       lineHeight: 18,
     },
     arrowContainer: {padding: 12, justifyContent: CENTER, alignSelf: CENTER},
     footerContainer: {flexDirection: ROW, paddingBottom: 10},
     headingText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize14,
       lineHeight: 16,
-      color: CYAN_BLUE,
+      color: BLACK,
     },
     footerColumnStyle: {
       borderRightWidth: 0,
       borderTopLeftRadius: 6,
       borderBottomLeftRadius: 6,
-      borderColor: CYAN_BLUE,
+      borderColor: BLACK,
     },
     rightView: {
       borderTopRightRadius: 6,
       borderBottomRightRadius: 6,
-      borderColor: CYAN_BLUE,
+      borderColor: BLACK,
     },
   });
 };

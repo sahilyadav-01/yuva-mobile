@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {SVG} from '../../../../../assets';
-import {ORANGE} from '../../../../styles/colors';
+import {MARINER} from '../../../../styles/colors';
 import {styles} from './style';
 import {usePlan} from './hooks/usePlan';
 import {HRA_SUBTEXT} from '../../PlanItem/ProgramFooter/constants';
@@ -24,7 +24,7 @@ const RenderPlans = ({item}) => {
     <View style={itemContainer}>
       <View style={rowContainer}>
         <View style={iconContainer}>
-          {SVG[plans[item?.serviceUuid]?.icon]({color: ORANGE, large: true})}
+          {SVG[plans[item?.serviceUuid]?.icon]({color: MARINER, large: true})}
         </View>
         {item?.serviceUuid === 'ee5413dd-eb09-4a99-92d0-a4fc6d92a5e9' ? (
           <View style={dropdownContainer}>

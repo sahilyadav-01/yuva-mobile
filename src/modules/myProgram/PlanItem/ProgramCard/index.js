@@ -29,7 +29,7 @@ export const ProgramCard = props => {
           <View>
             <Text style={style.validText}>{VALID_THROUGH}</Text>
             <Text style={style.orderNumber}>
-              {getDateInFormat(new Date(item?.validThrough), 'mm/yy')}
+              {getDateInFormat(new Date(item?.dateOfPurchase), 'mm/yy')}
             </Text>
           </View>
         </View>
