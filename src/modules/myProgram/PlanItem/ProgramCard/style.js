@@ -1,7 +1,12 @@
 import {StyleSheet} from 'react-native';
-import { ALTO_OPACITY, NAVAJO_WHITE, ROSE_WHITE, WHITE } from '../../../../styles/colors';
-import { FLEX_START, ROW, SPACE_BETWEEN } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
+import {
+  ALTO_OPACITY,
+  NAVAJO_WHITE,
+  ROSE_WHITE,
+  WHITE,
+} from '../../../../styles/colors';
+import {FLEX_START, ROW, SPACE_BETWEEN} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -13,7 +18,7 @@ export const styles = () => {
     },
     contentContainer: {paddingTop: 12, paddingLeft: 24},
     cardText: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       color: ALTO_OPACITY,
       lineHeight: 18,
@@ -25,11 +30,11 @@ export const styles = () => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 15,
       letterSpacing: 3,
-      maxWidth:"60%",
+      maxWidth: '60%',
     },
     nameText: {
       marginBottom: 36,
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize10,
       color: NAVAJO_WHITE,
     },
@@ -39,15 +44,15 @@ export const styles = () => {
       justifyContent: SPACE_BETWEEN,
     },
     validText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize6,
       color: WHITE,
     },
     orderNumber: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize8,
-      color:WHITE,
-      lineHeight:10
+      color: WHITE,
+      lineHeight: 10,
     },
     boxStyle: {
       paddingVertical: 4,

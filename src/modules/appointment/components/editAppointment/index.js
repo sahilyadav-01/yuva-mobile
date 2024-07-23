@@ -6,7 +6,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import {BOOK_AN_APPOINTMENT, RESCHEDULE_APPOINTMENT} from '../../constant';
 import {PNG} from '../../../../../assets';
 import {styles} from './styles';
-import {DARK_GRAY, ORANGE} from '../../../../styles/colors';
+import {DARK_GRAY, MARINER} from '../../../../styles/colors';
 import {
   ADD_DESCRIPTION,
   BOOKING_FOR,
@@ -29,7 +29,7 @@ const EditAppointments = () => {
     Doctor,
     Specialization,
     Description,
-    handleDateTime
+    handleDateTime,
   } = useEdit();
   return (
     <ScrollView>
@@ -54,7 +54,7 @@ const EditAppointments = () => {
         </View>
 
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
-        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true} />
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.border} pointerEvents="none">
@@ -63,10 +63,10 @@ const EditAppointments = () => {
               boxStyles={styles.boxStyles}
               defaultOption={{key: 'null', value: memberName || null}}
               setSelected={setSelected}
-              data={dataRelation}
+              data={[{key: 'null', value: memberName || null}, ...dataRelation]}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
-              dropdownTextStyles={{color:DARK_GRAY}}
+              dropdownTextStyles={{color: DARK_GRAY}}
             />
           </View>
         </View>
@@ -82,7 +82,7 @@ const EditAppointments = () => {
       <View style={styles.buttonStyles}>
         <AppointmentButton
           name={RESCHEDULE_APPOINTMENT}
-          color={ORANGE}
+          color={MARINER}
           action={saveAppointment}
           textStyles={styles.buttonTextStyle}
         />

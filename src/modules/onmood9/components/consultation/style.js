@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {CYAN_BLUE, ORANGE, WHITE} from '../../../../styles/colors';
+import {CYAN_BLUE, MARINER, WHITE} from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 
 export const styles = () => {
   return StyleSheet.create({
     headingText: {
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize14,
       color: CYAN_BLUE,
     },
@@ -15,13 +15,13 @@ export const styles = () => {
       paddingVertical: 12,
       alignItems: CENTER,
       justifyContent: CENTER,
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       borderRadius: 8,
       marginTop: 16,
-      marginBottom: 28
+      marginBottom: 28,
     },
     buttonText: {
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize16,
       color: WHITE,
     },

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, CYAN_BLUE, GREEN, LIGHT_BLACK, WHITE} from '../../../../styles/colors';
+import {BLACK, GREEN, LIGHT_BLACK, WHITE} from '../../../../styles/colors';
 import {
   ABSOLUTE,
   CENTER,
@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: fonts.size.fontSize14,
-    color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight600,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat600,
     marginVertical: 10,
   },
   consultationView: {
@@ -41,13 +41,13 @@ export const styles = StyleSheet.create({
   },
   cancelledText: {
     fontSize: fonts.size.fontSize14,
-    color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
   },
   cancelledDegree: {
     fontSize: fonts.size.fontSize10,
-    color: CYAN_BLUE,
-    fontWeight: fonts.weight.fontWeight400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
   },
   topSection: {
     flexDirection: ROW,
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     color: GREEN,
     textAlign: LEFT,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.monsterrant500,
     marginTop: 9,
     marginHorizontal: 12,
   },
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     color: GREEN,
     textAlign: RIGHT,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.monsterrant500,
     marginTop: 9,
     marginHorizontal: 12,
   },
@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
     color: GREEN,
     textAlign: RIGHT,
     fontSize: fonts.size.fontSize10,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
 
     marginHorizontal: 12,
   },
@@ -94,23 +94,23 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
   },
   dateText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize8,
-    fontWeight: fonts.weight.fontWeight500,
+    fontFamily: fonts.family.monsterrant500,
   },
   timeText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize4,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
   },
   view3: {
     marginLeft: 4,
     justifyContent: CENTER,
   },
   descriptionText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize10,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
     marginHorizontal: 12,
   },
   footerView: {
@@ -120,15 +120,15 @@ export const styles = StyleSheet.create({
     marginVertical: 8,
   },
   downloadText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
     marginLeft: 6,
   },
   consultText: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
     marginLeft: 6,
   },
   downloadView: {
@@ -140,6 +140,6 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     marginHorizontal: 12,
   },
-  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
-  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
+  emptyContainer: {height: '100%', alignItems: CENTER, justifyContent: CENTER},
+  emptyText: {fontFamily: fonts.family.monsterrant500, color: BLACK},
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import HRAHome from '../screens/yuvaservices/hra/HomeScreen';
 import Section1 from '../screens/yuvaservices/hra/Section_1';
 import Section2 from '../screens/yuvaservices/hra/Section_2';
@@ -16,61 +16,61 @@ const Stack = createStackNavigator();
 
 const HRANavigation = () => {
   return (
-    <Stack.Navigator initialRouteName='HRAHome'>
+    <Stack.Navigator initialRouteName="HRAHome">
       <Stack.Screen
         name="HRAHome"
         component={HRAHome}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section1"
         component={Section1}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section2"
         component={Section2}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section3"
         component={Section3}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section4"
         component={Section4}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section5"
         component={Section5}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section6"
         component={Section6}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section7"
         component={Section7}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section8"
         component={Section8}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section9"
         component={Section9}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Section10"
         component={Section10}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

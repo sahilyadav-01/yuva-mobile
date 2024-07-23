@@ -56,7 +56,11 @@ export const FooterContainer = props => {
             }
           }}
           style={style.arrowContainer}>
-          <SVG.ExpandArrow expanded={(planDetails && expanded) || (!planDetails && planLockView)} />
+          <SVG.ExpandArrow
+            expanded={
+              (planDetails && expanded) || (!planDetails && planLockView)
+            }
+          />
         </TouchableOpacity>
       </View>
     );
@@ -69,7 +73,11 @@ export const FooterContainer = props => {
           extraStyles={style.footerColumnStyle}
           planDetails={true}
         />
-        <FooterItem text={PLAN_MEMBERS} planDetails={false} extraStyles={style.rightView} />
+        <FooterItem
+          text={PLAN_MEMBERS}
+          planDetails={false}
+          extraStyles={style.rightView}
+        />
       </View>
       {expanded && (
         <DetailsView

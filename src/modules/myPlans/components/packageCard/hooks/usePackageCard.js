@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {programAndPlanThunk} from '../../../../../store/reducers/ProgramAndPlanSlice';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 
 export const usePackageCard = () => {
   const navigation = useNavigation();
@@ -17,20 +17,19 @@ export const usePackageCard = () => {
   }, [services, focused]);
 
   const bookNow = (plan, userVersion, uuid, version, locked) => {
-    if(!locked) {
+    if (!locked) {
       navigation.navigate(plan ? 'PurchaseScreen' : 'MyCorporateProgram');
+    } else {
+      navigation.navigate('Doctor', {
+        plan: plan,
+        userVersion: userVersion,
+        uuid: uuid,
+        version: version,
+      });
     }
-    else {
-    navigation.navigate('Doctor', {
-      plan: plan,
-      userVersion: userVersion,
-      uuid: uuid,
-      version: version,
-    });
-  }
   };
   return {
     programAndPlan,
-    bookNow
+    bookNow,
   };
 };

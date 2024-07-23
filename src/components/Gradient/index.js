@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
-import { styles, absoluteFillObject } from './styles';
+import {View, Text} from 'react-native';
+import Svg, {Defs, LinearGradient, Rect, Stop} from 'react-native-svg';
+import {styles, absoluteFillObject} from './styles';
 
-const Gradient = (props) => {
-  let x1 = '0%', x2 = '0%', y1 = '0%', y2 = '0%';
-  const { startColor, stopColor, containerStyle, isHorizontal, children } = props;
+const Gradient = props => {
+  let x1 = '0%',
+    x2 = '0%',
+    y1 = '0%',
+    y2 = '0%';
+  const {startColor, stopColor, containerStyle, isHorizontal, children} = props;
   if (isHorizontal) {
     x2 = '100%';
     y2 = '0%';

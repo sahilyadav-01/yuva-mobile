@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { Linking } from 'react-native';
+import {Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import firebaseMessaging from '@react-native-firebase/messaging';
@@ -10,7 +10,10 @@ import {
   getRole,
 } from '../../store/LocalStore';
 import {setRedirectState} from '../../store/reducers/NotificationSlice';
-import {currentAppointment, setNotificationRedirect} from '../../store/reducers/AppointmentSlice';
+import {
+  currentAppointment,
+  setNotificationRedirect,
+} from '../../store/reducers/AppointmentSlice';
 import {
   bookedDetailsByIdThunk,
   cityIdThunk,
@@ -26,7 +29,7 @@ import {
 } from '../../store/reducers/ProfileSlice';
 import {setHraReportId} from '../../store/reducers/DownloadReportSlice';
 import {YuvaService} from '../../../App';
-import { setOurPlanData } from '../../store/reducers/ProgramAndPlanSlice';
+import {setOurPlanData} from '../../store/reducers/ProgramAndPlanSlice';
 
 export const useIntro = () => {
   const dispatch = useDispatch();
@@ -46,7 +49,10 @@ export const useIntro = () => {
     dispatch(initialLoad());
     getProfileStatus().then(status => dispatch(updateProfileStatus(status)));
     getInitialUrl();
-    const linkingEvent = Linking.addEventListener('url',(event)=>event?.url && handleDeepLinking(event.url));
+    const linkingEvent = Linking.addEventListener(
+      'url',
+      event => event?.url && handleDeepLinking(event.url),
+    );
     firebaseMessaging()
       .getInitialNotification()
       .then(initialNotification => {
@@ -57,7 +63,7 @@ export const useIntro = () => {
     });
     return () => {
       linkingEvent.remove();
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -107,7 +113,9 @@ export const useIntro = () => {
           .then(resp => {
             const details = resp.data;
             const item = details.data.find(item => {
-              if (item.id === data.id) return item;
+              if (item.id === data.id) {
+                return item;
+              }
               return {};
             });
             dispatch(setRedirectState(false));
@@ -169,7 +177,11 @@ export const useIntro = () => {
               screen: 'PHARMACY',
               params: {
                 screen: 'PharmacyListing',
-                params: {prescriptionId:data?.id,pharmacyId:parseInt(data?.pharmacyId),redirect:true},
+                params: {
+                  prescriptionId: data?.id,
+                  pharmacyId: parseInt(data?.pharmacyId),
+                  redirect: true,
+                },
               },
             },
           },
@@ -179,26 +191,34 @@ export const useIntro = () => {
         navigation.navigate('MyPrescription', {
           prescriptionId: data.id,
           redirect: true,
-          serviceUuid: data.serviceUuid, 
+          serviceUuid: data.serviceUuid,
         });
         break;
     }
   };
   const getInitialRoute = async () => {
     const existingUser = await getExistingUser();
-    if (existingUser) return 'HomeScreen';
+    if (existingUser) {
+      return 'HomeScreen';
+    }
     return 'IntroScreen';
   };
-  const handleDeepLinking = (link) => {
-    const pattern = /^(https?:\/\/)?(www\.)?yuvahealth\.in(\/(plan|test|package)\/([a-f0-9-]+(\/[a-zA-Z0-9]+)*))?\/?$/;
-    const slugPattern = /^(https?:\/\/)?(www\.)?yuvahealth\.in\/(plan|test|package)\/([^\/]+)\/?$/;
+  const handleDeepLinking = link => {
+    const pattern =
+      /^(https?:\/\/)?(www\.)?yuvahealth\.in(\/(plan|test|package)\/([a-f0-9-]+(\/[a-zA-Z0-9]+)*))?\/?$/;
+    const slugPattern =
+      /^(https?:\/\/)?(www\.)?yuvahealth\.in\/(plan|test|package)\/([^\/]+)\/?$/;
     const slugPatternMatch = link.match(slugPattern);
     const match = link.match(pattern);
-    if (match && match.length > 1 || slugPatternMatch && slugPatternMatch.length > 1) {
+    if (
+      (match && match.length > 1) ||
+      (slugPatternMatch && slugPatternMatch.length > 1)
+    ) {
       if (match) {
         switch (match[4]) {
           case 'test':
-            YuvaService.get(`/test/${match[5]}`).then(response => {
+            YuvaService.get(`/test/${match[5]}`)
+              .then(response => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: '',
@@ -208,10 +228,14 @@ export const useIntro = () => {
                   name: null,
                   cost: '',
                 });
-            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Test" })});
+              })
+              .catch(() => {
+                navigation.navigate('PageNotFound', {data: 'Test'});
+              });
             break;
           case 'package':
-            YuvaService.get(`/package/${match[5]}`).then(response => {
+            YuvaService.get(`/package/${match[5]}`)
+              .then(response => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: response.data.data.packageUuid,
@@ -221,30 +245,36 @@ export const useIntro = () => {
                   name: null,
                   cost: response.data.data.packageCost,
                 });
-            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Package" });});
+              })
+              .catch(() => {
+                navigation.navigate('PageNotFound', {data: 'Package'});
+              });
             break;
           case 'plan':
-            YuvaService.get(`/plan/popular`).then(response => {
-              const planData = response.data.data.filter(item => item?.planUuid === match[5]);
-              if(planData?.length > 0) {
-              dispatch(setOurPlanData(planData[0]));
-              navigation.navigate('OurPlan');
+            YuvaService.get('/plan/popular').then(response => {
+              const planData = response.data.data.filter(
+                item => item?.planUuid === match[5],
+              );
+              if (planData?.length > 0) {
+                dispatch(setOurPlanData(planData[0]));
+                navigation.navigate('OurPlan');
+              } else if (planData?.length === 0) {
+                navigation.navigate('PageNotFound', {data: 'Plan'});
               }
-              else if(planData?.length === 0) navigation.navigate('PageNotFound', { data: "Plan" })
-          })
+            });
             break;
           default:
             navigation.navigate('HomeService');
             break;
         }
-      }
-      else if (slugPatternMatch) {
+      } else if (slugPatternMatch) {
         switch (slugPatternMatch[3]) {
           case 'test':
             const splitParts = slugPatternMatch[4].split('-');
             const lastPart = splitParts[splitParts.length - 1];
             const slugTesttId = parseInt(lastPart);
-            YuvaService.get(`/test/${slugTesttId}`).then(() => {
+            YuvaService.get(`/test/${slugTesttId}`)
+              .then(() => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: '',
@@ -254,11 +284,17 @@ export const useIntro = () => {
                   name: null,
                   cost: '',
                 });
-            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Test" })});
+              })
+              .catch(() => {
+                navigation.navigate('PageNotFound', {data: 'Test'});
+              });
             break;
           case 'package':
-            const slugPackagetId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
-            YuvaService.get(`/package/${slugPackagetId}`).then(() => {
+            const slugPackagetId = slugPatternMatch[4].slice(
+              slugPatternMatch[4].length - 36,
+            );
+            YuvaService.get(`/package/${slugPackagetId}`)
+              .then(() => {
                 navigation.navigate('ProductDetails', {
                   headerName: 'health',
                   packageName: slugPackagetId,
@@ -268,31 +304,42 @@ export const useIntro = () => {
                   name: null,
                   cost: '',
                 });
-            }).catch(()=>{navigation.navigate('PageNotFound', { data: "Package" })});
+              })
+              .catch(() => {
+                navigation.navigate('PageNotFound', {data: 'Package'});
+              });
             break;
           case 'plan':
-            const slugPlainId = slugPatternMatch[4].slice(slugPatternMatch[4].length - 36);
-            YuvaService.get(`/plan/popular`).then(response => {
+            const slugPlainId = slugPatternMatch[4].slice(
+              slugPatternMatch[4].length - 36,
+            );
+            YuvaService.get('/plan/popular').then(response => {
               const planData = response.data.data.filter(
                 item => item?.planUuid === slugPlainId,
               );
               if (planData?.length > 0) {
                 dispatch(setOurPlanData(planData[0]));
-                navigation.navigate('OurPlan');}
-              else if(planData?.length === 0) { navigation.navigate('PageNotFound', { data: "Plan" }); }})
+                navigation.navigate('OurPlan');
+              } else if (planData?.length === 0) {
+                navigation.navigate('PageNotFound', {data: 'Plan'});
+              }
+            });
             break;
         }
+      } else {
+        navigation.navigate('PageNotFound');
       }
-      else navigation.navigate('PageNotFound');
+    } else {
+      navigation.navigate('PageNotFound');
     }
-    else navigation.navigate('PageNotFound');
-  }
+  };
   const getInitialUrl = async () => {
     try {
       const link = await Linking.getInitialURL();
-      if(link) handleDeepLinking(link);
-    } catch (error) {
-    }
-  }
+      if (link) {
+        handleDeepLinking(link);
+      }
+    } catch (error) {}
+  };
   return {initialRouteName, isAppReady, maintainenceState};
 };

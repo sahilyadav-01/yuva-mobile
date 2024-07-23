@@ -1,24 +1,44 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, BOX_SHADOW, CYAN_BLUE, DARK_BLUE, FLASH_WHITE, GREEN, LIGHT_GREY, ORANGE, RED, RED_SHADE, VERY_LIGHT_GREY, VERY_LIGHT_YELLOW, VERY_PALE_WHITE, V_LIGHT_GREY, WHITE } from '../../../styles/colors';
-import { CENTER, FLEX_END, ROW, SPACE_BETWEEN } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  BOX_SHADOW,
+  CYAN_BLUE,
+  DARK_BLUE,
+  FLASH_WHITE,
+  GREEN,
+  LIGHT_GREY,
+  ORANGE,
+  RED,
+  RED_SHADE,
+  VERY_LIGHT_GREY,
+  VERY_LIGHT_YELLOW,
+  VERY_PALE_WHITE,
+  V_LIGHT_GREY,
+  WHITE,
+} from '../../../styles/colors';
+import {CENTER, FLEX_END, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
-
   contentContainerStyle: {
-    flexGrow: 1,
-    paddingBottom: 300,
+    flex: 1,
+    backgroundColor: WHITE,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: WHITE,
+    paddingBottom: 24,
   },
   buttonView: {
     flexDirection: ROW,
     marginHorizontal: '4%',
     justifyContent: SPACE_BETWEEN,
-    alignItems:CENTER,
+    alignItems: CENTER,
   },
-  updatedButtonView:{
+  updatedButtonView: {
     marginHorizontal: '4%',
     justifyContent: SPACE_BETWEEN,
-    alignItems:CENTER,
+    alignItems: CENTER,
   },
   buttonTextStyle: {
     color: WHITE,
@@ -26,7 +46,7 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
     marginHorizontal: '4%',
   },
-  button:{
+  button: {
     width: '48%',
     justifyContent: SPACE_BETWEEN,
     height: 48,
@@ -37,17 +57,17 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
   },
   details: {
-    minHeight:50,
+    minHeight: 50,
     flexDirection: ROW,
     backgroundColor: LIGHT_GREY,
-    justifyContent:SPACE_BETWEEN,
-    borderWidth:1,
-    borderColor:V_LIGHT_GREY,
+    justifyContent: SPACE_BETWEEN,
+    borderWidth: 1,
+    borderColor: V_LIGHT_GREY,
   },
   BookingStatus: {
     marginTop: 22,
     marginLeft: 16,
-    color: GREEN
+    color: GREEN,
   },
   Status: {
     flexDirection: ROW,
@@ -55,7 +75,7 @@ export const styles = StyleSheet.create({
   },
   timeSlot: {
     backgroundColor: CYAN_BLUE,
-    marginLeft:78,
+    marginLeft: 78,
     marginTop: 22,
     borderBottomLeftRadius: 24,
     borderTopLeftRadius: 24,
@@ -65,7 +85,7 @@ export const styles = StyleSheet.create({
     color: WHITE,
     paddingTop: 12,
     fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize10
+    fontSize: fonts.size.fontSize10,
   },
   // dateTime:{
   //   backgroundColor:WHITE
@@ -79,16 +99,16 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   border: {
-    borderColor:FLASH_WHITE,
+    borderColor: FLASH_WHITE,
     marginTop: 14,
-    marginHorizontal:16,
+    marginHorizontal: 16,
     shadowColor: WHITE,
     shadowOpacity: 0.5,
     borderRadius: 12,
     backgroundColor: WHITE,
     dropShadow: BOX_SHADOW,
-    elevation:5,
-    borderWidth:1,
+    elevation: 5,
+    borderWidth: 1,
   },
   adressName: {
     marginTop: 11,
@@ -96,7 +116,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-
   },
   address: {
     marginTop: 11,
@@ -104,7 +123,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize12,
-
   },
   adressPhn: {
     marginTop: 11,
@@ -118,8 +136,8 @@ export const styles = StyleSheet.create({
     marginTop: 37,
     backgroundColor: V_LIGHT_GREY,
     minHeight: 50,
-    borderWidth:1,
-    borderColor:V_LIGHT_GREY,
+    borderWidth: 1,
+    borderColor: V_LIGHT_GREY,
   },
   Test: {
     paddingVertical: 18,
@@ -129,10 +147,10 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   TestList: {
-    minHeight:50,
+    minHeight: 50,
     backgroundColor: LIGHT_GREY,
-    borderWidth:0.7,
-    borderColor:V_LIGHT_GREY,
+    borderWidth: 0.7,
+    borderColor: V_LIGHT_GREY,
   },
   testItems: {
     paddingVertical: 18,
@@ -144,8 +162,8 @@ export const styles = StyleSheet.create({
   PackageHeader: {
     backgroundColor: V_LIGHT_GREY,
     minHeight: 50,
-    borderWidth:1,
-    borderColor:V_LIGHT_GREY,
+    borderWidth: 1,
+    borderColor: V_LIGHT_GREY,
   },
   package: {
     paddingVertical: 18,
@@ -162,8 +180,8 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize14,
   },
   packageDetails: {
-    paddingVertical:20,
-    marginRight:"5%",
+    paddingVertical: 20,
+    marginRight: '5%',
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize10,
@@ -201,22 +219,22 @@ export const styles = StyleSheet.create({
     backgroundColor: VERY_LIGHT_YELLOW,
     flexDirection: ROW,
     minHeight: 92,
-    justifyContent:SPACE_BETWEEN,
+    justifyContent: SPACE_BETWEEN,
   },
   cancelledBgColor: {
     backgroundColor: RED_SHADE,
     flexDirection: ROW,
     minHeight: 92,
-    justifyContent:SPACE_BETWEEN,
+    justifyContent: SPACE_BETWEEN,
   },
   confirmedBgColor: {
     backgroundColor: VERY_PALE_WHITE,
     flexDirection: ROW,
     minHeight: 92,
-    justifyContent:SPACE_BETWEEN,
+    justifyContent: SPACE_BETWEEN,
   },
-  bookingText:{
-  flex:1,
-  maxWidth:"100%",
-  }
+  bookingText: {
+    flex: 1,
+    maxWidth: '100%',
+  },
 });

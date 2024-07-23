@@ -2,7 +2,7 @@ import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import { resetEmailOtp, resetNumberOtp } from '../../../store/reducers/AuthSlice';
+import {resetEmailOtp, resetNumberOtp} from '../../../store/reducers/AuthSlice';
 import {cityIdThunk} from '../../../store/reducers/DiagnosticsSlice';
 import {
   addRelation,
@@ -52,10 +52,11 @@ export const useProfile = () => {
     }
   }, [focused, auth.loggedIn, reloadScreenCount]);
 
-  useEffect(()=>{
-    if(date && gender && addressLine1 && city && pinCode && focused)
-    setEnableLockButton(true);
-  },[date,gender,addressLine1,city,pinCode,focused])
+  useEffect(() => {
+    if (date && gender && addressLine1 && city && pinCode && focused) {
+      setEnableLockButton(true);
+    }
+  }, [date, gender, addressLine1, city, pinCode, focused]);
 
   useEffect(() => {
     if (cityId) {
@@ -108,15 +109,14 @@ export const useProfile = () => {
   const onAddMembersPress = () => {
     if (!(dependentName && dependentAge && dependentRelation)) {
       Alert.alert('Alert', 'Please enter all the details');
-    }
-    else {
+    } else {
       dispatch(
-      addRelation({
-        age: dependentAge,
-        name: dependentName,
-        relation: dependentRelation?.id,
-      }),
-    );
+        addRelation({
+          age: dependentAge,
+          name: dependentName,
+          relation: dependentRelation?.id,
+        }),
+      );
     }
   };
 
@@ -139,15 +139,18 @@ export const useProfile = () => {
   };
 
   const addMemberToList = () => {
-    if (!date || !gender || !addressLine1 || !city || !pinCode)
+    if (!date || !gender || !addressLine1 || !city || !pinCode) {
       Alert.alert(
         'Alert',
         'Please save DOB, Gender, Address, City and Pin code details',
       );
-    else if (profile.activeRelations.length === 0)
+    } else if (profile.activeRelations.length === 0) {
       Alert.alert('Alert', 'No active relations left');
+    }
     //else if (!profile.enableAddMember) Alert.alert('Alert', 'Please add plans');
-    else setAddMembers(true);
+    else {
+      setAddMembers(true);
+    }
   };
 
   const editDetails = () => setEdit(true);
@@ -184,9 +187,9 @@ export const useProfile = () => {
     } else if (
       !pinCheck.test(pinCode) ||
       !(pinCode.toString().trim().length === 6)
-    )
+    ) {
       Alert.alert('Alert', 'Please enter a valid Pin Code');
-    else {
+    } else {
       setUserDetails(null);
       const {otpNumber, otpEmail} = auth;
       const {newNumber, newEmail} = profile;
@@ -197,11 +200,19 @@ export const useProfile = () => {
         cityId: selectedCityId,
         pinCode,
       };
-      if(newEmail){
-        updatedProfile = {...updatedProfile, email: newEmail, emailOtp: otpEmail};
+      if (newEmail) {
+        updatedProfile = {
+          ...updatedProfile,
+          email: newEmail,
+          emailOtp: otpEmail,
+        };
       }
-      if(newNumber) {
-        updatedProfile = {...updatedProfile, number: newNumber, numberOtp: otpNumber};
+      if (newNumber) {
+        updatedProfile = {
+          ...updatedProfile,
+          number: newNumber,
+          numberOtp: otpNumber,
+        };
       }
       dispatch(updateProfile(updatedProfile));
       dispatch(resetEmailChanged());
@@ -214,8 +225,10 @@ export const useProfile = () => {
   const onRetryPress = () => setReloadScreenCount(reloadScreenCount + 1);
 
   const onPickerPress = () => {
-    if(edit && userDetails?.dob) openPicker()
-  }
+    if (edit && userDetails?.dob) {
+      openPicker();
+    }
+  };
 
   return {
     onAddMembersPress,
@@ -259,6 +272,6 @@ export const useProfile = () => {
     profileLocked: profile.profileUpdated,
     enableLockButton,
     profileGender: profile?.userDetails?.gender,
-    onPickerPress
+    onPickerPress,
   };
 };

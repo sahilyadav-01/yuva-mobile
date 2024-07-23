@@ -1,77 +1,113 @@
-import React from 'react'
-import { View, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import React from 'react';
+import {View, Text, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 import * as Progress from 'react-native-progress';
-import SectionInput from '../../../components/SectionInput'
+import SectionInput from '../../../components/SectionInput';
 import SectionPicker from '../../../components/SectionPicker';
 import PickerData from '../../../utils/PickerData';
 import Header from '../../../components/Header';
-import { useSection9 } from './hooks/useSection9';
-import { styles } from './styles';
-import { HEALTH_RISK_ASSESSMENT, QUESTION_TYPE_INPUT, QUESTION_TYPE_PICKER, SECTION_9_HEADING, SUBMIT_BUTTON_TEXT } from '../constant';
-import { GREEN, PALE_GOLDENROD } from '../../../styles/colors';
-import { styles as hraStyles } from '../HRAHome/styles';
+import {useSection9} from './hooks/useSection9';
+import {styles} from './styles';
+import {
+  HEALTH_RISK_ASSESSMENT,
+  QUESTION_TYPE_INPUT,
+  QUESTION_TYPE_PICKER,
+  SECTION_9_HEADING,
+  SUBMIT_BUTTON_TEXT,
+} from '../constant';
+import {ANAKIVA, MARINER} from '../../../styles/colors';
+import {styles as hraStyles} from '../HRAHome/styles';
 import Loader from '../../../components/Loader';
 
 const Section9 = () => {
+  const {
+    progressWidth,
+    dispatch_option,
+    questionData,
+    answers,
+    computeResult,
+    renderData,
+  } = useSection9();
 
-    const { progressWidth, dispatch_option, questionData, answers, computeResult, renderData } = useSection9();
-
-    if(!renderData) return <Loader extraStyles={hraStyles.loaderContainer}/>
-    return (
-        <>
-            <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true}/>
-            <View style={styles.progressBarContainer}>
-                <Progress.Bar color={GREEN} unfilledColor={PALE_GOLDENROD} progress={1} width={progressWidth} height={12} />
+  if (!renderData) {
+    return <Loader extraStyles={hraStyles.loaderContainer} />;
+  }
+  return (
+    <View style={styles.container}>
+      <Header title={HEALTH_RISK_ASSESSMENT} showBackButton={true} />
+      <View style={styles.progressBarContainer}>
+        <Progress.Bar
+          color={MARINER}
+          unfilledColor={ANAKIVA}
+          progress={1}
+          width={progressWidth}
+          height={12}
+        />
+      </View>
+      <View style={styles.topContainer}>
+        <Text style={styles.topContainerTextStyle}>{SECTION_9_HEADING}</Text>
+        <View style={styles.scrollViewContainer}>
+          <ScrollView
+            bounces={false}
+            style={styles.scrollViewContentContainerStyle}
+            showsVerticalScrollIndicator={false}>
+            <FlatList
+              data={questionData}
+              keyExtractor={(item, index) => `${index}`}
+              nestedScrollEnabled={true}
+              renderItem={({item, index}) => {
+                switch (true) {
+                  case item.questionType.includes(QUESTION_TYPE_PICKER):
+                    return (
+                      <SectionPicker
+                        key={index}
+                        text={item.question}
+                        data={PickerData[item.questionType]}
+                        defaultAnswer={
+                          answers[questionData[0]?.questionId] === undefined
+                            ? ''
+                            : PickerData[questionData[0]?.questionType][
+                                answers[questionData[0]?.questionId]
+                              ]?.value ?? ''
+                        }
+                        dispatcher={dispatch_option}
+                        questionId={item.questionId}
+                      />
+                    );
+                  case item.questionType.includes(QUESTION_TYPE_INPUT):
+                    return (
+                      <SectionInput
+                        key={index}
+                        defValue={
+                          answers[questionData[0]?.questionId] === undefined
+                            ? ''
+                            : PickerData[questionData[0]?.questionType][
+                                answers[questionData[0]?.questionId]
+                              ].value ?? ''
+                        }
+                        text={item.question}
+                        dispatcher={dispatch_option}
+                        questionId={item.questionId}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+              }}
+            />
+            <View style={styles.touchableOpacityViewContainer}>
+              <TouchableOpacity
+                style={styles.touchableOpacityStyle}
+                onPress={computeResult}>
+                <Text style={styles.touchableOpacityTextStyle}>
+                  {SUBMIT_BUTTON_TEXT}
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.topContainer}>
-                <Text style={styles.topContainerTextStyle}>{SECTION_9_HEADING}</Text>
-                <View style={styles.scrollViewContainer}>
-                    <ScrollView
-                        bounces={false}
-                        contentContainerStyle={styles.scrollViewContentContainerStyle}
-                        showsVerticalScrollIndicator={false}>
-                        <FlatList
-                            data={questionData}
-                            keyExtractor={(item, index) => `${index}`}
-                            nestedScrollEnabled={true}
-                            renderItem={({ item, index }) => {
-                                switch (true) {
-                                    case item.questionType.includes(QUESTION_TYPE_PICKER):
-                                        return (
-                                            <SectionPicker
-                                                key={index}
-                                                text={item.question}
-                                                data={PickerData[item.questionType]}
-                                                defaultAnswer={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]]?.value ?? ''}
-                                                dispatcher={dispatch_option}
-                                                questionId={item.questionId}
-                                            />
-                                        );
-                                    case item.questionType.includes(QUESTION_TYPE_INPUT):
-                                        return (
-                                            <SectionInput
-                                                key={index}
-                                                defValue={answers[questionData[0]?.questionId] === undefined ? '' : PickerData[questionData[0]?.questionType][answers[questionData[0]?.questionId]].value ?? ''}
-                                                text={item.question}
-                                                dispatcher={dispatch_option}
-                                                questionId={item.questionId}
-                                            />
-                                        );
-                                    default:
-                                        return null;
-                                }
-                            }}
-                        />
-                        <View style={styles.touchableOpacityViewContainer}>
-                            <TouchableOpacity style={styles.touchableOpacityStyle} onPress={computeResult}>
-                                <Text style={styles.touchableOpacityTextStyle}>{SUBMIT_BUTTON_TEXT}</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </ScrollView>
-                </View>
-            </View>
-        </>
-    )
-}
+          </ScrollView>
+        </View>
+      </View>
+    </View>
+  );
+};
 
-export default Section9
+export default Section9;

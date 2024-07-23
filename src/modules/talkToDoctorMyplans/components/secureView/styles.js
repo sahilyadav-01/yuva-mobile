@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { GREY } from "../../../../styles/colors";
-import { CENTER, ROW } from "../../../../styles/constants";
-import { fonts } from "../../../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {GREY} from '../../../../styles/colors';
+import {CENTER, ROW} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,6 +14,6 @@ export const styles = StyleSheet.create({
     color: GREY,
     paddingHorizontal: 10,
     fontSize: fonts.size.fontSize10,
-    fontWeight: fonts.weight.fontWeight400,
+    fontFamily: fonts.family.montserrat400,
   },
 });

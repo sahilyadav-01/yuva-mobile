@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import PaymentReconfirmList from '../../modules/cart/PaymentReconfirmList';
 import {styles} from './styles';
 

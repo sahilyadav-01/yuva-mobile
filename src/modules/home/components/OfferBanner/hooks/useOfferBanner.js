@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setOurPlanData} from '../../../../../store/reducers/ProgramAndPlanSlice';
-import { redeemCouponsPlanSliceThunk } from '../../../../../store/reducers/CouponSlice';
+import {redeemCouponsPlanSliceThunk} from '../../../../../store/reducers/CouponSlice';
 
 export const useOfferBanner = () => {
   const navigation = useNavigation();
@@ -45,7 +45,12 @@ export const useOfferBanner = () => {
     const planData = popularPlan.filter(
       item => item?.planUuid === details?.itemId,
     )[0];
-    dispatch(redeemCouponsPlanSliceThunk({couponCode:details?.coupon,planUuid:details?.itemId}));
+    dispatch(
+      redeemCouponsPlanSliceThunk({
+        couponCode: details?.coupon,
+        planUuid: details?.itemId,
+      }),
+    );
     dispatch(setOurPlanData(planData));
     navigation.navigate('OurPlan');
   };

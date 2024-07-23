@@ -1,13 +1,22 @@
 import React from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {Checkbox} from 'react-native-paper';
-import {ORANGE, ORANGE_GREY, SILVER_CHALICE, CYAN_BLUE, GREEN} from '../../../../styles/colors';
+import {
+  SILVER_CHALICE,
+  CYAN_BLUE,
+  GREEN,
+  MARINER,
+  ANAKIVA,
+} from '../../../../styles/colors';
 import InputPassword from '../../../changePassword/passwordField';
 import {useSignUp} from '../../useSignUp';
 import LoginTextContainer from '../loginTextContainer';
 import styles from './style';
-import { onPrivacyPolicyPress, onTermsConditionsPress } from '../../../../utils/utils';
-import { NUMBER_EXISTS, NUMBER_NOT_VALID } from '../../constants';
+import {
+  onPrivacyPolicyPress,
+  onTermsConditionsPress,
+} from '../../../../utils/utils';
+import {NUMBER_EXISTS, NUMBER_NOT_VALID} from '../../constants';
 
 const SignUpDetailsCard = props => {
   const style = styles();
@@ -94,7 +103,8 @@ const SignUpDetailsCard = props => {
               style={style.termsConditionsText}>
               Terms and Conditions
             </Text>{' '}
-            & <Text
+            &{' '}
+            <Text
               onPress={onPrivacyPolicyPress}
               style={style.termsConditionsText}>
               Privacy Policy
@@ -107,11 +117,12 @@ const SignUpDetailsCard = props => {
         disabled={!signUp?.enableSignUpButton}
         style={{
           ...style.buttonContainer,
-          backgroundColor: signUp?.enableSignUpButton ? ORANGE : ORANGE_GREY,
+          backgroundColor: signUp?.enableSignUpButton ? MARINER : ANAKIVA,
         }}
         onPress={() => {
-          if (signUp?.enableSignUpButton)
+          if (signUp?.enableSignUpButton) {
             signUp?.onSignUp(signUp?.number, props?.from);
+          }
         }}>
         <Text style={style.buttonText}>Register</Text>
       </TouchableOpacity>

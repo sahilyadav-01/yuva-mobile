@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
-import {PALE_ORANGE} from '../../styles/colors';
+import {BLACK} from '../../styles/colors';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/native';
-import { SVG } from '../../../assets';
+import {SVG} from '../../../assets';
 
 const Search = props => {
   const {
@@ -14,32 +14,32 @@ const Search = props => {
     isSearch,
     editable,
     onSubmitEditing,
-    searchStyle
+    searchStyle,
   } = props;
   const navigation = useNavigation();
-  const onSubmit = () => {
-    if (isSearch && onSubmitEditing?.trim()?.length>2) {
+  const onSubmit = (isSearch, onSubmitEditing) => {
+    if (isSearch && onSubmitEditing?.trim()?.length > 2) {
       navigation.navigate('HomeSearchDetails', {item: onSubmitEditing.trim()});
     }
   };
-const onPress=()=>{
-  if (isScreen) {
-    navigation.navigate('HomeSearch');
-  }
-}
+  const onPress = isScreen => {
+    if (isScreen) {
+      navigation.navigate('HomeSearch');
+    }
+  };
   return (
     <View style={styles.container}>
       <SVG.SEARCH_NETWORK_SEARCH_ICON />
       <TextInput
-        onSubmitEditing={onSubmit}
+        onSubmitEditing={() => onSubmit(isSearch, onSubmitEditing)}
         editable={editable}
         multiline={false}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor={PALE_ORANGE}
-        style={[styles.textInputStyles,searchStyle]}
+        placeholderTextColor={BLACK}
+        style={[styles.textInputStyles, searchStyle]}
         value={value}
-        onPressIn={onPress}
+        onPressIn={() => onPress(isScreen)}
       />
     </View>
   );

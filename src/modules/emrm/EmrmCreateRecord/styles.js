@@ -1,7 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, DARK_BLUE, ORANGE, WHITE } from '../../../styles/colors';
-import { CENTER, ROW, SPACE_BETWEEN } from '../../../styles/constants';
-import { fonts } from '../../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  ORANGE,
+  WHITE,
+} from '../../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   mainContainStyle: {
@@ -15,10 +21,10 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize20,
     lineHeight: 27,
   },
-  inputContainer:{
+  inputContainer: {
     flexDirection: ROW,
-    alignItems:CENTER,
-    justifyContent:SPACE_BETWEEN,
+    alignItems: CENTER,
+    justifyContent: SPACE_BETWEEN,
     marginVertical: 20,
     elevation: 2,
     shadowColor: '#000',

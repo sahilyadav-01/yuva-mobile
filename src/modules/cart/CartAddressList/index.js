@@ -1,33 +1,74 @@
-import React, {useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import ProgressBar from '../../../components/ProgressBar';
+import React from 'react';
+import {FlatList, TouchableOpacity, View, Text} from 'react-native';
+import AddressItem from './AddressItem';
 import Header from '../../../components/Header';
-
 import {styles} from './styles';
-import AddressList from '../../../components/Address';
-import OrderDetails from '../../../components/OrderDetails';
-import {CONFIRM_ADDRESS} from './constant';
+import {SVG} from '../../../../assets';
 import {useCartAddressList} from './hook/useCartAddressList';
+import {useOurAddress} from '../../../components/hooks/useAddress';
 
-const CartAddressList = props => {
-  const {ConfirmAddress,addressListing} = useCartAddressList();
-
+const ListHeader = ({totalAddresses, onAddAddress}) => {
   return (
-    <>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
-      <ScrollView style={styles.container} nestedScrollEnabled>
-        <OrderDetails />
-        <View style={styles.bodyContainer}>
-          <ProgressBar progress="0" showDateTimeSection={true} />
-        </View>
-        <AddressList isNavScreen={'CheckoutAddressList'}/>
-        {addressListing?.length>0 &&
-        <TouchableOpacity onPress={ConfirmAddress} style={styles.touchableButton}>
-          <Text style={styles.textBook}>{CONFIRM_ADDRESS}</Text>
-        </TouchableOpacity>}
-      </ScrollView>
-    </>
+    <View style={styles.headerContainer}>
+      <Text style={styles.heading}>Select Address ({totalAddresses})</Text>
+      <TouchableOpacity
+        onPress={onAddAddress}
+        style={styles.addAddressContainer}>
+        <SVG.AddAddress />
+        <Text style={styles.addAddressText}>Add New</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
+
+const ItemSeparator = () => <View style={{height: 12}} />;
+
+function CartAddressList(props) {
+  const {ConfirmAddress, onAddAddress} = useCartAddressList();
+  const {
+    userAddress,
+    checked,
+    setChecked,
+    AddNewAddress,
+    userAttribute,
+    userAddressListing,
+  } = useOurAddress('CheckoutAddressList');
+
+  return (
+    <View style={styles.screenContainer}>
+      <Header
+        title={'Address'}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
+      <View style={styles.container}>
+        <ListHeader
+          totalAddresses={userAddressListing?.length}
+          onAddAddress={onAddAddress}
+        />
+        <FlatList
+          ItemSeparatorComponent={ItemSeparator}
+          style={{flex: 1}}
+          data={userAddressListing}
+          renderItem={({item, index}) => (
+            <AddressItem
+              item={item}
+              index={index}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          )}
+        />
+        <TouchableOpacity
+          onPress={ConfirmAddress}
+          style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
 
 export default CartAddressList;

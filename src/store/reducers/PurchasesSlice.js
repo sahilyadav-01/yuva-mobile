@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 import {Alert} from 'react-native';
 
 export const getPlans = createAsyncThunk(
@@ -61,7 +61,7 @@ export const programAndPlanLockThunk = createAsyncThunk(
         '/programAndPlan/lock',
         requestDto,
       );
-      return {...response, programOrPlanUuid,version,userVersion};
+      return {...response, programOrPlanUuid, version, userVersion};
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -139,7 +139,7 @@ const purchasesSlice = createSlice({
     [getPurchaseItemDetails.rejected]: state => {
       state.purchasesDetailLoading = false;
     },
-    [programAndPlanLockThunk.pending]: (state) => {
+    [programAndPlanLockThunk.pending]: state => {
       state.planLockLoading = true;
       state.planLockError = false;
     },
@@ -156,7 +156,14 @@ const purchasesSlice = createSlice({
             return item;
           }),
       };
-      state.lockedState = [...state.lockedState,{uuid:payload.programOrPlanUuid,version:payload.version,userVersion:payload.userVersion}]
+      state.lockedState = [
+        ...state.lockedState,
+        {
+          uuid: payload.programOrPlanUuid,
+          version: payload.version,
+          userVersion: payload.userVersion,
+        },
+      ];
     },
     [programAndPlanLockThunk.rejected]: (state, {payload}) => {
       state.planLockLoading = false;

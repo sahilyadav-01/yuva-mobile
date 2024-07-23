@@ -1,28 +1,29 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Text, View, FlatList} from 'react-native';
-import CartItem from './CartItem';
+import CartItems from './CartItem';
 import {styles} from './style';
 
+const {headingText} = styles();
+
+const CartHeader = ({totalItems}) => {
+  return useMemo(
+    () => <Text style={headingText}>Total Items ({totalItems})</Text>,
+    [totalItems],
+  );
+};
+
 const CartDetails = props => {
-  const {heading,data, onRemove} = props;
-  const {detailsContainer, headingText} = styles();
-  const RenderItem = ({item, index}) => {
-    const onPressRemove = () => {
-      onRemove(item);
-    }
-    return <CartItem item={item} index={index} key={index} onPressRemove={onPressRemove}/>;
-  };
+  const {data, onRemove} = props;
   return (
-    <View style={detailsContainer}>
-      <Text style={headingText}>{heading}</Text>
-      <FlatList
-        scrollEnabled={false}
-        data={data}
-        keyExtractor={(item, index) => `${index}`}
-        renderItem={RenderItem}
-        nestedScrollEnabled={true}
-      />
-    </View>
+    <FlatList
+      ItemSeparatorComponent={() => <View style={{height: 8}} />}
+      ListHeaderComponent={() => <CartHeader totalItems={data?.length} />}
+      data={data}
+      keyExtractor={(item, index) => `${item}-${index}`}
+      renderItem={({item, index}) => (
+        <CartItems item={item} onPressRemove={onRemove} />
+      )}
+    />
   );
 };
 

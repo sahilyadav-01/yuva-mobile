@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, ROW} from '../../../../../styles/constants';
-import {CYAN_BLUE, ORANGE} from '../../../../../styles/colors';
+import {CYAN_BLUE, MARINER, ORANGE} from '../../../../../styles/colors';
 import {fonts} from '../../../../../styles/fonts';
 
 export const styles = () => {
@@ -16,9 +16,9 @@ export const styles = () => {
     },
     textStyle: {
       marginRight: 12,
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize12,
-      color: ORANGE,
+      color: MARINER,
       lineHeight: 18,
     },
     arrowContainer: {padding: 12, justifyContent: CENTER, alignSelf: CENTER},

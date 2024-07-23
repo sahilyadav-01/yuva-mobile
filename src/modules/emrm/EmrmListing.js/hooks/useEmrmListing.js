@@ -1,8 +1,11 @@
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
 import _ from 'lodash';
-import { useDispatch, useSelector } from 'react-redux';
-import { documentTypeThunk, getAllErmReportThunk } from '../../../../store/reducers/EmrmSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  documentTypeThunk,
+  getAllErmReportThunk,
+} from '../../../../store/reducers/EmrmSlice';
 
 export const useEmrmListing = () => {
   const dispatch = useDispatch();
@@ -10,22 +13,28 @@ export const useEmrmListing = () => {
   const focused = useIsFocused();
   const [medicalReportData, setMedicalReportData] = useState([]);
   const [mainDropDownData, setMainDropDownData] = useState([]);
-  const defaultOption = { label: "", value: "ALL" };
-  const { dropDownData, ermReportData } = useSelector(state => state.Emrm);
+  const defaultOption = {label: '', value: 'ALL'};
+  const {dropDownData, ermReportData} = useSelector(state => state.Emrm);
   const [documentType, setDocumentType] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
-  const setSelectedDocumentType = (arg) => {
+  const setSelectedDocumentType = arg => {
     setPageNumber(1);
-    setDocumentType(mainDropDownData.find(item => {
-      if (item.value.toString() === arg.toString()) return item;
-    }).label
+    setDocumentType(
+      mainDropDownData.find(item => {
+        if (item.value.toString() === arg.toString()) {
+          return item;
+        }
+      }).label,
     );
-  }
+  };
   useEffect(() => {
-    const modifiedData =  dropDownData?.map((dropDownData) => ({ label: dropDownData?.id, value: dropDownData?.name, }));
+    const modifiedData = dropDownData?.map(dropDownData => ({
+      label: dropDownData?.id,
+      value: dropDownData?.name,
+    }));
     setMainDropDownData([defaultOption, ...modifiedData]);
-  }, [dropDownData])
+  }, [dropDownData]);
   useEffect(() => {
     if (
       ermReportData &&
@@ -44,32 +53,50 @@ export const useEmrmListing = () => {
     if (navigation.isFocused() && pageNumber === 1) {
       setMedicalReportData([]);
       dispatch(documentTypeThunk());
-      dispatch(getAllErmReportThunk({ pageNo: pageNumber, pageSize: 10, documentType, searchKey: '' }));
+      dispatch(
+        getAllErmReportThunk({
+          pageNo: pageNumber,
+          pageSize: 10,
+          documentType,
+          searchKey: '',
+        }),
+      );
     }
-
   }, [focused, documentType, pageNumber]);
   useEffect(() => {
     if (pageNumber > 1) {
-      dispatch(getAllErmReportThunk({ pageNo: pageNumber, pageSize: 10, documentType, searchKey: '' }));
+      dispatch(
+        getAllErmReportThunk({
+          pageNo: pageNumber,
+          pageSize: 10,
+          documentType,
+          searchKey: '',
+        }),
+      );
     }
   }, [pageNumber]);
 
   const onPressAddButton = () => {
     navigation.navigate('EmrmCreateRecord');
-  }
-  const onChangeSearch = (query) => {
+  };
+  const onChangeSearch = query => {
     setPageNumber(1);
     setDocumentType('');
-    setSearchQuery(query)
+    setSearchQuery(query);
     setMedicalReportData([]);
-    let searchKey = "";
-    if ((query.length > 1) && !(/^\s*$/.test(query))) {
+    let searchKey = '';
+    if (query.length > 1 && !/^\s*$/.test(query)) {
       searchKey = query;
     }
     dispatch(
-      getAllErmReportThunk({ pageNo: pageNumber, pageSize: 10, documentType, searchKey })
+      getAllErmReportThunk({
+        pageNo: pageNumber,
+        pageSize: 10,
+        documentType,
+        searchKey,
+      }),
     );
-  }
+  };
   const onEndReached = () => {
     if (pageNumber < ermReportData?.totalPages) {
       setPageNumber(pageNumber + 1);

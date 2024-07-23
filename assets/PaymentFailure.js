@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
 
-const PaymentFailure = (props) => (
+const PaymentFailure = props => (
   <Svg
     width={72}
     height={71}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <Path
       d="M43.414 3.414A2 2 0 0 0 40.586.586L36 5.17 31.415.586a2 2 0 1 0-2.828 2.828L33.172 8l-4.586 4.585a2 2 0 0 0 2.829 2.828L36 10.828l4.586 4.585a2 2 0 1 0 2.828-2.828L38.83 8l4.585-4.586Z"
       fill="#E76262"
@@ -20,6 +19,6 @@ const PaymentFailure = (props) => (
       fill="#44576A"
     />
   </Svg>
-)
+);
 
-export default PaymentFailure
+export default PaymentFailure;

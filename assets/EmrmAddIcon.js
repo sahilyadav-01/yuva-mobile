@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const EmrmAddIcon = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const EmrmAddIcon = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={45}
     height={43}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#E68D36"
       fillRule="evenodd"
@@ -15,5 +14,5 @@ const EmrmAddIcon = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
-export default EmrmAddIcon
+);
+export default EmrmAddIcon;

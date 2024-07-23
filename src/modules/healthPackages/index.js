@@ -18,7 +18,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import {styles} from './style';
 import Packages from '../../components/PackagesList/packages';
 import {usePackage} from './hooks/usePackage';
-import { DARK_GRAY } from '../../styles/colors';
+import {BLACK, DARK_GRAY, MARINER} from '../../styles/colors';
 
 const HealthPackages = props => {
   const {
@@ -65,7 +65,7 @@ const HealthPackages = props => {
         <View style={[screenContainer, childContainerStyle]}>
           {addToCartLoad ? (
             <View style={[childContainerStyle, addToCartLoader]}>
-              <ActivityIndicator size={'small'} />
+              <ActivityIndicator size={'small'} color={MARINER} />
             </View>
           ) : (
             <>
@@ -74,10 +74,10 @@ const HealthPackages = props => {
                 search={false}
                 data={dropdownData}
                 placeholder={index === 0 ? PLACEHOLDER_TEXT : DIAGNOSTIC_TESTS}
-                placeholderTextColor={DARK_GRAY}
+                placeholderTextColor={BLACK}
                 boxStyles={dropdownContainerStyle}
                 inputStyles={dropdownTextStyle}
-                dropdownTextStyles={{color:DARK_GRAY}}
+                dropdownTextStyles={dropdownTextStyle}
               />
               <Packages
                 extraStyles={packageContainerStyle}

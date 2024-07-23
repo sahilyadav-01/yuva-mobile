@@ -1,14 +1,14 @@
-import React from 'react'
-import {SafeAreaView } from 'react-native'
+import React from 'react';
+import {SafeAreaView} from 'react-native';
 import EmrmListing from '../../../modules/emrm/EmrmListing.js';
-import { styles } from './styles';
+import {styles} from './styles';
 
 const EmrmListingScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
-     <EmrmListing/>
+      <EmrmListing />
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default EmrmListingScreen;

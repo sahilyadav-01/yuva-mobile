@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BIANCA, BLACK, CYAN_BLUE, WHITE} from '../../styles/colors';
+import {ANAKIVA, BIANCA, BLACK, CYAN_BLUE, WHITE} from '../../styles/colors';
 import {ABSOLUTE, CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 import {getWindowDimensions} from '../../utils/utils';
@@ -21,7 +21,7 @@ export const styles = () => {
       },
       shadowColor: BLACK,
       shadowOpacity: 0.5,
-      shadowRadius: 4
+      shadowRadius: 4,
     },
     separatorStyle: {height: 16},
     headingTextContainer: {
@@ -30,7 +30,7 @@ export const styles = () => {
       left: 36,
       paddingVertical: 7,
       paddingHorizontal: 18,
-      backgroundColor: BIANCA,
+      backgroundColor: ANAKIVA,
       elevation: 10,
       zIndex: 10,
       alignItems: CENTER,
@@ -41,8 +41,8 @@ export const styles = () => {
     headingText: {
       lineHeight: 18,
       fontSize: fonts.size.fontSize12,
-      fontFamily: fonts.family.rubik500,
-      color: CYAN_BLUE,
+      fontFamily: fonts.family.monsterrant500,
+      color: BLACK,
     },
     headerMargin: {height: 40},
   });

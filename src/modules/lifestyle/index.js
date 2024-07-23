@@ -7,19 +7,19 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import {styles} from './style';
+import EmptyList from './EmptyList';
 import Header from '../../components/Header';
-import {useLifestyle} from './hooks/useLifestyle';
 import Packages from '../../components/PackagesList/packages';
 import {CONTINUE} from '../healthPackages/constants';
+import {styles} from './style';
+import {useLifestyle} from './hooks/useLifestyle';
 import {
   LIFESTYLE_PACKAGES,
   PACKAGES,
   SEARCH_PACKAGES_TESTS,
   TESTS,
 } from './constants';
-import EmptyList from './EmptyList';
-import { DARK_GRAY } from '../../styles/colors';
+import {BLACK, MARINER} from '../../styles/colors';
 
 const LifestyleTestsAndPackages = props => {
   const {
@@ -48,7 +48,7 @@ const LifestyleTestsAndPackages = props => {
     childContainerStyle,
     addToCartLoader,
     screenStyle,
-  } = styles(addToCartLoad,packageData.length === 0 && testData.length === 0);
+  } = styles(addToCartLoad, packageData.length === 0 && testData.length === 0);
   if (renderData) {
     return (
       <ScrollView
@@ -68,7 +68,7 @@ const LifestyleTestsAndPackages = props => {
         <View style={[container, childContainerStyle]}>
           {addToCartLoad ? (
             <View style={[childContainerStyle, addToCartLoader]}>
-              <ActivityIndicator size={'small'} />
+              <ActivityIndicator size={'small'} color={MARINER} />
             </View>
           ) : (
             <>
@@ -77,11 +77,11 @@ const LifestyleTestsAndPackages = props => {
                 search={false}
                 data={packages}
                 placeholder={placeholder}
-                placeholderTextColor={DARK_GRAY}
+                placeholderTextColor={BLACK}
                 boxStyles={boxStyles}
                 inputStyles={dropdownInputStyles}
                 dropdownStyles={dropdownStyles}
-                dropdownTextStyles={{color:DARK_GRAY}}
+                dropdownTextStyles={{color: BLACK}}
               />
               {packageData.length > 0 && (
                 <Packages

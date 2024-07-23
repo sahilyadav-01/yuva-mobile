@@ -1,6 +1,21 @@
 import {StyleSheet} from 'react-native';
-import {GAINSBORO_LIGHT, WHITE, CYAN_BLUE, INDIGO_LIGHT, MEDIUM_CARMINE, GREEN, BOSTON_BLUE, CATSKILL_WHITE_2, BLACK_OPACITY} from '../../../../styles/colors';
-import {SPACE_BETWEEN, CENTER, ROW, LINE_THROUGH} from '../../../../styles/constants';
+import {
+  GAINSBORO_LIGHT,
+  WHITE,
+  CYAN_BLUE,
+  INDIGO_LIGHT,
+  MEDIUM_CARMINE,
+  GREEN,
+  BOSTON_BLUE,
+  CATSKILL_WHITE_2,
+  BLACK_OPACITY,
+} from '../../../../styles/colors';
+import {
+  SPACE_BETWEEN,
+  CENTER,
+  ROW,
+  LINE_THROUGH,
+} from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
 
 export const styles = () => {
@@ -66,7 +81,7 @@ export const styles = () => {
       fontFamily: fonts.family.rubik400,
       fontSize: fonts.size.fontSize12,
       lineHeight: 14,
-      color: INDIGO_LIGHT
+      color: INDIGO_LIGHT,
     },
     orderDetailsText: {
       marginBottom: 3,
@@ -80,7 +95,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize10,
       lineHeight: 12,
       color: CYAN_BLUE,
-      marginBottom:8,
+      marginBottom: 8,
     },
     planDetailsContainer: {
       flexDirection: ROW,
@@ -103,7 +118,7 @@ export const styles = () => {
       fontSize: fonts.size.fontSize14,
       lineHeight: 17,
       color: CYAN_BLUE,
-      marginRight: 8
+      marginRight: 8,
     },
     summaryContainer: {flexDirection: ROW, justifyContent: SPACE_BETWEEN},
     personText: {
@@ -142,27 +157,46 @@ export const styles = () => {
       lineHeight: 17,
       color: BOSTON_BLUE,
     },
-    regularPriceText: {textDecorationLine: LINE_THROUGH,marginRight:4,color:MEDIUM_CARMINE},
-    rowView: {flexDirection:ROW},
-    separator: {height:40},
+    regularPriceText: {
+      textDecorationLine: LINE_THROUGH,
+      marginRight: 4,
+      color: MEDIUM_CARMINE,
+    },
+    rowView: {flexDirection: ROW},
+    separator: {height: 40},
     discountPrice: {
-        marginBottom: 5,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
-        color: GREEN,
-      },
+      marginBottom: 5,
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      lineHeight: 21,
+      color: GREEN,
+    },
     arrowContainer: {
       paddingHorizontal: 6,
-      paddingVertical:8
+      paddingVertical: 8,
     },
-    couponText: {fontFamily:fonts.family.rubik500,fontSize:fonts.size.fontSize10,lineHeight:15,color:CYAN_BLUE},
-    couponDescription: {fontFamily:fonts.family.rubik400,fontSize:fonts.size.fontSize10,lineHeight:15,color:CYAN_BLUE},
-    couponContainer: {borderRadius:12,backgroundColor:CATSKILL_WHITE_2,paddingVertical:10,paddingLeft:16},
-    priceBreakUpContainer: {marginBottom:12},
+    couponText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize10,
+      lineHeight: 15,
+      color: CYAN_BLUE,
+    },
+    couponDescription: {
+      fontFamily: fonts.family.rubik400,
+      fontSize: fonts.size.fontSize10,
+      lineHeight: 15,
+      color: CYAN_BLUE,
+    },
+    couponContainer: {
+      borderRadius: 12,
+      backgroundColor: CATSKILL_WHITE_2,
+      paddingVertical: 10,
+      paddingLeft: 16,
+    },
+    priceBreakUpContainer: {marginBottom: 12},
     listExpandContainer: {marginVertical: 20},
     itemSeparatorStyle: {height: 24},
-    reorderContainer: {alignItems:CENTER, marginBottom: 26},
-    dateTimeContainer: {marginLeft: 2}
+    reorderContainer: {alignItems: CENTER, marginBottom: 26},
+    dateTimeContainer: {marginLeft: 2},
   });
 };

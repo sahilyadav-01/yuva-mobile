@@ -1,18 +1,17 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import _ from 'lodash';
-import {getPlans, getPurchases, toggleTab} from '../../../store/reducers/PurchasesSlice';
-import { BackHandler } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {
+  getPlans,
+  getPurchases,
+  toggleTab,
+} from '../../../store/reducers/PurchasesSlice';
+import {BackHandler} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export const usePurchase = plan => {
-  const {
-    purchasesTab,
-    plans,
-    plansError,
-    purchases,
-    purchasesError,
-  } = useSelector(state => state.purchases);
+  const {purchasesTab, plans, plansError, purchases, purchasesError} =
+    useSelector(state => state.purchases);
   const [planList, setPlanList] = useState([]);
   const [purchasesList, setPurchasesList] = useState([]);
   const [plansPageNo, setPlansPageNo] = useState(1);
@@ -23,11 +22,13 @@ export const usePurchase = plan => {
   const [purchasesListLoading, setPurchasesListLoading] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(toggleTab(0));
-    BackHandler.addEventListener('hardwareBackPress',()=>navigation.goBack());
-    return () => BackHandler.removeEventListener('hardwareBackPress',()=>{});
-  },[])
+    BackHandler.addEventListener('hardwareBackPress', () =>
+      navigation.goBack(),
+    );
+    return () => BackHandler.removeEventListener('hardwareBackPress', () => {});
+  }, []);
   useEffect(() => {
     if (purchasesTab === 0 && plansPageNo === 1 && plan) {
       dispatch(getPlans({pageNo: plansPageNo, pageSize: 10, orderStatus: ''}));
@@ -46,7 +47,9 @@ export const usePurchase = plan => {
 
   useEffect(() => {
     if (purchasesPageNo > 1 && purchasesTab === 1) {
-      dispatch(getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''}));
+      dispatch(
+        getPurchases({pageNo: purchasesPageNo, pageSize: 10, orderStatus: ''}),
+      );
     }
   }, [purchasesPageNo]);
 
@@ -75,7 +78,6 @@ export const usePurchase = plan => {
       setLoading(false);
     }
   }, [plans, plansError]);
-
 
   useEffect(() => {
     if (
@@ -110,7 +112,6 @@ export const usePurchase = plan => {
     }
   }, [purchases, purchasesError]);
 
-
   const onEndReached = () => {
     if (purchasesTab === 0 && plansPageNo < plans?.totalPages) {
       setPlanListLoading(true);
@@ -131,6 +132,6 @@ export const usePurchase = plan => {
     purchasesList,
     purchasesError,
     planListLoading,
-    purchasesListLoading
+    purchasesListLoading,
   };
 };

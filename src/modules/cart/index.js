@@ -1,14 +1,10 @@
 import React from 'react';
-import { ScrollView, View, Text, KeyboardAvoidingView} from 'react-native';
-import CardButton from '../../components/CardButton';
+import {View, Text, TouchableOpacity} from 'react-native';
 import CartDetails from '../../components/CartDetails';
-import CouponCard from '../../components/CouponCard';
 import Header from '../../components/Header';
-import PriceDetails from '../../components/PriceDetails';
 import {
   CART_DETAILS,
   MY_CART,
-  PRICE_DETAILS,
   ADD_NEW_MEMBER,
   ADD_MEMBER,
   SELECT_MEMBER,
@@ -21,22 +17,16 @@ import {
 import {useCart} from './hooks/useCart';
 import {styles} from './styles';
 import DependentsModal from '../../components/Modal/DependentsModal';
-import Dependents from '../profile/components/dependents';
 import AddMembersModal from '../../components/Modal/AddMembersModal';
-import { getPlatform } from '../../utils/utils';
 
-const Cart = props => {
-  const Platform = getPlatform();
+const Cart = () => {
   const {
     cart,
-    coupon,
-    couponView,
     onPressCardButton,
     buttonText,
     onSaveDetailsPress,
     onAddModalCrossPress,
     onRemove,
-    userData,
     onModalCrossPress,
     onPressCheckBox,
     checkBoxStatus,
@@ -51,20 +41,18 @@ const Cart = props => {
     onSaveRelationsPress,
     relativesData,
     loading,
-    onContainerCrossPress
   } = useCart();
-  const {itemDtoList, totalCost, amountToBePaid, totalDiscount} = cart || {};
-  const {
-    totalCost: appliedTotalCost,
-    amountToBePaid: appliedAmountToBePaid,
-    totalDiscount: appliedTotalDiscount,
-    couponDiscount,
-  } = coupon || {};
+  const {itemDtoList} = cart || {};
   return (
-    <>
-      <Header title={MY_CART} showSearch={false} showBackButton={true} hideMenu={true} showCart={true}/>
-      <KeyboardAvoidingView behavior={Platform.isIOS ? 'padding' : null} style={{flex:1}}>
-      <ScrollView style={styles.container}>
+    <View style={styles.screenContainer}>
+      <Header
+        title={MY_CART}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
+      <View style={styles.container}>
         <DependentsModal
           visible={modalVisible}
           onCrossPress={onModalCrossPress}
@@ -89,7 +77,7 @@ const Cart = props => {
           relationsData={relationsData}
           buttonText={SAVE_DETAILS}
         />
-         <AddMembersModal
+        <AddMembersModal
           heading={ADD_RELATIVE}
           onCrossPress={onRelationModalCrossPress}
           modalVisible={relationsModalVisible}
@@ -98,28 +86,29 @@ const Cart = props => {
           buttonText={SAVE_DETAILS}
           headingText={RELATIONSHIP}
         />
-        {itemDtoList.length === 0 && !loading && <View style={styles.emptyCartContainer}>
-          <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
-          </View>}
-        {itemDtoList.length > 0 &&  !loading && <View style={styles.bodyContainer}>
-          <CartDetails
-            data={itemDtoList}
-            heading={CART_DETAILS}
-            onRemove={onRemove}
-          />
-          <PriceDetails heading={PRICE_DETAILS} totalCost={totalCost} totalDiscount={totalDiscount} amountToBePaid={amountToBePaid} coupon={{ couponView, appliedAmountToBePaid, appliedTotalCost, appliedTotalDiscount, couponDiscount }} />
-          {userData !== null && <Dependents hideShadow={true} dependents={[userData]} extraContainerStyle={styles.crossContainerStyle} onCrossPress={onContainerCrossPress} showCross={true} />}
-          <CardButton
-            text={buttonText}
+        {itemDtoList.length === 0 && !loading && (
+          <View style={styles.emptyCartContainer}>
+            <Text style={styles.emptyCartText}>{EMPTY_CART}</Text>
+          </View>
+        )}
+        {itemDtoList.length > 0 && !loading && (
+          <View style={styles.bodyContainer}>
+            <CartDetails
+              data={itemDtoList}
+              heading={CART_DETAILS}
+              onRemove={onRemove}
+            />
+          </View>
+        )}
+        {itemDtoList.length > 0 && (
+          <TouchableOpacity
             onPress={onPressCardButton}
-            containerStyle={styles.containerStyle}
-            textStyle={styles.textStyle}
-          />
-        </View>}
-        {itemDtoList.length > 0 &&  !loading && <CouponCard />}
-      </ScrollView>
-      </KeyboardAvoidingView>
-    </>
+            style={styles.buttonContainer}>
+            <Text style={styles.textStyle}>{buttonText}</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
   );
 };
 

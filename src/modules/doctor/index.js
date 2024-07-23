@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import DoctorCard from '../../components/DoctorCard';
 import {useDoctor} from './hooks/useDoctor';
 import {styles} from './styles';
 import {SEARCH} from './constant';
 import {useRoute} from '@react-navigation/native';
 import Search from '../../components/Search';
-import { DARK_GRAY } from '../../styles/colors';
+import {DARK_GRAY} from '../../styles/colors';
 
 const Doctor = () => {
   const {params} = useRoute();
@@ -32,8 +32,8 @@ const Doctor = () => {
       />
     );
   };
-  return (
-  
+  if (data?.length > 0) {
+    return (
       <View style={styles.contentContainerStyle}>
         <View style={styles.search}>
           <Search
@@ -44,14 +44,22 @@ const Doctor = () => {
             searchStyle={styles.searchStyle}
           />
         </View>
-          <FlatList
-            renderItem={renderItem}
-            data={data}
-            keyExtractor={(item, index) => `${index}`}
-            showsHorizontalScrollIndicator={false}
-            nestedScrollEnabled={true}
-          />
+        <FlatList
+          renderItem={renderItem}
+          data={data}
+          keyExtractor={(item, index) => `${index}`}
+          showsHorizontalScrollIndicator={false}
+          nestedScrollEnabled={true}
+        />
       </View>
+    );
+  }
+  return (
+    <View style={styles.listEmptyStyles}>
+      <Text style={styles.emptyText}>
+        No Doctors available in the Selected City
+      </Text>
+    </View>
   );
 };
 

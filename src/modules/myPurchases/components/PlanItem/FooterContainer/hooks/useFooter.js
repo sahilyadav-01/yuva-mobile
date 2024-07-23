@@ -56,11 +56,11 @@ export const useFooter = planDetails => {
           userVersion: details?.userVersion,
         }),
       );
-      if(details?.uuid !== undefined || details?.version !== undefined ){
-      dispatch(
-        getActiveRelations({uuid: details?.uuid, version: details?.version}),
-      );
-    }
+      if (details?.uuid !== undefined || details?.version !== undefined) {
+        dispatch(
+          getActiveRelations({uuid: details?.uuid, version: details?.version}),
+        );
+      }
     }
   }, [toggleCount]);
 
@@ -71,9 +71,9 @@ export const useFooter = planDetails => {
       details !== '' &&
       !addMember &&
       !planLockView
-    )
+    ) {
       setCurrentItem(details);
-    else if (
+    } else if (
       addMember &&
       planLockView &&
       !relationsLoading &&
@@ -106,21 +106,29 @@ export const useFooter = planDetails => {
     if (relationAdded) {
       setCurrentItem(null);
       setAddMember(true);
-      if(addedPlanDetails?.uuid && addedPlanDetails?.version && addedPlanDetails?.userVersion)
-      dispatch(
-        getRelations({
-          uuid: addedPlanDetails?.uuid,
-          version: addedPlanDetails?.version,
-          userVersion: addedPlanDetails?.userVersion,
-        }),
-      );
-      if(addedPlanDetails?.uuid !== undefined || addedPlanDetails?.version !== undefined ){
-      dispatch(
-        getActiveRelations({
-          uuid: addedPlanDetails?.uuid,
-          version: addedPlanDetails?.version,
-        }),
-      );
+      if (
+        addedPlanDetails?.uuid &&
+        addedPlanDetails?.version &&
+        addedPlanDetails?.userVersion
+      ) {
+        dispatch(
+          getRelations({
+            uuid: addedPlanDetails?.uuid,
+            version: addedPlanDetails?.version,
+            userVersion: addedPlanDetails?.userVersion,
+          }),
+        );
+      }
+      if (
+        addedPlanDetails?.uuid !== undefined ||
+        addedPlanDetails?.version !== undefined
+      ) {
+        dispatch(
+          getActiveRelations({
+            uuid: addedPlanDetails?.uuid,
+            version: addedPlanDetails?.version,
+          }),
+        );
       }
     }
   }, [relationAdded]);
@@ -241,16 +249,20 @@ export const useFooter = planDetails => {
 
   const lockPlan = item => {
     const checkedList = dependents.filter(item => {
-      if (item?.status) return item;
+      if (item?.status) {
+        return item;
+      }
     });
     const relationId = checkedList.map(item => item.id);
     const relations = checkedList.map(item => item.relation);
     const childrenCount = relations.filter(item => {
-      if (item === SON || item === DAUGHTER) return item;
+      if (item === SON || item === DAUGHTER) {
+        return item;
+      }
     }).length;
-    if (childrenCount > planDetails?.childrenCount)
+    if (childrenCount > planDetails?.childrenCount) {
       Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
-    else {
+    } else {
       setPlanLocked(true);
       setAddedPlanDetails(item);
       dispatch(

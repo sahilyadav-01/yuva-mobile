@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const getServicesThunk = createAsyncThunk(
   'attribute/getServices',
@@ -37,7 +37,6 @@ const attributeSlice = createSlice({
     [getServicesThunk.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.services = payload.data.data;
-
     },
     [getServicesThunk.rejected]: (state, {payload}) => {
       state.apiError = true;

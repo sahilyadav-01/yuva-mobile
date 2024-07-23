@@ -8,7 +8,7 @@ import {useApp} from './useApp';
 import {View} from 'react-native';
 import {StatusBar} from 'react-native';
 import {getIosStatusBarHeight, getPlatform} from './src/utils/utils';
-import {ORANGE} from './src/styles/colors';
+import {MARINER} from './src/styles/colors';
 import YuvaService from './src/network/yuvaService';
 import LoaderContext from './src/components/LoaderContext';
 
@@ -42,7 +42,7 @@ export default function App() {
     if (isIOS && renderContent) {
       return (
         <View style={{flex: 1}}>
-          <View style={{backgroundColor: ORANGE, height}}>
+          <View style={{backgroundColor: MARINER, height}}>
             <StatusBar />
           </View>
           <RootNavigator />
@@ -51,7 +51,7 @@ export default function App() {
     } else if (isAndroid) {
       return (
         <View style={{flex: 1}}>
-          <StatusBar backgroundColor={ORANGE} />
+          <StatusBar backgroundColor={MARINER} />
           <RootNavigator />
         </View>
       );

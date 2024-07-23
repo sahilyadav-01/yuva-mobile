@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const newAppointmentThunk = createAsyncThunk(
   'appointment/newAppointment',
@@ -111,6 +111,7 @@ const initialState = {
   errorAppointment: '',
   getAppointment: null,
   notificationRedirect: false,
+  cancelCurrentAppointment: false,
 };
 
 const appointmentSlice = createSlice({
@@ -124,30 +125,30 @@ const appointmentSlice = createSlice({
       state.errorAppointment = null;
     },
     newAppointment(state, {payload}) {
-      state.appointment['name'] = payload.name;
-      state.appointment['specialization'] = payload.specialization;
-      state.appointment['doctorId'] = payload.doctorId;
+      state.appointment.name = payload.name;
+      state.appointment.specialization = payload.specialization;
+      state.appointment.doctorId = payload.doctorId;
     },
     currentAppointment(state, {payload}) {
-      state.currentAppointment['id'] = payload.id;
-      state.currentAppointment['doctorName'] = payload.doctorName;
-      state.currentAppointment['address'] = payload.address;
-      state.currentAppointment['status'] = payload.status;
-      state.currentAppointment['speciality'] = payload.speciality;
-      state.currentAppointment['description'] = payload.description;
-      state.currentAppointment['slot'] = payload.slot;
-      state.currentAppointment['otp'] = payload.otp;
-      state.currentAppointment['hospitalName'] = payload.hospitalName;
-      state.currentAppointment['memberName'] = payload.memberName;
-      state.currentAppointment['relation'] = payload.relation;
-      state.currentAppointment['customId'] = payload.customId;
+      state.currentAppointment.id = payload.id;
+      state.currentAppointment.doctorName = payload.doctorName;
+      state.currentAppointment.address = payload.address;
+      state.currentAppointment.status = payload.status;
+      state.currentAppointment.speciality = payload.speciality;
+      state.currentAppointment.description = payload.description;
+      state.currentAppointment.slot = payload.slot;
+      state.currentAppointment.otp = payload.otp;
+      state.currentAppointment.hospitalName = payload.hospitalName;
+      state.currentAppointment.memberName = payload.memberName;
+      state.currentAppointment.relation = payload.relation;
+      state.currentAppointment.customId = payload.customId;
     },
     resetAppointments(state) {
       state.userAppointments = [];
     },
-    setNotificationRedirect(state,{payload}) {
+    setNotificationRedirect(state, {payload}) {
       state.notificationRedirect = payload;
-    }
+    },
   },
   extraReducers: {
     [newAppointmentThunk.pending]: (state, {payload}) => {
@@ -174,9 +175,14 @@ const appointmentSlice = createSlice({
 
     [cancelAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
+      state.cancelCurrentAppointment = false;
     },
-    [cancelAppointmentThunk.fulfilled]: (state, {payload}) => {},
-    [cancelAppointmentThunk.rejected]: (state, {payload}) => {},
+    [cancelAppointmentThunk.fulfilled]: (state, {payload}) => {
+      state.cancelCurrentAppointment = true;
+    },
+    [cancelAppointmentThunk.rejected]: (state, {payload}) => {
+      state.cancelCurrentAppointment = false;
+    },
 
     [rescheduleAppointmentThunk.pending]: (state, {payload}) => {
       state.loading = false;
@@ -212,7 +218,7 @@ export const {
   resetMessage,
   resetAppointments,
   getAppointment,
-  setNotificationRedirect
+  setNotificationRedirect,
 } = appointmentSlice.actions;
 export const appointmentInit = appointmentSlice.getInitialState();
 

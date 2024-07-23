@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-const AMBULANCESERVICE_SUBIMAGE1 = (props) => (
+import * as React from 'react';
+import Svg, {G, Path, Defs, ClipPath} from 'react-native-svg';
+const AMBULANCESERVICE_SUBIMAGE1 = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={50}
     height={60}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <G clipPath="url(#a)">
       <Path
         fill="#F6921E"
@@ -32,5 +31,5 @@ const AMBULANCESERVICE_SUBIMAGE1 = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
-export default AMBULANCESERVICE_SUBIMAGE1
+);
+export default AMBULANCESERVICE_SUBIMAGE1;

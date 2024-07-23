@@ -9,14 +9,20 @@ import {
 } from '../../../store/reducers/PaymentSlice';
 
 export const usePayment = paymentProps => {
-  const {plan, bookingRequestDto, subscriptionRequestDto, name, age, gender} =
-    paymentProps;
+  const {
+    plan,
+    bookingRequestDto,
+    subscriptionRequestDto,
+    name,
+    age,
+    gender,
+    cart,
+  } = paymentProps;
   const dispatch = useDispatch();
   const focused = useIsFocused();
   const navigation = useNavigation();
-  const {encReqLoading, encReq, createOrderLoading, orderId,order, cod} = useSelector(
-    state => state.payment,
-  );
+  const {encReqLoading, encReq, createOrderLoading, orderId, order, cod} =
+    useSelector(state => state.payment);
   const [createOrder, setCreateOrder] = useState(false);
   const [renderData, setRenderData] = useState(false);
   useEffect(() => {
@@ -26,12 +32,13 @@ export const usePayment = paymentProps => {
       dispatch(
         createOrderThunk({
           plan,
-          cod,
+          cod: plan ? (cod ? 'true' : 'false') : cod,
           bookingRequestDto,
           subscriptionRequestDto,
           name,
           age,
           gender,
+          cart,
         }),
       );
       setCreateOrder(true);
@@ -39,7 +46,13 @@ export const usePayment = paymentProps => {
   }, [focused]);
 
   useEffect(() => {
-    if (createOrder && !createOrderLoading && orderId && !cod && !order?.amountZero) {
+    if (
+      createOrder &&
+      !createOrderLoading &&
+      orderId &&
+      !cod &&
+      !order?.amountZero
+    ) {
       dispatch(
         encReqThunk({
           plan,
@@ -48,17 +61,27 @@ export const usePayment = paymentProps => {
           cancelUrl: Config.CANCEL_URL,
         }),
       );
-    }
-    else if (createOrder && !createOrderLoading && orderId && !cod && order?.amountZero){
+    } else if (
+      createOrder &&
+      !createOrderLoading &&
+      orderId &&
+      !cod &&
+      order?.amountZero
+    ) {
       navigation.navigate('Payment', {
         screen: 'PaymentStatus',
-        params: {zeroPayment:true},
+        params: {zeroPayment: true},
       });
-    }
-    else if (createOrder && !createOrderLoading && orderId && !order?.amountZero && cod ){
+    } else if (
+      createOrder &&
+      !createOrderLoading &&
+      orderId &&
+      !order?.amountZero &&
+      cod
+    ) {
       navigation.navigate('Payment', {
         screen: 'PaymentStatus',
-        params: {cod:true},
+        params: {cod: true},
       });
     }
   }, [createOrderLoading, orderId, createOrder]);
@@ -69,7 +92,7 @@ export const usePayment = paymentProps => {
     }
   }, [createOrder, orderId, encReqLoading, encReq]);
 
-  const postPaymentNavigation = (url,key) => {
+  const postPaymentNavigation = (url, key) => {
     const params = url?.split(key)[1];
     const tokenString = params?.split('&emailOrNumber=')[0];
     const token = tokenString?.substring(6, tokenString?.length);

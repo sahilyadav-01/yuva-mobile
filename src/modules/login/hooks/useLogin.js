@@ -21,20 +21,29 @@ export const useLogin = () => {
   const {
     user: {status},
     navigateToRegister,
-    type
+    type,
   } = useSelector(state => state.auth);
 
   const onLoginPress = from => {
     const reg = /^\d+$/;
-    if (reg.test(email.toString()) && email.toString().length !== 10)
+    if (reg.test(email.toString()) && email.toString().length !== 10) {
       Alert.alert('Alert', EMAIL_VALIDATION);
-    else if (!reg.test(email.toString()) && email.split('@').length !== 2)
+    } else if (!reg.test(email.toString()) && email.split('@').length !== 2) {
       Alert.alert('Alert', EMAIL_VALIDATION);
-    else if (isEmpty(password)) {
+    } else if (isEmpty(password)) {
       Alert.alert('Alert', PASSWORD_VALIDATION);
     } else {
       setFrom(from);
-      dispatch(loginThunk({email, password, type: reg.test(email.toString()) && email.toString().length === 10 ? 'number' : 'email'}));
+      dispatch(
+        loginThunk({
+          email,
+          password,
+          type:
+            reg.test(email.toString()) && email.toString().length === 10
+              ? 'number'
+              : 'email',
+        }),
+      );
     }
   };
 
@@ -64,20 +73,33 @@ export const useLogin = () => {
         password,
         verificationType: type,
         from,
-        signUp:false
+        signUp: false,
       });
     } else {
       if (loggedIn == 'loggedIn' && status) {
         dispatch(profileThunk());
-        if(from?.reset) navigation.reset({index:0,routes:[{name:'HomeScreen'}]})
-        else if (from?.from == 'OurPlanDetails') navigation.navigate('HomeService',{navigateToDetails:true,screenParams:{data:from?.data}});
-        else if(from?.from === 'MentalWellness') navigation.navigate('MentalWellness')
-        else if (from?.from === 'CartScreen') navigation.navigate('HomeDrawer',{screen:'Cart',params:{screen:'Cart'}});
-        else if (from?.from !== 'Home') navigation.navigate('Home',{screen:'HomeService'});
-        else navigation.navigate('HomeService');
+        if (from?.reset) {
+          navigation.reset({index: 0, routes: [{name: 'HomeScreen'}]});
+        } else if (from?.from == 'OurPlanDetails') {
+          navigation.navigate('HomeService', {
+            navigateToDetails: true,
+            screenParams: {data: from?.data},
+          });
+        } else if (from?.from === 'MentalWellness') {
+          navigation.navigate('MentalWellness');
+        } else if (from?.from === 'CartScreen') {
+          navigation.navigate('HomeDrawer', {
+            screen: 'Cart',
+            params: {screen: 'Cart'},
+          });
+        } else if (from?.from !== 'Home') {
+          navigation.navigate('Home', {screen: 'HomeService'});
+        } else {
+          navigation.navigate('HomeService');
+        }
       }
     }
-  }, [status]);
+  }, [status, navigateToRegister]);
 
   return {
     email,

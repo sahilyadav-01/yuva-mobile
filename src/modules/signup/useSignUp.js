@@ -24,8 +24,9 @@ export const useSignUp = () => {
   const [enableSignUpButton, setEnableSignUpButton] = useState(false);
   const [existing, setExisting] = useState(false);
   const [terms, setTerms] = useState(false);
-  const [securePasswordEntry,setSecurePasswordEntry] = useState(true);
-  const [secureConfirmPasswordEntry,setSecureConfirmPasswordEntry] = useState(true);
+  const [securePasswordEntry, setSecurePasswordEntry] = useState(true);
+  const [secureConfirmPasswordEntry, setSecureConfirmPasswordEntry] =
+    useState(true);
   useEffect(() => {
     setExisting(emailExisting || numberExisting);
   }, [emailExisting, numberExisting]);
@@ -44,7 +45,7 @@ export const useSignUp = () => {
   useEffect(() => {
     dispatch(resetExistingEmail());
   }, [email]);
-  
+
   useEffect(() => {
     const enable =
       name.length &&
@@ -52,7 +53,7 @@ export const useSignUp = () => {
       password.length &&
       confirmPassword.length &&
       password === confirmPassword &&
-      password.length>=6 &&
+      password.length >= 6 &&
       terms &&
       !existing;
     setEnableSignUpButton(enable);
@@ -74,9 +75,11 @@ export const useSignUp = () => {
 
   const onLoginPress = from => navigation.navigate('Login', {from});
 
-  const onPasswordIconPress = secureTextEntry => setSecurePasswordEntry(secureTextEntry);
+  const onPasswordIconPress = secureTextEntry =>
+    setSecurePasswordEntry(secureTextEntry);
 
-  const onConfirmPasswordIconPress = secureTextEntry => setSecureConfirmPasswordEntry(secureTextEntry);
+  const onConfirmPasswordIconPress = secureTextEntry =>
+    setSecureConfirmPasswordEntry(secureTextEntry);
 
   const checkEmailText = e => {
     if (email.split('@').length < 2) {
@@ -90,14 +93,20 @@ export const useSignUp = () => {
   };
 
   const onPasswordBlur = () => {
-    if(password.toString().length < 6) setCheckPassword(true)
-    else setCheckPassword(false)
-  }
+    if (password.toString().length < 6) {
+      setCheckPassword(true);
+    } else {
+      setCheckPassword(false);
+    }
+  };
 
   const onConfirmPasswordBlur = () => {
-    if(confirmPassword.toString().length < 6) setCheckConfirmPassword(true)
-    else setCheckConfirmPassword(false)
-  }
+    if (confirmPassword.toString().length < 6) {
+      setCheckConfirmPassword(true);
+    } else {
+      setCheckConfirmPassword(false);
+    }
+  };
 
   const checkNumberText = e => {
     const reg = /^\d+$/;
@@ -118,7 +127,7 @@ export const useSignUp = () => {
       password,
       verificationType: 'number',
       from,
-      signUp:true,
+      signUp: true,
     });
   };
 

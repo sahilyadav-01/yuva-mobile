@@ -1,44 +1,29 @@
-import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
-import { PNG, SVG } from "../../../assets";
-import Header from "../../components/Header";
-import { DETIALS_TEXT, FIRSTCARD_HEADING, FIRSTCARD_SUBHEADING, HEADER, HEADING, SECONDCARD_HEADING, SECONDCARD_SUBHEADING, SUBHEADING, THIRDCARD_HEADING, THIRDCARD_SUBHEADING } from "./constant";
-import { styles } from "./styles";
-const AmbulanceScreen = () => {
-    const AmbulanceServiceCards = () => {
-        const data = [
-            { heading: FIRSTCARD_HEADING, subHeading: FIRSTCARD_SUBHEADING, image: SVG['AMBULANCESERVICE_SUBIMAGE1'] },
-            { heading: SECONDCARD_HEADING, subHeading: SECONDCARD_SUBHEADING, image: SVG['AMBULANCESERVICE_SUBIMAGE2'] },
-            { heading: THIRDCARD_HEADING, subHeading: THIRDCARD_SUBHEADING, image: SVG['AMBULANCESERVICE_SUBIMAGE3'] }
-        ];
-        return data.map(item => {
-            return (
-                <View style={styles.serviceCardMainContainer}>
-                    <View style={styles.serviceCardSubContainer}>
-                        <Text style={styles.subContainerTextStyle}>{item?.heading}</Text>
-                        <View style={styles.subContainerImageStyle}>
-                            {item?.image()}
-                        </View>
-                    </View>
-                    <Text style={styles.subContainerBottomTextStyle}>{item?.subHeading}</Text>
-                </View>
-            )
-        })
-    }
-    return (
-        <>
-            <Header title={HEADER} isScreen={true} hideMenu={false} showBackButton={true} />
-            <View style={styles.mainContainer}>
-                <ScrollView>
-                    <Text style={styles.headingStyle}>{HEADING}</Text>
-                    <Image source={PNG.AmbulanceImage} style={styles.mainImageStyle} resizeMode='cover' />
-                    <Text style={styles.subHeadingStyle}>{SUBHEADING}</Text>
-                    <Text style={styles.detialsTextStyle}>{DETIALS_TEXT}</Text>
-                    <AmbulanceServiceCards />
-                </ScrollView>
-            </View>
-        </>
-    )
+import React from 'react';
+import {ScrollView, View} from 'react-native';
+import Header from '../../components/Header';
+import ImageContainer from './ImageContainer';
+import Description from './Description';
+import ItemContainer from './ItemContainer';
+import {styles} from './styles';
+
+function AmbulanceScreen(props) {
+  return (
+    <>
+      <Header
+        title={'Ambulance Service'}
+        isScreen={true}
+        hideMenu={false}
+        showBackButton={true}
+      />
+      <ScrollView>
+        <View style={styles.container}>
+          <ImageContainer />
+          <Description />
+          <ItemContainer />
+        </View>
+      </ScrollView>
+    </>
+  );
 }
 
-export default AmbulanceScreen; 
+export default AmbulanceScreen;

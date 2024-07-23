@@ -1,22 +1,22 @@
 import moment from 'moment';
 import {useEffect, useState} from 'react';
 import _ from 'lodash';
-import { SVG } from '../../../../assets';
+import {SVG} from '../../../../assets';
 
-export const useDatePicker = (onDateTimeSelect,OPD) => {
+export const useDatePicker = (onDateTimeSelect, OPD) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedDateObj, setSelectedDateObj] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    if (selectedTime === null)
+    if (selectedTime === null) {
       onDateTimeSelect({
         status: false,
         message: 'Please select a time slot',
         value: null,
       });
-    else {
+    } else {
       const unixTime = Date.parse(
         new Date(
           selectedDateObj.getFullYear(),
@@ -45,7 +45,7 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
     return arr;
   };
 
-  const getSlots = (year,month,date) => {
+  const getSlots = (year, month, date) => {
     const dayEnd = moment(
       new Date(
         year === undefined ? selectedDateObj.getFullYear() : year,
@@ -82,8 +82,9 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
         parseInt(item) <= 12 &&
         index <= noonIndex &&
         noonIndex < arr.length - 1
-      )
+      ) {
         return item;
+      }
     });
     const afternoonSlots = arr.filter((item, index) => {
       if (
@@ -91,8 +92,9 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
         (noonIndex < arr.length - 1 &&
           parseInt(item) <= 5 &&
           index >= noonIndex)
-      )
+      ) {
         return item;
+      }
     });
     const eveningSlots = arr.filter((item, index) => {
       if (
@@ -101,8 +103,9 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
             parseInt(item) > 5 &&
             index > noonIndex)) &&
         OPD
-      )
+      ) {
         return item;
+      }
     });
     const {morning, afternoon, evening} = {
       morning: () => {
@@ -113,7 +116,7 @@ export const useDatePicker = (onDateTimeSelect,OPD) => {
               from: morningSlots[index],
               to: morningSlots[index + 1],
               type: 'Morning (AM)',
-              Icon: () => null
+              Icon: () => null,
             });
           } else if (index === morningSlots.length - 1) {
             slots.push({

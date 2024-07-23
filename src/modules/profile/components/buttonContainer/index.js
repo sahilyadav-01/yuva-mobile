@@ -5,12 +5,19 @@ import styles from './style';
 import {WHITE} from '../../../../styles/colors';
 import {SVG} from '../../../../../assets';
 
-const ButtonContainer = ({edit, addMemberToList, addMembers, editDetails, updateUserData}) => {
-  const {saveButtonText, addIconStyle} =
-    styles({disabled: false});
+const ButtonContainer = ({
+  edit,
+  addMemberToList,
+  addMembers,
+  editDetails,
+  updateUserData,
+}) => {
+  const {saveButtonText, addIconStyle} = styles({disabled: false});
   return edit ? (
     <>
-      <TouchableOpacity onPress={updateUserData} style={styles({disabled:false}).saveDetailsButton}>
+      <TouchableOpacity
+        onPress={updateUserData}
+        style={styles({disabled: false}).saveDetailsButton}>
         <Text style={saveButtonText}>{SAVE_DETAILS}</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -23,7 +30,9 @@ const ButtonContainer = ({edit, addMemberToList, addMembers, editDetails, update
       </TouchableOpacity>
     </>
   ) : (
-    <TouchableOpacity onPress={editDetails} style={styles({disabled:false}).addMembersButton}>
+    <TouchableOpacity
+      onPress={editDetails}
+      style={styles({disabled: false}).addMembersButton}>
       <SVG.Edit style={addIconStyle} color={WHITE} />
       <Text style={saveButtonText}>{EDIT_PROFILE}</Text>
     </TouchableOpacity>

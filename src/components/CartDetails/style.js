@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {WHITE, CYAN_BLUE} from '../../styles/colors';
-import { fonts } from '../../styles/fonts';
+import {WHITE, CYAN_BLUE, BLACK} from '../../styles/colors';
+import {fonts} from '../../styles/fonts';
 
 export const styles = () => {
   return StyleSheet.create({
@@ -11,12 +11,10 @@ export const styles = () => {
       elevation: 1,
     },
     headingText: {
-        marginLeft: 12,
-        marginVertical: 16,
-        fontFamily: fonts.family.rubik500,
-        fontSize: fonts.size.fontSize14,
-        lineHeight: 21,
-        color: CYAN_BLUE,
-      }
+      fontFamily: fonts.family.montserrant700,
+      fontSize: fonts.size.fontSize14,
+      color: BLACK,
+      marginBottom: 8,
+    },
   });
 };

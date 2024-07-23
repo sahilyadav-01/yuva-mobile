@@ -1,12 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {
   BLACK,
-  CYAN_BLUE,
   DARK_BLUE,
   GREY,
   LIGHT_ORANGE,
   LIGHT_RED,
-  ORANGE,
+  MARINER,
   PLATINUM,
   RED_SHADE,
   VERY_PALE_WHITE,
@@ -22,7 +21,7 @@ import {fonts} from '../../../../styles/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    flex:1
+    flex: 1,
   },
   fullView: {},
   description: {
@@ -34,12 +33,12 @@ export const styles = StyleSheet.create({
     marginHorizontal: '4%',
   },
   ScrollViewContainerStyle: {
-    height:'100%',
+    height: '100%',
   },
   Header: {
-    color: CYAN_BLUE,
+    color: BLACK,
     fontSize: fonts.size.fontSize14,
-    fontFamily: fonts.family.rubik600,
+    fontFamily: fonts.family.montserrat600,
   },
   textInputStyle: {
     borderColor: PLATINUM,
@@ -47,7 +46,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     color: BLACK,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     marginTop: '5%',
     borderRadius: 6,
     paddingHorizontal: 12,
@@ -98,32 +97,32 @@ export const styles = StyleSheet.create({
     alignSelf: CENTER,
   },
   waitStyle: {
-    color: ORANGE,
+    color: MARINER,
     marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
-    fontFamily: fonts.family.rubik500,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize12,
   },
   StatusStyle: {
-    color: ORANGE,
+    color: MARINER,
     marginTop: '5%',
     marginRight: '1%',
     marginLeft: '5%',
-    fontFamily: fonts.family.rubik600,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize18,
   },
   numberSytle: {
     marginHorizontal: 8,
     color: WHITE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
   },
   NameStyle: {
     marginBottom: '5%',
     marginLeft: '15%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik600,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize14,
   },
   ImageStyle: {
@@ -138,15 +137,15 @@ export const styles = StyleSheet.create({
     marginBottom: '6%',
   },
   HospName: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
     marginVertical: '5%',
   },
   FamilyName: {
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
     alignItems: CENTER,
     justifyContent: CENTER,
@@ -154,8 +153,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: '5%',
   },
   RelationStyle: {
-    color: ORANGE,
-    fontFamily: fonts.family.rubik600,
+    color: MARINER,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize14,
     marginLeft: '5%',
     marginTop: '4%',
@@ -163,12 +162,12 @@ export const styles = StyleSheet.create({
   ContentStyle: {
     marginTop: '7%',
     marginLeft: '15%',
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
+    color: BLACK,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
   },
   timeSlot: {
-    backgroundColor: CYAN_BLUE,
+    backgroundColor: BLACK,
     borderBottomLeftRadius: 24,
     borderTopLeftRadius: 24,
     minHeight: 48,
@@ -178,7 +177,7 @@ export const styles = StyleSheet.create({
     right: 0,
     width: 141,
     marginVertical: 22,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
   },
   cancelStatus: {
@@ -208,12 +207,12 @@ export const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     color: WHITE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize16,
     marginHorizontal: '4%',
   },
   statusBoxText: {
-    fontFamily: fonts.family.rubik600,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize18,
     color: RED_SHADE,
     marginTop: 13,
@@ -221,7 +220,7 @@ export const styles = StyleSheet.create({
   },
 
   statusBoxInitiated: {
-    fontFamily: fonts.family.rubik600,
+    fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize18,
     marginLeft: 17,
   },
@@ -232,33 +231,33 @@ export const styles = StyleSheet.create({
   AppointmentIdText: {
     marginTop: 17,
     marginLeft: 36,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
     color: DARK_BLUE,
   },
-  appointmentId:{
-    position:ABSOLUTE, 
-    right:14
+  appointmentId: {
+    position: ABSOLUTE,
+    right: 14,
   },
   customId: {
     marginTop: 5,
     marginLeft: 36,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
-    color: CYAN_BLUE,
+    color: BLACK,
   },
   appoitmentid: {
     marginTop: 8,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
     marginLeft: 17,
     color: DARK_BLUE,
   },
   appoitmentidNumber: {
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
     marginTop: 5,
     marginLeft: 17,
-    color: CYAN_BLUE,
+    color: BLACK,
   },
 });

@@ -22,10 +22,7 @@ const DescriptionContainer = () => {
     return data.map(item => {
       return (
         <View style={style.itemContainer}>
-          <Image
-            source={item?.source}
-            resizeMode="contain"
-          />
+          <Image source={item?.source} resizeMode="contain" />
           <Text style={style.imageText}>{item?.heading}</Text>
         </View>
       );

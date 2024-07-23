@@ -24,18 +24,20 @@ import lifestylePackage, {
 } from './reducers/LifeStyleSlice';
 import attribute, {attributeInit} from './reducers/AttributeSlice';
 import hra, {hraInit} from './reducers/HRASlice';
-import cart, { cartInit } from './reducers/CartSlice';
-import downloadReport,{downloadInit} from './reducers/DownloadReportSlice';
-import payment,{paymentInit} from './reducers/PaymentSlice';
-import checkOut, { checkOutInit } from './reducers/CheckOutSlice';
-import purchases, { purchasesInit } from './reducers/PurchasesSlice';
+import cart, {cartInit} from './reducers/CartSlice';
+import downloadReport, {downloadInit} from './reducers/DownloadReportSlice';
+import payment, {paymentInit} from './reducers/PaymentSlice';
+import checkOut, {checkOutInit} from './reducers/CheckOutSlice';
+import purchases, {purchasesInit} from './reducers/PurchasesSlice';
 import pharmacy, {pharmacyInit} from './reducers/PharmacySlice';
-import Emrm, { EmrmInit } from './reducers/EmrmSlice';
-import maintainence, { maintainenceInit } from './reducers/MaintainenceSlice';
-import SearchNetwork , { SearchNetworkInit } from './reducers/SearchNetworkSlice';
-import banner, { bannerInit } from './reducers/BannerSlice';
-import homeSearch, { homeSearchInit } from './reducers/HomeSearchSlice';
-import notification, { notificationInit } from './reducers/NotificationSlice';
+import Emrm, {EmrmInit} from './reducers/EmrmSlice';
+import maintainence, {maintainenceInit} from './reducers/MaintainenceSlice';
+import SearchNetwork, {SearchNetworkInit} from './reducers/SearchNetworkSlice';
+import banner, {bannerInit} from './reducers/BannerSlice';
+import homeSearch, {homeSearchInit} from './reducers/HomeSearchSlice';
+import notification, {notificationInit} from './reducers/NotificationSlice';
+import product, {productInit} from './reducers/ProductSlice';
+import location from './reducers/LocationSlice';
 
 const storeInitialState = {
   auth: authInit,
@@ -55,22 +57,23 @@ const storeInitialState = {
   profile: profileInit,
   programAndPlan: programAndPlanInit,
   popularTests: popularTestsInit,
-  coupon:couponInit,
+  coupon: couponInit,
   attribute: attributeInit,
   hra: hraInit,
-  lifestylePackage:lifestylePackageInit,
+  lifestylePackage: lifestylePackageInit,
   cart: cartInit,
-  downloadReport:downloadInit,
+  downloadReport: downloadInit,
   payment: paymentInit,
-  checkOut:checkOutInit,
+  checkOut: checkOutInit,
   purchases: purchasesInit,
-  pharmacy:pharmacyInit,
+  pharmacy: pharmacyInit,
   Emrm: EmrmInit,
   maintainence: maintainenceInit,
-  SearchNetwork : SearchNetworkInit,
+  SearchNetwork: SearchNetworkInit,
   banner: bannerInit,
   homeSearch: homeSearchInit,
   notification: notificationInit,
+  product: productInit,
 };
 
 const appReducer = combineReducers({
@@ -107,6 +110,8 @@ const appReducer = combineReducers({
   banner,
   homeSearch,
   notification,
+  product,
+  location,
 });
 
 const rootReducer = (state, action) => {
@@ -131,7 +136,6 @@ const rootReducer = (state, action) => {
   }
   return appReducer(state, action);
 };
-
 
 const store = configureStore({
   reducer: rootReducer,

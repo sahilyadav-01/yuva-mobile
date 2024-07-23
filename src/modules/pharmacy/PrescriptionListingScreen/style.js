@@ -1,15 +1,15 @@
-import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, ORANGE, WHITE } from "../../../styles/colors";
-import { ABSOLUTE, CENTER, ROW } from "../../../styles/constants";
-import { fonts } from "../../../styles/fonts";
+import {StyleSheet} from 'react-native';
+import {BLACK, CYAN_BLUE, ORANGE, WHITE} from '../../../styles/colors';
+import {ABSOLUTE, CENTER, ROW} from '../../../styles/constants';
+import {fonts} from '../../../styles/fonts';
 
 export const styles = StyleSheet.create({
-  mainContainerStyle:{
-   flex:1
+  mainContainerStyle: {
+    flex: 1,
   },
   CardViewContainerStyle: {
     marginTop: '10%',
-    flex:1
+    flex: 1,
   },
   CompleteView: {
     backgroundColor: WHITE,
@@ -68,9 +68,9 @@ export const styles = StyleSheet.create({
   },
   NoOrderText: {
     textAlign: CENTER,
-    marginVertical: "40%",
+    marginVertical: '40%',
     fontFamily: fonts.family.rubik500,
     fontSize: fonts.size.fontSize16,
-    color: CYAN_BLUE
+    color: CYAN_BLUE,
   },
-})
+});

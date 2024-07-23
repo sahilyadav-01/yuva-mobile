@@ -1,5 +1,13 @@
 import {StyleSheet} from 'react-native';
-import {CYAN_BLUE, MERCURY, FLASH_WHITE, WHITE, RED_SHADE, ORANGE} from '../../styles/colors';
+import {
+  MERCURY,
+  FLASH_WHITE,
+  WHITE,
+  RED_SHADE,
+  MARINER,
+  BLACK,
+  ZIRCON,
+} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -22,12 +30,14 @@ const styles = () => {
       marginBottom: 24,
     },
     textInputContainer: {
-      lineHeight: 20,
-      paddingVertical: 0.5,
-      marginBottom: 4,
-      fontFamily: fonts.family.rubik400,
-      fontSize: fonts.size.fontSize14,
-      color: CYAN_BLUE,
+      paddingVertical: 12,
+      paddingLeft: 20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderWidth: 0.5,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
     },
     separator: {
       borderWidth: 0.5,
@@ -39,7 +49,7 @@ const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
       borderRadius: 8,
-      backgroundColor: ORANGE
+      backgroundColor: MARINER,
     },
     buttonText: {
       marginVertical: 16,

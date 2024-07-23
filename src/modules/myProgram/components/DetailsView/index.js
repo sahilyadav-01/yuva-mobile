@@ -5,7 +5,7 @@ import RenderPlans from '../Plans';
 
 const DetailsView = props => {
   const {item, renderList} = props;
-  const { listExpandContainer, itemSeparatorStyle} = styles();
+  const {listExpandContainer, itemSeparatorStyle} = styles();
 
   const renderPlans = ({item, index}) => {
     return <RenderPlans item={item} index={index} />;
@@ -13,14 +13,16 @@ const DetailsView = props => {
 
   return (
     <>
-      {renderList && <View style={listExpandContainer}>
-        <FlatList
-          data={item?.planServiceDtoList}
-          keyExtractor={index => index}
-          renderItem={renderPlans}
-          ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
-        />
-      </View>}
+      {renderList && (
+        <View style={listExpandContainer}>
+          <FlatList
+            data={item?.planServiceDtoList}
+            keyExtractor={index => index}
+            renderItem={renderPlans}
+            ItemSeparatorComponent={() => <View style={itemSeparatorStyle} />}
+          />
+        </View>
+      )}
     </>
   );
 };

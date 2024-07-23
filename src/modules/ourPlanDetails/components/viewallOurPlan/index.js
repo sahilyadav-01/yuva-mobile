@@ -1,108 +1,77 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Image,
-  ImageBackground,
-  ScrollView,
-} from 'react-native';
-import {styles} from './style';
-import {
-  RUPEE,
-  VIEW_DETAILS,
-  VIEW_PLAN,
-  YEAR,
-} from './constants';
-import {PNG} from '../../../../../assets';
-import {useViewAllOurPlan} from './hooks/useViewAllOurPlan';
-import {CONTAIN} from '../../../../styles/constants';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import ImageContainer from './imageContainer';
 import Header from '../../../../components/Header';
+import {useViewAllOurPlan} from './hooks/useViewAllOurPlan';
+import {styles} from './style';
+import {LEARN_MORE, VIEW_PLAN} from './constants';
+import {ALTO_SECONDARY, RED, WHITE} from '../../../../styles/colors';
 
 const ViewAllOurPlan = () => {
-  const {handlePress, selectedItems, popularPlan, onDetails} =
-    useViewAllOurPlan();
+  const {onPlanPress, allPlans, getData} = useViewAllOurPlan();
 
-  const renderItem = (item, index) => {
-    const onPress = () => {
-      handlePress(item?.index);
-    };
+  const RenderItem = ({item, index}) => {
     return (
       <View
-        style={selectedItems.includes(item.index) && styles.PlanClickView}
-        key={index}>
-        <View style={styles.PlanContainer}>
-          <TouchableOpacity
-            style={[
-              styles.radioOuterCircle,
-              selectedItems.includes(item.index) &&
-                styles.radioOuterCircleSelected,
-            ]}
-            onPress={onPress}>
-            {selectedItems.includes(item.index) && (
-              <View style={styles.radioInnerCircle} />
-            )}
-          </TouchableOpacity>
-          <View style={styles.DetailsContainer}>
-            <View style={styles.PlanText}>
-              <Text style={styles.radioButtonText}>{item?.item?.name}</Text>
-            </View>
-            <View style={styles.PlanYear}>
-              <Text style={styles.radioButtonText}>
-                {'  '}
-                {1} {YEAR}
+        style={{
+          ...styles.itemContainer,
+          marginRight: (index + 1) % 3 === 0 ? 0 : 10,
+          backgroundColor: item === 0 ? WHITE : ALTO_SECONDARY,
+          borderColor: item === 0 ? WHITE : ALTO_SECONDARY,
+        }}>
+        {item !== 0 && (
+          <>
+            <Text numberOfLines={3} style={styles.heading}>
+              {item?.name}
+            </Text>
+            {item?.description && (
+              <Text numberOfLines={6} style={styles.descriptionText}>
+                {item?.description}
               </Text>
-            </View>
-              <View style={styles.PlanPrice}>
-              {item?.item?.yearlyPrice != item?.item?.yearlyFinalCost &&
-            <Text style={styles.lineThrough}>{RUPEE}{item?.item?.yearlyPrice}</Text>
-             }
-              <Text style={styles.radioButtonText}>{RUPEE}{item?.item?.yearlyFinalCost}</Text>
-            </View>
-          </View>
-        </View>
-        {selectedItems.includes(item.index) && (
-          <TouchableOpacity onPress={onDetails}>
-            <View style={styles.expandedContent}>
-              <Text style={styles.expandedContentText}>{VIEW_DETAILS}</Text>
-            </View>
+            )}
+            {item?.yearlyPrice > item?.yearlyFinalCost ? (
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.priceText,
+                  {textDecorationLine: 'line-through', color: RED},
+                ]}>
+                {item?.yearlyPrice}/-
+              </Text>
+            ) : (
+              <Text>{'  '}</Text>
+            )}
+            <Text numberOfLines={1} style={styles.priceText}>
+              {item?.yearlyFinalCost}/- per year
+            </Text>
+          </>
+        )}
+        {item !== 0 && (
+          <TouchableOpacity
+            onPress={() => onPlanPress(index)}
+            style={styles.buttonContainer}>
+            <Text style={styles.buttonText}>{LEARN_MORE}</Text>
           </TouchableOpacity>
         )}
       </View>
     );
   };
-  return (
-    <View>
-      <Header showBackButton={true} title={VIEW_PLAN} />
-      <ScrollView
-        contentContainerStyle={styles.contentContainerStyle}
-        nestedScrollEnabled={true}>
-        <View style={styles.ImageView}>
-          <Image
-            style={styles.ImageBanner}
-            resizeMode={CONTAIN}
-            source={PNG.Our_Plan_Banner}
+  if (allPlans?.data?.length > 0) {
+    return (
+      <>
+        <Header showBackButton={true} title={VIEW_PLAN} />
+        <View style={styles.container}>
+          <ImageContainer />
+          <FlatList
+            numColumns={3}
+            data={getData(allPlans?.data)}
+            keyExtractor={(item, index) => `${item}-${index}`}
+            renderItem={RenderItem}
+            ItemSeparatorComponent={() => <View style={styles.separator} />}
           />
         </View>
-        {popularPlan.length > 0 && (
-          <View style={styles.PlanView}>
-            <ImageBackground
-              source={PNG.OurPlanRadioButton}
-              style={styles.ImageBanner2}
-              resizeMode="cover">
-              <View style={styles.TextImage}>
-                <FlatList
-                  data={popularPlan}
-                  renderItem={renderItem}
-                  keyExtractor={item => item.id}
-                />
-              </View>
-            </ImageBackground>
-          </View>
-        )}
-      </ScrollView>
-    </View>
-  );
+      </>
+    );
+  }
 };
 export default ViewAllOurPlan;

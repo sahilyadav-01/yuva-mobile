@@ -1,14 +1,13 @@
 import React from 'react';
-import {SafeAreaView } from 'react-native';
-import { styles } from './styles';
+import {SafeAreaView} from 'react-native';
 import RescheduleAndCancel from '../../../modules/diagnostic/RescheduleAndCancel';
-const RescheduleTestAndPackage = () => {
 
-    return (
-        <SafeAreaView style={styles.container}>
-        <RescheduleAndCancel/>
-        </SafeAreaView>
-    );
+const RescheduleTestAndPackage = () => {
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <RescheduleAndCancel />
+    </SafeAreaView>
+  );
 };
 
 export default RescheduleTestAndPackage;

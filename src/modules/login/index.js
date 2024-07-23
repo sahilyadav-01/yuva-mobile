@@ -15,7 +15,7 @@ import {SILVER_CHALICE} from '../../styles/colors';
 import {useLogin} from './hooks/useLogin';
 import LoginTextContainer from '../signup/components/loginTextContainer';
 import styles from './style';
-import { getPlatform, onNeedHelpPress } from '../../utils/utils';
+import {getPlatform, onNeedHelpPress} from '../../utils/utils';
 
 const Login = props => {
   const {
@@ -29,14 +29,13 @@ const Login = props => {
 
   const Container = getPlatform().isIOS ? KeyboardAvoidingView : View;
 
-  const {inputsContainer, buttonStyle } =
-    changePasswordStyles();
+  const {inputsContainer, buttonStyle} = changePasswordStyles();
 
   const {needHelpText, signUpContainer, container} = styles();
 
   const login = useLogin();
   return (
-    <Container behavior='padding' style={container}>
+    <Container behavior="padding" style={container}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
@@ -79,7 +78,9 @@ const Login = props => {
               pressableText="Sign Up Here"
               extraStyles={signUpContainer}
             />
-            <Text onPress={onNeedHelpPress} style={needHelpText}>Need help? Get in touch</Text>
+            <Text onPress={onNeedHelpPress} style={needHelpText}>
+              Need help? Get in touch
+            </Text>
           </View>
         </View>
       </ScrollView>

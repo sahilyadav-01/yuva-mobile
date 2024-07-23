@@ -1,7 +1,16 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, BLACK, OFF_WHITE, COUPON_DARK_GREY, DARK_BLUE, ORANGE, GREEN, RED } from '../../styles/colors';
-import { CENTER, FLEX_START, ROW } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  CYAN_BLUE,
+  BLACK,
+  OFF_WHITE,
+  COUPON_DARK_GREY,
+  DARK_BLUE,
+  ORANGE,
+  GREEN,
+  RED,
+} from '../../styles/colors';
+import {CENTER, FLEX_START, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   viewContainer: {
@@ -38,7 +47,7 @@ export const styles = StyleSheet.create({
     marginBottom: 25,
     borderWidth: 0.5,
     borderColor: COUPON_DARK_GREY,
-    borderRadius:6,
+    borderRadius: 6,
   },
   textInputStyles: {
     flex: 1,
@@ -50,8 +59,8 @@ export const styles = StyleSheet.create({
     fontSize: fonts.size.fontSize16,
   },
   applyStyles: {
-     borderTopRightRadius:6,
-     borderBottomRightRadius:6,
+    borderTopRightRadius: 6,
+    borderBottomRightRadius: 6,
     backgroundColor: ORANGE,
     justifyContent: CENTER,
     alignItems: CENTER,
@@ -64,8 +73,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     marginBottom: 35,
     borderStyle: 'dotted',
-    maxWidth:'100%',
-
+    maxWidth: '100%',
   },
   textStyle1: {
     marginTop: 12,
@@ -113,7 +121,7 @@ export const styles = StyleSheet.create({
   couponLabelStyles: {
     color: DARK_BLUE,
     paddingLeft: 24,
-    paddingBottom:20,
+    paddingBottom: 20,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize14,
   },

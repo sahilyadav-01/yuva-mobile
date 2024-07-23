@@ -1,34 +1,34 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { PNG } from "../../../../../assets";
-import CarouselContainer from "../../../../components/CarouselContainer";
-import CarouselItem2 from "../../../../components/CarouselItem2";
-import { LANDING_PAGE_TEXT1, LANDING_PAGE_TEXT2 } from "./constant";
-import { styles } from './styles'
+import React from 'react';
+import {View, Text} from 'react-native';
+import {styles} from './styles';
+import {usePackages} from './usePackages';
+import YuvaPackages from '../../../../components/YuvaPackages';
 
-const PopularHeathCheckupCarousel = ({ popularPackageName, onHealthPackagePress }) => {
-    return (
-        <>
-            <View style={styles.PopularHealthCheckups}>
-                <Text style={styles.LandingPageText1}>{LANDING_PAGE_TEXT1} </Text>
-                <View style={styles.textContainer}>
-                    <TouchableOpacity onPress={() => onHealthPackagePress(0)}>
-                        <Text style={styles.LandingPageText2}>{LANDING_PAGE_TEXT2}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.line} />
-                </View>
-            </View>
-            {popularPackageName && <View style={styles.CarouselContainerStyle}>
-                <CarouselContainer
-                    data={popularPackageName.popularPackageResponseDtoList}
-                    isIndexed={false}>
-                    <CarouselItem2
-                        imgPath={PNG.POPULARHEALTHICON}
-                    />
-                </CarouselContainer>
-            </View>}
-
-        </>
-    )
-}
+const PopularHeathCheckupCarousel = ({
+  popularPackageName,
+  onHealthPackagePress,
+  isTest,
+}) => {
+  const {onPackagePress, onPressAdd, existingIds} = usePackages(isTest);
+  const heading = isTest ? 'Popular Test Package' : 'Popular Health Checkup';
+  return (
+    <View style={styles.container}>
+      <View style={styles.rowContainer}>
+        <Text style={styles.title}>{heading}</Text>
+        <Text
+          onPress={() => onHealthPackagePress(isTest ? 1 : 0)}
+          style={styles.viewAll}>
+          View All
+        </Text>
+      </View>
+      <YuvaPackages
+        packages={popularPackageName.data}
+        onPackagePress={onPackagePress}
+        onPressAdd={onPressAdd}
+        existingIds={existingIds}
+        isTest={isTest}
+      />
+    </View>
+  );
+};
 export default PopularHeathCheckupCarousel;

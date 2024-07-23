@@ -4,27 +4,36 @@ import {WebView} from 'react-native-webview';
 import Header from '../../components/Header';
 import {useOnMood9} from './hooks/useonmood9';
 import {styles} from './style';
-import { ERROR_TEXT } from './constants';
-import { MENTAL_WELLNESS } from './components/onMood9Details/constants';
+import {ERROR_TEXT} from './constants';
+import {MENTAL_WELLNESS} from './components/onMood9Details/constants';
+import {MARINER} from '../../styles/colors';
 
-const OnMood9 = (props) => {
+const OnMood9 = props => {
   const {onMood9Props} = props;
-  const {encodedQueryString, onMood9Error, onMood9Loading, uri, onMood9ErrorMessage} = useOnMood9(onMood9Props);
+  const {
+    encodedQueryString,
+    onMood9Error,
+    onMood9Loading,
+    uri,
+    onMood9ErrorMessage,
+  } = useOnMood9(onMood9Props);
   const style = styles();
   const getContent = () => {
-    if (onMood9Loading)
+    if (onMood9Loading) {
       return (
         <View style={style.contentContainer}>
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size={'large'} color={MARINER} />
         </View>
       );
-    else if (onMood9Error)
+    } else if (onMood9Error) {
       return (
-        <View style={[style.contentContainer,style.errorContainer]}>
-          <Text style={style.errorText}>{onMood9ErrorMessage ?? ERROR_TEXT}</Text>
+        <View style={[style.contentContainer, style.errorContainer]}>
+          <Text style={style.errorText}>
+            {onMood9ErrorMessage ?? ERROR_TEXT}
+          </Text>
         </View>
       );
-    else if (
+    } else if (
       !onMood9Loading &&
       !onMood9Error &&
       encodedQueryString.length > 0

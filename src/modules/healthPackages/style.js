@@ -3,8 +3,8 @@ import {
   BLACK,
   WHITE_OPACITY,
   KASHMIR_BLUE,
-  ORANGE,
   WHITE,
+  MARINER,
 } from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
@@ -20,9 +20,13 @@ export const styles = addToCartLoad => {
       borderColor: BLACK,
       alignItems: CENTER,
     },
-    dropdownTextStyle: {color: KASHMIR_BLUE, fontFamily: fonts.family.rubik500},
+    dropdownTextStyle: {
+      color: BLACK,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize14,
+    },
     buttonContainer: {
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       alignItems: CENTER,
       justifyContent: CENTER,
       borderRadius: 10,
@@ -38,7 +42,7 @@ export const styles = addToCartLoad => {
       marginVertical: 36,
     },
     screenStyle: {height: addToCartLoad ? '100%' : undefined},
-    childContainerStyle: {flex:addToCartLoad?1:undefined},
-    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER}
+    childContainerStyle: {flex: addToCartLoad ? 1 : undefined},
+    addToCartLoader: {alignItems: CENTER, justifyContent: CENTER},
   });
 };

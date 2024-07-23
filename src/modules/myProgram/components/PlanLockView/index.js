@@ -12,7 +12,7 @@ import Dependents from '../../../profile/components/dependents';
 import {Checkbox} from 'react-native-paper';
 import {SVG} from '../../../../../assets';
 import {usePlanLockView} from './hooks/usePlanLockView';
-import { CYAN_BLUE, GREEN } from '../../../../styles/colors';
+import {CYAN_BLUE, GREEN} from '../../../../styles/colors';
 
 const PlanLockView = props => {
   const {
@@ -26,11 +26,14 @@ const PlanLockView = props => {
   const style = styles();
   const renderCheckbox = props => {
     const {item, index} = props;
-    if (planDetails?.locked || lock) return null;
+    if (planDetails?.locked || lock) {
+      return null;
+    }
     return (
       <View style={style.checkboxContainer}>
         <Checkbox.Android
-          color={GREEN} uncheckedColor={CYAN_BLUE}
+          color={GREEN}
+          uncheckedColor={CYAN_BLUE}
           status={item?.status ? 'checked' : 'unchecked'}
           onPress={() => onCheckboxPress(index)}
         />

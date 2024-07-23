@@ -3,6 +3,7 @@ import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import EmptyComponent from './EmptyComponent';
 import ListItem from './ListItem';
 import {styles} from './style';
+import {MARINER} from '../../styles/colors';
 
 const Packages = props => {
   const style = styles();
@@ -11,10 +12,12 @@ const Packages = props => {
   };
 
   const RenderListFooter = () => {
-    if(!props?.isMoreData) return null;
+    if (!props?.isMoreData) {
+      return null;
+    }
     return (
       <View style={{alignItems: 'center'}}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color={MARINER} />
       </View>
     );
   };
@@ -51,7 +54,9 @@ const Packages = props => {
         ItemSeparatorComponent={ItemSeparator}
         onEndReached={props?.onEndReached}
         ListFooterComponent={RenderListFooter}
-        ListEmptyComponent={()=><EmptyComponent emptyText={props?.emptyText}/>}
+        ListEmptyComponent={() => (
+          <EmptyComponent emptyText={props?.emptyText} />
+        )}
       />
     </View>
   );

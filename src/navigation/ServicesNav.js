@@ -28,6 +28,8 @@ import LoginScreen from '../screens/login/LoginScreen';
 import AmbulanceHomeScreen from '../screens/yuvaservices/ambulance/AmbulanceHomeScreen';
 import SearchNetworkHomeScreen from '../screens/yuvaservices/searchNetwork/SearchNetworkHomeScreen';
 import ViewAllOurPlansScreen from '../screens/OurPlanScreen/ViewAllOurPlansScreen';
+import Services from '../screens/Services';
+import ProductNavigation from './ProductNav';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +40,7 @@ const ServicesNav = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name='HomeService'
+        name="HomeService"
         component={HomeScreen}
         options={{headerShown: false}}
       />
@@ -117,37 +119,47 @@ const ServicesNav = () => {
       <Stack.Screen
         name="ViewAllOurPlan"
         component={ViewAllOurPlansScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="MentalWellness"
         component={OnMood9Static}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="OnMood9"
         component={OnMood9Screen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="PHARMACY"
         component={loggedIn !== 'loggedIn' ? LoginScreen : PharmacyNavigation}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="EmrmHome"
         component={EmrmNavigation}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
-      name="AmbulaceHomeScreen"
-      component={AmbulanceHomeScreen}
-      options={{ headerShown: false }}
+        name="AmbulaceHomeScreen"
+        component={AmbulanceHomeScreen}
+        options={{headerShown: false}}
       />
       <Stack.Screen
-      name="SearchNetworkHomeScreen"
-      component={SearchNetworkHomeScreen}
-      options={{ headerShown: false}}
+        name="SearchNetworkHomeScreen"
+        component={SearchNetworkHomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Product"
+        component={ProductNavigation}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Services"
+        component={Services}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

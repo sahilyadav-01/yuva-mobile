@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {
   BIANCA,
+  BLACK,
   CYAN_BLUE,
   GREY,
   ORANGE,
@@ -29,9 +30,9 @@ export const styles = StyleSheet.create({
     borderColor: GREY,
     elevation: 7,
   },
-  headViewContainer:{
-    flexDirection:ROW,
-    justifyContent:SPACE_BETWEEN,
+  headViewContainer: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
   },
   buttonStyle: {
     height: 48,
@@ -51,30 +52,29 @@ export const styles = StyleSheet.create({
     minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
-    maxWidth:155,
+    maxWidth: 155,
   },
   head: {
     alignSelf: FLEX_START,
     shadowColor: WHITE,
-    color: CYAN_BLUE,
+    color: BLACK,
     paddingHorizontal: 5,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik400,
-    paddingVertical:5,
+    fontFamily: fonts.family.montserrat400,
+    paddingVertical: 5,
   },
   expiry: {
     alignSelf: FLEX_END,
     paddingRight: '3%',
     fontSize: fonts.size.fontSize10,
     fontWeight: fonts.weight.fontWeight400,
-    color: CYAN_BLUE,
+    color: BLACK,
   },
 
   textStyle: {
     color: WHITE,
     alignSelf: CENTER,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.monsterrant500,
   },
   sideBySide: {
     flexDirection: ROW,
@@ -83,24 +83,22 @@ export const styles = StyleSheet.create({
   text1: {
     alignSelf: CENTER,
     margin: '5%',
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.montserrat400,
   },
   text2: {
     color: GREY,
     fontSize: fonts.size.fontSize12,
-    fontWeight: fonts.weight.fontWeight400,
-    fontFamily: fonts.family.fontFamilyRubix,
+    fontFamily: fonts.family.montserrat400,
   },
   Available: {
     marginLeft: 11,
     marginVertical: 10,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
   },
   textColor: {
     color: CYAN_BLUE,
   },
-  emptyContainer: {height:'100%',alignItems:CENTER,justifyContent:CENTER},
-  emptyText: {fontFamily:fonts.family.rubik500,color:CYAN_BLUE}
+  emptyContainer: {height: '100%', alignItems: CENTER, justifyContent: CENTER},
+  emptyText: {fontFamily: fonts.family.monsterrant500, color: BLACK},
 });

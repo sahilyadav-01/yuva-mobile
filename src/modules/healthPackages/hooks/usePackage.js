@@ -6,13 +6,13 @@ import {useState} from 'react';
 import {popularTestsSliceThunk} from '../../../store/reducers/PopularTestsSlice ';
 import {popularPackageNameThunk} from '../../../store/reducers/ProgramAndPlanSlice';
 import {useCart} from '../../cart/hooks/useCart';
-import { HEALTH } from '../constants';
+import {HEALTH} from '../constants';
 
-export const usePackage = (initialIndex) => {
+export const usePackage = initialIndex => {
   const navigation = useNavigation();
   const focused = useIsFocused();
   const dispatch = useDispatch();
-  const {addToCart,onRemove} = useCart();
+  const {addToCart, onRemove} = useCart();
   const {popularPackageName} = useSelector(state => state.programAndPlan);
   const {popularTest} = useSelector(state => state.popularTests);
   const {existingIds, addToCartLoad} = useSelector(state => state.cart);
@@ -77,17 +77,21 @@ export const usePackage = (initialIndex) => {
     if (index === 0 && packageData.length > 0) {
       setPackageData(
         packageData.map(item => {
-          if (existingIds.includes(item.packageUuid.toString()))
+          if (existingIds.includes(item.packageUuid.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     } else if (index === 1 && testData.length > 0) {
       setTestData(
         testData.map(item => {
-          if (existingIds.includes(item.testId.toString()))
+          if (existingIds.includes(item.testId.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     }
@@ -103,7 +107,9 @@ export const usePackage = (initialIndex) => {
   }, [isMoreData]);
 
   useEffect(() => {
-    if (currentPageNo > 1) setIsMoreData(true);
+    if (currentPageNo > 1) {
+      setIsMoreData(true);
+    }
   }, [currentPageNo]);
 
   useEffect(() => {
@@ -123,7 +129,9 @@ export const usePackage = (initialIndex) => {
   }, [search, currentPageNo, packageData, testData]);
 
   useEffect(() => {
-    if (packageData.length >= 0 || testData.length >= 0) setRenderData(true);
+    if (packageData.length >= 0 || testData.length >= 0) {
+      setRenderData(true);
+    }
   }, [packageData, testData]);
 
   const dropdownData = [
@@ -184,9 +192,12 @@ export const usePackage = (initialIndex) => {
             index === 0 ? 'PACKAGE' : 'TEST',
           );
         } else if (item.selected === true) {
-          onRemove({productId:item?.packageUuid
-            ? item?.packageUuid.toString()
-            : item?.testId.toString()})
+          onRemove({
+            productId: item?.packageUuid
+              ? item?.packageUuid.toString()
+              : item?.testId.toString(),
+            productType: item?.packageUuid ? 'PACKAGE' : 'TEST',
+          });
         }
         return item;
       }
@@ -197,13 +208,13 @@ export const usePackage = (initialIndex) => {
 
   const onPackagePress = arg => {
     navigation.navigate('ProductDetails', {
-      headerName:HEALTH,
+      headerName: HEALTH,
       packageName: arg?.item?.packageUuid ?? arg?.item?.testId,
       uuid: arg?.item?.packageUuid ?? arg?.item?.testId,
       showCartButton: true,
       isTest: arg?.item?.testId ? true : false,
-      name:arg?.item.packageName ?? arg?.item.testName ?? null,
-      cost: arg?.item?.cost ?? null
+      name: arg?.item.packageName ?? arg?.item.testName ?? null,
+      cost: arg?.item?.cost ?? null,
     });
   };
 
@@ -237,11 +248,18 @@ export const usePackage = (initialIndex) => {
     setIsMoreData(false);
     setPackageData([]);
     setTestData([]);
-    if (text.trim().length === 0) setSearch('');
-    else if (text.trim().length >= 3) setSearch(text.trim());
+    if (text.trim().length === 0) {
+      setSearch('');
+    } else if (text.trim().length >= 3) {
+      setSearch(text.trim());
+    }
   };
 
-  const onContinuePress = () => navigation.navigate('HomeScreen',{screen:'HomeDrawer',params:{screen:'Cart'}})
+  const onContinuePress = () =>
+    navigation.navigate('HomeScreen', {
+      screen: 'HomeDrawer',
+      params: {screen: 'Cart'},
+    });
 
   return {
     onSearch,
@@ -256,6 +274,6 @@ export const usePackage = (initialIndex) => {
     setSelectedDropdownValue,
     renderData,
     addToCartLoad,
-    onContinuePress
+    onContinuePress,
   };
 };

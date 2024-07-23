@@ -22,25 +22,26 @@ const Drawer = () => {
     <View style={container}>
       <Header
         showSearch={false}
-        title="Menu"
+        title="Settings"
         PrefixIcon={SVG.Back}
-        hideTitle={true}
+        showBackButton={true}
       />
       <View style={drawerContentContainer}>
         <ScrollView bounces={false}>
           <>
-            <Text style={textStyle}>{name}</Text>
-            <View style={{height: 4}} />
+            <Text style={textStyle}>General</Text>
+            <View style={{height: 12}} />
             {data.map((item, index) => (
-              <TouchableOpacity onPress={item?.onPress} style={itemContainer}>
-                {item?.Icon()}
-                <View style={descriptionContainer}>
-                  <Text style={headingStyle}>{item?.heading}</Text>
-                  <View style={rowContainer}>
-                    <Text style={contentStyle}>{item?.description}</Text>
-                    <SVG.ArrowRight />
-                  </View>
-                  {index < data.length - 1 && <View style={separator} />}
+              <TouchableOpacity
+                onPress={item?.onPress}
+                style={[
+                  itemContainer,
+                  {marginBottom: index < data.length - 1 ? 12 : 0},
+                ]}>
+                <View style={{width: 25}}>{item?.Icon()}</View>
+                <View style={rowContainer}>
+                  <Text style={contentStyle}>{item?.heading}</Text>
+                  <SVG.BackButton transform={[{rotate: '180deg'}]} />
                 </View>
               </TouchableOpacity>
             ))}

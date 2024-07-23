@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const getAppointmentThunk = createAsyncThunk(
   'talkToDoctor/getAppointmentThunk',
@@ -34,7 +34,7 @@ const initialState = {
   consultationList: [],
   isRequested: false,
   id: null,
-  programData:'',
+  programData: '',
   requestError: false,
 };
 
@@ -45,9 +45,9 @@ const talkToDoctorSlice = createSlice({
     clearRequest(state) {
       state.isRequested = false;
     },
-    programOrPlanData(state,{payload}){
-      state.programData=payload;
-    }
+    programOrPlanData(state, {payload}) {
+      state.programData = payload;
+    },
   },
   extraReducers: {
     [getAppointmentThunk.pending]: (state, {payload}) => {
@@ -78,7 +78,7 @@ const talkToDoctorSlice = createSlice({
       state.id = payload.id;
       state.requestError = false;
     },
-    [addRequestThunk.rejected]: (state) => {
+    [addRequestThunk.rejected]: state => {
       state.loading = false;
       state.apiError = true;
       state.isRequested = false;
@@ -88,6 +88,6 @@ const talkToDoctorSlice = createSlice({
   },
 });
 
-export const {clearRequest,programOrPlanData} = talkToDoctorSlice.actions;
+export const {clearRequest, programOrPlanData} = talkToDoctorSlice.actions;
 export const talkToDoctorInit = talkToDoctorSlice.getInitialState();
 export default talkToDoctorSlice.reducer;

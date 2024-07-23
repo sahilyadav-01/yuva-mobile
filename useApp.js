@@ -1,13 +1,18 @@
 import {useEffect, useState} from 'react';
 import firebaseMessaging from '@react-native-firebase/messaging';
-import {Freshchat, FreshchatConfig,FreshchatNotificationConfig} from 'react-native-freshchat-sdk';
+import {
+  Freshchat,
+  FreshchatConfig,
+} from 'react-native-freshchat-sdk';
 import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
+import store from './src/store/Store';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
 import SplashScreen from 'react-native-splash-screen';
 import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
-import { getExistingUser } from './src/store/LocalStore';
+import {getExistingUser} from './src/store/LocalStore';
+import {setPermission} from './src/store/reducers/LocationSlice';
 
 export const useApp = () => {
   const Platform = getPlatform();
@@ -29,8 +34,10 @@ export const useApp = () => {
       ) {
         let permission = await firebaseMessaging().hasPermission();
         if (
-          (permission === firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
-          permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL) && !existingUser
+          (permission ===
+            firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
+            permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL) &&
+          !existingUser
         ) {
           await firebaseMessaging().requestPermission();
           permission = await firebaseMessaging().hasPermission();
@@ -85,9 +92,11 @@ export const useApp = () => {
       };
       VersionCheck.getAppStoreUrl({appID: '6449449413'}).then(storeUrl => {
         VersionCheck.needUpdate(latestVersionObj).then(versionObj => {
-          if (versionObj && versionObj?.isNeeded)
+          if (versionObj && versionObj?.isNeeded) {
             handleVersionUpdate(versionObj?.latestVersion, storeUrl);
-          else setShowContent(true);
+          } else {
+            setShowContent(true);
+          }
         });
       });
     } else if (Platform?.isAndroid) {
@@ -99,10 +108,10 @@ export const useApp = () => {
             VersionCheck.needUpdate({
               currentVersion: currentAndroidVersion,
               latestVersion,
-            }).then(obj => {
-              if (obj && obj?.isNeeded)
+            }).then(async obj => {
+              if (obj && obj?.isNeeded) {
                 handleVersionUpdate(obj?.latestVersion, storeUrl);
-              else setShowContent(true);
+              }
             });
           },
         );
@@ -110,11 +119,26 @@ export const useApp = () => {
     }
   };
 
-  useEffect(()=>{
-    if(typeof fcmToken === 'string') {
+  const handleLocationPermission = async () => {
+    if (Platform.isAndroid && AndroidPlatform.Version > 23) {
+      const status = await PermissionsAndroid.request(
+        'android.permission.ACCESS_FINE_LOCATION',
+        {
+          title: 'Request to access geo-location',
+          message:
+            'Permission to access your geo-location is used to provide services specific to your location',
+          buttonPositive: 'Yes',
+        },
+      );
+      store.dispatch(setPermission(status === 'granted'));
+    }
+  };
+
+  useEffect(() => {
+    if (typeof fcmToken === 'string') {
       initializeFreshchat();
     }
-  },[fcmToken])
+  }, [fcmToken]);
 
   useEffect(() => {
     if (Platform?.isIOS && checkVersion) {
@@ -135,9 +159,15 @@ export const useApp = () => {
               ),
         });
       });
-    } else if (Platform?.isAndroid && checkVersion) checkVersionUpdate();
+    } else if (Platform?.isAndroid && checkVersion) {
+      checkVersionUpdate();
+    }
     SplashScreen.hide();
-    handleMessagingPermission();
+    handleMessagingPermission().finally(() => {
+      handleLocationPermission().finally(() => {
+        setShowContent(true);
+      });
+    });
   }, []);
 
   return {showContent};

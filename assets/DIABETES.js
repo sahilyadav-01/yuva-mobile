@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const DIABETES = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const DIABETES = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={60}
     height={55}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#38466C"
       d="M53.594 41.832A3.79 3.79 0 0 1 50 38.086c0-2.753 3.594-6.836 3.594-6.836s3.593 4.083 3.593 6.836a3.781 3.781 0 0 1-3.593 3.746Z"
@@ -48,5 +47,5 @@ const DIABETES = (props) => (
       d="M47.625 24.694a4.686 4.686 0 0 1-1.375 3.31 4.696 4.696 0 0 1-3.313 1.373H26.064a4.685 4.685 0 0 0 4.33-2.886 4.672 4.672 0 0 0 .357-1.79v-4.69h12.188a4.69 4.69 0 0 1 3.314 1.372 4.68 4.68 0 0 1 1.373 3.311Z"
     />
   </Svg>
-)
-export default DIABETES
+);
+export default DIABETES;

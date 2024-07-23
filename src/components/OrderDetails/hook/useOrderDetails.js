@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
-export const useOrderDetails=()=>{
-    const { cart } = useSelector(state => state.cart);
-    const { itemDtoList } = cart || {};
-    return{
-        itemDtoList,
-    }
-}
+export const useOrderDetails = () => {
+  const {cart} = useSelector(state => state.cart);
+  const {itemDtoList} = cart || {};
+  return {
+    itemDtoList,
+  };
+};

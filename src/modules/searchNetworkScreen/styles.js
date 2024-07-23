@@ -1,11 +1,21 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, CYAN_BLUE, DARK_BLUE, GREY, INDIGO_LIGHT, MEDIUM_CARMINE, ORANGE, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN, ROW } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  GREY,
+  INDIGO_LIGHT,
+  MARINER,
+  MEDIUM_CARMINE,
+  ORANGE,
+  WHITE,
+} from '../../styles/colors';
+import {CENTER, COLUMN, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 export const styles = StyleSheet.create({
   mainContainer: {
     marginHorizontal: 15,
-    flex:1
+    flex: 1,
   },
   headingStyle: {
     paddingLeft: 16,
@@ -16,22 +26,27 @@ export const styles = StyleSheet.create({
     marginVertical: 18,
   },
   subHeadingStyle: {
-    color: ORANGE,
-    fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik500,
+    color: MARINER,
+    fontSize: fonts.size.fontSize14,
+    fontFamily: fonts.family.monsterrant500,
     lineHeight: fonts.Height.lineHeight18,
-    marginBottom: 10
+    marginBottom: 10,
+  },
+  selectInput: {
+    color: BLACK,
+    fontSize: fonts.size.fontSize12,
+    fontFamily: fonts.family.monsterrant500,
+    lineHeight: fonts.Height.lineHeight18,
   },
   subHeading2Style: {
     color: DARK_BLUE,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik500,
     lineHeight: fonts.Height.lineHeight18,
-
   },
-  searchConatiner:{
+  searchConatiner: {
     marginVertical: 10,
-    marginHorizontal:10,
+    marginHorizontal: 10,
     minHeight: 42,
     backgroundColor: WHITE,
     borderColor: BLACK,
@@ -49,16 +64,15 @@ export const styles = StyleSheet.create({
     elevation: 2,
     zIndex: 10,
   },
-  searchTextInputStyle:{ 
+  searchTextInputStyle: {
     flex: 1,
-    paddingLeft: 20,
     fontSize: fonts.size.fontSize12,
-    fontFamily: fonts.family.rubik300,
-    color:CYAN_BLUE
+    fontFamily: fonts.family.montserrat400,
+    color: BLACK,
   },
   textInputStyle: {
     marginVertical: 10,
-    marginHorizontal:10,
+    marginHorizontal: 10,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: {
@@ -79,7 +93,6 @@ export const styles = StyleSheet.create({
     zIndex: 10,
   },
   CompleteView: {
-    backgroundColor: WHITE,
     marginVertical: 12,
     minHeight: 48,
     elevation: 2,
@@ -91,42 +104,53 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 2,
     borderWidth: 0.5,
-    borderColor: GREY,
-    backgroundColor: WHITE,
+    borderColor: '#686868',
+    backgroundColor: '#F7F8F9',
     borderRadius: 10,
   },
   Top: {
     flexDirection: COLUMN,
-    paddingLeft: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
   cardNameStyle: {
-    color: ORANGE,
-    fontFamily: fonts.family.rubik500,
+    color: BLACK,
+    fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize16,
     lineHeight: 24,
-    paddingTop: 12,
   },
   cardAddressStyle: {
-    marginRight:16,
-    color: CYAN_BLUE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize16,
+    maxWidth: '80%',
+    color: '#686868',
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize12,
     lineHeight: 24,
   },
   subTextStyle: {
     flexDirection: ROW,
-    paddingVertical: 10,
+    marginTop: 4,
   },
   subTextBottomStyle: {
     flexDirection: ROW,
     marginBottom: 16,
-    marginRight:'50%',
-    paddingVertical:6
+    marginRight: '50%',
+    paddingVertical: 6,
   },
   textStyle: {
-    paddingLeft:20,
-    color: MEDIUM_CARMINE,
-    fontFamily: fonts.family.rubik400,
-    fontSize: fonts.size.fontSize16,
+    marginLeft: 8,
+    color: MARINER,
+    fontFamily: fonts.family.monsterrant500,
+    fontSize: fonts.size.fontSize14,
   },
-})
+  suggestions: {
+    marginTop: 8,
+    fontFamily: fonts.family.montserrat600,
+    fontSize: fonts.size.fontSize18,
+    color: BLACK,
+  },
+  rowView: {
+    flexDirection: ROW,
+    alignItems: CENTER,
+    justifyContent: SPACE_BETWEEN,
+  },
+});

@@ -4,9 +4,11 @@ import ReportCard from '../../ReportCard';
 import {useReportCard} from './hooks/useHraReport';
 import {styles} from './styles';
 import {EMPTY_TEXT, ERROR_TEXT} from './constants';
+import {MARINER} from '../../styles/colors';
 
-const HraReport = (props) => {
-  const {downloadHraReport, hraLoading, hraError, idParam, onViewAll} = useReportCard();
+const HraReport = props => {
+  const {downloadHraReport, hraLoading, hraError, idParam, onViewAll} =
+    useReportCard();
   const renderItem = ({item, index}) => {
     return (
       <ReportCard
@@ -19,27 +21,29 @@ const HraReport = (props) => {
   };
 
   const ViewAll = () => {
-    if(idParam) {
+    if (idParam) {
       return (
-        <Text style={styles.viewAllText} onPress={onViewAll}>View All Reports</Text>
+        <Text style={styles.viewAllText} onPress={onViewAll}>
+          View All Reports
+        </Text>
       );
     }
     return null;
-  }
+  };
 
-  if (hraLoading)
+  if (hraLoading) {
     return (
       <View style={styles.emptyView}>
-        <ActivityIndicator size={'large'} />
+        <ActivityIndicator size={'large'} color={MARINER} />
       </View>
     );
-  else if (hraError)
+  } else if (hraError) {
     return (
       <View style={styles.emptyView}>
         <Text style={styles.emptyText}>{ERROR_TEXT}</Text>
       </View>
     );
-  else {
+  } else {
     return (
       <View style={styles.contentContainerStyle}>
         {downloadHraReport?.length === 0 ? (
@@ -53,7 +57,7 @@ const HraReport = (props) => {
             nestedScrollEnabled={true}
             renderItem={renderItem}
             ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
-            ListFooterComponent={<ViewAll/>}
+            ListFooterComponent={<ViewAll />}
           />
         )}
       </View>

@@ -36,6 +36,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+.yarn
 
 # config
 #
@@ -43,6 +44,7 @@ yarn-error.log
 .env.preprod
 .env.production
 .env.uat
+.env
 
 # BUCK
 buck-out/

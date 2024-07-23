@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { DARK_BLUE, ORANGE, WHITE } from '../../styles/colors';
-import { CENTER, ROW } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet, Dimensions} from 'react-native';
+import {DARK_BLUE, MARINER, WHITE} from '../../styles/colors';
+import {CENTER, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 const screenHeight = Dimensions.get('window').height;
 const view1Height = screenHeight * 0.2;
 const view2Height = screenHeight * 0.4;
@@ -36,15 +36,13 @@ export const styles = StyleSheet.create({
   IntroStaticScreen1Text: {
     paddingTop: 15,
     color: DARK_BLUE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight400,
   },
   IntroStaticScreen1ColorText: {
-    color: ORANGE,
-    fontFamily: fonts.family.rubik400,
+    color: MARINER,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight400,
   },
   thirdContainerStyle: {
     height: view3Height,
@@ -52,7 +50,7 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
   },
   line: {
-    borderBottomColor: ORANGE,
+    borderBottomColor: MARINER,
     borderBottomWidth: 2,
     width: '100%',
   },
@@ -72,7 +70,7 @@ export const styles = StyleSheet.create({
     marginRight: 20,
   },
   buttonStyle: {
-    backgroundColor: ORANGE,
+    backgroundColor: MARINER,
     height: 48,
     borderRadius: 8,
     justifyContent: CENTER,
@@ -80,8 +78,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: WHITE,
-    fontFamily: fonts.family.rubik400,
+    fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize14,
-    fontWeight: fonts.weight.fontWeight700,
   },
 });

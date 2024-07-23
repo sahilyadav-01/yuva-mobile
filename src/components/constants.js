@@ -57,5 +57,5 @@ export const MAP_POINTER = 'map-marker-outline';
 export const CALENDAR = 'calendar-blank-outline';
 export const MY_TEST = 'myTest';
 export const ADDRESS_VALIDATION = 'Provide a valid address';
-export const CITY_VALIDATION= 'Select a city';
+export const CITY_VALIDATION = 'Select a city';
 export const PHONE_NUMBER_VALIDATION = 'Provide a valid phone number';

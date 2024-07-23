@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {WHITE, DARK_BLUE, ORANGE} from '../../../styles/colors';
+import {WHITE, DARK_BLUE, MARINER} from '../../../styles/colors';
 import {CENTER, FLEX, FLEX_END, ROW} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 
@@ -31,12 +31,11 @@ export const styles = StyleSheet.create({
   },
   textContainerStyle: {
     color: DARK_BLUE,
-    fontWeight: fonts.weight.fontWeight600,
     marginTop: 30,
     height: 100,
     width: 180,
     fontSize: fonts.size.fontSize14,
-    fontfamily: fonts.family.fontFamilyRubix,
+    fontfamily: fonts.family.montserrat600,
   },
   imageContainerStyle: {
     marginLeft: 20,
@@ -49,18 +48,23 @@ export const styles = StyleSheet.create({
     marginHorizontal: 14,
   },
   continueButtonContainer: {
-    backgroundColor: ORANGE,
+    backgroundColor: MARINER,
     alignSelf: FLEX_END,
     marginRight: 14,
     marginTop: 24,
     paddingVertical: 8,
     paddingLeft: 15,
     paddingRight: 12,
-    borderRadius:8,
-    flexDirection:ROW,
-    alignItems:CENTER,
-    justifyContent:CENTER
+    borderRadius: 8,
+    flexDirection: ROW,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
-  continueText: {color:WHITE, lineHeight:15, fontFamily:fonts.family.rubik500,marginLeft:7},
-  loaderContainer: {flex:undefined, height:'100%'}
+  continueText: {
+    color: WHITE,
+    lineHeight: 15,
+    fontFamily: fonts.family.monsterrant500,
+    marginLeft: 7,
+  },
+  loaderContainer: {flex: undefined, height: '100%'},
 });

@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Backbutton = ({onPress, color, size}) => {
   return (
     <TouchableOpacity className="rounded border-black" onPress={onPress}>
-      {/* <ArrowCircleLeftIcon className="h-5 w-5"/> */}
       <Icon
         name="arrow-left"
         size={size == undefined ? 35 : size}

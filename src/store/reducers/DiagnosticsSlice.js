@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const cityIdThunk = createAsyncThunk(
   'city/getAllCityNames',
@@ -68,7 +68,7 @@ export const bookTestThunk = createAsyncThunk(
     try {
       const endpoint = '/booking?fromWeb=false';
       const response = await YuvaService.post(endpoint, data);
-      
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -128,17 +128,17 @@ const initialState = {
   bookedDetailsById: '',
   cancelled: '',
   cityId: [],
-  selectedCityId:'',
-  bookingListLoading:false,
-  bookingListError: false
+  selectedCityId: '',
+  bookingListLoading: false,
+  bookingListError: false,
 };
 
 const diagnosticSlice = createSlice({
   name: 'diagnostic',
   initialState,
   reducers: {
-    setCityId(state,{payload}){
-      state.selectedCityId=payload;
+    setCityId(state, {payload}) {
+      state.selectedCityId = payload;
     },
     hideErrorBox(state) {
       state.apiError = false;
@@ -146,16 +146,14 @@ const diagnosticSlice = createSlice({
     },
     resetMesage(state) {
       state.testBooked = null;
-      state.apiErrorMessage =null;
-      state.reschedule=null;
+      state.apiErrorMessage = null;
+      state.reschedule = null;
     },
     resetState(state) {
-      state.cancelled= '';
+      state.cancelled = '';
     },
   },
   extraReducers: {
-    /**
-     */
     [cityIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
@@ -165,19 +163,18 @@ const diagnosticSlice = createSlice({
     [cityIdThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
-    [viewMyTestAndPackageThunk.pending]: (state, {payload}) => {
+    [viewMyTestAndPackageThunk.pending]: state => {
       state.loading = true;
     },
     [viewMyTestAndPackageThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.testData = action.payload.data;
     },
-    [viewMyTestAndPackageThunk.rejected]: (state, action) => {
+    [viewMyTestAndPackageThunk.rejected]: state => {
       state.loading = false;
       state.apiError = true;
-      //state.apiErrorMessage = action.payload.errorMessage;
     },
-    [bookingTestAndPackageThunk.pending]: (state, {payload}) => {
+    [bookingTestAndPackageThunk.pending]: state => {
       state.loading = true;
       state.bookingListLoading = true;
       state.bookingListError = false;
@@ -186,7 +183,7 @@ const diagnosticSlice = createSlice({
       state.loading = false;
       state.bookingListLoading = false;
       state.bookingListError = false;
-      state.bookedData = action.payload ;
+      state.bookedData = action.payload;
     },
     [bookingTestAndPackageThunk.rejected]: (state, action) => {
       state.loading = false;
@@ -227,17 +224,17 @@ const diagnosticSlice = createSlice({
     [bookTestThunk.fulfilled]: (state, action) => {
       state.loading = false;
       state.testBooked = action.payload;
-      state.apiErrorMessage =null;
+      state.apiErrorMessage = null;
     },
     [bookTestThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-      state.testBooked =null;
+      state.testBooked = null;
       state.apiErrorMessage = action.payload.errorMessage;
     },
     [bookedDetailsByIdThunk.pending]: (state, {payload}) => {
       state.loading = true;
-      state.bookedDetailsById ='';
+      state.bookedDetailsById = '';
     },
     [bookedDetailsByIdThunk.fulfilled]: (state, action) => {
       state.loading = false;
@@ -246,7 +243,7 @@ const diagnosticSlice = createSlice({
     [bookedDetailsByIdThunk.rejected]: (state, action) => {
       state.loading = false;
       state.apiError = true;
-      state.bookedDetailsById =null;
+      state.bookedDetailsById = null;
       //state.apiErrorMessage = action.payload.errorMessage;
     },
 
@@ -266,6 +263,7 @@ const diagnosticSlice = createSlice({
     },
   },
 });
-export const {hideErrorBox,resetMesage,setCityId,resetState} = diagnosticSlice.actions;
+export const {hideErrorBox, resetMesage, setCityId, resetState} =
+  diagnosticSlice.actions;
 export const diagnosticInit = diagnosticSlice.getInitialState();
 export default diagnosticSlice.reducer;

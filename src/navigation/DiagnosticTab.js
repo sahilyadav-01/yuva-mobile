@@ -1,60 +1,51 @@
-
-
-
 import React from 'react';
-import {  Dimensions, Text } from 'react-native';
+import {Dimensions, Text} from 'react-native';
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import BookingScreen from '../screens/yuvaservices/diagnostics/Booking';
 
 import MyPlanScreen from '../screens/yuvaservices/diagnostics/MyplanScreen';
-import { styles } from '../screens/styles';
-import { ORANGE } from '../styles/colors';
+import {styles} from '../screens/styles';
+import {MARINER} from '../styles/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
 const DiagnosticsNavigation = () => {
   return (
     <Tab.Navigator
-    tabBarOptions= {{   
-      indicatorStyle :{
-            backgroundColor:ORANGE,
-            width:40,
-            height:3,
-            left:(Dimensions.get('window').width/2-50)/2,          
-           
-      }}}
+      tabBarOptions={{
+        indicatorStyle: {
+          backgroundColor: MARINER,
+          width: 40,
+          height: 3,
+          left: (Dimensions.get('window').width / 2 - 50) / 2,
+        },
+      }}
       style={styles.tabNavigation}
       screenOptions={{
-        tabBarItemStyle:styles.verticalLine,
-         tabBarLabelStyle:styles.tab,
+        tabBarItemStyle: styles.verticalLine,
+        tabBarLabelStyle: styles.tab,
         swipeEnabled: true,
-        lazy: false, 
+        lazy: false,
         tabBarStyle: {
           elevation: 0,
-          backgroundColor: "transparent",
-          
-    }, 
+          backgroundColor: 'transparent',
+        },
       }}>
       <Tab.Screen
-        name='MyPlan'
+        name="MyPlan"
         component={MyPlanScreen}
         options={{
-          tabBarLabel: () => (
-            <Text style={styles.textColor}>
-            MyPlan
-            </Text>
-          ),
+          tabBarLabel: () => <Text style={styles.textColor}>MyPlan</Text>,
         }}
       />
-      <Tab.Screen options={{
-        tabBarLabel: () => (
-          <Text style={styles.textColor}>
-           Bookings 
-          </Text>
-        ),
-      }} name='Bookings' component={BookingScreen} />
-
+      <Tab.Screen
+        options={{
+          tabBarLabel: () => <Text style={styles.textColor}>Bookings</Text>,
+        }}
+        name="Bookings"
+        component={BookingScreen}
+      />
     </Tab.Navigator>
   );
 };

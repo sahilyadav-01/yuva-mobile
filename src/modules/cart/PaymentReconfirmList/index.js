@@ -1,61 +1,62 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import React, { useEffect } from 'react';
-import { getDateInFormat, getTime } from '../../../utils/utils';
+import React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
 import Header from '../../../components/Header';
-import OrderDetails from '../../../components/OrderDetails';
-import ProgressBar from '../../../components/ProgressBar';
-import FinalAddress from '../../../components/FinalAddress';
-import { TO_BE_PAID } from './constant';
-import { styles } from './styles';
-import { useDispatch, useSelector } from 'react-redux';
-import CheckoutPriceDetails from '../../../components/CheckoutPriceDetails'
-import { usePaymentReconfirm } from './hooks/usePaymentReconfirm';
-import { getCartGuestThunk, getCartUserThunk } from '../../../store/reducers/CartSlice';
+import PriceBreakdown from './PriceBreakdown';
+import CouponCard from '../../../components/CouponContainer';
+import {styles} from './styles';
+import {usePaymentReconfirm} from './hooks/usePaymentReconfirm';
+import TermsContainer from './TermsContainer';
+import PaymentModes from './PaymentModes';
+import {getPlatform} from '../../../utils/utils';
+import LoaderContext from '../../../components/LoaderContext';
 
-const PaymentReconfirmList = props => {
-  const { onPayPress,processingCharge } = usePaymentReconfirm();
-  const { scheduleDate } = useSelector(state => state.checkOut);
-  const renderDate = getDateInFormat(new Date(parseInt(scheduleDate)), 'dd/mm/yyyy');
-  const renderTime = getTime(new Date(parseInt(scheduleDate)), 'hh:mm');
-  const { cart } = useSelector(state => state.cart);
-  const { amountToBePaid, itemDtoList, totalCost, totalDiscount } = cart || {};
-  const { coupon } = useSelector(state => state.coupon);
-  const { loggedIn } = useSelector(state => state.auth);
-  const isLoggedIn = loggedIn === 'loggedIn';
-  const dispatch = useDispatch();
+const Separator = () => {
+  return <View style={styles.separator} />;
+};
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getCartUserThunk());
-    } else {
-      dispatch(getCartGuestThunk());
-    }
-  }, []);
-
+const PaymentReconfirmList = () => {
+  const {onPayPress, checked, onCheckboxPress, cod, onCodPress, onOnlinePress} =
+    usePaymentReconfirm();
   return (
-    <>
-      <Header title={'Checkout'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true} />
-      <ScrollView>
-        <OrderDetails />
-        <View style={styles.bodyContainer}>
-          <ProgressBar progress="0.99" showDateTimeSection={true} />
-        </View>
-
-        <FinalAddress />
-
-        <View style={styles.dateContainer}>
-          <Text style={styles.timeSlotStyle}>{renderDate}</Text>
-          <Text style={styles.timeSlotStyle}>{renderTime}</Text>
-        </View>
-        <View style={styles.PriceDetails}>
-          <CheckoutPriceDetails  isPrice={{ amountToBePaid, Quantity: itemDtoList.length, totalCost, totalDiscount, processingCharge }} />
-        </View>
-
-        <TouchableOpacity onPress={onPayPress} style={styles.touchableButton}>
-          <Text style={styles.textBook}>{TO_BE_PAID(amountToBePaid)}</Text>
-        </TouchableOpacity>
+    <View style={{flex: 1}}>
+      <Header
+        title={'Summary'}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
+      <ScrollView style={{paddingHorizontal: 20, flex: 1}}>
+        <LoaderContext />
+        <KeyboardAvoidingView
+          behavior={getPlatform().isIOS ? 'padding' : null}
+          style={{flex: 1}}>
+          <PriceBreakdown />
+          <View style={{flex: 1}}>
+            <CouponCard />
+            <Separator />
+            <PaymentModes
+              cod={cod}
+              onCodPress={onCodPress}
+              onOnlinePress={onOnlinePress}
+            />
+            <TermsContainer
+              checked={checked}
+              onCheckboxPress={onCheckboxPress}
+            />
+            <TouchableOpacity onPress={onPayPress} style={styles.placeOrder}>
+              <Text style={styles.buttonText}>Place Order</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
       </ScrollView>
-    </>
+    </View>
   );
 };
 

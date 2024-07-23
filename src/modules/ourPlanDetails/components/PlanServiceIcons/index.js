@@ -1,32 +1,38 @@
-import React from "react";
-import { View, FlatList } from "react-native";
-import { usePlanServiceIcons } from "./hooks/usePlanServiceIcons";
-import OurPlanServiceIconsCard from "../../../../components/OurPlanServiceIconsCard";
-import { styles } from "./style";
+import React from 'react';
+import {View, FlatList} from 'react-native';
+import {usePlanServiceIcons} from './hooks/usePlanServiceIcons';
+import OurPlanServiceIconsCard from '../../../../components/OurPlanServiceIconsCard';
+import {styles} from './style';
+import {getDimensions} from '../../../../utils/utils';
 
-const PlanServiceIcons = ({ data }) => {
-  const { filteredServicesArray } = usePlanServiceIcons(data);
+const PlanServiceIcons = ({data}) => {
+  const {filteredServicesArray} = usePlanServiceIcons(data);
   const style = styles();
 
-  const renderItem = (item) => {
+  const renderItem = ({item, index}) => {
     if (!item) {
-      return null; 
+      return null;
     }
     return (
-      <View style={style.servicesSubContainer}>
+      <View
+        style={[
+          style.servicesSubContainer,
+          {marginRight: (index + 1) % 4 === 0 ? undefined : '5%'},
+        ]}>
         <OurPlanServiceIconsCard
-          key={item.item.name}
-          name={item.item.name}
-          text={item.item?.text ?? null}
-          icon={item.item?.icon ?? null}
-          iconProps={item.item?.props ?? null}
-          available={item.item?.available}
+          key={item.name}
+          name={item.name}
+          text={item?.text ?? null}
+          icon={item?.icon ?? null}
+          iconProps={item?.props ?? null}
+          available={item?.available}
         />
       </View>
     );
   };
   return (
     <FlatList
+      scrollEnabled={false}
       data={filteredServicesArray}
       renderItem={renderItem}
       keyExtractor={(item, index) => `${index}`}

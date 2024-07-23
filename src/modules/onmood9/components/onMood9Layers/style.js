@@ -1,23 +1,23 @@
 import {StyleSheet} from 'react-native';
 import {fonts} from '../../../../styles/fonts';
-import {ORANGE, SHUTTLE_GREY, WHITE} from '../../../../styles/colors';
+import {MARINER, SHUTTLE_GREY, WHITE} from '../../../../styles/colors';
 import {CENTER, ROW} from '../../../../styles/constants';
 
 export const styles = () => {
   return StyleSheet.create({
     headingText: {
-      fontFamily: fonts.family.rubik500,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
-      color: ORANGE,
+      color: MARINER,
       marginBottom: 16,
     },
     heading: {
-      fontFamily: fonts.family.rubik600,
+      fontFamily: fonts.family.montserrat600,
       fontSize: fonts.size.fontSize12,
       color: SHUTTLE_GREY,
     },
     body: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize12,
       color: SHUTTLE_GREY,
     },
@@ -25,23 +25,23 @@ export const styles = () => {
       height: 48,
       width: 48,
       borderRadius: 24,
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       alignItems: CENTER,
       justifyContent: CENTER,
     },
-    rowView: {flexDirection: ROW, flex:1},
-    detailsContainer: {maxHeight: 48, marginLeft: 16, flex:1},
+    rowView: {flexDirection: ROW, flex: 1},
+    detailsContainer: {maxHeight: 48, marginLeft: 16, flex: 1},
     separatorLine: {
       height: 56,
       width: 4,
-      backgroundColor: ORANGE,
+      backgroundColor: MARINER,
       marginLeft: 22,
     },
     indexText: {
-      fontFamily: fonts.family.rubik400,
+      fontFamily: fonts.family.montserrat400,
       fontSize: fonts.size.fontSize14,
       color: WHITE,
     },
-    listContainerStyle: {paddingBottom: 36}
+    listContainerStyle: {paddingBottom: 36},
   });
 };

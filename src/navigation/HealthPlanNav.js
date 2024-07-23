@@ -12,7 +12,7 @@ const HealthPlanNav = () => {
   } = useSelector(state => state);
   return (
     <Stack.Navigator>
-            <Stack.Screen
+      <Stack.Screen
         name="ComingSoon"
         component={ComingSoon}
         options={{headerShown: false}}
@@ -22,7 +22,6 @@ const HealthPlanNav = () => {
         component={Authentication}
         options={{headerShown: false}}
       />
-
     </Stack.Navigator>
   );
 };

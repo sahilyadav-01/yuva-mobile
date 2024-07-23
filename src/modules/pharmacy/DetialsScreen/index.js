@@ -1,19 +1,33 @@
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
-import { PNG } from '../../../../assets';
+import {View, Text, Image, ScrollView} from 'react-native';
+import {PNG} from '../../../../assets';
 import Header from '../../../components/Header';
-import { COMMA, DEAR, HEADER_TITLE, SUBTEXT, SUBTEXT2, THANKS, WISHES, YOUR_PIN } from '../constants';
-import { styles } from './styles';
-import { useDetialsScreen } from './hooks/useDetialsScreen';
+import {
+  COMMA,
+  DEAR,
+  HEADER_TITLE,
+  SUBTEXT,
+  SUBTEXT2,
+  THANKS,
+  WISHES,
+  YOUR_PIN,
+} from '../constants';
+import {styles} from './styles';
+import {useDetialsScreen} from './hooks/useDetialsScreen';
 const DetialsScreen = () => {
   const route = useRoute();
-  const { prescriptionId, patientsName } = route?.params;
-  const { otpData } = useDetialsScreen();
+  const {prescriptionId, patientsName} = route?.params;
+  const {otpData} = useDetialsScreen();
 
   return (
     <>
-      <Header title={HEADER_TITLE} isScreen={true} hideMenu={false} showBackButton={true} />
+      <Header
+        title={HEADER_TITLE}
+        isScreen={true}
+        hideMenu={false}
+        showBackButton={true}
+      />
       <View style={styles.messageView}>
         <ScrollView>
           <Image source={PNG.THANK_DESIGN} style={styles.imageStyle} />
@@ -26,7 +40,8 @@ const DetialsScreen = () => {
               <Text style={styles.otpStyle}>{prescriptionId}</Text>
             </View>
             <View style={styles.otpView}>
-              <Text style={styles.subOtpDescriptionStyle}>{SUBTEXT}
+              <Text style={styles.subOtpDescriptionStyle}>
+                {SUBTEXT}
                 <Text style={styles.otpStyle}>{otpData}</Text>
               </Text>
             </View>
@@ -36,7 +51,6 @@ const DetialsScreen = () => {
           </View>
         </ScrollView>
       </View>
-
     </>
   );
 };

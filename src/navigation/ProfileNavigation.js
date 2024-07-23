@@ -6,9 +6,9 @@ import EnterOTP from '../screens/login/EnterOTP';
 const Stack = createStackNavigator();
 
 const ProfileNavigation = () => {
-  return(
+  return (
     <Stack.Navigator>
-      <Stack.Screen 
+      <Stack.Screen
         name={'ProfileHome'}
         component={ProfileScreen}
         options={{headerShown: false}}

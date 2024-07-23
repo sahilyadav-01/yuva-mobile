@@ -1,22 +1,26 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-const ManageAddress = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const ManageAddress = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={25}
-    height={25}
+    width={22}
+    height={22}
     fill="none"
-    {...props}
-  >
-    <G fill="#38466C" clipPath="url(#a)">
-      <Path d="M23.41 12.007 12.991 1.591a.694.694 0 0 0-.979 0L1.597 12.007a.694.694 0 0 0 .979.98l9.923-9.924 9.924 9.93a.694.694 0 0 0 .98-.979l.006-.007Z" />
-      <Path d="M19.444 22.223h-3.472v-6.945H9.027v6.945H5.555V12.5L4.166 13.89v8.333a1.389 1.389 0 0 0 1.389 1.389h4.861v-6.945h4.167v6.945h4.86a1.39 1.39 0 0 0 1.39-1.39v-8.5l-1.39-1.388v9.889Z" />
-    </G>
-    <Defs>
-      <ClipPath id="a">
-        <Path fill="#fff" d="M0 0h25v25H0z" />
-      </ClipPath>
-    </Defs>
+    {...props}>
+    <Path
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M20.737 18.807v-7.383a4.386 4.386 0 0 0-1.365-3.18l-6.993-6.64a2.193 2.193 0 0 0-3.02 0l-6.994 6.64A4.386 4.386 0 0 0 1 11.425v7.383A2.193 2.193 0 0 0 3.193 21h15.35a2.193 2.193 0 0 0 2.194-2.193Z"
+    />
+    <Path
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M7.578 14.42a2.193 2.193 0 0 1 2.193-2.193h2.193a2.193 2.193 0 0 1 2.193 2.192V21H7.578v-6.58Z"
+    />
   </Svg>
-)
-export default ManageAddress
+);
+export default ManageAddress;

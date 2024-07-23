@@ -1,11 +1,11 @@
-import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {YuvaService} from '../../../App';
 
 export const documentTypeThunk = createAsyncThunk(
   'Emrm/getDocumentType',
   async (params = {}, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/erms/documentType`;
+      const endpoint = '/erms/documentType';
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -15,10 +15,13 @@ export const documentTypeThunk = createAsyncThunk(
 );
 export const getAllErmReportThunk = createAsyncThunk(
   'Emrm/getAllErm',
-  async ({ pageNo,pageSize, searchKey, documentType }, { fulfillWithValue, rejectWithValue }) => {
+  async (
+    {pageNo, pageSize, searchKey, documentType},
+    {fulfillWithValue, rejectWithValue},
+  ) => {
     try {
       const endpoint = `/erms/viewAll?pageNo=${pageNo}&pageSize=${pageSize}`;
-      const ermFilterDto = {searchKey,documentType};
+      const ermFilterDto = {searchKey, documentType};
       const response = await YuvaService.post(endpoint, ermFilterDto);
       return response.data;
     } catch (error) {
@@ -29,41 +32,43 @@ export const getAllErmReportThunk = createAsyncThunk(
 
 export const addErmThunk = createAsyncThunk(
   'Emrm/erms',
-  async ({ document, ermRequest }, { rejectWithValue }) => {
+  async ({document, ermRequest}, {rejectWithValue}) => {
     try {
       const formData = new FormData();
-      formData.append('ermRequest', JSON.stringify({
-        medicalDocument: ermRequest?.medicalDocument,
-        date: ermRequest?.date,
-        healthCentre: ermRequest?.healthCentre,
-        documentType: ermRequest?.documentType
-      }));
+      formData.append(
+        'ermRequest',
+        JSON.stringify({
+          medicalDocument: ermRequest?.medicalDocument,
+          date: ermRequest?.date,
+          healthCentre: ermRequest?.healthCentre,
+          documentType: ermRequest?.documentType,
+        }),
+      );
 
       formData.append('medicalDocument', document);
 
       const response = await YuvaService.post('/erms', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       });
 
-      return response.data; 
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response);
     }
   },
 );
 
-
 const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
   dropDownData: [],
-  ermReportData:{},
-  downloadedReports:[],
-  emrmUploadMessage:''
+  ermReportData: {},
+  downloadedReports: [],
+  emrmUploadMessage: '',
 };
 
 const EmrmSlice = createSlice({
@@ -71,58 +76,53 @@ const EmrmSlice = createSlice({
   initialState,
   reducers: {
     resetSuccessMessage(state) {
-      state.emrmUploadMessage= '';
+      state.emrmUploadMessage = '';
     },
     resetAddErmThunkError(state) {
-      state.apiErrorMessage= '';
+      state.apiErrorMessage = '';
     },
   },
   extraReducers: {
-    /** getDocumentType Dropdown Data */
-
-    [documentTypeThunk.pending]: (state, {payload}) => {
+    [documentTypeThunk.pending]: state => {
       state.loading = true;
     },
     [documentTypeThunk.fulfilled]: (state, action) => {
       state.dropDownData = action.payload?.data || [];
       state.loading = false;
     },
-    [documentTypeThunk.rejected]: (state, action) => {
+    [documentTypeThunk.rejected]: state => {
       state.apiError = true;
       state.loading = false;
     },
-
-    /** getAllErmReport */
-
-    [getAllErmReportThunk.pending]: (state, {action}) => {
+    [getAllErmReportThunk.pending]: state => {
       state.loading = true;
     },
     [getAllErmReportThunk.fulfilled]: (state, action) => {
       state.ermReportData = action.payload?.data || {};
       state.loading = false;
     },
-    [getAllErmReportThunk.rejected]: (state, action) => {
+    [getAllErmReportThunk.rejected]: state => {
       state.apiError = true;
       state.loading = false;
     },
-
-    /** Emrm Document upload*/
-
     [addErmThunk.pending]: state => {
       state.loading = true;
       state.apiErrorMessage = '';
       state.apiError = false;
     },
-    [addErmThunk.fulfilled]: (state, { payload }) => {
+    [addErmThunk.fulfilled]: (state, {payload}) => {
       state.apiError = false;
       state.apiErrorMessage = '';
       state.loading = false;
       state.emrmUploadMessage = payload?.message;
     },
-    [addErmThunk.rejected]: (state, { payload }) => {
+    [addErmThunk.rejected]: (state, {payload}) => {
       state.apiError = true;
       state.loading = false;
-      state.apiErrorMessage = payload.status === 413 ? 'File size exceeded' : payload?.data?.errorMessage;
+      state.apiErrorMessage =
+        payload.status === 413
+          ? 'File size exceeded'
+          : payload?.data?.errorMessage;
     },
   },
 });

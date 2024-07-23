@@ -14,7 +14,7 @@ import Header from '../../../components/Header';
 import {useBookingTestAndPackage} from './hooks/useBookingTestAndPackage';
 import {SVG} from '../../../../assets';
 
-const BookingTestAndPackage = () => {
+const BookingTestAndPackage = ({params}) => {
   const {
     packageDetails,
     packageList,
@@ -28,7 +28,8 @@ const BookingTestAndPackage = () => {
     testDetails,
     headerTitle,
     isScreenRes,
-  } = useBookingTestAndPackage();
+  } = useBookingTestAndPackage(params);
+
   const renderItem = ({item, index}) => {
     const onToggle = () => {
       onUpdate(index);
@@ -58,7 +59,7 @@ const BookingTestAndPackage = () => {
                   )}
                 </Text>
               </View>
-              <View></View>
+              <View />
               {item?.parameterCount > 0 && (
                 <View style={styles.drop}>
                   <SVG.dropDown />
@@ -88,12 +89,12 @@ const BookingTestAndPackage = () => {
       </View>
     );
   };
-//   if (!renderData) return null;
+  //   if (!renderData) return null;
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <Header showBackButton={true} title={headerTitle()} />
       {renderData ? (
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <ScrollView style={styles.contentContainerStyle}>
           <View style={styles.booksID}>
             <View>
               <View>
@@ -152,10 +153,10 @@ const BookingTestAndPackage = () => {
               )}
             </View>
           )}
-          <View></View>
+          <View />
         </ScrollView>
       ) : (
-        <View >
+        <View>
           <Text style={styles.somethingWentWrong}>{SOMETHING_WENT_WRONG}</Text>
         </View>
       )}

@@ -1,5 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {
+  BLACK,
   BLACK_OPACITY,
   CITRINE_WHITE,
   CYAN_BLUE,
@@ -40,7 +41,6 @@ export const styles = arg => {
     availableText: {color: GREEN, lineHeight: 16},
     timeContentContainer: {
       borderWidth: 0.5,
-      marginHorizontal: 16,
       borderRadius: 8,
       borderColor: GRAY,
       paddingVertical: 4,
@@ -75,10 +75,10 @@ export const styles = arg => {
       fontSize: fonts.size.fontSize12,
       lineHeight: 18,
     },
-    emptyView: {paddingHorizontal: 16, marginVertical: 4, alignItems: CENTER},
+    emptyView: {marginVertical: 4, alignItems: CENTER},
     emptyText: {
-      color: CYAN_BLUE,
-      fontWeight: fonts.weight.fontWeight500,
+      color: BLACK,
+      fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize14,
     },
     emptyContainer: {height: 24},

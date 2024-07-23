@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { G, Circle, Path, Defs, ClipPath } from "react-native-svg"
-/* SVGR has dropped some elements not supported by react-native-svg: filter */
-const NurseComponent = (props) => (
+import * as React from 'react';
+import Svg, {G, Circle, Path, Defs, ClipPath} from 'react-native-svg';
+
+const NurseComponent = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={62}
     height={62}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <G filter="url(#a)">
       <Circle cx={31} cy={27} r={25} fill="#fff" />
     </G>
@@ -26,5 +25,5 @@ const NurseComponent = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
+);
 export default NurseComponent;

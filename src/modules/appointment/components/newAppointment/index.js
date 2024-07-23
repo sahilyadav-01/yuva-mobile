@@ -19,7 +19,7 @@ import {
   PATIENT_CONTACT_NUMBER,
   PLACEHOLDER,
   SELECT_DATE_TIME,
-  SELECT_MEMBER
+  SELECT_MEMBER,
 } from './constant';
 import {PNG} from '../../../../../assets';
 import CustomDatePicker from '../../../../components/CustomDatePicker';
@@ -43,7 +43,7 @@ const NewAppointments = () => {
   } = useNew(plan, userVersion, uuid, version);
   return (
     <View>
-      <ScrollView keyboardShouldPersistTaps='handled'>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <Text style={styles.TitleStyle}>{BOOK_AN_APPOINTMENT}</Text>
 
         <View style={styles.border}>
@@ -69,7 +69,7 @@ const NewAppointments = () => {
           />
         </View>
         <Text style={styles.TitleStyle}>{SELECT_DATE_TIME}</Text>
-        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true} />
         <View>
           <Text style={styles.TitleStyle}>{BOOKING_FOR}</Text>
           <View style={styles.borderSelect}>
@@ -81,12 +81,12 @@ const NewAppointments = () => {
                   : [styles.boxStyles, styles.backGroundStyle]
               }
               search={false}
-              defaultOption={{key:"null", value: MYSELF}}
+              defaultOption={{key: 'null', value: MYSELF}}
               setSelected={setSelected}
-              data={dataRelation || []}
+              data={[{key: 'null', value: MYSELF}, ...(dataRelation || [])]}
               dropdownStyles={styles.dropStyles}
               inputStyles={styles.valueStyle}
-              dropdownTextStyles={{color:DARK_GRAY}}
+              dropdownTextStyles={{color: DARK_GRAY}}
             />
           </View>
         </View>

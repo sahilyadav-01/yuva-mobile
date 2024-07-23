@@ -21,7 +21,7 @@ export const useForgotPassword = () => {
         resetPassword: true,
         number: text,
         verificationType: 'number',
-        signUp:false,
+        signUp: false,
       });
     }
   }, [forgotPasswordLoading, enableNavigation, from]);
@@ -30,15 +30,18 @@ export const useForgotPassword = () => {
 
   const getInputType = text => {
     const reg = /^\d+$/;
-    if (text.toString().length === 10 && reg.test(text.toString()))
+    if (text.toString().length === 10 && reg.test(text.toString())) {
       return 'number';
-    else if (text.toString().split('@').length === 2) return 'email';
+    } else if (text.toString().split('@').length === 2) {
+      return 'email';
+    }
     return null;
   };
   const onContinue = from => {
     const inputType = getInputType(text);
-    if (!inputType) setErrorText('Please enter a valid phone number or email');
-    else {
+    if (!inputType) {
+      setErrorText('Please enter a valid phone number or email');
+    } else {
       setFrom(from ?? undefined);
       setErrorText('');
       dispatch(forgotPassword({emailOrNumber: text, inputType}));

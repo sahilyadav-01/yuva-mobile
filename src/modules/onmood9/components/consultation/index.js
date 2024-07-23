@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from './style';
 import {BUTTON_TEXT, HEADING_TEXT} from './constants';
 
-const OnMood9Consult = (props) => {
+const OnMood9Consult = props => {
   const {onConsultation} = props;
   const style = styles();
   return (

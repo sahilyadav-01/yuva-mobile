@@ -1,13 +1,19 @@
 import React from 'react';
-import {Text, TextInput,View} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import { DARK_GRAY } from '../../../styles/colors';
+import {BLACK, DARK_GRAY} from '../../../styles/colors';
 import {styles} from './style';
 
 const MemberDetails = props => {
-  const {listHeadingText, textInputStyle, valueStyle, itemContainer} = styles();
+  const {
+    listHeadingText,
+    textInputStyle,
+    valueStyle,
+    itemContainer,
+    inputStyle,
+  } = styles();
   const {item, onChangeText, relationsData, onItemSelect} = props;
-  if (item?.type === 'input')
+  if (item?.type === 'input') {
     return (
       <View style={itemContainer}>
         <Text style={listHeadingText}>{item?.heading}</Text>
@@ -15,26 +21,28 @@ const MemberDetails = props => {
           onChangeText={text => onChangeText(text, item?.heading)}
           style={textInputStyle}
           placeholder={item?.placeholder}
-          placeholderTextColor={DARK_GRAY}
+          placeholderTextColor={BLACK}
           value={item?.value}
           keyboardType={item?.keyboardType}
         />
       </View>
     );
-  if (item?.type === 'picker')
+  }
+  if (item?.type === 'picker') {
     return (
       <View style={itemContainer}>
         <Text style={listHeadingText}>{item?.heading}</Text>
         <SelectList
           setSelected={onItemSelect}
-          inputStyles={valueStyle}
+          inputStyles={inputStyle}
           search={false}
           data={relationsData}
           boxStyles={textInputStyle}
-          dropdownTextStyles={{color:DARK_GRAY}}
+          dropdownTextStyles={inputStyle}
         />
       </View>
     );
+  }
 };
 
 export default MemberDetails;

@@ -1,25 +1,16 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-const CorporateProgram = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const CorporateProgram = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={25}
-    height={25}
+    width={24}
+    height={20}
     fill="none"
-    {...props}
-  >
-    <G clipPath="url(#a)">
-      <Path
-        stroke="#38466C"
-        strokeWidth={2}
-        d="M18.75 4.167V0M7.29 18.75H5.208m14.583 0H9.374m-2.083-4.167H5.208m14.583 0H9.374M6.25 4.167V0M1.041 9.375h22.917M1.04 23.958h22.917V4.167H1.04v19.791Z"
-      />
-    </G>
-    <Defs>
-      <ClipPath id="a">
-        <Path fill="#fff" d="M0 0h25v25H0z" />
-      </ClipPath>
-    </Defs>
+    {...props}>
+    <Path
+      fill="#000"
+      d="M23.935 16.494a3.013 3.013 0 0 0-2.466-2.46v-2.706c0-1.453-1.423-2.83-2.93-2.83h-6.055V5.962a3 3 0 0 0 2.43-3.6 3.011 3.011 0 0 0-3.289-2.34 3 3 0 0 0-.14 5.94v2.54h-6.06c-1.502 0-2.925 1.373-2.925 2.83v2.706a3 3 0 0 0-2.43 3.6 3.01 3.01 0 0 0 3.289 2.34 3 3 0 0 0 .14-5.94v-2.705c0-.909.973-1.832 1.926-1.832h6.06v4.532a3 3 0 0 0-2.43 3.6 3.011 3.011 0 0 0 3.289 2.34 3 3 0 0 0 .14-5.94V9.501h6.06c.953 0 1.926.923 1.926 1.832v2.705a2.996 2.996 0 0 0-2.41 3.694 3.008 3.008 0 0 0 3.169 2.251 3.003 3.003 0 0 0 2.706-3.489ZM5 16.994a2 2 0 1 1-4.002 0 2 2 0 0 1 4.002 0Zm8.99-.006a2.005 2.005 0 0 1-2.002 2.002 2.001 2.001 0 1 1 2.002-2.002Zm-2.006-11.98a2.001 2.001 0 1 1-.001-4.003 2.001 2.001 0 0 1 0 4.003ZM20.97 18.99a2.005 2.005 0 0 1-2.002-2.002 2.001 2.001 0 1 1 2.002 2.002Z"
+    />
   </Svg>
-)
+);
 export default CorporateProgram;

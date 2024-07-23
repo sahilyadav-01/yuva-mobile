@@ -1,22 +1,23 @@
 import React from 'react';
-import { Image, Text, View, TouchableOpacity } from 'react-native';
-import { ORANGE, ORANGE_GREY } from '../../styles/colors';
-import { BUTTONCONTENT } from './constant';
-import { styles } from './styles';
-import { useCarouselItem4 } from './hooks/useCarouselItem4';
+import {Image, Text, View, TouchableOpacity} from 'react-native';
+import {ORANGE, ORANGE_GREY} from '../../styles/colors';
+import {BUTTONCONTENT} from './constant';
+import {styles} from './styles';
+import {useCarouselItem4} from './hooks/useCarouselItem4';
 
-const CarouselItem4 = (props) => {
-  const { imgPath, index, totalItem, item } = props;
-  const { onTestPress, getTestCount, existingIds, onPressAdd } = useCarouselItem4({ item });
+const CarouselItem4 = props => {
+  const {imgPath, index, totalItem, item} = props;
+  const {onTestPress, getTestCount, existingIds, onPressAdd} = useCarouselItem4(
+    {item},
+  );
 
   return (
     <TouchableOpacity onPress={() => onTestPress(item)}>
       <View
         style={[
           styles.container,
-          { marginRight: index !== totalItem - 1 ? 15 : undefined },
-        ]}
-      >
+          {marginRight: index !== totalItem - 1 ? 15 : undefined},
+        ]}>
         <View style={styles.iconContainer}>
           <Image
             resizeMode="contain"
@@ -25,17 +26,28 @@ const CarouselItem4 = (props) => {
           />
         </View>
         <View style={styles.descriptionContainer}>
-          <Text numberOfLines={1} style={styles.descriptionStyle}>{item.testName}</Text>
+          <Text numberOfLines={1} style={styles.descriptionStyle}>
+            {item.testName}
+          </Text>
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.descriptionStyle}>{getTestCount(item)}</Text>
         </View>
         <View style={styles.addButtonViewContainer}>
           <TouchableOpacity
-            disabled={existingIds.length > 0 && existingIds.includes(item.testId.toString())}
+            disabled={
+              existingIds.length > 0 &&
+              existingIds.includes(item.testId.toString())
+            }
             onPress={onPressAdd}
-            style={{ ...styles.addButtonContainer, backgroundColor: existingIds.length > 0 && existingIds.includes(item.testId.toString()) ? ORANGE_GREY : ORANGE }}
-          >
+            style={{
+              ...styles.addButtonContainer,
+              backgroundColor:
+                existingIds.length > 0 &&
+                existingIds.includes(item.testId.toString())
+                  ? ORANGE_GREY
+                  : ORANGE,
+            }}>
             <Text style={styles.buttonText}>{BUTTONCONTENT}</Text>
           </TouchableOpacity>
         </View>
