@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import DetialsScreen from '../modules/pharmacy/DetialsScreen';
 import PrescriptionListing from '../screens/yuvaservices/pharmacy/PrescriptionListing';
 import ListingScreen from '../modules/pharmacy/ListingScreen';
@@ -11,17 +11,17 @@ const PharmacyNavigation = () => {
       <Stack.Screen
         name="PrescriptionListing"
         component={PrescriptionListing}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
-         <Stack.Screen
+      <Stack.Screen
         name="PharmacyListing"
         component={ListingScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="PharmacyDescription"
         component={DetialsScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

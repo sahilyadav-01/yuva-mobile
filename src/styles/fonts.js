@@ -50,5 +50,5 @@ export const fonts = {
     montserrant800: 'Montserrat-ExtraBold',
     montserrant700: 'Montserrat-Bold',
     montserrant100: 'Montserrat-Thin',
-  }
+  },
 };

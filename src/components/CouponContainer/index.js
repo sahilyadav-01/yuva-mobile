@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import {styles} from './styles';
 import {useCouponCard} from './hooks/useCouponCard';
 import {
@@ -18,11 +12,7 @@ import {
   DISCOUNT_PERCENTAGE,
   COUPON_CODE,
 } from './constant';
-import {
-  SLATE_BLUE,
-  DARK_GRAY,
-  MARINER,
-} from '../../styles/colors';
+import {SLATE_BLUE, DARK_GRAY, MARINER} from '../../styles/colors';
 
 const CouponCard = props => {
   const {isPlan, planType, planUuid} = props;
@@ -35,19 +25,19 @@ const CouponCard = props => {
     selectedCouponCode,
     couponViewCart,
     couponError,
-    onSuccess
+    onSuccess,
   } = useCouponCard(isPlan, planUuid, planType);
   const renderItem = ({item, index}) => {
     return (
-      <TouchableOpacity onPress={()=>onSuccess(item?.couponCode)} key={index}>
+      <TouchableOpacity onPress={() => onSuccess(item?.couponCode)} key={index}>
         <View
           style={[
             styles.couponContainer,
             {
               borderColor:
-              (item.couponCode === selectedCouponCode &&
-                (couponView || planeCouponCode)) ||
-              (item.couponCode === couponViewCart)
+                (item.couponCode === selectedCouponCode &&
+                  (couponView || planeCouponCode)) ||
+                item.couponCode === couponViewCart
                   ? MARINER
                   : SLATE_BLUE,
             },
@@ -72,13 +62,15 @@ const CouponCard = props => {
               styles.couponStatus,
               (item.couponCode === selectedCouponCode &&
                 (couponView || planeCouponCode)) ||
-              (item.couponCode === couponViewCart)
+              item.couponCode === couponViewCart
                 ? styles.useCouponTextStyle1
                 : null,
             ]}>
             {(item.couponCode === selectedCouponCode &&
-                (couponView || planeCouponCode)) ||
-              (item.couponCode === couponViewCart) ? 'Applied': 'Apply'}
+              (couponView || planeCouponCode)) ||
+            item.couponCode === couponViewCart
+              ? 'Applied'
+              : 'Apply'}
           </Text>
         </View>
       </TouchableOpacity>
@@ -99,9 +91,13 @@ const CouponCard = props => {
           <Text style={styles.couponText}>Apply</Text>
         </TouchableOpacity>
       </View>
-      {couponError ? <Text style={styles.couponError}>{couponError}</Text> : null}
+      {couponError ? (
+        <Text style={styles.couponError}>{couponError}</Text>
+      ) : null}
       <Text style={styles.couponLabelStyles}>
-        {coupon.length >= 1 ? `${COUPON_LABEL} (${coupon?.length})` : NO_COUPON_TEXT}
+        {coupon.length >= 1
+          ? `${COUPON_LABEL} (${coupon?.length})`
+          : NO_COUPON_TEXT}
       </Text>
       <FlatList
         data={coupon}

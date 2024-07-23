@@ -96,9 +96,11 @@ export const useHomeSearchDetails = props => {
     ) {
       setPackageData(
         packageData.map(item => {
-          if (existingIds.includes(item.packageUuid.toString()))
+          if (existingIds.includes(item.packageUuid.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     }
@@ -108,9 +110,11 @@ export const useHomeSearchDetails = props => {
     ) {
       setTestData(
         testData.map(item => {
-          if (existingIds.includes(item.testId.toString()))
+          if (existingIds.includes(item.testId.toString())) {
             return {...item, selected: true};
-          else return {...item, selected: false};
+          } else {
+            return {...item, selected: false};
+          }
         }),
       );
     }
@@ -158,7 +162,7 @@ export const useHomeSearchDetails = props => {
         } else if (item.selected === true) {
           onRemove({
             productId: item?.testId.toString(),
-            productType: 'TEST'
+            productType: 'TEST',
           });
         }
         return item;

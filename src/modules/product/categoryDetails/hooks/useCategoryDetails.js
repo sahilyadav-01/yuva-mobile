@@ -3,15 +3,17 @@ import {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllSubCategories} from '../../../../store/reducers/ProductSlice';
 
-export const useCategoryDetails = (navigation,params) => {
+export const useCategoryDetails = (navigation, params) => {
   const dispatch = useDispatch();
   const {subCategories} = useSelector(state => state.product);
 
-  const onCategoryPress = (params) => {
-  };
+  const onCategoryPress = params => {};
 
-  const onAdd = (productId) => {
-    navigation.navigate('Product',{screen: 'ProductDetails',params:{productId}});
+  const onAdd = productId => {
+    navigation.navigate('Product', {
+      screen: 'ProductDetails',
+      params: {productId},
+    });
   };
 
   useFocusEffect(

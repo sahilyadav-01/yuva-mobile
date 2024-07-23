@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-import { MARINER } from "../src/styles/colors"
-const Scientist = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+import {MARINER} from '../src/styles/colors';
+const Scientist = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={33}
     height={34}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke={MARINER}
       strokeMiterlimit={22.926}
@@ -23,5 +22,5 @@ const Scientist = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
-export default Scientist
+);
+export default Scientist;

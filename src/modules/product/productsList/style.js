@@ -1,12 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {MARINER, WHITE} from '../../../styles/colors';
-import {
-  CENTER,
-  ROW,
-  ROW_REVERSE,
-  SPACE_BETWEEN,
-} from '../../../styles/constants';
-import {fonts} from '../../../styles/fonts';
+import {WHITE} from '../../../styles/colors';
+import {CENTER} from '../../../styles/constants';
 
 export const styles = () => {
   return StyleSheet.create({

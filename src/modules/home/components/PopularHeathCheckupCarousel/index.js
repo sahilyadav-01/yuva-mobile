@@ -7,7 +7,7 @@ import YuvaPackages from '../../../../components/YuvaPackages';
 const PopularHeathCheckupCarousel = ({
   popularPackageName,
   onHealthPackagePress,
-  isTest
+  isTest,
 }) => {
   const {onPackagePress, onPressAdd, existingIds} = usePackages(isTest);
   const heading = isTest ? 'Popular Test Package' : 'Popular Health Checkup';
@@ -15,7 +15,9 @@ const PopularHeathCheckupCarousel = ({
     <View style={styles.container}>
       <View style={styles.rowContainer}>
         <Text style={styles.title}>{heading}</Text>
-        <Text onPress={() => onHealthPackagePress(isTest ? 1 : 0)} style={styles.viewAll}>
+        <Text
+          onPress={() => onHealthPackagePress(isTest ? 1 : 0)}
+          style={styles.viewAll}>
           View All
         </Text>
       </View>

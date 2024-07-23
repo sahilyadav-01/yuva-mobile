@@ -4,12 +4,7 @@ import {styles as style} from './styles';
 import ProductList from './productList';
 import CategoryList from './categoryList';
 
-const ProductHub = ({
-  onCategoryViewAllPress,
-  showHeading,
-  data,
-  onAdd,
-}) => {
+const ProductHub = ({onCategoryViewAllPress, showHeading, data, onAdd}) => {
   const styles = style();
   const renderHeading = showHeading ?? true;
   return (
@@ -18,7 +13,7 @@ const ProductHub = ({
         onCategoryViewAllPress={onCategoryViewAllPress}
         renderHeading={renderHeading}
       />
-      <ProductList productList={data} onAdd={onAdd}/>
+      <ProductList productList={data} onAdd={onAdd} />
     </View>
   );
 };

@@ -20,7 +20,11 @@ export const styles = addToCartLoad => {
       borderColor: BLACK,
       alignItems: CENTER,
     },
-    dropdownTextStyle: {color: BLACK, fontFamily: fonts.family.monsterrant500, fontSize: fonts.size.fontSize14},
+    dropdownTextStyle: {
+      color: BLACK,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize14,
+    },
     buttonContainer: {
       backgroundColor: MARINER,
       alignItems: CENTER,
@@ -38,7 +42,7 @@ export const styles = addToCartLoad => {
       marginVertical: 36,
     },
     screenStyle: {height: addToCartLoad ? '100%' : undefined},
-    childContainerStyle: {flex:addToCartLoad?1:undefined},
-    addToCartLoader: {alignItems:CENTER,justifyContent:CENTER}
+    childContainerStyle: {flex: addToCartLoad ? 1 : undefined},
+    addToCartLoader: {alignItems: CENTER, justifyContent: CENTER},
   });
 };

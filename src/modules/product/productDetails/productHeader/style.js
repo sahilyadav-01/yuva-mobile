@@ -5,7 +5,6 @@ import {
   BLACK,
   FLASH_WHITE,
   MARINER,
-  ORANGE,
   WHEAT,
 } from '../../../../styles/colors';
 import {

@@ -3,10 +3,10 @@ import {TouchableOpacity, View, FlatList, Image} from 'react-native';
 import {styles} from './style';
 import {ANAKIVA, MARINER} from '../../../../styles/colors';
 import {useOfferBanner} from './hooks/useOfferBanner';
-import { getDimensions } from '../../../../utils/utils';
+import {getDimensions} from '../../../../utils/utils';
 
 const OfferBanner1 = props => {
-  const {width} = getDimensions()
+  const {width} = getDimensions();
   let flatlistRef = useRef(null);
   const {
     bannerData: {data: bannerData},
@@ -20,36 +20,40 @@ const OfferBanner1 = props => {
     );
     setActiveIndex(active);
   };
-  useEffect(()=>{
-    if(data !== null && data?.length > 0){
-    const timeout = setTimeout(()=>{
-      flatlistRef?.current?.scrollToIndex({animated:true,index:activeIndex===data?.length-1?0:activeIndex+1})
-      setActiveIndex(activeIndex===data?.length-1?0:activeIndex+1);
-    },3000);
-    return () => {
-      clearTimeout(timeout);
+  useEffect(() => {
+    if (data !== null && data?.length > 0) {
+      const timeout = setTimeout(() => {
+        flatlistRef?.current?.scrollToIndex({
+          animated: true,
+          index: activeIndex === data?.length - 1 ? 0 : activeIndex + 1,
+        });
+        setActiveIndex(activeIndex === data?.length - 1 ? 0 : activeIndex + 1);
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
     }
-  }
-  },[data,activeIndex])
+  }, [data, activeIndex]);
   const style = styles();
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         style={style.containerStyle}
         onPress={() => onBannerPress(item)}>
-        <Image
-          source={{uri: item.image}}
-          style={style.imageBackgroundStyle}
-        />
+        <Image source={{uri: item.image}} style={style.imageBackgroundStyle} />
       </TouchableOpacity>
     );
   };
 
-  if (bannerData === null || data === null || data.length === 0) return null;
+  if (bannerData === null || data === null || data.length === 0) {
+    return null;
+  }
   return (
     <>
       <FlatList
-        ref={(ref)=>{flatlistRef.current = ref}}
+        ref={ref => {
+          flatlistRef.current = ref;
+        }}
         onMomentumScrollEnd={onChange}
         pagingEnabled={true}
         keyExtractor={(item, index) => index.toString()}
@@ -60,9 +64,11 @@ const OfferBanner1 = props => {
         horizontal={true}
         renderItem={renderItem}
         contentContainerStyle={style.containerStyle}
-        getItemLayout={(data, index) => (
-          {length: (width-32), offset: (width-32) * index, index}
-        )}
+        getItemLayout={(data, index) => ({
+          length: width - 32,
+          offset: (width - 32) * index,
+          index,
+        })}
       />
       <View style={style.pointerContainer}>
         {data.map((item, index) => (

@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const CORPORATE_PROGRAM = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const CORPORATE_PROGRAM = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={25}
     height={25}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#38466C"
       fillRule="evenodd"
@@ -21,5 +20,5 @@ const CORPORATE_PROGRAM = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
+);
 export default CORPORATE_PROGRAM;

@@ -5,12 +5,11 @@ import {styles} from './styles';
 import HraCard from './components/hraCard';
 import BenfitsCard from './components/benifitsCard';
 import {PNG} from '../../../assets';
-import { HRA } from './constant';
+import {HRA} from './constant';
 const StaticHra = ({navigation}) => {
-
   return (
     <SafeAreaView>
-      <Header showBackButton={true} title={HRA}/>
+      <Header showBackButton={true} title={HRA} />
       <ScrollView
         nestedScrollEnabled={true}
         contentContainerStyle={styles.ScrollViewContainerStyle}

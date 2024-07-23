@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     color: BLACK,
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize14,
-    textAlignVertical:TOP,
+    textAlignVertical: TOP,
   },
   boxStyles: {
     backgroundColor: WHITE,
@@ -51,7 +51,11 @@ export const styles = StyleSheet.create({
   },
   errorContact: {
     color: RED,
-    
   },
-  pickerContainer: {borderWidth: 0.5, borderColor: '#D1D1D1', borderRadius: 6,padding:2},
+  pickerContainer: {
+    borderWidth: 0.5,
+    borderColor: '#D1D1D1',
+    borderRadius: 6,
+    padding: 2,
+  },
 });

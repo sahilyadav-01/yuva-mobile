@@ -1,11 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  BLACK,
-  CYAN_BLUE,
-  MARINER,
-  WHITE,
-  ZIRCON,
-} from '../../../styles/colors';
+import {BLACK, CYAN_BLUE, MARINER, WHITE, ZIRCON} from '../../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
 import {fonts} from '../../../styles/fonts';
 import {getWindowDimensions} from '../../../utils/utils';
@@ -64,7 +58,7 @@ export const styles = () => {
       backgroundColor: MARINER,
       marginHorizontal: 0,
       marginBottom: 24,
-      alignSelf: CENTER
+      alignSelf: CENTER,
     },
     buttonTextStyle: {
       fontFamily: fonts.family.rubik600,

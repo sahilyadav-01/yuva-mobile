@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const BookAppointment = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const BookAppointment = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#38466C"
       strokeWidth={2}
@@ -20,5 +19,5 @@ const BookAppointment = (props) => (
       d="M6.555 1v3.333M15.445 1v3.333M7.666 12.11h6.667m-3.334-3.333v6.667"
     />
   </Svg>
-)
+);
 export default BookAppointment;

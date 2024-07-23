@@ -1,6 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-import { Alert, AppState } from 'react-native';
+import {Alert, AppState} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   resetHRA,
@@ -11,7 +11,7 @@ import {
   getRelations,
   profileThunk,
 } from '../../../../../store/reducers/ProfileSlice';
-import { getAge } from '../../../../../utils/utils';
+import {getAge} from '../../../../../utils/utils';
 import {ALERT, MIN_AGE, SECTION_1} from '../constant';
 
 export const useHRASectionContainer = () => {
@@ -29,14 +29,14 @@ export const useHRASectionContainer = () => {
   const focused = useIsFocused();
   const {userDetails, relations} = useSelector(state => state.profile);
 
-  useEffect(()=>{
-    const appStateListener = AppState.addEventListener('change',()=>{
+  useEffect(() => {
+    const appStateListener = AppState.addEventListener('change', () => {
       setModalVisible(modalVisible);
     });
     return () => {
-      appStateListener.remove()
-    }
-  },[])
+      appStateListener.remove();
+    };
+  }, []);
   useEffect(() => {
     if (focused) {
       setModalVisible(false);
@@ -79,7 +79,9 @@ export const useHRASectionContainer = () => {
               ? 'checked'
               : 'unchecked';
           return {index, status};
-        } else return {index, status: 'unchecked'};
+        } else {
+          return {index, status: 'unchecked'};
+        }
       });
       setCheckBoxFlag(status);
       setCheckBoxStatus('unchecked');
@@ -92,11 +94,13 @@ export const useHRASectionContainer = () => {
       setUserData({
         id: null,
         name,
-        age:getAge(new Date(dob)),
+        age: getAge(new Date(dob)),
         gender,
         genderId: gender === 'Male' ? 0 : 1,
       });
-      parseInt(getAge(new Date(dob))) >=12 ? setNavigateToSection(true) : Alert.alert(ALERT,MIN_AGE);
+      parseInt(getAge(new Date(dob))) >= 12
+        ? setNavigateToSection(true)
+        : Alert.alert(ALERT, MIN_AGE);
     } else if (
       checkBoxFlag.length > 0 &&
       checkBoxFlag.filter(item => item.status === 'checked').length > 0
@@ -104,7 +108,9 @@ export const useHRASectionContainer = () => {
       const {id, name, age, gender} =
         relations[checkBoxFlag.find(item => item.status === 'checked').index];
       setUserData({id, name, age, gender, genderId: gender === 'Male' ? 0 : 1});
-      parseInt(age) >=12 ? setNavigateToSection(true) :  Alert.alert(ALERT,MIN_AGE);
+      parseInt(age) >= 12
+        ? setNavigateToSection(true)
+        : Alert.alert(ALERT, MIN_AGE);
     }
   }, [checkBoxStatus, checkBoxFlag]);
 

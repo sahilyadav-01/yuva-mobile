@@ -6,7 +6,7 @@ import Product from './productDetails/index';
 import ProductHeader from './productHeader';
 import ProductDescription from './productDescription';
 import Header from '../../../components/Header';
-import { MARINER } from '../../../styles/colors';
+import {MARINER} from '../../../styles/colors';
 
 const ProductDetails = ({productId, navigation}) => {
   const {
@@ -21,7 +21,7 @@ const ProductDetails = ({productId, navigation}) => {
     currentIndex,
     disabled,
     fetchProductDetails,
-    fetchNutritionalValue
+    fetchNutritionalValue,
   } = useProductDetails(productId, navigation);
   const styles = style();
   return (
@@ -31,7 +31,7 @@ const ProductDetails = ({productId, navigation}) => {
         showSearch={false}
         showLocation={false}
         homeSearch={true}
-        title='Product Details'
+        title="Product Details"
       />
       {productDetails?.loading && (
         <View style={styles.loaderContainer}>

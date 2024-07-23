@@ -10,4 +10,4 @@ export const DIAGNOSTICS = 'Diagnostics';
 export const TALK_TO_DOCTOR = 'TalkToDoctor';
 export const HEALTH_CHECKUP = 'HealthCheckupsTests';
 export const PHARMACY = 'PHARMACY';
-export const EMRM_SCREEN_NAME= 'EmrmHome';
+export const EMRM_SCREEN_NAME = 'EmrmHome';

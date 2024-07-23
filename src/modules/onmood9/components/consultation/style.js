@@ -18,7 +18,7 @@ export const styles = () => {
       backgroundColor: MARINER,
       borderRadius: 8,
       marginTop: 16,
-      marginBottom: 28
+      marginBottom: 28,
     },
     buttonText: {
       fontFamily: fonts.family.montserrat600,

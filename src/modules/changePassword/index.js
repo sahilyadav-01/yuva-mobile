@@ -47,7 +47,13 @@ const ChangePasswordScreen = props => {
           </View>
           <TouchableOpacity
             style={[buttonContainer, buttonStyle]}
-            onPress={()=> changePassword?.onLoginPress(props?.from,props?.number,props?.hash)}>
+            onPress={() =>
+              changePassword?.onLoginPress(
+                props?.from,
+                props?.number,
+                props?.hash,
+              )
+            }>
             <Text style={buttonText}>Login</Text>
           </TouchableOpacity>
           <LoginTextContainer

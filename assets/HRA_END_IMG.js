@@ -1,14 +1,13 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
 
-const HRA_END_IMG = (props) => (
+const HRA_END_IMG = props => (
   <Svg
     width={136}
     height={126}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <Path
       d="M32.566.985.072 13.367l9.899 25.977 32.494-12.382L32.566.985Z"
       fill="#FAFAFA"
@@ -164,6 +163,6 @@ const HRA_END_IMG = (props) => (
       fill="#000"
     />
   </Svg>
-)
+);
 
-export default HRA_END_IMG
+export default HRA_END_IMG;

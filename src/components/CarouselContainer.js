@@ -1,24 +1,24 @@
-import React, { useRef, useState } from 'react';
-import { View, FlatList } from 'react-native';
-import { getDimensions } from '../utils/utils';
-const CarouselContainer = (props) => {
-  const { isIndexed, children, data } = props;
+import React, {useRef, useState} from 'react';
+import {View, FlatList} from 'react-native';
+import {getDimensions} from '../utils/utils';
+const CarouselContainer = props => {
+  const {isIndexed, children, data} = props;
   const [activeIndex, setActiveIndex] = useState(0);
-  const { width } = getDimensions();
+  const {width} = getDimensions();
 
-  const onViewableItemsChanged = ({ viewableItems }) => {
+  const onViewableItemsChanged = ({viewableItems}) => {
     if (viewableItems?.length === 1) {
       setActiveIndex(viewableItems[0]?.index);
     }
   };
 
-  const viewabilityConfigCallbackPairs = useRef([{ onViewableItemsChanged }]);
+  const viewabilityConfigCallbackPairs = useRef([{onViewableItemsChanged}]);
 
   const viewabilityConfig = {
     waitForInteraction: true,
     itemVisiblePercentThreshold: 100,
   };
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({item, index}) => {
     return React.cloneElement(children, {
       item,
       index,
@@ -26,7 +26,7 @@ const CarouselContainer = (props) => {
     });
   };
 
-  const render = ({ item, index }) => {
+  const render = ({item, index}) => {
     return (
       <View
         key={index}
@@ -35,7 +35,8 @@ const CarouselContainer = (props) => {
           backgroundColor: index === activeIndex ? 'white' : 'grey',
           borderColor: 'grey',
           borderWidth: 2,
-        }}></View>
+        }}
+      />
     );
   };
   return (

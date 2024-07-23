@@ -1,8 +1,13 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import {useState} from 'react';
 import {Alert} from 'react-native';
 
-export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading, modalVisible) => {
+export const useAddMemberModal = (
+  relationsData,
+  onSaveDetailsPress,
+  heading,
+  modalVisible,
+) => {
   const data = [
     {heading: 'Name', placeholder: 'Name'},
     {heading: 'Age', placeholder: 'Age'},
@@ -14,22 +19,27 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading, mo
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedRelationEnum, setSelectedRelationEnum] = useState('');
 
-  useEffect(()=>{
-    if(modalVisible){
-        setName('');
-        setAge('');
+  useEffect(() => {
+    if (modalVisible) {
+      setName('');
+      setAge('');
     }
-  },[modalVisible])
-  
+  }, [modalVisible]);
+
   const getTextInputValue = key => {
     switch (key) {
       case 'Name':
-        return {value: name, func: setName,type:'input'};
+        return {value: name, func: setName, type: 'input'};
       case 'Age':
-        return {value: age, func: setAge,type:'input',keyboardType:'numeric'};
+        return {
+          value: age,
+          func: setAge,
+          type: 'input',
+          keyboardType: 'numeric',
+        };
       case 'Gender':
       case 'Relationship':
-        return {value: '0',type:'picker'};
+        return {value: '0', type: 'picker'};
     }
   };
   const onTextChange = (text, heading) => {
@@ -51,12 +61,23 @@ export const useAddMemberModal = (relationsData, onSaveDetailsPress, heading, mo
     setSelectedRelationEnum(relationEnum);
   };
   const onSaveDetails = () => {
-    const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi
-    const nameReg = /^[A-Za-z. ]+$/
-    if(!(name && age && selectedRelation)) Alert.alert('Alert', 'Please fill all the details');
-    else if(reg.test(age)) Alert.alert('Alert', 'Please enter a proper age');
-    else if(!nameReg.test(name)) Alert.alert('Alert', 'Please enter a proper name');
-    else onSaveDetailsPress({name, age, selectedRelation,selectedGender,selectedRelationEnum});
+    const reg = /[- #*;,.<>\{\}\[\]\\\/]/gi;
+    const nameReg = /^[A-Za-z. ]+$/;
+    if (!(name && age && selectedRelation)) {
+      Alert.alert('Alert', 'Please fill all the details');
+    } else if (reg.test(age)) {
+      Alert.alert('Alert', 'Please enter a proper age');
+    } else if (!nameReg.test(name)) {
+      Alert.alert('Alert', 'Please enter a proper name');
+    } else {
+      onSaveDetailsPress({
+        name,
+        age,
+        selectedRelation,
+        selectedGender,
+        selectedRelationEnum,
+      });
+    }
   };
   return {
     data,

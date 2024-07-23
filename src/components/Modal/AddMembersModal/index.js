@@ -14,10 +14,15 @@ const AddMembersModal = props => {
     onSaveDetailsPress,
     relationsData,
     buttonText,
-    headingText
+    headingText,
   } = props;
   const {data, onTextChange, getTextInputValue, onItemSelect, onSaveDetails} =
-    useAddMemberModal(relationsData, onSaveDetailsPress, headingText, modalVisible);
+    useAddMemberModal(
+      relationsData,
+      onSaveDetailsPress,
+      headingText,
+      modalVisible,
+    );
   const {
     headingContainer,
     selectText,

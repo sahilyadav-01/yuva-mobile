@@ -20,10 +20,14 @@ function CustomDatePicker(props) {
   const month = new Date().getMonth();
   const date = new Date().getDate();
   const availableSlots = getSlots().filter(item => {
-    if (typeof item?.length === 'number') return item;
+    if (typeof item?.length === 'number') {
+      return item;
+    }
   });
-  const availableDaySlots = getSlots(year,month,date).filter(item => {
-    if (typeof item?.length === 'number') return item;
+  const availableDaySlots = getSlots(year, month, date).filter(item => {
+    if (typeof item?.length === 'number') {
+      return item;
+    }
   });
   const unavailable =
     availableDaySlots[0]?.length === 0 &&
@@ -54,7 +58,14 @@ function CustomDatePicker(props) {
 
   return (
     <>
-    <Text style={[style.emptyView,style.emptyText,{paddingHorizontal:OPD?16:0}]}>{SELECT_DATE}</Text>
+      <Text
+        style={[
+          style.emptyView,
+          style.emptyText,
+          {paddingHorizontal: OPD ? 16 : 0},
+        ]}>
+        {SELECT_DATE}
+      </Text>
       <FlatList
         contentContainerStyle={style.dateContainer}
         ItemSeparatorComponent={() => (
@@ -72,14 +83,24 @@ function CustomDatePicker(props) {
         </View>
       ) : (
         <>
-        <Text style={[style.emptyView,style.emptyText,{paddingHorizontal:OPD?16:0}]}>{SELECT_TIME}</Text>
-        <FlatList
-          nestedScrollEnabled
-          contentContainerStyle={[style.timeContentContainer,{marginHorizontal:OPD?16:0}]}
-          keyExtractor={(item, index) => `Time${index}`}
-          data={availableSlots}
-          renderItem={RenderSlots}
-        />
+          <Text
+            style={[
+              style.emptyView,
+              style.emptyText,
+              {paddingHorizontal: OPD ? 16 : 0},
+            ]}>
+            {SELECT_TIME}
+          </Text>
+          <FlatList
+            nestedScrollEnabled
+            contentContainerStyle={[
+              style.timeContentContainer,
+              {marginHorizontal: OPD ? 16 : 0},
+            ]}
+            keyExtractor={(item, index) => `Time${index}`}
+            data={availableSlots}
+            renderItem={RenderSlots}
+          />
         </>
       )}
     </>

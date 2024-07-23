@@ -21,7 +21,7 @@ export const styles = () => {
       },
       shadowColor: BLACK,
       shadowOpacity: 0.5,
-      shadowRadius: 4
+      shadowRadius: 4,
     },
     separatorStyle: {height: 16},
     headingTextContainer: {

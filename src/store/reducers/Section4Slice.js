@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const section4QThunk = createAsyncThunk(
   'section4/section4QThunk',
@@ -42,9 +42,9 @@ const section4Slice = createSlice({
     dispatch_option(state, {payload}) {
       state.answers[payload.key] = payload.value;
     },
-    dispatch_condition_1(state,{payload}) {
+    dispatch_condition_1(state, {payload}) {
       state.alcohol = payload;
-    }
+    },
   },
 
   extraReducers: {
@@ -65,6 +65,7 @@ const section4Slice = createSlice({
   },
 });
 
-export const {init, dispatch_option, dispatch_condition_1} = section4Slice.actions;
+export const {init, dispatch_option, dispatch_condition_1} =
+  section4Slice.actions;
 export const section4Init = section4Slice.getInitialState();
 export default section4Slice.reducer;

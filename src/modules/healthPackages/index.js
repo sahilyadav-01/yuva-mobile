@@ -18,7 +18,7 @@ import SelectList from 'react-native-dropdown-select-list';
 import {styles} from './style';
 import Packages from '../../components/PackagesList/packages';
 import {usePackage} from './hooks/usePackage';
-import { BLACK, DARK_GRAY, MARINER } from '../../styles/colors';
+import {BLACK, DARK_GRAY, MARINER} from '../../styles/colors';
 
 const HealthPackages = props => {
   const {

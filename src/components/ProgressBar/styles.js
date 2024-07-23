@@ -1,11 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, PEARL_GREY } from '../../styles/colors';
-import {
-  CENTER,
-  ROW,
-  SPACE_BETWEEN,
-} from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK, PEARL_GREY} from '../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   progress: {
@@ -47,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { styles };
+export {styles};

@@ -20,7 +20,7 @@ import {
   SON,
   TRY_AGAIN,
 } from '../constants';
-import { programAndPlanLockUserThunk } from '../../../../../store/reducers/ProgramAndPlanSlice';
+import {programAndPlanLockUserThunk} from '../../../../../store/reducers/ProgramAndPlanSlice';
 
 export const useFooter = planDetails => {
   const dispatch = useDispatch();
@@ -33,7 +33,9 @@ export const useFooter = planDetails => {
     relations,
     relationAdded,
   } = useSelector(state => state.profile);
-  const {lockedState,planLockLoading,planLockError} = useSelector(state => state.programAndPlan);
+  const {lockedState, planLockLoading, planLockError} = useSelector(
+    state => state.programAndPlan,
+  );
   const [details, setDetails] = useState('');
   const [planLockView, setPlanLockView] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,18 +48,16 @@ export const useFooter = planDetails => {
   const [planLocked, setPlanLocked] = useState(false);
 
   useEffect(() => {
-    if (details === '') setPlanLockView(false);
-    else 
-      if (details !== '' && !planLockView) {
+    if (details === '') {
+      setPlanLockView(false);
+    } else if (details !== '' && !planLockView) {
       dispatch(
         getRelations({
-          uuid: details?.uuid,check:'program'
+          uuid: details?.uuid,
+          check: 'program',
         }),
       );
-      dispatch(
-        getActiveRelations({uuid: details?.uuid,check:'program'
-        }),
-      );
+      dispatch(getActiveRelations({uuid: details?.uuid, check: 'program'}));
     }
   }, [toggleCount]);
 
@@ -68,9 +68,9 @@ export const useFooter = planDetails => {
       details !== '' &&
       !addMember &&
       !planLockView
-    )
+    ) {
       setCurrentItem(details);
-    else if (
+    } else if (
       addMember &&
       planLockView &&
       !relationsLoading &&
@@ -105,11 +105,12 @@ export const useFooter = planDetails => {
       setAddMember(true);
       dispatch(
         getRelations({
-          uuid: addedPlanDetails?.uuid,check:'program'
+          uuid: addedPlanDetails?.uuid,
+          check: 'program',
         }),
       );
       dispatch(
-        getActiveRelations({uuid: addedPlanDetails?.uuid,check:'program'}),
+        getActiveRelations({uuid: addedPlanDetails?.uuid, check: 'program'}),
       );
     }
   }, [relationAdded]);
@@ -120,7 +121,8 @@ export const useFooter = planDetails => {
       setCurrentItem(null);
       dispatch(
         getRelations({
-          uuid: planDetails?.uuid,check:'program'
+          uuid: planDetails?.uuid,
+          check: 'program',
         }),
       );
     } else if (planLockPress && !planLockLoading && planLockError) {
@@ -143,9 +145,7 @@ export const useFooter = planDetails => {
     if (
       planDetails?.locked ||
       lockedState.filter(item => {
-        if (
-          item?.uuid === planDetails?.uuid 
-        ) {
+        if (item?.uuid === planDetails?.uuid) {
           return item;
         }
       }).length > 0
@@ -202,9 +202,7 @@ export const useFooter = planDetails => {
     if (
       planDetails?.locked ||
       lockedState.filter(item => {
-        if (
-          item?.uuid === planDetails?.uuid
-        ) {
+        if (item?.uuid === planDetails?.uuid) {
           return item;
         }
       }).length > 0
@@ -223,28 +221,32 @@ export const useFooter = planDetails => {
 
   const lockPlan = item => {
     const checkedList = dependents.filter(item => {
-      if (item?.status) return item;
+      if (item?.status) {
+        return item;
+      }
     });
     const relationId = checkedList.map(item => item.id);
     const relations = checkedList.map(item => item.relation);
     const childrenCount = relations.filter(item => {
-      if (item === SON || item === DAUGHTER) return item;
+      if (item === SON || item === DAUGHTER) {
+        return item;
+      }
     }).length;
-    if (childrenCount > planDetails?.childrenCount)
+    if (childrenCount > planDetails?.childrenCount) {
       Alert.alert(ALERT, CHILDREN_ALERT(planDetails?.childrenCount));
-    else {
+    } else {
       setPlanLocked(true);
       setAddedPlanDetails(item);
       dispatch(
         programAndPlanLockUserThunk({
           programOrPlanUuid: item.uuid,
-          relationId
+          relationId,
         }),
       );
       setPlanLockPress(true);
     }
   };
-  const filteredRelation  = activeRelations.map((item, index) => {
+  const filteredRelation = activeRelations.map((item, index) => {
     return {key: index.toString(), value: item.name, relation: item.id};
   });
 

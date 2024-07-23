@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import { useDispatch } from 'react-redux';
-import { DARK_BLUE, DARK_GRAY, SLATE_GRAY, WHITE } from '../styles/colors';
-import { CENTER } from '../styles/constants';
+import {useDispatch} from 'react-redux';
+import {DARK_BLUE, DARK_GRAY, SLATE_GRAY, WHITE} from '../styles/colors';
+import {CENTER} from '../styles/constants';
 
 const SectionPicker = ({
   dispatcher,
@@ -17,12 +17,14 @@ const SectionPicker = ({
 }) => {
   const dispatch = useDispatch();
   const setSelected = value => {
-  dispatcher && dispatch(dispatcher({ key: questionId, value: value }));
-  callBack && callBack(value);
+    dispatcher && dispatch(dispatcher({key: questionId, value: value}));
+    callBack && callBack(value);
   };
   return (
     <View className="mt-[20px]">
-      <Text style={{color: SLATE_GRAY}} className="text-base mb-[8px]" >{text}</Text>
+      <Text style={{color: SLATE_GRAY}} className="text-base mb-[8px]">
+        {text}
+      </Text>
       <SelectList
         boxStyles={{
           backgroundColor: WHITE,
@@ -40,7 +42,7 @@ const SectionPicker = ({
         data={data}
         search={false}
         onSelect={onSelect}
-        dropdownTextStyles={{color:DARK_GRAY}}
+        dropdownTextStyles={{color: DARK_GRAY}}
       />
     </View>
   );

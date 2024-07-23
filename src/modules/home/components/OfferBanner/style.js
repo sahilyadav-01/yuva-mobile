@@ -13,7 +13,7 @@ export const styles = () => {
       justifyContent: FLEX_END,
       width: width - 32,
       height: '100%',
-      borderRadius: 12
+      borderRadius: 12,
     },
     containerStyle: {
       height: (width - 32) / 3.25,

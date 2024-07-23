@@ -2,10 +2,10 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
 import {SVG} from '../../../../../assets';
-import {ORANGE} from '../../../../styles/colors';
+import {MARINER} from '../../../../styles/colors';
 import {styles} from './style';
 import {usePlan} from './hooks/usePlan';
-import { HRA_SUBTEXT } from '../../PlanItem/ProgramFooter/constants';
+import {HRA_SUBTEXT} from '../../PlanItem/ProgramFooter/constants';
 
 const RenderPlans = ({item}) => {
   const {plans, getTests} = usePlan();
@@ -24,7 +24,7 @@ const RenderPlans = ({item}) => {
     <View style={itemContainer}>
       <View style={rowContainer}>
         <View style={iconContainer}>
-          {SVG[plans[item?.serviceUuid]?.icon]({color: ORANGE, large: true})}
+          {SVG[plans[item?.serviceUuid]?.icon]({color: MARINER, large: true})}
         </View>
         {item?.serviceUuid === 'ee5413dd-eb09-4a99-92d0-a4fc6d92a5e9' ? (
           <View style={dropdownContainer}>
@@ -48,13 +48,14 @@ const RenderPlans = ({item}) => {
               </Text>
             ) : (
               <Text style={usageText}>
-              Used - {getTests(item)[0]?.used}
-              {getTests(item)[0]?.available >= 999 ? HRA_SUBTEXT : ` Available - ${getTests(item)[0]?.available}`}
-            </Text>
-            
+                Used - {getTests(item)[0]?.used}
+                {getTests(item)[0]?.available >= 999
+                  ? HRA_SUBTEXT
+                  : ` Available - ${getTests(item)[0]?.available}`}
+              </Text>
             )}
-          </View>)
-        }
+          </View>
+        )}
       </View>
     </View>
   );

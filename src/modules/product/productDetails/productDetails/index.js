@@ -1,23 +1,32 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {styles as style} from './style';
-import { ANAKIVA, MARINER } from '../../../../styles/colors';
+import {ANAKIVA, MARINER} from '../../../../styles/colors';
 
 const ProductDetails = ({
   onSelectSize,
   activeIndex,
   onAddToCartPress,
   productData,
-  disabled
+  disabled,
 }) => {
   const styles = style();
   const RenderItem = ({item, index}) => {
-    if (item !== null)
+    if (item !== null) {
       return (
-        <TouchableOpacity onPress={() => onSelectSize(index)} style={{...styles.sizeContainer,backgroundColor:activeIndex === index ? MARINER : '#FAFAFA',marginLeft:8}}>
-        <Text style={styles.itemText}>{item?.unit} {item?.productUnit}</Text>
-       </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onSelectSize(index)}
+          style={{
+            ...styles.sizeContainer,
+            backgroundColor: activeIndex === index ? MARINER : '#FAFAFA',
+            marginLeft: 8,
+          }}>
+          <Text style={styles.itemText}>
+            {item?.unit} {item?.productUnit}
+          </Text>
+        </TouchableOpacity>
       );
+    }
   };
   if (
     typeof productData?.productPriceResponseDtoForUserList === 'object' &&
@@ -42,17 +51,24 @@ const ProductDetails = ({
           ) : null}
         </View>
         <View style={styles.quantityContainer}>
-         <View style={styles.sizeContainer}>
-          <Text style={styles.itemText}>Size / Weight</Text>
-         </View>
-         <ScrollView horizontal>
-         {productData?.productPriceResponseDtoForUserList.map((item,index)=><RenderItem item={item} index={index}/>)}
+          <View style={styles.sizeContainer}>
+            <Text style={styles.itemText}>Size / Weight</Text>
+          </View>
+          <ScrollView horizontal>
+            {productData?.productPriceResponseDtoForUserList.map(
+              (item, index) => (
+                <RenderItem item={item} index={index} />
+              ),
+            )}
           </ScrollView>
         </View>
         <TouchableOpacity
           disabled={disabled}
           onPress={onAddToCartPress}
-          style={[styles.buttonContainer,{backgroundColor:disabled ? ANAKIVA: MARINER}]}>
+          style={[
+            styles.buttonContainer,
+            {backgroundColor: disabled ? ANAKIVA : MARINER},
+          ]}>
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
       </View>

@@ -13,11 +13,17 @@ const CheckoutScheduleList = () => {
 
   return (
     <>
-      <Header title={'Select Date and Time'} showSearch={false} showBackButton={true} hideMenu={true} showCart={true} />
+      <Header
+        title={'Select Date and Time'}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
       <ScrollView>
         <OrderDetails />
-        <View style={styles.separator}/>
-        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true}/>
+        <View style={styles.separator} />
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true} />
         <FinalAddress />
         <TouchableOpacity
           onPress={ConfirmDateAndTime}

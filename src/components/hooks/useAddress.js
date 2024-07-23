@@ -1,11 +1,15 @@
-import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { AddressListing, getUserAddress, saveCheckedAddress, setCity } from "../../store/reducers/ProfileSlice";
-import { NEW_ADDRESS } from "../constants";
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  AddressListing,
+  getUserAddress,
+  saveCheckedAddress,
+  setCity,
+} from '../../store/reducers/ProfileSlice';
+import {NEW_ADDRESS} from '../constants';
 
-
-export const useOurAddress = (isNavScreen) => {
+export const useOurAddress = isNavScreen => {
   const focused = useIsFocused();
   const route = useRoute();
   const dispatch = useDispatch();
@@ -13,36 +17,45 @@ export const useOurAddress = (isNavScreen) => {
   const [userAttribute, setUserAttribute] = useState(null);
   const [userNewAddress, setUserNewAddress] = useState();
   const [checked, setChecked] = useState(null);
-  const { userAddress } = useSelector(state => state?.profile);
+  const {userAddress} = useSelector(state => state?.profile);
   const [userAddressListing, setUserAddressListing] = useState([]);
   useEffect(() => {
-    dispatch(getUserAddress())
-  }, [])
+    dispatch(getUserAddress());
+  }, []);
   useEffect(() => {
     if (route?.name === isNavScreen?.isNavScreen) {
-      setUserAttribute(route?.params)
+      setUserAttribute(route?.params);
     }
-  }, [route])
-  useEffect(()=>{
-    if(navigation?.isFocused() && route?.params?.addressAdded){
+  }, [route]);
+  useEffect(() => {
+    if (navigation?.isFocused() && route?.params?.addressAdded) {
       let list = userAddress.concat(userNewAddress);
-      const addressSelected = Object.values(route?.params)[0]
-      setUserAddressListing([...userAddress,{...addressSelected,addressAdded:undefined}]);
-      dispatch(saveCheckedAddress({
-        address: addressSelected?.address,
-        pincode: addressSelected?.pinCode,
-        contact: addressSelected?.contactNumber,
-        cityName: addressSelected?.cityName,
-        away:addressSelected?.saveAs,
-        cityId: addressSelected?.cityId,
-      }));
-      setChecked(list.length -1);
+      const addressSelected = Object.values(route?.params)[0];
+      setUserAddressListing([
+        ...userAddress,
+        {...addressSelected, addressAdded: undefined},
+      ]);
+      dispatch(
+        saveCheckedAddress({
+          address: addressSelected?.address,
+          pincode: addressSelected?.pinCode,
+          contact: addressSelected?.contactNumber,
+          cityName: addressSelected?.cityName,
+          away: addressSelected?.saveAs,
+          cityId: addressSelected?.cityId,
+        }),
+      );
+      setChecked(list.length - 1);
     }
-  },[focused])
-  const address = userAddress?.[checked]?.address || userAttribute?.[0]?.address;
-  const pincode = userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
-  const contact = userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
-  const cityName = userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
+  }, [focused]);
+  const address =
+    userAddress?.[checked]?.address || userAttribute?.[0]?.address;
+  const pincode =
+    userAddress?.[checked]?.pinCode || userAttribute?.[0]?.pinCode;
+  const contact =
+    userAddress?.[checked]?.contactNumber || userAttribute?.[0]?.contactNumber;
+  const cityName =
+    userAddress?.[checked]?.cityName || userAttribute?.[0]?.cityName;
   const cityId = userAddress?.[checked]?.cityId || userAttribute?.[0]?.cityId;
   const away = userAddress?.[checked]?.away || userAttribute?.[0]?.saveAs;
   const checkoutData = {
@@ -50,16 +63,16 @@ export const useOurAddress = (isNavScreen) => {
     pincode: pincode,
     contact: contact,
     cityName: cityName,
-    away:away,
-    cityId
-  }
+    away: away,
+    cityId,
+  };
   const AddNewAddress = () => {
-    navigation.navigate(NEW_ADDRESS)
-  }
+    navigation.navigate(NEW_ADDRESS);
+  };
   useEffect(() => {
     dispatch(setCity(cityId));
     dispatch(saveCheckedAddress(checkoutData));
-  }, [address])
+  }, [address]);
 
   useEffect(() => {
     if (userAttribute?.[0]?.address) {
@@ -70,14 +83,14 @@ export const useOurAddress = (isNavScreen) => {
     if (userNewAddress?.[0]?.address) {
       let list = userAddress.concat(userNewAddress);
       setUserAddressListing(list);
-        setChecked(list.length -1);
+      setChecked(list.length - 1);
     } else {
       setUserAddressListing(userAddress);
     }
   }, [userAddress, userNewAddress]);
   useEffect(() => {
-    dispatch(AddressListing(userAddressListing))
-  }, [userAddressListing])
+    dispatch(AddressListing(userAddressListing));
+  }, [userAddressListing]);
   return {
     userAddress,
     setChecked,

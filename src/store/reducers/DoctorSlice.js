@@ -1,9 +1,9 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {YuvaService} from '../../../App';
 
 export const searchDoctorThunk = createAsyncThunk(
   'doctor/search',
-  async ({search,cityId}, {fulfillWithValue, rejectWithValue}) => {
+  async ({search, cityId}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/search/doctor?fromApp=false${search}&cityId=${cityId}`;
       const response = await YuvaService.get(endpoint);

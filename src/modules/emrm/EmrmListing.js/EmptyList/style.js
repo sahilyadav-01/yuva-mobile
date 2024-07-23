@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
-import { CYAN_BLUE } from '../../../../styles/colors';
-import { CENTER } from '../../../../styles/constants';
-import { fonts } from '../../../../styles/fonts';
-import { getDimensions } from '../../../../utils/utils';
+import {CYAN_BLUE} from '../../../../styles/colors';
+import {CENTER} from '../../../../styles/constants';
+import {fonts} from '../../../../styles/fonts';
+import {getDimensions} from '../../../../utils/utils';
 
 export const styles = () => {
   const {height} = getDimensions();

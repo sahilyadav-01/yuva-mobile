@@ -29,10 +29,6 @@ export const styles = StyleSheet.create({
   height: {
     height: 500,
   },
-  contentContainerStyle: {
-    flexGrow: 1,
-    paddingBottom: 300,
-  },
   dateTime: {
     backgroundColor: WHITE,
     borderWidth: 1,

@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const ProductFilter = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const ProductFilter = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={19}
     height={18}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#fff"
       strokeLinecap="round"
@@ -24,5 +23,5 @@ const ProductFilter = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
+);
 export default ProductFilter;

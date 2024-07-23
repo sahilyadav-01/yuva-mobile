@@ -5,7 +5,7 @@ import {SVG} from '../../../../assets';
 export const useDrawer = () => {
   const navigation = useNavigation();
   const {isEmployee} = useSelector(state => state.auth);
-  const name  = useSelector(state => state?.profile?.userDetails?.name) ?? null;
+  const name = useSelector(state => state?.profile?.userDetails?.name) ?? null;
   const data = [
     {
       Icon: SVG.Profile,
@@ -36,8 +36,8 @@ export const useDrawer = () => {
       Icon: SVG.CorporateProgram,
       heading: 'My Corporate Programs',
       description: 'Add Member to Lock your Program ',
-      onPress: () => navigation.navigate('MyCorporateProgram',{isEmployee}),
-    }
+      onPress: () => navigation.navigate('MyCorporateProgram', {isEmployee}),
+    },
   ];
   return {
     data,

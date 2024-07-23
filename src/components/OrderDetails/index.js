@@ -2,10 +2,10 @@ import {View, Text, FlatList} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {ORDER_DETAILS} from './constant';
-import { useOrderDetails } from './hook/useOrderDetails';
+import {useOrderDetails} from './hook/useOrderDetails';
 
 const OrderDetails = () => {
-  const { itemDtoList} = useOrderDetails();
+  const {itemDtoList} = useOrderDetails();
   const renderItem = ({item, index}) => {
     return (
       <View key={index}>

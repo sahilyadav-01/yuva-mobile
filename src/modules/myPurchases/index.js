@@ -5,7 +5,7 @@ import {usePurchase} from './hooks/usePurchase';
 import {styles} from './style';
 import {ERROR_FETCHING_ITEMS, NO_ITEMS_LEFT} from './constants';
 import PlanItem from './components/PlanItem';
-import { MARINER } from '../../styles/colors';
+import {MARINER} from '../../styles/colors';
 
 const MyPurchases = ({plan}) => {
   const {
@@ -38,8 +38,15 @@ const MyPurchases = ({plan}) => {
     if (
       (tabIndex === 0 && planListLoading) ||
       (tabIndex === 1 && purchasesListLoading)
-    )
-      return <ActivityIndicator size={'small'} style={footerLoader} color={MARINER} />;
+    ) {
+      return (
+        <ActivityIndicator
+          size={'small'}
+          style={footerLoader}
+          color={MARINER}
+        />
+      );
+    }
   };
 
   if ((tabIndex === 0 && loading) || (tabIndex === 1 && purchasesLoader)) {

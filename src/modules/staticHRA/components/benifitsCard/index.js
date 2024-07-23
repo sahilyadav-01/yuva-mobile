@@ -7,7 +7,7 @@ const BenfitsCard = () => {
   const renderItem = ({item, index}) => {
     return (
       <View style={styles.bulletStyle} key={index}>
-        <Text style={styles.textStyle}>{`\u2022 `}</Text>
+        <Text style={styles.textStyle}>{'\u2022 '}</Text>
 
         <Text style={styles.textStyle}>{item.data}</Text>
       </View>

@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Rect, Path } from "react-native-svg"
-const PlanPharmacy = (props) => (
+import * as React from 'react';
+import Svg, {Rect, Path} from 'react-native-svg';
+const PlanPharmacy = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={15}
     height={15}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Rect width={15} height={15} fill="#A5CCFF" rx={2} />
     <Path
       fill="#fff"
@@ -18,5 +17,5 @@ const PlanPharmacy = (props) => (
       d="M6.083 9.083H6.5V9.5c0 .115.094.208.208.208h1.25a.209.209 0 0 0 .209-.208v-.417h.416a.209.209 0 0 0 .209-.208V7.833a.209.209 0 0 0-.209-.208h-.416v-.417A.209.209 0 0 0 7.958 7h-1.25a.209.209 0 0 0-.208.208v.417h-.417a.209.209 0 0 0-.208.208v1.042c0 .115.094.208.208.208Zm.209-1.041h.416a.209.209 0 0 0 .209-.209v-.416h.833v.416c0 .115.094.209.208.209h.417v.625h-.417a.209.209 0 0 0-.208.208v.417h-.833v-.417a.209.209 0 0 0-.209-.208h-.416v-.625Z"
     />
   </Svg>
-)
+);
 export default PlanPharmacy;

@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { CYAN_BLUE, GREY, ORANGE, WHITE } from '../../styles/colors';
-import { CENTER, COLUMN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {CYAN_BLUE, GREY, ORANGE, WHITE} from '../../styles/colors';
+import {CENTER, COLUMN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   CompleteView: {
@@ -32,19 +32,19 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     paddingTop: 13,
   },
-  medicalDocumentStyle:{
+  medicalDocumentStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     lineHeight: 24,
-    paddingTop: 13
+    paddingTop: 13,
   },
   documuntTypeStyle: {
     color: CYAN_BLUE,
     fontFamily: fonts.family.rubik400,
     fontSize: fonts.size.fontSize16,
     lineHeight: 24,
-    paddingVertical: 13
+    paddingVertical: 13,
   },
   documentDateStyle: {
     color: CYAN_BLUE,
@@ -58,7 +58,6 @@ export const styles = StyleSheet.create({
     color: CYAN_BLUE,
     paddingVertical: 13,
     lineHeight: 24,
-
   },
   Button: {
     backgroundColor: ORANGE,
@@ -73,6 +72,5 @@ export const styles = StyleSheet.create({
     alignSelf: CENTER,
     paddingVertical: 12,
     lineHeight: 24,
-
   },
 });

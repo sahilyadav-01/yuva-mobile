@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import { logoutThunk } from './AuthSlice';
+import {logoutThunk} from './AuthSlice';
 
 const initialState = {
   redirectLoading: false,
@@ -14,16 +14,16 @@ const notificationSlice = createSlice({
     },
   },
   extraReducers: {
-    [logoutThunk.pending]: (state) => {
+    [logoutThunk.pending]: state => {
       state.redirectLoading = true;
     },
-    [logoutThunk.fulfilled]: (state) => {
+    [logoutThunk.fulfilled]: state => {
       state.redirectLoading = false;
     },
-    [logoutThunk.rejected]: (state) => {
+    [logoutThunk.rejected]: state => {
       state.redirectLoading = false;
     },
-  }
+  },
 });
 
 export const {setRedirectState} = notificationSlice.actions;

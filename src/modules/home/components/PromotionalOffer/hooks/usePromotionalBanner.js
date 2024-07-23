@@ -33,7 +33,9 @@ export const usePromotionalBanner = () => {
   const badgeCount = cart?.itemDtoList?.length || 0;
 
   useEffect(() => {
-    if (banner2?.data?.data.length > 0) setData(banner2?.data?.data);
+    if (banner2?.data?.data.length > 0) {
+      setData(banner2?.data?.data);
+    }
   }, [banner2?.data]);
 
   useEffect(() => {
@@ -159,7 +161,9 @@ export const usePromotionalBanner = () => {
         {text: 'OK', onPress: () => addItemToCart(details)},
         {text: 'Cancel', style: 'cancel'},
       ]);
-    } else addItemToCart(details);
+    } else {
+      addItemToCart(details);
+    }
   };
 
   const handleService = details => {

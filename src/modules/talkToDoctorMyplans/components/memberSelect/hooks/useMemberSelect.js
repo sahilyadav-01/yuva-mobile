@@ -1,10 +1,12 @@
-
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getRelations, profileThunk} from '../../../../../store/reducers/ProfileSlice';
-import { getAge } from '../../../../../utils/utils';
-import { CHECKED, HEALTH_SCREEN, MALE, MYSELF, UNCHECKED } from '../constants';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  getRelations,
+  profileThunk,
+} from '../../../../../store/reducers/ProfileSlice';
+import {getAge} from '../../../../../utils/utils';
+import {CHECKED, HEALTH_SCREEN, MALE, MYSELF, UNCHECKED} from '../constants';
 
 export const useMemberSelect = () => {
   const navigation = useNavigation();
@@ -18,7 +20,7 @@ export const useMemberSelect = () => {
   const [userData, setUserData] = useState(null);
   const dispatch = useDispatch();
   const focused = useIsFocused();
-  const { userDetails, relations } = useSelector(state => state.profile);
+  const {userDetails, relations} = useSelector(state => state.profile);
 
   useEffect(() => {
     if (focused) {
@@ -48,18 +50,20 @@ export const useMemberSelect = () => {
       );
       setModalVisible(true);
     }
-  }, [ relations, startConsultation, checkBoxFlag,userDetails]);
+  }, [relations, startConsultation, checkBoxFlag, userDetails]);
   useEffect(() => {
     if (activeIndex !== null) {
       const status = relations?.map((item, index) => {
         if (activeIndex === index) {
           let status =
             !checkBoxFlag[index]?.status ||
-              checkBoxFlag[index].status === UNCHECKED
+            checkBoxFlag[index].status === UNCHECKED
               ? CHECKED
               : UNCHECKED;
-          return { index, status };
-        } else return { index, status: UNCHECKED };
+          return {index, status};
+        } else {
+          return {index, status: UNCHECKED};
+        }
       });
       setCheckBoxFlag(status);
       setCheckBoxStatus(UNCHECKED);
@@ -68,24 +72,32 @@ export const useMemberSelect = () => {
 
   useEffect(() => {
     if (checkBoxStatus === CHECKED) {
-      const { name, dob, gender,id } = userDetails;
+      const {name, dob, gender, id} = userDetails;
       setUserData({
-        userId:id,
+        userId: id,
         name,
         age: getAge(new Date(dob)),
         gender,
         genderId: gender === MALE ? 0 : 1,
         relation: MYSELF,
-        relationId:null
-      })
+        relationId: null,
+      });
       setModalVisible(false);
     } else if (
       checkBoxFlag.length > 0 &&
       checkBoxFlag.filter(item => item.status === CHECKED).length > 0
     ) {
-      const { id, name, age, gender, relation } =
+      const {id, name, age, gender, relation} =
         relations[checkBoxFlag.find(item => item.status === CHECKED).index];
-      setUserData({ relationId:id, name, age, gender, genderId: gender === MALE ? 0 : 1, relation ,userId:userDetails?.id});
+      setUserData({
+        relationId: id,
+        name,
+        age,
+        gender,
+        genderId: gender === MALE ? 0 : 1,
+        relation,
+        userId: userDetails?.id,
+      });
       setModalVisible(false);
     }
   }, [checkBoxStatus, checkBoxFlag]);
@@ -97,7 +109,6 @@ export const useMemberSelect = () => {
   const onPressCheckBox = () => {
     setCheckBoxStatus(CHECKED);
     setCheckBoxFlag([]);
-
   };
   const onModalCrossPress = () => {
     setModalVisible(false);
@@ -105,7 +116,7 @@ export const useMemberSelect = () => {
   };
   const onPress = () => {
     navigation.navigate(HEALTH_SCREEN, userData);
-  }
+  };
   return {
     modalVisible,
     openModal,
@@ -114,7 +125,6 @@ export const useMemberSelect = () => {
     data,
     checkBoxStatus,
     userData,
-    onPress
+    onPress,
   };
 };
-

@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AppointmentHome from '../screens/yuvaservices/opd/appointments/AppointmentHome';
 import NewAppointment from '../screens/yuvaservices/opd/appointments/NewAppointment';
@@ -12,7 +11,6 @@ const Stack = createStackNavigator();
 const AppointmentNav = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="Intro" component={Intro} options={{ headerShown: false }}/> */}
       <Stack.Screen
         name="AppointmentHome"
         component={AppointmentHome}

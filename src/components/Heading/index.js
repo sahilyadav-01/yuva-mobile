@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './style';
 
-const Heading = (props) => {
+const Heading = props => {
   const style = styles();
   const {heading} = props;
   return (

@@ -1,2 +1,1 @@
-
-export const NO_PLAN="No Plan Found";
+export const NO_PLAN = 'No Plan Found';

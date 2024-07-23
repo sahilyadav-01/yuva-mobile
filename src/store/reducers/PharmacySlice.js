@@ -62,7 +62,7 @@ const pharmacySlice = createSlice({
       }, 
     },
     extraReducers: {
-        [patientPrescriptionThunk.pending]: (state, { payload }) => {
+        [patientPrescriptionThunk.pending]: (state) => {
             state.loading = true;
             state.apiError = false;
             state.pharmacyDataLoading = true;
@@ -73,15 +73,12 @@ const pharmacySlice = createSlice({
             state.apiError = false;
             state.pharmacyDataLoading = false;
         },
-        [patientPrescriptionThunk.rejected]: (state, { payload }) => {
+        [patientPrescriptionThunk.rejected]: (state) => {
             state.loading = false;
             state.apiError = true;
             state.pharmacyDataLoading = false;
         },
-
-        /** view-all Pharmacy For User*/
-
-        [getAllPharmacyForUserThunk.pending]: (state, { payload }) => {
+        [getAllPharmacyForUserThunk.pending]: (state) => {
             state.loading = true;
             state.apiError = false;
         },
@@ -90,14 +87,11 @@ const pharmacySlice = createSlice({
             state.loading = false;
             state.apiError = false;
         },
-        [getAllPharmacyForUserThunk.rejected]: (state, { payload }) => {
+        [getAllPharmacyForUserThunk.rejected]: (state) => {
             state.loading = false;
             state.apiError = true;
         },
-
-        /* get otp for pharmacy*/
-
-        [getOtpThunk.pending]: (state, { payload }) => {
+        [getOtpThunk.pending]: (state) => {
             state.loading = true;
             state.apiError = false;
         },
@@ -106,7 +100,7 @@ const pharmacySlice = createSlice({
             state.loading = false;
             state.apiError = false;
         },
-        [getOtpThunk.rejected]: (state, { payload }) => {
+        [getOtpThunk.rejected]: (state) => {
             state.loading = false;
             state.apiError = true;
         },

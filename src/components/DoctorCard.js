@@ -46,19 +46,22 @@ const DoctorCard = ({
         <View style={styles.Add}>
           <View style={styles.Cont}>
             <Text style={styles.NameStyle}>
-              {name}{qual}
+              {name}
+              {qual}
             </Text>
             <Text style={styles.Year}>
               {exp} {YEARS_EXP}
             </Text>
           </View>
           <Text style={styles.ContentStyle}>{specialization}</Text>
-          <Text style={styles.HospitalStyle} numberOfLines={1}>{hospital} </Text>
+          <Text style={styles.HospitalStyle} numberOfLines={1}>
+            {hospital}{' '}
+          </Text>
           <View style={styles.addressView}>
             <SVG.LocationOn />
             <Text style={styles.Address} numberOfLines={3}>
-            {address && address.split('\n').slice(0, 3).join('\n')}
-            {address && address.split('\n').length > 3 ? '...' : ''}
+              {address && address.split('\n').slice(0, 3).join('\n')}
+              {address && address.split('\n').length > 3 ? '...' : ''}
             </Text>
           </View>
         </View>

@@ -1,8 +1,8 @@
 import {Platform, StyleSheet} from 'react-native';
-import {BLACK,WHITE} from '../../styles/colors';
+import {BLACK, WHITE} from '../../styles/colors';
 import {fonts} from '../../styles/fonts';
-import { CENTER, ROW } from '../../styles/constants';
-import { getDimensions } from '../../utils/utils';
+import {CENTER, ROW} from '../../styles/constants';
+import {getDimensions} from '../../utils/utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,13 +15,13 @@ export const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: BLACK,
     shadowColor: 'rgba(0, 0, 0, 0.05)',
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 2,
     alignItems: CENTER,
     width: getDimensions()?.width - 24,
-    alignSelf: CENTER
+    alignSelf: CENTER,
   },
   textInputStyles: {
     width: '100%',

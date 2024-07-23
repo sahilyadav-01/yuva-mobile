@@ -20,10 +20,10 @@ export const styles = StyleSheet.create({
     margin: '3%',
     borderRadius: 6,
     paddingLeft: 13,
-    minHeight:50,
+    minHeight: 50,
   },
   boxStyles: {
-    marginHorizontal:12,
+    marginHorizontal: 12,
     borderColor: LIGHT_MERCURY,
     color: LIGHT_GREYISH_RED,
     backgroundColor: LIGHT_GREYISH_RED,
@@ -100,9 +100,9 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: WHITE,
     elevation: 10,
-    paddingVertical:8,
-    zIndex:10,
-    shadowOffset: {width:0,height:0}
+    paddingVertical: 8,
+    zIndex: 10,
+    shadowOffset: {width: 0, height: 0},
   },
   borderSelect: {
     marginLeft: '3%',
@@ -114,8 +114,8 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     elevation: 10,
     paddingBottom: 10,
-    zIndex:10,
-    shadowOffset: {width:0,height:0}
+    zIndex: 10,
+    shadowOffset: {width: 0, height: 0},
   },
   dateTimePicker: {
     backgroundColor: WHITE,

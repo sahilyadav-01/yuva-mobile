@@ -22,15 +22,17 @@ const PackagesOffer = props => {
     return (
       <ImageBackground
         resizeMode="stretch"
-        source={{uri:item.image}}
+        source={{uri: item.image}}
         style={style.imageBackgroundStyle}>
         <View style={style.container}>
           <Text style={style.headingText}>{item.title}</Text>
           <View style={style.separator} />
           <View style={style.descriptionContainer}>
-          <Text numberOfLines={3} style={[style.descriptionText,style.lineStyle]}>
-            {item.description}
-          </Text>
+            <Text
+              numberOfLines={3}
+              style={[style.descriptionText, style.lineStyle]}>
+              {item.description}
+            </Text>
           </View>
           <View style={style.separator} />
           <Text style={style.priceText}>₹{item.price}/-</Text>
@@ -46,7 +48,9 @@ const PackagesOffer = props => {
     );
   };
 
-  if (bannerData === null || data === null || data.length === 0) return null;
+  if (bannerData === null || data === null || data.length === 0) {
+    return null;
+  }
   return (
     <View>
       <FlatList

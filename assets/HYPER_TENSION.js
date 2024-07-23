@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Defs, ClipPath, Path, G } from "react-native-svg"
-const HYPER_TENSION = (props) => (
+import * as React from 'react';
+import Svg, {Defs, ClipPath, Path, G} from 'react-native-svg';
+const HYPER_TENSION = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={60}
     height={55}
     viewBox="0 0 56.608 59.014"
-    {...props}
-  >
+    {...props}>
     <Defs>
       <ClipPath id="a">
         <Path
@@ -23,5 +22,5 @@ const HYPER_TENSION = (props) => (
       />
     </G>
   </Svg>
-)
-export default HYPER_TENSION
+);
+export default HYPER_TENSION;

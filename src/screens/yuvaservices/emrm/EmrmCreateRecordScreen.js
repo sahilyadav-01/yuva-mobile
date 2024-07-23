@@ -1,14 +1,14 @@
-import React from 'react'
-import {SafeAreaView } from 'react-native'
+import React from 'react';
+import {SafeAreaView} from 'react-native';
 import EmrmCreateRecord from '../../../modules/emrm/EmrmCreateRecord';
-import { styles } from './styles';
+import {styles} from './styles';
 
 const EmrmCreateRecordScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
-     <EmrmCreateRecord/>
+      <EmrmCreateRecord />
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default EmrmCreateRecordScreen;

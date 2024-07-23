@@ -40,7 +40,7 @@ const styles = () => {
       color: PALE_SKY,
     },
     webView: {
-      marginHorizontal:16,
+      marginHorizontal: 16,
       width: width - 32,
     },
   });

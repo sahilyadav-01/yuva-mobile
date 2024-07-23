@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   },
   addContainer: {
     padding: 8,
-    backgroundColor: MARINER
+    backgroundColor: MARINER,
   },
   heading: {
     fontFamily: fonts.family.montserrant700,
@@ -66,5 +66,5 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize8,
     color: CYAN_BLUE,
-  }
+  },
 });

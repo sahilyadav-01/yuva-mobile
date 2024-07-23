@@ -56,7 +56,7 @@ const ConsultationCard = props => {
       </View>
 
       <View style={styles.descriptionContainer}>
-        <Footer onConsultPress={() =>onConsult(item)} />
+        <Footer onConsultPress={() => onConsult(item)} />
         <View style={styles.view2}>
           <CalenderContainer date={date} time={time} />
         </View>

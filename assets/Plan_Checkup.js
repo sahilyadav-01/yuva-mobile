@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Rect, Path } from "react-native-svg"
-const PlanCheckup = (props) => (
+import * as React from 'react';
+import Svg, {Rect, Path} from 'react-native-svg';
+const PlanCheckup = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={15}
     height={15}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Rect width={15} height={15} fill="#A5CCFF" rx={2} />
     <Path
       fill="#fff"
@@ -18,5 +17,5 @@ const PlanCheckup = (props) => (
       d="M4.325 3.502a.506.506 0 0 0 .192-.396v-.6a.506.506 0 0 0-.622-.492l-.4.094v1.395l.4.095c.15.035.309 0 .43-.096ZM7.231 3.502c.121.096.28.131.43.096l.4-.095V2.108l-.4-.095a.507.507 0 0 0-.622.493v.6c0 .154.07.3.192.396Z"
     />
   </Svg>
-)
+);
 export default PlanCheckup;

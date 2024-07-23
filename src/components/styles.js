@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     color: BLACK,
     fontFamily: fonts.family.montserrat600,
     fontSize: fonts.size.fontSize14,
-    width:"70%",
+    width: '70%',
   },
   ImageStyle: {
     flexDirection: ROW,
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
   },
   Button: {
     backgroundColor: MARINER,
-    paddingVertical:12,
+    paddingVertical: 12,
     borderRadius: 10,
     alignItems: CENTER,
     justifyContent: CENTER,
@@ -123,7 +123,7 @@ export const styles = StyleSheet.create({
     color: BLACK,
     fontFamily: fonts.family.montserrat400,
     fontSize: fonts.size.fontSize10,
-     marginRight:'5%',
+    marginRight: '5%',
   },
   labTest: {
     flexDirection: COLUMN,
@@ -297,11 +297,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 5,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    paddingVertical:5,
+    paddingVertical: 5,
   },
-  headViewContainer:{
-  flexDirection:ROW,
-  justifyContent:SPACE_BETWEEN,
+  headViewContainer: {
+    flexDirection: ROW,
+    justifyContent: SPACE_BETWEEN,
   },
   textStyle: {
     color: WHITE,
@@ -328,7 +328,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.rubik400,
   },
   expiry: {
-    marginTop:20,
+    marginTop: 20,
     marginRight: 11,
     bottom: 9,
     color: BLACK,
@@ -623,7 +623,7 @@ export const styles = StyleSheet.create({
     minHeight: 20,
     borderRadius: 6,
     backgroundColor: BIANCA,
-    maxWidth:155,
+    maxWidth: 155,
   },
   direction: {
     paddingHorizontal: 16,
@@ -653,13 +653,13 @@ export const styles = StyleSheet.create({
     width: width - 30,
     borderRadius: 6,
   },
-  cartView:{
+  cartView: {
     shadowOpacity: 1,
     shadowColor: BLACK,
     minHeight: 117,
     borderRadius: 6,
-    alignSelf:CENTER,
-    width:width-40,
+    alignSelf: CENTER,
+    width: width - 40,
   },
   carDoctorNameText: {
     color: MARINER,
@@ -701,25 +701,25 @@ export const styles = StyleSheet.create({
     marginLeft: '3%',
     flexDirection: ROW,
   },
-  OurplanText:{
+  OurplanText: {
     color: MARINER,
-    marginTop:15,
+    marginTop: 15,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik500,
-    alignSelf:CENTER,
+    alignSelf: CENTER,
   },
-  OurplanText2:{
+  OurplanText2: {
     color: DARK_BLUE,
-    marginTop:5,
+    marginTop: 5,
     fontSize: fonts.size.fontSize12,
     fontFamily: fonts.family.rubik400,
-    alignSelf:CENTER,
+    alignSelf: CENTER,
   },
-  ImageCarousel:{
-    alignSelf:CENTER,
-    minWidth:300,
-    minHeight:104,
-    borderRadius:6,
+  ImageCarousel: {
+    alignSelf: CENTER,
+    minWidth: 300,
+    minHeight: 104,
+    borderRadius: 6,
   },
-  addressTextField: {width: '90%'}
+  addressTextField: {width: '90%'},
 });

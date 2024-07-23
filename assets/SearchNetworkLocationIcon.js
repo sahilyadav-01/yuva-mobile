@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const SearchNetworkLocationIcon = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const SearchNetworkLocationIcon = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
     height={25}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#1C71E1"
       strokeLinecap="round"
@@ -23,5 +22,5 @@ const SearchNetworkLocationIcon = (props) => (
       d="M9.944 12.5a2.555 2.555 0 1 0 0-5.11 2.555 2.555 0 0 0 0 5.11Z"
     />
   </Svg>
-)
+);
 export default SearchNetworkLocationIcon;

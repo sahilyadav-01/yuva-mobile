@@ -1,170 +1,179 @@
-import { StyleSheet } from "react-native";
-import { BLACK, CYAN_BLUE, DARK_BLUE, GREY70, LIGHT_GREY, LIGHT_GREYISH_RED, LIGHT_MERCURY, ORANGE, RED, RED_SHADE, V_LIGHT_GREY, WHITE } from "../../styles/colors";
-import { ABSOLUTE, CENTER, ROW } from "../../styles/constants";
-import { fonts } from "../../styles/fonts";
-
+import {StyleSheet} from 'react-native';
+import {
+  BLACK,
+  CYAN_BLUE,
+  DARK_BLUE,
+  GREY70,
+  LIGHT_GREY,
+  LIGHT_GREYISH_RED,
+  LIGHT_MERCURY,
+  ORANGE,
+  RED,
+  RED_SHADE,
+  V_LIGHT_GREY,
+  WHITE,
+} from '../../styles/colors';
+import {ABSOLUTE, CENTER, ROW} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
-
-    expert: {
-         marginHorizontal: 14,
-         minHeight: 122,
-         borderRadius: 4,
-         marginTop: "8%",
-         shadowOpacity:0.2,
-         backgroundColor: WHITE,
-         elevation: 3,
-         shadowOffset: {
-            width:0,
-            height:2,
-          },
+  expert: {
+    marginHorizontal: 14,
+    minHeight: 122,
+    borderRadius: 4,
+    marginTop: '8%',
+    shadowOpacity: 0.2,
+    backgroundColor: WHITE,
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    nurse: {
-         flexDirection: ROW,
+  },
+  nurse: {
+    flexDirection: ROW,
+  },
+  nurseImage: {
+    marginHorizontal: '5%',
+    marginVertical: '3%',
+    borderRadius: 50,
+    shadowOpacity: 0.3,
+    shadowColor: BLACK,
+    backgroundColor: WHITE,
+    elevation: 5,
+    shadowOffset: {
+      width: 0,
+      height: 3,
     },
-    nurseImage: {
-        marginHorizontal: "5%",
-        marginVertical: "3%",
-        borderRadius: 50,
-        shadowOpacity: 0.3,
-        shadowColor: BLACK,
-        backgroundColor: WHITE,
-        elevation: 5,
-        shadowOffset: {
-            width:0,
-            height:3,
-          },
+  },
+  nurseText: {
+    marginHorizontal: '1%',
+    color: ORANGE,
+    width: '65%',
+    marginVertical: '4.5%',
+  },
+  textInputStyle: {
+    borderWidth: 0.5,
+    height: 30,
+    width: '100%',
+    textAlign: CENTER,
+    paddingVertical: 3,
+    backgroundColor: WHITE,
+    elevation: 3,
+    marginLeft: 20,
+    borderColor: WHITE,
+    shadowOpacity: 0.3,
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3,
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    nurseText: {
-        marginHorizontal: "1%",
-        color: ORANGE,
-        width: "65%",
-        marginVertical: "4.5%",
-
+  },
+  Button: {
+    borderWidth: 0.5,
+    height: 30,
+    width: '100%',
+    textAlign: CENTER,
+    paddingVertical: 3,
+    backgroundColor: ORANGE,
+    elevation: 3,
+    marginLeft: 20,
+    borderColor: WHITE,
+    shadowOpacity: 0.3,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3,
+    shadowOffset: {
+      width: 0,
+      height: 3,
     },
-    textInputStyle: {
-        borderWidth:0.5,
-        height:30,
-        width:"100%",
-        textAlign:CENTER,
-        paddingVertical:3,
-        backgroundColor: WHITE,
-        elevation: 3,
-        marginLeft:20,
-        borderColor:WHITE,
-        shadowOpacity:0.3,
-       borderTopLeftRadius:3,
-       borderBottomLeftRadius:3,
-       shadowOffset: {
-        width:0,
-        height:2,
-      },
+  },
+  touchableOpacityTextStyle: {
+    textAlign: CENTER,
+    color: WHITE,
+  },
+  testView: {
+    marginTop: '12%',
+    marginHorizontal: 14,
+    minHeight: 102,
+    shadowColor: RED,
+    shadowOpacity: 0.2,
+    backgroundColor: WHITE,
+    elevation: 1,
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 0.2,
     },
-    Button: {
-        borderWidth:0.5,
-        height:30,
-        width:"100%",
-        textAlign:CENTER,
-        paddingVertical:3,
-        backgroundColor: ORANGE,
-        elevation: 3,
-        marginLeft:20,
-        borderColor:WHITE,
-        shadowOpacity: 0.3,
-        borderTopRightRadius:3,
-        borderBottomRightRadius:3,
-        shadowOffset: {
-            width:0,
-            height:3,
-          },
+  },
+  headerView: {
+    minHeight: 47,
+    shadowOpacity: 0.2,
+    shadowColor: RED,
+    backgroundColor: WHITE,
+    elevation: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0.1,
     },
-    touchableOpacityTextStyle: {
-        textAlign: CENTER,
-        color: WHITE,
-    },
-    testView: {
-        marginTop: "12%",
-        marginHorizontal: 14,
-        minHeight: 102,
-        shadowColor: RED,
-        shadowOpacity:0.2,
-        backgroundColor: WHITE,
-        elevation: 1,
-        borderBottomRightRadius: 8,
-        borderBottomLeftRadius: 8,
-        shadowOffset: {
-            width:0,
-            height:0.2,
-          },
-    },
-    headerView: {
-        minHeight: 47,
-        shadowOpacity:0.2,
-        shadowColor: RED,
-        backgroundColor: WHITE,
-        elevation:1,
-        shadowOffset: {
-            width:0,
-            height:0.1,
-          },
-    },
-    headerText: {
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize12,
-        fontWeight: fonts.weight.fontWeight400,
-        color: ORANGE,
-        marginVertical: "5%",
-        marginHorizontal: "5%",
-    },
-    ScrollViewContainerStyle: {
-        paddingBottom: '100%',
-    },
-    listText: {
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize10,
-        fontWeight: fonts.weight.fontWeight400,
-        color: CYAN_BLUE,
-        marginHorizontal: "4%",
-        marginVertical: "2%"
-
-    },
-    dropDown: {
-        flexDirection: ROW,
-        alignItems: CENTER,
-        backgroundColor:LIGHT_GREYISH_RED,
-        borderRadius: 5,
-        marginHorizontal: "3.5%",
-        position: ABSOLUTE,
-        zIndex: 999,
-        marginTop: 142,
-    },
-    textList: {
-        marginHorizontal: "5%",
-        marginVertical: 5,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize10,
-        fontWeight: fonts.weight.fontWeight400,
-    },
-    textColor: {
-        color: CYAN_BLUE
-    },
-    touchableOpactiy: {
-        flexDirection: ROW
-    },
-    textColorEnum:{
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize8,
-        fontWeight: fonts.weight.fontWeight400,
-        marginVertical:"1.5%",
-        marginHorizontal:"8%",
-        opacity:0.7
-    },
-    errorContact:{
-        color:RED_SHADE,
-        marginTop:5,
-        marginLeft:25,
-        fontFamily: fonts.family.rubik400,
-        fontSize: fonts.size.fontSize10,
-        fontWeight: fonts.weight.fontWeight400,
-    }
+  },
+  headerText: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize12,
+    fontWeight: fonts.weight.fontWeight400,
+    color: ORANGE,
+    marginVertical: '5%',
+    marginHorizontal: '5%',
+  },
+  ScrollViewContainerStyle: {
+    paddingBottom: '100%',
+  },
+  listText: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    fontWeight: fonts.weight.fontWeight400,
+    color: CYAN_BLUE,
+    marginHorizontal: '4%',
+    marginVertical: '2%',
+  },
+  dropDown: {
+    flexDirection: ROW,
+    alignItems: CENTER,
+    backgroundColor: LIGHT_GREYISH_RED,
+    borderRadius: 5,
+    marginHorizontal: '3.5%',
+    position: ABSOLUTE,
+    zIndex: 999,
+    marginTop: 142,
+  },
+  textList: {
+    marginHorizontal: '5%',
+    marginVertical: 5,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    fontWeight: fonts.weight.fontWeight400,
+  },
+  textColor: {
+    color: CYAN_BLUE,
+  },
+  touchableOpactiy: {
+    flexDirection: ROW,
+  },
+  textColorEnum: {
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize8,
+    fontWeight: fonts.weight.fontWeight400,
+    marginVertical: '1.5%',
+    marginHorizontal: '8%',
+    opacity: 0.7,
+  },
+  errorContact: {
+    color: RED_SHADE,
+    marginTop: 5,
+    marginLeft: 25,
+    fontFamily: fonts.family.rubik400,
+    fontSize: fonts.size.fontSize10,
+    fontWeight: fonts.weight.fontWeight400,
+  },
 });

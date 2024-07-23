@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Alert} from 'react-native';
 import {TERMS_CONDITION} from '../constant';
 import {setTermsAndCondtionChecked} from '../../../../store/reducers/CartSlice';
-import { changePaymentMethod } from '../../../../store/reducers/PaymentSlice';
+import {changePaymentMethod} from '../../../../store/reducers/PaymentSlice';
 
 export const usePaymentReconfirm = () => {
   const navigation = useNavigation();
@@ -12,13 +12,13 @@ export const usePaymentReconfirm = () => {
   const [checked, setChecked] = useState(false);
   const {
     termsAndCondtionChecked,
-    cart: {itemDtoList}
+    cart: {itemDtoList},
   } = useSelector(state => state.cart);
   const {cod} = useSelector(state => state.payment);
   const {scheduleDate, addressData, relationData, processingCharge} =
     useSelector(state => state.checkOut);
-  const { user } = useSelector(state => state.auth);
-  const {selectedCity,userDetails} = useSelector(state => state.profile);
+  const {user} = useSelector(state => state.auth);
+  const {selectedCity, userDetails} = useSelector(state => state.profile);
   const itemType = itemDtoList?.map(item => item?.productType);
   const isProduct =
     !itemType?.includes('TEST') && !itemType?.includes('PACKAGE');
@@ -34,9 +34,13 @@ export const usePaymentReconfirm = () => {
     dispatch(setTermsAndCondtionChecked(!check));
   };
 
-  const onCodPress = () => {dispatch(changePaymentMethod(true));}
+  const onCodPress = () => {
+    dispatch(changePaymentMethod(true));
+  };
 
-  const onOnlinePress = () => {dispatch(changePaymentMethod(false));}
+  const onOnlinePress = () => {
+    dispatch(changePaymentMethod(false));
+  };
 
   const onPayPress = () => {
     const {address, contact, pincode, away} = {
@@ -57,11 +61,19 @@ export const usePaymentReconfirm = () => {
     const isBooking = isScheduleValid && isRelationValid;
     const timeSlot = !isProduct ? scheduleDate : undefined;
 
-    if (!termsAndCondtionChecked) Alert.alert('Alert', TERMS_CONDITION);
-    else if (isAddressValid && (isProduct || isBooking)) {
+    if (!termsAndCondtionChecked) {
+      Alert.alert('Alert', TERMS_CONDITION);
+    } else if (isAddressValid && (isProduct || isBooking)) {
       const packageUuid = fetchProductId('PACKAGE');
       const testId = fetchProductId('TEST');
-      const selfDetails = {age: 0, name:true ? null : user?.name, gender: (false && userDetails?.gender) ? userDetails?.gender?.toUpperCase() : null};
+      const selfDetails = {
+        age: 0,
+        name: true ? null : user?.name,
+        gender:
+          false && userDetails?.gender
+            ? userDetails?.gender?.toUpperCase()
+            : null,
+      };
       const relationDetails = {name, age: parseInt(age), gender};
       const details = myself ? selfDetails : relationDetails;
       const paymentProps = {
@@ -89,5 +101,14 @@ export const usePaymentReconfirm = () => {
       });
     }
   };
-  return {onPayPress, processingCharge, isProduct, checked, onCheckboxPress,cod,onCodPress,onOnlinePress};
+  return {
+    onPayPress,
+    processingCharge,
+    isProduct,
+    checked,
+    onCheckboxPress,
+    cod,
+    onCodPress,
+    onOnlinePress,
+  };
 };

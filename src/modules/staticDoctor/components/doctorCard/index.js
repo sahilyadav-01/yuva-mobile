@@ -19,7 +19,7 @@ const DedicatedDoctor = () => {
         keyExtractor={(item, index) => `${index}`}
         renderItem={renderItem}
         nestedScrollEnabled={true}
-        />
+      />
     </View>
   );
 };

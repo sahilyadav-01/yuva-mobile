@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {Alert} from 'react-native';
 import {YuvaService} from '../../../App';
 
 export const programAndPlanThunk = createAsyncThunk(
@@ -29,12 +30,11 @@ export const popularPackageNameThunk = createAsyncThunk(
   },
 );
 
-
 export const fetchHomeScreenPackages = createAsyncThunk(
   'packages/home-screen',
   async (params = null, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/package/home-screen?limit=3`;
+      const endpoint = '/package/home-screen?limit=3';
       const response = await YuvaService.get(endpoint);
       return response?.data;
     } catch (error) {
@@ -47,7 +47,7 @@ export const fetchHomeScreenTests = createAsyncThunk(
   'tests/home-screen',
   async (params = null, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/test/home-screen?limit=3`;
+      const endpoint = '/test/home-screen?limit=3';
       const response = await YuvaService.get(endpoint);
       return response?.data;
     } catch (error) {
@@ -60,7 +60,7 @@ export const planPopularThunk = createAsyncThunk(
   'plan/popular',
   async (_, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/plan/popular`;
+      const endpoint = '/plan/popular';
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -134,9 +134,9 @@ export const myProgramThunk = createAsyncThunk(
 
 export const fetchHomeScreenPlans = createAsyncThunk(
   'plans/home-screen',
-  async (params=null, {fulfillWithValue, rejectWithValue}) => {
+  async (params = null, {fulfillWithValue, rejectWithValue}) => {
     try {
-      const endpoint = `/plan/home-screen`;
+      const endpoint = '/plan/home-screen';
       const response = await YuvaService.get(endpoint);
       return response.data;
     } catch (error) {
@@ -166,7 +166,7 @@ export const programAndPlanLockUserThunk = createAsyncThunk(
 
 export const fetchAllPlans = createAsyncThunk(
   'plans/viewAll',
-  async (params=null,{fulfillWithValue, rejectWithValue}) => {
+  async (params = null, {fulfillWithValue, rejectWithValue}) => {
     try {
       const response = await YuvaService.get('/plan/viewAll');
       return response.data;
@@ -188,7 +188,6 @@ const initialState = {
   planCostAfterDiscount: 0,
   planDiscountBeforeCoupon: 0,
   planPrice: 0,
-  planDetails: '',
   requestCall: '',
   myProgramUserData: null,
   plansLoading: false,
@@ -236,7 +235,7 @@ const programAndPlanSlice = createSlice({
     updateFinalAmount(state, {payload}) {
       const planType = Object.keys(state.planAmountToBePaid)[0];
       state.planAmountToBePaid[planType] = payload;
-    }
+    },
   },
   extraReducers: {
     [programAndPlanThunk.pending]: (state, {payload}) => {
@@ -248,10 +247,6 @@ const programAndPlanSlice = createSlice({
     [programAndPlanThunk.rejected]: (state, action) => {
       state.apiError = true;
     },
-
-    /**
-     * popularPackageName
-     */
     [popularPackageNameThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
@@ -293,7 +288,9 @@ const programAndPlanSlice = createSlice({
     },
     [planDetailsThunk.fulfilled]: (state, {payload}) => {
       state.planDetails = payload.data?.filter(item => {
-        if (item !== null && item !== 'null') return item;
+        if (item !== null && item !== 'null') {
+          return item;
+        }
       });
       state.loading = false;
       state.planDetailsLoading = false;
@@ -328,9 +325,6 @@ const programAndPlanSlice = createSlice({
     [requestCallThunk.rejected]: (state, {payload}) => {
       state.loading = false;
     },
-
-    /***** programLock */
-
     [myProgramThunk.pending]: (state, {payload}) => {
       state.loading = true;
     },
@@ -364,62 +358,62 @@ const programAndPlanSlice = createSlice({
         );
       }
     },
-    [fetchHomeScreenPackages.pending]: (state) => {
+    [fetchHomeScreenPackages.pending]: state => {
       state.homePackages.loading = true;
       state.homePackages.data = [];
       state.homePackages.error = false;
     },
-    [fetchHomeScreenPackages.fulfilled]: (state,{payload}) => {
+    [fetchHomeScreenPackages.fulfilled]: (state, {payload}) => {
       state.homePackages.loading = false;
       state.homePackages.data = payload?.data;
       state.homePackages.error = false;
     },
-    [fetchHomeScreenPackages.rejected]: (state) => {
+    [fetchHomeScreenPackages.rejected]: state => {
       state.homePackages.loading = false;
       state.homePackages.data = [];
       state.homePackages.error = true;
     },
-    [fetchHomeScreenTests.pending]: (state) => {
+    [fetchHomeScreenTests.pending]: state => {
       state.homeTests.loading = true;
       state.homeTests.data = [];
       state.homeTests.error = false;
     },
-    [fetchHomeScreenTests.fulfilled]: (state,{payload}) => {
+    [fetchHomeScreenTests.fulfilled]: (state, {payload}) => {
       state.homeTests.loading = true;
       state.homeTests.data = payload?.data;
       state.homeTests.error = false;
     },
-    [fetchHomeScreenTests.rejected]: (state) => {
+    [fetchHomeScreenTests.rejected]: state => {
       state.homeTests.loading = false;
       state.homeTests.data = [];
       state.homeTests.error = true;
     },
-    [fetchHomeScreenPlans.pending]: (state) => {
+    [fetchHomeScreenPlans.pending]: state => {
       state.homePlans.loading = true;
       state.homePlans.data = [];
       state.homePlans.error = false;
     },
-    [fetchHomeScreenPlans.fulfilled]: (state,{payload}) => {
+    [fetchHomeScreenPlans.fulfilled]: (state, {payload}) => {
       state.homePlans.loading = true;
       state.homePlans.data = payload?.data;
       state.homePlans.error = false;
     },
-    [fetchHomeScreenPlans.rejected]: (state) => {
+    [fetchHomeScreenPlans.rejected]: state => {
       state.homePlans.loading = false;
       state.homePlans.data = [];
       state.homePlans.error = true;
     },
-    [fetchAllPlans.pending]: (state) => {
+    [fetchAllPlans.pending]: state => {
       state.allPlans.loading = true;
       state.allPlans.data = [];
       state.allPlans.error = false;
     },
-    [fetchAllPlans.fulfilled]: (state,{payload}) => {
+    [fetchAllPlans.fulfilled]: (state, {payload}) => {
       state.allPlans.loading = true;
       state.allPlans.data = payload?.data;
       state.allPlans.error = false;
     },
-    [fetchAllPlans.rejected]: (state) => {
+    [fetchAllPlans.rejected]: state => {
       state.homePlans.loading = false;
       state.homePlans.data = [];
       state.homePlans.error = true;
@@ -436,6 +430,6 @@ export const {
   saveGuestPlanData,
   setOurPlanData,
   selectedItem,
-  updateFinalAmount
+  updateFinalAmount,
 } = programAndPlanSlice.actions;
 export default programAndPlanSlice.reducer;

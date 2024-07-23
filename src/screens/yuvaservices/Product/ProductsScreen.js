@@ -3,10 +3,10 @@ import {SafeAreaView} from 'react-native';
 import {styles} from './styles';
 import ProductsList from '../../../modules/product/productsList';
 
-const Products = (props) => {
+const Products = props => {
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <ProductsList/>
+      <ProductsList />
     </SafeAreaView>
   );
 };

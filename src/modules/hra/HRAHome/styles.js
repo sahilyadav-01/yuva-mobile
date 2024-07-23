@@ -55,11 +55,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingLeft: 15,
     paddingRight: 12,
-    borderRadius:8,
-    flexDirection:ROW,
-    alignItems:CENTER,
-    justifyContent:CENTER
+    borderRadius: 8,
+    flexDirection: ROW,
+    alignItems: CENTER,
+    justifyContent: CENTER,
   },
-  continueText: {color:WHITE, lineHeight:15, fontFamily:fonts.family.monsterrant500,marginLeft:7},
-  loaderContainer: {flex:undefined, height:'100%'}
+  continueText: {
+    color: WHITE,
+    lineHeight: 15,
+    fontFamily: fonts.family.monsterrant500,
+    marginLeft: 7,
+  },
+  loaderContainer: {flex: undefined, height: '100%'},
 });

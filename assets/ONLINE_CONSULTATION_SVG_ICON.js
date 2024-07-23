@@ -1,17 +1,16 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const ONLINE_CONSULTATION_SVG_ICON = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const ONLINE_CONSULTATION_SVG_ICON = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
     height={20}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#38466C"
       d="M7.787 17.28a2.676 2.676 0 0 1 4.991-1.346c2.035-.897 2.797-2.306 2.797-4.983v-2.92c0-3.886-2.191-6.57-5.597-6.57-3.406 0-5.598 2.685-5.598 6.57v3.407a.731.731 0 0 1-.73.73h-.973A2.68 2.68 0 0 1 0 9.492v-.973A2.68 2.68 0 0 1 2.677 5.84h.465C3.88 2.364 6.402 0 9.978 0c3.576 0 6.097 2.364 6.834 5.84h.465a2.68 2.68 0 0 1 2.677 2.678v.973a2.68 2.68 0 0 1-2.677 2.677h-.3a5.695 5.695 0 0 1-3.836 5.198 2.677 2.677 0 1 1-5.354-.087Zm1.46 0a1.217 1.217 0 1 0 2.434 0 1.217 1.217 0 0 0-2.433 0Zm7.788-6.571h.242a1.218 1.218 0 0 0 1.218-1.217v-.973A1.218 1.218 0 0 0 17.278 7.3h-.243v3.408ZM1.46 8.519v.973a1.218 1.218 0 0 0 1.217 1.216h.243V7.3h-.243A1.218 1.218 0 0 0 1.46 8.519Z"
     />
   </Svg>
-)
+);
 export default ONLINE_CONSULTATION_SVG_ICON;

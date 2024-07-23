@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {setProductFilter} from '../../../../store/reducers/ProductSlice';
 
-export const useProductList = (productList) => {
+export const useProductList = productList => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const onViewAll = item => {

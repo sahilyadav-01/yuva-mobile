@@ -53,7 +53,7 @@ const Profile = () => {
     setSelectedCity,
     enableLockButton,
     profileGender,
-    onPickerPress
+    onPickerPress,
   } = useProfile();
 
   const {container, addMembersButton, saveButtonText, addIconStyle} = styles({
@@ -69,7 +69,12 @@ const Profile = () => {
 
   return (
     <>
-      <Header title={USER_PROFILE} showBackButton={true} hideMenu={true} hideTitle={false}/>
+      <Header
+        title={USER_PROFILE}
+        showBackButton={true}
+        hideMenu={true}
+        hideTitle={false}
+      />
       <ScrollView style={container} nestedScrollEnabled={true}>
         <UserDetailsCard
           setSelectedGender={setSelectedGender}

@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const Appointment = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const Appointment = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={12}
     height={11}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       fill="#030D45"
       fillRule="evenodd"
@@ -15,5 +14,5 @@ const Appointment = (props) => (
       clipRule="evenodd"
     />
   </Svg>
-)
+);
 export default Appointment;

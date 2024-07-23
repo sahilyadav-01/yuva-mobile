@@ -7,7 +7,7 @@ const Form = ({from}) => {
   const {formContainer} = styles();
   return (
     <View style={formContainer}>
-      <SignUpDetailsCard from={from}/>
+      <SignUpDetailsCard from={from} />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import {useIsFocused} from '@react-navigation/native'
+import {useIsFocused} from '@react-navigation/native';
 import {
   allAppointmentThunk,
   cancelAppointmentThunk,
@@ -8,12 +8,12 @@ import {
 } from '../../../../../store/reducers/AppointmentSlice';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { setTabBarVisible } from '../../../../../store/reducers/DoctorSlice';
+import {setTabBarVisible} from '../../../../../store/reducers/DoctorSlice';
 
 export const useView = () => {
   const [cancelFlag, setCancelFlag] = useState(false);
-  const [name,setName]=useState("Myself");
-  const [userRelation,setUserRelation]=useState("Myself");
+  const [name, setName] = useState('Myself');
+  const [userRelation, setUserRelation] = useState('Myself');
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const focused = useIsFocused();
@@ -31,20 +31,22 @@ export const useView = () => {
     relation,
     patientNumber,
   } = useSelector(state => state.appointment.currentAppointment);
-  useEffect(()=>{
-    if(!relation || !memberName){
-      setUserRelation("Myself");
-      setName("Myself")
-    }
-    else{
+  useEffect(() => {
+    if (!relation || !memberName) {
+      setUserRelation('Myself');
+      setName('Myself');
+    } else {
       setUserRelation(relation);
-      setName(memberName)
+      setName(memberName);
     }
-    },[memberName,relation])
-  useEffect(()=>{
-    if(navigation.isFocused()) dispatch(setTabBarVisible(false));
-    else if(!navigation.isFocused()) dispatch(setNotificationRedirect(false));
-  },[focused])
+  }, [memberName, relation]);
+  useEffect(() => {
+    if (navigation.isFocused()) {
+      dispatch(setTabBarVisible(false));
+    } else if (!navigation.isFocused()) {
+      dispatch(setNotificationRedirect(false));
+    }
+  }, [focused]);
   const data = {
     hospital: hospitalName,
     Doctor: doctorName,
@@ -77,8 +79,9 @@ export const useView = () => {
       .then(() => navigation.navigate('AppointmentHome'));
   };
   useEffect(() => {
-    if(typeof id === 'number')
-    dispatch(appointmentThunk({id}));
+    if (typeof id === 'number') {
+      dispatch(appointmentThunk({id}));
+    }
   }, [id]);
 
   return {

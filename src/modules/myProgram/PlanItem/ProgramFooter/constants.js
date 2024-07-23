@@ -3,7 +3,8 @@ export const PLAN_MEMBERS = 'Program Members';
 export const ADD_MEMBER = 'Add Member';
 export const RELATIONSHIP = 'Relationship';
 export const ADD_NEW_MEMBER = 'Add New Member';
-export const CANNOT_ADD_MEMBERS = 'Cannot add any further members as Program has been locked';
+export const CANNOT_ADD_MEMBERS =
+  'Cannot add any further members as Program has been locked';
 export const ALERT = 'Alert';
 export const TRY_AGAIN = 'Relations being fetched. Please try again';
 export const NO_RELATIONS = 'No Active relations left for this Program';
@@ -11,7 +12,8 @@ export const ERROR_TEXT = 'Unable to fetch relatives';
 export const PLAN_LOCKED = 'Program has been locked';
 export const PLEASE_SELECT_MEMBERS = 'Please select members';
 export const LOCK_PLAN = 'Are you sure want to lock the Program?';
-export const CHILDREN_ALERT = (count) => `Program only supports ${count} children`;
+export const CHILDREN_ALERT = count =>
+  `Program only supports ${count} children`;
 export const OK = 'Ok';
 export const CANCEL = 'Cancel';
 export const SON = 'Son';

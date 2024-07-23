@@ -5,7 +5,7 @@ import GridList from './gridList';
 import Header from '../../../components/Header';
 import {useProductsList} from './useProductsList';
 import {styles as style} from './style';
-import { MARINER } from '../../../styles/colors';
+import {MARINER} from '../../../styles/colors';
 
 function ProductsList() {
   const styles = style();
@@ -17,7 +17,7 @@ function ProductsList() {
     data,
     onSearch,
     onAdd,
-    getData
+    getData,
   } = useProductsList();
 
   if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {
@@ -31,8 +31,16 @@ function ProductsList() {
   return (
     <View style={styles.container}>
       <Header showBackButton={true} title={'Products'} />
-      <SearchFilter onFilterPress={onFilterPress} onSearch={onSearch} filterData={productList?.productFilter} />
-      <GridList data={getData(data)} onEndReached={onEndReached} onAdd={onAdd} />
+      <SearchFilter
+        onFilterPress={onFilterPress}
+        onSearch={onSearch}
+        filterData={productList?.productFilter}
+      />
+      <GridList
+        data={getData(data)}
+        onEndReached={onEndReached}
+        onAdd={onAdd}
+      />
     </View>
   );
 }

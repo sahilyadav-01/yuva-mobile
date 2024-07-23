@@ -1,8 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {CENTER, SPACE_BETWEEN, FLEX, ROW} from '../styles/constants';
-import {BLACK, CYAN_BLUE, FLASH_WHITE, LIGHT_GREY, SEASHELL} from '../styles/colors';
+import {
+  BLACK,
+  CYAN_BLUE,
+  FLASH_WHITE,
+  LIGHT_GREY,
+  SEASHELL,
+} from '../styles/colors';
 import {fonts} from '../styles/fonts';
-import { getDimensions } from '../utils/utils';
+import {getDimensions} from '../utils/utils';
 
 export const styles = StyleSheet.create({
   homeScreenContainer: {
@@ -20,7 +26,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     alignItems: CENTER,
     justifyContent: CENTER,
-    width:getDimensions()?.width
+    width: getDimensions()?.width,
   },
   tabNavigation: {
     marginTop: 0,
@@ -72,7 +78,7 @@ export const styles = StyleSheet.create({
   verticalLine: {
     borderRightWidth: 1,
     height: 20,
-    marginVertical:20,
+    marginVertical: 20,
     borderRightColor: CYAN_BLUE,
   },
   height: {
@@ -84,9 +90,9 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   bannerContainer: {
-    width:getDimensions()?.width,
-    paddingHorizontal:12,
-    paddingVertical:8
+    width: getDimensions()?.width,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
   bannerImage: {
     width: '100%',
@@ -99,6 +105,6 @@ export const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 36,
   },
-  planContainer: {marginTop:0},
-  keyboardAvoidViewStyle: {flex:1}
+  planContainer: {marginTop: 0},
+  keyboardAvoidViewStyle: {flex: 1},
 });

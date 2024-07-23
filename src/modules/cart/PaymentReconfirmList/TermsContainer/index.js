@@ -6,7 +6,7 @@ import {
   onPrivacyPolicyPress,
   onTermsConditionsPress,
 } from '../../../../utils/utils';
-import { CYAN_BLUE, MARINER } from '../../../../styles/colors';
+import {CYAN_BLUE, MARINER} from '../../../../styles/colors';
 
 function TermsContainer({onCheckboxPress, checked}) {
   return (

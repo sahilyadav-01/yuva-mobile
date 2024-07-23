@@ -1,5 +1,5 @@
-import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import { YuvaService } from '../../../App';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {YuvaService} from '../../../App';
 
 export const downloadHraReportThunk = createAsyncThunk(
   'hra-pdf-report',
@@ -28,7 +28,7 @@ export const downloadDiagnosticReportThunk = createAsyncThunk(
 );
 export const MyPrescriptionReportThunk = createAsyncThunk(
   'talkToDr/user',
-  async ({uuid,pageNo,pageSize,id}, {fulfillWithValue, rejectWithValue}) => {
+  async ({uuid, pageNo, pageSize, id}, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = `/my/prescription?pageNo=${pageNo}&pageSize=${pageSize}&serviceUuid=${uuid}`;
       const prescriptionId = typeof id === 'string' ? `&id=${id}` : '';
@@ -40,14 +40,13 @@ export const MyPrescriptionReportThunk = createAsyncThunk(
   },
 );
 
-
 const initialState = {
   loading: false,
   apiError: false,
   apiErrorMessage: '',
-  downloadHraReport:[],
-  downloadDiagnosticReport:[],
-  myPrescriptionReport:[],
+  downloadHraReport: [],
+  downloadDiagnosticReport: [],
+  myPrescriptionReport: [],
   hraLoading: false,
   hraError: false,
   prescriptionLoading: false,
@@ -60,10 +59,10 @@ const initialState = {
 const downlodReportSlice = createSlice({
   name: 'downloadReport',
   initialState,
-  reducers : {
-    setHraReportId(state,{payload}) {
+  reducers: {
+    setHraReportId(state, {payload}) {
       state.hraReportId = payload;
-    }
+    },
   },
   extraReducers: {
     [downloadHraReportThunk.pending]: (state, {payload}) => {
@@ -116,6 +115,6 @@ const downlodReportSlice = createSlice({
     },
   },
 });
-export const {setHraReportId} = downlodReportSlice.actions
+export const {setHraReportId} = downlodReportSlice.actions;
 export const downloadInit = downlodReportSlice.getInitialState();
 export default downlodReportSlice.reducer;

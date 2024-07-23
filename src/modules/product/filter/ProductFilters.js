@@ -12,8 +12,11 @@ function ProductFilters({onCheck, data, getListEmptyText}) {
   };
   const RenderItem = ({item, index, element}) => {
     let disabled;
-    if(element?.id !== 1) disabled = false;
-    else disabled = item?.disabled;
+    if (element?.id !== 1) {
+      disabled = false;
+    } else {
+      disabled = item?.disabled;
+    }
     return (
       <View style={styles.itemContainer}>
         <Checkbox.Android

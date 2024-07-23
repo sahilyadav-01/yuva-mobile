@@ -1,5 +1,13 @@
 import {StyleSheet} from 'react-native';
-import {MERCURY, FLASH_WHITE, WHITE, RED_SHADE, MARINER, BLACK, ZIRCON} from '../../styles/colors';
+import {
+  MERCURY,
+  FLASH_WHITE,
+  WHITE,
+  RED_SHADE,
+  MARINER,
+  BLACK,
+  ZIRCON,
+} from '../../styles/colors';
 import {CENTER} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -23,13 +31,13 @@ const styles = () => {
     },
     textInputContainer: {
       paddingVertical: 12,
-      paddingLeft:20,
+      paddingLeft: 20,
       fontFamily: fonts.family.monsterrant500,
       fontSize: fonts.size.fontSize16,
       color: BLACK,
       borderWidth: 0.5,
       borderRadius: 4,
-      backgroundColor:ZIRCON,
+      backgroundColor: ZIRCON,
     },
     separator: {
       borderWidth: 0.5,

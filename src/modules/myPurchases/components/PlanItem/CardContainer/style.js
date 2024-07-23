@@ -50,8 +50,8 @@ export const styles = () => {
     orderNumber: {
       fontFamily: fonts.family.rubik500,
       fontSize: fonts.size.fontSize8,
-      color:WHITE,
-      lineHeight:10
+      color: WHITE,
+      lineHeight: 10,
     },
     boxStyle: {
       paddingVertical: 4,

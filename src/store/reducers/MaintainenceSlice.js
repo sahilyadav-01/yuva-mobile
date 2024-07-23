@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   maintainence: null,
-}
+};
 
 const maintainenceSlice = createSlice({
   name: 'lifestylePackage',
@@ -14,6 +14,6 @@ const maintainenceSlice = createSlice({
   },
 });
 
-export const { maintainenceInit } = maintainenceSlice.getInitialState();
-export const { maintainceThunk } = maintainenceSlice.actions;
+export const {maintainenceInit} = maintainenceSlice.getInitialState();
+export const {maintainceThunk} = maintainenceSlice.actions;
 export default maintainenceSlice.reducer;

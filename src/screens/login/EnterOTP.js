@@ -5,8 +5,16 @@ import {styles} from './style';
 
 const EnterOTP = props => {
   const {container} = styles();
-  const {number, email, name, password, verificationType, from, resetPassword, signUp} =
-    props?.route?.params;
+  const {
+    number,
+    email,
+    name,
+    password,
+    verificationType,
+    from,
+    resetPassword,
+    signUp,
+  } = props?.route?.params;
   const otpProps = {number, email, name, password, verificationType, signUp};
   return (
     <SafeAreaView style={container}>

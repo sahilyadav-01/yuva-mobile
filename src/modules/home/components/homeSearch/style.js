@@ -17,7 +17,7 @@ import {
   SPACE_BETWEEN,
 } from '../../../../styles/constants';
 import {fonts} from '../../../../styles/fonts';
-import { getPlatform } from '../../../../utils/utils';
+import {getPlatform} from '../../../../utils/utils';
 
 export const styles = () => {
   const {height} = Dimensions.get('screen');
@@ -30,17 +30,17 @@ export const styles = () => {
       borderWidth: 0.5,
       borderColor: ALTO_SECONDARY,
       flexDirection: ROW,
-      paddingHorizontal:20,
-      paddingVertical:12,
+      paddingHorizontal: 20,
+      paddingVertical: 12,
       justifyContent: SPACE_BETWEEN,
       flex: 0.36,
       marginBottom: 12,
-      backgroundColor:PORCELAIN
+      backgroundColor: PORCELAIN,
     },
     searchContainer: {justifyContent: CENTER},
     textInputStyle: {
       flex: 1,
-      paddingVertical: isIOS ? 16 : 0,
+      paddingVertical: isIOS ? 4 : 0,
       justifyContent: CENTER,
       color: '#8391A1',
       fontFamily: fonts.family.montserrat400,
@@ -74,7 +74,7 @@ export const styles = () => {
       paddingTop: 12,
       borderRadius: 12,
       backgroundColor: ZUMTHOR,
-      width:'20%',
+      width: '20%',
     },
     iconText: {
       textAlign: CENTER,
@@ -104,12 +104,12 @@ export const styles = () => {
       alignItems: CENTER,
     },
     listItemContainer: {
-      borderRadius:8,
-      paddingVertical:10,
-      paddingHorizontal:20,
+      borderRadius: 8,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
       borderWidth: 0.5,
       borderColor: LIGHT_BLACK,
-      backgroundColor:'#F9F9F9',
+      backgroundColor: '#F9F9F9',
     },
     searchRowSpace: {
       marginTop: 16,
@@ -120,8 +120,8 @@ export const styles = () => {
       alignItems: CENTER,
       justifyContent: CENTER,
     },
-    listContainer: {marginTop:24,flex: 1},
-    headerContainer: {flex: 1, marginBottom: 12, justifyContent: SPACE_BETWEEN},
+    listContainer: {marginTop: 24, flex: 1},
+    headerContainer: {flex: 1, marginVertical: 12, justifyContent: SPACE_BETWEEN},
     spaceContainer: {flex: 0.1},
     searchResultContainer: {
       position: ABSOLUTE,
@@ -136,9 +136,13 @@ export const styles = () => {
       marginTop: 16,
       zIndex: 70,
       elevation: 70,
-      borderColor: DARK_GRAY
+      borderColor: DARK_GRAY,
     },
-    crossContainer: {flexDirection: ROW_REVERSE, marginBottom: 12, justifyContent:SPACE_BETWEEN},
+    crossContainer: {
+      flexDirection: ROW_REVERSE,
+      marginBottom: 12,
+      justifyContent: SPACE_BETWEEN,
+    },
     searchResultListContainer: {marginBottom: 12},
     elasticSearchEmptyText: {
       alignSelf: CENTER,

@@ -1,13 +1,19 @@
 import React from 'react';
-import {Text, TextInput,View} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
 import SelectList from 'react-native-dropdown-select-list';
-import { BLACK, DARK_GRAY } from '../../../styles/colors';
+import {BLACK, DARK_GRAY} from '../../../styles/colors';
 import {styles} from './style';
 
 const MemberDetails = props => {
-  const {listHeadingText, textInputStyle, valueStyle, itemContainer, inputStyle} = styles();
+  const {
+    listHeadingText,
+    textInputStyle,
+    valueStyle,
+    itemContainer,
+    inputStyle,
+  } = styles();
   const {item, onChangeText, relationsData, onItemSelect} = props;
-  if (item?.type === 'input')
+  if (item?.type === 'input') {
     return (
       <View style={itemContainer}>
         <Text style={listHeadingText}>{item?.heading}</Text>
@@ -21,7 +27,8 @@ const MemberDetails = props => {
         />
       </View>
     );
-  if (item?.type === 'picker')
+  }
+  if (item?.type === 'picker') {
     return (
       <View style={itemContainer}>
         <Text style={listHeadingText}>{item?.heading}</Text>
@@ -35,6 +42,7 @@ const MemberDetails = props => {
         />
       </View>
     );
+  }
 };
 
 export default MemberDetails;

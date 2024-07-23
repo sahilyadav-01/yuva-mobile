@@ -19,7 +19,7 @@ import {
   SEARCH_PACKAGES_TESTS,
   TESTS,
 } from './constants';
-import { BLACK, MARINER } from '../../styles/colors';
+import {BLACK, MARINER} from '../../styles/colors';
 
 const LifestyleTestsAndPackages = props => {
   const {
@@ -48,7 +48,7 @@ const LifestyleTestsAndPackages = props => {
     childContainerStyle,
     addToCartLoader,
     screenStyle,
-  } = styles(addToCartLoad,packageData.length === 0 && testData.length === 0);
+  } = styles(addToCartLoad, packageData.length === 0 && testData.length === 0);
   if (renderData) {
     return (
       <ScrollView
@@ -81,7 +81,7 @@ const LifestyleTestsAndPackages = props => {
                 boxStyles={boxStyles}
                 inputStyles={dropdownInputStyles}
                 dropdownStyles={dropdownStyles}
-                dropdownTextStyles={{color:BLACK}}
+                dropdownTextStyles={{color: BLACK}}
               />
               {packageData.length > 0 && (
                 <Packages

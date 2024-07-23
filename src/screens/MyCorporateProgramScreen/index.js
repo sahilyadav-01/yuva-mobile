@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, FlatList, SafeAreaView, ScrollView } from 'react-native';
-import { styles } from './styles';
+import {View, FlatList, SafeAreaView, ScrollView} from 'react-native';
+import {styles} from './styles';
 import Header from '../../components/Header';
-import { MY_CORPORATE_PROGRAM } from './constants';
-import { useMyCorporateProgram } from './hooks/useMyCorporateProgram';
+import {MY_CORPORATE_PROGRAM} from './constants';
+import {useMyCorporateProgram} from './hooks/useMyCorporateProgram';
 
 const MyCorporateProgram = () => {
-  const { programList, renderItem, onEndReached } = useMyCorporateProgram();
+  const {programList, renderItem, onEndReached} = useMyCorporateProgram();
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Header title={MY_CORPORATE_PROGRAM} showBackButton hideMenu />

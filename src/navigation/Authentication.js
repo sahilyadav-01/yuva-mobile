@@ -8,7 +8,7 @@ import ChangePassword from '../screens/login/ChangePassword';
 
 const Stack = createStackNavigator();
 
-const Authentication = (props) => {
+const Authentication = props => {
   const from = props?.route?.params?.from ?? null;
   const data = props?.route?.params?.data ?? null;
   return (
@@ -17,7 +17,7 @@ const Authentication = (props) => {
         name="Login"
         component={LoginScreen}
         options={{headerShown: false}}
-        initialParams={{from,data}}
+        initialParams={{from, data}}
       />
       <Stack.Screen
         name="ForgotPassword"

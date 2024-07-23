@@ -1,18 +1,18 @@
-import { StyleSheet } from 'react-native';
-import { BLACK, ZUMTHOR } from '../../styles/colors';
-import { CENTER, COLUMN } from '../../styles/constants';
-import { fonts } from '../../styles/fonts';
+import {StyleSheet} from 'react-native';
+import {BLACK, ZUMTHOR} from '../../styles/colors';
+import {CENTER, COLUMN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
 
 export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
-    flexDirection:COLUMN,
+    flexDirection: COLUMN,
     marginHorizontal: 4,
-    backgroundColor:ZUMTHOR,
+    backgroundColor: ZUMTHOR,
     borderRadius: 10,
     paddingTop: 12,
     paddingBottom: 6,
     paddingHorizontal: 12,
-    alignItems: CENTER
+    alignItems: CENTER,
   },
   subTopContainerStyle: {
     alignItems: CENTER,

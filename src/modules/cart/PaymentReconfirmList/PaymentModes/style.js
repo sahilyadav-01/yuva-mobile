@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     flexDirection: ROW,
     justifyContent: SPACE_BETWEEN,
   },
-  rowContainer: {flexDirection: ROW,alignItems:CENTER},
+  rowContainer: {flexDirection: ROW, alignItems: CENTER},
   paymentText: {
     marginLeft: 4,
     fontFamily: fonts.family.monsterrant500,

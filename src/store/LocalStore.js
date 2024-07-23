@@ -66,7 +66,6 @@ export const setRefreshToken = async token => {
   } catch (error) {}
 };
 
-
 export const setProfileStatus = async status => {
   try {
     await AsyncStorage.setItem('profileUpdated', status);
@@ -76,26 +75,20 @@ export const setProfileStatus = async status => {
 export const clearJwt = async () => {
   try {
     await AsyncStorage.removeItem('jwt');
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
 export const clearRefreshToken = async () => {
   try {
     await AsyncStorage.removeItem('refreshToken');
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
 export const clearProfileStatus = async () => {
   try {
     await AsyncStorage.removeItem('profileUpdated');
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
 export const getExistingUser = async () => {
   try {
@@ -118,9 +111,12 @@ export const getRefreshToken = async () => {
   } catch (error) {}
 };
 
-export const setRole = async (role) => {
+export const setRole = async role => {
   try {
-    const userRole = await AsyncStorage.setItem('userRole',role ? 'corporate': 'retail');
+    const userRole = await AsyncStorage.setItem(
+      'userRole',
+      role ? 'corporate' : 'retail',
+    );
     return userRole;
   } catch (error) {}
 };
@@ -135,10 +131,8 @@ export const getRole = async () => {
 export const clearRole = async () => {
   try {
     await AsyncStorage.removeItem('userRole');
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 export const getProfileStatus = async () => {
   try {
     const jwtToken = await AsyncStorage.getItem('profileUpdated');
@@ -146,9 +140,12 @@ export const getProfileStatus = async () => {
   } catch (error) {}
 };
 
-export const setSearchHistory = async (data) => {
+export const setSearchHistory = async data => {
   try {
-    const userRole = await AsyncStorage.setItem('searchHistory',JSON.stringify(data));
+    const userRole = await AsyncStorage.setItem(
+      'searchHistory',
+      JSON.stringify(data),
+    );
     return userRole;
   } catch (error) {}
 };
@@ -163,7 +160,5 @@ export const getSearchHistory = async () => {
 export const clearSearchHistory = async () => {
   try {
     await AsyncStorage.removeItem('searchHistory');
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};

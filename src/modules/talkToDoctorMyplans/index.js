@@ -1,17 +1,12 @@
 import {View, Text, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {
-  AVAILABLE,
-  CHAT_NOW,
-  USED,
-  VALIDITY,
-} from './constant';
+import {AVAILABLE, CHAT_NOW, USED, VALIDITY} from './constant';
 import {SVG} from '../../../assets';
 import {usePatient} from './hooks/usePatient';
 import {getPlanDate} from '../../utils/utils';
-import { ANAKIVA, BLACK, DEEP_RED, MARINER, WHITE } from '../../styles/colors';
-import { NOT_AVAILABLE } from '../../components/constants';
+import {ANAKIVA, BLACK, DEEP_RED, MARINER, WHITE} from '../../styles/colors';
+import {NOT_AVAILABLE} from '../../components/constants';
 
 const MyPlans = () => {
   const {programAndPlan, onSelectMember} = usePatient();
@@ -20,15 +15,19 @@ const MyPlans = () => {
       return (
         <ScrollView key={index} nestedScrollEnabled={true}>
           <View style={styles.viewContainer}>
-          <View style={styles.headViewContainer}>
-            <View style={styles.headView}>
-              <Text style={styles.head}>{item?.name.length > 26 ? item?.name.substring(0, 26) + '...' : item?.name}</Text>
-            </View>
+            <View style={styles.headViewContainer}>
+              <View style={styles.headView}>
+                <Text style={styles.head}>
+                  {item?.name.length > 26
+                    ? item?.name.substring(0, 26) + '...'
+                    : item?.name}
+                </Text>
+              </View>
 
-            <Text style={styles.expiry}>
-              {VALIDITY} {getPlanDate(item.endDate)}
-            </Text>
-        </View>
+              <Text style={styles.expiry}>
+                {VALIDITY} {getPlanDate(item.endDate)}
+              </Text>
+            </View>
             <View style={styles.sideBySide}>
               <SVG.Stethoscope />
               <View style={styles.text1}>
@@ -39,22 +38,39 @@ const MyPlans = () => {
               </View>
             </View>
             <View>
-              <Text style={[styles.Available, { color: i.available === 0 ? DEEP_RED : BLACK }]}>{i.available === 0 ? NOT_AVAILABLE : ''}</Text>
+              <Text
+                style={[
+                  styles.Available,
+                  {color: i.available === 0 ? DEEP_RED : BLACK},
+                ]}>
+                {i.available === 0 ? NOT_AVAILABLE : ''}
+              </Text>
             </View>
-            <TouchableOpacity   style={[styles.buttonStyle,{backgroundColor: i.available===0 ?ANAKIVA :MARINER}]} onPress={() => onSelectMember(item)} disabled={!i.available}>
-            <Text style={[styles.textStyle, { color: i.available === 0 ? BLACK : WHITE }]}>{CHAT_NOW}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.buttonStyle,
+                {backgroundColor: i.available === 0 ? ANAKIVA : MARINER},
+              ]}
+              onPress={() => onSelectMember(item)}
+              disabled={!i.available}>
+              <Text
+                style={[
+                  styles.textStyle,
+                  {color: i.available === 0 ? BLACK : WHITE},
+                ]}>
+                {CHAT_NOW}
+              </Text>
+            </TouchableOpacity>
           </View>
-  
         </ScrollView>
       );
     });
   };
-  if(programAndPlan?.length === 0) {
+  if (programAndPlan?.length === 0) {
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyText}>No Active Plans left</Text>
-        </View>
+      </View>
     );
   }
   return (
@@ -63,7 +79,7 @@ const MyPlans = () => {
       renderItem={renderItem}
       keyExtractor={(item, index) => `${index}`}
       nestedScrollEnabled={true}
-      />
+    />
   );
 };
 

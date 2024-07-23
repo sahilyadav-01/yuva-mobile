@@ -4,7 +4,7 @@ import Header from '../../../components/Header';
 import ProductFilters from './ProductFilters';
 import {useFilter} from './useFilter';
 import {styles as style} from './style';
-import { MARINER } from '../../../styles/colors';
+import {MARINER} from '../../../styles/colors';
 
 const ProductFilter = ({navigation}) => {
   const {
@@ -16,19 +16,27 @@ const ProductFilter = ({navigation}) => {
     onApplyFilter,
     onClearFilter,
     getListEmptyText,
-    productFilter
+    productFilter,
   } = useFilter(navigation);
   const styles = style();
 
   const FilterButtons = () => {
-    const filterDisable = categoryDropdown?.data?.length === 0 && subCategoryDropdown?.data?.length === 0 && brandsDropdown?.data?.length === 0;
+    const filterDisable =
+      categoryDropdown?.data?.length === 0 &&
+      subCategoryDropdown?.data?.length === 0 &&
+      brandsDropdown?.data?.length === 0;
     return (
       <View style={styles.filterButtonContainer}>
-        <TouchableOpacity disabled={filterDisable} onPress={onApplyFilter} style={styles.filterContainer}>
+        <TouchableOpacity
+          disabled={filterDisable}
+          onPress={onApplyFilter}
+          style={styles.filterContainer}>
           <Text style={styles.buttonText}>Apply Filter</Text>
         </TouchableOpacity>
-        <View style={styles.buttonSeparator}/>
-        <TouchableOpacity onPress={onClearFilter} style={styles.filterContainer}>
+        <View style={styles.buttonSeparator} />
+        <TouchableOpacity
+          onPress={onClearFilter}
+          style={styles.filterContainer}>
           <Text style={styles.buttonText}>Clear Filter</Text>
         </TouchableOpacity>
       </View>
@@ -57,7 +65,7 @@ const ProductFilter = ({navigation}) => {
           <Text style={styles.errorText}>Error Fetching Product Details</Text>
         </View>
       );
-    } else if (data.length === 3)
+    } else if (data.length === 3) {
       return (
         <View style={styles.contentContainer}>
           <FilterButtons />
@@ -71,6 +79,7 @@ const ProductFilter = ({navigation}) => {
           />
         </View>
       );
+    }
   };
 
   return (

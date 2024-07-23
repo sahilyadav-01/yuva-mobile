@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const CallSupport = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const CallSupport = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#1C71E1"
       strokeLinecap="round"
@@ -23,5 +22,5 @@ const CallSupport = (props) => (
       d="M21 13.222v4.445C21 19.889 20.26 21 18.778 21h-5.555"
     />
   </Svg>
-)
-export default CallSupport
+);
+export default CallSupport;

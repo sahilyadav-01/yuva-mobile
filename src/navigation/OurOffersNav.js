@@ -12,7 +12,7 @@ const OurOfferNav = () => {
   } = useSelector(state => state);
   return (
     <Stack.Navigator>
-            <Stack.Screen
+      <Stack.Screen
         name="ComingSoon"
         component={ComingSoon}
         options={{headerShown: false}}

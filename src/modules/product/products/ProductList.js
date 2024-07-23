@@ -3,7 +3,7 @@ import {ActivityIndicator, FlatList, View} from 'react-native';
 import RenderProducts from '../productHub/productList/ProductItem';
 import ProductFooter from './ProductFooter';
 import {styles as style} from './styles';
-import { MARINER } from '../../../styles/colors';
+import {MARINER} from '../../../styles/colors';
 
 const ProductList = ({
   productList,
@@ -11,7 +11,7 @@ const ProductList = ({
   data,
   pageNo,
   onEndReached,
-  onAdd
+  onAdd,
 }) => {
   const styles = style();
   if (productList?.data?.length === 0 && productList?.loading && !applyFilter) {

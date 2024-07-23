@@ -57,9 +57,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   listContainer: {
-    paddingVertical:36
+    paddingVertical: 36,
   },
   itemSeparator: {
-    height:40
-  }
+    height: 40,
+  },
 });

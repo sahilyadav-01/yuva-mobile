@@ -1,18 +1,17 @@
-import * as React from "react"
-import Svg, { Rect, Path } from "react-native-svg"
-const PlanOnlineConsultation = (props) => (
+import * as React from 'react';
+import Svg, {Rect, Path} from 'react-native-svg';
+const PlanOnlineConsultation = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={15}
     height={15}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Rect width={15} height={15} fill="#A5CCFF" rx={2} />
     <Path
       fill="#fff"
       d="M5.894 10.64a1.338 1.338 0 0 1 2.495-.673c1.017-.449 1.398-1.153 1.398-2.491v-1.46c0-1.944-1.095-3.286-2.798-3.286S4.19 4.073 4.19 6.015V7.72a.366.366 0 0 1-.365.365h-.487A1.34 1.34 0 0 1 2 6.746v-.487A1.34 1.34 0 0 1 3.338 4.92h.233C3.94 3.182 5.201 2 6.99 2c1.788 0 3.049 1.182 3.417 2.92h.233a1.34 1.34 0 0 1 1.338 1.339v.486a1.34 1.34 0 0 1-1.338 1.339h-.15a2.848 2.848 0 0 1-1.918 2.599 1.339 1.339 0 1 1-2.677-.043Zm.73 0a.608.608 0 1 0 1.216 0 .608.608 0 0 0-1.216 0Zm3.894-3.286h.12a.609.609 0 0 0 .61-.608v-.487a.609.609 0 0 0-.609-.609h-.121v1.704ZM2.73 6.26v.487a.609.609 0 0 0 .608.608h.122V5.65h-.122a.609.609 0 0 0-.608.61Z"
     />
   </Svg>
-)
+);
 export default PlanOnlineConsultation;

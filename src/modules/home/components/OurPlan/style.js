@@ -214,7 +214,7 @@ export const styles = StyleSheet.create({
     alignItems: CENTER,
     justifyContent: CENTER,
     borderRadius: 4,
-    backgroundColor: WHITE
+    backgroundColor: WHITE,
   },
   buttonText: {
     fontFamily: fonts.family.monsterrant500,
@@ -227,10 +227,10 @@ export const styles = StyleSheet.create({
     width: '32%',
     borderRadius: 10,
     backgroundColor: '#E1EEFF',
-    marginTop: 28
+    marginTop: 28,
   },
   planCenterContainer: {
     backgroundColor: '#F8CE55',
-    marginTop: 12
-  }
+    marginTop: 12,
+  },
 });

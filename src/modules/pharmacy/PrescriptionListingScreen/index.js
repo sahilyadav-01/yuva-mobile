@@ -1,19 +1,34 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { usePrescriptionListingScreen } from './hooks/usePrescriptionListingScreen';
-import { styles } from './style';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {usePrescriptionListingScreen} from './hooks/usePrescriptionListingScreen';
+import {styles} from './style';
 import Header from '../../../components/Header';
-import { BUTTON_TEXT, PRESCRIPTION, PATIENT_PINCODE, PRESCRIPTION_ID, SEARCH_PLACEHOLDER_PHARMACY, NO_PRESCRIPTION_FOUND } from './constants';
+import {
+  BUTTON_TEXT,
+  PRESCRIPTION,
+  PATIENT_PINCODE,
+  PRESCRIPTION_ID,
+  SEARCH_PLACEHOLDER_PHARMACY,
+  NO_PRESCRIPTION_FOUND,
+} from './constants';
 
 const PrescriptionListingScreen = () => {
-  const { pharmacyDataLoading, prescriptionDataList, prescriptionDataListSearch, onPress, onSearch, onEndReached, isSearch } = usePrescriptionListingScreen();
+  const {
+    pharmacyDataLoading,
+    prescriptionDataList,
+    prescriptionDataListSearch,
+    onPress,
+    onSearch,
+    onEndReached,
+    isSearch,
+  } = usePrescriptionListingScreen();
   const renderPatient = (item, index) => {
     if (!item || !item?.item) {
       return null;
     }
     const onItemPress = () => {
-      onPress(item)
-    }
+      onPress(item);
+    };
     return (
       <View style={styles.CompleteView}>
         <TouchableOpacity onPress={onItemPress}>
@@ -46,7 +61,13 @@ const PrescriptionListingScreen = () => {
 
   return (
     <View style={styles.mainContainerStyle}>
-      <Header title={PRESCRIPTION} showBackButton={true} showSearch={true} searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY} onSearch={onSearch} />
+      <Header
+        title={PRESCRIPTION}
+        showBackButton={true}
+        showSearch={true}
+        searchPlaceholder={SEARCH_PLACEHOLDER_PHARMACY}
+        onSearch={onSearch}
+      />
       {!pharmacyDataLoading && prescriptionDataList?.length === 0 ? (
         <View>
           <Text style={styles.NoOrderText}>{NO_PRESCRIPTION_FOUND}</Text>

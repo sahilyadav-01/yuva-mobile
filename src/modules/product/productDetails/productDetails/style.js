@@ -42,7 +42,7 @@ const styles = arg => {
       paddingHorizontal: 16,
     },
     priceContainer: {
-      marginBottom:8,
+      marginBottom: 8,
       flexDirection: ROW,
       alignItems: CENTER,
     },

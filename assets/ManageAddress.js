@@ -1,13 +1,12 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
-const ManageAddress = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const ManageAddress = props => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}
     height={22}
     fill="none"
-    {...props}
-  >
+    {...props}>
     <Path
       stroke="#000"
       strokeLinecap="round"
@@ -23,5 +22,5 @@ const ManageAddress = (props) => (
       d="M7.578 14.42a2.193 2.193 0 0 1 2.193-2.193h2.193a2.193 2.193 0 0 1 2.193 2.192V21H7.578v-6.58Z"
     />
   </Svg>
-)
+);
 export default ManageAddress;

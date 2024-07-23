@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {BLACK, DOVE_GRAY, MARINER, PORCELAIN, ZUMTHOR} from '../../styles/colors';
+import {
+  BLACK,
+  DOVE_GRAY,
+  MARINER,
+  PORCELAIN,
+  ZUMTHOR,
+} from '../../styles/colors';
 import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 import {fonts} from '../../styles/fonts';
 
@@ -56,6 +62,6 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.family.monsterrant500,
     fontSize: fonts.size.fontSize10,
     color: DOVE_GRAY,
-    maxWidth: '70%'
+    maxWidth: '70%',
   },
 });
