@@ -40,7 +40,7 @@ export const styles = () => {
     searchContainer: {justifyContent: CENTER},
     textInputStyle: {
       flex: 1,
-      paddingVertical: isIOS ? 16 : 0,
+      paddingVertical: isIOS ? 4 : 0,
       justifyContent: CENTER,
       color: '#8391A1',
       fontFamily: fonts.family.montserrat400,
@@ -121,7 +121,7 @@ export const styles = () => {
       justifyContent: CENTER,
     },
     listContainer: {marginTop: 24, flex: 1},
-    headerContainer: {flex: 1, marginBottom: 12, justifyContent: SPACE_BETWEEN},
+    headerContainer: {flex: 1, marginVertical: 12, justifyContent: SPACE_BETWEEN},
     spaceContainer: {flex: 0.1},
     searchResultContainer: {
       position: ABSOLUTE,
