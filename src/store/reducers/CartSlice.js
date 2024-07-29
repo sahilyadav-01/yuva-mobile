@@ -40,7 +40,7 @@ export const deleteCartThunk = createAsyncThunk(
       const priceQuery = `productTypeEnum=${params?.type}&itemId=${params?.itemId}`;
       const endpoint = `/cart?${priceQuery}`;
       const response = await YuvaService.delete(endpoint);
-      return fulfillWithValue(response);
+      return fulfillWithValue({...response,deletedId:params?.itemId});
     } catch (error) {
       Alert.alert('Alert', 'Unable to remove item to cart');
       return rejectWithValue(error);
@@ -251,6 +251,7 @@ const cartSlice = createSlice({
         state.loading = false;
         state.cart.isRemoved = true;
         state.addToCartLoad = false;
+        state.existingIds = state.existingIds.filter(item=>item!==payload?.deletedId);
       }
     },
     [deleteCartThunk.rejected]: (state, {payload}) => {

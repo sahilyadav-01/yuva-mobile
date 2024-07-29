@@ -21,6 +21,12 @@ export const useViewAllOurPlan = () => {
     navigation.navigate(OUR_PLAN);
   };
 
+  const getPrice = (item) => {
+    if(item?.yearlyFinalCost > 0) return {finalCost:item?.yearlyFinalCost,finalPrice:item?.yearlyPrice,period:'/- per year'}
+    else if(item?.halfYearlyFinalCost > 0) return {finalCost:item?.halfYearlyFinalCost,finalPrice:item?.halfYearlyPrice,period:'/- half yearly'}
+    else if(item?.quarterlyFinalCost > 0) return {finalCost:item?.quarterlyFinalCost,finalPrice:item?.quarterlyPrice,period:'/- quarterly'}
+  }
+
   const getData = data => {
     const offset = Math.ceil(data.length / 3) * 3 - data.length;
     if (offset === 0) {
@@ -47,5 +53,6 @@ export const useViewAllOurPlan = () => {
     onPlanPress,
     allPlans,
     getData,
+    getPrice,
   };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles as style} from './style';
 import {useHome} from './hooks/useHome';
-import {SafeAreaView, ScrollView, View, Text} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import Header from '../../components/Header';
 import Services from './components/services';
 import LifeStyle from './components/lifeStyle';
@@ -35,6 +35,7 @@ export const HomeScreen = () => {
     onViewAllServices,
     enableGps,
     currentCityDetails,
+    openSettings
   } = useHome();
 
   const styles = style();
@@ -66,11 +67,11 @@ export const HomeScreen = () => {
         hideTitle={true}
       />
       {enableGps && (
-        <View style={styles.noteContainer}>
+        <TouchableOpacity onPress={openSettings} style={styles.noteContainer}>
           <Text style={styles.noteText}>
-            Please turn on GPS in settings to access the current location
+            Please click to enable your location setting
           </Text>
-        </View>
+        </TouchableOpacity>
       )}
       {!enableGps &&
         currentCityDetails?.value?.toUpperCase() === 'CITY NOT FOUND' && (

@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {Linking} from 'react-native';
 import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import {useDispatch, useSelector} from 'react-redux';
@@ -38,7 +39,6 @@ import {
 import {setHomeSearch} from '../../../store/reducers/HomeSearchSlice';
 import {getTopProducts} from '../../../store/reducers/ProductSlice';
 import {getPlatform} from '../../../utils/utils';
-import {Alert, Linking} from 'react-native';
 import {
   getCurrentCity,
   setPermission,
@@ -222,6 +222,7 @@ export const useHome = () => {
       if (Platform.isAndroid && error.code === 2) {
         setEnableGps(true);
       } else if (Platform.isIOS) {
+        setEnableGps(true);
         dispatch(setPermission(false));
       }
       dispatch(getAllCityNamesThunk());
@@ -230,6 +231,11 @@ export const useHome = () => {
       enableHighAccuracy: true,
     });
   };
+
+  const openSettings = () => {
+    if(getPlatform().isAndroid) Linking.sendIntent('android.settings.LOCATION_SOURCE_SETTINGS')
+    else if(getPlatform().isIOS) Linking.openURL('App-Prefs:Privacy&path=LOCATION')
+  }
 
   return {
     activeIndex,
@@ -254,5 +260,6 @@ export const useHome = () => {
     onViewAllServices,
     enableGps,
     currentCityDetails,
+    openSettings
   };
 };
