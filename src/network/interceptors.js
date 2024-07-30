@@ -78,6 +78,7 @@ axiosClient.interceptors.request.use(
 
     config.headers = {
       ...config.headers,
+      version: '4.0.0'
     };
 
     if (

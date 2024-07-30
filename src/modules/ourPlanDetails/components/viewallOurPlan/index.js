@@ -8,7 +8,7 @@ import {LEARN_MORE, VIEW_PLAN} from './constants';
 import {ALTO_SECONDARY, RED, WHITE} from '../../../../styles/colors';
 
 const ViewAllOurPlan = () => {
-  const {onPlanPress, allPlans, getData} = useViewAllOurPlan();
+  const {onPlanPress, allPlans, getData, getPrice} = useViewAllOurPlan();
 
   const RenderItem = ({item, index}) => {
     return (
@@ -29,20 +29,20 @@ const ViewAllOurPlan = () => {
                 {item?.description}
               </Text>
             )}
-            {item?.yearlyPrice > item?.yearlyFinalCost ? (
+            {getPrice(item)?.finalPrice > getPrice(item)?.finalCost ? (
               <Text
                 numberOfLines={1}
                 style={[
                   styles.priceText,
                   {textDecorationLine: 'line-through', color: RED},
                 ]}>
-                {item?.yearlyPrice}/-
+                {getPrice(item)?.finalPrice}/-
               </Text>
             ) : (
               <Text>{'  '}</Text>
             )}
-            <Text numberOfLines={1} style={styles.priceText}>
-              {item?.yearlyFinalCost}/- per year
+            <Text numberOfLines={2} style={styles.priceText}>
+              {getPrice(item)?.finalCost}{getPrice(item)?.period}
             </Text>
           </>
         )}
