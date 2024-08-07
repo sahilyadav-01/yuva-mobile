@@ -4,7 +4,6 @@ import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import {useDispatch, useSelector} from 'react-redux';
 import {allAppointmentThunk} from '../../../store/reducers/AppointmentSlice';
-import {popularTestsSliceThunk} from '../../../store/reducers/PopularTestsSlice ';
 import {lifeStyleSliceThunk} from '../../../store/reducers/LifeStyleSlice';
 import {getCartUserThunk} from '../../../store/reducers/CartSlice';
 import {
@@ -12,7 +11,6 @@ import {
   fetchHomeScreenPlans,
   fetchHomeScreenTests,
   planPopularThunk,
-  popularPackageNameThunk,
 } from '../../../store/reducers/ProgramAndPlanSlice';
 import {getServicesThunk} from '../../../store/reducers/AttributeSlice';
 import {

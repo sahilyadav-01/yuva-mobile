@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
   touchableOpacityContainerStyle: {
     flexDirection: COLUMN,
     flex: 1,
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal:2,
     borderRadius: 10,
     backgroundColor: ZUMTHOR,
     marginHorizontal: 0,
@@ -20,13 +21,12 @@ export const styles = StyleSheet.create({
     flexDirection: COLUMN,
   },
   subBottomContainerStyle: {
-    fontSize: fonts.size.fontSize8,
-    fontFamily: fonts.family.montserrat400,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.montserrat600,
     textAlign: CENTER,
     color: BLACK,
     marginTop: 4,
-    width: '80%',
-    height: 20,
+    width: '100%',
     textAlignVertical: CENTER,
   },
   headView: {
@@ -41,8 +41,8 @@ export const styles = StyleSheet.create({
   },
   head: {
     color: GREEN,
-    fontSize: fonts.size.fontSize6,
-    fontFamily: fonts.family.montserrat400,
+    fontSize: fonts.size.fontSize10,
+    fontFamily: fonts.family.montserrat600,
     textAlign: CENTER,
     marginTop: 4,
   },

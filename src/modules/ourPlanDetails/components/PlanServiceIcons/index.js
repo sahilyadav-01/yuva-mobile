@@ -17,7 +17,7 @@ const PlanServiceIcons = ({data}) => {
       <View
         style={[
           style.servicesSubContainer,
-          {marginRight: (index + 1) % 4 === 0 ? undefined : '5%'},
+          {marginRight: (index + 1) % 3 === 0 ? undefined : '5%'},
         ]}>
         <OurPlanServiceIconsCard
           key={item.name}
@@ -36,7 +36,7 @@ const PlanServiceIcons = ({data}) => {
       data={filteredServicesArray}
       renderItem={renderItem}
       keyExtractor={(item, index) => `${index}`}
-      numColumns={4}
+      numColumns={3}
     />
   );
 };
