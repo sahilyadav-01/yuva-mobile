@@ -66,8 +66,8 @@ export const usePlanServiceIcons = data => {
     typeof filteredServicesArray === 'object' &&
     filteredServicesArray?.length > 0
   ) {
-    const offset = 4 - (filteredServicesArray.length % 4);
-    if (offset !== 4) {
+    const offset = 3 - (filteredServicesArray.length % 3);
+    if (offset !== 3) {
       for (let i = 1; i <= offset; i++) {
         filteredServicesArray.push({
           ...filteredServicesArray[filteredServicesArray.length - 1],

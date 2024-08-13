@@ -6,7 +6,7 @@ export const styles = () => {
   return StyleSheet.create({
     servicesSubContainer: {
       flexDirection: ROW,
-      width: '21.5%',
+      width: '29%',
     },
   });
 };
