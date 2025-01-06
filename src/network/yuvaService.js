@@ -1,6 +1,7 @@
 import Config from 'react-native-config';
 import axiosClient, {handleRefreshToken} from './interceptors';
 import {getJwt} from '../store/LocalStore';
+import axios from 'axios';
 
 class YuvaService {
   controller;
@@ -43,10 +44,13 @@ class YuvaService {
   post = async (endpoint, params, headers) => {
     return new Promise(async (resolve, reject) => {
       try {
+        console.log("This is headers",headers);
+        console.log("this is config",Config);
+        
         const response = await axiosClient.post(
           `${Config.SERVER}${endpoint}`,
           params,
-          {...headers, signal: this.controller.signal},
+          {signal: this.controller.signal},
         );
         resolve(response);
       } catch (error) {

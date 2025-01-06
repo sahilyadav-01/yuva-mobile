@@ -11,6 +11,7 @@ import {
   GREEN,
   MARINER,
   WHITE,
+  RED
 } from '../../../../styles/colors';
 import {CENTER} from '../../../../styles/constants';
 
@@ -70,10 +71,14 @@ const OurPlan = () => {
                   style={{
                     fontFamily: fonts.family.montserrat400,
                     fontSize: fonts.size.fontSize8,
-                    color: BLACK,
+                    textDecorationLine:item?.discountedPrice<item?.price?'line-through':'none',
+                    color: item?.discountedPrice<item?.price?RED:BLACK,
                   }}>
                   ₹ {item?.price}
                 </Text>
+                {console.log("This is discounted price",item?.discountedPrice,"This is price",item?.price)}
+                
+                {item?.discountedPrice < item?.price && <Text style = {styles.PlanPrice && {fontSize:fonts.size.fontSize16}}>₹{item?.discountedPrice}</Text>}
                 <TouchableOpacity
                   onPress={() => {
                     handlePress(index);
