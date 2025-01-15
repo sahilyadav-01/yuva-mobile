@@ -75,17 +75,18 @@ axiosClient.interceptors.request.use(
         return item;
       }
     });
-
+    
     config.headers = {
       ...config.headers,
       version: '4.0.0'
     };
-
+    
     if (
       config.url.includes('/cart') ||
       config.url.includes('/coupon/getAllCoupons/user')
     ) {
       const deviceId = await getDeviceId();
+      
       config.headers = {
         ...config.headers,
         Cookie: `SESSION_ID=${deviceId}`,
@@ -93,6 +94,7 @@ axiosClient.interceptors.request.use(
     }
 
     if (isLoginApi.length === 0) {
+      
       const jwt = await getJwt();
       config.headers = {
         ...config.headers,
@@ -145,7 +147,7 @@ axiosClient.interceptors.response.use(
     });
     return Promise.reject(error);
   },
-);
+)
 
 export {handleRefreshToken};
 export default axiosClient;
