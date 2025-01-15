@@ -76,7 +76,6 @@ const OurPlan = () => {
                   }}>
                   ₹ {item?.price}
                 </Text>
-                {console.log("This is discounted price",item?.discountedPrice,"This is price",item?.price)}
                 
                 {item?.discountedPrice < item?.price && <Text style = {styles.PlanPrice && {fontSize:fonts.size.fontSize16}}>₹{item?.discountedPrice}</Text>}
                 <TouchableOpacity
