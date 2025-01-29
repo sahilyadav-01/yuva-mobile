@@ -39,7 +39,7 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - fmt (6.2.1)
-  - FreshchatSDK (5.4.2)
+  - FreshchatSDK (6.3.2)
   - glog (0.3.5)
   - GoogleDataTransport (9.4.1):
     - GoogleUtilities/Environment (~> 7.7)
@@ -414,8 +414,8 @@ PODS:
     - FirebaseCoreExtension (= 10.7.0)
     - React-Core
     - RNFBApp
-  - RNFreshchatSDK (4.2.0):
-    - FreshchatSDK (= 5.4.2)
+  - RNFreshchatSDK (4.7.5):
+    - FreshchatSDK (= 6.3.2)
     - React
   - RNFS (2.20.0):
     - React-Core
@@ -457,7 +457,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.11.1):
+  - RNScreens (3.22.0):
     - React-Core
     - React-RCTImage
   - RNSVG (12.3.0):
@@ -679,7 +679,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 913cf60d0400ebd5d6b63a28b290372ab44590dd
   FirebaseMessaging: ac9062bcc35ed56e15a0241d8fd317022499baf8
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  FreshchatSDK: 426e79c3ca34237e5b1328ac4d1a4406431b1a75
+  FreshchatSDK: 7cc853da5198be9fe0a76bd579ca1c6ea5c1a2ee
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
@@ -728,12 +728,12 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 749f2e049dcd79e2e44f134f66b73a06951b5066
   RNFBApp: 0d8bf86673bbad0524d1ceac3944d71ccf48a0e4
   RNFBMessaging: 4b8cb1215465bacca36d0fcfc2f51e7e2aa1bc91
-  RNFreshchatSDK: 7a6f0dab77e8a695c05f7be76fc7167bb47fbf98
+  RNFreshchatSDK: ad5570d9886e53b0bc65192927c534b235d3f11c
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 998887f1b2c6098ffa2506402087c0e8ef5d69a1
   RNImageCropPicker: ffbba608264885c241cbf3a8f78eb7aeeb978241
   RNReanimated: f0d66bda3d074c43c72a18f4fd4f4c26687bc1fd
-  RNScreens: 4d83613b50b74ed277026375dc0810893b0c347f
+  RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654

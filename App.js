@@ -11,7 +11,7 @@ import {getIosStatusBarHeight, getPlatform} from './src/utils/utils';
 import {MARINER} from './src/styles/colors';
 import YuvaService from './src/network/yuvaService';
 import LoaderContext from './src/components/LoaderContext';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 const yuvaService = new YuvaService();
 export default function App() {
   const {showContent} = useApp();
@@ -58,12 +58,14 @@ export default function App() {
     }
   };
   return (
+    <GestureHandlerRootView>
     <Provider store={store}>
       <PaperProvider>
         <LoaderContext />
         <Content />
       </PaperProvider>
     </Provider>
+    </GestureHandlerRootView>
   );
 }
 
