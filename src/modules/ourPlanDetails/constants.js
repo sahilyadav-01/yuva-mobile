@@ -6,7 +6,7 @@ export const INCLUDES = 'includes';
 export const termsAndCondition = [
   'Any plan can be cancelled within 7 days subject to a cancellation fee. The plan can only be cancelled if none of the service has been utilised by the customer.',
   'The plan is valid for family members ( Self, spouse, and children ).',
-  'OPD consultation means treatment and examination from a network clinic and hospital. which do not require hospitalisation.',
+  'OPD consultation means treatment and examination from an open network clinic and hospital. which do not require hospitalisation.',
   'To avail of any of the services a valid Id needs to be provided to the healthcare partner and services provider.',
   'Any impersonation can lead to the cancellation of the plan.',
   'It is advisable to take an OPD consultation appointment a minimum of 1 day prior to the date of consultation. The appointment will schedule based on the availability of a consulting Doctor. ',
