@@ -12,7 +12,7 @@ import {
 import {styles} from './styles';
 import {useOurPlanDetails} from './hooks/useOurPlanDetails';
 import PlanCard from './components/PlanCard';
-import {TERMS_AND_CONDITION, TITLE, termsAndCondition} from './constants';
+import { TITLE} from './constants';
 import {FlatList} from 'react-native-gesture-handler';
 import {PNG} from '../../../assets';
 import Header from '../../components/Header';
@@ -32,6 +32,7 @@ const OurPlanDetails = props => {
     ourPlanData,
     bookOurPlan,
     selectedCityId,
+    termsAndCondition
   } = useOurPlanDetails(props);
   const renderItem = ({item, index}) => {
     return (

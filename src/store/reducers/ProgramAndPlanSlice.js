@@ -80,6 +80,18 @@ export const getAllPlanServicesThunk = createAsyncThunk(
     }
   },
 );
+export const getSinglePlanThunk = createAsyncThunk(
+  'plan/single',
+  async(Uuid,{fulfillWithValue, rejectWithValue}) => {
+    try{
+      const endpoint = `/plan/single/${Uuid}`;
+      const response = await YuvaService.get(endpoint);
+      return response.data;
+    } catch(error){
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 export const planDetailsThunk = createAsyncThunk(
   'plan/details',
   async (Uuid, {fulfillWithValue, rejectWithValue}) => {
@@ -203,6 +215,9 @@ const initialState = {
   getAllPlanServicesLoading: false,
   getAllPlanServicesError: false,
   planType: '',
+  getSinglePlanServicesLoading:false,
+  getSinglePlanServicesError: false,
+  getSinglePlanServices : [],
   homePackages: {loading: false, data: [], error: false},
   homeTests: {loading: false, data: [], error: false},
   homePlans: {loading: false, data: [], error: false},
@@ -280,6 +295,21 @@ const programAndPlanSlice = createSlice({
       state.getAllPlanServicesLoading = false;
       state.getAllPlanServicesError = true;
       state.getAllPlanServices = [];
+    },
+    [getSinglePlanThunk.pending]: (state, {payload}) => {
+      state.getSinglePlanServicesLoading = true;
+      state.  getSinglePlanServicesError = false;
+      state.getSinglePlanServices = [];
+    },
+    [getSinglePlanThunk.fulfilled]: (state, {payload}) => {
+      state.getSinglePlanServices = payload.data;
+      state.getSinglePlanServicesLoading = false;
+      state.getSinglePlanServicesError = false;
+    },
+    [getSinglePlanThunk.rejected]: (state, {payload}) => {
+      state.getSinglePlanServicesLoading = false;
+      state.getSinglePlanServicesError = true;
+      state.getSinglePlanServices = [];
     },
     [planDetailsThunk.pending]: (state, {payload}) => {
       state.loading = true;
