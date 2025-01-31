@@ -142,6 +142,14 @@ const UserDetails = ({
           )}
           <Icon name="image-plus" size={26} color={GREEN} style={coverIcon} />
         </TouchableOpacity>
+        {/* //TODO(Harshit Duggal): KYC VERIFICATION MODAL
+        // 1. Click to open modal
+        // 2. Show one dropdown (Select your document), 2nd input box with validation of aadhar number , pan number & check if dl erification is also there.
+        // 3. Upload file.
+        // 4. Send for verification. */}
+        <View>
+          <Text >Kyc Verify</Text>
+        </View>
         <View>
           <TouchableOpacity
             style={userImage}
