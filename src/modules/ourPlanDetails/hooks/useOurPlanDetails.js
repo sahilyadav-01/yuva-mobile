@@ -1,12 +1,15 @@
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {
   getAllPlanServicesThunk,
+  getSinglePlanThunk,
   planDetailsThunk,
 } from '../../../store/reducers/ProgramAndPlanSlice';
+import { termsAndCondition } from '../constants';
 
 export const useOurPlanDetails = props => {
+  const [localTerms, setLocalTerms] = useState([...termsAndCondition]); 
   const {
     ourPlanData,
     planDetails,
@@ -15,6 +18,9 @@ export const useOurPlanDetails = props => {
     getAllPlanServices,
     getAllPlanServicesLoading,
     getAllPlanServicesError,
+    getSinglePlanServicesLoading,
+    getSinglePlanServicesError,
+    getSinglePlanServices 
   } = useSelector(state => state.programAndPlan);
   const {loggedIn} = useSelector(state => state.auth);
   const {selectedCityId} = useSelector(state => state.diagnostic);
@@ -26,9 +32,19 @@ export const useOurPlanDetails = props => {
     if (focused) {
       dispatch(planDetailsThunk(Uuid));
       dispatch(getAllPlanServicesThunk(Uuid));
+      dispatch(getSinglePlanThunk(Uuid));
     }
   }, [focused]);
 
+  useEffect(() => {
+    if (getSinglePlanServices?.relationsAllowed) {
+      setLocalTerms(prevTerms => {
+        const updatedTerms = [...prevTerms];
+        updatedTerms[1] = `The plan is valid for family members ( ${getSinglePlanServices.relationsAllowed} ).`;
+        return updatedTerms;
+      });
+    }
+  }, [getSinglePlanServices]);
   const bookOurPlan = () => {
     if (loggedIn === 'loggedIn') {
       navigation.navigate('OurPlanAddress', {...ourPlanData, plan: true});
@@ -49,5 +65,6 @@ export const useOurPlanDetails = props => {
     ourPlanData,
     bookOurPlan,
     selectedCityId,
+    termsAndCondition: localTerms
   };
 };
