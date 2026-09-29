@@ -20,3 +20,12 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+project(':react-native-freshchat-sdk') {
+    plugins.withId("com.android.library") {
+        dependencies.add(
+            "implementation",
+            "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0"
+        )
+    }
+}
