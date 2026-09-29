@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import firebaseMessaging from '@react-native-firebase/messaging';
+import {getMessaging, getToken} from '@react-native-firebase/messaging';
 import {YuvaService} from '../../../App';
 import {
   clearJwt,
@@ -38,7 +38,7 @@ export const createOrderThunk = createAsyncThunk(
             cod,
           };
       const refreshToken = await getRefreshToken();
-      const fcmToken = await firebaseMessaging().getToken();
+      const fcmToken = await getToken(getMessaging());
       const refreshTokenResp = await YuvaService.post('/refresh-token', {
         token: refreshToken,
         fcmToken,

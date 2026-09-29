@@ -7,7 +7,7 @@ import {
   Linking,
   NativeModules,
 } from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
+import RNFetchBlob from 'react-native-blob-util';
 import DeviceInfo from 'react-native-device-info';
 import ImagePicker from 'react-native-image-crop-picker';
 export const handleNetworkError = (status, message) => {

@@ -2,7 +2,11 @@ import {useEffect, useState} from 'react';
 import {Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import firebaseMessaging from '@react-native-firebase/messaging';
+import {
+  getInitialNotification,
+  getMessaging,
+  onNotificationOpenedApp,
+} from '@react-native-firebase/messaging';
 import {
   getExistingUser,
   getJwt,
@@ -53,16 +57,17 @@ export const useIntro = () => {
       'url',
       event => event?.url && handleDeepLinking(event.url),
     );
-    firebaseMessaging()
-      .getInitialNotification()
+    const messaging = getMessaging();
+    getInitialNotification(messaging)
       .then(initialNotification => {
         handleNotification(initialNotification?.data ?? false);
       });
-    firebaseMessaging().onNotificationOpenedApp(notification => {
+    const unsubscribeNotification = onNotificationOpenedApp(messaging, notification => {
       handleNotification(notification?.data ?? false);
     });
     return () => {
       linkingEvent.remove();
+      unsubscribeNotification();
     };
   }, []);
 

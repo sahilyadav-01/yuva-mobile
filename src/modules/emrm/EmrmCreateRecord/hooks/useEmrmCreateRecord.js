@@ -7,7 +7,7 @@ import {
   resetAddErmThunkError,
   resetSuccessMessage,
 } from '../../../../store/reducers/EmrmSlice';
-import DocumentPicker from 'react-native-document-picker';
+import {pick, types} from '@react-native-documents/picker';
 import {Alert} from 'react-native';
 import {
   ALERT,
@@ -55,8 +55,8 @@ export const useEmrmCreateRecord = () => {
     documentType: documentType.toString(),
   };
   const handleDocumentPick = async () => {
-    const res = await DocumentPicker.pick({
-      type: [DocumentPicker.types.pdf, DocumentPicker.types.images],
+    const res = await pick({
+      type: [types.pdf, types.images],
       allowMultiSelection: false,
     });
     setDocument(res);

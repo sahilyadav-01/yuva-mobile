@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import firebaseMessaging from '@react-native-firebase/messaging';
+import {getMessaging, getToken} from '@react-native-firebase/messaging';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Alert, PermissionsAndroid} from 'react-native';
 import {
@@ -23,7 +23,7 @@ import {handleNetworkError} from '../../utils/utils';
 const registerFcmToken = async (register, logout) => {
   const logoutDevices = logout ?? false;
   try {
-    const fcmToken = await firebaseMessaging().getToken();
+    const fcmToken = await getToken(getMessaging());
     const refreshToken = await getRefreshToken();
     const url = register ? `/fcm/${fcmToken}/false` : '/logout';
     const body =
@@ -211,7 +211,7 @@ export const refreshThunk = createAsyncThunk(
   async (token, {fulfillWithValue, rejectWithValue}) => {
     try {
       const endpoint = '/refresh-token';
-      const fcmToken = await firebaseMessaging().getToken();
+      const fcmToken = await getToken(getMessaging());
       const response = await YuvaService.post(endpoint, {token, fcmToken});
       await clearJwt();
       await clearRefreshToken();

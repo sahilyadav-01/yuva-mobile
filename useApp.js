@@ -1,5 +1,11 @@
 import {useEffect, useState} from 'react';
-import firebaseMessaging from '@react-native-firebase/messaging';
+import {
+  AuthorizationStatus,
+  getMessaging,
+  getToken,
+  hasPermission,
+  requestPermission,
+} from '@react-native-firebase/messaging';
 import {
   Freshchat,
   FreshchatConfig,
@@ -7,7 +13,6 @@ import {
 import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
 import store from './src/store/Store';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
-import SplashScreen from 'react-native-splash-screen';
 import VersionCheck from 'react-native-version-check';
 import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
@@ -16,12 +21,11 @@ import {setPermission} from './src/store/reducers/LocationSlice';
 
 export const useApp = () => {
   const Platform = getPlatform();
-  const checkVersion = true;
-  const [showContent, setShowContent] = useState(!checkVersion);
+  const [showContent] = useState(true);
   const [fcmToken, setFcmToken] = useState(null);
 
   const initializeToken = async () => {
-    const token = await firebaseMessaging().getToken();
+    const token = await getToken(getMessaging());
     setFcmToken(token);
   };
 
@@ -32,17 +36,17 @@ export const useApp = () => {
         (Platform.isAndroid && AndroidPlatform.Version < 33) ||
         Platform.isIOS
       ) {
-        let permission = await firebaseMessaging().hasPermission();
+        let permission = await hasPermission(getMessaging());
         if (
           (permission ===
-            firebaseMessaging.AuthorizationStatus.NOT_DETERMINED ||
-            permission === firebaseMessaging.AuthorizationStatus.PROVISIONAL) &&
+            AuthorizationStatus.NOT_DETERMINED ||
+            permission === AuthorizationStatus.PROVISIONAL) &&
           !existingUser
         ) {
-          await firebaseMessaging().requestPermission();
-          permission = await firebaseMessaging().hasPermission();
+          await requestPermission(getMessaging());
+          permission = await hasPermission(getMessaging());
         }
-        initializeToken();
+        await initializeToken();
       } else {
         let notificationPermission = await PermissionsAndroid.check(
           'android.permission.POST_NOTIFICATIONS',
@@ -55,7 +59,7 @@ export const useApp = () => {
             'android.permission.POST_NOTIFICATIONS',
           );
         }
-        initializeToken();
+        await initializeToken();
       }
     } catch (error) {}
   };
@@ -83,39 +87,34 @@ export const useApp = () => {
     );
   };
 
-  const checkVersionUpdate = (currentVersion, latestVersion) => {
+  const checkVersionUpdate = async (currentVersion, latestVersion) => {
     if (Platform?.isIOS) {
       const latestVersionObj = {
         latestVersion,
         provider: 'appStore',
         currentVersion,
       };
-      VersionCheck.getAppStoreUrl({appID: '6449449413'}).then(storeUrl => {
-        VersionCheck.needUpdate(latestVersionObj).then(versionObj => {
-          if (versionObj && versionObj?.isNeeded) {
-            handleVersionUpdate(versionObj?.latestVersion, storeUrl);
-          } else {
-            setShowContent(true);
-          }
-        });
-      });
+      const storeUrl = await VersionCheck.getAppStoreUrl({appID: '6449449413'});
+      const versionObj = await VersionCheck.needUpdate(latestVersionObj);
+      if (versionObj?.isNeeded) {
+        handleVersionUpdate(versionObj.latestVersion, storeUrl);
+      }
     } else if (Platform?.isAndroid) {
-      VersionCheck.getLatestVersion().then(latestVersion => {
-        const androidPackageName = VersionCheck?.getPackageName();
-        const currentAndroidVersion = VersionCheck.getCurrentVersion();
-        VersionCheck?.getPlayStoreUrl({packageName: androidPackageName}).then(
-          storeUrl => {
-            VersionCheck.needUpdate({
-              currentVersion: currentAndroidVersion,
-              latestVersion,
-            }).then(async obj => {
-              if (obj && obj?.isNeeded) {
-                handleVersionUpdate(obj?.latestVersion, storeUrl);
-              }
-            });
-          },
-        );
+      const resolvedLatestVersion =
+        latestVersion ?? (await VersionCheck.getLatestVersion());
+      const androidPackageName = VersionCheck.getPackageName();
+      const currentAndroidVersion =
+        currentVersion ?? VersionCheck.getCurrentVersion();
+      const storeUrl = await VersionCheck.getPlayStoreUrl({
+        packageName: androidPackageName,
       });
+      const versionObj = await VersionCheck.needUpdate({
+        currentVersion: currentAndroidVersion,
+        latestVersion: resolvedLatestVersion,
+      });
+      if (versionObj?.isNeeded) {
+        handleVersionUpdate(versionObj.latestVersion, storeUrl);
+      }
     }
   };
 
@@ -135,40 +134,23 @@ export const useApp = () => {
   };
 
   useEffect(() => {
+    const initialize = async () => {
+      const tasks = [
+        handleMessagingPermission(),
+        handleLocationPermission(),
+        checkVersionUpdate(),
+      ];
+      await Promise.allSettled(tasks);
+    };
+
+    initialize();
+  }, []);
+
+  useEffect(() => {
     if (typeof fcmToken === 'string') {
       initializeFreshchat();
     }
   }, [fcmToken]);
-
-  useEffect(() => {
-    if (Platform?.isIOS && checkVersion) {
-      const packageName = VersionCheck?.getPackageName();
-      const currentIosVersion = VersionCheck?.getCurrentVersion();
-      VersionCheck?.getCountry().then(countryCode => {
-        VersionCheck.getLatestVersion({
-          provider: () =>
-            fetch(
-              `https://itunes.apple.com/${countryCode}/lookup?bundleId=${packageName}`,
-            )
-              .then(r => r.json())
-              .then(result =>
-                checkVersionUpdate(
-                  currentIosVersion,
-                  result?.results[0]?.version,
-                ),
-              ),
-        });
-      });
-    } else if (Platform?.isAndroid && checkVersion) {
-      checkVersionUpdate();
-    }
-    SplashScreen.hide();
-    handleMessagingPermission().finally(() => {
-      handleLocationPermission().finally(() => {
-        setShowContent(true);
-      });
-    });
-  }, []);
 
   return {showContent};
 };
