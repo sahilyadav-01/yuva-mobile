@@ -1,0 +1,21 @@
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-async-storage\async-storage\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-clipboard\clipboard\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-community\datetimepicker\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-community\geolocation\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-documents\picker\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-firebase\app\android\src\reactnative\java\io\invertase\firebase\app\generated\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-firebase\messaging\android\src\main\java\io\invertase\firebase\messaging\generated\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\@react-native-picker\picker\android\src\main\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-blob-util\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-config\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-gesture-handler\android\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-image-crop-picker\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-pager-view\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-reanimated\Common\NativeView\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-safe-area-context\android\src\main\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-screens\android\src\main\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-svg\android\src\main\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-vector-icons\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-webview\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\sahil yadav\Downloads\yuva-mobile\node_modules\react-native-worklets\android\build\generated\source\codegen\jni\CMakeLists.txt
+Y:\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt

@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "prefabPath": "C:\\Users\\sahil yadav\\.gradle\\caches\\modules-2\\files-2.1\\com.google.prefab\\cli\\2.1.0\\aa32fec809c44fa531f01dcfb739b5b3304d3050\\cli-2.1.0-all.jar",
+  "packages": [
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-reanimated\\android\\build\\intermediates\\prefab_package\\debug\\prefab",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-worklets\\android\\build\\intermediates\\prefab_package\\debug\\prefab",
+    "C:\\Users\\sahil yadav\\.gradle\\caches\\9.4.1\\transforms\\77218e06ebdf6de76d1e7c94d2ceb109\\transformed\\react-android-0.87.1-debug\\prefab",
+    "C:\\Users\\sahil yadav\\.gradle\\caches\\9.4.1\\transforms\\220c3c49c603f679f4cac522879563d4\\transformed\\hermes-android-250829098.0.17-debug\\prefab",
+    "C:\\Users\\sahil yadav\\.gradle\\caches\\9.4.1\\transforms\\751f7f458ac1718375ffa837c7ab564b\\transformed\\fbjni-0.7.0\\prefab"
+  ]
+}

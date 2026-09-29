@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "RNCImageCropPickerSpec_autolinked_build",
+		"source" : "C:/Users/sahil yadav/Downloads/yuva-mobile/node_modules/react-native-image-crop-picker/android/build/generated/source/codegen/jni"
+	}
+}

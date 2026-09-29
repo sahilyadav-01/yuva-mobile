@@ -1,0 +1,174 @@
+{
+  "buildFiles": [
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-async-storage\\async-storage\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-clipboard\\clipboard\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-community\\datetimepicker\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-community\\geolocation\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-documents\\picker\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-firebase\\app\\android\\src\\reactnative\\java\\io\\invertase\\firebase\\app\\generated\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-firebase\\messaging\\android\\src\\main\\java\\io\\invertase\\firebase\\messaging\\generated\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\@react-native-picker\\picker\\android\\src\\main\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-blob-util\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-config\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-gesture-handler\\android\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-image-crop-picker\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-pager-view\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-reanimated\\Common\\NativeView\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-safe-area-context\\android\\src\\main\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-screens\\android\\src\\main\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-svg\\android\\src\\main\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-vector-icons\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-webview\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "C:\\Users\\sahil yadav\\Downloads\\yuva-mobile\\node_modules\\react-native-worklets\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "Y:\\node_modules\\react-native\\ReactAndroid\\cmake-utils\\default-app-setup\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "Z:\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "Y:\\android\\app\\.cxx\\Debug\\6vj3e686\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "Z:\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "Y:\\android\\app\\.cxx\\Debug\\6vj3e686\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "appmodules::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "appmodules",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libappmodules.so",
+      "runtimeFiles": [
+        "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnpicker.so",
+        "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rngesturehandler_codegen.so",
+        "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_safeareacontext.so",
+        "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnscreens.so",
+        "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnsvg.so"
+      ]
+    },
+    "react_codegen_AsyncStorageSpec::@15af80695a6281ecf900": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_AsyncStorageSpec"
+    },
+    "react_codegen_RNCConfigSpec::@89f1b79ed4954e2f2cff": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNCConfigSpec"
+    },
+    "react_codegen_RNCGeolocationSpec::@1b959fcb56e23f7716ba": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNCGeolocationSpec"
+    },
+    "react_codegen_RNCImageCropPickerSpec::@702b02f8d2524609d414": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNCImageCropPickerSpec"
+    },
+    "react_codegen_RNCWebViewSpec::@eb48929f9f7453740a6c": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNCWebViewSpec"
+    },
+    "react_codegen_RNDateTimePickerCGen::@59b70ddc31ba2f8ef1d2": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNDateTimePickerCGen"
+    },
+    "react_codegen_RNFBAppTurboModules::@a0d44c1163aba7af3ea1": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNFBAppTurboModules"
+    },
+    "react_codegen_RNFBMessagingTurboModules::@23361e4831c0e3136ef6": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNFBMessagingTurboModules"
+    },
+    "react_codegen_RNVectorIconsSpec::@479809fae146501fd34d": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_RNVectorIconsSpec"
+    },
+    "react_codegen_ReactNativeBlobUtilSpec::@7d3cc6108106e04bb830": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_ReactNativeBlobUtilSpec"
+    },
+    "react_codegen_pagerview::@7032a8921530ec438d60": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_pagerview"
+    },
+    "react_codegen_rnclipboard::@6385240493dfcaf22ab7": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnclipboard"
+    },
+    "react_codegen_rndocumentpickerCGen::@aac1846a245ca418eb66": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rndocumentpickerCGen"
+    },
+    "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rngesturehandler_codegen",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rngesturehandler_codegen.so",
+      "runtimeFiles": []
+    },
+    "react_codegen_rnpicker::@e8bb2e9e833f47d0d516": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnpicker",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnpicker.so",
+      "runtimeFiles": []
+    },
+    "react_codegen_rnreanimated::@8afabad14bfffa3f8b9a": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnreanimated"
+    },
+    "react_codegen_rnscreens::@25bcbd507e98d3a854ad": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnscreens",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnscreens.so",
+      "runtimeFiles": []
+    },
+    "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnsvg",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_rnsvg.so",
+      "runtimeFiles": []
+    },
+    "react_codegen_rnworklets::@68f58d84d4754f193387": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_rnworklets"
+    },
+    "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "react_codegen_safeareacontext",
+      "output": "Y:\\android\\app\\build\\intermediates\\cxx\\Debug\\6vj3e686\\obj\\arm64-v8a\\libreact_codegen_safeareacontext.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "Z:\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "Z:\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
