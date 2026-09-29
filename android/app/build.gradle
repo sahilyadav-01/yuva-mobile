@@ -51,6 +51,9 @@ android {
 dependencies {
     implementation("com.facebook.react:react-android")
     implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
+    implementation(platform("com.google.firebase:firebase-bom:34.18.0"))
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.github.freshworks:freshchat-android:6.5.14")
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
