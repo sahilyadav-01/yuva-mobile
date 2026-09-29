@@ -29,3 +29,9 @@ project(':react-native-freshchat-sdk') {
         )
     }
 }
+
+project(':react-native-community_geolocation') {
+    plugins.withId("com.android.library") {
+        android.buildFeatures.buildConfig = true
+    }
+}
