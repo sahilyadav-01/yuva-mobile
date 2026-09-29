@@ -16,15 +16,20 @@ Install dependencies with `npm ci`.
 
 The Android application targets API 36, supports API 24 and newer, and uses React Native 0.87's 16 KB page-size-compatible native runtime. React Native 0.87 requires the New Architecture, so all upgraded native packages are selected for that runtime.
 
-On Windows, Android builds must run from project and Android SDK paths that contain no spaces. If either path contains spaces, mount them temporarily using drive letters before invoking Gradle:
+On Windows, Android builds should run from project and Android SDK paths that contain no spaces. CMake and Metro resolve SUBST paths differently, so moving the checkout and SDK to short, space-free paths is the supported setup. For one-off verification from an existing path with spaces, generate the release bundle from the canonical path before packaging native code through a short drive:
 
 ```powershell
 subst Y: "C:\path with spaces\yuva-mobile"
 subst Z: "C:\path with spaces\Android\Sdk"
+$bundleDir = 'android\app\build\generated\assets\react\release'
+$resDir = 'android\app\build\generated\res\react\release'
+node node_modules\react-native\cli.js bundle --platform android --dev false --entry-file index.js --bundle-output "$bundleDir\index.android.bundle" --assets-dest $resDir
+# Compile the generated JavaScript with hermesc, then replace index.android.bundle with the .hbc output.
 $env:ANDROID_HOME = 'Z:\'
 $env:ANDROID_SDK_ROOT = 'Z:\'
+$env:RN_SKIP_RELEASE_BUNDLE = 'true'
 Set-Location Y:\android
-.\gradlew.bat app:assembleDebug
+.\gradlew.bat app:assembleRelease
 ```
 
 Build commands:

@@ -6,8 +6,13 @@ apply plugin: "com.google.gms.google-services"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
+def usePrebuiltReleaseBundle = System.getenv("RN_SKIP_RELEASE_BUNDLE") == "true"
+
 react {
     autolinkLibrariesWithApp()
+    if (usePrebuiltReleaseBundle) {
+        debuggableVariants = ["debug", "release"]
+    }
 }
 
 def enableProguardInReleaseBuilds = false
@@ -45,6 +50,11 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
+    }
+
+    if (usePrebuiltReleaseBundle) {
+        sourceSets.release.assets.srcDir("$buildDir/generated/assets/react/release")
+        sourceSets.release.res.srcDir("$buildDir/generated/res/react/release")
     }
 }
 
