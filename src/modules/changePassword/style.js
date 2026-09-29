@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {CENTER, ROW, SPACE_BETWEEN} from '../../../styles/constants';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
 
 const styles = () => {
   return StyleSheet.create({

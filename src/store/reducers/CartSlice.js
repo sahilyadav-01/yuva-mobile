@@ -1,7 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
 import {YuvaService} from '../../../App';
-import store from '../Store';
 import {redeemCouponsSliceThunk} from './CouponSlice';
 
 export const getCartUserThunk = createAsyncThunk(
@@ -19,13 +18,13 @@ export const getCartUserThunk = createAsyncThunk(
 
 export const createCartUserThunk = createAsyncThunk(
   'cart/createCartUser',
-  async ({cartDto}, {fulfillWithValue, rejectWithValue}) => {
+  async ({cartDto}, {dispatch, fulfillWithValue, rejectWithValue}) => {
     const {itemDtoList} = cartDto;
     try {
       const endpoint = '/cart';
       const response = await YuvaService.post(endpoint, {itemDtoList});
       if (response?.data?.status) {
-        store.dispatch(getCartUserThunk());
+        dispatch(getCartUserThunk());
       }
     } catch (error) {
       Alert.alert('Alert', 'Unable to add item to cart');

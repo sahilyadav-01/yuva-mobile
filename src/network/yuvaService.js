@@ -6,10 +6,16 @@ import axios from 'axios';
 class YuvaService {
   controller;
   constructor() {
-    this.controller = new AbortController();
+    this.controller =
+      typeof AbortController !== 'undefined'
+        ? new AbortController()
+        : {abort: () => {}, signal: {}};
   }
   setController() {
-    this.controller = new AbortController();
+    this.controller =
+      typeof AbortController !== 'undefined'
+        ? new AbortController()
+        : {abort: () => {}, signal: {}};
   }
   async handleError(error) {
     if (error.response.status === 401) {
