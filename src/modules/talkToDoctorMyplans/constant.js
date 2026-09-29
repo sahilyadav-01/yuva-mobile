@@ -1,0 +1,14 @@
+export const TALK_TO_DOCTOR = 'Talk To Doctor';
+export const WITHIN_FEW_MINS = 'Within Few Mins';
+export const GENDER = 'Gender';
+export const NEXT = 'Next';
+export const SECURE_TEXT = '100% Private & Secure';
+export const COMPLETED = 'Completed';
+export const CANCELLED = 'Cancelled';
+export const DOWNLOAD_PRESCRIPTION = 'Download Prescription';
+export const CONSULT_AGAIN = 'Consult Again';
+export const PRESCRIPTION = 'Prescription';
+export const CHAT_NOW = 'Chat Now';
+export const USED = 'Used -';
+export const AVAILABLE = 'Available -';
+export const VALIDITY = 'Valid Till ';

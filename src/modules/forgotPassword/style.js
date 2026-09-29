@@ -1,0 +1,66 @@
+import {StyleSheet} from 'react-native';
+import {
+  MERCURY,
+  FLASH_WHITE,
+  WHITE,
+  RED_SHADE,
+  MARINER,
+  BLACK,
+  ZIRCON,
+} from '../../styles/colors';
+import {CENTER} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
+
+const styles = () => {
+  return StyleSheet.create({
+    cardContainer: {flex: 1, paddingVertical: 32, paddingHorizontal: 13},
+    cardStyle: {
+      backgroundColor: WHITE,
+      elevation: 100,
+      zIndex: 100,
+      borderRadius: 12,
+      shadowColor: FLASH_WHITE,
+      paddingTop: 16,
+      paddingBottom: 32,
+      paddingHorizontal: 14,
+    },
+    textInputContainerStyle: {
+      paddingHorizontal: 6,
+      marginTop: 32,
+      marginBottom: 24,
+    },
+    textInputContainer: {
+      paddingVertical: 12,
+      paddingLeft: 20,
+      fontFamily: fonts.family.monsterrant500,
+      fontSize: fonts.size.fontSize16,
+      color: BLACK,
+      borderWidth: 0.5,
+      borderRadius: 4,
+      backgroundColor: ZIRCON,
+    },
+    separator: {
+      borderWidth: 0.5,
+      backgroundColor: MERCURY,
+      borderColor: MERCURY,
+    },
+    buttonContainer: {
+      marginVertical: 32,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+      borderRadius: 8,
+      backgroundColor: MARINER,
+    },
+    buttonText: {
+      marginVertical: 16,
+      lineHeight: 17,
+      fontSize: fonts.size.fontSize14,
+      fontFamily: fonts.family.rubik700,
+      color: WHITE,
+    },
+    errorContainer: {marginVertical: 4},
+    errorText: {color: RED_SHADE},
+  });
+};
+
+export default styles;

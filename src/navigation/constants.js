@@ -1,0 +1,14 @@
+export const HOME = 'Home';
+export const HEALTH_PLANS = 'Health Plans';
+export const OUR_OFFERS = 'Our Offers';
+export const PROFILE = 'Profile';
+export const CHAT = 'Chat';
+export const SETTINGS = 'Settings';
+export const HRA_REPORTS = 'HRA Reports';
+export const DIAGNOSTIC_REPORTS = 'Diagnostic Reports';
+export const MY_PLANS = 'My Plans';
+export const CONSULTATIONS = 'Consultations';
+export const TALK_TO_DOCTOR = 'Talk To Doctor';
+export const OPD_CONSULTATION = 'OPD Consultation';
+export const MY_REPORTS = 'My Reports';
+export const CART = 'Cart';

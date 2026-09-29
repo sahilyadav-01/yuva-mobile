@@ -1,0 +1,38 @@
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react';
+import {useCartAddressList} from '../CartAddressList/hook/useCartAddressList';
+import Header from '../../../components/Header';
+import OrderDetails from '../../../components/OrderDetails';
+import ProgressBar from '../../../components/ProgressBar';
+import {styles} from './styles';
+import CustomDatePicker from '../../../components/CustomDatePicker';
+import FinalAddress from '../../../components/FinalAddress';
+import {CONFIRM_DATE_TIME} from './constant';
+const CheckoutScheduleList = () => {
+  const {ConfirmDateAndTime, handleDateTime} = useCartAddressList();
+
+  return (
+    <>
+      <Header
+        title={'Select Date and Time'}
+        showSearch={false}
+        showBackButton={true}
+        hideMenu={true}
+        showCart={true}
+      />
+      <ScrollView>
+        <OrderDetails />
+        <View style={styles.separator} />
+        <CustomDatePicker onDateTimeSelect={handleDateTime} OPD={true} />
+        <FinalAddress />
+        <TouchableOpacity
+          onPress={ConfirmDateAndTime}
+          style={styles.touchableButton}>
+          <Text style={styles.textBook}>{CONFIRM_DATE_TIME}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </>
+  );
+};
+
+export default CheckoutScheduleList;

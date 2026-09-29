@@ -1,0 +1,87 @@
+import {StyleSheet} from 'react-native';
+import {
+  CYAN_BLUE,
+  CYAN_BLUE_OPACITY,
+  FLASH_WHITE,
+  LIGHT_MERCURY,
+  MARINER,
+  WHITE,
+} from '../../styles/colors';
+import {CENTER, ROW, SPACE_BETWEEN} from '../../styles/constants';
+import {fonts} from '../../styles/fonts';
+import {getPlatform} from '../../utils/utils';
+
+const styles = enableResendOtp => {
+  const Platform = getPlatform();
+  return StyleSheet.create({
+    scrollViewContainer: {paddingHorizontal: 13, marginTop: 1},
+    signUpCard: {
+      backgroundColor: WHITE,
+      elevation: 100,
+      zIndex: 100,
+      paddingTop: 16,
+      paddingBottom: 32,
+      borderRadius: 12,
+      shadowColor: FLASH_WHITE,
+      paddingHorizontal: 14,
+    },
+    otpInputContainer: {
+      backgroundColor: LIGHT_MERCURY,
+      borderColor: LIGHT_MERCURY,
+      width: '20%',
+      borderRadius: 10,
+      justifyContent: CENTER,
+      alignItems: CENTER,
+    },
+    otpContainer: {
+      marginHorizontal: 10,
+      marginTop: 28,
+      marginBottom: 32,
+      flexDirection: ROW,
+      justifyContent: SPACE_BETWEEN,
+    },
+    verifyButtonContainer: {
+      backgroundColor: MARINER,
+      borderRadius: 10,
+      paddingVertical: 16,
+      alignItems: CENTER,
+      justifyContent: CENTER,
+    },
+    timerContainer: {paddingRight: 8, marginTop: 2},
+    resendOtpContainer: {
+      alignSelf: CENTER,
+      justifyContent: CENTER,
+      marginTop: 10,
+    },
+    headingContainer: {paddingLeft: 10, marginTop: 32},
+    verifyText: {
+      lineHeight: 17,
+      fontSize: fonts.size.fontSize14,
+      fontFamily: fonts.family.rubik700,
+      color: WHITE,
+    },
+    resendOtpText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      color: enableResendOtp ? CYAN_BLUE : CYAN_BLUE_OPACITY,
+      lineHeight: 21,
+    },
+    headingText: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      lineHeight: 21,
+      color: CYAN_BLUE,
+    },
+    otpTextStyle: {
+      fontFamily: fonts.family.rubik500,
+      fontSize: fonts.size.fontSize14,
+      lineHeight: 17,
+      color: CYAN_BLUE,
+      textAlign: CENTER,
+      paddingVertical: Platform.isIOS ? 20 : undefined,
+      width: '100%',
+    },
+  });
+};
+
+export default styles;

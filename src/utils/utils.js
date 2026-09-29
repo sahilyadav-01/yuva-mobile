@@ -1,0 +1,488 @@
+import validator from 'is_js';
+import {
+  Alert,
+  Dimensions,
+  PermissionsAndroid,
+  Platform,
+  Linking,
+  NativeModules,
+} from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob';
+import DeviceInfo from 'react-native-device-info';
+import ImagePicker from 'react-native-image-crop-picker';
+export const handleNetworkError = (status, message) => {
+  if (!message) {
+    if (status >= 500) {
+      Alert.alert('Error', 'Internal Server Error');
+    } else if (status === 403) {
+      Alert.alert('Error', 'Forbidden');
+    }
+  } else {
+    Alert.alert('Error', message.toString());
+  }
+};
+
+export const isEmail = email => {
+  let regEmail =
+    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+  let regMobile = /^[0-9]{10}$/;
+
+  if (validator.empty(email)) {
+    return false;
+  }
+  if (isNaN(email)) {
+    if (regEmail.test(email) == false) {
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    if (regMobile.test(email) == false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+};
+
+export const isEmpty = password => (validator.empty(password) ? true : false);
+export const EMAIL_VALIDATION = 'Please enter a valid Email/Phone Number!';
+export const PASSWORD_VALIDATION = 'Please enter a valid password !';
+
+export const transforSubData = (
+  s1,
+  s2,
+  s3,
+  s4,
+  s5,
+  s6,
+  s7,
+  s8,
+  s9,
+  version,
+) => {
+  let data2 = {...s1, ...s2, ...s3, ...s4, ...s5, ...s6, ...s7, ...s8, ...s9};
+  let data3 = Object.keys(data2).map(k => {
+    let o = {};
+    o[k] = checkEmptyReplaceZero(data2[k]);
+    return o;
+  });
+  return Object.keys(data3)
+    .map(k => data3[k])
+    .reduce(function (acc, x) {
+      for (var key in x) {
+        acc[key] = x[key];
+      }
+      return acc;
+    }, {});
+};
+
+const checkEmptyReplaceZero = val => {
+  return val == '' ? 0 : parseFloat(val);
+};
+
+export const appointmentStatus = status => {
+  let retStatus = 'Initiated';
+  switch (status) {
+    case 'CANCELLED':
+      retStatus = 'Cancelled';
+      break;
+    case 'INITIATED':
+      retStatus = 'Initiated';
+      break;
+    case 'CONFIRMED':
+      retStatus = 'Confirmed';
+      break;
+    case 'RESCHEDULED':
+      retStatus = 'Rescheduled';
+      break;
+    case 'COMPLETED':
+      retStatus = 'Completed';
+      break;
+    case 'FINISHED':
+      retStatus = 'Finished';
+      break;
+  }
+  return retStatus;
+};
+export const dignosticStatus = status => {
+  let retStatus = '';
+  switch (status) {
+    case 'CANCELLED':
+      retStatus = 'Cancelled';
+      break;
+    case 'INITIATED':
+      retStatus = 'Awaiting For Confirmation';
+      break;
+    case 'CONFIRMED':
+      retStatus = 'Booking Confirmed';
+      break;
+    case 'RESCHEDULED':
+      retStatus = 'Rescheduled';
+      break;
+    case 'COMPLETED':
+      retStatus = 'Report Awaited';
+      break;
+    case 'FINISHED':
+      retStatus = 'Access your report from Download Section';
+      break;
+    default:
+      retStatus = 'Awaiting For Confirmation';
+  }
+  return retStatus;
+};
+
+export const getDate = timestamp => {
+  return new Date(timestamp).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+  });
+};
+export const getPlanDate = timestamp => {
+  return new Date(timestamp).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+};
+export const splitCustomId = customId => {
+  return (
+    customId.substr(0, 4) +
+    '-' +
+    customId.substr(4, 4) +
+    '-' +
+    customId.substr(8, 4)
+  );
+};
+
+export const getTime = timestamp => {
+  return new Date(timestamp).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
+
+export const getEpoch = (date, time) => {
+  const dtString = date.toISOString().slice(0, 10);
+  const timeString = processTime(time);
+  if (Platform.OS === 'ios') {
+    return Date.parse(dtString + 'T' + timeString);
+  } else if (Platform.OS === 'android') {
+    return Date.parse(dtString + 'T' + timeString) - 5.5 * 60 * 60 * 1000;
+  }
+};
+
+const processTime = time => {
+  function addZero(i) {
+    if (i < 10) {
+      i = '0' + i;
+    }
+    return i;
+  }
+  return addZero(time?.getHours()) + ':' + addZero(time?.getMinutes()) + ':00';
+};
+
+export const ImageGallery = (onSuccess, onError) => {
+  ImagePicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true,
+    includeBase64: true,
+  })
+    .then(onSuccess)
+    .catch(onError);
+};
+export const requestCameraPermission = async (onSuccess, onError) => {
+  if (getPlatform().isIOS) {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+      includeBase64: true,
+    })
+      .then(onSuccess)
+      .catch(onError);
+  } else {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        ImagePicker.openCamera({
+          width: 300,
+          height: 400,
+          cropping: true,
+          includeBase64: true,
+        })
+          .then(onSuccess)
+          .catch(onError);
+      } else {
+        Alert.alert('permission denied...!!!');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+};
+export const granted = () => {
+  PermissionsAndroid.request(
+    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    {
+      title: 'Storage Permission Required',
+      message: 'App need to access you storage',
+    },
+  );
+};
+const downloadFile = (filePath, fileName) => {
+  let file_Url = filePath;
+  let ext = getExtention(file_Url);
+  ext = fileName;
+  const {config, fs} = RNFetchBlob;
+  const directory =
+    Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
+  let options;
+  if (Platform.OS === 'android') {
+    options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: directory + '/yuva/' + ext,
+        showNotification: true,
+      },
+    };
+
+    if (ext === 'pdf') {
+      options.addAndroidDownloads.description = 'PDF File';
+      options.addAndroidDownloads.mime = 'application/pdf';
+    } else if (ext === 'png') {
+      options.addAndroidDownloads.description = 'PNG File';
+      options.addAndroidDownloads.mime = 'image/png';
+    } else if (ext === 'jpeg' || ext === 'jpg') {
+      options.addAndroidDownloads.description = 'JPEG File';
+      options.addAndroidDownloads.mime = 'image/jpeg';
+    }
+  } else if (Platform.OS === 'ios') {
+    options = {path: `${directory}/${fileName}`};
+  }
+  config(options)
+    .fetch('GET', file_Url)
+    .then(res => {
+      if (Platform.OS === 'android') {
+        alert('File Downloaded Successfully.', JSON.stringify(res));
+      } else if (Platform.OS === 'ios') {
+        RNFetchBlob.ios.previewDocument(res.path());
+      }
+    })
+    .catch(err => {
+      alert('Download Failed');
+    });
+};
+
+export const checkPermission = async (filePath, fileName) => {
+  if (Platform.OS === 'android' && Platform.Version < 33) {
+    PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    ).then(read => {
+      PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      ).then(write => {
+        if (read && write) {
+          downloadFile(filePath, fileName);
+        } else if (read && !write) {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          );
+        } else if (!read && write) {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          );
+        } else {
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          );
+          PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          );
+        }
+      });
+    });
+  } else if (Platform.OS === 'android' && Platform.Version >= 33) {
+    downloadFile(filePath, fileName);
+  } else if (Platform.OS === 'ios') {
+    downloadFile(filePath, fileName);
+  }
+};
+
+const getExtention = filename => {
+  return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
+};
+
+export const getCalendarValue = value => {
+  const date = getDate(value);
+  const time = getTime(value);
+  return {date, time};
+};
+
+export const getDimensions = () => {
+  const {width, height} = Dimensions.get('screen');
+  return {width, height};
+};
+
+export const getWindowDimensions = () => {
+  const {width, height} = Dimensions.get('window');
+  return {width, height};
+};
+
+export const getMonthInText = arg => {
+  const obj = [
+    {month: '0', text: 'January'},
+    {month: '1', text: 'February'},
+    {month: '2', text: 'March'},
+    {month: '3', text: 'April'},
+    {month: '4', text: 'May'},
+    {month: '5', text: 'June'},
+    {month: '6', text: 'July'},
+    {month: '7', text: 'August'},
+    {month: '8', text: 'September'},
+    {month: '9', text: 'October'},
+    {month: '10', text: 'November'},
+    {month: '11', text: 'December'},
+  ];
+  return obj.find(item => item.month === arg.toString()).text;
+};
+
+export const getDateText = date => {
+  return (
+    date &&
+    `${date.getDate()} ${getMonthInText(date.getMonth())} ${date.getFullYear()}`
+  );
+};
+
+export const getDateInFormat = (date, format) => {
+  switch (format) {
+    case 'dd/mm/yyyy':
+      return (
+        date && `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+      );
+    case 'dd mm':
+      return date && `${date.getDate()} ${getMonthInText(date.getMonth())}`;
+    case 'dd mm yy':
+      return (
+        date &&
+        `${date.getDate()}-${getMonthInText(
+          date.getMonth(),
+        )} ${date.getFullYear()}`
+      );
+    case 'mm/yy':
+      const year = date.getFullYear().toString();
+      return (
+        date &&
+        `${date.getMonth() + 1}/${year.substring(year.length - 2, year.length)}`
+      );
+    default:
+      getDateText(date);
+  }
+};
+
+export const getTimeInFormat = (date, format) => {
+  switch (format) {
+    case 'hh:mm:ss':
+      return (
+        date && `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+      );
+    case 'hh:mm ': {
+      return date && `${date.getHours()}:${date.getMinutes()}`;
+    }
+  }
+};
+
+export const getAge = date => {
+  return (
+    date &&
+    `${parseInt(new Date().getFullYear()) - parseInt(date.getFullYear())}`
+  );
+};
+
+export const getDeviceId = async () => {
+  const deviceId = await DeviceInfo.getUniqueId();
+  return deviceId || '';
+};
+
+export const onTermsConditionsPress = async () => {
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/terms-and-conditions',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
+    Linking.openURL('https://www.yuvahealth.in/terms-and-conditions');
+  } else {
+    Linking.openURL(storeUrl);
+  }
+};
+
+export const onPrivacyPolicyPress = async () => {
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/privacy-policy',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
+    Linking.openURL('https://www.yuvahealth.in/privacy-policy');
+  } else {
+    Linking.openURL(storeUrl);
+  }
+};
+
+export const onNeedHelpPress = async () => {
+  const canOpen = await Linking.canOpenURL(
+    'https://www.yuvahealth.in/contact-us',
+  );
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
+    Linking.openURL('https://www.yuvahealth.in/contact-us');
+  } else {
+    Linking.openURL(storeUrl);
+  }
+};
+
+export const onViewMapPress = async prop => {
+  const canOpen = await Linking.canOpenURL(prop);
+  const storeUrl =
+    Platform.OS === 'ios'
+      ? 'https://apps.apple.com/in/app/google-chrome/id535886823'
+      : 'market://details?id=com.android.chrome';
+  if (canOpen) {
+    Linking.openURL(prop);
+  } else {
+    Linking.openURL(storeUrl);
+  }
+};
+
+export const getPlatform = () => {
+  if (Platform.OS === 'android') {
+    return {isIOS: false, isAndroid: true};
+  } else if (Platform.OS === 'ios') {
+    return {isIOS: true, isAndroid: false};
+  }
+};
+
+export const getIosStatusBarHeight = () => {
+  return new Promise((resolve, reject) => {
+    NativeModules?.StatusBarHeight?.getStatusBarHeight((err, res) => {
+      if (err) {
+        reject(0);
+      } else if (res) {
+        resolve(parseFloat(res));
+      }
+    });
+  });
+};

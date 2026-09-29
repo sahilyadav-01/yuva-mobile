@@ -1,4 +1,4 @@
-package com.nineleaps.yuva;
+package com.yuva;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,9 +9,14 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.nineleaps.yuva.newarchitecture.MainApplicationReactNativeHost;
+import com.yuva.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import org.jetbrains.annotations.Nullable;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -48,7 +53,14 @@ public class MainApplication extends Application implements ReactApplication {
       return mReactNativeHost;
     }
   }
-
+ @Override
+  public Intent registerReceiver(@Nullable BroadcastReceiver receiver, IntentFilter filter) {
+    if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+      return super.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
+    } else {
+      return super.registerReceiver(receiver, filter);
+    }
+  }
   @Override
   public void onCreate() {
     super.onCreate();
@@ -73,7 +85,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.nineleaps.yuva.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.yuva.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

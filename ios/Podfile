@@ -5,8 +5,10 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'yuva' do
+  pod 'FreshchatSDK'
+  pod 'GoogleUtilities', :modular_headers => true;
+  pod 'FirebaseCore', :modular_headers => true;
   config = use_native_modules!
-
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -28,10 +30,11 @@ target 'yuva' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!()
+  # use_flipper!()
 
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    
   end
 end

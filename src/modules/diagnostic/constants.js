@@ -1,0 +1,1 @@
+export const MY_TESTS = 'My Tests';

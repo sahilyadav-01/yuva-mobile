@@ -1,0 +1,11 @@
+export const SEARCH_PLACEHOLDER_PHARMACY = 'Search Pharmacy';
+export const HEADER_TITLE = 'Pharmacy';
+export const YOUR_PIN = 'Please share your Customer Id: ';
+export const DEAR = 'Dear ';
+export const COMMA = ',';
+export const THANKS = 'Thank You';
+export const WISHES = 'Keep Smiling, Stay Healthy.!';
+export const SUBTEXT = 'Your PIN for to get medicine from this Pharmacy is - ';
+export const SUBTEXT2 = 'Please share the PIN with the Pharmacy.';
+export const NO_PHARMACY_FOUND = 'No Pharmacy Found';
+export const VIEW_ALL_PHARMACIES = 'View All Pharmacies';

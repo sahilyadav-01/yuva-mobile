@@ -1,0 +1,10 @@
+export const HEADING_TEXT = 'Search';
+export const SUBHEADING_TEXT1 = 'Search for your nearest ';
+export const SUBHEADING_TEXT2 = 'PROVIDER ';
+export const SUBHEADING_TEXT3 = 'avail a cashless facility';
+export const DISPLAY_TEXT = 'No provider found';
+export const BUTTON_TEXT = 'View Map';
+export const PLACEHOLDER_TEXT1 = 'Search for Hospital/Clinic/Diagnostic Center';
+export const PLACEHOLDER_TEXT2 = 'Clinic';
+export const PLACEHOLDER_TEXT3 = 'Type';
+export const PLACEHOLDER_TEXT4 = 'Cities';

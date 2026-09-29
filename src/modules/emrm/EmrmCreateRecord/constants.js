@@ -1,0 +1,22 @@
+export const HEADING_TEXT = 'Create Medical Record';
+export const INPUT_FIELD_HEADING1 = 'Type of Medical Document';
+export const INPUT_FIELD_HEADING2 = 'Name of Medical Document';
+export const INPUT_FIELD_HEADING3 = 'Date of Medical Document';
+export const INPUT_FIELD_HEADING4 = 'Name of Health Center';
+export const INPUT_FIELD_HEADING5 = 'Upload Documents';
+export const BUTTON_TEXT = 'Submit';
+export const PLACEHOLDER1 = 'Select Document Type';
+export const PLACEHOLDER2 = 'Name of Medical Document';
+export const PLACEHOLDER3 = 'Date of Medical Document ';
+export const PLACEHOLDER4 = 'Hospital /Lab/ Clinic';
+export const PLACEHOLDER5 = 'Upload files under 10 MB';
+export const ALERT = 'Alert';
+export const VALIDATION_MESSAGE1 = 'Please select the medical document type.';
+export const VALIDATION_MESSAGE2 =
+  'Please enter the name of the medical document.';
+export const VALIDATION_MESSAGE3 =
+  'Please select date of the medical document.';
+export const VALIDATION_MESSAGE4 =
+  'Please enter the name of the health center.';
+export const VALIDATION_MESSAGE5 = 'Please upload the document.';
+export const INTERNAL_ERROR = 'Internal server error.';

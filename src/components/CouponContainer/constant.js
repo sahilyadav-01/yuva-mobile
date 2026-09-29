@@ -1,0 +1,13 @@
+export const APPLY_COUPON = 'Apply Coupon';
+export const COUPON_LABEL = 'Available Coupons';
+export const USE_COUPON = ' ➔ Apply';
+export const PLACEHOLDER_TEXT = 'Enter the coupon code';
+export const COUPON_APPLIED = ' ➔ Applied';
+export const ALERT = 'ALERT';
+export const COUPON_MESSAGE = 'Please enter the coupon code';
+export const CAPITALIZE_TEXT = 'characters';
+export const DISCOUNT = item => `₹ ${item}/- OFF`;
+export const DISCOUNT_PERCENTAGE = item => `${item}% OFF`;
+export const DISCOUNT_UPTO = item => `Upto ₹ ${item} off`;
+export const COUPON_CODE = item => `Code: ${item}`;
+export const NO_COUPON_TEXT = 'No Coupon Available';
