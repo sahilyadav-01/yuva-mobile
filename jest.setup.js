@@ -42,7 +42,7 @@ jest.mock('react-native-reanimated', () => {
 
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+  require('@react-native-async-storage/async-storage/jest')
 );
 
 // Mock DeviceInfo
@@ -169,9 +169,6 @@ jest.mock('@react-native-community/geolocation', () => ({
   watchPosition: jest.fn(),
   clearWatch: jest.fn(),
 }));
-
-// Mock react-native-config
-jest.mock('react-native-config', () => ({}));
 
 // Mock react-native-webview
 jest.mock('react-native-webview', () => 'WebView');

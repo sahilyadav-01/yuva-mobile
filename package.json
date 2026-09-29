@@ -36,7 +36,7 @@
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.7.0",
     "@react-navigation/stack": "^6.2.2",
-    "@reduxjs/toolkit": "2.13.0",
+    "@reduxjs/toolkit": "1.9.7",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "is_js": "^0.9.0",
