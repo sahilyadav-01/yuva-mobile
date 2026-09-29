@@ -14,7 +14,7 @@ Install dependencies with `npm ci`.
 
 ## Android
 
-The Android application targets API 36, supports API 24 and newer, and uses React Native 0.87's 16 KB page-size-compatible native runtime. The legacy React Native New Architecture remains disabled until all application flows and native integrations have completed compatibility testing.
+The Android application targets API 36, supports API 24 and newer, and uses React Native 0.87's 16 KB page-size-compatible native runtime. React Native 0.87 requires the New Architecture, so all upgraded native packages are selected for that runtime.
 
 On Windows, Android builds must run from project and Android SDK paths that contain no spaces. If either path contains spaces, mount them temporarily using drive letters before invoking Gradle:
 
