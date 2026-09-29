@@ -13,8 +13,6 @@ import {
 import {PermissionsAndroid, Platform as AndroidPlatform} from 'react-native';
 import store from './src/store/Store';
 import {APP_ID, APP_KEY, DOMAIN} from './src/utils/freshChatConfig';
-import VersionCheck from 'react-native-version-check';
-import {Alert, Linking} from 'react-native';
 import {getPlatform} from './src/utils/utils';
 import {getExistingUser} from './src/store/LocalStore';
 import {setPermission} from './src/store/reducers/LocationSlice';
@@ -71,53 +69,6 @@ export const useApp = () => {
       await Freshchat.init(freshchatConfig);
     } catch (e) {}
   };
-  const handleVersionUpdate = (latestVersion, storeUrl) => {
-    Alert.alert(
-      'Alert',
-      `Please update the app to the latest version ${latestVersion}`,
-      [
-        {
-          text: 'Update',
-          onPress: () => {
-            Linking.openURL(storeUrl);
-          },
-        },
-      ],
-      [{cancelable: false}],
-    );
-  };
-
-  const checkVersionUpdate = async (currentVersion, latestVersion) => {
-    if (Platform?.isIOS) {
-      const latestVersionObj = {
-        latestVersion,
-        provider: 'appStore',
-        currentVersion,
-      };
-      const storeUrl = await VersionCheck.getAppStoreUrl({appID: '6449449413'});
-      const versionObj = await VersionCheck.needUpdate(latestVersionObj);
-      if (versionObj?.isNeeded) {
-        handleVersionUpdate(versionObj.latestVersion, storeUrl);
-      }
-    } else if (Platform?.isAndroid) {
-      const resolvedLatestVersion =
-        latestVersion ?? (await VersionCheck.getLatestVersion());
-      const androidPackageName = VersionCheck.getPackageName();
-      const currentAndroidVersion =
-        currentVersion ?? VersionCheck.getCurrentVersion();
-      const storeUrl = await VersionCheck.getPlayStoreUrl({
-        packageName: androidPackageName,
-      });
-      const versionObj = await VersionCheck.needUpdate({
-        currentVersion: currentAndroidVersion,
-        latestVersion: resolvedLatestVersion,
-      });
-      if (versionObj?.isNeeded) {
-        handleVersionUpdate(versionObj.latestVersion, storeUrl);
-      }
-    }
-  };
-
   const handleLocationPermission = async () => {
     if (Platform.isAndroid && AndroidPlatform.Version > 23) {
       const status = await PermissionsAndroid.request(
@@ -138,7 +89,6 @@ export const useApp = () => {
       const tasks = [
         handleMessagingPermission(),
         handleLocationPermission(),
-        checkVersionUpdate(),
       ];
       await Promise.allSettled(tasks);
     };
