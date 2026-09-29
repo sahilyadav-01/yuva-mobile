@@ -51,12 +51,6 @@ jest.mock(
   () => require('react-native-device-info/jest/react-native-device-info-mock')
 );
 
-// Mock SplashScreen
-jest.mock('react-native-splash-screen', () => ({
-  show: jest.fn(),
-  hide: jest.fn(),
-}));
-
 // Mock VersionCheck
 jest.mock('react-native-version-check', () => ({
   getPackageName: jest.fn(() => 'com.yuva'),
@@ -70,18 +64,21 @@ jest.mock('react-native-version-check', () => ({
 
 // Mock Firebase Messaging
 jest.mock('@react-native-firebase/messaging', () => {
-  const messaging = () => ({
+  const messaging = {};
+  return {
+    getMessaging: jest.fn(() => messaging),
     getToken: jest.fn(() => Promise.resolve('mock-token')),
     hasPermission: jest.fn(() => Promise.resolve(1)),
     requestPermission: jest.fn(() => Promise.resolve(1)),
-  });
-  messaging.AuthorizationStatus = {
+    getInitialNotification: jest.fn(() => Promise.resolve(null)),
+    onNotificationOpenedApp: jest.fn(() => jest.fn()),
+    AuthorizationStatus: {
     NOT_DETERMINED: -1,
     DENIED: 0,
     AUTHORIZED: 1,
     PROVISIONAL: 2,
+    },
   };
-  return messaging;
 });
 
 // Mock Freshchat
@@ -92,8 +89,8 @@ jest.mock('react-native-freshchat-sdk', () => ({
   FreshchatConfig: jest.fn(),
 }));
 
-// Mock rn-fetch-blob
-jest.mock('rn-fetch-blob', () => ({
+// Mock react-native-blob-util
+jest.mock('react-native-blob-util', () => ({
   fs: {
     dirs: {
       DocumentDir: '/mock/DocumentDir',
@@ -151,16 +148,6 @@ jest.mock('react-native-image-crop-picker', () => ({
   cleanSingle: jest.fn(() => Promise.resolve()),
 }));
 
-// Mock react-native-push-notification
-jest.mock('react-native-push-notification', () => ({
-  configure: jest.fn(),
-  onRegister: jest.fn(),
-  onNotification: jest.fn(),
-  addEventListener: jest.fn(),
-  requestPermissions: jest.fn(),
-  localNotification: jest.fn(),
-}));
-
 // Mock react-native-linear-gradient
 jest.mock('react-native-linear-gradient', () => 'LinearGradient');
 
@@ -170,8 +157,8 @@ jest.mock('@react-native-clipboard/clipboard', () => ({
   getString: jest.fn(() => Promise.resolve('')),
 }));
 
-// Mock react-native-document-picker
-jest.mock('react-native-document-picker', () => ({
+// Mock the maintained document picker.
+jest.mock('@react-native-documents/picker', () => ({
   pick: jest.fn(() => Promise.resolve([])),
   types: {},
 }));
